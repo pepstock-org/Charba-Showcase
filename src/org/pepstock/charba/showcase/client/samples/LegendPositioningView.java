@@ -1,0 +1,120 @@
+package org.pepstock.charba.showcase.client.samples;
+
+import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.Position;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Widget;
+
+
+/**
+
+ * @author Andrea "Stock" Stocchero
+ */
+public class LegendPositioningView extends BaseComposite{
+	
+	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
+
+	interface ViewUiBinder extends UiBinder<Widget, LegendPositioningView> {
+	}
+
+	@UiField
+	LineChart chartTop;
+	
+	@UiField
+	LineChart chartRight;
+
+	@UiField
+	LineChart chartBottom;
+	
+	@UiField
+	LineChart chartLeft;
+
+	public LegendPositioningView() {
+		initWidget(uiBinder.createAndBindUi(this));
+		
+		chartTop.getOptions().setResponsive(true);
+		chartTop.getOptions().getLegend().setPosition(Position.top);
+		chartTop.getOptions().getTitle().setDisplay(true);
+		chartTop.getOptions().getTitle().setText("Charba Legend top");
+		
+		LineDataset dataset1 = chartTop.newDataset();
+		dataset1.setLabel("dataset 1");
+		Color color1 = Colors.ALL[0];
+		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		dataset1.setBorderColor(color1.toHex());
+		dataset1.setData(getRandomDigits(months));
+		dataset1.setFill(Fill.origin);
+		chartTop.getData().setLabels(getLabels());
+		chartTop.getData().setDatasets(dataset1);
+		
+		chartRight.getOptions().setResponsive(true);
+		chartRight.getOptions().getLegend().setPosition(Position.right);
+		chartRight.getOptions().getTitle().setDisplay(true);
+		chartRight.getOptions().getTitle().setText("Charba Legend right");
+		
+		LineDataset dataset2 = chartRight.newDataset();
+		dataset2.setLabel("dataset 1");
+		Color color2 = Colors.ALL[1];
+		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		dataset2.setBorderColor(color2.toHex());
+		dataset2.setData(getRandomDigits(months));
+		dataset2.setFill(Fill.origin);
+		chartRight.getData().setLabels(getLabels());
+		chartRight.getData().setDatasets(dataset2);
+		
+
+		chartBottom.getOptions().setResponsive(true);
+		chartBottom.getOptions().getLegend().setPosition(Position.bottom);
+		chartBottom.getOptions().getTitle().setDisplay(true);
+		chartBottom.getOptions().getTitle().setText("Charba Legend bottom");
+		
+		LineDataset dataset3 = chartBottom.newDataset();
+		dataset3.setLabel("dataset 1");
+		Color color3 = Colors.ALL[2];
+		dataset3.setBackgroundColor(color3.alpha(0.2).toRGBA());
+		dataset3.setBorderColor(color3.toHex());
+		dataset3.setData(getRandomDigits(months));
+		dataset3.setFill(Fill.origin);
+		chartBottom.getData().setLabels(getLabels());
+		chartBottom.getData().setDatasets(dataset3);
+
+		chartLeft.getOptions().setResponsive(true);
+		chartLeft.getOptions().getLegend().setPosition(Position.left);
+		chartLeft.getOptions().getTitle().setDisplay(true);
+		chartLeft.getOptions().getTitle().setText("Charba Legend left");
+		
+		LineDataset dataset4 = chartLeft.newDataset();
+		dataset4.setLabel("dataset 1");
+		Color color4 = Colors.ALL[3];
+		dataset4.setBackgroundColor(color4.alpha(0.2).toRGBA());
+		dataset4.setBorderColor(color4.toHex());
+		dataset4.setData(getRandomDigits(months));
+		dataset4.setFill(Fill.origin);
+		chartLeft.getData().setLabels(getLabels());
+		chartLeft.getData().setDatasets(dataset4);
+
+	}
+
+	@UiHandler("randomize")
+	protected void handleRandomize(ClickEvent event) {
+		newData(chartTop);
+		newData(chartRight);
+		newData(chartBottom);
+		newData(chartLeft);
+	}
+
+	private void newData(LineChart chart) {
+		for (Dataset dataset : chart.getData().getDatasets()){
+			dataset.setData(getRandomDigits(months));
+		}
+		chart.update();
+	}
+}

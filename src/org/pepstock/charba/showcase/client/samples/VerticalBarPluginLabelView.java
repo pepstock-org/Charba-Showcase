@@ -1,0 +1,122 @@
+package org.pepstock.charba.showcase.client.samples;
+
+import java.util.List;
+
+import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.data.BarDataset;
+import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.DatasetMetaItem;
+import org.pepstock.charba.client.options.InvalidPluginIdException;
+import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
+
+import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
+import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Widget;
+
+
+/**
+
+ * @author Andrea "Stock" Stocchero
+ */
+public class VerticalBarPluginLabelView extends BaseComposite{
+
+	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
+
+	interface ViewUiBinder extends UiBinder<Widget, VerticalBarPluginLabelView> {
+	}
+
+	@UiField
+	BarChart chart;
+	
+	public VerticalBarPluginLabelView() {
+		initWidget(uiBinder.createAndBindUi(this));
+		
+		chart.getOptions().setResponsive(true);
+		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getTitle().setDisplay(true);
+		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		
+		BarDataset dataset1 = chart.newDataset();
+		dataset1.setLabel("dataset 1");
+		
+		Color color1 = Colors.ALL[0];
+		
+		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		dataset1.setBorderColor(color1.toHex());
+		dataset1.setBorderWidth(1);
+		
+		dataset1.setData(getRandomDigits(months));
+
+		BarDataset dataset2 = chart.newDataset();
+		dataset2.setLabel("dataset 2");
+		
+		Color color2 = Colors.ALL[1];
+		
+		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		dataset2.setBorderColor(color2.toHex());
+		dataset2.setBorderWidth(1);
+		
+		dataset2.setData(getRandomDigits(months));
+		chart.getData().setLabels(getLabels());
+		chart.getData().setDatasets(dataset1, dataset2);
+		
+		AbstractPlugin p = new AbstractPlugin() {
+			
+			@Override
+			public String getId() {
+				return "test";
+			}
+			
+			
+			
+			/* (non-Javadoc)
+			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDatasetsDraw(org.pepstock.charba.client.AbstractChart, double)
+			 */
+			@Override
+			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
+				final int fontSize = 16;
+				final int padding = 5;
+				Context2d ctx = chart.getCanvas().getContext2d();
+
+				List<Dataset> dss = chart.getData().getDatasets();
+				for (int i=0; i<dss.size(); i++){
+					List<DatasetMetaItem> metadata = chart.getDatasetMeta(i);
+					Dataset ds = dss.get(i);
+					for (int k=0; k<metadata.size(); k++){
+						DatasetMetaItem item = metadata.get(k);
+						String dataString = ds.getData().get(k).toString();
+						ctx.setFillStyle("rgb(0, 0, 0)");
+						ctx.setFont("16px normal Helvetica Neue");
+						ctx.setTextAlign(TextAlign.CENTER);
+						ctx.setTextBaseline(TextBaseline.MIDDLE);
+						ctx.fillText(dataString, item.getView().getX(), item.getView().getY() - (fontSize /2) - padding);
+					}
+				}
+			}
+
+		};
+		try {
+			chart.getPlugins().add(p);
+		} catch (InvalidPluginIdException e) {
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
+		}
+	}
+
+	@UiHandler("randomize")
+	protected void handleRandomize(ClickEvent event) {
+		for (Dataset dataset : chart.getData().getDatasets()){
+			dataset.setData(getRandomDigits(months));
+		}
+		chart.update();
+	}
+
+}
