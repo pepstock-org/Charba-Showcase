@@ -87,6 +87,7 @@ public class TooltipHTMLPieView extends BaseComposite{
 						List<String> lines = item.getLines();
 						for (int i=0; i<lines.size(); i++){
 							TooltipLabelColor color = colors.get(index);
+							DivElement wrapper = Document.get().createDivElement();
 							SpanElement span = Document.get().createSpanElement();
 							span.getStyle().setDisplay(Display.INLINE_BLOCK);
 							span.getStyle().setWidth(10, Unit.PX);
@@ -96,7 +97,8 @@ public class TooltipHTMLPieView extends BaseComposite{
 							span.getStyle().setBorderColor(color.getBorderColor());
 							span.getStyle().setBorderStyle(BorderStyle.SOLID);
 							span.getStyle().setBorderWidth(2, Unit.PX);
-							innerHTML.append("<tr><td style='white-space: nowrap; vertical-align: middle; font-size: 18px;'>").append(span.toString()).append(lines.get(i)).append("</td></tr>");
+							wrapper.appendChild(span);
+							innerHTML.append("<tr><td style='white-space: nowrap; vertical-align: middle; font-size: 18px;'>").append(wrapper.getInnerHTML()).append(lines.get(i)).append("</td></tr>");
 						}
 						index++;
 					}

@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
@@ -36,6 +37,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class TooltipHTMLlineView extends BaseComposite{
+	
+	Logger log = Logger.getLogger("ecco");
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -95,6 +98,7 @@ public class TooltipHTMLlineView extends BaseComposite{
 						List<String> lines = item.getLines();
 						for (int i=0; i<lines.size(); i++){
 							TooltipLabelColor color = colors.get(index);
+							DivElement wrapper = Document.get().createDivElement();
 							SpanElement span = Document.get().createSpanElement();
 							span.getStyle().setDisplay(Display.INLINE_BLOCK);
 							span.getStyle().setWidth(10, Unit.PX);
@@ -104,7 +108,8 @@ public class TooltipHTMLlineView extends BaseComposite{
 							span.getStyle().setBorderColor(color.getBorderColor());
 							span.getStyle().setBorderStyle(BorderStyle.SOLID);
 							span.getStyle().setBorderWidth(2, Unit.PX);
-							innerHTML.append("<tr><td style='white-space: nowrap;'>").append(span.toString()).append(lines.get(i)).append("</td></tr>");
+							wrapper.appendChild(span);
+							innerHTML.append("<tr><td style='white-space: nowrap;'>").append(wrapper.getInnerHTML()).append(lines.get(i)).append("</td></tr>");
 						}
 						index++;
 					}
