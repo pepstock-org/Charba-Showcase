@@ -5,8 +5,8 @@ import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.options.InvalidPluginIdException;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.Context2d;
