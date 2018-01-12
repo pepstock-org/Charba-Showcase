@@ -7,6 +7,7 @@ import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
@@ -28,7 +29,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarPluginLabelView extends BaseComposite{
-
+	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, VerticalBarPluginLabelView> {
@@ -89,20 +90,22 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 
 				List<Dataset> dss = chart.getData().getDatasets();
 				for (int i=0; i<dss.size(); i++){
-					List<DatasetMetaItem> metadata = chart.getDatasetMeta(i);
-					Dataset ds = dss.get(i);
-					for (int k=0; k<metadata.size(); k++){
-						DatasetMetaItem item = metadata.get(k);
-						String dataString = ds.getData().get(k).toString();
-						ctx.setFillStyle("rgb(0, 0, 0)");
-						ctx.setFont("16px normal Helvetica Neue");
-						ctx.setTextAlign(TextAlign.CENTER);
-						ctx.setTextBaseline(TextBaseline.MIDDLE);
-						ctx.fillText(dataString, item.getView().getX(), item.getView().getY() - (fontSize /2) - padding);
+					DatasetMetaItem metadata = chart.getDatasetMeta(i);
+					if (!metadata.isHidden()){
+						Dataset ds = dss.get(i);
+						List<DatasetItem> items = metadata.getDatasets();
+						for (int k=0; k<items.size(); k++){
+							DatasetItem item = items.get(k);
+							String dataString = ds.getData().get(k).toString();
+							ctx.setFillStyle("rgb(0, 0, 0)");
+							ctx.setFont("16px normal Helvetica Neue");
+							ctx.setTextAlign(TextAlign.CENTER);
+							ctx.setTextBaseline(TextBaseline.MIDDLE);
+							ctx.fillText(dataString, item.getView().getX(), item.getView().getY() - (fontSize /2) - padding);
+						}
 					}
 				}
 			}
-
 		};
 		try {
 			chart.getPlugins().add(p);
@@ -110,6 +113,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
 	}
+
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {

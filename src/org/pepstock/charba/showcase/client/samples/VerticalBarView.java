@@ -31,7 +31,7 @@ public class VerticalBarView extends BaseComposite{
 	
 	public VerticalBarView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);

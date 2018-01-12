@@ -101,7 +101,7 @@ public class PointStyleLineView extends BaseComposite{
 		dataset.setFill(Fill.nofill);
 		dataset.setPointRadius(10D);
 		dataset.setPointHoverRadius(20D);
-		dataset.setShowLine(false);
+		dataset.setShowLines(false);
 		lineChart.getData().setLabels(getLabels());
 		lineChart.getData().setDatasets(dataset);
 	}
