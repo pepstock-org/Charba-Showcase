@@ -57,7 +57,7 @@ public class GridLinesStyleView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(Fill.nofill);
 
-		CartesianLinearAxis axis2 = new CartesianLinearAxis();
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");

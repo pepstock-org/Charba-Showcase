@@ -65,12 +65,12 @@ public class MinMaxView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(Fill.nofill);
 
-		CartesianCategoryAxis axis1 = new CartesianCategoryAxis();
+		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
 		
-		CartesianLinearAxis axis2 = new CartesianLinearAxis();
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");

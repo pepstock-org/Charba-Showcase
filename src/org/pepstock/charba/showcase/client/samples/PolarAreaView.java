@@ -38,10 +38,10 @@ public class PolarAreaView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Polar Area Chart");
 		
-		RadialAxis axis = new RadialAxis();
+		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
 		axis.getTicks().setReverse(false);
-		chart.getOptions().setXAxis(axis);
+		chart.getOptions().setAxis(axis);
 		
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

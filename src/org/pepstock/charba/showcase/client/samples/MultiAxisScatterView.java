@@ -4,6 +4,7 @@ import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
@@ -41,17 +42,17 @@ public class MultiAxisScatterView extends BaseComposite{
 		chart.getOptions().getHover().setIntersect(true);
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
 
-		CartesianLinearAxis xAxes = new CartesianLinearAxis();
+		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, CartesianAxisType.x);
 		xAxes.setPosition(Position.bottom);
 		xAxes.getGrideLines().setZeroLineColor("rgba(0,0,0,1)");
 		xAxes.setId("x-axis-1");
 		
-		CartesianLinearAxis yAxes1 = new CartesianLinearAxis();
+		CartesianLinearAxis yAxes1 = new CartesianLinearAxis(chart);
 		yAxes1.setId("y-axis-1");
 		yAxes1.setDisplay(true);
 		yAxes1.setPosition(Position.left);
 
-		CartesianLinearAxis yAxes2 = new CartesianLinearAxis();
+		CartesianLinearAxis yAxes2 = new CartesianLinearAxis(chart);
 		yAxes2.setId("y-axis-2");
 		yAxes2.setDisplay(true);
 		yAxes2.setPosition(Position.right);

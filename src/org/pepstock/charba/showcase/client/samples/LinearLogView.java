@@ -64,12 +64,12 @@ public class LinearLogView extends BaseComposite{
 		dataset2.setData(getRandomDigitsLog(months));
 		dataset2.setFill(Fill.nofill);
 
-		CartesianCategoryAxis axis1 = new CartesianCategoryAxis();
+		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
 		
-		CartesianLogarithmicAxis axis2 = new CartesianLogarithmicAxis();
+		CartesianLogarithmicAxis axis2 = new CartesianLogarithmicAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");

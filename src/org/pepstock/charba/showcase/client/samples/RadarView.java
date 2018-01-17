@@ -38,9 +38,9 @@ public class RadarView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Radar Chart");
 		
-		RadialAxis axis = new RadialAxis();
+		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
-		chart.getOptions().setXAxis(axis);
+		chart.getOptions().setAxis(axis);
 			
 		
 		RadarDataset dataset1 = chart.newDataset();

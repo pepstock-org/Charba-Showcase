@@ -5,6 +5,7 @@ import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.TickItem;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
@@ -57,7 +58,7 @@ public class LogScatterView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 
 		
-		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis();
+		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis(chart, CartesianAxisType.x);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.setPosition(Position.bottom);
@@ -75,7 +76,7 @@ public class LogScatterView extends BaseComposite{
 		axis1.getScaleLabel().setLabelString("Frequency");
 		axis1.getScaleLabel().setDisplay(true);
 		
-		CartesianLinearAxis axis2 = new CartesianLinearAxis();
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getTicks().setCallback(new TickCallback() {
 			

@@ -49,7 +49,7 @@ public class BoundariesAreaView extends BaseComposite{
 	}
 	
 	private void configureChart(LineChart chart, int index, Fill fill){
-		CartesianLinearAxis axis = new CartesianLinearAxis();
+		CartesianLinearAxis axis = new CartesianLinearAxis(chart);
 		axis.getTicks().setAutoSkip(false);
 		axis.getTicks().setMaxRotation(0);		
 		

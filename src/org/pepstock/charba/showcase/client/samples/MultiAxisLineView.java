@@ -38,12 +38,12 @@ public class MultiAxisLineView extends BaseComposite{
 		chart.getOptions().getTitle().setText("Charba Multi Axis Line Chart");
 		chart.getOptions().getHover().setMode(InteractionMode.index);
 		
-		CartesianLinearAxis axis1 = new CartesianLinearAxis();
+		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
 		axis1.setPosition(Position.left);
 		axis1.setDisplay(true);
 
-		CartesianLinearAxis axis2 = new CartesianLinearAxis();
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
 		axis2.setPosition(Position.right);
 		axis2.setDisplay(true);

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.options.scales.CartesianCategoryAxis;
@@ -60,12 +61,12 @@ public class NoNumericYAxesView extends BaseComposite{
 		dataset2.setDataString(getData(months));
 		dataset2.setFill(Fill.nofill);
 
-		CartesianCategoryAxis axis1 = new CartesianCategoryAxis();
+		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
 		
-		CartesianCategoryAxis axis2 = new CartesianCategoryAxis();
+		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, CartesianAxisType.y);
 		axis2.setDisplay(true);
 		axis2.setPosition(Position.left);
 		axis2.getScaleLabel().setDisplay(true);
