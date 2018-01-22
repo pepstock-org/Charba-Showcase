@@ -1,15 +1,14 @@
 package org.pepstock.charba.showcase.client.samples;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
+import org.pepstock.charba.client.plugins.impl.ChartBackgroundColor;
+import org.pepstock.charba.client.plugins.impl.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -23,7 +22,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarPluginView extends BaseComposite{
-
+	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, VerticalBarPluginView> {
@@ -64,26 +63,10 @@ public class VerticalBarPluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		AbstractPlugin p = new AbstractPlugin() {
-			
-			@Override
-			public String getId() {
-				return "test";
-			}
-			
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onBeforeDraw(org.pepstock.charba.client.AbstractChart, double)
-			 */
-			@Override
-			public boolean onBeforeDraw(AbstractChart<?, ?> chart, double easing) {
-				Context2d ctx = chart.getCanvas().getContext2d();
-				ctx.setFillStyle(Colors.COLOR_DATASET_3.alpha(0.1).toRGBA());
-				ctx.fillRect(0, 0, chart.getCanvas().getWidth(), chart.getCanvas().getHeight());
-				return true;
-			}
-		};
+		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
+		option.setBackgroundColor(Colors.COLOR_DATASET_3.alpha(0.1).toRGBA());
 		try {
-			chart.getPlugins().add(p);
+			chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option.getObject());
 		} catch (InvalidPluginIdException e) {
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
@@ -96,5 +79,4 @@ public class VerticalBarPluginView extends BaseComposite{
 		}
 		chart.update();
 	}
-
 }

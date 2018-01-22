@@ -17,6 +17,7 @@ import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -83,7 +84,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDatasetsDraw(org.pepstock.charba.client.AbstractChart, double)
 			 */
 			@Override
-			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing, JavaScriptObject options) {
 				final int fontSize = 16;
 				final int padding = 5;
 				Context2d ctx = chart.getCanvas().getContext2d();

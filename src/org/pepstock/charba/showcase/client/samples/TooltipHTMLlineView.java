@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
@@ -37,9 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class TooltipHTMLlineView extends BaseComposite{
-	
-	Logger log = Logger.getLogger("ecco");
-	
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, TooltipHTMLlineView> {

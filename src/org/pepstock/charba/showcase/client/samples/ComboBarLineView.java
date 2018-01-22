@@ -42,7 +42,7 @@ public class ComboBarLineView extends BaseComposite{
 		chart.getOptions().getTooltips().setIntersect(true);
 		
 		BarDataset dataset1 = chart.newDataset();
-		dataset1.setType(Type.bar.name());
+		dataset1.setType(Type.bar);
 		dataset1.setLabel("dataset 1");
 		
 		Color color1 = Colors.ALL[0];
@@ -53,7 +53,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset1.setData(getRandomDigits(months));
 
 		BarDataset dataset2 = chart.newDataset();
-		dataset2.setType(Type.bar.name());
+		dataset2.setType(Type.bar);
 		dataset2.setLabel("dataset 2");
 		
 		Color color2 = Colors.ALL[1];
@@ -64,7 +64,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months));
 
 		LineDataset dataset3 = new LineDataset();
-		dataset3.setType(Type.line.name());
+		dataset3.setType(Type.line);
 		dataset3.setLabel("dataset 3");
 		
 		Color color3 = Colors.ALL[3];

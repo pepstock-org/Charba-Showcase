@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.data.BarDataset;
@@ -21,8 +20,6 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarView extends BaseComposite{
-	
-	final Logger log = Logger.getLogger("mio");
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
