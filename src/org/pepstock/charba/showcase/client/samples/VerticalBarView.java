@@ -6,6 +6,8 @@ import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.plugins.InvalidPluginIdException;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -36,6 +38,11 @@ public class VerticalBarView extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		try {
+			chart.getOptions().getPlugins().setEnabled("title", false);
+		} catch (InvalidPluginIdException e) {
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
+		}
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

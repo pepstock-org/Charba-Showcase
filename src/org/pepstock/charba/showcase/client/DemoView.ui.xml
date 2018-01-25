@@ -104,6 +104,14 @@
 	   					<g:Label ui:field="dsselectionpie" styleName='{myStyle.myLabel}'>Dataset selection (pie)</g:Label>
 	   					</g:VerticalPanel>
 	 				</g:DisclosurePanel>
+				    <g:DisclosurePanel animationEnabled="true" open="false">
+	   					<g:header>Extended charts</g:header>
+	   					<g:VerticalPanel spacing="4">
+	   					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
+	   					<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
+	   					</g:VerticalPanel>
+	 				</g:DisclosurePanel>
+
  				</g:VerticalPanel>
 			</g:cell>
 	   		<g:cell width="90%" verticalAlignment="top">

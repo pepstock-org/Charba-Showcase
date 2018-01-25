@@ -8,6 +8,7 @@ import org.pepstock.charba.showcase.client.samples.DatasetSelectionPieView;
 import org.pepstock.charba.showcase.client.samples.DatasetSelectionView;
 import org.pepstock.charba.showcase.client.samples.DoughnutView;
 import org.pepstock.charba.showcase.client.samples.FilteringLabelsView;
+import org.pepstock.charba.showcase.client.samples.GaugeView;
 import org.pepstock.charba.showcase.client.samples.GridLinesDisplayView;
 import org.pepstock.charba.showcase.client.samples.GridLinesStyleView;
 import org.pepstock.charba.showcase.client.samples.HomeView;
@@ -18,6 +19,7 @@ import org.pepstock.charba.showcase.client.samples.LineInterpolationView;
 import org.pepstock.charba.showcase.client.samples.LineView;
 import org.pepstock.charba.showcase.client.samples.LinearLogView;
 import org.pepstock.charba.showcase.client.samples.LogScatterView;
+import org.pepstock.charba.showcase.client.samples.MeterView;
 import org.pepstock.charba.showcase.client.samples.MinMaxView;
 import org.pepstock.charba.showcase.client.samples.MultiAxisBarView;
 import org.pepstock.charba.showcase.client.samples.MultiAxisLineView;
@@ -348,6 +350,18 @@ public class DemoView extends Composite {
 	protected void handleLabelPlugin(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new VerticalBarPluginLabelView());
+	}
+
+	@UiHandler("gauge")
+	protected void handleGauge(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new GaugeView());
+	}
+
+	@UiHandler("meter")
+	protected void handleMeter(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new MeterView());
 	}
 
 }
