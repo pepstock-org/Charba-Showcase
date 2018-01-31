@@ -62,7 +62,7 @@ public class GaugeView extends BaseComposite{
 		chartValueColor.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label", "changing the color of label");
 		chartValueColor.getOptions().setDisplay(MeterDisplay.valueAndLabel);
 		chartValueColor.getOptions().setFormat("#### GB");
-		chartValueColor.getOptions().setLabelFontColor(new Color(90, 173, 255).toRGBA());
+		chartValueColor.getOptions().setDisplayFontColor(new Color(90, 173, 255).toRGBA());
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 		chartValueReverse.getOptions().getTitle().setDisplay(true);
