@@ -105,6 +105,14 @@
 	   					</g:VerticalPanel>
 	 				</g:DisclosurePanel>
 				    <g:DisclosurePanel animationEnabled="true" open="false">
+	   					<g:header>Time series charts</g:header>
+	   					<g:VerticalPanel spacing="4">
+	   					<g:Label ui:field="linets" styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
+	   					<g:Label ui:field="barts" styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
+	   					</g:VerticalPanel>
+	 				</g:DisclosurePanel>
+
+				    <g:DisclosurePanel animationEnabled="true" open="false">
 	   					<g:header>Extended charts</g:header>
 	   					<g:VerticalPanel spacing="4">
 	   					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>

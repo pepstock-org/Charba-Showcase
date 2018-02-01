@@ -38,6 +38,8 @@ import org.pepstock.charba.showcase.client.samples.StackedGroupBarView;
 import org.pepstock.charba.showcase.client.samples.StepSizeView;
 import org.pepstock.charba.showcase.client.samples.SteppedLineView;
 import org.pepstock.charba.showcase.client.samples.StyledLineView;
+import org.pepstock.charba.showcase.client.samples.TimeSeriesBarView;
+import org.pepstock.charba.showcase.client.samples.TimeSeriesView;
 import org.pepstock.charba.showcase.client.samples.TooltipBorderView;
 import org.pepstock.charba.showcase.client.samples.TooltipCallbacksView;
 import org.pepstock.charba.showcase.client.samples.TooltipHTMLPieView;
@@ -362,6 +364,18 @@ public class DemoView extends Composite {
 	protected void handleMeter(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new MeterView());
+	}
+
+	@UiHandler("linets")
+	protected void handleTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesView());
+	}
+
+	@UiHandler("barts")
+	protected void handleBarTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesBarView());
 	}
 
 }
