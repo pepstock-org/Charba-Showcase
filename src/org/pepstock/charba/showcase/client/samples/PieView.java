@@ -2,10 +2,14 @@ package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
 
+import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.callbacks.TooltipLabelCallback;
+import org.pepstock.charba.client.callbacks.TooltipLabelColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.TooltipItem;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -36,6 +40,41 @@ public class PieView extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
+		
+		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
+			
+			@Override
+			public String onLabelTextColor(AbstractChart<?, ?> chart, TooltipItem item) {
+				return chart.getOptions().getTooltips().getBodyFontColor();
+			}
+			
+			@Override
+			public TooltipLabelColor onLabelColor(AbstractChart<?, ?> chart, TooltipItem item) {
+				PieDataset ds = (PieDataset)chart.getData().getDatasets().get(item.getDatasetIndex());
+				TooltipLabelColor c = new TooltipLabelColor();
+				c.setBackgroundColor(ds.getBackgroundColor().get(item.getIndex()));
+				c.setBorderColor(ds.getBorderColor().get(item.getIndex()));
+				return c;
+			}
+			
+			@Override
+			public String onLabel(AbstractChart<?, ?> chart, TooltipItem item) {
+				String label = chart.getData().getLabels().getString(item.getIndex());
+				Dataset ds = chart.getData().getDatasets().get(item.getDatasetIndex());
+				double value = ds.getData().get(item.getIndex());
+				return label+" : "+value + " T";
+			}
+			
+			@Override
+			public String onBeforeLabel(AbstractChart<?, ?> chart, TooltipItem item) {
+				return null;
+			}
+			
+			@Override
+			public String onAfterLabel(AbstractChart<?, ?> chart, TooltipItem item) {
+				return null;
+			}
+		});
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
