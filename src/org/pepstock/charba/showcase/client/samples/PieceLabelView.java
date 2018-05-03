@@ -1,12 +1,13 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.plugins.InvalidPluginIdException;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,25 +21,35 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class PieView extends BaseComposite{
-	
-	Logger log = Logger.getLogger("mio");
+public class PieceLabelView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PieView> {
+	interface ViewUiBinder extends UiBinder<Widget, PieceLabelView> {
 	}
 
 	@UiField
 	PieChart chart;
 
-	public PieView() {
+	public PieceLabelView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Pie Chart");
+		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
+		
+		PieceLabelOptions option = new PieceLabelOptions();
+		option.setRender("percentage");
+		option.setPrecision(2);
+		option.setFontColor("white");
+		option.setFontSize(16);
+		
+		try {
+			chart.getOptions().getPlugins().setOptions(PieceLabelOptions.ID, option.getObject());
+		} catch (InvalidPluginIdException e) {
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
+		}
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

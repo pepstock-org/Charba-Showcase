@@ -27,6 +27,7 @@ import org.pepstock.charba.showcase.client.samples.MultiAxisScatterView;
 import org.pepstock.charba.showcase.client.samples.MultilineAxesView;
 import org.pepstock.charba.showcase.client.samples.NoNumericYAxesView;
 import org.pepstock.charba.showcase.client.samples.PieView;
+import org.pepstock.charba.showcase.client.samples.PieceLabelView;
 import org.pepstock.charba.showcase.client.samples.PointSizeLineView;
 import org.pepstock.charba.showcase.client.samples.PointStyleLineView;
 import org.pepstock.charba.showcase.client.samples.PolarAreaView;
@@ -378,4 +379,11 @@ public class DemoView extends Composite {
 		 content.add(new TimeSeriesBarView());
 	}
 
+	@UiHandler("piecelabelplugin")
+	protected void handleExtPlugin(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelView());
+	}
+	
+	
 }

@@ -23,6 +23,7 @@ public class Charba_Showcase implements EntryPoint {
 		} catch (InvalidPluginIdException e) {
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
+		Injector.ensureInjected();
 		RootPanel.get().add(new DemoView());
 	}
 }
