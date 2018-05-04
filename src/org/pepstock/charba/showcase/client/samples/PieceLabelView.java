@@ -3,11 +3,10 @@ package org.pepstock.charba.showcase.client.samples;
 import java.util.List;
 
 import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.commons.Merger;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -44,12 +43,8 @@ public class PieceLabelView extends BaseComposite{
 		option.setPrecision(2);
 		option.setFontColor("white");
 		option.setFontSize(16);
-		
-		try {
-			chart.getOptions().getPlugins().setOptions(PieceLabelOptions.ID, option.getObject());
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+
+		Merger.merge(chart.getOptions(), option, PieceLabelOptions.ID);
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

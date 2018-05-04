@@ -1,8 +1,10 @@
 package org.pepstock.charba.showcase.client;
 
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.client.plugins.impl.ChartBackgroundColor;
+import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.Toast;
 import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
@@ -23,7 +25,7 @@ public class Charba_Showcase implements EntryPoint {
 		} catch (InvalidPluginIdException e) {
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
-		Injector.ensureInjected();
+		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 		RootPanel.get().add(new DemoView());
 	}
 }

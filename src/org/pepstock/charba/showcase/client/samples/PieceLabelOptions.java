@@ -22,7 +22,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public final class PieceLabelOptions extends JavaScriptObjectContainer{
 	
-	public static final String ID = "piecelabel"; 
+	public static final String ID = "pieceLabel"; 
 	
 	/**
 	 * Name of fields of JavaScript object.
