@@ -1,28 +1,32 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import java.util.List;
-import java.util.logging.Logger;
 
+import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.events.ChartNativeEvent;
+import org.pepstock.charba.client.items.DatasetItem;
+import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.client.plugins.InvalidPluginIdException;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
 
  * @author Andrea "Stock" Stocchero
  */
 public class PieView extends BaseComposite{
-	
-	Logger log = Logger.getLogger("mio");
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -40,6 +44,31 @@ public class PieView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
 		
+		try {
+			chart.getPlugins().add(new AbstractPlugin() {
+				
+				/* (non-Javadoc)
+				 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterEvent(org.pepstock.charba.client.AbstractChart, org.pepstock.charba.client.events.ChartNativeEvent, com.google.gwt.core.client.JavaScriptObject)
+				 */
+				@Override
+				public void onAfterEvent(AbstractChart<?, ?> chart, ChartNativeEvent event, JavaScriptObject options) {
+					DatasetItem item = chart.getElementAtEvent(event);
+					if (item == null) {
+						chart.getElement().getStyle().setCursor(Cursor.DEFAULT);
+					} else {
+						chart.getElement().getStyle().setCursor(Cursor.POINTER);
+					}
+				}
+
+				@Override
+				public String getId() {
+					return "stock";
+				}
+			});
+		} catch (InvalidPluginIdException e) {
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
+		}
+		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
@@ -47,6 +76,8 @@ public class PieView extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
+		
+		
 
 	}
 
