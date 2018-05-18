@@ -384,6 +384,4 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new PieceLabelView());
 	}
-	
-	
 }
