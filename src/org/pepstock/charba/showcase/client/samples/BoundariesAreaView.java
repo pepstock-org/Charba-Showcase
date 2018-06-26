@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -62,8 +63,8 @@ public class BoundariesAreaView extends BaseComposite{
 		
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("fill: "+fill.name());
-		Color color = Colors.ALL[index];
-		dataset.setBackgroundColor(color.alpha(0.2).toRGBA());
+		IsColor color = Colors.ALL[index];
+		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));
 		dataset.setFill(fill);

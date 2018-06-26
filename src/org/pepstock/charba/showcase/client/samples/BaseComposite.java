@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples;
 import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -63,10 +64,10 @@ public class BaseComposite extends Composite{
 		return values;
 	}
 
-	protected String[] getSequenceColors(int length, double alpha){
-		String[] values = new String[length];
+	protected IsColor[] getSequenceColors(int length, double alpha){
+		IsColor[] values = new IsColor[length];
 		for(int i=0;i<length;i++){
-			values[i] = Colors.ALL[i].alpha(alpha).toRGBA();
+			values[i] = Colors.ALL[i].alpha(alpha);
 		}
 		return values;
 		

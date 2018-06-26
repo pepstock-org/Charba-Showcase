@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples;
 import java.util.List;
 
 import org.pepstock.charba.client.RadarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Position;
@@ -46,9 +47,9 @@ public class RadarView extends BaseComposite{
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Color color1 = Colors.ALL[0];
+		IsColor color1 = Colors.ALL[0];
 		
-		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setPointBackgroundColor(color1.toHex());
 		dataset1.setBorderWidth(2);
@@ -57,9 +58,9 @@ public class RadarView extends BaseComposite{
 		RadarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
-		Color color2 = Colors.ALL[1];
+		IsColor color2 = Colors.ALL[1];
 		
-		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setPointBackgroundColor(color2.toHex());
 		dataset2.setBorderWidth(2);
@@ -85,8 +86,8 @@ public class RadarView extends BaseComposite{
 		RadarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		
-		Color color = Colors.ALL[datasets.size()]; 
-		dataset.setBackgroundColor(color.alpha(0.2).toRGBA());
+		IsColor color = Colors.ALL[datasets.size()]; 
+		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setBorderWidth(2);
 		dataset.setData(getRandomDigits(months));

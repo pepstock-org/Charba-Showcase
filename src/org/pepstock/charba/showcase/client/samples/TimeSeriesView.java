@@ -6,6 +6,7 @@ import java.util.List;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipTitleCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -78,7 +79,7 @@ public class TimeSeriesView extends BaseComposite{
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.nofill);
 		
-		Color color1 = Colors.ALL[0];
+		IsColor color1 = Colors.ALL[0];
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());

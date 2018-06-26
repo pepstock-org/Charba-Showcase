@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -43,8 +44,8 @@ public class LegendStyleView extends BaseComposite{
 		
 		LineDataset dataset1 = chartNormal.newDataset();
 		dataset1.setLabel("dataset 1");
-		Color color1 = Colors.ALL[0];
-		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		IsColor color1 = Colors.ALL[0];
+		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
 		dataset1.setPointBackgroundColor(color1.toHex());
@@ -63,8 +64,8 @@ public class LegendStyleView extends BaseComposite{
 		
 		LineDataset dataset2 = chartStyled.newDataset();
 		dataset2.setLabel("dataset 1");
-		Color color2 = Colors.ALL[1];
-		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		IsColor color2 = Colors.ALL[1];
+		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.origin);

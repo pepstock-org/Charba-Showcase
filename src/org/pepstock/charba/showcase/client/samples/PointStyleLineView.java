@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -94,7 +95,7 @@ public class PointStyleLineView extends BaseComposite{
 		
 		LineDataset dataset = lineChart.newDataset();
 		dataset.setLabel("My dataset");
-		Color color1 = Colors.ALL[index];
+		IsColor color1 = Colors.ALL[index];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
 		dataset.setData(getRandomDigits(months));

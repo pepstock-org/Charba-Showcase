@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -45,7 +46,7 @@ public class PointSizeLineView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Big Points");
 		
-		Color color1 = Colors.ALL[0];
+		IsColor color1 = Colors.ALL[0];
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -58,7 +59,7 @@ public class PointSizeLineView extends BaseComposite{
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Individual point sizes");
 		
-		Color color2 = Colors.ALL[1];
+		IsColor color2 = Colors.ALL[1];
 		
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -71,7 +72,7 @@ public class PointSizeLineView extends BaseComposite{
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Large pointHoverRadius");
 		
-		Color color3 = Colors.ALL[2];
+		IsColor color3 = Colors.ALL[2];
 		
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
@@ -82,7 +83,7 @@ public class PointSizeLineView extends BaseComposite{
 		LineDataset dataset4 = chart.newDataset();
 		dataset4.setLabel("Large pointHitRadius");
 		
-		Color color4 = Colors.ALL[3];
+		IsColor color4 = Colors.ALL[3];
 		
 		dataset4.setBackgroundColor(color4.toHex());
 		dataset4.setBorderColor(color4.toHex());

@@ -93,8 +93,8 @@ public class TooltipHTMLPieView extends BaseComposite{
 							span.getStyle().setWidth(10, Unit.PX);
 							span.getStyle().setHeight(10, Unit.PX);
 							span.getStyle().setMarginRight(10, Unit.PX);
-							span.getStyle().setBackgroundColor(color.getBackgroundColor());
-							span.getStyle().setBorderColor(color.getBorderColor());
+							span.getStyle().setBackgroundColor(color.getBackgroundColor().toRGBA());
+							span.getStyle().setBorderColor(color.getBorderColor().toRGBA());
 							span.getStyle().setBorderStyle(BorderStyle.SOLID);
 							span.getStyle().setBorderWidth(2, Unit.PX);
 							wrapper.appendChild(span);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.pepstock.charba.client.MeterChart;
+import org.pepstock.charba.client.colors.ColorBuilder;
 import org.pepstock.charba.client.data.MeterDataset;
 import org.pepstock.charba.client.enums.MeterDisplay;
 
@@ -58,7 +59,7 @@ public class MeterView extends BaseComposite{
 		chartValueColor.getOptions().getTitle().setText("METER chart to represent value and dataset label", "changing the color of label");
 		chartValueColor.getOptions().setDisplay(MeterDisplay.valueAndLabel);
 		chartValueColor.getOptions().setFormat("#### GB");
-		chartValueColor.getOptions().setDisplayFontColor(new Color(90, 173, 255).toRGBA());
+		chartValueColor.getOptions().setDisplayFontColor(ColorBuilder.build(90, 173, 255));
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 	}

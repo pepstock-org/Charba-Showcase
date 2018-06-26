@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -47,8 +48,8 @@ public class LegendPositioningView extends BaseComposite{
 		
 		LineDataset dataset1 = chartTop.newDataset();
 		dataset1.setLabel("dataset 1");
-		Color color1 = Colors.ALL[0];
-		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		IsColor color1 = Colors.ALL[0];
+		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setFill(Fill.origin);
@@ -62,8 +63,8 @@ public class LegendPositioningView extends BaseComposite{
 		
 		LineDataset dataset2 = chartRight.newDataset();
 		dataset2.setLabel("dataset 1");
-		Color color2 = Colors.ALL[1];
-		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		IsColor color2 = Colors.ALL[1];
+		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.origin);
@@ -78,8 +79,8 @@ public class LegendPositioningView extends BaseComposite{
 		
 		LineDataset dataset3 = chartBottom.newDataset();
 		dataset3.setLabel("dataset 1");
-		Color color3 = Colors.ALL[2];
-		dataset3.setBackgroundColor(color3.alpha(0.2).toRGBA());
+		IsColor color3 = Colors.ALL[2];
+		dataset3.setBackgroundColor(color3.alpha(0.2));
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
 		dataset3.setFill(Fill.origin);
@@ -93,8 +94,8 @@ public class LegendPositioningView extends BaseComposite{
 		
 		LineDataset dataset4 = chartLeft.newDataset();
 		dataset4.setLabel("dataset 1");
-		Color color4 = Colors.ALL[3];
-		dataset4.setBackgroundColor(color4.alpha(0.2).toRGBA());
+		IsColor color4 = Colors.ALL[3];
+		dataset4.setBackgroundColor(color4.alpha(0.2));
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
 		dataset4.setFill(Fill.origin);

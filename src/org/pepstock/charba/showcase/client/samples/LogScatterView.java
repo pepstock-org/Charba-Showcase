@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
@@ -45,7 +46,7 @@ public class LogScatterView extends BaseComposite{
 		ScatterDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("V(node2)");
 		
-		Color color1 = Colors.ALL[1];
+		IsColor color1 = Colors.ALL[1];
 
 		DataPoint[] points = new DataPoint[X.length];
 		for (int i=0; i<X.length; i++){

@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.Type;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -45,9 +46,9 @@ public class ComboBarLineView extends BaseComposite{
 		dataset1.setType(Type.bar);
 		dataset1.setLabel("dataset 1");
 		
-		Color color1 = Colors.ALL[0];
+		IsColor color1 = Colors.ALL[0];
 		
-		dataset1.setBackgroundColor(color1.alpha(0.2).toRGBA());
+		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getRandomDigits(months));
@@ -56,9 +57,9 @@ public class ComboBarLineView extends BaseComposite{
 		dataset2.setType(Type.bar);
 		dataset2.setLabel("dataset 2");
 		
-		Color color2 = Colors.ALL[1];
+		IsColor color2 = Colors.ALL[1];
 		
-		dataset2.setBackgroundColor(color2.alpha(0.2).toRGBA());
+		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setBorderWidth(1);
 		dataset2.setData(getRandomDigits(months));
@@ -67,7 +68,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset3.setType(Type.line);
 		dataset3.setLabel("dataset 3");
 		
-		Color color3 = Colors.ALL[3];
+		IsColor color3 = Colors.ALL[3];
 		
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());

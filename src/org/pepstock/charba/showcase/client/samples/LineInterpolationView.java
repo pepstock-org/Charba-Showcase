@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.samples;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
@@ -50,7 +51,7 @@ public class LineInterpolationView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Cubic interpolation (monotone)");
 		
-		Color color1 = Colors.ALL[0];
+		IsColor color1 = Colors.ALL[0];
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -61,7 +62,7 @@ public class LineInterpolationView extends BaseComposite{
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Cubic interpolation (default)");
 		
-		Color color2 = Colors.ALL[1];
+		IsColor color2 = Colors.ALL[1];
 		
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -71,7 +72,7 @@ public class LineInterpolationView extends BaseComposite{
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Linear interpolation");
 		
-		Color color3 = Colors.ALL[2];
+		IsColor color3 = Colors.ALL[2];
 		
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
