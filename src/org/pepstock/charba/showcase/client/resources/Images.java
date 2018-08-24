@@ -30,5 +30,34 @@ public interface Images extends ClientBundle {
 	@Source("/images/chartjs.png")
 	ImageResource chartjs();
 
+	/**
+	 */
+	@Source("/images/br.png")
+	ImageResource flagBR();
+
+	/**
+	 */
+	@Source("/images/de.png")
+	ImageResource flagDE();
+
+	/**
+	 */
+	@Source("/images/fr.png")
+	ImageResource flagFR();
+
+	/**
+	 */
+	@Source("/images/gb.png")
+	ImageResource flagGB();
+
+	/**
+	 */
+	@Source("/images/it.png")
+	ImageResource flagIT();
+
+	/**
+	 */
+	@Source("/images/us.png")
+	ImageResource flagUS();
 
 }

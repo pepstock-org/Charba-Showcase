@@ -27,5 +27,6 @@ public class Charba_Showcase implements EntryPoint {
 		}
 		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 		RootPanel.get().add(new DemoView());
+
 	}
 }

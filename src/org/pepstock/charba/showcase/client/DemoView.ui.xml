@@ -35,6 +35,7 @@
 	   					<g:Label ui:field="lineStyles" styleName='{myStyle.myLabel}'>Line styles</g:Label>
 	   					<g:Label ui:field="linePointStyles" styleName='{myStyle.myLabel}'>Point styles</g:Label>
 	   					<g:Label ui:field="linePointSize" styleName='{myStyle.myLabel}'>Point Size</g:Label>
+	   					<g:Label ui:field="lineWithGwtMaterialColors" styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
 	   					</g:VerticalPanel>
 	 				</g:DisclosurePanel>
 				    <g:DisclosurePanel animationEnabled="true" open="false">
@@ -90,6 +91,7 @@
 	   					<g:VerticalPanel spacing="4">
 	   					<g:Label ui:field="bgcolorplugin" styleName='{myStyle.myLabel}'>Background color</g:Label>
 	   					<g:Label ui:field="labelplugin" styleName='{myStyle.myLabel}'>Dataset labelling</g:Label>
+	   					<g:Label ui:field="flagsplugin" styleName='{myStyle.myLabel}'>Ticks with flags</g:Label>
 	   					<g:Label ui:field="piecelabelplugin" styleName='{myStyle.myLabel}'>External Plugin (PieceLabel)</g:Label>
 	   					</g:VerticalPanel>
 	 				</g:DisclosurePanel>
@@ -103,6 +105,7 @@
 	   					<g:Label ui:field="animation" styleName='{myStyle.myLabel}'>Progress bar</g:Label>
 	   					<g:Label ui:field="dsselection" styleName='{myStyle.myLabel}'>Dataset selection (bar)</g:Label>
 	   					<g:Label ui:field="dsselectionpie" styleName='{myStyle.myLabel}'>Dataset selection (pie)</g:Label>
+	   					<g:Label ui:field="standings" styleName='{myStyle.myLabel}'>Standings</g:Label>
 	   					</g:VerticalPanel>
 	 				</g:DisclosurePanel>
 				    <g:DisclosurePanel animationEnabled="true" open="false">

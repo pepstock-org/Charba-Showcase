@@ -1,17 +1,12 @@
 package org.pepstock.charba.showcase.client.samples;
 
-import java.util.List;
-
 import org.pepstock.charba.client.LineChart;
-import org.pepstock.charba.client.callbacks.impl.AtLeastOneDatasetHandler;
-import org.pepstock.charba.client.callbacks.impl.NoSelectedDatasetTicksCallback;
-import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.options.scales.CartesianCategoryAxis;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
 
@@ -27,17 +22,17 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class LineView extends BaseComposite{
+public class LineViewWithGwtMaterialColors extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LineView> {
+	interface ViewUiBinder extends UiBinder<Widget, LineViewWithGwtMaterialColors> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public LineView() {
+	public LineViewWithGwtMaterialColors() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
@@ -51,24 +46,19 @@ public class LineView extends BaseComposite{
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
-		IsColor color1 = Colors.ALL[0];
-		
-		dataset1.setBackgroundColor(color1.toHex());
-		dataset1.setBorderColor(color1.toHex());
-		double[] values = getRandomDigits(months);
-		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
+
+		dataset1.setBackgroundColor(GwtMaterialColor.INDIGO_ACCENT_4);
+		dataset1.setBorderColor(GwtMaterialColor.INDIGO_ACCENT_4);
+		dataset1.setData(getRandomDigits(months));
+		dataset1.setFill(Fill.origin);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
-		IsColor color2 = Colors.ALL[1];
-		
-		dataset2.setBackgroundColor(color2.toHex());
-		dataset2.setBorderColor(color2.toHex());
+		dataset2.setBackgroundColor(GwtMaterialColor.LIGHT_GREEN_ACCENT_2);
+		dataset2.setBorderColor(GwtMaterialColor.LIGHT_GREEN_ACCENT_2);
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.origin);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -77,13 +67,9 @@ public class LineView extends BaseComposite{
 		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-//		axis2.getTicks().setReverse(true);
+		axis2.getTicks().setReverse(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
-		axis2.getTicks().setCallback(new NoSelectedDatasetTicksCallback());
-		
-		chart.addHandler(new AtLeastOneDatasetHandler(), LegendClickEvent.TYPE);
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
@@ -101,36 +87,4 @@ public class LineView extends BaseComposite{
 		chart.update();
 	}
 
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-		
-		LineDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = Colors.ALL[datasets.size()]; 
-		dataset.setBackgroundColor(color.toHex());
-		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.nofill);
-		dataset.setData(getRandomDigits(months));
-
-		datasets.add(dataset);
-		
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
-	}
-
-	@UiHandler("add_data")
-	protected void handleAddData(ClickEvent event) {
-		addData(chart);
-	}
-
-	@UiHandler("remove_data")
-	protected void handleRemoveData(ClickEvent event) {
-		removeData(chart);
-	}
 }

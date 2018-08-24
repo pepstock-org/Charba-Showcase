@@ -13,10 +13,12 @@ import org.pepstock.charba.showcase.client.samples.GridLinesDisplayView;
 import org.pepstock.charba.showcase.client.samples.GridLinesStyleView;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 import org.pepstock.charba.showcase.client.samples.HorizontalBarView;
+import org.pepstock.charba.showcase.client.samples.HorizontalFlagsBarView;
 import org.pepstock.charba.showcase.client.samples.LegendPositioningView;
 import org.pepstock.charba.showcase.client.samples.LegendStyleView;
 import org.pepstock.charba.showcase.client.samples.LineInterpolationView;
 import org.pepstock.charba.showcase.client.samples.LineView;
+import org.pepstock.charba.showcase.client.samples.LineViewWithGwtMaterialColors;
 import org.pepstock.charba.showcase.client.samples.LinearLogView;
 import org.pepstock.charba.showcase.client.samples.LogScatterView;
 import org.pepstock.charba.showcase.client.samples.MeterView;
@@ -36,6 +38,7 @@ import org.pepstock.charba.showcase.client.samples.ScatterView;
 import org.pepstock.charba.showcase.client.samples.StackedAreaView;
 import org.pepstock.charba.showcase.client.samples.StackedBarView;
 import org.pepstock.charba.showcase.client.samples.StackedGroupBarView;
+import org.pepstock.charba.showcase.client.samples.StandingView;
 import org.pepstock.charba.showcase.client.samples.StepSizeView;
 import org.pepstock.charba.showcase.client.samples.SteppedLineView;
 import org.pepstock.charba.showcase.client.samples.StyledLineView;
@@ -383,5 +386,23 @@ public class DemoView extends Composite {
 	protected void handleExtPlugin(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new PieceLabelView());
+	}
+
+	@UiHandler("lineWithGwtMaterialColors")
+	protected void handleGwtMaterialColors(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LineViewWithGwtMaterialColors());
+	}
+
+	@UiHandler("flagsplugin")
+	protected void handleFlags(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new HorizontalFlagsBarView());
+	}
+	
+	@UiHandler("standings")
+	protected void handleStandings(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new StandingView());
 	}
 }

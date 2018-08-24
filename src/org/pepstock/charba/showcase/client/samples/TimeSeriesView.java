@@ -77,20 +77,26 @@ public class TimeSeriesView extends BaseComposite{
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.origin);
 		
 		IsColor color1 = Colors.ALL[0];
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
+		dataset1.setSpanGaps(true);
+		
 		long time = System.currentTimeMillis();
 	
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
 		for (int i=0; i<AMOUNT_OF_POINTS; i++){
 			dp1[i] = new DataPoint();
-			dp1[i].setY(xs1[i]);
+			if (i == 8 || i == 7 || i == 11 || i == 12 || i == 13) {
+				dp1[i].setY(Double.NaN);
+			} else {
+				dp1[i].setY(xs1[i]);
+			}
 			dp1[i].setT(new Date(time));
 			time = time + DAY;
 		}
