@@ -16,6 +16,7 @@ import org.pepstock.charba.showcase.client.samples.HorizontalBarView;
 import org.pepstock.charba.showcase.client.samples.HorizontalFlagsBarView;
 import org.pepstock.charba.showcase.client.samples.LegendPositioningView;
 import org.pepstock.charba.showcase.client.samples.LegendStyleView;
+import org.pepstock.charba.showcase.client.samples.LineGapView;
 import org.pepstock.charba.showcase.client.samples.LineInterpolationView;
 import org.pepstock.charba.showcase.client.samples.LineView;
 import org.pepstock.charba.showcase.client.samples.LineViewWithGwtMaterialColors;
@@ -404,5 +405,12 @@ public class DemoView extends Composite {
 	protected void handleStandings(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new StandingView());
+	}
+	
+	
+	@UiHandler("gaps")
+	protected void handleGaps(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LineGapView());
 	}
 }

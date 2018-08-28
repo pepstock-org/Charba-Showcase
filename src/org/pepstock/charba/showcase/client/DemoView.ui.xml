@@ -32,6 +32,7 @@
 	   					<g:Label ui:field="lineMultiAxis" styleName='{myStyle.myLabel}'>Multi Axis</g:Label>
 	   					<g:Label ui:field="lineStepped" styleName='{myStyle.myLabel}'>Stepped</g:Label>
 	   					<g:Label ui:field="lineInterpolation" styleName='{myStyle.myLabel}'>Interpolation</g:Label>
+	   					<g:Label ui:field="gaps" styleName='{myStyle.myLabel}'>Gaps</g:Label>
 	   					<g:Label ui:field="lineStyles" styleName='{myStyle.myLabel}'>Line styles</g:Label>
 	   					<g:Label ui:field="linePointStyles" styleName='{myStyle.myLabel}'>Point styles</g:Label>
 	   					<g:Label ui:field="linePointSize" styleName='{myStyle.myLabel}'>Point Size</g:Label>
