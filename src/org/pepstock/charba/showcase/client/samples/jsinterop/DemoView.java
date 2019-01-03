@@ -1,8 +1,10 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
+import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.jsinterop.Defaults;
 import org.pepstock.charba.client.jsinterop.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.jsinterop.plugins.InvalidPluginIdException;
+import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 import org.pepstock.charba.showcase.client.samples.Toast;
 import org.pepstock.charba.showcase.client.samples.Toast.Level;
@@ -80,7 +82,7 @@ public class DemoView extends Composite {
 //		} catch (InvalidControllerTypeException e) {
 //			new Toast("Invalid ControllerType!", Level.ERROR, e.getMessage()).show();
 		}
-//		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
+		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 	}
 
 	private void clearPreviousChart() {
@@ -384,24 +386,24 @@ public class DemoView extends Composite {
 		 content.add(new TimeSeriesBarView());
 	}
 
-//	@UiHandler("piecelabelplugin")
-//	protected void handleExtPlugin(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new PieceLabelView());
-//	}
-//
-//	@UiHandler("lineWithGwtMaterialColors")
-//	protected void handleGwtMaterialColors(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new LineViewWithGwtMaterialColors());
-//	}
-//
-//	@UiHandler("flagsplugin")
-//	protected void handleFlags(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new HorizontalFlagsBarView());
-//	}
-//	
+	@UiHandler("piecelabelplugin")
+	protected void handleExtPlugin(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelView());
+	}
+
+	@UiHandler("lineWithGwtMaterialColors")
+	protected void handleGwtMaterialColors(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LineViewWithGwtMaterialColors());
+	}
+
+	@UiHandler("flagsplugin")
+	protected void handleFlags(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new HorizontalFlagsBarView());
+	}
+	
 //	@UiHandler("standings")
 //	protected void handleStandings(ClickEvent event) {
 //		clearPreviousChart();
