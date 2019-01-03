@@ -1,14 +1,11 @@
 package org.pepstock.charba.showcase.client;
 
-import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.Injector;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
-import org.pepstock.charba.client.plugins.impl.ChartBackgroundColor;
-import org.pepstock.charba.showcase.client.resources.Resources;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
+import java.util.logging.Logger;
+
+import org.pepstock.charba.showcase.client.samples.jsni.DemoView;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -16,17 +13,22 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class Charba_Showcase implements EntryPoint {
 	
+	public static final Logger LOG = Logger.getLogger("charba-showcase");
+	
+	private static final String TYPE_PARAM = "type";
+	
+	private static final String PARAM_JSINTEROP = "jsinterop";
+	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		try {
-			Defaults.getPlugins().register(new ChartBackgroundColor());
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
+		String value = Window.Location.getParameter(TYPE_PARAM);
+		if (PARAM_JSINTEROP.equals(value)) {
+			RootPanel.get().add(new org.pepstock.charba.showcase.client.samples.jsinterop.DemoView());
+		} else {
+			RootPanel.get().add(new DemoView());
 		}
-		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
-		RootPanel.get().add(new DemoView());
-
 	}
+
 }

@@ -19,7 +19,7 @@
 
   <!-- Other module inherits                                      -->
   <inherits name="org.pepstock.charba.Charba"/>
-
+  
   <!-- Specify the app entry point class.                         -->
   <entry-point class='org.pepstock.charba.showcase.client.Charba_Showcase'/>
 

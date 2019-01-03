@@ -38,4 +38,7 @@ public interface Resources extends ClientBundle {
 	@Source("js/Chart.PieceLabel.min.js")
 	TextResource pieceLabelJsSource();
 
+	@Source("js/Charba.ArrayFactory.js")
+	TextResource charbaArrayFactory();
+
 }

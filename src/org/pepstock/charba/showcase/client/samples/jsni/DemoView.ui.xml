@@ -1,0 +1,211 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:org.pepstock.charba.client"
+	xmlns:s="urn:import:org.pepstock.charba.showcase.client.samples">
+
+	<ui:style field="myStyle">
+	.myLabel {
+		cursor: pointer;
+	}
+	</ui:style>
+
+	<g:HTMLPanel>
+		<g:HorizontalPanel width="100%">
+			<g:cell width="10%" verticalAlignment="top"
+				horizontalAlignment="left">
+				<g:VerticalPanel width="100%">
+					<g:Label ui:field="home" styleName='{myStyle.myLabel}'>Home</g:Label>
+					<g:VerticalPanel width="100%">
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Bar charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="barVertical"
+									styleName='{myStyle.myLabel}'>Vertical</g:Label>
+								<g:Label ui:field="barHorizontal"
+									styleName='{myStyle.myLabel}'>Horizontal</g:Label>
+								<g:Label ui:field="barMultiAxis"
+									styleName='{myStyle.myLabel}'>Multi Axis</g:Label>
+								<g:Label ui:field="barStacked"
+									styleName='{myStyle.myLabel}'>Stacked</g:Label>
+								<g:Label ui:field="barStackedGroups"
+									styleName='{myStyle.myLabel}'>Stacked Groups</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Line charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="lineBasic"
+									styleName='{myStyle.myLabel}'>Basic</g:Label>
+								<g:Label ui:field="lineMultiAxis"
+									styleName='{myStyle.myLabel}'>Multi Axis</g:Label>
+								<g:Label ui:field="lineStepped"
+									styleName='{myStyle.myLabel}'>Stepped</g:Label>
+								<g:Label ui:field="lineInterpolation"
+									styleName='{myStyle.myLabel}'>Interpolation</g:Label>
+								<g:Label ui:field="gaps"
+									styleName='{myStyle.myLabel}'>Gaps</g:Label>
+								<g:Label ui:field="lineStyles"
+									styleName='{myStyle.myLabel}'>Line styles</g:Label>
+								<g:Label ui:field="linePointStyles"
+									styleName='{myStyle.myLabel}'>Point styles</g:Label>
+								<g:Label ui:field="linePointSize"
+									styleName='{myStyle.myLabel}'>Point Size</g:Label>
+								<g:Label ui:field="lineWithGwtMaterialColors"
+									styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Area charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="areaBoundaries"
+									styleName='{myStyle.myLabel}'>Boundaries (line)</g:Label>
+								<g:Label ui:field="areaStacked"
+									styleName='{myStyle.myLabel}'>Stacked (line)</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Other charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="scatter"
+									styleName='{myStyle.myLabel}'>Scatter</g:Label>
+								<g:Label ui:field="scatterMulti"
+									styleName='{myStyle.myLabel}'>Scatter Multi Axis</g:Label>
+								<g:Label ui:field="doughnut"
+									styleName='{myStyle.myLabel}'>Doughnut</g:Label>
+								<g:Label ui:field="pie"
+									styleName='{myStyle.myLabel}'>Pie</g:Label>
+								<g:Label ui:field="polar"
+									styleName='{myStyle.myLabel}'>Polar Area</g:Label>
+								<g:Label ui:field="radar"
+									styleName='{myStyle.myLabel}'>Radar</g:Label>
+								<g:Label ui:field="bubble"
+									styleName='{myStyle.myLabel}'>Bubble</g:Label>
+								<g:Label ui:field="combobarline"
+									styleName='{myStyle.myLabel}'>Combo Bar Line</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Scale options</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="glinesdisplay"
+									styleName='{myStyle.myLabel}'>Grid lines display</g:Label>
+								<g:Label ui:field="glinesstyle"
+									styleName='{myStyle.myLabel}'>Grid lines style</g:Label>
+								<g:Label ui:field="multilabels"
+									styleName='{myStyle.myLabel}'>Multilines labels</g:Label>
+								<g:Label ui:field="filterlabels"
+									styleName='{myStyle.myLabel}'>Filtering labels</g:Label>
+								<g:Label ui:field="nomumericYaxis"
+									styleName='{myStyle.myLabel}'>Non numeric Y Axis</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Legends</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="legendpositioning"
+									styleName='{myStyle.myLabel}'>Positioning</g:Label>
+								<g:Label ui:field="legendstyle"
+									styleName='{myStyle.myLabel}'>Point style</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Tooltips</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="tooltippositioning"
+									styleName='{myStyle.myLabel}'>Positioning</g:Label>
+								<g:Label ui:field="tooltipinteractions"
+									styleName='{myStyle.myLabel}'>Interactions</g:Label>
+								<g:Label ui:field="tooltipcallbacks"
+									styleName='{myStyle.myLabel}'>Callbacks</g:Label>
+								<g:Label ui:field="tooltipborder"
+									styleName='{myStyle.myLabel}'>Border</g:Label>
+								<g:Label ui:field="tooltiphtmlline"
+									styleName='{myStyle.myLabel}'>HTML tooltip (line)</g:Label>
+								<g:Label ui:field="tooltiphtmlpie"
+									styleName='{myStyle.myLabel}'>HTML tooltip (pie)</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Plugins</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="bgcolorplugin"
+									styleName='{myStyle.myLabel}'>Background color</g:Label>
+								<g:Label ui:field="labelplugin"
+									styleName='{myStyle.myLabel}'>Dataset labelling</g:Label>
+								<g:Label ui:field="flagsplugin"
+									styleName='{myStyle.myLabel}'>Ticks with flags</g:Label>
+								<g:Label ui:field="piecelabelplugin"
+									styleName='{myStyle.myLabel}'>External Plugin (PieceLabel)</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Controllers</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="myline"
+									styleName='{myStyle.myLabel}'>My Line</g:Label>
+								<g:Label ui:field="myflags"
+									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Miscellaneous</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="stepsize"
+									styleName='{myStyle.myLabel}'>Step size</g:Label>
+								<g:Label ui:field="minmax"
+									styleName='{myStyle.myLabel}'>Min Max</g:Label>
+								<g:Label ui:field="loglinear"
+									styleName='{myStyle.myLabel}'>Linear Logarithmic</g:Label>
+								<g:Label ui:field="logscatter"
+									styleName='{myStyle.myLabel}'>Scatter Logarithmic</g:Label>
+								<g:Label ui:field="animation"
+									styleName='{myStyle.myLabel}'>Progress bar</g:Label>
+								<g:Label ui:field="dsselection"
+									styleName='{myStyle.myLabel}'>Dataset selection (bar)</g:Label>
+								<g:Label ui:field="dsselectionpie"
+									styleName='{myStyle.myLabel}'>Dataset selection (pie)</g:Label>
+								<g:Label ui:field="standings"
+									styleName='{myStyle.myLabel}'>Standings</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Time series charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="linets"
+									styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
+								<g:Label ui:field="barts"
+									styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Extended charts</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="gauge"
+									styleName='{myStyle.myLabel}'>Gauge</g:Label>
+								<g:Label ui:field="meter"
+									styleName='{myStyle.myLabel}'>Meter</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+					</g:VerticalPanel>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="90%" verticalAlignment="top">
+				<g:VerticalPanel width="100%" ui:field="content" />
+			</g:cell>
+		</g:HorizontalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 
