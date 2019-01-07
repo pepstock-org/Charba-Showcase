@@ -1,14 +1,26 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
+import java.util.List;
+
 import org.pepstock.charba.client.Injector;
+import org.pepstock.charba.client.jsinterop.AbstractChart;
 import org.pepstock.charba.client.jsinterop.Defaults;
+import org.pepstock.charba.client.jsinterop.controllers.AbstractController;
+import org.pepstock.charba.client.jsinterop.controllers.Context;
+import org.pepstock.charba.client.jsinterop.controllers.ControllerType;
+import org.pepstock.charba.client.jsinterop.controllers.InvalidControllerTypeException;
 import org.pepstock.charba.client.jsinterop.impl.plugins.ChartBackgroundColor;
+import org.pepstock.charba.client.jsinterop.items.DatasetItem;
+import org.pepstock.charba.client.jsinterop.items.DatasetMetaItem;
+import org.pepstock.charba.client.jsinterop.items.DatasetViewItem;
 import org.pepstock.charba.client.jsinterop.plugins.InvalidPluginIdException;
+import org.pepstock.charba.client.jsinterop.utils.Window;
 import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 import org.pepstock.charba.showcase.client.samples.Toast;
 import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
+import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -36,51 +48,43 @@ public class DemoView extends Composite {
 		content.add(new HomeView());
 		try {
 			Defaults.get().getPlugins().register(new ChartBackgroundColor());
-//			Defaults.getControllers().extend(new AbstractController() {
-//
-//				/* (non-Javadoc)
-//				 * @see org.pepstock.charba.client.Controller#getType()
-//				 */
-//				@Override
-//				public Type getType() {
-//					return LineMyChart.TYPE;
-//				}
-//
-//				/* (non-Javadoc)
-//				 * @see org.pepstock.charba.client.Controller#getChartType()
-//				 */
-//				@Override
-//				public ChartType getChartType() {
-//					return ChartType.line;
-//				}
-//
-//				/* (non-Javadoc)
-//				 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
-//				 */
-//				@Override
-//				public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
-//					super.draw(jsThis, chart, ease);
-//			        // Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
-//					
-//					DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
-//					List<DatasetItem> items = metaItem.getDatasets();
-//					for (DatasetItem item : items) {
-//						DatasetViewItem view = item.getView();
-//						Context2d ctx = chart.getCanvas().getContext2d();
-//						ctx.save();
-//						ctx.setStrokeStyle(view.getBorderColorAsString());
-//						ctx.setLineWidth(1D);
-//						ctx.strokeRect(view.getX() - 10, view.getY() - 10,  20, 20);
-//						ctx.restore();
-//					}
-//				}
-//			});
-//			Defaults.getControllers().extend(new MyHorizontalBarController());
-//
+			Defaults.get().getControllers().extend(new AbstractController() {
+
+				/* (non-Javadoc)
+				 * @see org.pepstock.charba.client.Controller#getType()
+				 */
+				@Override
+				public ControllerType getType() {
+					return LineMyChart.TYPE;
+				}
+
+				/* (non-Javadoc)
+				 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
+				 */
+				@Override
+				public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
+					Window.getConsole().log("Eccomi");
+					super.draw(jsThis, chart, ease);
+			        // Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
+					
+					DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
+					List<DatasetItem> items = metaItem.getDatasets();
+					for (DatasetItem item : items) {
+						DatasetViewItem view = item.getView();
+						Context2d ctx = chart.getCanvas().getContext2d();
+						ctx.save();
+						ctx.setStrokeStyle(view.getBorderColorAsString());
+						ctx.setLineWidth(1D);
+						ctx.strokeRect(view.getX() - 10, view.getY() - 10,  20, 20);
+						ctx.restore();
+					}
+				}
+			});
+
 		} catch (InvalidPluginIdException e) {
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-//		} catch (InvalidControllerTypeException e) {
-//			new Toast("Invalid ControllerType!", Level.ERROR, e.getMessage()).show();
+		} catch (InvalidControllerTypeException e) {
+			new Toast("Invalid ControllerType!", Level.ERROR, e.getMessage()).show();
 		}
 		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 	}
@@ -362,17 +366,17 @@ public class DemoView extends Composite {
 		 content.add(new VerticalBarPluginLabelView());
 	}
 
-//	@UiHandler("gauge")
-//	protected void handleGauge(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new GaugeView());
-//	}
-//
-//	@UiHandler("meter")
-//	protected void handleMeter(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new MeterView());
-//	}
+	@UiHandler("gauge")
+	protected void handleGauge(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new GaugeView());
+	}
+
+	@UiHandler("meter")
+	protected void handleMeter(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new MeterView());
+	}
 
 	@UiHandler("linets")
 	protected void handleTimeseries(ClickEvent event) {
@@ -404,30 +408,17 @@ public class DemoView extends Composite {
 		 content.add(new HorizontalFlagsBarView());
 	}
 	
-//	@UiHandler("standings")
-//	protected void handleStandings(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new StandingView());
-//	}
-//	
-//	
-//	@UiHandler("gaps")
-//	protected void handleGaps(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new LineGapView());
-//	}
-//	
-//	
-//	@UiHandler("myline")
-//	protected void handleMyLine(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new LineMyView());
-//	}
-//	
-//	@UiHandler("myflags")
-//	protected void handleMyFlags(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new HorizontalMyFlagsBarView());
-//	}
-//	
+	@UiHandler("standings")
+	protected void handleStandings(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new StandingView());
+	}
+	
+	
+	@UiHandler("myline")
+	protected void handleMyLine(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LineMyView());
+	}
+	
 }

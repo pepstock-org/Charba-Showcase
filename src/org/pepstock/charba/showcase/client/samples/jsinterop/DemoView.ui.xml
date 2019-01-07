@@ -46,8 +46,6 @@
 									styleName='{myStyle.myLabel}'>Stepped</g:Label>
 								<g:Label ui:field="lineInterpolation"
 									styleName='{myStyle.myLabel}'>Interpolation</g:Label>
-								<g:Label ui:field="gaps"
-									styleName='{myStyle.myLabel}'>Gaps</g:Label>
 								<g:Label ui:field="lineStyles"
 									styleName='{myStyle.myLabel}'>Line styles</g:Label>
 								<g:Label ui:field="linePointStyles"
@@ -154,8 +152,6 @@
 							<g:VerticalPanel spacing="4">
 								<g:Label ui:field="myline"
 									styleName='{myStyle.myLabel}'>My Line</g:Label>
-								<g:Label ui:field="myflags"
-									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

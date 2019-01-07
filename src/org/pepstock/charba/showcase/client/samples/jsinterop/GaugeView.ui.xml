@@ -1,0 +1,35 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:org.pepstock.charba.client.jsinterop.impl.charts">
+
+	<g:HTMLPanel width="100%">
+	   <g:VerticalPanel width="100%" ui:field="container">
+	   		<g:cell width="100%" verticalAlignment="middle" horizontalAlignment="center">
+			 	<g:HorizontalPanel width="80%" height="100%" spacing="10">
+			 		<g:cell width="50%" height="100%" verticalAlignment="middle" horizontalAlignment="center">
+				      <c:GaugeChart ui:field="chartPercent"/>
+				    </g:cell>
+			 		<g:cell width="50%" height="100%" verticalAlignment="middle" horizontalAlignment="center">
+				      <c:GaugeChart ui:field="chartValue" />
+				    </g:cell>
+				</g:HorizontalPanel>
+			 </g:cell>
+			<g:cell width="100%" verticalAlignment="middle" horizontalAlignment="center">
+			 	<g:HorizontalPanel width="80%" height="100%" spacing="10">
+			 		<g:cell width="50%" height="100%" verticalAlignment="middle" horizontalAlignment="center">
+				    <c:GaugeChart ui:field="chartValueReverse"/>
+				    </g:cell>
+			 		<g:cell width="50%" height="100%" verticalAlignment="middle" horizontalAlignment="center">
+				      <c:GaugeChart ui:field="chartValueColor"/>
+				    </g:cell>
+				</g:HorizontalPanel>
+			</g:cell>
+			<g:cell width="10%" verticalAlignment="top" horizontalAlignment="center">
+	   			<g:HorizontalPanel spacing="5">
+		   			<g:Button ui:field="randomize">Randomize data</g:Button>
+				</g:HorizontalPanel>
+			</g:cell>
+       </g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
