@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.enums.Position;
@@ -23,7 +22,6 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarView extends BaseComposite{
-	Logger LOG = Logger.getLogger("selection");
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
