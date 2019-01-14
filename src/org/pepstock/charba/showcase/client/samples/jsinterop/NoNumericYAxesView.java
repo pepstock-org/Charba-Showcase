@@ -3,9 +3,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.Random;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.CartesianAxisType;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.jsinterop.enums.CartesianAxisType;
+import org.pepstock.charba.client.jsinterop.enums.Fill;
+import org.pepstock.charba.client.jsinterop.enums.Position;
 import org.pepstock.charba.client.jsinterop.LineChart;
 import org.pepstock.charba.client.jsinterop.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.jsinterop.data.LineDataset;

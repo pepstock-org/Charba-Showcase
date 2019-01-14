@@ -1,8 +1,8 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.ChartType;
-import org.pepstock.charba.client.Type;
+import org.pepstock.charba.client.jsinterop.ChartType;
 import org.pepstock.charba.client.jsinterop.LineChart;
+import org.pepstock.charba.client.jsinterop.Type;
 import org.pepstock.charba.client.jsinterop.controllers.ControllerType;
 
 public class LineMyChart extends LineChart {

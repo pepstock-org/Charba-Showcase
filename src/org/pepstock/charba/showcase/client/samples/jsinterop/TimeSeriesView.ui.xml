@@ -17,6 +17,7 @@
 	   		<g:cell width="10%" verticalAlignment="top"  horizontalAlignment="center">
 	   			<g:HorizontalPanel spacing="5">
 		   			<g:Button ui:field="randomize">Randomize data</g:Button>
+		   			<g:Button ui:field="reset">Reset selection</g:Button>
 				</g:HorizontalPanel>
 			</g:cell>
        </g:VerticalPanel>

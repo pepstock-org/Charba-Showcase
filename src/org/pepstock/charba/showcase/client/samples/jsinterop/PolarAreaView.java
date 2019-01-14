@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.jsinterop.enums.Position;
 import org.pepstock.charba.client.jsinterop.PolarAreaChart;
 import org.pepstock.charba.client.jsinterop.configuration.RadialAxis;
 import org.pepstock.charba.client.jsinterop.data.Dataset;

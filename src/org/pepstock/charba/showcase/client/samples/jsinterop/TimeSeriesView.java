@@ -4,10 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.ScaleDistribution;
-import org.pepstock.charba.client.enums.TickSource;
-import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.jsinterop.AbstractChart;
 import org.pepstock.charba.client.jsinterop.LineChart;
 import org.pepstock.charba.client.jsinterop.callbacks.TooltipTitleCallback;
@@ -16,8 +12,12 @@ import org.pepstock.charba.client.jsinterop.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.jsinterop.data.DataPoint;
 import org.pepstock.charba.client.jsinterop.data.Dataset;
 import org.pepstock.charba.client.jsinterop.data.LineDataset;
-import org.pepstock.charba.client.jsinterop.events.DatasetRangeSelectionEvent;
-import org.pepstock.charba.client.jsinterop.events.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.jsinterop.enums.Fill;
+import org.pepstock.charba.client.jsinterop.enums.ScaleDistribution;
+import org.pepstock.charba.client.jsinterop.enums.TickSource;
+import org.pepstock.charba.client.jsinterop.enums.TimeUnit;
+import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetRangeSelectionEvent;
+import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.jsinterop.items.TooltipItem;
@@ -57,6 +57,8 @@ public class TimeSeriesView extends BaseComposite{
 
 	@UiField
 	LineChart small;
+	
+	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
 	
 	public TimeSeriesView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -156,7 +158,7 @@ public class TimeSeriesView extends BaseComposite{
 		pOptions.setBorderDash(6);
 		try {
 			small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-			small.getPlugins().add(new DatasetsItemsSelector());
+			small.getPlugins().add(selector);
 		} catch (InvalidPluginIdException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,26 +172,26 @@ public class TimeSeriesView extends BaseComposite{
 				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
 				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
-//				List<DataPoint> points = dataset1.getDataPoints();
-				int tot = event.getTo() - event.getFrom() + 1;
-				DataPoint[] dp1 = new DataPoint[tot];
-				for (int i=0; i<tot; i++) {
-					dp1[i] = dataset2.getDataPoints().get(i+event.getFrom());
-					
+				if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
+					//				List<DataPoint> points = dataset1.getDataPoints();
+					int tot = event.getTo() - event.getFrom() + 1;
+					DataPoint[] dp1 = new DataPoint[tot];
+					for (int i=0; i<tot; i++) {
+						dp1[i] = dataset2.getDataPoints().get(i+event.getFrom());
+
+					}
+					dataset1.setDataPoints(dp1);
+					chart.getData().setDatasets(dataset1);
+					//				Date min = points.get().getT();
+					//				Date max = points.get(event.getTo()).getT();
+					//			    axis.getTime().setMin(min);
+					//			    axis.getTime().setMax(max);
+					chart.update();
 				}
-				dataset1.setDataPoints(dp1);
-				chart.getData().setDatasets(dataset1);
-//				Date min = points.get().getT();
-//				Date max = points.get(event.getTo()).getT();
-//			    axis.getTime().setMin(min);
-//			    axis.getTime().setMax(max);
-			    chart.update();
 
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
 	}
-	
-	
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
@@ -201,6 +203,11 @@ public class TimeSeriesView extends BaseComposite{
 		}
 //		chart.update();
 		small.update();
+	}
+
+	@UiHandler("reset")
+	protected void handleReset(ClickEvent event) {
+		selector.reset(small, true);
 	}
 
 }

@@ -2,10 +2,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.jsinterop.DoughnutChart;
 import org.pepstock.charba.client.jsinterop.data.Dataset;
 import org.pepstock.charba.client.jsinterop.data.DoughnutDataset;
+import org.pepstock.charba.client.jsinterop.enums.Position;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

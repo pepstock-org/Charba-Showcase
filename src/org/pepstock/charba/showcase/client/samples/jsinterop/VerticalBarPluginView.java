@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.jsinterop.enums.Position;
 import org.pepstock.charba.client.jsinterop.BarChart;
 import org.pepstock.charba.client.jsinterop.data.BarDataset;
 import org.pepstock.charba.client.jsinterop.data.Dataset;

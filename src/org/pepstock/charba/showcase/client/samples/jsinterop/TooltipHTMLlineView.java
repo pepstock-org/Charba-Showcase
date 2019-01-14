@@ -3,10 +3,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.enums.TooltipPosition;
+import org.pepstock.charba.client.jsinterop.enums.Fill;
+import org.pepstock.charba.client.jsinterop.enums.InteractionMode;
+import org.pepstock.charba.client.jsinterop.enums.Position;
+import org.pepstock.charba.client.jsinterop.enums.TooltipPosition;
 import org.pepstock.charba.client.jsinterop.AbstractChart;
 import org.pepstock.charba.client.jsinterop.LineChart;
 import org.pepstock.charba.client.jsinterop.callbacks.TooltipCustomCallback;

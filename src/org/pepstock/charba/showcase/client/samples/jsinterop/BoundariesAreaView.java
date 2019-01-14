@@ -1,11 +1,11 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.jsinterop.LineChart;
 import org.pepstock.charba.client.jsinterop.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.jsinterop.data.Dataset;
 import org.pepstock.charba.client.jsinterop.data.LineDataset;
+import org.pepstock.charba.client.jsinterop.enums.Fill;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;

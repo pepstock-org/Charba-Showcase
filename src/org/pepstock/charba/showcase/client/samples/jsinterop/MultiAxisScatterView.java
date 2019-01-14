@@ -2,9 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.CartesianAxisType;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.jsinterop.enums.CartesianAxisType;
+import org.pepstock.charba.client.jsinterop.enums.InteractionMode;
+import org.pepstock.charba.client.jsinterop.enums.Position;
 import org.pepstock.charba.client.jsinterop.ScatterChart;
 import org.pepstock.charba.client.jsinterop.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.jsinterop.data.DataPoint;

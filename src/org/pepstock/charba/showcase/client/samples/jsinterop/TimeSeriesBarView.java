@@ -2,15 +2,15 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.Date;
 
-import org.pepstock.charba.client.ChartType;
-import org.pepstock.charba.client.enums.ScaleDistribution;
-import org.pepstock.charba.client.enums.TickSource;
-import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.jsinterop.BarChart;
+import org.pepstock.charba.client.jsinterop.ChartType;
 import org.pepstock.charba.client.jsinterop.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.jsinterop.data.BarDataset;
 import org.pepstock.charba.client.jsinterop.data.DataPoint;
 import org.pepstock.charba.client.jsinterop.data.Dataset;
+import org.pepstock.charba.client.jsinterop.enums.ScaleDistribution;
+import org.pepstock.charba.client.jsinterop.enums.TickSource;
+import org.pepstock.charba.client.jsinterop.enums.TimeUnit;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.jsinterop.enums.Fill;
 import org.pepstock.charba.client.jsinterop.AbstractChart;
 import org.pepstock.charba.client.jsinterop.LineChart;
 import org.pepstock.charba.client.jsinterop.callbacks.TickCallback;
