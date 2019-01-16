@@ -154,7 +154,7 @@ public class TimeSeriesView extends BaseComposite{
 		small.getOptions().getScales().setXAxes(axis1Small);
 		
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
-		pOptions.setBorderWidth(1);
+		pOptions.setBorderWidth(5);
 		pOptions.setBorderDash(6);
 		try {
 			small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);

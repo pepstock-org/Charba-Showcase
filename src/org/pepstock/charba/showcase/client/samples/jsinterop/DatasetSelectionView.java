@@ -11,11 +11,15 @@ import org.pepstock.charba.client.jsinterop.data.Labels;
 import org.pepstock.charba.client.jsinterop.enums.Position;
 import org.pepstock.charba.client.jsinterop.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.jsinterop.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.jsinterop.impl.plugins.ChartPointer;
+import org.pepstock.charba.client.jsinterop.impl.plugins.ChartPointerOptions;
+import org.pepstock.charba.client.jsinterop.plugins.InvalidPluginIdException;
 import org.pepstock.charba.client.jsinterop.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -87,6 +91,17 @@ public class DatasetSelectionView extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setBorderWidth(1);
 		dataset2.setData(getRandomDigits(months));
+		
+		ChartPointerOptions pOptions = new ChartPointerOptions();
+		Window.getConsole().log(pOptions.getCursorPointer());
+		pOptions.setCursorPointer(Cursor.CROSSHAIR);
+		try {
+			chart.getOptions().getPlugins().setOptions(ChartPointer.ID, pOptions);
+			chart.getPlugins().add(new ChartPointer());
+		} catch (InvalidPluginIdException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);

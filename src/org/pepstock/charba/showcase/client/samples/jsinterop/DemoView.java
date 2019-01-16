@@ -10,11 +10,12 @@ import org.pepstock.charba.client.jsinterop.controllers.Context;
 import org.pepstock.charba.client.jsinterop.controllers.ControllerType;
 import org.pepstock.charba.client.jsinterop.controllers.InvalidControllerTypeException;
 import org.pepstock.charba.client.jsinterop.impl.plugins.ChartBackgroundColor;
+import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetsItemsSelector;
+import org.pepstock.charba.client.jsinterop.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.jsinterop.items.DatasetItem;
 import org.pepstock.charba.client.jsinterop.items.DatasetMetaItem;
 import org.pepstock.charba.client.jsinterop.items.DatasetViewItem;
 import org.pepstock.charba.client.jsinterop.plugins.InvalidPluginIdException;
-import org.pepstock.charba.client.jsinterop.utils.Window;
 import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 import org.pepstock.charba.showcase.client.samples.Toast;
@@ -63,7 +64,6 @@ public class DemoView extends Composite {
 				 */
 				@Override
 				public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
-					Window.getConsole().log("Eccomi");
 					super.draw(jsThis, chart, ease);
 			        // Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
 					
@@ -80,6 +80,12 @@ public class DemoView extends Composite {
 					}
 				}
 			});
+			DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+			pOptions.setBorderWidth(1);
+			pOptions.setBorderDash(6);
+			Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+			
+			Defaults.get().getControllers().extend(new MyHorizontalBarController());
 
 		} catch (InvalidPluginIdException e) {
 			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
@@ -421,4 +427,16 @@ public class DemoView extends Composite {
 		 content.add(new LineMyView());
 	}
 	
+	@UiHandler("myflags")
+	protected void handleMyFlags(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new HorizontalMyFlagsBarView());
+	}
+	
+	@UiHandler("drilldown")
+	protected void handleDrilldown(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesDrillDownView());
+	}
+
 }

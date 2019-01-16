@@ -51,6 +51,7 @@ public class GaugeView extends BaseComposite{
 		chartPercent.getOptions().getTitle().setText("GAUGE chart to represent percentage value");
 		chartPercent.getOptions().setDisplay(MeterDisplay.percentage);
 		chartPercent.getOptions().setFormat("###.##%");
+		chartPercent.getOptions().setAnimatedDisplay(true);;
 		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));
 
 		chartValue.getOptions().getTitle().setDisplay(true);
