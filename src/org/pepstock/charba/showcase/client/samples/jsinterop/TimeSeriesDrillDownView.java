@@ -65,6 +65,15 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		addChart();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Composite#onDetach()
+	 */
+	@Override
+	protected void onDetach() {
+		charts.getFirst().destroy();
+		super.onDetach();
+	}
+
 	private void addChart() {
 		if (!charts.isEmpty()) {
 			panel.remove(charts.get(index-1));
@@ -73,6 +82,7 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		charts.add(chart);
 		panel.add(chart);
 		index++;
+		chart.draw();
 	}
 	
 	private void removeChart() {
@@ -83,6 +93,7 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		charts.removeLast();
 		panel.add(chart);
 		index--;
+		chart.update();
 	}
 	
 	private LineChart createChart() {
@@ -130,6 +141,8 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		if (index == 0) {
+			chart.setDrawOnAttach(false);
+			chart.setDestroyOnDetach(false);
 			DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 			pOptions.setBorderWidth(1);
 			pOptions.setBorderDash(6);
