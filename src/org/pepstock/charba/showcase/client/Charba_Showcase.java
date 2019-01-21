@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client;
 
 import java.util.logging.Logger;
 
-import org.pepstock.charba.showcase.client.samples.jsni.DemoView;
+import org.pepstock.charba.showcase.client.samples.jsinterop.DemoView;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
