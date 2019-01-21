@@ -8,10 +8,6 @@
 			<g:cell width="90%" verticalAlignment="middle" horizontalAlignment="center">
 				<c:LineChart ui:field="chart"/>
 			</g:cell>
-			<g:cell width="90%" verticalAlignment="middle" horizontalAlignment="center">
-				<c:LineChart ui:field="small"/>
-			</g:cell>
-			
 	   		<g:cell width="10%" verticalAlignment="top"  horizontalAlignment="center">
 	   			<g:HorizontalPanel spacing="5">
 		   			<g:Button ui:field="randomize">Randomize data</g:Button>
