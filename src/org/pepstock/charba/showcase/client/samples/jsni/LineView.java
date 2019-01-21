@@ -19,12 +19,9 @@ import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.items.AxisItem;
 import org.pepstock.charba.client.options.scales.CartesianCategoryAxis;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
-import org.pepstock.charba.client.plugins.AbstractPlugin;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -121,54 +118,6 @@ public class LineView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		try {
-			chart.getPlugins().add(new AbstractPlugin() {
-				
-				@Override
-				public String getId() {
-					return "size";
-				}
-
-				/* (non-Javadoc)
-				 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onBeforeInit(org.pepstock.charba.client.AbstractChart, com.google.gwt.core.client.JavaScriptObject)
-				 */
-				@Override
-				public void onBeforeInit(AbstractChart<?, ?> chart, JavaScriptObject options) {
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getParentElement().getOffsetWidth());
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getWidth());
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getHeight());
-					
-					int w = chart.getCanvas().getParent().getOffsetWidth();
-//					chart.getCanvas().setWidth(w);
-//					chart.getCanvas().setHeight(w/3);
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getWidth());
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getHeight());
-
-				}
-
-//				/* (non-Javadoc)
-//				 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onBeforeUpdate(org.pepstock.charba.client.AbstractChart, com.google.gwt.core.client.JavaScriptObject)
-//				 */
-//				@Override
-//				public boolean onBeforeUpdate(AbstractChart<?, ?> chart, JavaScriptObject options) {
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getParentElement().getOffsetWidth());
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getWidth());
-//					Window.getConsole().log("Canvas "+chart.getCanvas().getHeight());
-//
-//					int w = chart.getCanvas().getParentElement().getOffsetWidth();
-//					chart.getCanvas().setWidth(w);
-//					chart.getCanvas().setHeight(100);
-//					return true;
-//				}
-
-				
-				
-			});
-		} catch (InvalidPluginIdException e) {
-			// TODO Auto-generated catch block
-			
-		}
-
 	}
 	
 	@UiHandler("randomize")

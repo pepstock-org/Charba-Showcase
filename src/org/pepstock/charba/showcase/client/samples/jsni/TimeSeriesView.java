@@ -24,7 +24,6 @@ import org.pepstock.charba.client.plugins.impl.DatasetsItemsSelector;
 import org.pepstock.charba.client.plugins.impl.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
