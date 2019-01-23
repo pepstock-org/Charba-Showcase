@@ -2,18 +2,18 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.AxisFitCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.ChartResizeEvent;
 import org.pepstock.charba.client.events.ChartResizeEventHandler;
 import org.pepstock.charba.client.items.AxisItem;
@@ -21,6 +21,7 @@ import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -82,6 +83,11 @@ public class LineView extends BaseComposite{
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.nofill);
+		
+//		Image img = new Image(Images.INSTANCE.customPoint());
+//		dataset1.setPointStyle(ImageElement.as(img.getElement()));
+
+		dataset1.setPointStyle(Images.INSTANCE.customPoint());
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -158,8 +164,11 @@ public class LineView extends BaseComposite{
 
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
+			LineDataset ln = (LineDataset)dataset;
+			Window.getConsole().log(ln.getPointStyleAsImages());
 		}
 		chart.update();
+		
 	}
 
 	@UiHandler("add_dataset")

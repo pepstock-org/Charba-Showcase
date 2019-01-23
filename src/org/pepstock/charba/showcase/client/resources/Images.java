@@ -29,6 +29,11 @@ public interface Images extends ClientBundle {
 	 */
 	@Source("/images/chartjs.png")
 	ImageResource chartjs();
+	
+	/**
+	 */
+	@Source("/images/custom_point.png")
+	ImageResource customPoint();
 
 	/**
 	 */
