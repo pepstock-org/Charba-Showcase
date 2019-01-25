@@ -16,8 +16,14 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
+import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
+import org.pepstock.charba.showcase.client.samples.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -26,6 +32,7 @@ import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 
@@ -33,7 +40,7 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class TimeSeriesView extends BaseComposite{
+public class TimeSeriesZoomView extends BaseComposite{
 	
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 	
@@ -43,13 +50,21 @@ public class TimeSeriesView extends BaseComposite{
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, TimeSeriesView> {
+	interface ViewUiBinder extends UiBinder<Widget, TimeSeriesZoomView> {
 	}
 
 	@UiField
 	LineChart chart;
 
-	public TimeSeriesView() {
+	@UiField
+	LineChart small;
+
+	@UiField
+	VerticalPanel img;
+	
+	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
+	
+	public TimeSeriesZoomView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
@@ -90,6 +105,8 @@ public class TimeSeriesView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
+		LineDataset dataset2 = small.newDataset();
+
 		long time = new Date().getTime();
 	
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
@@ -100,7 +117,8 @@ public class TimeSeriesView extends BaseComposite{
 			dp1[i].setT(new Date(time));
 			time = time + DAY;
 		}
-		dataset1.setDataPoints(dp1);
+		dataset2.setDataPoints(dp1);
+		small.getData().setDatasets(dataset2);
 		
 		final CartesianTimeAxis axis = new CartesianTimeAxis(chart);
 		axis.setDistribution(ScaleDistribution.series);
@@ -110,21 +128,80 @@ public class TimeSeriesView extends BaseComposite{
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis);
 		chart.getOptions().getScales().setYAxes(axis2);
-		chart.getData().setDatasets(dataset1);
 		
+		small.getOptions().setResponsive(true);
+		small.getOptions().setMaintainAspectRatio(true);
+		small.getOptions().setAspectRatio(15);
+		small.getOptions().getLegend().setDisplay(false);
+		small.getOptions().getTitle().setDisplay(false);
+		small.getOptions().getElements().getPoint().setRadius(0);
+		
+		CartesianTimeAxis axis1Small = new CartesianTimeAxis(small);
+		axis1Small.setDisplay(false);
+		
+		small.getOptions().getScales().setXAxes(axis1Small);
+		
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+		pOptions.setBorderWidth(5);
+		pOptions.setBorderDash(6);
+		try {
+			small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+			small.getPlugins().add(selector);
+		} catch (InvalidPluginIdException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		small.addHandler(new DatasetRangeSelectionEventHandler() {
+			
+			@Override
+			public void onSelect(DatasetRangeSelectionEvent event) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				new Toast("Dataset Range Selected!", sb.toString()).show();
+				if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
+					//				List<DataPoint> points = dataset1.getDataPoints();
+					int tot = event.getTo() - event.getFrom() + 1;
+					DataPoint[] dp1 = new DataPoint[tot];
+					for (int i=0; i<tot; i++) {
+						dp1[i] = dataset2.getDataPoints().get(i+event.getFrom());
+
+					}
+					dataset1.setDataPoints(dp1);
+					chart.getData().setDatasets(dataset1);
+					//				Date min = points.get().getT();
+					//				Date max = points.get(event.getTo()).getT();
+					//			    axis.getTime().setMin(min);
+					//			    axis.getTime().setMax(max);
+					chart.update();
+				}
+
+			}
+		}, DatasetRangeSelectionEvent.TYPE);
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+//		Image mimg = new Image(small.getCanvas().toDataUrl());
+//		mimg.setPixelSize(small.getCanvas().getOffsetWidth(),small.getCanvas().getOffsetHeight());
+//		img.add(mimg);
+		for (Dataset dataset : small.getData().getDatasets()){
 			LineDataset scDataset = (LineDataset)dataset;
 			for (DataPoint dp : scDataset.getDataPoints()){
 				dp.setY(getRandomDigit(false));
 			}
 		}
-		chart.update();
+//		chart.update();
+		small.update();
 	}
+
+	@UiHandler("reset")
+	protected void handleReset(ClickEvent event) {
+		selector.reset(small, true);
+	}
+
 }

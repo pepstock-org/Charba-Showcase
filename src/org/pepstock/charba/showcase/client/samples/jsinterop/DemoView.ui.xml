@@ -32,6 +32,8 @@
 									styleName='{myStyle.myLabel}'>Stacked</g:Label>
 								<g:Label ui:field="barStackedGroups"
 									styleName='{myStyle.myLabel}'>Stacked Groups</g:Label>
+								<g:Label ui:field="barPattern"
+									styleName='{myStyle.myLabel}'>Background pattern</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -50,10 +52,14 @@
 									styleName='{myStyle.myLabel}'>Line styles</g:Label>
 								<g:Label ui:field="linePointStyles"
 									styleName='{myStyle.myLabel}'>Point styles</g:Label>
+								<g:Label ui:field="linePointStyleImages"
+									styleName='{myStyle.myLabel}'>Point styles images</g:Label>
 								<g:Label ui:field="linePointSize"
 									styleName='{myStyle.myLabel}'>Point Size</g:Label>
 								<g:Label ui:field="lineWithGwtMaterialColors"
 									styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
+								<g:Label ui:field="linePattern"
+									styleName='{myStyle.myLabel}'>Background pattern</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -186,6 +192,8 @@
 									styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
 								<g:Label ui:field="barts"
 									styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
+								<g:Label ui:field="zooming"
+									styleName='{myStyle.myLabel}'>Zooming</g:Label>
 								<g:Label ui:field="drilldown"
 									styleName='{myStyle.myLabel}'>Drill down</g:Label>
 

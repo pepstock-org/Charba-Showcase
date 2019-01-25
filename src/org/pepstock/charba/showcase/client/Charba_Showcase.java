@@ -2,9 +2,11 @@ package org.pepstock.charba.showcase.client;
 
 import java.util.logging.Logger;
 
+import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.jsinterop.DemoView;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -18,6 +20,8 @@ public class Charba_Showcase implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
+		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
 		RootPanel.get().add(new DemoView());
 	}
 

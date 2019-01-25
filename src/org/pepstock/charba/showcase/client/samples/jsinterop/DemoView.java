@@ -438,4 +438,28 @@ public class DemoView extends Composite {
 		 content.add(new TimeSeriesDrillDownView());
 	}
 
+	@UiHandler("zooming")
+	protected void handleZooming(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesZoomView());
+	}
+
+	@UiHandler("linePattern")
+	protected void handleLinePattern(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PatternLineView());
+	}
+
+	@UiHandler("barPattern")
+	protected void handleBarPattern(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PatternBarView());
+	}
+
+	@UiHandler("linePointStyleImages")
+	protected void handlePointStylesImages(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PointStyleImageView());
+	}
+
 }

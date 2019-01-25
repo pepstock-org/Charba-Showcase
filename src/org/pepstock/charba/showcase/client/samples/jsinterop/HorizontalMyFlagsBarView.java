@@ -1,7 +1,5 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import java.util.logging.Logger;
-
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -22,8 +20,6 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Andrea "Stock" Stocchero
  */
 public class HorizontalMyFlagsBarView extends BaseComposite{
-	
-	Logger LOG = Logger.getLogger("chart");
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -57,7 +53,6 @@ public class HorizontalMyFlagsBarView extends BaseComposite{
 		axis = new CartesianCategoryAxis(chart);
 		axis.setDisplay(true);
 		axis.getScaleLabel().setDisplay(true);
-//		axis.getScaleLabel().getPadding().setTop(100);
 
 		chart.getData().setLabels(COUNTRIES);
 		chart.getData().setDatasets(dataset1);

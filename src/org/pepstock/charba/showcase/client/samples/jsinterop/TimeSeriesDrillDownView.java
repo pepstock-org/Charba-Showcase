@@ -3,8 +3,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.Date;
 import java.util.LinkedList;
 
-import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.DataPoint;
@@ -18,7 +18,6 @@ import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -161,7 +160,6 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 					if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
 						int tot = event.getTo() - event.getFrom() + 1;
 						currentAmountOfPoint = getAmounts(index+1) * tot;
-						Window.getConsole().log(currentAmountOfPoint);
 						addChart();
 					}
 				}
@@ -213,7 +211,6 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		case 2: 
 			result = 60;
 			break;
-
 		default:
 			break;
 		}

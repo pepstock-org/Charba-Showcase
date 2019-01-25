@@ -1,7 +1,5 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import java.util.List;
-
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -11,6 +9,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -25,22 +24,21 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class LineView extends BaseComposite{
+public class PointStyleImageView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LineView> {
+	interface ViewUiBinder extends UiBinder<Widget, PointStyleImageView> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public LineView() {
+	public PointStyleImageView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
@@ -59,6 +57,8 @@ public class LineView extends BaseComposite{
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.nofill);
+		
+		dataset1.setPointStyle(Images.INSTANCE.customPoint());
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -79,46 +79,21 @@ public class LineView extends BaseComposite{
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-	
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 		
-	}
-
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-		
-		LineDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = Colors.ALL[datasets.size()]; 
-		dataset.setBackgroundColor(color.toHex());
-		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.nofill);
-		dataset.setData(getRandomDigits(months));
-
-		datasets.add(dataset);
-		
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
 	}
 
 	@UiHandler("add_data")

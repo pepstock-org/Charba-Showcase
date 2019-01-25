@@ -2,9 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
@@ -13,7 +13,6 @@ import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
@@ -52,9 +51,6 @@ public class DatasetSelectionView extends BaseComposite{
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
 				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getSource();
-				Window.getConsole().log(chart.getVisibleDatasetCount());
-				Window.getConsole().log(chart.isDatasetVisible(0));				
-				Window.getConsole().log(chart.isDatasetVisible(10));
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
 				if (datasets != null && !datasets.isEmpty()){

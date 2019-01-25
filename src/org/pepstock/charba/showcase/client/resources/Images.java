@@ -32,6 +32,16 @@ public interface Images extends ClientBundle {
 	
 	/**
 	 */
+	@Source("/images/crossline-lines.png")
+	ImageResource pattern();
+
+	/**
+	 */
+	@Source("/images/positive.png")
+	ImageResource patternHover();
+
+	/**
+	 */
 	@Source("/images/custom_point.png")
 	ImageResource customPoint();
 
