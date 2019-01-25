@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
@@ -46,7 +45,7 @@ public class VerticalBarView extends BaseComposite{
 		IsColor color1 = Colors.ALL[0];
 		
 		dataset1.setBackgroundColor(color1.alpha(0.2));
-		dataset1.setBorderColor(HtmlColor.Black);
+		dataset1.setBorderColor(color1);
 		
 		dataset1.setData(getFixedDigits(months));
 		

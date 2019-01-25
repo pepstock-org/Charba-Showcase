@@ -80,6 +80,7 @@ public class DatasetSelectionPieView extends BaseComposite{
 		}
 		chart.update();
 	}
+	
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();

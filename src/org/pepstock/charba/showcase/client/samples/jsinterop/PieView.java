@@ -9,6 +9,8 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
+import org.pepstock.charba.showcase.client.samples.Toast;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -58,58 +60,24 @@ public class PieView extends BaseComposite{
 				@Override
 				public boolean onBeforeDraw(AbstractChart<?, ?> chart, double easing) {
 				
-//					// gets the canvas
 					Context2d ctx = chart.getCanvas().getContext2d();
-//					//H
-////					CanvasGradient pattern = ctx.createLinearGradient(0, 0, chart.getCanvas().getOffsetWidth(), 0);
-//					//V
-					
 					int centerX = chart.getCanvas().getOffsetWidth() / 2;
 					int centerY = chart.getCanvas().getOffsetHeight() / 2;
 					CanvasGradient pattern = ctx.createRadialGradient(centerX, centerY, centerX, centerX, centerY, 0); //LinearGradient(0, 0, 0, );
 					pattern.addColorStop(0, "rgba(255, 0, 0, 0.5)");
 					pattern.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
 					pattern.addColorStop(1, "rgba(255, 0,0, 0)");
-//					
-//					// set fill canvas color
+					// set fill canvas color
 					ctx.setFillStyle(pattern);
-//					// fills back ground
+					// fills back ground
 					ctx.fillRect(0, 0, chart.getCanvas().getOffsetWidth(), chart.getCanvas().getOffsetHeight());
 					// always TRUE
 					return true;
 				}
 			});
 		} catch (InvalidPluginIdException e) {
-			// TODO Auto-generated catch block
-			
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
-		
-//		try {
-//			chart.getPlugins().add(new AbstractPlugin() {
-//				
-//				
-//				
-//				/* (non-Javadoc)
-//				 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterEvent(org.pepstock.charba.client.AbstractChart, org.pepstock.charba.client.events.ChartNativeEvent, com.google.gwt.core.client.JavaScriptObject)
-//				 */
-//				@Override
-//				public void onAfterEvent(AbstractChart<?, ?> chart, ChartNativeEvent event) {
-//					DatasetItem item = chart.getElementAtEvent(event);
-//					if (item == null) {
-//						chart.getElement().getStyle().setCursor(Cursor.DEFAULT);
-//					} else {
-//						chart.getElement().getStyle().setCursor(Cursor.POINTER);
-//					}
-//				}
-//
-//				@Override
-//				public String getId() {
-//					return "stock";
-//				}
-//			});
-//		} catch (InvalidPluginIdException e) {
-//			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-//		}
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
@@ -118,9 +86,6 @@ public class PieView extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
-		
-
 	}
 
 	@UiHandler("randomize")

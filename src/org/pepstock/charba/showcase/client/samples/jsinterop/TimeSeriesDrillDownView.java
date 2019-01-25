@@ -19,6 +19,8 @@ import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
+import org.pepstock.charba.showcase.client.samples.Toast;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -150,8 +152,7 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 				chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 				chart.getPlugins().add(selector);
 			} catch (InvalidPluginIdException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 			}
 			chart.addHandler(new DatasetRangeSelectionEventHandler() {
 

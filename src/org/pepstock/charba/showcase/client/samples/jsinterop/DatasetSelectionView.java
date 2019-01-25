@@ -15,6 +15,7 @@ import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -92,8 +93,7 @@ public class DatasetSelectionView extends BaseComposite{
 //			chart.getOptions().getPlugins().setOptions(ChartPointer.ID, pOptions);
 			chart.getPlugins().add(new ChartPointer());
 		} catch (InvalidPluginIdException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
 
 		chart.getData().setLabels(getLabels());

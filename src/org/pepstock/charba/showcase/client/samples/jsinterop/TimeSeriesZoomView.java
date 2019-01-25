@@ -24,6 +24,7 @@ import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
+import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -151,8 +152,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 			small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 			small.getPlugins().add(selector);
 		} catch (InvalidPluginIdException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
 		}
 		
 		small.addHandler(new DatasetRangeSelectionEventHandler() {
@@ -173,10 +173,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 					}
 					dataset1.setDataPoints(dp1);
 					chart.getData().setDatasets(dataset1);
-					//				Date min = points.get().getT();
-					//				Date max = points.get(event.getTo()).getT();
-					//			    axis.getTime().setMin(min);
-					//			    axis.getTime().setMax(max);
 					chart.update();
 				}
 
@@ -195,7 +191,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 				dp.setY(getRandomDigit(false));
 			}
 		}
-//		chart.update();
 		small.update();
 	}
 
