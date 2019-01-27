@@ -106,7 +106,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
-		LineDataset dataset2 = small.newDataset();
+		final LineDataset dataset2 = small.newDataset();
 
 		long time = new Date().getTime();
 	

@@ -11,6 +11,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.utils.Window;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -41,6 +43,8 @@ public class LineView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 
+		Charba_Showcase.LOG.info(chart.getOptions().getElements().getPoint().getHoverRadius()+"");
+		
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
@@ -95,6 +99,8 @@ public class LineView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+		
+		Window.getConsole().log(chart.getOptions().toJSON());
 		
 	}
 

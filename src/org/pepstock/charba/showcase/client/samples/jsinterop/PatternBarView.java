@@ -2,9 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.Pattern;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -41,16 +41,19 @@ public class PatternBarView extends BaseComposite{
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(chart, Images.INSTANCE.patternHover());
+		Pattern pattern = new Pattern(Images.INSTANCE.patternHover());
 		dataset1.setBackgroundColor(pattern);
+		
+		Pattern pattern1 = new Pattern(Images.INSTANCE.pattern());
+		dataset1.setHoverBackgroundColor(pattern1);
+		
 		dataset1.setBorderColor(HtmlColor.Black);
 		dataset1.setBorderWidth(1);
-		
-		
 		dataset1.setData(getFixedDigits(months));
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+
 	}
 
 	@UiHandler("randomize")

@@ -2,11 +2,11 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.data.Pattern;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
@@ -50,7 +50,7 @@ public class PatternLineView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Pattern pattern = new Pattern(chart, Images.INSTANCE.pattern());
+		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
 		
 		dataset1.setBackgroundColor(pattern);
 		dataset1.setBorderColor(HtmlColor.Black);
@@ -74,16 +74,15 @@ public class PatternLineView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+		
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		
 	}
 
 	@UiHandler("add_data")
