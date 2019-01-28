@@ -1,6 +1,10 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientOrientation;
+import org.pepstock.charba.client.colors.GradientScope;
+import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -10,6 +14,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -52,8 +57,27 @@ public class PatternLineView extends BaseComposite{
 		
 		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
 		
-		dataset1.setBackgroundColor(pattern);
-		dataset1.setBorderColor(HtmlColor.Black);
+//		dataset1.setBackgroundColor(pattern);
+		
+//		Gradient gradient  = new Gradient(GradientType.radial, GradientScope.chart);
+//		gradient.addColorsStartStop(HtmlColor.Red, HtmlColor.White);
+
+		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.chart);
+		//gradient1.addColorsStartStop(HtmlColor.Orange, HtmlColor.Purple);
+
+		gradient1.addColorStop(0, HtmlColor.Orange);
+		gradient1.addColorStop(1, HtmlColor.Purple);
+		
+		dataset1.setBackgroundColor(gradient1);
+		
+		dataset1.setBorderColor(gradient1);
+		dataset1.setPointBorderColor(HtmlColor.Aqua);
+		dataset1.setPointBackgroundColor(gradient1);
+		dataset1.setPointHoverBackgroundColor(gradient1);
+		dataset1.setPointHoverBorderColor(gradient1);
+		
+		dataset1.setPointRadius(10);
+		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.origin);
@@ -75,12 +99,15 @@ public class PatternLineView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 		
+		Window.getConsole().log(dataset1.toJSON());
+		
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
+			Window.getConsole().log(dataset);
 		}
 		chart.update();
 	}
