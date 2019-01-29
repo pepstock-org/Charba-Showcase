@@ -40,6 +40,8 @@ public class PointStyleImageView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().getLabels().setUsePointStyle(true);
+
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.index);
