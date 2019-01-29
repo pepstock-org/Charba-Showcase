@@ -1,7 +1,11 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.LineChart;
-import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientOrientation;
+import org.pepstock.charba.client.colors.GradientScope;
+import org.pepstock.charba.client.colors.GradientType;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -9,7 +13,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,17 +26,17 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class PatternLineView extends BaseComposite{
+public class LinearGradientLineView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PatternLineView> {
+	interface ViewUiBinder extends UiBinder<Widget, LinearGradientLineView> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public PatternLineView() {
+	public LinearGradientLineView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
@@ -49,9 +52,19 @@ public class PatternLineView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.leftRight, GradientScope.chart);
+
+		gradient1.addColorStop(0, HtmlColor.Orange);
+		gradient1.addColorStop(1, HtmlColor.Purple);
 		
-		dataset1.setBackgroundColor(pattern);
+		dataset1.setBackgroundColor(gradient1);
+		
+		dataset1.setBorderColor(gradient1);
+		dataset1.setPointBackgroundColor(gradient1);
+		dataset1.setPointHoverBackgroundColor(gradient1);
+		dataset1.setPointHoverBorderColor(gradient1);
+		
+		dataset1.setPointRadius(5);
 		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);

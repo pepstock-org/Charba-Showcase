@@ -11,7 +11,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
@@ -99,9 +98,7 @@ public class LineView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		
-		Window.getConsole().log(chart.getOptions().toJSON());
-		
+	
 	}
 
 	@UiHandler("add_dataset")

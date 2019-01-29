@@ -450,6 +450,12 @@ public class DemoView extends Composite {
 		 content.add(new PatternLineView());
 	}
 
+	@UiHandler("lineGradient")
+	protected void handleLineGradient(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LinearGradientLineView());
+	}
+	
 	@UiHandler("barPattern")
 	protected void handleBarPattern(ClickEvent event) {
 		clearPreviousChart();

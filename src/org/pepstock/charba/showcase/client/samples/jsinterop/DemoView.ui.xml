@@ -60,6 +60,8 @@
 									styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
 								<g:Label ui:field="linePattern"
 									styleName='{myStyle.myLabel}'>Background pattern</g:Label>
+								<g:Label ui:field="lineGradient"
+									styleName='{myStyle.myLabel}'>Background gradient </g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
