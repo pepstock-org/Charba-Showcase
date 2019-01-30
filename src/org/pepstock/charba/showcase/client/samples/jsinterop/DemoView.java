@@ -8,18 +8,14 @@ import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
-import org.pepstock.charba.client.controllers.InvalidControllerTypeException;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
@@ -47,50 +43,44 @@ public class DemoView extends Composite {
 	public DemoView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		content.add(new HomeView());
-		try {
-			Defaults.get().getPlugins().register(new ChartBackgroundColor());
-			Defaults.get().getControllers().extend(new AbstractController() {
+		Defaults.get().getPlugins().register(new ChartBackgroundColor());
+		Defaults.get().getControllers().extend(new AbstractController() {
 
-				/* (non-Javadoc)
-				 * @see org.pepstock.charba.client.Controller#getType()
-				 */
-				@Override
-				public ControllerType getType() {
-					return LineMyChart.TYPE;
-				}
+			/* (non-Javadoc)
+			 * @see org.pepstock.charba.client.Controller#getType()
+			 */
+			@Override
+			public ControllerType getType() {
+				return LineMyChart.TYPE;
+			}
 
-				/* (non-Javadoc)
-				 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
-				 */
-				@Override
-				public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
-					super.draw(jsThis, chart, ease);
-			        // Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
-					
-					DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
-					List<DatasetItem> items = metaItem.getDatasets();
-					for (DatasetItem item : items) {
-						DatasetViewItem view = item.getView();
-						Context2d ctx = chart.getCanvas().getContext2d();
-						ctx.save();
-						ctx.setStrokeStyle(view.getBorderColorAsString());
-						ctx.setLineWidth(1D);
-						ctx.strokeRect(view.getX() - 10, view.getY() - 10,  20, 20);
-						ctx.restore();
-					}
+			/* (non-Javadoc)
+			 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
+			 */
+			@Override
+			public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
+				super.draw(jsThis, chart, ease);
+				// Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
+
+				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
+				List<DatasetItem> items = metaItem.getDatasets();
+				for (DatasetItem item : items) {
+					DatasetViewItem view = item.getView();
+					Context2d ctx = chart.getCanvas().getContext2d();
+					ctx.save();
+					ctx.setStrokeStyle(view.getBorderColorAsString());
+					ctx.setLineWidth(1D);
+					ctx.strokeRect(view.getX() - 10, view.getY() - 10,  20, 20);
+					ctx.restore();
 				}
-			});
-			DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
-			pOptions.setBorderWidth(1);
-			pOptions.setBorderDash(6);
-			Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-			
-			Defaults.get().getControllers().extend(new MyHorizontalBarController());
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		} catch (InvalidControllerTypeException e) {
-			new Toast("Invalid ControllerType!", Level.ERROR, e.getMessage()).show();
-		}
+			}
+		});
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+		pOptions.setBorderWidth(1);
+		pOptions.setBorderDash(6);
+		Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+
+		Defaults.get().getControllers().extend(new MyHorizontalBarController());
 		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 	}
 
@@ -455,7 +445,19 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new LinearGradientLineView());
 	}
-	
+
+	@UiHandler("barGradient")
+	protected void handleBarGradient(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LinearGradientBarView());
+	}
+
+	@UiHandler("pieGradient")
+	protected void handlePieGradient(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new RadialGradientPieView());
+	}
+
 	@UiHandler("barPattern")
 	protected void handleBarPattern(ClickEvent event) {
 		clearPreviousChart();

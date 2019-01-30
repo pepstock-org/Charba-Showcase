@@ -32,8 +32,6 @@
 									styleName='{myStyle.myLabel}'>Stacked</g:Label>
 								<g:Label ui:field="barStackedGroups"
 									styleName='{myStyle.myLabel}'>Stacked Groups</g:Label>
-								<g:Label ui:field="barPattern"
-									styleName='{myStyle.myLabel}'>Background pattern</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -56,12 +54,6 @@
 									styleName='{myStyle.myLabel}'>Point styles images</g:Label>
 								<g:Label ui:field="linePointSize"
 									styleName='{myStyle.myLabel}'>Point Size</g:Label>
-								<g:Label ui:field="lineWithGwtMaterialColors"
-									styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
-								<g:Label ui:field="linePattern"
-									styleName='{myStyle.myLabel}'>Background pattern</g:Label>
-								<g:Label ui:field="lineGradient"
-									styleName='{myStyle.myLabel}'>Background gradient </g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -164,6 +156,24 @@
 									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Colors</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="lineWithGwtMaterialColors"
+									styleName='{myStyle.myLabel}'>Gwt material colors</g:Label>
+								<g:Label ui:field="barPattern"
+									styleName='{myStyle.myLabel}'>Bar background pattern</g:Label>
+								<g:Label ui:field="linePattern"
+									styleName='{myStyle.myLabel}'>Line background pattern</g:Label>
+								<g:Label ui:field="barGradient"
+									styleName='{myStyle.myLabel}'>Linear gradient (bar)</g:Label>
+								<g:Label ui:field="lineGradient"
+									styleName='{myStyle.myLabel}'>Linear gradient (line)</g:Label>
+								<g:Label ui:field="pieGradient"
+									styleName='{myStyle.myLabel}'>Radial gradient (pie) </g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>						
 						<g:DisclosurePanel animationEnabled="true"
 							open="false">
 							<g:header>Miscellaneous</g:header>
