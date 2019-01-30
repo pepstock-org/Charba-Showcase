@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.RadarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;

@@ -8,9 +8,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -43,41 +40,37 @@ public class PieView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
 		
-		try {
-			chart.getPlugins().add(new AbstractPlugin() {
-				
-				@Override
-				public String getId() {
-					return "size";
-				}
+		chart.getPlugins().add(new AbstractPlugin() {
 
-				/*
-				 * (non-Javadoc)
-				 * 
-				 * @see org.pepstock.charba.client.jsinterop.plugins.AbstractPlugin#onBeforeDraw(org.pepstock.charba.client.jsinterop.
-				 * AbstractChart, double)
-				 */
-				@Override
-				public boolean onBeforeDraw(AbstractChart<?, ?> chart, double easing) {
-				
-					Context2d ctx = chart.getCanvas().getContext2d();
-					int centerX = chart.getCanvas().getOffsetWidth() / 2;
-					int centerY = chart.getCanvas().getOffsetHeight() / 2;
-					CanvasGradient pattern = ctx.createRadialGradient(centerX, centerY, centerX, centerX, centerY, 0); //LinearGradient(0, 0, 0, );
-					pattern.addColorStop(0, "rgba(255, 0, 0, 0.5)");
-					pattern.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
-					pattern.addColorStop(1, "rgba(255, 0,0, 0)");
-					// set fill canvas color
-					ctx.setFillStyle(pattern);
-					// fills back ground
-					ctx.fillRect(0, 0, chart.getCanvas().getOffsetWidth(), chart.getCanvas().getOffsetHeight());
-					// always TRUE
-					return true;
-				}
-			});
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+			@Override
+			public String getId() {
+				return "size";
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.pepstock.charba.client.jsinterop.plugins.AbstractPlugin#onBeforeDraw(org.pepstock.charba.client.jsinterop.
+			 * AbstractChart, double)
+			 */
+			@Override
+			public boolean onBeforeDraw(AbstractChart<?, ?> chart, double easing) {
+
+				Context2d ctx = chart.getCanvas().getContext2d();
+				int centerX = chart.getCanvas().getOffsetWidth() / 2;
+				int centerY = chart.getCanvas().getOffsetHeight() / 2;
+				CanvasGradient pattern = ctx.createRadialGradient(centerX, centerY, centerX, centerX, centerY, 0); //LinearGradient(0, 0, 0, );
+				pattern.addColorStop(0, "rgba(255, 0, 0, 0.5)");
+				pattern.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
+				pattern.addColorStop(1, "rgba(255, 0,0, 0)");
+				// set fill canvas color
+				ctx.setFillStyle(pattern);
+				// fills back ground
+				ctx.fillRect(0, 0, chart.getCanvas().getOffsetWidth(), chart.getCanvas().getOffsetHeight());
+				// always TRUE
+				return true;
+			}
+		});
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

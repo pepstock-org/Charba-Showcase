@@ -1,16 +1,13 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -68,11 +65,8 @@ public class VerticalBarPluginView extends BaseComposite{
 		
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(Colors.ALL[3].alpha(0.1));
-		try {
-			chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+
+		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
 	}
 
 	@UiHandler("randomize")

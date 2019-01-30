@@ -6,7 +6,6 @@ import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.utils.Window;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -53,11 +52,6 @@ public class RadialGradientPieView extends BaseComposite{
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
-		Window.getConsole().log("--- Datasets ---");
-		for (int i=0; i<chart.getData().getDatasets().size(); i++) {
-			Window.getConsole().log(chart.getDatasetMeta(i));
-		}
-		Window.getConsole().log("----------------");
 	}
 
 	@UiHandler("add_dataset")

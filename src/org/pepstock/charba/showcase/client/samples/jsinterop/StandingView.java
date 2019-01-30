@@ -3,23 +3,20 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
@@ -163,11 +160,7 @@ public class StandingView extends BaseComposite{
 				}
 			}
 		};
-		try {
-			chart.getPlugins().add(p);
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+		chart.getPlugins().add(p);
 
 	}
 	

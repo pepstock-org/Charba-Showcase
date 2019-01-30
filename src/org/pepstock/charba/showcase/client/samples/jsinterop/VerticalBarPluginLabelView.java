@@ -2,19 +2,16 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
-import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
@@ -110,11 +107,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 				}
 			}
 		};
-		try {
-			chart.getPlugins().add(p);
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+		chart.getPlugins().add(p);
 	}
 
 

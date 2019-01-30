@@ -21,10 +21,8 @@ import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.plugins.InvalidPluginIdException;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
-import org.pepstock.charba.showcase.client.samples.Toast.Level;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -148,12 +146,9 @@ public class TimeSeriesZoomView extends BaseComposite{
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(5);
 		pOptions.setBorderDash(6);
-		try {
-			small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-			small.getPlugins().add(selector);
-		} catch (InvalidPluginIdException e) {
-			new Toast("Invalid PlugiID!", Level.ERROR, e.getMessage()).show();
-		}
+
+		small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+		small.getPlugins().add(selector);
 		
 		small.addHandler(new DatasetRangeSelectionEventHandler() {
 			
