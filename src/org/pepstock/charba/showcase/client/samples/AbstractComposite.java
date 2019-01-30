@@ -1,5 +1,9 @@
 package org.pepstock.charba.showcase.client.samples;
 
+import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientScope;
+import org.pepstock.charba.client.colors.GradientType;
+import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.IsColor;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -70,7 +74,23 @@ public abstract class AbstractComposite extends Composite{
 		return values;
 		
 	}
-	
+
+	protected Gradient[] getRadialGradients(int length){
+//		IsColor[] values = new IsColor[length];
+//		for(int i=0;i<length;i++){
+//			values[i] = Colors.ALL[i].alpha(alpha);
+//		}
+		IsColor[] colors = GwtMaterialColor.values();
+		Gradient[] gradients = new Gradient[length];
+		for(int i=0;i<length;i++){
+			Gradient gradient = new Gradient(GradientType.radial, GradientScope.chart);
+			int index = i * 14; 
+			gradient.addColorsStartStop(colors[index+7],  colors[index+2]);
+			gradients[i] = gradient;
+		}
+		return gradients;
+	}
+
 	protected double[] getFixedDigits(int length){
 		double[] values = new double[length];
 		for(int i=0;i<length;i++){
