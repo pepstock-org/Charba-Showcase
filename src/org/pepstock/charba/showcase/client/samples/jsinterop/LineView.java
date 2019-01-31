@@ -41,9 +41,6 @@ public class LineView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-
-		Charba_Showcase.LOG.info(chart.getOptions().getElements().getPoint().getHoverRadius()+"");
-		
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
@@ -51,7 +48,6 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
 		chart.getOptions().getHover().setIntersect(true);
-		
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -68,7 +64,13 @@ public class LineView extends BaseComposite{
 		dataset2.setLabel("dataset 2");
 		
 		IsColor color2 = Colors.ALL[1];
+
+		Charba_Showcase.LOG.info(dataset1.getPointBackgroundColorAsString().toString());
+//		Charba_Showcase.LOG.info(chart.getOptions().getElements().getPoint().getBackgroundColorAsString());
+//		Charba_Showcase.LOG.info(chart.getDefaultChartOptions().toJSON());
 		
+		
+		 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
@@ -89,17 +91,15 @@ public class LineView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
+		
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-	
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-	
 	}
 
 	@UiHandler("add_dataset")

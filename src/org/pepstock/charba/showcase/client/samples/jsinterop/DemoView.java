@@ -82,7 +82,7 @@ public class DemoView extends Composite {
 		Defaults.get().getControllers().extend(new MyHorizontalBarController());
 		//Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 		
-		LabelsPlugin.enable();
+		LabelsPlugin.enable(false);
 	}
 
 	private void clearPreviousChart() {

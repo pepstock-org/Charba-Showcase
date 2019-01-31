@@ -2,6 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
+import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
@@ -40,7 +42,6 @@ public class PieceLabelView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
-//		PieceLabelOptions option = new PieceLabelOptions();
 		LabelsOptions option = new LabelsOptions();
 		option.setRender(Render.percentage);
 		option.setPrecision(2);
@@ -48,7 +49,11 @@ public class PieceLabelView extends BaseComposite{
 		option.setFontSize(16);
 		option.setOverlap(false);
 		
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
+
+		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
+//		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+//		LabelsPlugin.setOptions(chart, option);
 
 		//chart.getOptions().merge(option, PieceLabelOptions.ID);
 		
@@ -68,6 +73,7 @@ public class PieceLabelView extends BaseComposite{
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
+		toJSON(chart);
 	}
 
 	@UiHandler("add_dataset")
@@ -102,10 +108,16 @@ public class PieceLabelView extends BaseComposite{
 			}
 			chart.update();
 		}
+		
 	}
 
 	@UiHandler("remove_data")
 	protected void handleremoveData(ClickEvent event) {
 		removeData(chart);
 	}
+	
+	final native String toJSON(AbstractChart<?, ?> chart)/*-{
+		var o = chart.@org.pepstock.charba.client.AbstractChart::chart;
+   		console.log(o);
+   	}-*/;
 }
