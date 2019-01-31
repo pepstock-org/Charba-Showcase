@@ -52,6 +52,7 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
 		chart.getOptions().getHover().setIntersect(true);
 		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		

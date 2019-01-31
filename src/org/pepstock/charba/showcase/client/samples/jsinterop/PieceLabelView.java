@@ -2,10 +2,13 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.ext.labels.LabelsOptions;
+import org.pepstock.charba.client.ext.labels.LabelsPlugin;
+import org.pepstock.charba.client.ext.labels.Render;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -37,13 +40,17 @@ public class PieceLabelView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
-		PieceLabelOptions option = new PieceLabelOptions();
-		option.setRender("percentage");
+//		PieceLabelOptions option = new PieceLabelOptions();
+		LabelsOptions option = new LabelsOptions();
+		option.setRender(Render.percentage);
 		option.setPrecision(2);
 		option.setFontColor("white");
 		option.setFontSize(16);
+		option.setOverlap(false);
+		
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 
-		chart.getOptions().merge(option, PieceLabelOptions.ID);
+		//chart.getOptions().merge(option, PieceLabelOptions.ID);
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

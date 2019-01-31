@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
-import org.pepstock.charba.showcase.client.resources.Resources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -81,7 +80,9 @@ public class DemoView extends Composite {
 		Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 
 		Defaults.get().getControllers().extend(new MyHorizontalBarController());
-		Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
+		//Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
+		
+		LabelsPlugin.enable();
 	}
 
 	private void clearPreviousChart() {
