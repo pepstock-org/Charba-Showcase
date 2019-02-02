@@ -2,14 +2,16 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.utils.JSON;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -66,7 +68,17 @@ public class MultilineAxesView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.nofill);
 
-		chart.getData().setLabels(getMultiLabels());
+		Labels lbl = getMultiLabels();
+		
+		
+		for (int i=0; i<months; i++) {
+			Charba_Showcase.LOG.info("start "+i);
+
+			Charba_Showcase.LOG.info(lbl.getString(i));
+			Charba_Showcase.LOG.info(JSON.stringify(lbl.getStrings(i)));
+		}
+		
+		chart.getData().setLabels(lbl);
 		chart.getData().setDatasets(dataset1, dataset2);
 		
 

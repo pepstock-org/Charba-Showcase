@@ -96,10 +96,15 @@ public class LineView extends BaseComposite{
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
-			dataset.setData(getRandomDigits(months));
-		}
+//		for (Dataset dataset : chart.getData().getDatasets()){
+//			dataset.setData(getRandomDigits(months));
+//		}
+//		chart.update();
+//		chart.getOptions().getTitle().setFontColor("red");
+
+		chart.getNode().getOptions().getTitle().setFontColor("red");
 		chart.update();
+		
 	}
 
 	@UiHandler("add_dataset")

@@ -3,25 +3,23 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
-import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.HtmlColor;
-import org.pepstock.charba.client.commons.NativeObjectContainer;
+import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ext.labels.FontColorCallback;
 import org.pepstock.charba.client.ext.labels.FontColorItem;
 import org.pepstock.charba.client.ext.labels.LabelsConfiguration;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.showcase.client.resources.Images;
+import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
 
@@ -29,28 +27,34 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class PieceLabelView extends BaseComposite{
+public class PieceLabelBarView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PieceLabelView> {
+	interface ViewUiBinder extends UiBinder<Widget, PieceLabelBarView> {
 	}
 
 	@UiField
-	PieChart chart;
+	BarChart chart;
 	
-	private ImageElement img = null;
-
-	public PieceLabelView() {
+	public PieceLabelBarView() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		Image image = new Image(Images.INSTANCE.customPoint());
-		img = ImageElement.as(image.getElement());
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
+		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		
+		BarDataset dataset1 = chart.newDataset();
+		dataset1.setLabel("dataset 1");
+		
+		IsColor color1 = Colors.ALL[0];
+		
+		dataset1.setBackgroundColor(color1.alpha(0.2));
+		dataset1.setBorderColor(color1);
+		
+		dataset1.setData(getFixedDigits(months));
+		
 		
 		LabelsConfiguration option = new LabelsConfiguration(chart);
 //		option.setRender(Render.image);
@@ -85,45 +89,42 @@ public class PieceLabelView extends BaseComposite{
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
-				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.White.toRGBA();
+				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.Black.toRGBA();
 			}
 		});
 		
 		LabelsPlugin.setOptions(option);
-
-		//chart.getOptions().merge(option, PieceLabelOptions.ID);
 		
-		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset 1");
-		dataset.setBackgroundColor(getSequenceColors(months, 1));
-		dataset.setData(getRandomDigits(months, false));
-
+		
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset);
+		chart.getData().setDatasets(dataset1);
 
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){
-			dataset.setData(getRandomDigits(months, false));
+			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-//		toJSON(chart);
 	}
 
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		PieDataset dataset = chart.newDataset();
+		
+		BarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
-		dataset.setBackgroundColor(getSequenceColors(months, 1));
-		dataset.setData(getRandomDigits(months, false));
+		
+		IsColor color = Colors.ALL[datasets.size()]; 
+		dataset.setBackgroundColor(color.alpha(0.2));
+		dataset.setBorderColor(color.toHex());
+		dataset.setBorderWidth(1);
+		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
 		
 		chart.update();
-
 	}
 
 	@UiHandler("remove_dataset")
@@ -133,38 +134,11 @@ public class PieceLabelView extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
-			chart.getData().getLabels().add(getLabel());
-			months++;
-			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
-				pds.getData().add(getRandomDigit(false));
-			}
-			chart.update();
-		}
-		
+		addData(chart);
 	}
 
 	@UiHandler("remove_data")
-	protected void handleremoveData(ClickEvent event) {
+	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
-	final native void set(NativeObjectContainer object)/*-{
-	var o = object.@org.pepstock.charba.client.commons.NativeObjectContainer::nativeObject;
-	o.fontColor = function (args) {
-//		console.log(this);
-		console.log(args);
-		// args will be something like:
-		// { label: 'Label', value: 123, percentage: 50, index: 0, dataset: {...} }
-		return "white";
-	}
-	}-*/;
-
-//	final native String toJSON(AbstractChart<?, ?> chart)/*-{
-//		var o = chart.@org.pepstock.charba.client.AbstractChart::chart;
-//   		console.log(o);
-//   	}-*/;
 }

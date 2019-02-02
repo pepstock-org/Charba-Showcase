@@ -4,10 +4,17 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientOrientation;
+import org.pepstock.charba.client.colors.GradientScope;
+import org.pepstock.charba.client.colors.GradientType;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
+import org.pepstock.charba.client.ext.labels.Render;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
@@ -36,13 +43,22 @@ public class DemoView extends Composite {
 	interface DemoViewUiBinder extends UiBinder<Widget, DemoView> {
 	}
 
+
 	@UiField
 	VerticalPanel content;
 
 	public DemoView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		content.add(new HomeView());
+		
+		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.canvas);
+
+		gradient.addColorStop(0, HtmlColor.White);
+		gradient.addColorStop(1, HtmlColor.Gray);
+		
+//		Defaults.get().getPlugins().register(new ChartBackgroundColor(gradient));
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
+
 		Defaults.get().getControllers().extend(new AbstractController() {
 
 			/* (non-Javadoc)
@@ -83,6 +99,15 @@ public class DemoView extends Composite {
 		//Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 		
 		LabelsPlugin.enable(false);
+		LabelsOptions option = new LabelsOptions();
+		option.setRender(Render.value);
+		option.setPrecision(2);
+		option.setFontColor("white");
+		option.setFontSize(16);
+		option.setOverlap(false);
+		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
+
+		
 	}
 
 	private void clearPreviousChart() {
@@ -356,6 +381,14 @@ public class DemoView extends Composite {
 		 content.add(new VerticalBarPluginView());
 	}
 
+	@UiHandler("piebgcolorplugin")
+	protected void handlePieBGColorPlugin(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PiePluginView());
+	}
+
+	
+
 	@UiHandler("labelplugin")
 	protected void handleLabelPlugin(ClickEvent event) {
 		clearPreviousChart();
@@ -390,6 +423,12 @@ public class DemoView extends Composite {
 	protected void handleExtPlugin(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new PieceLabelView());
+	}
+	
+	@UiHandler("piecelabelbarplugin")
+	protected void handleExtPluginBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelBarView());
 	}
 
 	@UiHandler("lineWithGwtMaterialColors")

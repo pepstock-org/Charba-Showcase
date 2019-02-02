@@ -1,20 +1,18 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
-import org.pepstock.charba.client.colors.GwtMaterialColor;
-import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
-import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.resources.Images;
-import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -28,17 +26,17 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class VerticalBarPluginView extends BaseComposite{
+public class PiePluginView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, VerticalBarPluginView> {
+	interface ViewUiBinder extends UiBinder<Widget, PiePluginView> {
 	}
 
 	@UiField
-	BarChart chart;
+	PieChart chart;
 	
-	public VerticalBarPluginView() {
+	public PiePluginView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
@@ -46,37 +44,22 @@ public class VerticalBarPluginView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
-		BarDataset dataset1 = chart.newDataset();
-		dataset1.setLabel("dataset 1");
-		
-		IsColor color1 = Colors.ALL[0];
-		
-		dataset1.setBackgroundColor(color1.alpha(0.2));
-		dataset1.setBorderColor(color1.toHex());
-		dataset1.setBorderWidth(1);
-		
-		dataset1.setData(getRandomDigits(months));
+		PieDataset dataset = chart.newDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setBackgroundColor(getSequenceColors(months, 1));
+		dataset.setData(getRandomDigits(months, false));
 
-		BarDataset dataset2 = chart.newDataset();
-		dataset2.setLabel("dataset 2");
-		
-		IsColor color2 = Colors.ALL[1];
-		
-		dataset2.setBackgroundColor(color2.alpha(0.2));
-		dataset2.setBorderColor(color2.toHex());
-		dataset2.setBorderWidth(1);
-		
-		dataset2.setData(getRandomDigits(months));
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset1, dataset2);
+		chart.getData().setDatasets(dataset);
 		
 		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
 		
-		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.canvas);
+//		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.bottomRight, GradientScope.canvas);
 
-		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
-		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);
-		gradient.addColorStop(1, GwtMaterialColor.WHITE);
+		Gradient gradient = new Gradient(GradientType.radial, GradientOrientation.inOut,  GradientScope.canvas);
+
+		gradient.addColorStop(0, HtmlColor.White);
+		gradient.addColorStop(1, HtmlColor.Gray);
 		
 	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();

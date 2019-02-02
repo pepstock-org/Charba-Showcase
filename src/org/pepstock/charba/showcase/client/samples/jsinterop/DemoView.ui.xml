@@ -138,12 +138,16 @@
 							<g:VerticalPanel spacing="4">
 								<g:Label ui:field="bgcolorplugin"
 									styleName='{myStyle.myLabel}'>Background color</g:Label>
+								<g:Label ui:field="piebgcolorplugin"
+									styleName='{myStyle.myLabel}'>Background gradient</g:Label>
 								<g:Label ui:field="labelplugin"
 									styleName='{myStyle.myLabel}'>Dataset labelling</g:Label>
 								<g:Label ui:field="flagsplugin"
 									styleName='{myStyle.myLabel}'>Ticks with flags</g:Label>
 								<g:Label ui:field="piecelabelplugin"
 									styleName='{myStyle.myLabel}'>External Plugin (PieceLabel)</g:Label>
+								<g:Label ui:field="piecelabelbarplugin"
+									styleName='{myStyle.myLabel}'>External Plugin Bar (PieceLabel)</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
