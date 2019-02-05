@@ -52,7 +52,7 @@ public class PieceLabelView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
-		LabelsConfiguration option = new LabelsConfiguration(chart);
+		LabelsConfiguration option = new LabelsConfiguration();
 //		option.setRender(Render.image);
 //		option.setPrecision(2);
 //		option.setFontColor("black");
@@ -89,7 +89,7 @@ public class PieceLabelView extends BaseComposite{
 			}
 		});
 		
-		LabelsPlugin.setOptions(option);
+		LabelsPlugin.setOptions(chart, option);
 
 		//chart.getOptions().merge(option, PieceLabelOptions.ID);
 		

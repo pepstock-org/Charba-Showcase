@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -11,7 +12,10 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsConfiguration;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.ext.datalabels.Weight;
+import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -65,12 +69,6 @@ public class LineView extends BaseComposite{
 		
 		IsColor color2 = Colors.ALL[1];
 
-		Charba_Showcase.LOG.info(dataset1.getPointBackgroundColorAsString().toString());
-//		Charba_Showcase.LOG.info(chart.getOptions().getElements().getPoint().getBackgroundColorAsString());
-//		Charba_Showcase.LOG.info(chart.getDefaultChartOptions().toJSON());
-		
-		
-		 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
@@ -92,19 +90,62 @@ public class LineView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 		
+//		backgroundColor: function(context) {
+//			return context.dataset.backgroundColor;
+//		},
+//		borderRadius: 4,
+//		color: 'white',
+//		font: {
+//			weight: 'bold'
+//		},
+//		formatter: Math.round
+		
+		DataLabelsConfiguration option = new DataLabelsConfiguration();
+		option.setBackgroundColor(color1);
+		
+//		option.setFormatterCallback(new FormatterCallback() {
+//			
+//			@Override
+//			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+//				Charba_Showcase.LOG.info("value "+value);
+//				return null;
+//			}
+//		});
+//		option.getListeners().setClickEventHandler(new ClickEventHandler() {
+//			
+//			@Override
+//			public boolean onClick(AbstractChart<?, ?> chart, Context context) {
+//				Charba_Showcase.LOG.info("click "+context.getIndex());
+//				return true;
+//			}
+//		});
+//		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+//
+//			@Override
+//			public String backgroundColor(AbstractChart<?, ?> chart, int datasetIndex, int index, boolean isActive) {
+////				if (isActive) {
+////					return null;
+////				}
+//				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(datasetIndex);
+//				return ds.getBackgroundColorAsString();
+//			}
+//		});
+		option.setBorderRadius(4);
+		option.setColor(HtmlColor.White);
+		option.getFont().setWeight(Weight.bold);
+		
+		Window.getConsole().log(option);
+		
+		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
+		
 	}
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-//		for (Dataset dataset : chart.getData().getDatasets()){
-//			dataset.setData(getRandomDigits(months));
-//		}
-//		chart.update();
-//		chart.getOptions().getTitle().setFontColor("red");
-
-		chart.getNode().getOptions().getTitle().setFontColor("red");
+		for (Dataset dataset : chart.getData().getDatasets()){
+			dataset.setData(getRandomDigits(months));
+		}
 		chart.update();
-		
 	}
 
 	@UiHandler("add_dataset")

@@ -12,6 +12,7 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.ext.labels.Render;
@@ -106,6 +107,8 @@ public class DemoView extends Composite {
 		option.setFontSize(16);
 		option.setOverlap(false);
 		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
+		
+		DataLabelsPlugin.enable();
 
 		
 	}

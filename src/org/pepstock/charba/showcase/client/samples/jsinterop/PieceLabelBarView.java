@@ -13,6 +13,7 @@ import org.pepstock.charba.client.ext.labels.FontColorCallback;
 import org.pepstock.charba.client.ext.labels.FontColorItem;
 import org.pepstock.charba.client.ext.labels.LabelsConfiguration;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
+import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -56,7 +57,7 @@ public class PieceLabelBarView extends BaseComposite{
 		dataset1.setData(getFixedDigits(months));
 		
 		
-		LabelsConfiguration option = new LabelsConfiguration(chart);
+		LabelsConfiguration option = new LabelsConfiguration();
 //		option.setRender(Render.image);
 //		option.setPrecision(2);
 //		option.setFontColor("black");
@@ -89,11 +90,13 @@ public class PieceLabelBarView extends BaseComposite{
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
+				Window.getConsole().log(chart.getId());
+				//Window.getConsole().log("Dataset Index "+item.getDatasetIndex()+", "+"Index "+item.getIndex());
 				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.Black.toRGBA();
 			}
 		});
 		
-		LabelsPlugin.setOptions(option);
+		LabelsPlugin.setOptions(chart, option);
 		
 		
 		chart.getData().setLabels(getLabels());
