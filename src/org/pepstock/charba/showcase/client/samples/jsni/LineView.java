@@ -2,21 +2,13 @@ package org.pepstock.charba.showcase.client.samples.jsni;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
-import org.pepstock.charba.client.callbacks.AxisFitCallback;
-import org.pepstock.charba.client.callbacks.impl.AtLeastOneDatasetHandler;
-import org.pepstock.charba.client.callbacks.impl.NoSelectedDatasetTicksCallback;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.ChartResizeEvent;
-import org.pepstock.charba.client.events.ChartResizeEventHandler;
-import org.pepstock.charba.client.events.LegendClickEvent;
-import org.pepstock.charba.client.items.AxisItem;
 import org.pepstock.charba.client.options.scales.CartesianCategoryAxis;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -57,13 +49,6 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
 		chart.getOptions().getHover().setIntersect(true);
 		
-		chart.addHandler(new ChartResizeEventHandler() {
-			
-			@Override
-			public void onResize(ChartResizeEvent event) {
-			}
-		},ChartResizeEvent.TYPE);
-		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -71,7 +56,7 @@ public class LineView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
-		double[] values = getRandomDigits(months);
+		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.nofill);
 
@@ -82,7 +67,7 @@ public class LineView extends BaseComposite{
 		
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
-		dataset2.setData(getRandomDigits(months));
+		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(Fill.nofill);
 		dataset2.setHidden(false);
 
@@ -91,26 +76,11 @@ public class LineView extends BaseComposite{
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
 		
-		axis1.setFitCallback(new AxisFitCallback() {
-			
-			@Override
-			public void onBeforeFit(AbstractChart<?, ?> chart, AxisItem item) {
-			}
-			
-			@Override
-			public void onAfterFit(AbstractChart<?, ?> chart, AxisItem item) {
-			}
-		});
-		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-//		axis2.getTicks().setReverse(true);
+		axis2.getTicks().setBeginAtZero(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
-		axis2.getTicks().setCallback(new NoSelectedDatasetTicksCallback());
-		
-		chart.addHandler(new AtLeastOneDatasetHandler(), LegendClickEvent.TYPE);
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
@@ -124,7 +94,7 @@ public class LineView extends BaseComposite{
 	protected void handleRandomize(ClickEvent event) {
 
 		for (Dataset dataset : chart.getData().getDatasets()){
-			dataset.setData(getRandomDigits(months));
+			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
 	}

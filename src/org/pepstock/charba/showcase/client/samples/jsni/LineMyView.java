@@ -2,8 +2,6 @@ package org.pepstock.charba.showcase.client.samples.jsni;
 
 import java.util.List;
 
-import org.pepstock.charba.client.callbacks.impl.AtLeastOneDatasetHandler;
-import org.pepstock.charba.client.callbacks.impl.NoSelectedDatasetTicksCallback;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -11,7 +9,6 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.options.scales.CartesianCategoryAxis;
 import org.pepstock.charba.client.options.scales.CartesianLinearAxis;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -58,7 +55,7 @@ public class LineMyView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
-		double[] values = getRandomDigits(months);
+		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.nofill);
 
@@ -69,7 +66,7 @@ public class LineMyView extends BaseComposite{
 		
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
-		dataset2.setData(getRandomDigits(months));
+		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(Fill.nofill);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -80,12 +77,13 @@ public class LineMyView extends BaseComposite{
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 //		axis2.getTicks().setReverse(true);
+		axis2.getTicks().setBeginAtZero(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		
-		axis2.getTicks().setCallback(new NoSelectedDatasetTicksCallback());
+//		axis2.getTicks().setCallback(new NoSelectedDatasetTicksCallback());
 		
-		chart.addHandler(new AtLeastOneDatasetHandler(), LegendClickEvent.TYPE);
+//		chart.addHandler(new AtLeastOneDatasetHandler(), LegendClickEvent.TYPE);
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
