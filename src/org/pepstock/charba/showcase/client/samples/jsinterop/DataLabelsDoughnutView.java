@@ -167,9 +167,6 @@ public class DataLabelsDoughnutView extends BaseComposite{
 
 			@Override
 			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
-//				if (context.isActive()) {
-//					return null;
-//				}
 				DoughnutDataset ds = (DoughnutDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getIndex());
 			}

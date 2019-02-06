@@ -572,4 +572,28 @@ public class DemoView extends Composite {
 		 content.add(new DataLabelsRadarView());
 	}
 
+	@UiHandler("datalabelsInteractions")
+	protected void handleDatalabelsInteractions(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsInteractionsView());
+	}	
+	
+	@UiHandler("datalabelsData")
+	protected void handleDatalabelsData(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsDataView());
+	}	
+
+	@UiHandler("datalabelsIndices")
+	protected void handleDatalabelsDataset(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsIndicesView());
+	}	
+
+	@UiHandler("datalabelsMirror")
+	protected void handleDatalabelsMirror(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsMirrorView());
+	}	
+
 }

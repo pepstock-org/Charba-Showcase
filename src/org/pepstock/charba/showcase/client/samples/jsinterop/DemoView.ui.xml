@@ -241,6 +241,15 @@
 									styleName='{myStyle.myLabel}'>Polar</g:Label>
 								<g:Label ui:field="datalabelsRadar"
 									styleName='{myStyle.myLabel}'>Radar</g:Label>
+								<g:Label ui:field="datalabelsInteractions"
+									styleName='{myStyle.myLabel}'>Interactions</g:Label>
+								<g:Label ui:field="datalabelsData"
+									styleName='{myStyle.myLabel}'>Data</g:Label>
+								<g:Label ui:field="datalabelsIndices"
+									styleName='{myStyle.myLabel}'>Indices</g:Label>
+								<g:Label ui:field="datalabelsMirror"
+									styleName='{myStyle.myLabel}'>Mirror</g:Label>
+
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						
