@@ -12,7 +12,12 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.ext.datalabels.Display;
+import org.pepstock.charba.client.ext.datalabels.DisplayCallback;
+import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.ext.labels.Render;
@@ -109,6 +114,22 @@ public class DemoView extends Composite {
 		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
 		DataLabelsPlugin.enable();
+		
+		DataLabelsOptions option1 = new DataLabelsOptions();
+		option1.setDisplayCallback(new DisplayCallback() {
+			
+			@Override
+			public Display display(AbstractChart<?, ?> chart, org.pepstock.charba.client.ext.datalabels.Context context) {
+				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
+				double value = ds.getData().get(context.getIndex());
+				return value > 15D ? Display.isTrue : Display.isFalse;
+			}
+		});
+		option1.setBorderRadius(4);
+		option1.setColor(HtmlColor.White);
+		option1.getFont().setWeight(Weight.bold);
+		
+//		Defaults.get().getGlobal().getPlugins().setOptions(DataLabelsPlugin.ID, option1);
 
 		
 	}
@@ -511,6 +532,44 @@ public class DemoView extends Composite {
 	protected void handlePointStylesImages(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new PointStyleImageView());
+	}
+
+	/// DATALABELS
+	
+	@UiHandler("datalabelsBar")
+	protected void handleDatalabelsBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsBarView());
+	}
+
+	@UiHandler("datalabelsBubble")
+	protected void handleDatalabelsBubble(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsBubbleView());
+	}
+
+	@UiHandler("datalabelsLine")
+	protected void handleDatalabelsLine(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsLineView());
+	}
+
+	@UiHandler("datalabelsDoughnut")
+	protected void handleDatalabelsDoughnut(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsDoughnutView());
+	}
+
+	@UiHandler("datalabelsPolar")
+	protected void handleDatalabelsPolar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsPolarAreaView());
+	}
+	
+	@UiHandler("datalabelsRadar")
+	protected void handleDatalabelsRadar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsRadarView());
 	}
 
 }

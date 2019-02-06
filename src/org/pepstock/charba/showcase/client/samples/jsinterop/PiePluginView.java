@@ -6,13 +6,11 @@ import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.HtmlColor;
-import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
-import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -52,7 +50,7 @@ public class PiePluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+//		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
 		
 //		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.bottomRight, GradientScope.canvas);
 

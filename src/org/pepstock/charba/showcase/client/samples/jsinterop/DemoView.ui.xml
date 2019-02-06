@@ -225,6 +225,25 @@
 									styleName='{myStyle.myLabel}'>Meter</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Extensions (DataLabels)</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="datalabelsBar"
+									styleName='{myStyle.myLabel}'>Bar</g:Label>
+								<g:Label ui:field="datalabelsBubble"
+									styleName='{myStyle.myLabel}'>Bubble</g:Label>
+								<g:Label ui:field="datalabelsDoughnut"
+									styleName='{myStyle.myLabel}'>Doughnut</g:Label>
+								<g:Label ui:field="datalabelsLine"
+									styleName='{myStyle.myLabel}'>Line</g:Label>
+								<g:Label ui:field="datalabelsPolar"
+									styleName='{myStyle.myLabel}'>Polar</g:Label>
+								<g:Label ui:field="datalabelsRadar"
+									styleName='{myStyle.myLabel}'>Radar</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
+						
 					</g:VerticalPanel>
 				</g:VerticalPanel>
 			</g:cell>

@@ -1,0 +1,162 @@
+package org.pepstock.charba.showcase.client.samples.jsinterop;
+
+import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.RadarChart;
+import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.RadialAxis;
+import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.RadarDataset;
+import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
+import org.pepstock.charba.client.ext.datalabels.Context;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.ext.datalabels.Weight;
+import org.pepstock.charba.showcase.client.samples.Colors;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Widget;
+
+
+/**
+
+ * @author Andrea "Stock" Stocchero
+ */
+public class DataLabelsRadarView extends BaseComposite{
+	
+	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
+
+	interface ViewUiBinder extends UiBinder<Widget, DataLabelsRadarView> {
+	}
+
+	@UiField
+	RadarChart chart;
+	
+	public DataLabelsRadarView() {
+		initWidget(uiBinder.createAndBindUi(this));
+		
+		chart.getOptions().setResponsive(true);
+		chart.getOptions().getLegend().setDisplay(false);
+		chart.getOptions().getTitle().setDisplay(true);
+		chart.getOptions().getTooltips().setEnabled(false);
+		chart.getOptions().getLayout().getPadding().setTop(16);
+		chart.getOptions().getLayout().getPadding().setRight(16);
+		chart.getOptions().getLayout().getPadding().setBottom(16);
+		chart.getOptions().getLayout().getPadding().setLeft(16);
+		chart.getOptions().getElements().getPoint().setHoverRadius(7);
+		chart.getOptions().getElements().getPoint().setRadius(7);
+		
+		chart.getOptions().getPlugins().setEnabled("legend", false);
+		chart.getOptions().getPlugins().setEnabled("title", false);
+		
+
+//			options: {
+//				plugins: {
+//					datalabels: {
+//						backgroundColor: function(context) {
+//							return context.dataset.borderColor;
+//						},
+//						color: 'white',
+//						padding: 4,
+//						font: {
+//							size: 10,
+//							weight: 'bold'
+//						},
+//						formatter: Math.round
+//					}
+//				}
+//			}
+//		});		
+		
+		RadarDataset dataset1 = chart.newDataset();
+		dataset1.setLabel("dataset 1");
+		
+		IsColor color1 = Colors.ALL[0];
+		
+		dataset1.setBackgroundColor(color1.alpha(0.2));
+		dataset1.setBorderColor(color1.toHex());
+		dataset1.setPointBackgroundColor(color1.toHex());
+		dataset1.setBorderWidth(2);
+		dataset1.setData(getRandomDigits(months));
+
+		RadarDataset dataset2 = chart.newDataset();
+		dataset2.setLabel("dataset 2");
+		
+		IsColor color2 = Colors.ALL[1];
+		
+		dataset2.setBackgroundColor(color2.alpha(0.2));
+		dataset2.setBorderColor(color2.toHex());
+		dataset2.setPointBackgroundColor(color2.toHex());
+		dataset2.setBorderWidth(2);
+		dataset2.setData(getRandomDigits(months));
+
+		RadialAxis axis = new RadialAxis(chart);
+		axis.getTicks().setBeginAtZero(true);
+		chart.getOptions().setAxis(axis);
+
+		chart.getData().setLabels(getLabels());
+		chart.getData().setDatasets(dataset1, dataset2);
+		
+		DataLabelsOptions option = new DataLabelsOptions();
+//		options: {
+//		plugins: {
+//			datalabels: {
+//				anchor: 'end',
+//				backgroundColor: function(context) {
+//					return context.dataset.backgroundColor;
+//				},
+//				borderColor: 'white',
+//				borderRadius: 25,
+//				borderWidth: 2,
+//				color: 'white',
+//				font: {
+//					weight: 'bold'
+//				},
+//				formatter: Math.round
+//			}
+//		}
+//	}
+//});
+		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+
+
+			@Override
+			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+				RadarDataset ds = (RadarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				return ds.getBorderColorAsString();
+			}
+		});
+		option.setColor(HtmlColor.White);
+		option.getPadding().setTop(4);
+		option.getPadding().setBottom(4);
+		option.getPadding().setLeft(4);
+		option.getPadding().setRight(4);
+		option.getFont().setFontSize(10);
+		option.getFont().setWeight(Weight.bold);
+		
+		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
+
+	}
+
+	@UiHandler("randomize")
+	protected void handleRandomize(ClickEvent event) {
+		for (Dataset dataset : chart.getData().getDatasets()){
+			dataset.setData(getRandomDigits(months));
+		}
+		chart.update();
+	}
+	
+	@UiHandler("add_data")
+	protected void handleAddData(ClickEvent event) {
+		addData(chart);
+	}
+
+	@UiHandler("remove_data")
+	protected void handleRemoveData(ClickEvent event) {
+		removeData(chart);
+	}
+}

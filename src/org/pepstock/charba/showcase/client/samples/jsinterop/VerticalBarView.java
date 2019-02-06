@@ -3,14 +3,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsConfiguration;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -55,42 +51,7 @@ public class VerticalBarView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-		
-//		backgroundColor: function(context) {
-//			return context.dataset.backgroundColor;
-//		},
-//		borderRadius: 4,
-//		color: 'white',
-//		font: {
-//			weight: 'bold'
-//		},
-//		formatter: Math.round
-		
-		DataLabelsConfiguration option = new DataLabelsConfiguration();
-//		option.setBackgroundColorCallback(new BackgroundColorCallback() {
-//			
-//			@Override
-//			public String backgroundColor(AbstractChart<?, ?> chart, int datasetIndex, int index, boolean isActive) {
-//				if (isActive) {
-//					return null;
-//				}
-//				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(datasetIndex);
-//				List<String> colorsList = ds.getBackgroundColorAsString();
-//				if (colorsList.size() == 1) {
-//					Charba_Showcase.LOG.info(colorsList.get(0));
-//					return colorsList.get(0);
-//				} else {
-//					return colorsList.get(index);
-//				}
-//			}
-//		});
-//		option.setBorderRadius(4);
-		option.setColor(HtmlColor.Black);
-		option.getFont().setWeight(Weight.bold);
-		
-		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-
+	
 	}
 
 	@UiHandler("randomize")
