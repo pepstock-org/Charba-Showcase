@@ -596,4 +596,10 @@ public class DemoView extends Composite {
 		 content.add(new DataLabelsMirrorView());
 	}	
 
+	@UiHandler("datalabelsListeners")
+	protected void handleDatalabelsListeners(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsListenersView());
+	}	
+
 }

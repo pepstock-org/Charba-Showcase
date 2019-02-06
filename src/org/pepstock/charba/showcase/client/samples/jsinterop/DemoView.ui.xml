@@ -249,6 +249,12 @@
 									styleName='{myStyle.myLabel}'>Indices</g:Label>
 								<g:Label ui:field="datalabelsMirror"
 									styleName='{myStyle.myLabel}'>Mirror</g:Label>
+								<g:Label ui:field="datalabelsListeners"
+									styleName='{myStyle.myLabel}'>Listeners</g:Label>
+								<g:Label ui:field="datalabelsHighlight"
+									styleName='{myStyle.myLabel}'>Highlight</g:Label>
+								<g:Label ui:field="datalabelsSelection"
+									styleName='{myStyle.myLabel}'>Selection</g:Label>
 
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
