@@ -184,7 +184,7 @@ public class DataLabelsBarView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setDisplayCallback(new DisplayCallback() {
+		option.setDisplay(new DisplayCallback() {
 			
 			@Override
 			public Display display(AbstractChart<?, ?> chart, Context context) {

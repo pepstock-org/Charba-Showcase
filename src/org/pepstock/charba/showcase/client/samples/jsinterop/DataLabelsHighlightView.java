@@ -4,17 +4,23 @@ import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.commons.Key;
+import org.pepstock.charba.client.commons.NativeObject;
+import org.pepstock.charba.client.commons.NativeObjectContainer;
+import org.pepstock.charba.client.commons.NativeObjectContainerFactory;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.ext.datalabels.Align;
-import org.pepstock.charba.client.ext.datalabels.Anchor;
 import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
+import org.pepstock.charba.client.ext.datalabels.BorderColorCallback;
+import org.pepstock.charba.client.ext.datalabels.ColorCallback;
 import org.pepstock.charba.client.ext.datalabels.Context;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.ext.datalabels.EnterEventHandler;
+import org.pepstock.charba.client.ext.datalabels.LeaveEventHandler;
 import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -31,17 +37,19 @@ import com.google.gwt.user.client.ui.Widget;
 
  * @author Andrea "Stock" Stocchero
  */
-public class DataLabelsLineView extends BaseComposite{
+public class DataLabelsHighlightView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, DataLabelsLineView> {
+	interface ViewUiBinder extends UiBinder<Widget, DataLabelsHighlightView> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public DataLabelsLineView() {
+	HoveredFactory factory  = new HoveredFactory();
+	
+	public DataLabelsHighlightView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 //		aspectRatio: 4/3,
@@ -130,6 +138,7 @@ public class DataLabelsLineView extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setRight(16);
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
+		chart.getOptions().getElements().getLine().setFill(false);
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
 		chart.getOptions().getPlugins().setEnabled("title", false);
@@ -143,11 +152,9 @@ public class DataLabelsLineView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
 		option1.setAlign(Align.start);
-		option1.setAnchor(Anchor.start);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		LineDataset dataset2 = chart.newDataset();
@@ -158,7 +165,6 @@ public class DataLabelsLineView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.nofill);
 
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("dataset 2");
@@ -168,11 +174,9 @@ public class DataLabelsLineView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months, false));
-		dataset3.setFill(Fill.nofill);
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
 		option3.setAlign(Align.end);
-		option3.setAnchor(Anchor.end);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
 		
@@ -193,62 +197,97 @@ public class DataLabelsLineView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
-//		backgroundColor: function(context) {
-//			return context.dataset.backgroundColor;
-//		},
-//		borderRadius: 4,
-//		color: 'white',
-//		font: {
-//			weight: 'bold'
-//		},
-//		formatter: Math.round
+//		options: {
+//			plugins: {
+//				datalabels: {
+//					backgroundColor: function(context) {
+//						return context.hovered ? context.dataset.backgroundColor : 'white';
+//					},
+//					borderColor: function(context) {
+//						return context.dataset.backgroundColor;
+//					},
+//					borderRadius: 16,
+//					borderWidth: 3,
+//					color: function(context) {
+//						return context.hovered ? 'white' : context.dataset.backgroundColor;
+//					},
+//					font: {
+//						weight: 'bold'
+//					},
+//					offset: 8,
+//					formatter: Math.round,
+//					listeners: {
+//						enter: function(context) {
+//							context.hovered = true;
+//							return true;
+//						},
+//						leave: function(context) {
+//							context.hovered = false;
+//							return true;
+//						}
+//					}
+//				}
+//			},
+//			scales: {
+//				yAxes: [{
+//					stacked: true
+//				}]
+//			}
+//		}
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-//		option.setBackgroundColor(color1);
-//		option.setFontCallback(new FontCallback() {
-//			
-//			@Override
-//			public Font font(AbstractChart<?, ?> chart, Context context) {
-//				Font f = new Font();
-//				f.setFontSize(36);
-//				Charba_Showcase.LOG.info(f.toJSON());
-//				return f;
-//			}
-//		});
-//		
-//		Charba_Showcase.LOG.info(option.getFont().getFontSize()+"");
-		
-//		option.setFormatterCallback(new FormatterCallback() {
-//			
-//			@Override
-//			public String format(AbstractChart<?, ?> chart, double value, Context context) {
-//				Charba_Showcase.LOG.info("value "+value);
-//				return null;
-//			}
-//		});
-//		option.getListeners().setClickEventHandler(new ClickEventHandler() {
-//			
-//			@Override
-//			public boolean onClick(AbstractChart<?, ?> chart, Context context) {
-//				Charba_Showcase.LOG.info("click "+context.getIndex());
-//				return true;
-//			}
-//		});
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
 
 			@Override
 			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
-				if (context.isActive()) {
-					return null;
-				}
+				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBackgroundColorAsString();
+				return hovered.isHovered() ? ds.getBackgroundColorAsString() : HtmlColor.White.toHex();
 			}
 		});
-		option.setBorderRadius(4);
-		option.setColor(HtmlColor.White);
+		option.setBorderColor(new BorderColorCallback() {
+			
+			@Override
+			public String borderColor(AbstractChart<?, ?> chart, Context context) {
+				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				return ds.getBorderColorAsString();
+			}
+		});
+		option.setColor(new ColorCallback() {
+			
+			@Override
+			public String color(AbstractChart<?, ?> chart, Context context) {
+				Hovered hovered = context.getOptions(factory);
+				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				return hovered.isHovered() ? HtmlColor.White.toHex() : ds.getBackgroundColorAsString() ;
+			}
+		});
+		option.setBorderRadius(16);
+		option.setBorderWidth(3);
+		option.setOffset(8);
 		option.getFont().setWeight(Weight.bold);
+		
+		option.getListeners().setEnterEventHandler(new EnterEventHandler() {
+			
+			@Override
+			public boolean onEnter(AbstractChart<?, ?> chart, Context context) {
+				Hovered hovered = context.getOptions(factory);
+				hovered.setHovered(true);
+				context.setOptions(hovered);
+				return true;
+			}
+		});
+		option.getListeners().setLeaveEventHandler(new LeaveEventHandler() {
+			
+			@Override
+			public boolean onLeave(AbstractChart<?, ?> chart, Context context) {
+				Hovered hovered = context.getOptions(factory);
+				hovered.setHovered(false);
+				context.setOptions(hovered);
+				return true;
+			}
+		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		
@@ -272,5 +311,47 @@ public class DataLabelsLineView extends BaseComposite{
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
+	}
+	
+	static class HoveredFactory implements NativeObjectContainerFactory<Hovered>{
+
+		/* (non-Javadoc)
+		 * @see org.pepstock.charba.client.commons.NativeObjectContainerFactory#create(org.pepstock.charba.client.commons.NativeObject)
+		 */
+		@Override
+		public Hovered create(NativeObject nativeObject) {
+			return new Hovered(nativeObject);
+		}
+		
+	}
+	
+	static class Hovered extends NativeObjectContainer{
+		
+		private enum Property implements Key{
+			hovered
+		}
+
+		/**
+		 * 
+		 */
+		Hovered() {
+		}
+
+		/**
+		 * @param nativeObject
+		 */
+		Hovered(NativeObject nativeObject) {
+			super(nativeObject);
+		}
+		
+		public boolean isHovered() {
+			return getValue(Property.hovered, false);
+		}
+		
+		public void setHovered(boolean hovered){
+			setValue(Property.hovered, hovered);
+		}
+		
+		
 	}
 }

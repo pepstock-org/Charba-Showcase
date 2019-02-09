@@ -142,7 +142,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		dataset1.setData(values);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAlignCallback(new AlignCallback() {
+		option1.setAlign(new AlignCallback() {
 			
 			@Override
 			public Align align(AbstractChart<?, ?> chart, Context context) {
@@ -170,7 +170,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		dataset3.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAlignCallback(new AlignCallback() {
+		option3.setAlign(new AlignCallback() {
 			
 			@Override
 			public Align align(AbstractChart<?, ?> chart, Context context) {
@@ -233,7 +233,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 //	}
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
@@ -241,7 +241,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.White.toRGBA();
 			}
 		});
-		option.setBorderColorCallback(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
 			public String borderColor(AbstractChart<?, ?> chart, Context context) {
@@ -249,7 +249,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 				return ds.getBackgroundColorAsString();
 			}
 		});
-		option.setColorCallback(new ColorCallback() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, Context context) {
@@ -257,7 +257,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 				return context.isActive() ? HtmlColor.White.toRGBA() : ds.getBackgroundColorAsString();
 			}
 		});
-		option.setFormatterCallback(new FormatterCallback() {
+		option.setFormatter(new FormatterCallback() {
 			
 			@Override
 			public String format(AbstractChart<?, ?> chart, double value, Context context) {

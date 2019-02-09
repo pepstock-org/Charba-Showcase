@@ -11,8 +11,10 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ext.labels.FontColorCallback;
 import org.pepstock.charba.client.ext.labels.FontColorItem;
-import org.pepstock.charba.client.ext.labels.LabelsConfiguration;
+import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
+import org.pepstock.charba.client.ext.labels.RenderCallback;
+import org.pepstock.charba.client.ext.labels.RenderItem;
 import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
@@ -57,7 +59,7 @@ public class PieceLabelBarView extends BaseComposite{
 		dataset1.setData(getFixedDigits(months));
 		
 		
-		LabelsConfiguration option = new LabelsConfiguration();
+		LabelsOptions option = new LabelsOptions();
 //		option.setRender(Render.image);
 //		option.setPrecision(2);
 //		option.setFontColor("black");
@@ -66,13 +68,13 @@ public class PieceLabelBarView extends BaseComposite{
 		
 //		set(option);
 		
-//		option.setRenderStringCallback(new RenderStringCallback() {
-//			
-//			@Override
-//			public String render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
-//			}
-//		});
+		option.setRender(new RenderCallback() {
+			
+			@Override
+			public Object render(AbstractChart<?, ?> chart, RenderItem item) {
+				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
+			}
+		});
 //		
 //		option.setRenderImageCallback(new RenderImageCallback() {
 //
@@ -86,7 +88,7 @@ public class PieceLabelBarView extends BaseComposite{
 //		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
 //		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
-		option.setFontColorCallback(new FontColorCallback() {
+		option.setFontColor(new FontColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
@@ -96,7 +98,7 @@ public class PieceLabelBarView extends BaseComposite{
 			}
 		});
 		
-		LabelsPlugin.setOptions(chart, option);
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
 		
 		chart.getData().setLabels(getLabels());

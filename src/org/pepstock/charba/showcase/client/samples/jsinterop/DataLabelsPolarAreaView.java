@@ -142,7 +142,7 @@ public class DataLabelsPolarAreaView extends BaseComposite{
 //		}
 //	}
 //});
-		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 
 			@Override

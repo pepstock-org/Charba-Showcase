@@ -117,7 +117,7 @@ public class DataLabelsBubbleView extends BaseComposite{
 //		}
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setAnchorCallback(new AnchorCallback() {
+		option.setAnchor(new AnchorCallback() {
 			
 			@Override
 			public Anchor anchor(AbstractChart<?, ?> chart, Context context) {
@@ -126,7 +126,7 @@ public class DataLabelsBubbleView extends BaseComposite{
 				return point.getR() < 20D ? Anchor.end : Anchor.center;
 			}
 		});
-		option.setAlignCallback(new AlignCallback() {
+		option.setAlign(new AlignCallback() {
 			
 			@Override
 			public Align align(AbstractChart<?, ?> chart, Context context) {
@@ -135,7 +135,7 @@ public class DataLabelsBubbleView extends BaseComposite{
 				return point.getR() < 20D ? Align.end : Align.center;
 			}
 		});
-		option.setColorCallback(new ColorCallback() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, Context context) {

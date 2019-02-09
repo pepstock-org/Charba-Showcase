@@ -116,7 +116,7 @@ public class DemoView extends Composite {
 		DataLabelsPlugin.enable();
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setDisplayCallback(new DisplayCallback() {
+		option1.setDisplay(new DisplayCallback() {
 			
 			@Override
 			public Display display(AbstractChart<?, ?> chart, org.pepstock.charba.client.ext.datalabels.Context context) {
@@ -583,9 +583,16 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new DataLabelsDataView());
 	}	
+	
+	@UiHandler("datalabelsDataset")
+	protected void handleDatalabelsDataset(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsDatasetView());
+	}	
+
 
 	@UiHandler("datalabelsIndices")
-	protected void handleDatalabelsDataset(ClickEvent event) {
+	protected void handleDatalabelsIndices(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new DataLabelsIndicesView());
 	}	
@@ -600,6 +607,12 @@ public class DemoView extends Composite {
 	protected void handleDatalabelsListeners(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new DataLabelsListenersView());
+	}	
+
+	@UiHandler("datalabelsHighlight")
+	protected void handleDatalabelsHighlight(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsHighlightView());
 	}	
 
 }

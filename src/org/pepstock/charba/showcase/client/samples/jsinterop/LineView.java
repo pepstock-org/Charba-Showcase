@@ -11,6 +11,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -57,8 +58,7 @@ public class LineView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
-
+		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
@@ -84,6 +84,9 @@ public class LineView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+		
+		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
+//		Charba_Showcase.LOG.info(dataset1.getFill().name());
 	
 	}
 	

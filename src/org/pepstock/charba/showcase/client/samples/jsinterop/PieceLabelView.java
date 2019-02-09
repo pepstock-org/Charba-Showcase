@@ -11,8 +11,10 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ext.labels.FontColorCallback;
 import org.pepstock.charba.client.ext.labels.FontColorItem;
-import org.pepstock.charba.client.ext.labels.LabelsConfiguration;
+import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
+import org.pepstock.charba.client.ext.labels.RenderCallback;
+import org.pepstock.charba.client.ext.labels.RenderItem;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -52,7 +54,7 @@ public class PieceLabelView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
-		LabelsConfiguration option = new LabelsConfiguration();
+		LabelsOptions option = new LabelsOptions();
 //		option.setRender(Render.image);
 //		option.setPrecision(2);
 //		option.setFontColor("black");
@@ -69,19 +71,19 @@ public class PieceLabelView extends BaseComposite{
 //			}
 //		});
 //		
-//		option.setRenderImageCallback(new RenderImageCallback() {
-//
-//			@Override
-//			public ImageElement render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return img;
-//			}
-//		});
+		option.setRender(new RenderCallback() {
+
+			@Override
+			public Object render(AbstractChart<?, ?> chart, RenderItem item) {
+				return img;
+			}
+		});
 		
 		
 //		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
 //		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
-		option.setFontColorCallback(new FontColorCallback() {
+		option.setFontColor(new FontColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
@@ -89,7 +91,7 @@ public class PieceLabelView extends BaseComposite{
 			}
 		});
 		
-		LabelsPlugin.setOptions(chart, option);
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 
 		//chart.getOptions().merge(option, PieceLabelOptions.ID);
 		

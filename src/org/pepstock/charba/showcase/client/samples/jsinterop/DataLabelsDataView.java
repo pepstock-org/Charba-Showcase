@@ -155,7 +155,7 @@ public class DataLabelsDataView extends BaseComposite{
 		option.setOffset(8);
 		option.getFont().setFontSize(11);
 		option.getFont().setWeight(Weight.bold);
-		option.setAlignCallback(new AlignCallback() {
+		option.setAlign(new AlignCallback() {
 			
 			@Override
 			public Align align(AbstractChart<?, ?> chart, Context context) {
@@ -166,7 +166,7 @@ public class DataLabelsDataView extends BaseComposite{
 				return prev < curr && next < curr ? Align.end :	prev > curr && next > curr ? Align.start :	Align.center;
 			}
 		});
-		option.setColorCallback(new ColorCallback() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, Context context) {
@@ -176,7 +176,7 @@ public class DataLabelsDataView extends BaseComposite{
 				return diff < 0 ? HtmlColor.Red.toRGBA() : diff > 0 ? HtmlColor.Green.toRGBA() : HtmlColor.Gray.toRGBA() ;
 			}
 		});
-		option.setFormatterCallback(new FormatterCallback() {
+		option.setFormatter(new FormatterCallback() {
 			
 			@Override
 			public String format(AbstractChart<?, ?> chart, double value, Context context) {

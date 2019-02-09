@@ -139,7 +139,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 //	});
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setAlignCallback(new AlignCallback() {
+		option.setAlign(new AlignCallback() {
 			
 			@Override
 			public Align align(AbstractChart<?, ?> chart, Context context) {
@@ -147,7 +147,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 			}
 		});
 
-		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
 			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
@@ -155,7 +155,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 				return context.getIndex() % 2 == 0 ? ds.getBorderColorAsString() : new Color(255, 255, 255).alpha(0.8D).toRGBA();
 			}
 		});
-		option.setBorderColorCallback(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
 			public String borderColor(AbstractChart<?, ?> chart, Context context) {
@@ -163,7 +163,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 				return context.getIndex() % 2 == 0 ? null : ds.getBorderColorAsString();
 			}
 		});
-		option.setColorCallback(new ColorCallback() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, Context context) {
@@ -171,14 +171,14 @@ public class DataLabelsIndicesView extends BaseComposite{
 				return context.getIndex() % 2 == 0 ? HtmlColor.White.toRGBA() : ds.getBorderColorAsString();
 			}
 		});
-		option.setBorderWidthCallback(new BorderWidthCallback() {
+		option.setBorderWidth(new BorderWidthCallback() {
 			
 			@Override
 			public int borderWidth(AbstractChart<?, ?> chart, Context context) {
 				return context.getIndex() % 2 == 0 ? 0 : 1;
 			}
 		});
-		option.setFormatterCallback(new FormatterCallback() {
+		option.setFormatter(new FormatterCallback() {
 			
 			@Override
 			public String format(AbstractChart<?, ?> chart, double value, Context context) {

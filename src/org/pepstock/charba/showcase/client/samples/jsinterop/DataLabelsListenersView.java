@@ -12,18 +12,19 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.events.DatasetSelectionEvent;
+import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.ext.datalabels.Align;
 import org.pepstock.charba.client.ext.datalabels.Anchor;
 import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
-import org.pepstock.charba.client.ext.datalabels.ClickEventHandler;
 import org.pepstock.charba.client.ext.datalabels.Context;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.EnterEventHandler;
-import org.pepstock.charba.client.ext.datalabels.LeaveEventHandler;
 import org.pepstock.charba.client.ext.datalabels.Weight;
+import org.pepstock.charba.client.impl.callbacks.DataLabelsPointer;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
@@ -154,6 +155,26 @@ public class DataLabelsListenersView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
 		chart.getOptions().getPlugins().setEnabled("title", false);
+		
+		chart.addHandler(new DatasetSelectionEventHandler() {
+			
+			@Override
+			public void onSelect(DatasetSelectionEvent event) {
+				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getSource();
+				Labels labels = chart.getData().getLabels();
+				List<Dataset> datasets = chart.getData().getDatasets();
+				if (datasets != null && !datasets.isEmpty()){
+					StringBuilder sb = new StringBuilder();
+					sb.append("Dataset index: <b>").append(event.getItem().getDatasetIndex()).append("</b><br>");
+					sb.append("Dataset label: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getLabel()).append("</b><br>");
+					sb.append("Dataset data: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getData().get(event.getItem().getIndex())).append("</b><br>");
+					sb.append("Index: <b>").append(event.getItem().getIndex()).append("</b><br>");
+					sb.append("Value: <b>").append(labels.getStrings(event.getItem().getIndex())[0]).append("</b><br>");
+					new Toast("Dataset Selected!", sb.toString()).show();
+				}
+
+			}
+		}, DatasetSelectionEvent.TYPE);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -255,7 +276,7 @@ public class DataLabelsListenersView extends BaseComposite{
 //				return true;
 //			}
 //		});
-		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 
 			@Override
@@ -271,62 +292,11 @@ public class DataLabelsListenersView extends BaseComposite{
 		option.setColor(HtmlColor.White);
 		option.getFont().setWeight(Weight.bold);
 		
-		option.getListeners().setEnterEventHandler(new EnterEventHandler() {
-			
-			@Override
-			public boolean onEnter(AbstractChart<?, ?> chart, Context context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				DivElement newDiv= Document.get().createDivElement();
-				newDiv.setInnerHTML("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-				element.insertBefore(newDiv, element.getFirstChild());
-				if (element.getChildCount() > 8) {
-					element.removeChild(element.getLastChild());
-				}
-				return true;
-			}
-		});
-		option.getListeners().setLeaveEventHandler(new LeaveEventHandler() {
-			
-			@Override
-			public boolean onLeave(AbstractChart<?, ?> chart, Context context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				DivElement newDiv= Document.get().createDivElement();
-				newDiv.setInnerHTML("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-				element.insertBefore(newDiv, element.getFirstChild());
-				if (element.getChildCount() > 8) {
-					element.removeChild(element.getLastChild());
-				}
-				return true;
-			}
-		});
-		option.getListeners().setClickEventHandler(new ClickEventHandler() {
-			
-			@Override
-			public boolean onClick(AbstractChart<?, ?> chart, Context context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				Labels labels = chart.getData().getLabels();
-				List<Dataset> datasets = chart.getData().getDatasets();
-				DatasetMetaItem meta = chart.getDatasetMeta(context.getDatasetIndex());
-				DatasetItem item = meta.getDatasets().get(context.getIndex());
-				if (datasets != null && !datasets.isEmpty()){
-					StringBuilder sb = new StringBuilder();
-					sb.append("Dataset index: <b>").append(item.getDatasetIndex()).append("</b><br>");
-					sb.append("Dataset label: <b>").append(datasets.get(item.getDatasetIndex()).getLabel()).append("</b><br>");
-					sb.append("Dataset data: <b>").append(datasets.get(item.getDatasetIndex()).getData().get(item.getIndex())).append("</b><br>");
-					sb.append("Index: <b>").append(item.getIndex()).append("</b><br>");
-					sb.append("Value: <b>").append(labels.getStrings(item.getIndex())[0]).append("</b><br>");
-					new Toast("Dataset Selected!", sb.toString()).show();
-				}
-				DivElement newDiv= Document.get().createDivElement();
-				newDiv.setInnerHTML("> CLICK: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-				element.insertBefore(newDiv, element.getFirstChild());
-				if (element.getChildCount() > 8) {
-					element.removeChild(element.getLastChild());
-				}
-				return true;
-
-			}
-		});
+		MyListener listener = new MyListener(element);
+		
+		option.getListeners().setEnterEventHandler(listener);
+		option.getListeners().setLeaveEventHandler(listener);
+		option.getListeners().setClickEventHandler(listener);
 		
 		
 //		listeners: {
@@ -361,5 +331,85 @@ public class DataLabelsListenersView extends BaseComposite{
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
+	}
+	
+	static class MyListener extends DataLabelsPointer{
+		
+		final PreElement element;
+
+		/**
+		 * @param element
+		 */
+		MyListener(PreElement element) {
+			super();
+			this.element = element;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.pepstock.charba.client.impl.callbacks.DataLabelsPointer#onClick(org.pepstock.charba.client.AbstractChart, org.pepstock.charba.client.ext.datalabels.Context)
+		 */
+		@Override
+		public boolean onClick(AbstractChart<?, ?> chart, Context context) {
+			super.onClick(chart, context);
+			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+			Labels labels = chart.getData().getLabels();
+			List<Dataset> datasets = chart.getData().getDatasets();
+			DatasetMetaItem meta = chart.getDatasetMeta(context.getDatasetIndex());
+			DatasetItem item = meta.getDatasets().get(context.getIndex());
+			if (datasets != null && !datasets.isEmpty()){
+				StringBuilder sb = new StringBuilder();
+				sb.append("Dataset index: <b>").append(item.getDatasetIndex()).append("</b><br>");
+				sb.append("Dataset label: <b>").append(datasets.get(item.getDatasetIndex()).getLabel()).append("</b><br>");
+				sb.append("Dataset data: <b>").append(datasets.get(item.getDatasetIndex()).getData().get(item.getIndex())).append("</b><br>");
+				sb.append("Index: <b>").append(item.getIndex()).append("</b><br>");
+				sb.append("Value: <b>").append(labels.getStrings(item.getIndex())[0]).append("</b><br>");
+				new Toast("Dataset Selected!", sb.toString()).show();
+			}
+			DivElement newDiv= Document.get().createDivElement();
+			newDiv.setInnerHTML("> CLICK: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
+			element.insertBefore(newDiv, element.getFirstChild());
+			if (element.getChildCount() > 8) {
+				element.removeChild(element.getLastChild());
+			}
+			Charba_Showcase.LOG.info("LISTENER ");
+			chart.fireEvent(new DatasetSelectionEvent(Document.get().createChangeEvent(), item));
+			return true;
+
+		}
+
+		/* (non-Javadoc)
+		 * @see org.pepstock.charba.client.impl.callbacks.DataLabelsPointer#onLeave(org.pepstock.charba.client.AbstractChart, org.pepstock.charba.client.ext.datalabels.Context)
+		 */
+		@Override
+		public boolean onLeave(AbstractChart<?, ?> chart, Context context) {
+			super.onLeave(chart, context);
+			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+			DivElement newDiv= Document.get().createDivElement();
+			newDiv.setInnerHTML("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
+			element.insertBefore(newDiv, element.getFirstChild());
+			if (element.getChildCount() > 8) {
+				element.removeChild(element.getLastChild());
+			}
+			return true;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.pepstock.charba.client.impl.callbacks.DataLabelsPointer#onEnter(org.pepstock.charba.client.AbstractChart, org.pepstock.charba.client.ext.datalabels.Context)
+		 */
+		@Override
+		public boolean onEnter(AbstractChart<?, ?> chart, Context context) {
+			super.onEnter(chart, context);
+			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+			DivElement newDiv= Document.get().createDivElement();
+			newDiv.setInnerHTML("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
+			element.insertBefore(newDiv, element.getFirstChild());
+			if (element.getChildCount() > 8) {
+				element.removeChild(element.getLastChild());
+			}
+			return true;
+		}
+		
+		
+		
 	}
 }

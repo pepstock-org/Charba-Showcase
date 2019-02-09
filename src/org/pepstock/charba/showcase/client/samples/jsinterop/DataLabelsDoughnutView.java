@@ -162,7 +162,7 @@ public class DataLabelsDoughnutView extends BaseComposite{
 //		}
 //	}
 //});
-		option.setBackgroundColorCallback(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 
 			@Override
@@ -171,7 +171,7 @@ public class DataLabelsDoughnutView extends BaseComposite{
 				return ds.getBackgroundColorAsString().get(context.getIndex());
 			}
 		});
-		option.setDisplayCallback(new DisplayCallback() {
+		option.setDisplay(new DisplayCallback() {
 			
 			@Override
 			public Display display(AbstractChart<?, ?> chart, Context context) {
