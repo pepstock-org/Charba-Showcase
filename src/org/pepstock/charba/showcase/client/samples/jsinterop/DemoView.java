@@ -615,4 +615,15 @@ public class DemoView extends Composite {
 		 content.add(new DataLabelsHighlightView());
 	}	
 
+	@UiHandler("datalabelsGradient")
+	protected void handleDatalabelsGradient(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsLinearGradientLineView());
+	}	
+	
+	@UiHandler("datalabelsSelection")
+	protected void handleDatalabelsSelection(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsSelectionView());
+	}	
 }

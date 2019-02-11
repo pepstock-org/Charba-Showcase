@@ -241,6 +241,8 @@
 									styleName='{myStyle.myLabel}'>Polar</g:Label>
 								<g:Label ui:field="datalabelsRadar"
 									styleName='{myStyle.myLabel}'>Radar</g:Label>
+								<g:Label ui:field="datalabelsGradient"
+									styleName='{myStyle.myLabel}'>Gradient</g:Label>
 								<g:Label ui:field="datalabelsInteractions"
 									styleName='{myStyle.myLabel}'>Interactions</g:Label>
 								<g:Label ui:field="datalabelsData"
