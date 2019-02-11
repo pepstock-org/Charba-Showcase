@@ -25,9 +25,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsBarView extends BaseComposite{
@@ -45,8 +43,6 @@ public class DataLabelsBarView extends BaseComposite{
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart (DataLabels)");
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -58,68 +54,6 @@ public class DataLabelsBarView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
 		chart.getOptions().getPlugins().setEnabled("title", false);	
-		
-//		data: {
-//			labels: labels,
-//			datasets: [{
-//				backgroundColor: Samples.color(0),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'end',
-//					anchor: 'start'
-//				}
-//			}, {
-//				backgroundColor: Samples.color(1),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'center',
-//					anchor: 'center'
-//				}
-//			}, {
-//				backgroundColor: Samples.color(2),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					anchor: 'end',
-//					align: 'start',
-//				}
-//			}]
-//		},
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					color: 'white',
-//					display: function(context) {
-//						return context.dataset.data[context.dataIndex] > 15;
-//					},
-//					font: {
-//						weight: 'bold'
-//					},
-//					formatter: Math.round
-//				}
-//			},
-//			scales: {
-//				xAxes: [{
-//					stacked: true
-//				}],
-//				yAxes: [{
-//					stacked: true
-//				}]
-//			}
-//		}
-//	});
-		
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

@@ -1,15 +1,15 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.CartesianAxisType;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ScatterChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.enums.CartesianAxisType;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -19,9 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class MultiAxisScatterView extends BaseComposite{

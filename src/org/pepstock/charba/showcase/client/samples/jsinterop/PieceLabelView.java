@@ -26,9 +26,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class PieceLabelView extends BaseComposite{

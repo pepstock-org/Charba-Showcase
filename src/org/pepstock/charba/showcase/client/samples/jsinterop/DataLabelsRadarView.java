@@ -21,9 +21,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsRadarView extends BaseComposite{
@@ -41,7 +39,6 @@ public class DataLabelsRadarView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(16);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -52,25 +49,6 @@ public class DataLabelsRadarView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
 		chart.getOptions().getPlugins().setEnabled("title", false);
-		
-
-//			options: {
-//				plugins: {
-//					datalabels: {
-//						backgroundColor: function(context) {
-//							return context.dataset.borderColor;
-//						},
-//						color: 'white',
-//						padding: 4,
-//						font: {
-//							size: 10,
-//							weight: 'bold'
-//						},
-//						formatter: Math.round
-//					}
-//				}
-//			}
-//		});		
 		
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -102,39 +80,16 @@ public class DataLabelsRadarView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-//		options: {
-//		plugins: {
-//			datalabels: {
-//				anchor: 'end',
-//				backgroundColor: function(context) {
-//					return context.dataset.backgroundColor;
-//				},
-//				borderColor: 'white',
-//				borderRadius: 25,
-//				borderWidth: 2,
-//				color: 'white',
-//				font: {
-//					weight: 'bold'
-//				},
-//				formatter: Math.round
-//			}
-//		}
-//	}
-//});
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
-
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				RadarDataset ds = (RadarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
 		});
 		option.setColor(HtmlColor.White);
-		option.getPadding().setTop(4);
-		option.getPadding().setBottom(4);
-		option.getPadding().setLeft(4);
-		option.getPadding().setRight(4);
+		option.getPadding().set(4);
 		option.getFont().setFontSize(10);
 		option.getFont().setWeight(Weight.bold);
 		

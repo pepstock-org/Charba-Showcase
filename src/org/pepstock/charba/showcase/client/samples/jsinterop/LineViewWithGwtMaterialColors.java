@@ -1,15 +1,15 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 
-import org.pepstock.charba.client.colors.GwtMaterialColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -18,9 +18,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class LineViewWithGwtMaterialColors extends BaseComposite{

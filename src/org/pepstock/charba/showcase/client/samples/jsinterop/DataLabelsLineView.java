@@ -16,7 +16,6 @@ import org.pepstock.charba.client.ext.datalabels.Context;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.datalabels.Weight;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -26,9 +25,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsLineView extends BaseComposite{
@@ -43,88 +40,9 @@ public class DataLabelsLineView extends BaseComposite{
 	
 	public DataLabelsLineView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		aspectRatio: 4/3,
-//		tooltips: false,
-//		layout: {
-//			padding: {
-//				top: 42,
-//				right: 16,
-//				bottom: 32,
-//				left: 8
-//			}
-//		},
-//		elements: {
-//			line: {
-//				fill: false
-//			}
-//		},
-//		plugins: {
-//			legend: false,
-//			title: false
-//		}
-		
-//		data: {
-//			labels: labels,
-//			datasets: [{
-//				backgroundColor: Samples.color(0),
-//				borderColor: Samples.color(0),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'start',
-//					anchor: 'start'
-//				}
-//			}, {
-//				backgroundColor: Samples.color(1),
-//				borderColor: Samples.color(1),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				})
-//			}, {
-//				backgroundColor: Samples.color(2),
-//				borderColor: Samples.color(2),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'end',
-//					anchor: 'end'
-//				}
-//			}]
-//		},
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					backgroundColor: function(context) {
-//						return context.dataset.backgroundColor;
-//					},
-//					borderRadius: 4,
-//					color: 'white',
-//					font: {
-//						weight: 'bold'
-//					},
-//					formatter: Math.round
-//				}
-//			},
-//			scales: {
-//				yAxes: [{
-//					stacked: true
-//				}]
-//			}
-//		}
-//	});
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -174,7 +92,6 @@ public class DataLabelsLineView extends BaseComposite{
 		option3.setAlign(Align.end);
 		option3.setAnchor(Anchor.end);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
-
 		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -193,57 +110,16 @@ public class DataLabelsLineView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
-//		backgroundColor: function(context) {
-//			return context.dataset.backgroundColor;
-//		},
-//		borderRadius: 4,
-//		color: 'white',
-//		font: {
-//			weight: 'bold'
-//		},
-//		formatter: Math.round
-		
 		DataLabelsOptions option = new DataLabelsOptions();
-//		option.setBackgroundColor(color1);
-//		option.setFontCallback(new FontCallback() {
-//			
-//			@Override
-//			public Font font(AbstractChart<?, ?> chart, Context context) {
-//				Font f = new Font();
-//				f.setFontSize(36);
-//				Charba_Showcase.LOG.info(f.toJSON());
-//				return f;
-//			}
-//		});
-//		
-//		Charba_Showcase.LOG.info(option.getFont().getFontSize()+"");
-		
-//		option.setFormatterCallback(new FormatterCallback() {
-//			
-//			@Override
-//			public String format(AbstractChart<?, ?> chart, double value, Context context) {
-//				Charba_Showcase.LOG.info("value "+value);
-//				return null;
-//			}
-//		});
-//		option.getListeners().setClickEventHandler(new ClickEventHandler() {
-//			
-//			@Override
-//			public boolean onClick(AbstractChart<?, ?> chart, Context context) {
-//				Charba_Showcase.LOG.info("click "+context.getIndex());
-//				return true;
-//			}
-//		});
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
-
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				if (context.isActive()) {
 					return null;
 				}
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBackgroundColorAsString();
+				return ds.getBackgroundColor();
 			}
 		});
 		option.setBorderRadius(4);
@@ -251,9 +127,6 @@ public class DataLabelsLineView extends BaseComposite{
 		option.getFont().setWeight(Weight.bold);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
-		Window.getConsole().log(chart.getOptions());
-		
 	}
 	
 	@UiHandler("randomize")

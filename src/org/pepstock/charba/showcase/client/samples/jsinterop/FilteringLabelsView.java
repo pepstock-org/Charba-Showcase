@@ -2,9 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -19,9 +19,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class FilteringLabelsView extends BaseComposite{
@@ -72,9 +70,6 @@ public class FilteringLabelsView extends BaseComposite{
 		axis1.getScaleLabel().setLabelString("Month");
 		axis1.getTicks().setCallback(new TickCallback() {
 			
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.callbacks.TickCallback#onCallback(org.pepstock.charba.client.configuration.Axis, double, int, java.util.List)
-			 */
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				String label = chart.getData().getLabels().getStrings(index)[0];
@@ -87,14 +82,11 @@ public class FilteringLabelsView extends BaseComposite{
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		
-		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
-
 	}
 	
 }

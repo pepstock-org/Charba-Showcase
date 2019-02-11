@@ -1,12 +1,11 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -15,9 +14,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class MultiAxisBarView extends BaseComposite{
@@ -40,26 +37,18 @@ public class MultiAxisBarView extends BaseComposite{
 		chart.getOptions().getTooltips().setMode(InteractionMode.index);
 		chart.getOptions().getTooltips().setIntersect(true);
 		
-		Charba_Showcase.LOG.info("chart fatto");
-		
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
 		axis1.setPosition(Position.left);
 		axis1.setDisplay(true);
-
-		Charba_Showcase.LOG.info("axis 1");
 		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
 		axis2.setPosition(Position.right);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
-
-		Charba_Showcase.LOG.info("axis 2");
 		
 		chart.getOptions().getScales().setYAxes(axis1, axis2);
-		
-		Charba_Showcase.LOG.info("add axes");
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

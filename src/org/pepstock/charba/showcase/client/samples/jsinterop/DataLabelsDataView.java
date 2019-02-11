@@ -26,9 +26,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsDataView extends BaseComposite{
@@ -43,32 +41,9 @@ public class DataLabelsDataView extends BaseComposite{
 	
 	public DataLabelsDataView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		Chart.helpers.merge(Chart.defaults.global, {
-//			aspectRatio: 4/3,
-//			tooltips: false,
-//			layout: {
-//				padding: {
-//					top: 32,
-//					right: 24,
-//					bottom: 32,
-//					left: 0
-//				}
-//			},
-//			elements: {
-//				line: {
-//					fill: false
-//				}
-//			},
-//			plugins: {
-//				legend: false,
-//				title: false
-//			}
-//		});
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(32);
 		chart.getOptions().getLayout().getPadding().setRight(24);
@@ -106,47 +81,6 @@ public class DataLabelsDataView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					align: function(context) {
-//						var index = context.dataIndex;
-//						var curr = context.dataset.data[index];
-//						var prev = context.dataset.data[index - 1];
-//						var next = context.dataset.data[index + 1];
-//						return prev < curr && next < curr ? 'end' :
-//							prev > curr && next > curr ? 'start' :
-//							'center';
-//					},
-//					backgroundColor: 'rgba(255, 255, 255, 0.7)',
-//					borderColor: 'rgba(128, 128, 128, 0.7)',
-//					borderRadius: 4,
-//					borderWidth: 1,
-//					color: function(context) {
-//						var i = context.dataIndex;
-//						var value = context.dataset.data[i];
-//						var prev = context.dataset.data[i - 1];
-//						var diff = prev !== undefined ? value - prev : 0;
-//						return diff < 0 ? Samples.color(0) :
-//							diff > 0 ? Samples.color(1) :
-//							'gray';
-//					},
-//					font: {
-//						size: 11,
-//						weight: 600
-//					},
-//					offset: 8,
-//					formatter: function(value, context) {
-//						var i = context.dataIndex;
-//						var prev = context.dataset.data[i - 1];
-//						var diff = prev !== undefined ? prev - value : 0;
-//						var glyph = diff < 0 ? '\u25B2' : diff > 0 ? '\u25BC' : '\u25C6';
-//						return glyph + ' ' + Math.round(value);
-//					}
-//				}
-//			}
-//		}
-		
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new Color(255, 255, 255).alpha(0.7));
 		option.setBorderColor(new Color(128, 128, 128).alpha(0.7));
@@ -169,7 +103,7 @@ public class DataLabelsDataView extends BaseComposite{
 		option.setColor(new ColorCallback() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public Object color(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;

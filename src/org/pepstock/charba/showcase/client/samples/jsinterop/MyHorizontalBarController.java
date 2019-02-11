@@ -17,6 +17,9 @@ import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.Image;
 
+/**
+ * @author Andrea "Stock" Stocchero
+ */
 public class MyHorizontalBarController extends AbstractController {
 	
 	public static final ControllerType TYPE = new ControllerType("stock1", ChartType.horizontalBar);
@@ -27,19 +30,11 @@ public class MyHorizontalBarController extends AbstractController {
 	
 	private static final int PERCENT = 10;
 
-
-	/* (non-Javadoc)
-	 * @see org.pepstock.charba.client.Controller#getType()
-	 */
 	@Override
 	public ControllerType getType() {
 		return TYPE;
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see org.pepstock.charba.client.controllers.AbstractController#initialize(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, int)
-	 */
 	@Override
 	public void initialize(Context context, AbstractChart<?, ?> chart, int datasetIndex) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
@@ -48,9 +43,6 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
-	 */
 	@Override
 	public void draw(Context context, AbstractChart<?, ?> chart, double ease) {
 		super.draw(context, chart, ease);
@@ -90,9 +82,6 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 	
 
-	/* (non-Javadoc)
-	 * @see org.pepstock.charba.client.controllers.AbstractController#update(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, boolean)
-	 */
 	@Override
 	public void update(Context context, AbstractChart<?, ?> chart, boolean reset) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);

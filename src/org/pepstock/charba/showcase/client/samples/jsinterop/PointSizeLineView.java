@@ -1,14 +1,14 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -18,9 +18,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class PointSizeLineView extends BaseComposite{
@@ -69,7 +67,6 @@ public class PointSizeLineView extends BaseComposite{
 		dataset2.setBorderDash(5,5);
 		dataset2.setPointRadius(2, 4, 6, 18, 0, 12, 20);
 		
-
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Large pointHoverRadius");
 		
@@ -92,7 +89,6 @@ public class PointSizeLineView extends BaseComposite{
 		dataset4.setFill(Fill.nofill);
 		dataset4.setPointHitRadius(20D);
 
-		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -108,7 +104,6 @@ public class PointSizeLineView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-		
 
 	}
 

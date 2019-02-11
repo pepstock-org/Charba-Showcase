@@ -29,9 +29,7 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class HorizontalFlagsBarView extends BaseComposite{
@@ -89,7 +87,6 @@ public class HorizontalFlagsBarView extends BaseComposite{
 					chart.draw();
 				}
 			};
-
 			
 			@Override
 			public void onResize(final ChartResizeEvent event) {
@@ -106,9 +103,6 @@ public class HorizontalFlagsBarView extends BaseComposite{
 				return "test";
 			}
 
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDatasetsDraw(org.pepstock.charba.client.AbstractChart, double)
-			 */
 			@Override
 			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
 				final int padding = 4;
@@ -148,9 +142,6 @@ public class HorizontalFlagsBarView extends BaseComposite{
 	
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.Composite#onAttach()
-	 */
 	@Override
 	protected void onAttach() {
 		calculateAndSetScaleLabelPadding(chart.getCanvas().getParent().getOffsetWidth());

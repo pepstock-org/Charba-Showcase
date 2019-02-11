@@ -26,9 +26,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class StandingView extends BaseComposite{
@@ -76,13 +74,9 @@ public class StandingView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(false);
-		chart.getOptions().getTitle().setText("Charba Line Chart");
+		chart.getOptions().getTitle().setText("Charba Standing Chart");
 		chart.getOptions().getLayout().getPadding().setTop(40);
 		chart.getOptions().getLayout().getPadding().setRight(40);
-//		chart.getOptions().getTooltips().setMode(InteractionMode.index);
-//		chart.getOptions().getTooltips().setIntersect(false);
-//		chart.getOptions().getHover().setMode(InteractionMode.nearest);
-//		chart.getOptions().getHover().setIntersect(true);
 		
 		List<Dataset> datasets = new LinkedList<Dataset>();
 		for (int i=0; i<FACTORS.length; i++) {
@@ -106,9 +100,6 @@ public class StandingView extends BaseComposite{
 		
 		axis2.getTicks().setCallback(new TickCallback() {
 		
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.callbacks.TickCallback#onCallback(org.pepstock.charba.client.configuration.Axis, double, int, java.util.List)
-			 */
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				List<Dataset> dss = chart.getData().getDatasets();
@@ -122,7 +113,6 @@ public class StandingView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(YEARS);
-//		chart.getData().setDatasets(dataset1, dataset2);
 		chart.getData().setDatasets(datasets.toArray(new Dataset[0]));
 		
 		AbstractPlugin p = new AbstractPlugin() {
@@ -132,9 +122,6 @@ public class StandingView extends BaseComposite{
 				return "standings";
 			}
 
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDatasetsDraw(org.pepstock.charba.client.AbstractChart, double)
-			 */
 			@Override
 			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
 				final int padding = 30;

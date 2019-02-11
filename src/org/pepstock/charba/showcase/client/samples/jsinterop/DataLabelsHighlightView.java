@@ -22,7 +22,6 @@ import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.datalabels.EnterEventHandler;
 import org.pepstock.charba.client.ext.datalabels.LeaveEventHandler;
 import org.pepstock.charba.client.ext.datalabels.Weight;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -32,9 +31,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsHighlightView extends BaseComposite{
@@ -52,87 +49,8 @@ public class DataLabelsHighlightView extends BaseComposite{
 	public DataLabelsHighlightView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-//		aspectRatio: 4/3,
-//		tooltips: false,
-//		layout: {
-//			padding: {
-//				top: 42,
-//				right: 16,
-//				bottom: 32,
-//				left: 8
-//			}
-//		},
-//		elements: {
-//			line: {
-//				fill: false
-//			}
-//		},
-//		plugins: {
-//			legend: false,
-//			title: false
-//		}
-		
-//		data: {
-//			labels: labels,
-//			datasets: [{
-//				backgroundColor: Samples.color(0),
-//				borderColor: Samples.color(0),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'start',
-//					anchor: 'start'
-//				}
-//			}, {
-//				backgroundColor: Samples.color(1),
-//				borderColor: Samples.color(1),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				})
-//			}, {
-//				backgroundColor: Samples.color(2),
-//				borderColor: Samples.color(2),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: 'end',
-//					anchor: 'end'
-//				}
-//			}]
-//		},
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					backgroundColor: function(context) {
-//						return context.dataset.backgroundColor;
-//					},
-//					borderRadius: 4,
-//					color: 'white',
-//					font: {
-//						weight: 'bold'
-//					},
-//					formatter: Math.round
-//				}
-//			},
-//			scales: {
-//				yAxes: [{
-//					stacked: true
-//				}]
-//			}
-//		}
-//	});
-		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -179,7 +97,6 @@ public class DataLabelsHighlightView extends BaseComposite{
 		option3.setAlign(Align.end);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
-		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -197,59 +114,20 @@ public class DataLabelsHighlightView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					backgroundColor: function(context) {
-//						return context.hovered ? context.dataset.backgroundColor : 'white';
-//					},
-//					borderColor: function(context) {
-//						return context.dataset.backgroundColor;
-//					},
-//					borderRadius: 16,
-//					borderWidth: 3,
-//					color: function(context) {
-//						return context.hovered ? 'white' : context.dataset.backgroundColor;
-//					},
-//					font: {
-//						weight: 'bold'
-//					},
-//					offset: 8,
-//					formatter: Math.round,
-//					listeners: {
-//						enter: function(context) {
-//							context.hovered = true;
-//							return true;
-//						},
-//						leave: function(context) {
-//							context.hovered = false;
-//							return true;
-//						}
-//					}
-//				}
-//			},
-//			scales: {
-//				yAxes: [{
-//					stacked: true
-//				}]
-//			}
-//		}
-		
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
-
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return hovered.isHovered() ? ds.getBackgroundColorAsString() : HtmlColor.White.toHex();
+				return hovered.isHovered() ? ds.getBackgroundColor() : HtmlColor.White;
 			}
 		});
 		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
-			public String borderColor(AbstractChart<?, ?> chart, Context context) {
+			public Object borderColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
@@ -257,10 +135,10 @@ public class DataLabelsHighlightView extends BaseComposite{
 		option.setColor(new ColorCallback() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public Object color(AbstractChart<?, ?> chart, Context context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return hovered.isHovered() ? HtmlColor.White.toHex() : ds.getBackgroundColorAsString() ;
+				return hovered.isHovered() ? HtmlColor.White : ds.getBackgroundColor() ;
 			}
 		});
 		option.setBorderRadius(16);
@@ -291,8 +169,6 @@ public class DataLabelsHighlightView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		
-		Window.getConsole().log(chart.getOptions());
-		
 	}
 	
 	@UiHandler("randomize")
@@ -315,9 +191,6 @@ public class DataLabelsHighlightView extends BaseComposite{
 	
 	static class HoveredFactory implements NativeObjectContainerFactory<Hovered>{
 
-		/* (non-Javadoc)
-		 * @see org.pepstock.charba.client.commons.NativeObjectContainerFactory#create(org.pepstock.charba.client.commons.NativeObject)
-		 */
 		@Override
 		public Hovered create(NativeObject nativeObject) {
 			return new Hovered(nativeObject);

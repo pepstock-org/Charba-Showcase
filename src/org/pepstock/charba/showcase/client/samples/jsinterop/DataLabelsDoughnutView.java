@@ -25,9 +25,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsDoughnutView extends BaseComposite{
@@ -48,9 +46,7 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTooltips().setEnabled(false);
-
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
 		chart.getOptions().getLayout().getPadding().setBottom(32);
@@ -91,82 +87,11 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 
-//		data: {
-//			labels: labels,
-//			datasets: [{
-//				backgroundColor: Samples.colors({
-//					color: Samples.color(0),
-//					count: DATA_COUNT
-//				}),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					anchor: 'end'
-//				}
-//			}, {
-//				backgroundColor: Samples.colors({
-//					color: Samples.color(1),
-//					count: DATA_COUNT
-//				}),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					anchor: 'center',
-//					backgroundColor: null,
-//					borderWidth: 0
-//				}
-//			}, {
-//				backgroundColor: Samples.colors({
-//					color: Samples.color(2),
-//					count: DATA_COUNT
-//				}),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					anchor: 'start'
-//				}
-//			}]
-//		},
-
 		DataLabelsOptions option = new DataLabelsOptions();
-//		options: {
-//		plugins: {
-//			datalabels: {
-//				backgroundColor: function(context) {
-//					return context.dataset.backgroundColor;
-//				},
-//				borderColor: 'white',
-//				borderRadius: 25,
-//				borderWidth: 2,
-//				color: 'white',
-//				display: function(context) {
-//					var dataset = context.dataset;
-//					var count = dataset.data.length;
-//					var value = dataset.data[context.dataIndex];
-//					return value > count * 1.5;
-//				},
-//				font: {
-//					weight: 'bold'
-//				},
-//				formatter: Math.round
-//			}
-//		}
-//	}
-//});
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
-
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				DoughnutDataset ds = (DoughnutDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getIndex());
 			}

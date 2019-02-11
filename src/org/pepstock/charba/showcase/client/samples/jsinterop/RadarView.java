@@ -17,9 +17,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class RadarView extends BaseComposite{
@@ -44,7 +42,6 @@ public class RadarView extends BaseComposite{
 		axis.getTicks().setBeginAtZero(true);
 		chart.getOptions().setAxis(axis);
 			
-		
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		

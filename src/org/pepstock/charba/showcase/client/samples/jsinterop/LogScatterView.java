@@ -2,16 +2,16 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.CartesianAxisType;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianLogarithmicAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.enums.CartesianAxisType;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -19,9 +19,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class LogScatterView extends BaseComposite{
@@ -67,9 +65,6 @@ public class LogScatterView extends BaseComposite{
 		axis1.setPosition(Position.bottom);
 		axis1.getTicks().setCallback(new TickCallback() {
 			
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.callbacks.TickCallback#onCallback(org.pepstock.charba.client.configuration.Axis, double, int, java.util.List)
-			 */
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				int remain = (int)(value / (Math.pow(10, Math.floor(Math.log10(value)))));
@@ -86,9 +81,6 @@ public class LogScatterView extends BaseComposite{
 		axis2.setDisplay(true);
 		axis2.getTicks().setCallback(new TickCallback() {
 			
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.callbacks.TickCallback#onCallback(org.pepstock.charba.client.configuration.Axis, double, int, java.util.List)
-			 */
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				return value + "dB";
@@ -102,7 +94,6 @@ public class LogScatterView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setDatasets(dataset1);
-		
 
 	}
 

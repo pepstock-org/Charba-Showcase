@@ -84,7 +84,7 @@ public class Toast extends PopupPanel {
 
 	/**
 	 * Builds the popup getting a title (based on the context when the message has been created) and the message
-	 * @param title short descritpion of the message
+	 * @param title short description of the message
 	 * @param message message
 	 */
 	public Toast(String title, String message) {

@@ -27,9 +27,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class TimeSeriesDrillDownView extends BaseComposite{
@@ -63,9 +61,6 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		addChart();
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.Composite#onDetach()
-	 */
 	@Override
 	protected void onDetach() {
 		charts.getFirst().destroy();

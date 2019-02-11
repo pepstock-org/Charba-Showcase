@@ -1,16 +1,15 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -20,9 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class TooltipBorderView extends BaseComposite{
@@ -50,7 +47,7 @@ public class TooltipBorderView extends BaseComposite{
 		chart.getOptions().getTooltips().setCaretSize(8);
 		chart.getOptions().getTooltips().setBackgroundColor("rgba(72, 241, 12, 1)");
 		chart.getOptions().getTooltips().setTitleFontColor("black");
-		chart.getOptions().getTooltips().setBodyFontColor("balck");
+		chart.getOptions().getTooltips().setBodyFontColor("black");
 		chart.getOptions().getTooltips().setBorderColor("rgba(0,0,0,1)");
 		chart.getOptions().getTooltips().setBorderWidth(4);;
 		
@@ -89,7 +86,6 @@ public class TooltipBorderView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
 
 	}
 	

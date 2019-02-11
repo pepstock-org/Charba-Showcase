@@ -6,6 +6,9 @@ import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.showcase.client.samples.AbstractComposite;
 
+/**
+ * @author Andrea "Stock" Stocchero
+ */
 public class BaseComposite extends AbstractComposite{
 
 	protected void removeDataset(AbstractChart<?, ?> chart) {

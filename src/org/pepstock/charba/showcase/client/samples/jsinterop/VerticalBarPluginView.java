@@ -7,13 +7,11 @@ import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
-import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -23,9 +21,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarPluginView extends BaseComposite{
@@ -70,19 +66,14 @@ public class VerticalBarPluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
-		
 		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.canvas);
 
 		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
 		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);
 		gradient.addColorStop(1, GwtMaterialColor.WHITE);
-		
 	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);
-//		option.setBackgroundColor(pattern);
-//		option.setBackgroundColor(Colors.ALL[3].alpha(0.1));
 
 		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
 	}

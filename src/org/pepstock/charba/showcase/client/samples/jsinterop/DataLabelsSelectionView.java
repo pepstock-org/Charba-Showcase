@@ -7,9 +7,6 @@ import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.commons.Key;
-import org.pepstock.charba.client.commons.NativeObject;
-import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -23,7 +20,6 @@ import org.pepstock.charba.client.ext.datalabels.Context;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.datalabels.Weight;
-import org.pepstock.charba.client.items.UndefinedValues;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
@@ -34,9 +30,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsSelectionView extends BaseComposite{
@@ -49,14 +43,13 @@ public class DataLabelsSelectionView extends BaseComposite{
 	@UiField
 	LineChart chart;
 	
-	Map<Integer, SelectionItem> items = new HashMap<>(); 
+	final Map<Integer, SelectionItem> items = new HashMap<>(); 
 	
 	public DataLabelsSelectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -103,7 +96,6 @@ public class DataLabelsSelectionView extends BaseComposite{
 		option3.setAlign(Align.end);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
-		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -120,46 +112,9 @@ public class DataLabelsSelectionView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					backgroundColor: function(context) {
-//						return isSelected(context)
-//							? context.dataset.backgroundColor
-//							: 'white';
-//					},
-//					borderColor: function(context) {
-//						return context.dataset.backgroundColor;
-//					},
-//					borderWidth: 1,
-//					color: function(context) {
-//						return isSelected(context)
-//							? 'white'
-//							: context.dataset.backgroundColor;
-//					},
-//					font: {
-//						weight: 'bold'
-//					},
-//					offset: 8,
-//					padding: 4,
-//					listeners: {
-//						click: function(context) {
-//							if (isSelected(context)) {
-//								deselect(context);
-//							} else {
-//								select(context);
-//							}
-//
-//							return true;
-//						}
-//					}
-//				}
-//			},
-		
+	
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
-
 
 			@Override
 			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
@@ -200,16 +155,12 @@ public class DataLabelsSelectionView extends BaseComposite{
 					items.remove(key);
 				} else {
 					LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-					SelectionItem item  =new SelectionItem();
-					item.setDataIndex(context.getDatasetIndex());
-					item.setIndex(context.getIndex());
-					item.setValue(ds.getData().get(context.getIndex()));
-					items.put(key, item);
+					items.put(key, new SelectionItem(context.getDatasetIndex(), context.getIndex(),ds.getData().get(context.getIndex())));
 				}
 				if (!items.isEmpty()) {
 					StringBuilder sb = new StringBuilder();
 					for (SelectionItem item : items.values()) {
-						sb.append("Selection: <b>").append(item.toString()).append("</b><br>");
+						sb.append("<b>").append(item.toString()).append("</b><br>");
 					}
 					new Toast("Dataset Selected!", sb.toString()).show();
 				}
@@ -241,57 +192,50 @@ public class DataLabelsSelectionView extends BaseComposite{
 		removeData(chart);
 	}
 	
-	static class SelectionItem extends NativeObjectContainer{
+	static final class SelectionItem {
 		
-		private enum Property implements Key{
-			datasetIndex,
-			index,
-			value
+		private final int datasetIndex;
+		
+		private final int index;
+		
+		private final double value;
+
+		/**
+		 * @param datasetIndex
+		 * @param index
+		 * @param value
+		 */
+		SelectionItem(int datasetIndex, int index, double value) {
+			super();
+			this.datasetIndex = datasetIndex;
+			this.index = index;
+			this.value = value;
 		}
 
 		/**
-		 * 
+		 * @return the datasetIndex
 		 */
-		SelectionItem() {
-		}
-
-		/**
-		 * @param nativeObject
-		 */
-		SelectionItem(NativeObject nativeObject) {
-			super(nativeObject);
-		}
-		
-		public void setDataIndex(int datasetIndex) {
-			setValue(Property.datasetIndex, datasetIndex);
-		}
-		
 		public int getDatasetIndex() {
-			return getValue(Property.datasetIndex, UndefinedValues.INTEGER);
+			return datasetIndex;
 		}
 
-		public void setIndex(int index) {
-			setValue(Property.index, index);
-		}
-		
-		public int getIndex() {
-			return getValue(Property.index, UndefinedValues.INTEGER);
-		}
-
-		public void setValue(double value) {
-			setValue(Property.value, value);
-		}
-		
-		public double getValue() {
-			return getValue(Property.value, UndefinedValues.DOUBLE);
-		}
-
-		/* (non-Javadoc)
-		 * @see java.lang.Object#toString()
+		/**
+		 * @return the index
 		 */
+		public int getIndex() {
+			return index;
+		}
+
+		/**
+		 * @return the value
+		 */
+		public double getValue() {
+			return value;
+		}
+
 		@Override
 		public String toString() {
-			return "SelectionItem [getDatasetIndex()=" + getDatasetIndex() + ", getIndex()=" + getIndex() + ", getValue()=" + getValue() + "]\n";
+			return "SelectionItem [datasetIndex=" + datasetIndex + ", index=" + index + ", value=" + value + "]";
 		}
 
 	}

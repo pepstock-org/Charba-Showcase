@@ -19,9 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class LinearGradientBarView extends BaseComposite{
@@ -41,7 +39,7 @@ public class LinearGradientBarView extends BaseComposite{
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		chart.getOptions().getTitle().setText("Charba Bar Chart with linear gradient");
 		chart.getOptions().getTooltips().setMode(InteractionMode.index);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
@@ -52,26 +50,20 @@ public class LinearGradientBarView extends BaseComposite{
 		
 		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.bottomUp, GradientScope.chart);
 
-//		gradient1.addColorStop(0, "#bdc3c7");
-//		gradient1.addColorStop(1, "#2c3e50");
-
 		gradient1.addColorStop(0, "#3a1c71");
 		gradient1.addColorStop(0.5, "#d76d77");
 		gradient1.addColorStop(1, "#ffaf7b");
 		
 		dataset1.setBackgroundColor(gradient1);
-		
 		dataset1.setBorderColor(gradient1);
-		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		
-		//dataset1.setPointStyle(Images.INSTANCE.customPoint());
-
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);

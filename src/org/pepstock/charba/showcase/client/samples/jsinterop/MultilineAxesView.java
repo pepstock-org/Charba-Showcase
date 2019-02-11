@@ -10,8 +10,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.utils.JSON;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -21,9 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class MultilineAxesView extends BaseComposite{
@@ -69,14 +65,6 @@ public class MultilineAxesView extends BaseComposite{
 		dataset2.setFill(Fill.nofill);
 
 		Labels lbl = getMultiLabels();
-		
-		
-		for (int i=0; i<months; i++) {
-			Charba_Showcase.LOG.info("start "+i);
-
-			Charba_Showcase.LOG.info(lbl.getString(i));
-			Charba_Showcase.LOG.info(JSON.stringify(lbl.getStrings(i)));
-		}
 		
 		chart.getData().setLabels(lbl);
 		chart.getData().setDatasets(dataset1, dataset2);

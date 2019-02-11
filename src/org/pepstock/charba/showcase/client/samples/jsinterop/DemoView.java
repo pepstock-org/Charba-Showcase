@@ -67,17 +67,11 @@ public class DemoView extends Composite {
 
 		Defaults.get().getControllers().extend(new AbstractController() {
 
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.Controller#getType()
-			 */
 			@Override
 			public ControllerType getType() {
 				return LineMyChart.TYPE;
 			}
 
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.controllers.AbstractController#draw(org.pepstock.charba.client.controllers.Context, org.pepstock.charba.client.AbstractChart, double)
-			 */
 			@Override
 			public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
 				super.draw(jsThis, chart, ease);
@@ -102,7 +96,6 @@ public class DemoView extends Composite {
 		Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 
 		Defaults.get().getControllers().extend(new MyHorizontalBarController());
-		//Injector.ensureInjected(Resources.INSTANCE.pieceLabelJsSource());
 		
 		LabelsPlugin.enable(false);
 		LabelsOptions option = new LabelsOptions();
@@ -130,7 +123,6 @@ public class DemoView extends Composite {
 		option1.getFont().setWeight(Weight.bold);
 		
 //		Defaults.get().getGlobal().getPlugins().setOptions(DataLabelsPlugin.ID, option1);
-
 		
 	}
 
@@ -625,5 +617,11 @@ public class DemoView extends Composite {
 	protected void handleDatalabelsSelection(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new DataLabelsSelectionView());
+	}	
+	
+	@UiHandler("datalabelsCustom")
+	protected void handleDatalabelsCustomLabels(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsCustomLabelsView());
 	}	
 }

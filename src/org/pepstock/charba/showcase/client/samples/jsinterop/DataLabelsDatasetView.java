@@ -24,9 +24,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsDatasetView extends BaseComposite{
@@ -41,29 +39,6 @@ public class DataLabelsDatasetView extends BaseComposite{
 	
 	public DataLabelsDatasetView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		Chart.helpers.merge(Chart.defaults.global, {
-//			aspectRatio: 4/3,
-//			tooltips: false,
-//			layout: {
-//				padding: {
-//					top: 32,
-//					right: 24,
-//					bottom: 32,
-//					left: 0
-//				}
-//			},
-//			elements: {
-//				line: {
-//					borderWidth: 2,
-//					fill: false
-//				}
-//			},
-//			plugins: {
-//				legend: false,
-//				title: false
-//			}
-//		});
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
@@ -118,40 +93,11 @@ public class DataLabelsDatasetView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					align: function(context) {
-//						var index = context.dataIndex;
-//						var datasets = context.chart.data.datasets;
-//						var v0 = datasets[0].data[index];
-//						var v1 = datasets[1].data[index];
-//						var invert = v0 - v1 > 0;
-//						return context.datasetIndex === 0 ?
-//							invert ? 'end' : 'start' :
-//							invert ? 'start' : 'end';
-//					},
-//					backgroundColor: function(context) {
-//						return context.dataset.borderColor;
-//					},
-//					borderRadius: 4,
-//					color: 'white',
-//					font: {
-//						size: 11,
-//						weight: 600
-//					},
-//					offset: 8,
-//					formatter: Math.round
-//				}
-//			}
-//		}
-//	});
-		
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
@@ -172,7 +118,6 @@ public class DataLabelsDatasetView extends BaseComposite{
 				return context.getDatasetIndex() == 0 ? invert ? Align.end : Align.start : invert ? Align.start : Align.center;
 			}
 		});
-
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		

@@ -21,9 +21,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class LinearGradientLineView extends BaseComposite{
@@ -43,7 +41,7 @@ public class LinearGradientLineView extends BaseComposite{
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Line Chart");
+		chart.getOptions().getTitle().setText("Charba Line Chart with linear gradient");
 		chart.getOptions().getTooltips().setMode(InteractionMode.index);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
@@ -70,12 +68,11 @@ public class LinearGradientLineView extends BaseComposite{
 		dataset1.setData(values);
 		dataset1.setFill(Fill.origin);
 		
-		//dataset1.setPointStyle(Images.INSTANCE.customPoint());
-
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
+		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);

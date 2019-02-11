@@ -19,9 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class PiePluginView extends BaseComposite{
@@ -50,20 +48,13 @@ public class PiePluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-//		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
-		
-//		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.bottomRight, GradientScope.canvas);
-
 		Gradient gradient = new Gradient(GradientType.radial, GradientOrientation.inOut,  GradientScope.canvas);
 
 		gradient.addColorStop(0, HtmlColor.White);
 		gradient.addColorStop(1, HtmlColor.Gray);
-		
 	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);
-//		option.setBackgroundColor(pattern);
-//		option.setBackgroundColor(Colors.ALL[3].alpha(0.1));
 
 		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
 	}

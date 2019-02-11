@@ -2,15 +2,11 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.plugins.AbstractPlugin;
 
-import com.google.gwt.canvas.dom.client.CanvasGradient;
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -19,7 +15,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class PieView extends BaseComposite{
@@ -39,38 +34,6 @@ public class PieView extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.top);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
-		
-		chart.getPlugins().add(new AbstractPlugin() {
-
-			@Override
-			public String getId() {
-				return "size";
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see org.pepstock.charba.client.jsinterop.plugins.AbstractPlugin#onBeforeDraw(org.pepstock.charba.client.jsinterop.
-			 * AbstractChart, double)
-			 */
-			@Override
-			public boolean onBeforeDraw(AbstractChart<?, ?> chart, double easing) {
-
-				Context2d ctx = chart.getCanvas().getContext2d();
-				int centerX = chart.getCanvas().getOffsetWidth() / 2;
-				int centerY = chart.getCanvas().getOffsetHeight() / 2;
-				CanvasGradient pattern = ctx.createRadialGradient(centerX, centerY, centerX, centerX, centerY, 0); //LinearGradient(0, 0, 0, );
-				pattern.addColorStop(0, "rgba(255, 0, 0, 0.5)");
-				pattern.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
-				pattern.addColorStop(1, "rgba(255, 0,0, 0)");
-				// set fill canvas color
-				ctx.setFillStyle(pattern);
-				// fills back ground
-				ctx.fillRect(0, 0, chart.getCanvas().getOffsetWidth(), chart.getCanvas().getOffsetHeight());
-				// always TRUE
-				return true;
-			}
-		});
 		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

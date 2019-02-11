@@ -42,9 +42,6 @@ public class ProgressBar extends Widget {
         setMax(DEFAULT_MAX);
     }
     
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.UIObject#setWidth(java.lang.String)
-	 */
 	@Override
 	public void setWidth(String width) {
 		progress.getStyle().setProperty(PROGRESS_WIDTH_ATTRIBUTE, width);

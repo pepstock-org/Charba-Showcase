@@ -23,9 +23,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class VerticalBarPluginLabelView extends BaseComposite{
@@ -77,11 +75,6 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 				return "test";
 			}
 			
-			
-			
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDatasetsDraw(org.pepstock.charba.client.AbstractChart, double)
-			 */
 			@Override
 			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
 				final int fontSize = 16;

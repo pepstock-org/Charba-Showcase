@@ -24,9 +24,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class TooltipHTMLPieView extends BaseComposite{
@@ -124,7 +122,6 @@ public class TooltipHTMLPieView extends BaseComposite{
 			}
 		});
 
-		
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));

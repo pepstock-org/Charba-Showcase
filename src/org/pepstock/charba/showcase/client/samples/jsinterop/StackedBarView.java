@@ -1,12 +1,11 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.StackedBarChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.StackedBarDataset;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -16,9 +15,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class StackedBarView extends BaseComposite{
@@ -32,11 +29,7 @@ public class StackedBarView extends BaseComposite{
 	StackedBarChart chart;
 	
 	public StackedBarView() {
-		Charba_Showcase.LOG.info("pre init fatto");
-		
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		Charba_Showcase.LOG.info("init fatto");
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
@@ -44,9 +37,7 @@ public class StackedBarView extends BaseComposite{
 		chart.getOptions().getTitle().setText("Charba Stacked Bar Chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.index);
 		chart.getOptions().getTooltips().setIntersect(false);
-	
-		Charba_Showcase.LOG.info("chart fatto");
-		
+
 		StackedBarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -59,8 +50,6 @@ public class StackedBarView extends BaseComposite{
 
 		StackedBarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
-		Charba_Showcase.LOG.info("ds1 fatto");
 		
 		IsColor color2 = Colors.ALL[1];
 		

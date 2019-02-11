@@ -259,7 +259,8 @@
 									styleName='{myStyle.myLabel}'>Highlight</g:Label>
 								<g:Label ui:field="datalabelsSelection"
 									styleName='{myStyle.myLabel}'>Selection</g:Label>
-
+								<g:Label ui:field="datalabelsCustom"
+									styleName='{myStyle.myLabel}'>Custom labels</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						

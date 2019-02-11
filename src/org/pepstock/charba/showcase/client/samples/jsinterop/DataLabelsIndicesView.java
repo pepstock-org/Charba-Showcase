@@ -28,9 +28,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsIndicesView extends BaseComposite{
@@ -45,33 +43,9 @@ public class DataLabelsIndicesView extends BaseComposite{
 	
 	public DataLabelsIndicesView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		Chart.helpers.merge(Chart.defaults.global, {
-//			aspectRatio: 4/3,
-//			tooltips: false,
-//			layout: {
-//				padding: {
-//					top: 32,
-//					right: 24,
-//					bottom: 32,
-//					left: 0
-//				}
-//			},
-//			elements: {
-//				line: {
-//					borderWidth: 2,
-//					fill: false
-//				}
-//			},
-//			plugins: {
-//				legend: false,
-//				title: false
-//			}
-//		});
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(32);
 		chart.getOptions().getLayout().getPadding().setRight(24);
@@ -108,35 +82,6 @@ public class DataLabelsIndicesView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					align: function(context) {
-//						return context.dataIndex % 2 ? 'end' : 'center';
-//					},
-//					backgroundColor: function(context) {
-//						return context.dataIndex % 2 ?
-//							context.dataset.borderColor :
-//							'rgba(255, 255, 255, 0.8)';
-//					},
-//					borderColor: function(context) {
-//						return context.dataIndex % 2 ? null : context.dataset.borderColor;
-//					},
-//					color:  function(context) {
-//						return context.dataIndex % 2 ? 'white' : context.dataset.borderColor;
-//					},
-//					borderWidth: function(context) {
-//						return context.dataIndex % 2 ? 0 : 1;
-//					},
-//					formatter: function(value, context) {
-//						return context.dataIndex + ': ' + Math.round(value) + '\'';
-//					},
-//					offset: 8
-//				}
-//			}
-//		}
-//	});
 
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(new AlignCallback() {
@@ -150,25 +95,25 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? ds.getBorderColorAsString() : new Color(255, 255, 255).alpha(0.8D).toRGBA();
+				return context.getIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
 		});
 		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
-			public String borderColor(AbstractChart<?, ?> chart, Context context) {
+			public Object borderColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? null : ds.getBorderColorAsString();
+				return context.getIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
 		});
 		option.setColor(new ColorCallback() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public Object color(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? HtmlColor.White.toRGBA() : ds.getBorderColorAsString();
+				return context.getIndex() % 2 == 0 ? HtmlColor.White : ds.getBorderColor();
 			}
 		});
 		option.setBorderWidth(new BorderWidthCallback() {

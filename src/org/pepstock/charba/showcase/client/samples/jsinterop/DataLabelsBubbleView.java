@@ -24,9 +24,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DataLabelsBubbleView extends BaseComposite{
@@ -48,8 +46,6 @@ public class DataLabelsBubbleView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bubble Chart (DataLabels)");
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(42);
 		chart.getOptions().getLayout().getPadding().setRight(16);
@@ -88,34 +84,7 @@ public class DataLabelsBubbleView extends BaseComposite{
 		dataset1.setDataPoints(dp1);
 		
 		chart.getData().setDatasets(dataset1);
-		
-//		options: {
-//			plugins: {
-//				datalabels: {
-//					anchor: function(context) {
-//						var value = context.dataset.data[context.dataIndex];
-//						return value.v < 50 ? 'end' : 'center';
-//					},
-//					align: function(context) {
-//						var value = context.dataset.data[context.dataIndex];
-//						return value.v < 50 ? 'end' : 'center';
-//					},
-//					color: function(context) {
-//						var value = context.dataset.data[context.dataIndex];
-//						return value.v < 50 ? context.dataset.backgroundColor : 'white';
-//					},
-//					font: {
-//						weight: 'bold'
-//					},
-//					formatter: function(value) {
-//						return Math.round(value.v);
-//					},
-//					offset: 2,
-//					padding: 0
-//				}
-//			}
-//		}
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAnchor(new AnchorCallback() {
 			
@@ -138,17 +107,14 @@ public class DataLabelsBubbleView extends BaseComposite{
 		option.setColor(new ColorCallback() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public Object color(AbstractChart<?, ?> chart, Context context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString().get(context.getIndex());
 			}
 		});
 		option.setOffset(2);
 		option.getFont().setWeight(Weight.bold);
-		option.getPadding().setBottom(0);
-		option.getPadding().setTop(0);
-		option.getPadding().setRight(0);
-		option.getPadding().setLeft(0);
+		option.getPadding().set(0);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 	}
@@ -197,50 +163,6 @@ public class DataLabelsBubbleView extends BaseComposite{
 			bDataset.setBorderColor(bcolors);
 			bDataset.setBorderWidth(bwidth);
 		}
-
 		chart.update();
 	}
-//
-//	@UiHandler("add_dataset")
-//	protected void handleAddDataset(ClickEvent event) {
-//		List<Dataset> datasets = chart.getData().getDatasets();
-//		BubbleDataset dataset = chart.newDataset();
-//		dataset.setLabel("dataset "+(datasets.size()+1));
-//		
-//		String[] colors = new String[AMOUNT_OF_POINTS];
-//		String[] hcolors = new String[AMOUNT_OF_POINTS];
-//		String[] bcolors = new String[AMOUNT_OF_POINTS];
-//		int[] bwidth = new int[AMOUNT_OF_POINTS];
-//		int[] hbwidth = new int[AMOUNT_OF_POINTS];
-//		
-//		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
-//		for (int i=0; i<AMOUNT_OF_POINTS; i++){
-//			dp1[i] = new DataPoint();
-//			dp1[i].setX(getData());
-//			dp1[i].setY(getData());
-//			dp1[i].setR(getData(0, 50));
-//			colors[i] = colorize(false, dp1[i]);
-//			bcolors[i] = colorize(true, dp1[i]);
-//			bwidth[i] = Math.min(Math.max(1, i + 1), 5);
-//			hcolors[i] = "transparent"; 
-//			hbwidth[i] = (int)Math.round(8 * dp1[i].getR() / 1000);
-//		}
-//		dataset.setBackgroundColor(colors);
-//		dataset.setBorderColor(bcolors);
-//		dataset.setBorderWidth(bwidth);
-//		dataset.setHoverBackgroundColor(hcolors);
-//		dataset.setHoverBorderWidth(hbwidth);
-//		dataset.setDataPoints(dp1);
-//
-//		datasets.add(dataset);
-//		
-//		chart.update();
-//	}
-//
-//
-//	@UiHandler("remove_dataset")
-//	protected void handleRemoveDataset(ClickEvent event) {
-//		removeDataset(chart);
-//	}
-
 }

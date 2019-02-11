@@ -22,9 +22,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class DatasetSelectionView extends BaseComposite{
@@ -85,9 +83,6 @@ public class DatasetSelectionView extends BaseComposite{
 		dataset2.setBorderWidth(1);
 		dataset2.setData(getRandomDigits(months));
 		
-//		ChartPointerOptions pOptions = new ChartPointerOptions();
-//		pOptions.setCursorPointer(Cursor.CROSSHAIR);
-//			chart.getOptions().getPlugins().setOptions(ChartPointer.ID, pOptions);
 		chart.getPlugins().add(new ChartPointer());
 
 		chart.getData().setLabels(getLabels());

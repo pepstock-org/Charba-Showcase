@@ -34,9 +34,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-
 /**
-
  * @author Andrea "Stock" Stocchero
  */
 public class TimeSeriesZoomView extends BaseComposite{
@@ -92,7 +90,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 				return null;
 			}
 		});
-		
 		
 		final LineDataset dataset1 = chart.newDataset();
 
@@ -177,9 +174,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-//		Image mimg = new Image(small.getCanvas().toDataUrl());
-//		mimg.setPixelSize(small.getCanvas().getOffsetWidth(),small.getCanvas().getOffsetHeight());
-//		img.add(mimg);
 		for (Dataset dataset : small.getData().getDatasets()){
 			LineDataset scDataset = (LineDataset)dataset;
 			for (DataPoint dp : scDataset.getDataPoints()){
