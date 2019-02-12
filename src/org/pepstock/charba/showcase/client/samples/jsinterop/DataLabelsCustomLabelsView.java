@@ -82,10 +82,10 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(Align.end);
 		option.setAnchor(Anchor.end);
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public Object color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor color(AbstractChart<?, ?> chart, Context context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getDatasetIndex());
 			}

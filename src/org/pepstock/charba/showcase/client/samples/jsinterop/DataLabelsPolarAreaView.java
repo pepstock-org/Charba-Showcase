@@ -62,10 +62,10 @@ public class DataLabelsPolarAreaView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				PolarAreaDataset ds = (PolarAreaDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getIndex()).alpha(1D).toRGBA();
 			}

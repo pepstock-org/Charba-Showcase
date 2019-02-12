@@ -110,10 +110,10 @@ public class DataLabelsMirrorView extends BaseComposite{
 			}
 		});
 
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 			
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(0);
 			}

@@ -94,19 +94,19 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<Gradient>() {
 
 
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public Gradient backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsGradient();
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback<Gradient>() {
 			
 			@Override
-			public Object borderColor(AbstractChart<?, ?> chart, Context context) {
+			public Gradient borderColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsGradient();
 			}

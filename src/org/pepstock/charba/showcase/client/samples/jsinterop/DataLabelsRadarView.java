@@ -80,10 +80,10 @@ public class DataLabelsRadarView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				RadarDataset ds = (RadarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}

@@ -115,27 +115,27 @@ public class DataLabelsHighlightView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return hovered.isHovered() ? ds.getBackgroundColor() : HtmlColor.White;
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback<IsColor>() {
 			
 			@Override
-			public Object borderColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor borderColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBorderColorAsString();
+				return ds.getBorderColor();
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public Object color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor color(AbstractChart<?, ?> chart, Context context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return hovered.isHovered() ? HtmlColor.White : ds.getBackgroundColor() ;

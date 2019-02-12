@@ -86,48 +86,6 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
 		chart.getOptions().getPlugins().setEnabled("title", false);
-
-//		data: {
-//			labels: labels,
-//			datasets: [{
-//				label: 'France',
-//				backgroundColor: Samples.color(0),
-//				borderColor: Samples.color(0),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 10,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: function(context) {
-//						return context.active ? 'start' : 'center';
-//					}
-//				}
-//			}, {
-//				label: 'Canada',
-//				backgroundColor: Samples.color(1),
-//				borderColor: Samples.color(1),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				})
-//			}, {
-//				label: 'USA',
-//				backgroundColor: Samples.color(2),
-//				borderColor: Samples.color(2),
-//				data: Samples.numbers({
-//					count: DATA_COUNT,
-//					min: 0,
-//					max: 100
-//				}),
-//				datalabels: {
-//					align: function(context) {
-//						return context.active ? 'end' : 'center';
-//					}
-//				}
-//			}]
-//		},
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -195,43 +153,8 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
-//		plugins: {
-//			datalabels: {
-//				backgroundColor: function(context) {
-//					return context.active ? context.dataset.backgroundColor : 'white';
-//				},
-//				borderColor: function(context) {
-//					return context.dataset.backgroundColor;
-//                },
-//				borderRadius: function(context) {
-//					return context.active ? 0 : 32;
-//                },
-//                borderWidth: 1,
-//				color: function(context) {
-//					return context.active ? 'white' : context.dataset.backgroundColor;
-//				},
-//				font: {
-//					weight: 'bold'
-//				},
-//                formatter: function(value, context) {
-//					value = Math.round(value * 100) / 100;
-//                    return context.active
-//                        ? context.dataset.label + '\n' + value + '%'
-//                        : Math.round(value);
-//				},
-//				offset: 8,
-//                textAlign: 'center'
-//			}
-//		},
-//		scales: {
-//			yAxes: [{
-//				stacked: true
-//			}]
-//		}
-//	}
-		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 
 			@Override
 			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
@@ -239,7 +162,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.White.toRGBA();
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback<String>() {
 			
 			@Override
 			public String borderColor(AbstractChart<?, ?> chart, Context context) {
@@ -247,7 +170,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 				return ds.getBackgroundColorAsString();
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<String>() {
 			
 			@Override
 			public String color(AbstractChart<?, ?> chart, Context context) {

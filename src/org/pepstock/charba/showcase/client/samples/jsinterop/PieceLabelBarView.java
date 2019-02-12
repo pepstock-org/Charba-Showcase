@@ -15,7 +15,6 @@ import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.ext.labels.RenderCallback;
 import org.pepstock.charba.client.ext.labels.RenderItem;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -66,10 +65,10 @@ public class PieceLabelBarView extends BaseComposite{
 		
 //		set(option);
 		
-		option.setRender(new RenderCallback() {
+		option.setRender(new RenderCallback<String>() {
 			
 			@Override
-			public Object render(AbstractChart<?, ?> chart, RenderItem item) {
+			public String render(AbstractChart<?, ?> chart, RenderItem item) {
 				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
 			}
 		});
@@ -86,13 +85,11 @@ public class PieceLabelBarView extends BaseComposite{
 //		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
 //		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
-		option.setFontColor(new FontColorCallback() {
+		option.setFontColor(new FontColorCallback<IsColor>() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
-				Window.getConsole().log(chart.getId());
-				//Window.getConsole().log("Dataset Index "+item.getDatasetIndex()+", "+"Index "+item.getIndex());
-				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.Black.toRGBA();
+			public IsColor color(AbstractChart<?, ?> chart, FontColorItem item) {
+				return item.getValue() > 25 ? HtmlColor.Red : HtmlColor.Black;
 			}
 		});
 		

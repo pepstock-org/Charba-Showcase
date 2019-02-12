@@ -11,7 +11,6 @@ import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.ext.labels.Position;
 import org.pepstock.charba.client.ext.labels.Render;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -40,9 +39,7 @@ public class PieceLabelPositionView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Doughnut Chart with Labels plugin");
+		chart.getOptions().getTitle().setDisplay(false);
 		
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
@@ -55,12 +52,10 @@ public class PieceLabelPositionView extends BaseComposite{
 
 		option.setRender(Render.label);
 		option.setFontColor(HtmlColor.White);
-//		option.setFontSize(12);
-//		option.setFontFamily("'Lucida Console', Monaco, monospace");
+		option.setFontSize(16);
+		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		option.setArc(true);
 		option.setPosition(Position.border);
-		
-		Charba_Showcase.LOG.info(option.toJSON());
 		
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}

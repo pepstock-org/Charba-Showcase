@@ -100,14 +100,14 @@ public class DataLabelsDataView extends BaseComposite{
 				return prev < curr && next < curr ? Align.end :	prev > curr && next > curr ? Align.start :	Align.center;
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public Object color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor color(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
-				return diff < 0 ? HtmlColor.Red.toRGBA() : diff > 0 ? HtmlColor.Green.toRGBA() : HtmlColor.Gray.toRGBA() ;
+				return diff < 0 ? HtmlColor.Red : diff > 0 ? HtmlColor.Green : HtmlColor.Gray ;
 			}
 		});
 		option.setFormatter(new FormatterCallback() {

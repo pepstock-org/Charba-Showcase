@@ -104,10 +104,10 @@ public class DataLabelsBubbleView extends BaseComposite{
 				return point.getR() < 20D ? Align.end : Align.center;
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<String>() {
 			
 			@Override
-			public Object color(AbstractChart<?, ?> chart, Context context) {
+			public String color(AbstractChart<?, ?> chart, Context context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString().get(context.getIndex());
 			}

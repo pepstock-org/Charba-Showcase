@@ -92,26 +92,26 @@ public class DataLabelsIndicesView extends BaseComposite{
 			}
 		});
 
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 			
 			@Override
-			public Object backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new BorderColorCallback<IsColor>() {
 			
 			@Override
-			public Object borderColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor borderColor(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public Object color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor color(AbstractChart<?, ?> chart, Context context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? HtmlColor.White : ds.getBorderColor();
 			}
