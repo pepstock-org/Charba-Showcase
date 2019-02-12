@@ -144,10 +144,6 @@
 									styleName='{myStyle.myLabel}'>Dataset labelling</g:Label>
 								<g:Label ui:field="flagsplugin"
 									styleName='{myStyle.myLabel}'>Ticks with flags</g:Label>
-								<g:Label ui:field="piecelabelplugin"
-									styleName='{myStyle.myLabel}'>External Plugin (PieceLabel)</g:Label>
-								<g:Label ui:field="piecelabelbarplugin"
-									styleName='{myStyle.myLabel}'>External Plugin Bar (PieceLabel)</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -263,7 +259,28 @@
 									styleName='{myStyle.myLabel}'>Custom labels</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
-						
+						<g:DisclosurePanel animationEnabled="true"
+							open="false">
+							<g:header>Extensions (Labels)</g:header>
+							<g:VerticalPanel spacing="4">
+								<g:Label ui:field="piecelabelPieLabels"
+									styleName='{myStyle.myLabel}'>Labels </g:Label>
+								<g:Label ui:field="piecelabelPiePercentage"
+									styleName='{myStyle.myLabel}'>Percentage</g:Label>
+								<g:Label ui:field="piecelabelPieValue"
+									styleName='{myStyle.myLabel}'>Value</g:Label>
+								<g:Label ui:field="piecelabelPiePosition"
+									styleName='{myStyle.myLabel}'>Position</g:Label>
+								<g:Label ui:field="piecelabelPieImages"
+									styleName='{myStyle.myLabel}'>Images</g:Label>
+								<g:Label ui:field="piecelabelPieMulti"
+									styleName='{myStyle.myLabel}'>Multi-options</g:Label>
+								<g:Label ui:field="piecelabelPolarMulti"
+									styleName='{myStyle.myLabel}'>Polar</g:Label>
+								<g:Label ui:field="piecelabelBar"
+									styleName='{myStyle.myLabel}'>Bar</g:Label>
+							</g:VerticalPanel>
+						</g:DisclosurePanel>
 					</g:VerticalPanel>
 				</g:VerticalPanel>
 			</g:cell>

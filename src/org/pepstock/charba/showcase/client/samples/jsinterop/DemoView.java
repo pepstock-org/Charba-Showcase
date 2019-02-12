@@ -49,7 +49,6 @@ public class DemoView extends Composite {
 	interface DemoViewUiBinder extends UiBinder<Widget, DemoView> {
 	}
 
-
 	@UiField
 	VerticalPanel content;
 
@@ -435,18 +434,6 @@ public class DemoView extends Composite {
 		 content.add(new TimeSeriesBarView());
 	}
 
-	@UiHandler("piecelabelplugin")
-	protected void handleExtPlugin(ClickEvent event) {
-		clearPreviousChart();
-		 content.add(new PieceLabelView());
-	}
-	
-	@UiHandler("piecelabelbarplugin")
-	protected void handleExtPluginBar(ClickEvent event) {
-		clearPreviousChart();
-		 content.add(new PieceLabelBarView());
-	}
-
 	@UiHandler("lineWithGwtMaterialColors")
 	protected void handleGwtMaterialColors(ClickEvent event) {
 		clearPreviousChart();
@@ -623,5 +610,37 @@ public class DemoView extends Composite {
 	protected void handleDatalabelsCustomLabels(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new DataLabelsCustomLabelsView());
-	}	
+	}
+	
+	@UiHandler("piecelabelPieLabels")
+	protected void handleLabelsPieLabels(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelView());
+	}
+
+	@UiHandler("piecelabelPiePercentage")
+	protected void handleLabelsPiePercentage(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelPercentageView());
+	}
+
+	@UiHandler("piecelabelPieValue")
+	protected void handleLabelsPieValue(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelValueView());
+	}
+
+	@UiHandler("piecelabelPiePosition")
+	protected void handleLabelsPiePosition(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelPositionView());
+	}
+
+	@UiHandler("piecelabelBar")
+	protected void handleLabelsBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelBarView());
+	}
+
+
 }

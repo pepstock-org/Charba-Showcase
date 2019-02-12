@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
@@ -20,17 +21,17 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * @author Andrea "Stock" Stocchero
  */
-public class PieceLabelView extends BaseComposite{
+public class PieceLabelPercentageView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PieceLabelView> {
+	interface ViewUiBinder extends UiBinder<Widget, PieceLabelPercentageView> {
 	}
 
 	@UiField
 	PieChart chart;
 
-	public PieceLabelView() {
+	public PieceLabelPercentageView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -48,48 +49,12 @@ public class PieceLabelView extends BaseComposite{
 
 		
 		LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.label);
-//		option.setRender(Render.image);
-//		option.setPrecision(2);
-//		option.setFontColor("black");
-//		option.setFontSize(16);
-//		option.setOverlap(false);
-		
-//		set(option);
-		
-//		option.setRenderStringCallback(new RenderStringCallback() {
-//			
-//			@Override
-//			public String render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
-//			}
-//		});
-//		
-//		option.setRender(new RenderCallback() {
-//
-//			@Override
-//			public Object render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return img;
-//			}
-//		});
-//		
-		
-//		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
-//		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
-		
-//		option.setFontColor(new FontColorCallback() {
-//			
-//			@Override
-//			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
-//				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.White.toRGBA();
-//			}
-//		});
-		
+		option.setRender(Render.percentage);
+		option.setFontColor(HtmlColor.White);
+		option.setPrecision(2);
+		option.setFontSize(16);
+	
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
-
-		//chart.getOptions().merge(option, PieceLabelOptions.ID);
-		
-
 	}
 
 	@UiHandler("randomize")

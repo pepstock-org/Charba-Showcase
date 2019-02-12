@@ -2,35 +2,45 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
+import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.ext.labels.LabelsOptions;
 import org.pepstock.charba.client.ext.labels.LabelsPlugin;
 import org.pepstock.charba.client.ext.labels.Render;
+import org.pepstock.charba.client.ext.labels.RenderCallback;
+import org.pepstock.charba.client.ext.labels.RenderItem;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author Andrea "Stock" Stocchero
  */
-public class PieceLabelView extends BaseComposite{
+public class PieceLabelValueView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PieceLabelView> {
+	interface ViewUiBinder extends UiBinder<Widget, PieceLabelValueView> {
 	}
 
 	@UiField
 	PieChart chart;
+	
+	final MyRenderer renderer = new MyRenderer();
+	
+	final LabelsOptions option = new LabelsOptions();
 
-	public PieceLabelView() {
+	public PieceLabelValueView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -45,51 +55,15 @@ public class PieceLabelView extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-
 		
-		LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.label);
-//		option.setRender(Render.image);
-//		option.setPrecision(2);
-//		option.setFontColor("black");
-//		option.setFontSize(16);
-//		option.setOverlap(false);
-		
-//		set(option);
-		
-//		option.setRenderStringCallback(new RenderStringCallback() {
-//			
-//			@Override
-//			public String render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
-//			}
-//		});
-//		
-//		option.setRender(new RenderCallback() {
-//
-//			@Override
-//			public Object render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return img;
-//			}
-//		});
-//		
-		
-//		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
-//		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
-		
-//		option.setFontColor(new FontColorCallback() {
-//			
-//			@Override
-//			public String color(AbstractChart<?, ?> chart, FontColorItem item) {
-//				return item.getValue() > 25 ? HtmlColor.Red.toRGBA() : HtmlColor.White.toRGBA();
-//			}
-//		});
+		option.setRender(Render.value);
+		option.setFontColor(HtmlColor.White);
+		option.setPrecision(2);
+		option.setFontSize(14);
+		option.setFontStyle(FontStyle.bold);
+		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
-
-		//chart.getOptions().merge(option, PieceLabelOptions.ID);
-		
-
 	}
 
 	@UiHandler("randomize")
@@ -138,5 +112,27 @@ public class PieceLabelView extends BaseComposite{
 	@UiHandler("remove_data")
 	protected void handleremoveData(ClickEvent event) {
 		removeData(chart);
+	}
+	
+	@UiHandler("format")
+	protected void handleFormat(ClickEvent event) {
+		boolean checked = ((CheckBox) event.getSource()).getValue();
+		if (checked) {
+			option.setRender(renderer);	
+		} else {
+			option.setRender(Render.value);
+		}
+		
+		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		chart.update();
+	}
+		
+	static class MyRenderer implements RenderCallback{
+
+		@Override
+		public Object render(AbstractChart<?, ?> chart, RenderItem item) {
+			return "$$ "+item.getValue();
+		}
+		
 	}
 }
