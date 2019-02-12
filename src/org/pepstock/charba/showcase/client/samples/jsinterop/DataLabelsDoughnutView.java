@@ -14,11 +14,14 @@ import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.datalabels.Display;
 import org.pepstock.charba.client.ext.datalabels.DisplayCallback;
+import org.pepstock.charba.client.ext.datalabels.FormatterCallback;
+import org.pepstock.charba.client.ext.datalabels.Percentage;
 import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.client.items.UndefinedValues;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -40,6 +43,8 @@ public class DataLabelsDoughnutView extends BaseComposite{
 
 	@UiField
 	VerticalPanel container;
+	
+	final NumberFormat percentageFormatter = NumberFormat.getPercentFormat();
 
 	public DataLabelsDoughnutView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -111,6 +116,14 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		option.setBorderWidth(2);
 		option.setColor(HtmlColor.White);
 		option.getFont().setWeight(Weight.bold);
+		option.setFormatter(new FormatterCallback() {
+			
+			@Override
+			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+				double percentage = Percentage.compute(chart, value, context, false);
+				return percentageFormatter.format(percentage);
+			}
+		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 	}

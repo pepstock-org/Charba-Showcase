@@ -15,6 +15,8 @@ import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.ext.datalabels.Display;
 import org.pepstock.charba.client.ext.datalabels.DisplayCallback;
+import org.pepstock.charba.client.ext.datalabels.FormatterCallback;
+import org.pepstock.charba.client.ext.datalabels.Percentage;
 import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
@@ -130,6 +132,14 @@ public class DataLabelsBarView extends BaseComposite{
 		option.setBorderRadius(4);
 		option.setColor(HtmlColor.White);
 		option.getFont().setWeight(Weight.bold);
+		option.setFormatter(new FormatterCallback() {
+			
+			@Override
+			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+				double percentage = Percentage.compute(chart, value, context, true);
+				return Math.round(percentage*100)+"%";
+			}
+		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 

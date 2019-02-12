@@ -128,7 +128,7 @@ public class DemoView extends Composite {
 	private void clearPreviousChart() {
 		int count = content.getWidgetCount();
 		for (int i = 0; i < count; i++) {
-			content.remove(0);
+			content.remove(i);
 		}
 	}
 
@@ -639,13 +639,13 @@ public class DemoView extends Composite {
 	@UiHandler("piecelabelPieImages")
 	protected void handleLabelsPieImages(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelImageView());
+		content.add(new PieceLabelImageView());
 	}
 
 	@UiHandler("piecelabelPieMulti")
 	protected void handleLabelsPieMulti(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelMultiOptionsView());
+		content.add(new PieceLabelMultiOptionsView());
 	}
 
 	@UiHandler("piecelabelPolar")
@@ -659,6 +659,5 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new PieceLabelBarView());
 	}
-
 
 }

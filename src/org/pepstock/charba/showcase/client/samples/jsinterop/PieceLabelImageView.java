@@ -34,7 +34,7 @@ public class PieceLabelImageView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setDisplay(false);
+		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
@@ -49,7 +49,7 @@ public class PieceLabelImageView extends BaseComposite{
 		final LabelsOptions option = new LabelsOptions();
 		option.setRender(Render.image);
 		option.setImages(Images.INSTANCE.flagIT(), Images.INSTANCE.flagFR(), Images.INSTANCE.flagDE());
-		
+
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}
 

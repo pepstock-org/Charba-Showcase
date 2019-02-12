@@ -22,6 +22,9 @@ public class Charba_Showcase implements EntryPoint {
 	public void onModuleLoad() {
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
+		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());
+		Image.prefetch(Images.INSTANCE.flagFR().getSafeUri());
+		Image.prefetch(Images.INSTANCE.flagDE().getSafeUri());
 		RootPanel.get().add(new DemoView());
 	}
 
