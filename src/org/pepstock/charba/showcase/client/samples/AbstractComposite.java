@@ -17,8 +17,12 @@ public abstract class AbstractComposite extends Composite{
 	protected int months = 7;
 	
 	protected String[] getLabels(){
-		String[] values = new String[months];
-		for (int i=0; i<months; i++){
+		return getLabels(months);
+	}
+
+	protected String[] getLabels(int size){
+		String[] values = new String[size];
+		for (int i=0; i<size; i++){
 			values[i] = MONTHS[i];
 		}
 		return values;

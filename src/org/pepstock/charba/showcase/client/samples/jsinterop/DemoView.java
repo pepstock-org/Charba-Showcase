@@ -636,6 +636,18 @@ public class DemoView extends Composite {
 		 content.add(new PieceLabelPositionView());
 	}
 
+	@UiHandler("piecelabelPieImages")
+	protected void handleLabelsPieImages(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelImageView());
+	}
+
+	@UiHandler("piecelabelPieMulti")
+	protected void handleLabelsPieMulti(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelMultiOptionsView());
+	}
+
 	@UiHandler("piecelabelBar")
 	protected void handleLabelsBar(ClickEvent event) {
 		clearPreviousChart();
