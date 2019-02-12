@@ -275,7 +275,7 @@
 									styleName='{myStyle.myLabel}'>Images</g:Label>
 								<g:Label ui:field="piecelabelPieMulti"
 									styleName='{myStyle.myLabel}'>Multi-options</g:Label>
-								<g:Label ui:field="piecelabelPolarMulti"
+								<g:Label ui:field="piecelabelPolar"
 									styleName='{myStyle.myLabel}'>Polar</g:Label>
 								<g:Label ui:field="piecelabelBar"
 									styleName='{myStyle.myLabel}'>Bar</g:Label>

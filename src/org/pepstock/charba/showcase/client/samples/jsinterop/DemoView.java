@@ -648,6 +648,12 @@ public class DemoView extends Composite {
 		 content.add(new PieceLabelMultiOptionsView());
 	}
 
+	@UiHandler("piecelabelPolar")
+	protected void handleLabelsPolar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PieceLabelPolarView());
+	}
+
 	@UiHandler("piecelabelBar")
 	protected void handleLabelsBar(ClickEvent event) {
 		clearPreviousChart();
