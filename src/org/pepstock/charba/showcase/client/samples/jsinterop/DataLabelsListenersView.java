@@ -11,16 +11,16 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.datalabels.Context;
+import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.datalabels.enums.Align;
+import org.pepstock.charba.client.datalabels.enums.Anchor;
+import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
-import org.pepstock.charba.client.ext.datalabels.Align;
-import org.pepstock.charba.client.ext.datalabels.Anchor;
-import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
-import org.pepstock.charba.client.ext.datalabels.Context;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.Weight;
-import org.pepstock.charba.client.impl.callbacks.DataLabelsPointer;
+import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -148,11 +148,11 @@ public class DataLabelsListenersView extends BaseComposite{
 		option.getFont().setWeight(Weight.bold);
 		
 		MyListener listener = new MyListener(element);
-		
-		option.getListeners().setEnterEventHandler(listener);
-		option.getListeners().setLeaveEventHandler(listener);
-		option.getListeners().setClickEventHandler(listener);
-		
+		option.setListenersHadler(listener);
+//		option.getListeners().setEnterEventHandler(listener);
+//		option.getListeners().setLeaveEventHandler(listener);
+//		option.getListeners().setClickEventHandler(listener);
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		
 	}
@@ -175,7 +175,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		removeData(chart);
 	}
 	
-	static class MyListener extends DataLabelsPointer{
+	static class MyListener extends DataLabelsPointerHandler{
 		
 		final PreElement element;
 

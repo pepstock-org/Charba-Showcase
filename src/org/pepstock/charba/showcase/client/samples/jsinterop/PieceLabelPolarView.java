@@ -6,10 +6,12 @@ import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.Position;
-import org.pepstock.charba.client.ext.labels.Render;
+import org.pepstock.charba.client.labels.LabelsOptions;
+import org.pepstock.charba.client.labels.LabelsOptionsBuilder;
+import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.labels.enums.Position;
+import org.pepstock.charba.client.labels.enums.Render;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -53,11 +55,13 @@ public class PieceLabelPolarView extends BaseComposite{
 		option1.setArc(true);
 		option1.setPosition(Position.outside);
 
-		LabelsOptions option2 = new LabelsOptions();
-		option2.setRender(Render.percentage);
-		option2.setFontColor(HtmlColor.White);
-		option2.setPrecision(2);
+//		LabelsOptions option2 = new LabelsOptions();
+//		option2.setRender(Render.percentage);
+//		option2.setFontColor(HtmlColor.White);
+//		option2.setPrecision(2);
 
+		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.percentage).setFontColor(HtmlColor.White).setPrecision(2).build();
+		Charba_Showcase.LOG.info(option2.toJSON());
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
 	}
 

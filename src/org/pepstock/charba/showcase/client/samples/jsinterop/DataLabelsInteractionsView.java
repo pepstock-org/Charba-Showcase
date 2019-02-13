@@ -8,18 +8,18 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.datalabels.Context;
+import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
+import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
+import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
+import org.pepstock.charba.client.datalabels.enums.Align;
+import org.pepstock.charba.client.datalabels.enums.TextAlign;
+import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.ext.datalabels.Align;
-import org.pepstock.charba.client.ext.datalabels.AlignCallback;
-import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
-import org.pepstock.charba.client.ext.datalabels.BorderColorCallback;
-import org.pepstock.charba.client.ext.datalabels.ColorCallback;
-import org.pepstock.charba.client.ext.datalabels.Context;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.FormatterCallback;
-import org.pepstock.charba.client.ext.datalabels.TextAlign;
-import org.pepstock.charba.client.ext.datalabels.Weight;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -44,34 +44,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 	
 	public DataLabelsInteractionsView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		Chart.helpers.merge(Chart.defaults.global, {
-//			aspectRatio: 4/3,
-//            tooltips: false,
-//			layout: {
-//				padding: {
-//					bottom: 25,
-//					right: 50,
-//					left: 25,
-//					top: 50
-//				}
-//			},
-//			elements: {
-//				line: {
-//					fill: false
-//				}
-//			},
-//			plugins: {
-//				legend: false,
-//				title: false
-//			}
-//		});
-//		
-//		hover: {
-//			mode: 'index',
-//			intersect: false
-//		},
-
+	
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);

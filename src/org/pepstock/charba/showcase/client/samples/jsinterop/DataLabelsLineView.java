@@ -1,5 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
+import java.util.List;
+
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -7,16 +9,23 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.datalabels.Context;
+import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.datalabels.enums.Align;
+import org.pepstock.charba.client.datalabels.enums.Anchor;
+import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.ext.datalabels.Align;
-import org.pepstock.charba.client.ext.datalabels.Anchor;
-import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
-import org.pepstock.charba.client.ext.datalabels.Context;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.Weight;
+import org.pepstock.charba.client.events.DatasetSelectionEvent;
+import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.impl.callbacks.DataLabelsSelectionHandler;
+import org.pepstock.charba.client.utils.Window;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
+import org.pepstock.charba.showcase.client.samples.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -125,8 +134,32 @@ public class DataLabelsLineView extends BaseComposite{
 		option.setBorderRadius(4);
 		option.setColor(HtmlColor.White);
 		option.getFont().setWeight(Weight.bold);
+		DataLabelsSelectionHandler listener = new DataLabelsSelectionHandler();
+		listener.addDatasetSelectionEventHandler(new DatasetSelectionEventHandler() {
+			
+			@Override
+			public void onSelect(DatasetSelectionEvent event) {
+				Window.getConsole().log(event);
+				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getChart();
+				Labels labels = chart.getData().getLabels();
+				List<Dataset> datasets = chart.getData().getDatasets();
+				if (datasets != null && !datasets.isEmpty()){
+					StringBuilder sb = new StringBuilder();
+					sb.append("Dataset index: <b>").append(event.getItem().getDatasetIndex()).append("</b><br>");
+					sb.append("Dataset label: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getLabel()).append("</b><br>");
+					sb.append("Dataset data: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getData().get(event.getItem().getIndex())).append("</b><br>");
+					sb.append("Index: <b>").append(event.getItem().getIndex()).append("</b><br>");
+					sb.append("Value: <b>").append(labels.getStrings(event.getItem().getIndex())[0]).append("</b><br>");
+					new Toast("Dataset Selected!", sb.toString()).show();
+				}
+				
+			}
+		});
+		option.setListenersHadler(listener);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
+		
+		Charba_Showcase.LOG.info(chart.getElement()+"");
 	}
 	
 	@UiHandler("randomize")

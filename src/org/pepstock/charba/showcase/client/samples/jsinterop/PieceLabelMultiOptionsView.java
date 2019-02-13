@@ -6,10 +6,10 @@ import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.Position;
-import org.pepstock.charba.client.ext.labels.Render;
+import org.pepstock.charba.client.labels.LabelsOptions;
+import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.labels.enums.Position;
+import org.pepstock.charba.client.labels.enums.Render;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

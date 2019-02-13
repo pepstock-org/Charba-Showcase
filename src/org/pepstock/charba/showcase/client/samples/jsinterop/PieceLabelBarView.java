@@ -9,12 +9,12 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.ext.labels.FontColorCallback;
-import org.pepstock.charba.client.ext.labels.FontColorItem;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.RenderCallback;
-import org.pepstock.charba.client.ext.labels.RenderItem;
+import org.pepstock.charba.client.labels.FontColorItem;
+import org.pepstock.charba.client.labels.LabelsOptions;
+import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.labels.RenderItem;
+import org.pepstock.charba.client.labels.callbacks.FontColorCallback;
+import org.pepstock.charba.client.labels.callbacks.RenderCallback;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;

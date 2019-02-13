@@ -3,9 +3,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.Render;
+import org.pepstock.charba.client.labels.LabelsOptions;
+import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.labels.enums.Render;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;

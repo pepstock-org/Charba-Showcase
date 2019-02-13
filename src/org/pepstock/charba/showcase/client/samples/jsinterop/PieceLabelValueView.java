@@ -9,11 +9,11 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.Render;
-import org.pepstock.charba.client.ext.labels.RenderCallback;
-import org.pepstock.charba.client.ext.labels.RenderItem;
+import org.pepstock.charba.client.labels.LabelsOptions;
+import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.labels.RenderItem;
+import org.pepstock.charba.client.labels.callbacks.RenderCallback;
+import org.pepstock.charba.client.labels.enums.Render;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

@@ -12,21 +12,14 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
-import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.Display;
-import org.pepstock.charba.client.ext.datalabels.DisplayCallback;
-import org.pepstock.charba.client.ext.datalabels.Weight;
-import org.pepstock.charba.client.ext.labels.LabelsOptions;
-import org.pepstock.charba.client.ext.labels.LabelsPlugin;
-import org.pepstock.charba.client.ext.labels.Render;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
+import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -97,29 +90,29 @@ public class DemoView extends Composite {
 		Defaults.get().getControllers().extend(new MyHorizontalBarController());
 		
 		LabelsPlugin.enable(false);
-		LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.value);
-		option.setPrecision(2);
-		option.setFontColor("white");
-		option.setFontSize(16);
-		option.setOverlap(false);
-		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
+//		LabelsOptions option = new LabelsOptions();
+//		option.setRender(Render.value);
+//		option.setPrecision(2);
+//		option.setFontColor("white");
+//		option.setFontSize(16);
+//		option.setOverlap(false);
+//		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
 		
 		DataLabelsPlugin.enable();
 		
-		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setDisplay(new DisplayCallback() {
-			
-			@Override
-			public Display display(AbstractChart<?, ?> chart, org.pepstock.charba.client.ext.datalabels.Context context) {
-				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
-				double value = ds.getData().get(context.getIndex());
-				return value > 15D ? Display.isTrue : Display.isFalse;
-			}
-		});
-		option1.setBorderRadius(4);
-		option1.setColor(HtmlColor.White);
-		option1.getFont().setWeight(Weight.bold);
+//		DataLabelsOptions option1 = new DataLabelsOptions();
+//		option1.setDisplay(new DisplayCallback() {
+//			
+//			@Override
+//			public Display display(AbstractChart<?, ?> chart, org.pepstock.charba.client.datalabels.Context context) {
+//				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
+//				double value = ds.getData().get(context.getIndex());
+//				return value > 15D ? Display.isTrue : Display.isFalse;
+//			}
+//		});
+//		option1.setBorderRadius(4);
+//		option1.setColor(HtmlColor.White);
+//		option1.getFont().setWeight(Weight.bold);
 		
 //		Defaults.get().getGlobal().getPlugins().setOptions(DataLabelsPlugin.ID, option1);
 		

@@ -8,11 +8,11 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
-import org.pepstock.charba.client.ext.datalabels.BackgroundColorCallback;
-import org.pepstock.charba.client.ext.datalabels.Context;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsOptions;
-import org.pepstock.charba.client.ext.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.ext.datalabels.Weight;
+import org.pepstock.charba.client.datalabels.Context;
+import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.datalabels.enums.Weight;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
