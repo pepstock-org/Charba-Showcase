@@ -50,7 +50,6 @@ public class TooltipHTMLPieView extends BaseComposite{
 			
 			@Override
 			public void onCustom(AbstractChart<?, ?> chart, TooltipModel model) {
-				// Hide if no tooltip
 				if (model.getOpacity() == 0){
 					element.getStyle().setOpacity(0);
 					return;

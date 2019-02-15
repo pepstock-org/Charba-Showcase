@@ -25,6 +25,12 @@ public interface Images extends ClientBundle {
 	ImageResource gwt();
 
 	/**
+	 * @return GWT logo image
+	 */
+	@Source("/images/weather-sun.png")
+	ImageResource sun();
+
+	/**
 	 * @return CHARTJS logo image
 	 */
 	@Source("/images/chartjs.png")

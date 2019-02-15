@@ -11,12 +11,15 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -38,6 +41,12 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 	
 	public VerticalBarPluginLabelView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		DivElement wrapper = Document.get().createDivElement();
+		DivElement element = Document.get().createDivElement();
+		element.setAttribute("xmlns", Document.get().getDocumentElement().getAttribute("xmlns"));
+		wrapper.appendChild(element);
+		Window.getConsole().log(wrapper.getInnerHTML());
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
@@ -79,7 +88,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
 				final int fontSize = 16;
 				final int padding = 5;
-				Context2d ctx = chart.getCanvas().getContext2d();
+				final Context2d ctx = chart.getCanvas().getContext2d();
 
 				List<Dataset> dss = chart.getData().getDatasets();
 				for (int i=0; i<dss.size(); i++){

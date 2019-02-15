@@ -33,6 +33,8 @@ public class LineView extends BaseComposite{
 	@UiField
 	LineChart chart;
 	
+
+	
 	public LineView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -83,6 +85,7 @@ public class LineView extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 	}
 	
+	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){
@@ -118,9 +121,10 @@ public class LineView extends BaseComposite{
 	protected void handleAddData(ClickEvent event) {
 		addData(chart);
 	}
-
+	
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
+
 }

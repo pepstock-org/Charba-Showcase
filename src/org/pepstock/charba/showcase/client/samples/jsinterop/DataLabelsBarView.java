@@ -11,13 +11,13 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.Percentage;
 import org.pepstock.charba.client.datalabels.callbacks.DisplayCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Display;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.impl.callbacks.Percentage;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;

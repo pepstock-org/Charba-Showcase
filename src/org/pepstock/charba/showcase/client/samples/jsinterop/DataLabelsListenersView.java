@@ -148,10 +148,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		option.getFont().setWeight(Weight.bold);
 		
 		MyListener listener = new MyListener(element);
-		option.setListenersHadler(listener);
-//		option.getListeners().setEnterEventHandler(listener);
-//		option.getListeners().setLeaveEventHandler(listener);
-//		option.getListeners().setClickEventHandler(listener);
+		option.setListenersHandler(listener);
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		

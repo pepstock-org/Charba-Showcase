@@ -90,7 +90,7 @@ public class DataLabelsRadarView extends BaseComposite{
 		});
 		option.setColor(HtmlColor.White);
 		option.getPadding().set(4);
-		option.getFont().setFontSize(10);
+		option.getFont().setSize(10);
 		option.getFont().setWeight(Weight.bold);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);

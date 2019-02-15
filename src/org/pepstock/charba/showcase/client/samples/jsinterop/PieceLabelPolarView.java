@@ -55,11 +55,6 @@ public class PieceLabelPolarView extends BaseComposite{
 		option1.setArc(true);
 		option1.setPosition(Position.outside);
 
-//		LabelsOptions option2 = new LabelsOptions();
-//		option2.setRender(Render.percentage);
-//		option2.setFontColor(HtmlColor.White);
-//		option2.setPrecision(2);
-
 		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.percentage).setFontColor(HtmlColor.White).setPrecision(2).build();
 		Charba_Showcase.LOG.info(option2.toJSON());
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));

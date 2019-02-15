@@ -87,7 +87,7 @@ public class DataLabelsDataView extends BaseComposite{
 		option.setBorderRadius(4);
 		option.setBorderWidth(1);
 		option.setOffset(8);
-		option.getFont().setFontSize(11);
+		option.getFont().setSize(11);
 		option.getFont().setWeight(Weight.bold);
 		option.setAlign(new AlignCallback() {
 			

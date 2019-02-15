@@ -61,6 +61,16 @@ public abstract class AbstractComposite extends Composite{
 			return Math.round(Math.random()*100);
 		}
 	}
+	
+	protected double[] getRandomDigits(int length, double min, double max){
+		double[] values = new double[length];
+		for(int i=0;i<length;i++){
+			values[i] = (double)((int) (Math.random() * (max - min))) + min;
+		}
+		return values;
+	}
+
+	
 
 	protected double[] getRandomDigitsLog(int length){
 		double[] values = new double[length];
@@ -76,14 +86,9 @@ public abstract class AbstractComposite extends Composite{
 			values[i] = Colors.ALL[i].alpha(alpha);
 		}
 		return values;
-		
 	}
 
 	protected Gradient[] getRadialGradients(int length){
-//		IsColor[] values = new IsColor[length];
-//		for(int i=0;i<length;i++){
-//			values[i] = Colors.ALL[i].alpha(alpha);
-//		}
 		IsColor[] colors = GwtMaterialColor.values();
 		Gradient[] gradients = new Gradient[length];
 		for(int i=0;i<length;i++){

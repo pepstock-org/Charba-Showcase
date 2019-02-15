@@ -1,0 +1,178 @@
+package org.pepstock.charba.showcase.client.samples.jsinterop;
+
+import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.ChartNode;
+import org.pepstock.charba.client.ChartType;
+import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.configuration.CartesianLinearAxis;
+import org.pepstock.charba.client.data.BarDataset;
+import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.ChartAreaNode;
+import org.pepstock.charba.client.items.ScaleItem;
+import org.pepstock.charba.client.options.Scales;
+import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.client.utils.AnnotationBuilder;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.showcase.client.resources.Images;
+
+import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Widget;
+
+/**
+ * @author Andrea "Stock" Stocchero
+ */
+public class HTMLAnnnotationView extends BaseComposite {
+
+	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
+
+	interface ViewUiBinder extends UiBinder<Widget, HTMLAnnnotationView> {
+	}
+
+	@UiField
+	BarChart chart;
+
+	public HTMLAnnnotationView() {
+		initWidget(uiBinder.createAndBindUi(this));
+
+		chart.getOptions().setResponsive(true);
+		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getTitle().setDisplay(true);
+		chart.getOptions().getTitle().setText("Charba Raster Chart");
+		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setIntersect(true);
+		chart.getOptions().getLayout().getPadding().setBottom(200);
+
+		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
+		axis1.setId("y-axis-1");
+		axis1.setPosition(Position.left);
+		axis1.setDisplay(true);
+		axis1.getTicks().setBeginAtZero(true);
+		axis1.getScaleLabel().setDisplay(true);
+		axis1.getScaleLabel().setLabelString("Percentage");
+
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
+		axis2.setId("y-axis-2");
+		axis2.setPosition(Position.right);
+		axis2.setDisplay(true);
+		axis2.getTicks().setBeginAtZero(true);
+		axis2.getGrideLines().setDrawOnChartArea(false);
+		axis2.getScaleLabel().setDisplay(true);
+		axis2.getScaleLabel().setLabelString("Degrees");
+
+		chart.getOptions().getScales().setYAxes(axis1, axis2);
+
+		final BarDataset dataset1 = chart.newDataset();
+		dataset1.setType(ChartType.bar);
+		dataset1.setLabel("Humidity");
+
+		dataset1.setData(getRandomDigits(months, 0, 100));
+		dataset1.setYAxisID("y-axis-1");
+
+		final LineDataset dataset2 = new LineDataset();
+		dataset2.setType(ChartType.line);
+		dataset2.setLabel("Temperature");
+
+		dataset2.setBackgroundColor(HtmlColor.Blue);
+		dataset2.setBorderColor(HtmlColor.Blue);
+		dataset2.setData(getRandomDigits(months, 0, 35));
+		dataset2.setFill(Fill.nofill);
+		dataset2.setYAxisID("y-axis-2");
+
+		chart.getData().setLabels(getLabels());
+		chart.getData().setDatasets(dataset1, dataset2);
+
+		chart.getPlugins().add(new AbstractPlugin() {
+
+			private final static String ANNOTATION_TEMPLATE = "<center>" + "<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + "<tr><th><img src=\"{0}\"></img></th></tr>"
+					+ "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr><tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
+
+			@Override
+			public String getId() {
+				return "raster";
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDraw(org.pepstock.charba.client.AbstractChart,
+			 * double)
+			 */
+			@Override
+			public void onAfterDraw(AbstractChart<?, ?> chart, double easing) {
+				// if (easing == 1D) {
+				final Context2d ctx = chart.getCanvas().getContext2d();
+
+				// gets chart AREA
+				ChartNode node = chart.getNode();
+				ChartAreaNode chartArea = node.getChartArea();
+				// gets the scale element of chart
+				// using the X axis id of plugin options
+				ScaleItem scaleItem = node.getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
+
+				// Charba_Showcase.LOG.info(""+scaleItem.getHeight());
+				// Charba_Showcase.LOG.info(""+scaleItem.getTicks());
+				Charba_Showcase.LOG.info("" + chartArea.toJSON());
+				// Charba_Showcase.LOG.info(""+chart.getCanvas().getOffsetHeight());
+				double topRaster = chartArea.getBottom() + scaleItem.getHeight();
+				double heightRaster = chart.getCanvas().getOffsetHeight() - topRaster - 5;
+				Charba_Showcase.LOG.info("" + topRaster);
+				Charba_Showcase.LOG.info("" + heightRaster);
+				// calculates the amount of sections into chart based on
+				// amount of dataset items
+				int areaCount = scaleItem.getTicks().size();
+				Charba_Showcase.LOG.info("areaCount" + areaCount);
+				// gets the left of chart area as starting point
+				// gets the left of chart area as starting point
+				double scaleTickX = chartArea.getLeft();
+				// calculates the section size for every dataset item
+				// PAY attention to use DOUBLE because there is a problem
+				// if rounds the values (does not select exactly the right section)
+				double scaleTickLength = (double) scaleItem.getWidth() / (double) areaCount;
+				// scans all sections
+				for (int i = 0; i < areaCount; i++) {
+					double humidity = dataset1.getData().get(i);
+					double temperature = dataset2.getData().get(i);
+
+					String result = ANNOTATION_TEMPLATE;
+					result = result.replaceAll("\\{0\\}", Images.INSTANCE.sun().getSafeUri().asString());
+					result = result.replaceAll("\\{1\\}", String.valueOf(temperature));
+					result = result.replaceAll("\\{2\\}", String.valueOf(humidity));
+
+					// calculates the Y coordinate of section
+					// adding to starting point the section size (always DOUBLE)
+					ImageElement img = AnnotationBuilder.build(result, scaleTickLength - 4, heightRaster);
+
+					ctx.drawImage(img, scaleTickX + 2, topRaster);
+
+					// increments the starting point of section
+					scaleTickX = scaleTickX + scaleTickLength;
+				}
+			}
+
+		});
+
+	}
+
+	@UiHandler("randomize")
+	protected void handleRandomize(ClickEvent event) {
+		for (Dataset dataset : chart.getData().getDatasets()) {
+			if (dataset instanceof LineDataset) {
+				dataset.setData(getRandomDigits(months, 0, 35));
+			} else {
+				dataset.setData(getRandomDigits(months, 0, 100));
+			}
+		}
+		chart.update();
+	}
+}

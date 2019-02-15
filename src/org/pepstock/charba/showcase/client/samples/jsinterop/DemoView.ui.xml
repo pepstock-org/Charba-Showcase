@@ -194,6 +194,8 @@
 									styleName='{myStyle.myLabel}'>Dataset selection (pie)</g:Label>
 								<g:Label ui:field="standings"
 									styleName='{myStyle.myLabel}'>Standings</g:Label>
+								<g:Label ui:field="htmlAnnotation"
+									styleName='{myStyle.myLabel}'>HTML annotations</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

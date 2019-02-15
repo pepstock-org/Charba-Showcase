@@ -105,7 +105,7 @@ public class DataLabelsDatasetView extends BaseComposite{
 		option.setBorderRadius(4);
 		option.setColor(HtmlColor.White);
 		option.setOffset(8);
-		option.getFont().setFontSize(11);
+		option.getFont().setSize(11);
 		option.getFont().setWeight(Weight.bold);
 		option.setAlign(new AlignCallback() {
 			

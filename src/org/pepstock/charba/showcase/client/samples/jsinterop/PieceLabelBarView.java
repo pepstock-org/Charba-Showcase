@@ -57,14 +57,6 @@ public class PieceLabelBarView extends BaseComposite{
 		
 		
 		LabelsOptions option = new LabelsOptions();
-//		option.setRender(Render.image);
-//		option.setPrecision(2);
-//		option.setFontColor("black");
-//		option.setFontSize(16);
-//		option.setOverlap(false);
-		
-//		set(option);
-		
 		option.setRender(new RenderCallback<String>() {
 			
 			@Override
@@ -72,19 +64,6 @@ public class PieceLabelBarView extends BaseComposite{
 				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
 			}
 		});
-//		
-//		option.setRenderImageCallback(new RenderImageCallback() {
-//
-//			@Override
-//			public ImageElement render(AbstractChart<?, ?> chart, RenderItem item) {
-//				return img;
-//			}
-//		});
-		
-		
-//		chart.getOptions().getPlugins().setEnabled(LabelsPlugin.ID, true);
-//		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
-		
 		option.setFontColor(new FontColorCallback<IsColor>() {
 			
 			@Override

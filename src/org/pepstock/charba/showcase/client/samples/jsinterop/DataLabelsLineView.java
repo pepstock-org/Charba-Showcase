@@ -155,7 +155,7 @@ public class DataLabelsLineView extends BaseComposite{
 				
 			}
 		});
-		option.setListenersHadler(listener);
+		option.setListenersHandler(listener);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		

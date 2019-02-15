@@ -156,7 +156,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 				if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
-					//				List<DataPoint> points = dataset1.getDataPoints();
 					int tot = event.getTo() - event.getFrom() + 1;
 					DataPoint[] dp1 = new DataPoint[tot];
 					for (int i=0; i<tot; i++) {
