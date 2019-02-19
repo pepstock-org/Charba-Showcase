@@ -95,7 +95,7 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 			@Override
 			public Font font(AbstractChart<?, ?> chart, Context context) {
 				Font font = new Font();
-				int width = chart.getNode().getWidth();
+				double width = chart.getNode().getWidth();
 				font.setSize(width < 512 ? 12 : 14);
 				return font;
 			}

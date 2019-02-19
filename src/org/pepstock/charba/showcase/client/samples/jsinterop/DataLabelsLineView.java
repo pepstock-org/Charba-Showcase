@@ -22,8 +22,6 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsSelectionHandler;
-import org.pepstock.charba.client.utils.Window;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.Colors;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
@@ -139,7 +137,6 @@ public class DataLabelsLineView extends BaseComposite{
 			
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
-				Window.getConsole().log(event);
 				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getChart();
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
@@ -159,7 +156,6 @@ public class DataLabelsLineView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		
-		Charba_Showcase.LOG.info(chart.getElement()+"");
 	}
 	
 	@UiHandler("randomize")

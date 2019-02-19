@@ -11,7 +11,6 @@ import org.pepstock.charba.client.labels.LabelsOptionsBuilder;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Position;
 import org.pepstock.charba.client.labels.enums.Render;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -56,7 +55,6 @@ public class PieceLabelPolarView extends BaseComposite{
 		option1.setPosition(Position.outside);
 
 		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.percentage).setFontColor(HtmlColor.White).setPrecision(2).build();
-		Charba_Showcase.LOG.info(option2.toJSON());
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
 	}
 

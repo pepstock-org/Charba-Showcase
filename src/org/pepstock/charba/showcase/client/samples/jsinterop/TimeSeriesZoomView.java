@@ -16,6 +16,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
@@ -128,6 +129,8 @@ public class TimeSeriesZoomView extends BaseComposite{
 		chart.getOptions().getScales().setXAxes(axis);
 		chart.getOptions().getScales().setYAxes(axis2);
 		
+		small.getOptions().getPlugins().setEnabled(ChartBackgroundColor.ID, false);
+		
 		small.getOptions().setResponsive(true);
 		small.getOptions().setMaintainAspectRatio(true);
 		small.getOptions().setAspectRatio(15);
@@ -143,7 +146,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(5);
 		pOptions.setBorderDash(6);
-
+		
 		small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		small.getPlugins().add(selector);
 		
@@ -166,7 +169,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 					chart.getData().setDatasets(dataset1);
 					chart.update();
 				}
-
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
 	}

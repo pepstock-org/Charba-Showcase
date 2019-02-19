@@ -20,14 +20,10 @@ import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.TableElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -120,12 +116,6 @@ public class DemoView extends Composite {
 //		option1.getFont().setWeight(Weight.bold);
 		
 //		Defaults.get().getGlobal().getPlugins().setOptions(DataLabelsPlugin.ID, option1);
-		DivElement div = Document.get().createDivElement();
-		 TableElement element = Document.get().createTableElement();
-		 element.setAttribute("width", "100");
-		 div.appendChild(element);
-		 Charba_Showcase.LOG.info("element "+div.getInnerHTML());
-		
 	}
 
 	private void clearPreviousChart() {

@@ -11,7 +11,6 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
-import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -46,7 +45,6 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 		DivElement element = Document.get().createDivElement();
 		element.setAttribute("xmlns", Document.get().getDocumentElement().getAttribute("xmlns"));
 		wrapper.appendChild(element);
-		Window.getConsole().log(wrapper.getInnerHTML());
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.top);

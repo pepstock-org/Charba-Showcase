@@ -17,7 +17,6 @@ import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.utils.AnnotationBuilder;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -94,8 +93,11 @@ public class HTMLAnnnotationView extends BaseComposite {
 
 		chart.getPlugins().add(new AbstractPlugin() {
 
-			private final static String ANNOTATION_TEMPLATE = "<center>" + "<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + "<tr><th><img src=\"{0}\"></img></th></tr>"
-					+ "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr><tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
+			private final static String ANNOTATION_TEMPLATE = "<center>" + 
+					"<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + 
+						"<tr><th><img src=\"{0}\"></img></th></tr>" +
+					    "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr>"+
+						"<tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
 
 			@Override
 			public String getId() {
@@ -120,18 +122,11 @@ public class HTMLAnnnotationView extends BaseComposite {
 				// using the X axis id of plugin options
 				ScaleItem scaleItem = node.getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
 
-				// Charba_Showcase.LOG.info(""+scaleItem.getHeight());
-				// Charba_Showcase.LOG.info(""+scaleItem.getTicks());
-				Charba_Showcase.LOG.info("" + chartArea.toJSON());
-				// Charba_Showcase.LOG.info(""+chart.getCanvas().getOffsetHeight());
 				double topRaster = chartArea.getBottom() + scaleItem.getHeight();
 				double heightRaster = chart.getCanvas().getOffsetHeight() - topRaster - 5;
-				Charba_Showcase.LOG.info("" + topRaster);
-				Charba_Showcase.LOG.info("" + heightRaster);
 				// calculates the amount of sections into chart based on
 				// amount of dataset items
 				int areaCount = scaleItem.getTicks().size();
-				Charba_Showcase.LOG.info("areaCount" + areaCount);
 				// gets the left of chart area as starting point
 				// gets the left of chart area as starting point
 				double scaleTickX = chartArea.getLeft();
@@ -152,7 +147,7 @@ public class HTMLAnnnotationView extends BaseComposite {
 					// calculates the Y coordinate of section
 					// adding to starting point the section size (always DOUBLE)
 					ImageElement img = AnnotationBuilder.build(result, scaleTickLength - 4, heightRaster);
-
+					
 					ctx.drawImage(img, scaleTickX + 2, topRaster);
 
 					// increments the starting point of section
