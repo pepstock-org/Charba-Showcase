@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.AbstractComposite;
 
 /**
@@ -45,5 +46,9 @@ public class BaseComposite extends AbstractComposite{
 		}
 	}
 
+	protected String getUrl() {
+		StringBuilder sb = new StringBuilder(Charba_Showcase.BASE_URL);
+		return sb.append(this.getClass().getName().replace(".", "/")).append(".java").toString();
+	}
 	
 }

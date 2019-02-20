@@ -99,5 +99,4 @@ public class MyHorizontalBarController extends AbstractController {
 		Image img = new Image(resource.getSafeUri());
 	    return ImageElement.as(img.getElement());
 	}		
-
 }

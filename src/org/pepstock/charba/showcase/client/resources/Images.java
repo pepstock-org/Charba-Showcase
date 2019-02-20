@@ -4,22 +4,18 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 
-/**
- * Client Bundle with all images used in the WEB APP.<br>
- * Is improving the performance.
- * 
- * @author Andrea "Stock" Stocchero
- * 
- */
 public interface Images extends ClientBundle {
 
 	/**
-	 * Static reference to be used everywhere.
 	 */
 	Images INSTANCE = GWT.create(Images.class);
 
 	/**
-	 * @return GWT logo image
+	 */
+	@Source("/images/GitHub-Mark-32px.png")
+	ImageResource github();
+	
+	/**
 	 */
 	@Source("/images/gwt.png")
 	ImageResource gwt();
@@ -31,7 +27,6 @@ public interface Images extends ClientBundle {
 	ImageResource sun();
 
 	/**
-	 * @return CHARTJS logo image
 	 */
 	@Source("/images/chartjs.png")
 	ImageResource chartjs();

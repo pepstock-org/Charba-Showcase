@@ -17,6 +17,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -96,6 +97,11 @@ public class PieceLabelPositionView extends BaseComposite{
 		option.setFontColor(checked ? HtmlColor.Black : HtmlColor.White);
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		chart.update();
+	}
+
+	@UiHandler("source")
+	protected void handleViewSource(ClickEvent event) {
+		Window.open(getUrl(), "_blank", "");
 	}
 
 }

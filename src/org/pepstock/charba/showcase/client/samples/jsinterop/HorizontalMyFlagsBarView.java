@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -65,6 +66,11 @@ public class HorizontalMyFlagsBarView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+	}
+	
+	@UiHandler("source")
+	protected void handleViewSource(ClickEvent event) {
+		Window.open(getUrl(), "_blank", "");
 	}
 	
 }

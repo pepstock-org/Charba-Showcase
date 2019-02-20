@@ -26,6 +26,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -165,5 +166,10 @@ public class HorizontalFlagsBarView extends BaseComposite{
 		int percent = width * PERCENT / 100;
 		int padding = Math.min(Math.max(MIN, percent), MAX);
 		axis.getScaleLabel().getPadding().setTop(padding);
+	}
+	
+	@UiHandler("source")
+	protected void handleViewSource(ClickEvent event) {
+		Window.open(getUrl(), "_blank", "");
 	}
 }

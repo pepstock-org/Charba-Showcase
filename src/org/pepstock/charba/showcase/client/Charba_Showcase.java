@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class Charba_Showcase implements EntryPoint {
 	
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
+	
+	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/master/src/";
 
 	/**
 	 * This is the entry point method.

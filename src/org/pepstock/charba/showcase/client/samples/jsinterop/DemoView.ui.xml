@@ -76,14 +76,10 @@
 									styleName='{myStyle.myLabel}'>Scatter Multi Axis</g:Label>
 								<g:Label ui:field="doughnut"
 									styleName='{myStyle.myLabel}'>Doughnut</g:Label>
-								<g:Label ui:field="pie"
-									styleName='{myStyle.myLabel}'>Pie</g:Label>
-								<g:Label ui:field="polar"
-									styleName='{myStyle.myLabel}'>Polar Area</g:Label>
-								<g:Label ui:field="radar"
-									styleName='{myStyle.myLabel}'>Radar</g:Label>
-								<g:Label ui:field="bubble"
-									styleName='{myStyle.myLabel}'>Bubble</g:Label>
+								<g:Label ui:field="pie" styleName='{myStyle.myLabel}'>Pie</g:Label>
+								<g:Label ui:field="polar" styleName='{myStyle.myLabel}'>Polar Area</g:Label>
+								<g:Label ui:field="radar" styleName='{myStyle.myLabel}'>Radar</g:Label>
+								<g:Label ui:field="bubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
 								<g:Label ui:field="combobarline"
 									styleName='{myStyle.myLabel}'>Combo Bar Line</g:Label>
 							</g:VerticalPanel>
@@ -150,8 +146,7 @@
 							open="false">
 							<g:header>Controllers</g:header>
 							<g:VerticalPanel spacing="4">
-								<g:Label ui:field="myline"
-									styleName='{myStyle.myLabel}'>My Line</g:Label>
+								<g:Label ui:field="myline" styleName='{myStyle.myLabel}'>My Line</g:Label>
 								<g:Label ui:field="myflags"
 									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label>
 							</g:VerticalPanel>
@@ -173,15 +168,14 @@
 								<g:Label ui:field="pieGradient"
 									styleName='{myStyle.myLabel}'>Radial gradient (pie) </g:Label>
 							</g:VerticalPanel>
-						</g:DisclosurePanel>						
+						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
 							open="false">
 							<g:header>Miscellaneous</g:header>
 							<g:VerticalPanel spacing="4">
 								<g:Label ui:field="stepsize"
 									styleName='{myStyle.myLabel}'>Step size</g:Label>
-								<g:Label ui:field="minmax"
-									styleName='{myStyle.myLabel}'>Min Max</g:Label>
+								<g:Label ui:field="minmax" styleName='{myStyle.myLabel}'>Min Max</g:Label>
 								<g:Label ui:field="loglinear"
 									styleName='{myStyle.myLabel}'>Linear Logarithmic</g:Label>
 								<g:Label ui:field="logscatter"
@@ -204,10 +198,8 @@
 							open="false">
 							<g:header>Time series charts</g:header>
 							<g:VerticalPanel spacing="4">
-								<g:Label ui:field="linets"
-									styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
-								<g:Label ui:field="barts"
-									styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
+								<g:Label ui:field="linets" styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
+								<g:Label ui:field="barts" styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
 								<g:Label ui:field="zooming"
 									styleName='{myStyle.myLabel}'>Zooming</g:Label>
 								<g:Label ui:field="drilldown"
@@ -219,10 +211,8 @@
 							open="false">
 							<g:header>Extended charts</g:header>
 							<g:VerticalPanel spacing="4">
-								<g:Label ui:field="gauge"
-									styleName='{myStyle.myLabel}'>Gauge</g:Label>
-								<g:Label ui:field="meter"
-									styleName='{myStyle.myLabel}'>Meter</g:Label>
+								<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
+								<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
