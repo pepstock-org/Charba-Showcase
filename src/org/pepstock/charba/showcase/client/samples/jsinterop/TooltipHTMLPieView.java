@@ -25,9 +25,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class TooltipHTMLPieView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -59,7 +56,7 @@ public class TooltipHTMLPieView extends BaseComposite{
 					element = Document.get().createDivElement();
 					chart.getElement().appendChild(element);
 				}
-				// Set caret Position
+
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
@@ -69,7 +66,7 @@ public class TooltipHTMLPieView extends BaseComposite{
 					element.addClassName("no-transform");
 				}
 				StringBuilder innerHTML = new StringBuilder("<table cellpadding=5>");
-				// Set Text
+
 				if (model.getBody() != null && !model.getBody().isEmpty()){
 					if (model.getTitle() != null && !model.getTitle().isEmpty()){
 						innerHTML.append("<thead>");
@@ -175,7 +172,7 @@ public class TooltipHTMLPieView extends BaseComposite{
 	}
 
 	@UiHandler("remove_data")
-	protected void handleremoveData(ClickEvent event) {
+	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
 

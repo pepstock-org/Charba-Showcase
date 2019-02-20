@@ -30,9 +30,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class HorizontalFlagsBarView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);

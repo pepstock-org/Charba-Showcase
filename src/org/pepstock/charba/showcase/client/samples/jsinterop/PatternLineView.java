@@ -19,9 +19,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class PatternLineView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -56,12 +53,11 @@ public class PatternLineView extends BaseComposite{
 		dataset1.setData(values);
 		dataset1.setFill(Fill.origin);
 		
-		//dataset1.setPointStyle(Images.INSTANCE.customPoint());
-
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
+		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);

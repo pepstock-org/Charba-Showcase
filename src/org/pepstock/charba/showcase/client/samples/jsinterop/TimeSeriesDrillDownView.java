@@ -28,9 +28,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class TimeSeriesDrillDownView extends BaseComposite{
 	
 	private static final long MINUTE = 1000 * 60;

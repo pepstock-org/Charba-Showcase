@@ -15,9 +15,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class PieView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -89,7 +86,7 @@ public class PieView extends BaseComposite{
 	}
 
 	@UiHandler("remove_data")
-	protected void handleremoveData(ClickEvent event) {
+	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
 	

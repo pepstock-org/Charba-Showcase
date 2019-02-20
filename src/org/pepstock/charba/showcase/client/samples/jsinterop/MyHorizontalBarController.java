@@ -17,9 +17,6 @@ import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.Image;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class MyHorizontalBarController extends AbstractController {
 	
 	public static final ControllerType TYPE = new ControllerType("stock1", ChartType.horizontalBar);

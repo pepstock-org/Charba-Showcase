@@ -20,9 +20,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class TimeSeriesBarView extends BaseComposite{
 	
 	private static final long DAY = 1000 * 60 * 60 * 24;

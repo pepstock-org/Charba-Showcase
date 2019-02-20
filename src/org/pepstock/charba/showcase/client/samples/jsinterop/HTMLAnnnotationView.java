@@ -29,9 +29,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class HTMLAnnnotationView extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -105,37 +102,22 @@ public class HTMLAnnnotationView extends BaseComposite {
 				return "raster";
 			}
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see org.pepstock.charba.client.plugins.AbstractPlugin#onAfterDraw(org.pepstock.charba.client.AbstractChart,
-			 * double)
-			 */
 			@Override
 			public void onAfterDraw(AbstractChart<?, ?> chart, double easing) {
-				// if (easing == 1D) {
 				final Context2d ctx = chart.getCanvas().getContext2d();
 
-				// gets chart AREA
 				ChartNode node = chart.getNode();
 				ChartAreaNode chartArea = node.getChartArea();
-				// gets the scale element of chart
-				// using the X axis id of plugin options
+
 				ScaleItem scaleItem = node.getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
 
 				double topRaster = chartArea.getBottom() + scaleItem.getHeight();
 				double heightRaster = chart.getCanvas().getOffsetHeight() - topRaster - 5;
-				// calculates the amount of sections into chart based on
-				// amount of dataset items
+
 				int areaCount = scaleItem.getTicks().size();
-				// gets the left of chart area as starting point
-				// gets the left of chart area as starting point
 				double scaleTickX = chartArea.getLeft();
-				// calculates the section size for every dataset item
-				// PAY attention to use DOUBLE because there is a problem
-				// if rounds the values (does not select exactly the right section)
 				double scaleTickLength = (double) scaleItem.getWidth() / (double) areaCount;
-				// scans all sections
+
 				for (int i = 0; i < areaCount; i++) {
 					double humidity = dataset1.getData().get(i);
 					double temperature = dataset2.getData().get(i);
@@ -145,13 +127,9 @@ public class HTMLAnnnotationView extends BaseComposite {
 					result = result.replaceAll("\\{1\\}", String.valueOf(temperature));
 					result = result.replaceAll("\\{2\\}", String.valueOf(humidity));
 
-					// calculates the Y coordinate of section
-					// adding to starting point the section size (always DOUBLE)
 					ImageElement img = AnnotationBuilder.build(result, scaleTickLength - 4, heightRaster);
-					
 					ctx.drawImage(img, scaleTickX + 2, topRaster);
 
-					// increments the starting point of section
 					scaleTickX = scaleTickX + scaleTickLength;
 				}
 			}

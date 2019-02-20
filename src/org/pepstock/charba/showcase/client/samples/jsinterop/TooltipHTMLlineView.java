@@ -33,9 +33,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class TooltipHTMLlineView extends BaseComposite{
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -62,7 +59,6 @@ public class TooltipHTMLlineView extends BaseComposite{
 			
 			@Override
 			public void onCustom(AbstractChart<?, ?> chart, TooltipModel model) {
-				// Hide if no tooltip
 				if (model.getOpacity() == 0){
 					element.getStyle().setOpacity(0);
 					return;
@@ -71,7 +67,6 @@ public class TooltipHTMLlineView extends BaseComposite{
 					element = Document.get().createDivElement();
 					chart.getElement().appendChild(element);
 				}
-				// Set caret Position
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
@@ -81,7 +76,7 @@ public class TooltipHTMLlineView extends BaseComposite{
 					element.addClassName("no-transform");
 				}
 				StringBuilder innerHTML = new StringBuilder("<table cellpadding=2>");
-				// Set Text
+				
 				if (model.getBody() != null && !model.getBody().isEmpty()){
 					innerHTML.append("<thead>");
 					if (model.getTitle() != null && !model.getTitle().isEmpty()){

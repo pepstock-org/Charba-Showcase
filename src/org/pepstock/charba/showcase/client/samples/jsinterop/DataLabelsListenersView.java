@@ -38,9 +38,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class DataLabelsListenersView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -182,9 +179,6 @@ public class DataLabelsListenersView extends BaseComposite{
 		
 		final PreElement element;
 
-		/**
-		 * @param element
-		 */
 		MyListener(PreElement element) {
 			super();
 			this.element = element;

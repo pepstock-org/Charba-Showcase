@@ -21,9 +21,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class PieceLabelPositionView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -86,7 +83,7 @@ public class PieceLabelPositionView extends BaseComposite{
 	}
 
 	@UiHandler("remove_data")
-	protected void handleremoveData(ClickEvent event) {
+	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
 	

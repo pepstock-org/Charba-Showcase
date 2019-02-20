@@ -9,18 +9,12 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
-/**
- * Entry point
- */
 public class Charba_Showcase implements EntryPoint {
 	
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
 	
 	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/master/src/";
 
-	/**
-	 * This is the entry point method.
-	 */
 	public void onModuleLoad() {
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());

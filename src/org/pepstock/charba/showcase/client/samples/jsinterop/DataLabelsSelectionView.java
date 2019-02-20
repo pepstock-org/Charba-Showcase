@@ -31,9 +31,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * @author Andrea "Stock" Stocchero
- */
 public class DataLabelsSelectionView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -206,11 +203,6 @@ public class DataLabelsSelectionView extends BaseComposite{
 		
 		private final double value;
 
-		/**
-		 * @param datasetIndex
-		 * @param index
-		 * @param value
-		 */
 		SelectionItem(int datasetIndex, int index, double value) {
 			super();
 			this.datasetIndex = datasetIndex;
@@ -218,23 +210,14 @@ public class DataLabelsSelectionView extends BaseComposite{
 			this.value = value;
 		}
 
-		/**
-		 * @return the datasetIndex
-		 */
 		public int getDatasetIndex() {
 			return datasetIndex;
 		}
 
-		/**
-		 * @return the index
-		 */
 		public int getIndex() {
 			return index;
 		}
 
-		/**
-		 * @return the value
-		 */
 		public double getValue() {
 			return value;
 		}

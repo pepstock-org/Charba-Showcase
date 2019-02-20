@@ -47,31 +47,19 @@ public class ProgressBar extends Widget {
 		progress.getStyle().setProperty(PROGRESS_WIDTH_ATTRIBUTE, width);
 	}
 
-	/**
-	 * @return the max
-	 */
 	public double getMax() {
 		return max;
 	}
 
-	/**
-	 * @param max the max to set
-	 */
 	public void setMax(double max) {
 		this.max = max;
 		progress.setAttribute(PROGRESS_MAX_ATTRIBUTE, Double.toString(max));
 	}
 
-	/**
-	 * @return the value
-	 */
 	public double getValue() {
 		return value;
 	}
 
-	/**
-	 * @param value the value to set
-	 */
 	public void setValue(double value) {
 		this.value = value;
 		progress.setAttribute(PROGRESS_VALUE_ATTRIBUTE, Double.toString(value));
