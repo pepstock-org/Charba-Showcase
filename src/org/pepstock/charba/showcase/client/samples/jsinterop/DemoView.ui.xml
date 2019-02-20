@@ -196,6 +196,8 @@
 									styleName='{myStyle.myLabel}'>Standings</g:Label>
 								<g:Label ui:field="htmlAnnotation"
 									styleName='{myStyle.myLabel}'>HTML annotations</g:Label>
+								<g:Label ui:field="htmlAnnotationByElement"
+									styleName='{myStyle.myLabel}'>HTML annotations by Element</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

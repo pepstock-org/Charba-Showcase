@@ -659,4 +659,10 @@ public class DemoView extends Composite {
 		 content.add(new HTMLAnnnotationView());
 	}
 
+	@UiHandler("htmlAnnotationByElement")
+	protected void handleHTMLAnnotationByElement(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new HTMLAnnnotationByElementView());
+	}
+
 }
