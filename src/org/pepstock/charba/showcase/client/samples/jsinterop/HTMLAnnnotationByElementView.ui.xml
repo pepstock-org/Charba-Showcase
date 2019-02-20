@@ -16,7 +16,10 @@
 				<g:HorizontalPanel spacing="5">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
 					<g:CheckBox ui:field="useElement" checked="true">useElement</g:CheckBox>
-				<g:PushButton ui:field='source' enabled='true'><g:upFace image='{downButton.github}' /></g:PushButton></g:HorizontalPanel>
+					<g:PushButton ui:field='source' enabled='true'>
+						<g:upFace image='{downButton.github}' />
+					</g:PushButton>
+				</g:HorizontalPanel>
 			</g:cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>

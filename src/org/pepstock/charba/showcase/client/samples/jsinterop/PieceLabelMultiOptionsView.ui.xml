@@ -15,7 +15,10 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-				<g:PushButton ui:field='source' enabled='true'><g:upFace image='{downButton.github}' /></g:PushButton></g:HorizontalPanel>
+					<g:PushButton ui:field='source' enabled='true'>
+						<g:upFace image='{downButton.github}' />
+					</g:PushButton>
+				</g:HorizontalPanel>
 			</g:cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
