@@ -46,6 +46,8 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getHover().setMode(InteractionMode.nearest);
 		chart.getOptions().getHover().setIntersect(true);
 
+		List<Dataset> datasets = chart.getData().getDatasets(true);
+		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -53,8 +55,14 @@ public class LineView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
+		dataset1.setFill(false);
 		double[] values = getRandomDigits(months);
-		dataset1.setData(values);
+		List<Double> data = dataset1.getData(true);
+		for (int i=0; i<values.length; i++) {
+			data.add(values[i]);
+		}
+		//dataset1.setData(values);
+		datasets.add(dataset1);
 		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -64,7 +72,8 @@ public class LineView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(false);
+		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -80,7 +89,7 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset1);
+		
 	}
 	
 	
