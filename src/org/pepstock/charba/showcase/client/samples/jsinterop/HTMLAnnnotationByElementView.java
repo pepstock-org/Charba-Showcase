@@ -9,6 +9,9 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.events.ChartClickEvent;
+import org.pepstock.charba.client.events.ChartClickEventHandler;
+import org.pepstock.charba.client.events.ChartNativeEvent;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
@@ -40,7 +43,13 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 	BarDataset dataset;
 	
 	boolean useElement = true;
-
+	
+	double imgX = 0;
+	
+	double imgY = 0;
+	
+	ImageElement imgElement = null;
+	
 	public HTMLAnnnotationByElementView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -80,6 +89,21 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
+		
+		chart.addHandler(new ChartClickEventHandler() {
+			
+			@Override
+			public void onClick(ChartClickEvent clickEvent) {
+				ChartNativeEvent event = (ChartNativeEvent)clickEvent.getNativeEvent();
+
+				boolean isX = event.getLayerX() >= imgX && event.getLayerX() <= (imgX+imgElement.getWidth());
+				boolean isY = event.getLayerY() >= imgY  && event.getLayerY() <= (imgY+imgElement.getHeight());
+				if (isX && isY){
+					new Toast("Annotation Selected!", "Annotation Selected!").show();
+				}
+				
+			}
+		}, ChartClickEvent.TYPE);
 
 		chart.getPlugins().add(new AbstractPlugin() {
 			
@@ -129,6 +153,10 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 				double y = item.getView().getY() - img.getHeight() - 10;
 				
 				ctx.drawImage(img, x, y);
+				
+				HTMLAnnnotationByElementView.this.imgElement = img;
+				HTMLAnnnotationByElementView.this.imgX = x;
+				HTMLAnnnotationByElementView.this.imgY = y;
 			}
 
 		});
