@@ -112,6 +112,7 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 			@Override
 			public void onAfterDraw(AbstractChart<?, ?> chart, double easing) {
 				Element element = toast.getElement();
+		
 				final Context2d ctx = chart.getCanvas().getContext2d();
 
 				DatasetMetaItem meta = chart.getDatasetMeta(0);
