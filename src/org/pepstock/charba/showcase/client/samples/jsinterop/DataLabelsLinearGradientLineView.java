@@ -7,6 +7,7 @@ import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -48,7 +49,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTooltips().setEnabled(false);
-		chart.getOptions().getLayout().getPadding().setTop(42);
+		chart.getOptions().getLayout().getPadding().setTop(64);
 		chart.getOptions().getLayout().getPadding().setRight(32);
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
@@ -61,8 +62,9 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		
 		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.leftRight, GradientScope.chart);
 
-		gradient1.addColorStop(0, HtmlColor.Orange);
 		gradient1.addColorStop(1, HtmlColor.Purple);
+		gradient1.addColorStop(0, HtmlColor.Orange);
+
 		
 		dataset1.setBackgroundColor(gradient1);
 		
@@ -104,20 +106,17 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		option.setOffset(4);
 		option.getPadding().set(8);
 		
-		option.setBackgroundColor(new BackgroundColorCallback<CanvasGradient>() {
+		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 			
-			CanvasGradient gr0 = null;
-
 			@Override
-			public CanvasGradient backgroundColor(AbstractChart<?, ?> chart, Context context) {
-				if (gr0 == null) {
-					gr0 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
-					gr0.addColorStop(0, "#fff000");
-					gr0.addColorStop(1, "#000fff");
-				}
-				return gr0;
+			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				Gradient gradient = ds.getBackgroundColorAsGradient();
+				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() -1) : 0;
+				return gradient.getInterpolatedColorByOffset(factor);
 			}
 		});
+		
 		option.setBorderColor(new BorderColorCallback<CanvasGradient>() {
 			
 			CanvasGradient gr1 = null;
@@ -126,8 +125,8 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 			public CanvasGradient borderColor(AbstractChart<?, ?> chart, Context context) {
 				if (gr1 == null) {
 					gr1 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
-					gr1.addColorStop(1, "#fff000");
-					gr1.addColorStop(0, "#000fff");
+					gr1.addColorStop(1, HtmlColor.Orange.toRGBA());
+					gr1.addColorStop(0, HtmlColor.Purple.toRGBA());
 				}
 				return gr1;
 			}
@@ -142,6 +141,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
+		
 	}
 	
 	@UiHandler("randomize")

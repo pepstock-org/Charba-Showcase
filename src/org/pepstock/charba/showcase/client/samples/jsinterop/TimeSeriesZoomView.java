@@ -6,6 +6,7 @@ import java.util.List;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipTitleCallback;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -178,6 +179,8 @@ public class TimeSeriesZoomView extends BaseComposite{
 			for (DataPoint dp : scDataset.getDataPoints()){
 				dp.setY(getRandomDigit(false));
 			}
+			boolean c = Math.random() > 0.5d;
+			scDataset.setBackgroundColor(c ? HtmlColor.Red : HtmlColor.Yellow);
 		}
 		small.update();
 	}
