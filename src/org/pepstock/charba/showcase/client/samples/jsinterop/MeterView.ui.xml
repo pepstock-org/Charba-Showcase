@@ -10,22 +10,32 @@
 			<g:cell width="100%" verticalAlignment="middle"
 				horizontalAlignment="center">
 				<g:HorizontalPanel width="90%" spacing="10">
-					<g:cell width="30%" verticalAlignment="middle"
+					<g:cell width="50%" verticalAlignment="middle"
 						horizontalAlignment="center">
 						<c:MeterChart ui:field="chartPercent" width="500px"
-							height="500px" />
+							height="300px" />
 					</g:cell>
-					<g:cell width="30%" verticalAlignment="middle"
+					<g:cell width="50%" verticalAlignment="middle"
 						horizontalAlignment="center">
 						<c:MeterChart ui:field="chartValue" width="500px"
-							height="500px" />
-					</g:cell>
-					<g:cell width="30%" verticalAlignment="middle"
-						horizontalAlignment="center">
-						<c:MeterChart ui:field="chartValueColor"
-							width="500px" height="500px" />
+							height="300px" />
 					</g:cell>
 				</g:HorizontalPanel>
+			</g:cell>
+			<g:cell width="100%" verticalAlignment="middle"
+				horizontalAlignment="center">	
+				<g:HorizontalPanel width="90%" spacing="10">
+					<g:cell width="50%" verticalAlignment="middle"
+						horizontalAlignment="center">
+						<c:MeterChart ui:field="chartValueColor"
+							width="500px" height="300px" />
+					</g:cell>
+					<g:cell width="50%" verticalAlignment="middle"
+						horizontalAlignment="center">
+						<g:Label></g:Label>
+					</g:cell>
+				</g:HorizontalPanel>
+
 			</g:cell>
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
