@@ -89,7 +89,6 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
-		
 	}
 	
 	
