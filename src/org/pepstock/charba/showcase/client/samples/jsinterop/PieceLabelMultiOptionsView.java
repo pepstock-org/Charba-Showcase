@@ -52,6 +52,7 @@ public class PieceLabelMultiOptionsView extends BaseComposite{
 		LabelsOptions option2 = new LabelsOptions();
 		option2.setRender(Render.percentage);
 		option2.setFontColor(HtmlColor.White);
+		option2.setOverlap(false);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
 	}

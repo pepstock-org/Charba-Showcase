@@ -51,6 +51,7 @@ public class PieceLabelPercentageView extends BaseComposite{
 		option.setFontColor(HtmlColor.White);
 		option.setPrecision(2);
 		option.setFontSize(16);
+		option.setOverlap(false);
 	
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}

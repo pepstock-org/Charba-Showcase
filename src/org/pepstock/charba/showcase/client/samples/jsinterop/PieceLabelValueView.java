@@ -60,6 +60,7 @@ public class PieceLabelValueView extends BaseComposite{
 		option.setFontSize(14);
 		option.setFontStyle(FontStyle.bold);
 		option.setFontFamily("'Lucida Console', Monaco, monospace");
+		option.setOverlap(false);
 		
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}

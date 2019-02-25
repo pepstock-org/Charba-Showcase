@@ -54,6 +54,7 @@ public class PieceLabelPositionView extends BaseComposite{
 		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		option.setArc(true);
 		option.setPosition(Position.border);
+		option.setOverlap(false);
 		
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}

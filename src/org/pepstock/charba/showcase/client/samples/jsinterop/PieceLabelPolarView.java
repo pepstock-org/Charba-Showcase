@@ -53,7 +53,7 @@ public class PieceLabelPolarView extends BaseComposite{
 		option1.setFontSize(32);
 		option1.setPosition(Position.outside);
 
-		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.percentage).setFontColor(HtmlColor.White).setPrecision(2).setFontSize(32).build();
+		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.percentage).setFontColor(HtmlColor.White).setPrecision(2).setFontSize(32).setOverlap(false).build();
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
 	}
 
