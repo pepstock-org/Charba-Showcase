@@ -10,6 +10,7 @@ import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
@@ -17,6 +18,8 @@ import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
+import org.pepstock.charba.client.impl.plugins.enums.Align;
+import org.pepstock.charba.client.impl.plugins.enums.Render;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -85,7 +88,6 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		panel.add(chart);
 		index--;
 		selector.skipNextRefreshFireEvent(chart);
-		chart.update();
 	}
 	
 	private LineChart createChart() {
@@ -138,6 +140,15 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 			DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 			pOptions.setBorderWidth(1);
 			pOptions.setBorderDash(6);
+			pOptions.getClearSelection().setDisplay(true);
+			pOptions.getClearSelection().setFontSize(18);
+			pOptions.getClearSelection().setAlign(Align.left);
+			pOptions.getClearSelection().setPosition(Position.top);
+			pOptions.getClearSelection().setRender(Render.label_image);
+		
+			chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+			chart.getPlugins().add(selector);
+
 
 			chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 			chart.getPlugins().add(selector);
@@ -146,7 +157,7 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 
 				@Override
 				public void onSelect(DatasetRangeSelectionEvent event) {
-					if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
+					if (event.getFrom() != DatasetRangeSelectionEvent.CLEAR_SELECTION) {
 						int tot = event.getTo() - event.getFrom() + 1;
 						currentAmountOfPoint = getAmounts(index+1) * tot;
 						addChart();

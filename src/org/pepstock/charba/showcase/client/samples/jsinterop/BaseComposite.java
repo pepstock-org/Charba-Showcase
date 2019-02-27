@@ -11,8 +11,10 @@ public class BaseComposite extends AbstractComposite{
 
 	protected void removeDataset(AbstractChart<?, ?> chart) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		datasets.remove(datasets.size()-1);
-		chart.update();
+		if (datasets.size() > 1) {
+			datasets.remove(datasets.size()-1);
+			chart.update();
+		}
 	}
 
 	protected void addData(AbstractChart<?, ?> chart) {

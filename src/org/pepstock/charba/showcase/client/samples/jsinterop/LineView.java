@@ -11,6 +11,10 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
+import org.pepstock.charba.client.impl.plugins.enums.Align;
+import org.pepstock.charba.client.impl.plugins.enums.Render;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -30,8 +34,6 @@ public class LineView extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
-
 	
 	public LineView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -61,7 +63,6 @@ public class LineView extends BaseComposite{
 		for (int i=0; i<values.length; i++) {
 			data.add(values[i]);
 		}
-		//dataset1.setData(values);
 		datasets.add(dataset1);
 		
 		LineDataset dataset2 = chart.newDataset();
@@ -89,6 +90,21 @@ public class LineView extends BaseComposite{
 		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
+		
+		DatasetsItemsSelector selector = new DatasetsItemsSelector();
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+		pOptions.setBorderWidth(5);
+		pOptions.setBorderDash(6, 2, 3);
+		pOptions.setFireEventOnClearSelection(true);
+		pOptions.getClearSelection().setDisplay(true);
+		pOptions.getClearSelection().setFontSize(18);
+		pOptions.getClearSelection().setAlign(Align.right_chartArea);
+		pOptions.getClearSelection().setPosition(Position.bottom);
+		pOptions.getClearSelection().setRender(Render.image_label);
+		pOptions.getClearSelection().setUseSelectionStyle(true);
+	
+		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+		chart.getPlugins().add(selector);
 	}
 	
 	

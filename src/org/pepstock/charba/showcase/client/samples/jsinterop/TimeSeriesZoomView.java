@@ -145,6 +145,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(5);
 		pOptions.setBorderDash(6);
+		pOptions.setFireEventOnClearSelection(true);
 		
 		small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		small.getPlugins().add(selector);
@@ -157,7 +158,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
 				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
-				if (event.getFrom() != DatasetRangeSelectionEvent.RESET_SELECTION) {
+				if (event.getFrom() != DatasetRangeSelectionEvent.CLEAR_SELECTION) {
 					int tot = event.getTo() - event.getFrom() + 1;
 					DataPoint[] dp1 = new DataPoint[tot];
 					for (int i=0; i<tot; i++) {
@@ -187,7 +188,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 
 	@UiHandler("reset")
 	protected void handleReset(ClickEvent event) {
-		selector.reset(small, true);
+		selector.clearSelection(small);
 	}
 
 	
