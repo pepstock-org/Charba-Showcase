@@ -70,8 +70,6 @@ public abstract class AbstractComposite extends Composite{
 		return values;
 	}
 
-	
-
 	protected double[] getRandomDigitsLog(int length){
 		double[] values = new double[length];
 		for(int i=0;i<length;i++){
