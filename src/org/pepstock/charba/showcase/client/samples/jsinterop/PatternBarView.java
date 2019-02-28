@@ -40,9 +40,6 @@ public class PatternBarView extends BaseComposite{
 		Pattern pattern = new Pattern(Images.INSTANCE.patternHover());
 		dataset1.setBackgroundColor(pattern);
 		
-//		Pattern pattern1 = new Pattern(Images.INSTANCE.pattern());
-//		dataset1.setHoverBackgroundColor(pattern1);
-		
 		dataset1.setBorderColor(HtmlColor.Black);
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getFixedDigits(months));
@@ -57,9 +54,6 @@ public class PatternBarView extends BaseComposite{
 		for (Dataset dataset : chart.getData().getDatasets()){
 			BarDataset bdataset = (BarDataset)dataset;
 			bdataset.setData(getRandomDigits(months));
-//			Pattern pattern = new Pattern(Images.INSTANCE.patternHover());
-//			bdataset.setHoverBackgroundColor(pattern);
-
 			Pattern pattern1 = new Pattern(Images.INSTANCE.pattern());
 			bdataset.setBackgroundColor(pattern1);
 		}

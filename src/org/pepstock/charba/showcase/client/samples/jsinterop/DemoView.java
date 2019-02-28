@@ -4,11 +4,6 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.colors.Gradient;
-import org.pepstock.charba.client.colors.GradientOrientation;
-import org.pepstock.charba.client.colors.GradientScope;
-import org.pepstock.charba.client.colors.GradientType;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.Context;
 import org.pepstock.charba.client.controllers.ControllerType;
@@ -50,12 +45,6 @@ public class DemoView extends Composite {
 		
 		content.add(new HomeView());
 		
-		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.canvas);
-
-		gradient.addColorStop(0, HtmlColor.White);
-		gradient.addColorStop(1, HtmlColor.Gray);
-		
-//		Defaults.get().getPlugins().register(new ChartBackgroundColor(gradient));
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
 
 		Defaults.get().getControllers().extend(new AbstractController() {
@@ -68,7 +57,6 @@ public class DemoView extends Composite {
 			@Override
 			public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
 				super.draw(jsThis, chart, ease);
-				// Now we can do some custom drawing for this dataset. Here we'll draw a red box around the first point in each dataset
 
 				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
 				List<DatasetItem> items = metaItem.getDatasets();
@@ -90,32 +78,9 @@ public class DemoView extends Composite {
 
 		Defaults.get().getControllers().extend(new MyHorizontalBarController());
 		
-		LabelsPlugin.enable(false);
-//		LabelsOptions option = new LabelsOptions();
-//		option.setRender(Render.value);
-//		option.setPrecision(2);
-//		option.setFontColor("white");
-//		option.setFontSize(16);
-//		option.setOverlap(false);
-//		Defaults.get().getGlobal().getPlugins().setOptions(LabelsPlugin.ID, option);
+		LabelsPlugin.enable();
 		
 		DataLabelsPlugin.enable();
-		
-//		DataLabelsOptions option1 = new DataLabelsOptions();
-//		option1.setDisplay(new DisplayCallback() {
-//			
-//			@Override
-//			public Display display(AbstractChart<?, ?> chart, org.pepstock.charba.client.datalabels.Context context) {
-//				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
-//				double value = ds.getData().get(context.getIndex());
-//				return value > 15D ? Display.isTrue : Display.isFalse;
-//			}
-//		});
-//		option1.setBorderRadius(4);
-//		option1.setColor(HtmlColor.White);
-//		option1.getFont().setWeight(Weight.bold);
-		
-//		Defaults.get().getGlobal().getPlugins().setOptions(DataLabelsPlugin.ID, option1);
 	}
 
 	private void clearPreviousChart() {
@@ -506,8 +471,6 @@ public class DemoView extends Composite {
 		 content.add(new PointStyleImageView());
 	}
 
-	/// DATALABELS
-	
 	@UiHandler("datalabelsBar")
 	protected void handleDatalabelsBar(ClickEvent event) {
 		clearPreviousChart();

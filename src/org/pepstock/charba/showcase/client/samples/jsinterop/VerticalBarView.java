@@ -3,15 +3,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
-import org.pepstock.charba.client.impl.plugins.enums.Align;
-import org.pepstock.charba.client.impl.plugins.enums.Render;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -52,22 +47,6 @@ public class VerticalBarView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
-		DatasetsItemsSelector selector = new DatasetsItemsSelector();
-		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
-		pOptions.setBorderWidth(5);
-		pOptions.setBorderDash(6);
-		pOptions.setFireEventOnClearSelection(true);
-		pOptions.getClearSelection().setDisplay(true);
-		pOptions.getClearSelection().setLabel("Press here to clear selection");
-		pOptions.getClearSelection().setFontColor(HtmlColor.Red);
-		pOptions.getClearSelection().setFontSize(18);
-		pOptions.getClearSelection().setAlign(Align.center);
-		pOptions.getClearSelection().setPosition(Position.bottom);
-		pOptions.getClearSelection().setRender(Render.label);
-		
-		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-		chart.getPlugins().add(selector);
 	}
 
 	@UiHandler("randomize")

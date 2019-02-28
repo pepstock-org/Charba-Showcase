@@ -11,10 +11,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptionsBuilder;
-import org.pepstock.charba.client.impl.plugins.enums.Align;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -90,13 +86,6 @@ public class LineView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-
-		DatasetsItemsSelector selector = new DatasetsItemsSelector();
-		DatasetsItemsSelectorOptions pOptions = DatasetsItemsSelectorOptionsBuilder.create().setBorderWidth(5).setBorderDash(6, 2, 3).setFireEventOnClearSelection(true).setDisplay(true).setFontSize(18).setAlign(Align.right_chartArea)
-				.setUseSelectionStyle(true).build();
-
-		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-		chart.getPlugins().add(selector);
 	}
 
 	@UiHandler("randomize")
