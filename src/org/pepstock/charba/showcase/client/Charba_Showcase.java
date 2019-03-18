@@ -2,6 +2,9 @@ package org.pepstock.charba.showcase.client;
 
 import java.util.logging.Logger;
 
+import org.pepstock.charba.client.resources.EmbeddedResources;
+import org.pepstock.charba.client.resources.ResourcesType;
+import org.pepstock.charba.client.utils.JsWindowHelper;
 import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.jsinterop.DemoView;
 
@@ -21,7 +24,21 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagFR().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagDE().getSafeUri());
+
+		ResourcesType.setClientBundle(EmbeddedResources.INSTANCE);
+
+		JsWindowHelper.get().enableResizeOnBeforePrint();
+		
 		RootPanel.get().add(new DemoView());
+
+//		EntryPointStarter.run(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				RootPanel.get().add(new DemoView());
+//			}
+//		});
+		
 	}
 
 }

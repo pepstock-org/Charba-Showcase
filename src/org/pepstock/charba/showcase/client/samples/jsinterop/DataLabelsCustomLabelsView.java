@@ -2,13 +2,13 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.Font;
@@ -81,30 +81,33 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		option.setAlign(Align.end);
 		option.setAnchor(Anchor.end);
 		option.setColor(new ColorCallback<IsColor>() {
-			
+
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getDatasetIndex());
 			}
+			
 		});
 		option.setFont(new FontCallback() {
-			
+
 			@Override
-			public Font font(AbstractChart<?, ?> chart, Context context) {
+			public Font invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				Font font = new Font();
 				double width = chart.getNode().getWidth();
 				font.setSize(width < 512 ? 16 : 20);
 				return font;
 			}
+			
 		});
 		option.setFormatter(new FormatterCallback() {
-			
+
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				Labels labels = chart.getData().getLabels();
 				return labels.getString(context.getIndex());
 			}
+			
 		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);

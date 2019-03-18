@@ -4,10 +4,10 @@ import java.util.Random;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BubbleChart;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
@@ -85,30 +85,32 @@ public class DataLabelsBubbleView extends BaseComposite{
 
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAnchor(new AnchorCallback() {
-			
+
 			@Override
-			public Anchor anchor(AbstractChart<?, ?> chart, Context context) {
+			public Anchor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				DataPoint point = ds.getDataPoints().get(context.getIndex());
 				return point.getR() < 20D ? Anchor.end : Anchor.center;
 			}
+			
 		});
 		option.setAlign(new AlignCallback() {
-			
+
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				DataPoint point = ds.getDataPoints().get(context.getIndex());
 				return point.getR() < 20D ? Align.end : Align.center;
 			}
 		});
 		option.setColor(new ColorCallback<String>() {
-			
+
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString().get(context.getIndex());
 			}
+			
 		});
 		option.setOffset(2);
 		option.getFont().setWeight(Weight.bold);

@@ -2,7 +2,12 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
+import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.RadiusCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -21,19 +26,37 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LineView extends BaseComposite {
+public class LineCallbackView extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LineView> {
+	interface ViewUiBinder extends UiBinder<Widget, LineCallbackView> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public LineView() {
+	BackgroundColorCallback<IsColor> backgroundColorCallback = new BackgroundColorCallback<IsColor>() {
+
+		@Override
+		public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			return HtmlColor.Pink;
+		}
+
+	};
+	
+	RadiusCallback radiusCallback = new RadiusCallback() {
+
+		@Override
+		public Double invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			int module = context.getIndex() % 2;
+			return context.getDatasetIndex() % 2 == 0  ? module == 0 ? 50D : 25D : module == 0 ? 25D : 50D;
+		}
+		
+	};
+	
+	public LineCallbackView() {
 		initWidget(uiBinder.createAndBindUi(this));
-	    
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.top);
@@ -56,10 +79,11 @@ public class LineView extends BaseComposite {
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
 		double[] values = getRandomDigits(months);
-		List<Double> data = dataset1.getData(true);
-		for (int i = 0; i < values.length; i++) {
-			data.add(values[i]);
-		}
+		dataset1.setPointHoverBackgroundColor(backgroundColorCallback);
+		dataset1.setPointHoverRadius(radiusCallback);
+
+		dataset1.setData(values);
+		datasets.add(dataset1);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -68,6 +92,10 @@ public class LineView extends BaseComposite {
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
+		
+		dataset2.setPointHoverBackgroundColor(backgroundColorCallback);
+		dataset2.setPointHoverRadius(radiusCallback);
+		
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(false);
 		datasets.add(dataset2);
@@ -108,6 +136,9 @@ public class LineView extends BaseComposite {
 		dataset.setBorderColor(color.toHex());
 		dataset.setFill(Fill.nofill);
 		dataset.setData(getRandomDigits(months));
+		dataset.setPointHoverBackgroundColor(backgroundColorCallback);
+		dataset.setPointHoverRadius(radiusCallback);
+
 
 		datasets.add(dataset);
 

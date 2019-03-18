@@ -2,19 +2,19 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.RotationCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.callbacks.AnchorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.RotationCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -85,7 +85,7 @@ public class DataLabelsMirrorView extends BaseComposite{
 		option.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? Align.end : Align.start;
 			}
@@ -94,7 +94,7 @@ public class DataLabelsMirrorView extends BaseComposite{
 		option.setAnchor(new AnchorCallback() {
 
 			@Override
-			public Anchor anchor(AbstractChart<?, ?> chart, Context context) {
+			public Anchor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? Anchor.end : Anchor.start;
 			}
@@ -102,7 +102,7 @@ public class DataLabelsMirrorView extends BaseComposite{
 		option.setRotation(new RotationCallback() {
 			
 			@Override
-			public double rotation(AbstractChart<?, ?> chart, Context context) {
+			public Double invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? 45D : 100D - 45D;
 			}
@@ -111,7 +111,7 @@ public class DataLabelsMirrorView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 			
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(0);
 			}

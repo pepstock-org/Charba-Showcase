@@ -2,6 +2,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.BorderWidthCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -9,13 +13,9 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderWidthCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
@@ -83,9 +83,8 @@ public class DataLabelsIndicesView extends BaseComposite{
 
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(new AlignCallback() {
-			
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				return context.getIndex() % 2 == 0 ? Align.end : Align.center;
 			}
 		});
@@ -93,7 +92,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
@@ -101,7 +100,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setBorderColor(new BorderColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor borderColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
@@ -109,7 +108,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? HtmlColor.White : ds.getBorderColor();
 			}
@@ -117,14 +116,14 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setBorderWidth(new BorderWidthCallback() {
 			
 			@Override
-			public int borderWidth(AbstractChart<?, ?> chart, Context context) {
+			public Integer invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				return context.getIndex() % 2 == 0 ? 0 : 1;
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				return context.getIndex()+": "+Math.round(value)+"'";
 			}
 		});

@@ -2,6 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -12,11 +15,8 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
@@ -109,7 +109,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				Gradient gradient = ds.getBackgroundColorAsGradient();
 				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() -1) : 0;
@@ -122,7 +122,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 			CanvasGradient gr1 = null;
 			
 			@Override
-			public CanvasGradient borderColor(AbstractChart<?, ?> chart, Context context) {
+			public CanvasGradient invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				if (gr1 == null) {
 					gr1 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
 					gr1.addColorStop(1, HtmlColor.Orange.toRGBA());
@@ -135,7 +135,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				return value < 20 ? "Poor\n"+value : value < 50 ? "Good\n"+value : "Great\n"+value;
 			}
 		});

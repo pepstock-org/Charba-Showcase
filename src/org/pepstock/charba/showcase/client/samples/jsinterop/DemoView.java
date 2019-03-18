@@ -5,7 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.controllers.AbstractController;
-import org.pepstock.charba.client.controllers.Context;
+import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
@@ -55,7 +55,7 @@ public class DemoView extends Composite {
 			}
 
 			@Override
-			public void draw(Context jsThis, AbstractChart<?, ?> chart, double ease) {
+			public void draw(ControllerContext jsThis, AbstractChart<?, ?> chart, double ease) {
 				super.draw(jsThis, chart, ease);
 
 				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
@@ -102,6 +102,12 @@ public class DemoView extends Composite {
 		content.add(new VerticalBarView());
 	}
 
+	@UiHandler("barCallback")
+	protected void handleBarVerticalCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new VerticalBarCallbackView());
+	}
+
 	@UiHandler("barHorizontal")
 	protected void handleBarHorizontal(ClickEvent event) {
 		clearPreviousChart();
@@ -130,6 +136,12 @@ public class DemoView extends Composite {
 	protected void handleLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new LineView());
+	}
+
+	@UiHandler("lineCallback")
+	protected void handleLineCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LineCallbackView());
 	}
 
 	@UiHandler("lineMultiAxis")
@@ -328,6 +340,12 @@ public class DemoView extends Composite {
 	protected void handleHTMLpie(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new TooltipHTMLPieView());
+	}
+
+	@UiHandler("tooltipPositioner")
+	protected void handlePositioner(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TooltipPositionerView());
 	}
 
 	@UiHandler("animation")
@@ -626,6 +644,18 @@ public class DemoView extends Composite {
 	protected void handleHTMLAnnotationByElement(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new HTMLAnnnotationByElementView());
+	}
+
+	@UiHandler("piePatternomaly")
+	protected void handlePatternomalyPie(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PatternomalyDoughnutView());
+	}
+
+	@UiHandler("barPatternomaly")
+	protected void handlePatternomalybar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new PatternomalyBarView());
 	}
 
 }

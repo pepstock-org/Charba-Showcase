@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -11,10 +13,8 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
@@ -119,7 +119,7 @@ public class DataLabelsLineView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 
 			@Override
-			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				if (context.isActive()) {
 					return null;
 				}

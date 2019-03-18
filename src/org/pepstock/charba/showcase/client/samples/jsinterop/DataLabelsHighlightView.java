@@ -2,6 +2,9 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
@@ -12,11 +15,8 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Weight;
@@ -116,28 +116,30 @@ public class DataLabelsHighlightView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 
 			@Override
-			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return hovered.isHovered() ? ds.getBackgroundColor() : HtmlColor.White;
 			}
 		});
 		option.setBorderColor(new BorderColorCallback<IsColor>() {
-			
+
 			@Override
-			public IsColor borderColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColor();
 			}
+
 		});
 		option.setColor(new ColorCallback<IsColor>() {
-			
+
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return hovered.isHovered() ? HtmlColor.White : ds.getBackgroundColor() ;
 			}
+			
 		});
 		option.setBorderRadius(16);
 		option.setBorderWidth(3);
@@ -145,24 +147,26 @@ public class DataLabelsHighlightView extends BaseComposite{
 		option.getFont().setWeight(Weight.bold);
 		
 		option.getListeners().setEnterEventHandler(new EnterEventHandler() {
-			
+
 			@Override
-			public boolean onEnter(AbstractChart<?, ?> chart, Context context) {
+			public boolean onEnter(AbstractChart<?, ?> chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				hovered.setHovered(true);
 				context.setOptions(hovered);
 				return true;
 			}
+			
 		});
 		option.getListeners().setLeaveEventHandler(new LeaveEventHandler() {
-			
+
 			@Override
-			public boolean onLeave(AbstractChart<?, ?> chart, Context context) {
+			public boolean onLeave(AbstractChart<?, ?> chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				hovered.setHovered(false);
 				context.setOptions(hovered);
 				return true;
 			}
+			
 		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);

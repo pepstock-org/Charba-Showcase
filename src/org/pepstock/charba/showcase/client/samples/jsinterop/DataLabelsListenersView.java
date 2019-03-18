@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -11,10 +13,8 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
@@ -133,7 +133,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				if (context.isActive()) {
 					return null;
 				}
@@ -185,7 +185,33 @@ public class DataLabelsListenersView extends BaseComposite{
 		}
 
 		@Override
-		public boolean onClick(AbstractChart<?, ?> chart, Context context) {
+		public boolean onLeave(AbstractChart<?, ?> chart, ScriptableContext context) {
+			super.onLeave(chart, context);
+			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+			DivElement newDiv= Document.get().createDivElement();
+			newDiv.setInnerHTML("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
+			element.insertBefore(newDiv, element.getFirstChild());
+			if (element.getChildCount() > 8) {
+				element.removeChild(element.getLastChild());
+			}
+			return true;
+		}
+
+		@Override
+		public boolean onEnter(AbstractChart<?, ?> chart, ScriptableContext context) {
+			super.onEnter(chart, context);
+			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+			DivElement newDiv= Document.get().createDivElement();
+			newDiv.setInnerHTML("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
+			element.insertBefore(newDiv, element.getFirstChild());
+			if (element.getChildCount() > 8) {
+				element.removeChild(element.getLastChild());
+			}
+			return true;
+		}
+
+		@Override
+		public boolean onClick(AbstractChart<?, ?> chart, ScriptableContext context) {
 			super.onClick(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 			Labels labels = chart.getData().getLabels();
@@ -208,33 +234,6 @@ public class DataLabelsListenersView extends BaseComposite{
 				element.removeChild(element.getLastChild());
 			}
 			chart.fireEvent(new DatasetSelectionEvent(Document.get().createChangeEvent(), item));
-			return true;
-
-		}
-
-		@Override
-		public boolean onLeave(AbstractChart<?, ?> chart, Context context) {
-			super.onLeave(chart, context);
-			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			DivElement newDiv= Document.get().createDivElement();
-			newDiv.setInnerHTML("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-			element.insertBefore(newDiv, element.getFirstChild());
-			if (element.getChildCount() > 8) {
-				element.removeChild(element.getLastChild());
-			}
-			return true;
-		}
-
-		@Override
-		public boolean onEnter(AbstractChart<?, ?> chart, Context context) {
-			super.onEnter(chart, context);
-			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			DivElement newDiv= Document.get().createDivElement();
-			newDiv.setInnerHTML("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-			element.insertBefore(newDiv, element.getFirstChild());
-			if (element.getChildCount() > 8) {
-				element.removeChild(element.getLastChild());
-			}
 			return true;
 		}
 	}

@@ -2,18 +2,18 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
@@ -72,7 +72,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option1.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				return context.isActive() ? Align.start : Align.center;
 			}
 		});
@@ -100,7 +100,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option3.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				return context.isActive() ? Align.end : Align.center;
 			}
 		});
@@ -128,7 +128,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<String>() {
 
 			@Override
-			public String backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.White.toRGBA();
 			}
@@ -136,7 +136,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option.setBorderColor(new BorderColorCallback<String>() {
 			
 			@Override
-			public String borderColor(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString();
 			}
@@ -144,15 +144,14 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option.setColor(new ColorCallback<String>() {
 			
 			@Override
-			public String color(AbstractChart<?, ?> chart, Context context) {
+			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.isActive() ? HtmlColor.White.toRGBA() : ds.getBackgroundColorAsString();
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
-			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double myValue = Math.round(value * 100) /100;
 				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue)+ "";

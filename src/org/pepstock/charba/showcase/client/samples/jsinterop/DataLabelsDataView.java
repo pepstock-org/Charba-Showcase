@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -9,7 +10,6 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
@@ -88,36 +88,39 @@ public class DataLabelsDataView extends BaseComposite{
 		option.getFont().setSize(11);
 		option.getFont().setWeight(Weight.bold);
 		option.setAlign(new AlignCallback() {
-			
+
 			@Override
-			public Align align(AbstractChart<?, ?> chart, Context context) {
+			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double curr = ds.getData().get(context.getIndex());
 				double prev = context.getIndex() > 0 ? ds.getData().get(context.getIndex()-1) : 0;
 				double next = context.getIndex() < ds.getData().size() ? ds.getData().get(context.getIndex()+1) : 0;
 				return prev < curr && next < curr ? Align.end :	prev > curr && next > curr ? Align.start :	Align.center;
 			}
+			
 		});
 		option.setColor(new ColorCallback<IsColor>() {
-			
+
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
 				return diff < 0 ? HtmlColor.Red : diff > 0 ? HtmlColor.Green : HtmlColor.Gray ;
 			}
+			
 		});
 		option.setFormatter(new FormatterCallback() {
-			
+
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, Context context) {
+			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
 				StringBuffer sb = new StringBuffer();
 				sb.append(diff < 0 ? '\u25B2' : diff > 0 ? '\u25BC' : '\u25C6');
 				return sb.append(" ").append(Math.round(value)).toString();
 			}
+			
 		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);

@@ -5,7 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.ChartType;
 import org.pepstock.charba.client.controllers.AbstractController;
-import org.pepstock.charba.client.controllers.Context;
+import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scale;
@@ -33,7 +33,7 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 	@Override
-	public void initialize(Context context, AbstractChart<?, ?> chart, int datasetIndex) {
+	public void initialize(ControllerContext context, AbstractChart<?, ?> chart, int datasetIndex) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.initialize(context, chart, datasetIndex);
@@ -41,7 +41,7 @@ public class MyHorizontalBarController extends AbstractController {
 
 
 	@Override
-	public void draw(Context context, AbstractChart<?, ?> chart, double ease) {
+	public void draw(ControllerContext context, AbstractChart<?, ?> chart, double ease) {
 		super.draw(context, chart, ease);
 		final int padding = 4;
 		Context2d ctx = chart.getCanvas().getContext2d();
@@ -80,7 +80,7 @@ public class MyHorizontalBarController extends AbstractController {
 	
 
 	@Override
-	public void update(Context context, AbstractChart<?, ?> chart, boolean reset) {
+	public void update(ControllerContext context, AbstractChart<?, ?> chart, boolean reset) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.update(context, chart, reset);

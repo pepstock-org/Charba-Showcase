@@ -16,11 +16,6 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Button ui:field="add_dataset">Add dataset</g:Button>
-					<g:Button ui:field="remove_dataset">Remove dataset</g:Button>
-					<g:Button ui:field="add_data">Add data</g:Button>
-					<g:Button ui:field="remove_data">Remove data</g:Button>
-					<g:CheckBox ui:field="semiCircle" checked="false">Semi circle</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />
 					</g:PushButton>

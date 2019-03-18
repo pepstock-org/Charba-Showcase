@@ -6,6 +6,7 @@ import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.OptionsNode;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -40,9 +41,10 @@ public class DoughnutView extends BaseComposite{
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
+		
 		dataset.setData(getRandomDigits(months, false));
 
-		chart.getData().setLabels(getLabels());
+		chart.getData().setLabels(getLabels(4));
 		chart.getData().setDatasets(dataset);
 
 	}
@@ -91,6 +93,19 @@ public class DoughnutView extends BaseComposite{
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
+	}
+	
+	@UiHandler("semiCircle")
+	protected void handleSemiCircle(ClickEvent event) {
+		OptionsNode options = chart.getNode().getOptions();
+		if (options.getCircumference() == Math.PI) {
+			options.setCircumference(2 * Math.PI);
+			options.setRotation(-Math.PI / 2);
+		} else {
+			options.setCircumference(Math.PI);
+			options.setRotation(-Math.PI);
+		}
+		chart.update();
 	}
 	
 	@UiHandler("source")

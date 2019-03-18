@@ -1,12 +1,16 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import java.util.List;
-
+import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.BorderSkippedCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.BorderSkipped;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
@@ -18,17 +22,17 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class VerticalBarView extends BaseComposite{
+public class VerticalBarCallbackView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, VerticalBarView> {
+	interface ViewUiBinder extends UiBinder<Widget, VerticalBarCallbackView> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public VerticalBarView() {
+	public VerticalBarCallbackView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -44,13 +48,36 @@ public class VerticalBarView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.alpha(0.80D));
 		
 		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(10);
-		border.setLeft(15);
-		border.setRight(5);
-		
+		border.setTop(2);
+		border.setLeft(2);
+		border.setRight(2);
 		dataset1.setBorderWidth(border);
 		
-		dataset1.setBorderColor(color1);
+		dataset1.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+
+			@Override
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+				return Colors.ALL[context.getIndex()+1];
+			}
+			
+		});
+		dataset1.setBorderColor(new BorderColorCallback<IsColor>() {
+
+			@Override
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+				return Colors.ALL[context.getIndex()+5];
+			}
+
+		});
+		dataset1.setBorderSkipped(new BorderSkippedCallback() {
+
+			@Override
+			public BorderSkipped invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+				return BorderSkipped.bottom;
+			}
+			
+		});
+		
 		dataset1.setData(getFixedDigits(months));
 		
 		chart.getData().setLabels(getLabels());
@@ -63,29 +90,6 @@ public class VerticalBarView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-	}
-
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-		
-		BarDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = Colors.ALL[datasets.size()]; 
-		dataset.setBackgroundColor(color.alpha(0.2));
-		dataset.setBorderColor(color.toHex());
-		dataset.setBorderWidth(1);
-		dataset.setData(getRandomDigits(months));
-
-		datasets.add(dataset);
-		
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
 	}
 
 	@UiHandler("add_data")

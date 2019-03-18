@@ -32,6 +32,8 @@
 									styleName='{myStyle.myLabel}'>Stacked</g:Label>
 								<g:Label ui:field="barStackedGroups"
 									styleName='{myStyle.myLabel}'>Stacked Groups</g:Label>
+								<g:Label ui:field="barCallback"
+									styleName='{myStyle.myLabel}'>Callback options</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -54,6 +56,8 @@
 									styleName='{myStyle.myLabel}'>Point styles images</g:Label>
 								<g:Label ui:field="linePointSize"
 									styleName='{myStyle.myLabel}'>Point Size</g:Label>
+								<g:Label ui:field="lineCallback"
+									styleName='{myStyle.myLabel}'>Callback options</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -126,6 +130,8 @@
 									styleName='{myStyle.myLabel}'>HTML tooltip (line)</g:Label>
 								<g:Label ui:field="tooltiphtmlpie"
 									styleName='{myStyle.myLabel}'>HTML tooltip (pie)</g:Label>
+								<g:Label ui:field="tooltipPositioner"
+									styleName='{myStyle.myLabel}'>Positioner</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"
@@ -167,6 +173,10 @@
 									styleName='{myStyle.myLabel}'>Linear gradient (line)</g:Label>
 								<g:Label ui:field="pieGradient"
 									styleName='{myStyle.myLabel}'>Radial gradient (pie) </g:Label>
+								<g:Label ui:field="barPatternomaly"
+									styleName='{myStyle.myLabel}'>Patternomaly (bar) </g:Label>
+								<g:Label ui:field="piePatternomaly"
+									styleName='{myStyle.myLabel}'>Patternomaly (pie) </g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

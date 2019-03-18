@@ -5,17 +5,17 @@ import java.util.Map;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.datalabels.Context;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.datalabels.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Weight;
@@ -115,7 +115,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
 
 			@Override
-			public IsColor backgroundColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
 				return items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.White;
@@ -124,7 +124,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		option.setBorderColor(new BorderColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor borderColor(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor();
 			}
@@ -132,7 +132,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		option.setColor(new ColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, Context context) {
+			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
 				return !items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.White;
@@ -147,7 +147,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		option.getListeners().setClickEventHandler(new ClickEventHandler() {
 			
 			@Override
-			public boolean onClick(AbstractChart<?, ?> chart, Context context) {
+			public boolean onClick(AbstractChart<?, ?> chart, ScriptableContext context) {
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
 				if (items.containsKey(key)) {
 					items.remove(key);
