@@ -44,9 +44,9 @@ public class VerticalBarView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.alpha(0.80D));
 		
 		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(10);
-		border.setLeft(15);
-		border.setRight(5);
+		border.setTop(2);
+		border.setLeft(2);
+		border.setRight(2);
 		
 		dataset1.setBorderWidth(border);
 		
