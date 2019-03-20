@@ -150,8 +150,9 @@ public class DataLabelsInteractionsView extends BaseComposite{
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
+			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double myValue = Math.round(value * 100) /100;
 				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue)+ "";

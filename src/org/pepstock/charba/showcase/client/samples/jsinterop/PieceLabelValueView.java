@@ -134,7 +134,7 @@ public class PieceLabelValueView extends BaseComposite{
 	static class MyRenderer implements RenderCallback<String>{
 
 		@Override
-		public String render(AbstractChart<?, ?> chart, RenderItem item) {
+		public String invoke(AbstractChart<?, ?> chart, RenderItem item) {
 			return "$$ "+item.getValue();
 		}
 		

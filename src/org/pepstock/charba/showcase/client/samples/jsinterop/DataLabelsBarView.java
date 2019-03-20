@@ -133,7 +133,7 @@ public class DataLabelsBarView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				double percentage = Percentage.compute(chart, value, context, true);
 				return Math.round(percentage*100)+"%";
 			}

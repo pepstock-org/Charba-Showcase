@@ -135,7 +135,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				return value < 20 ? "Poor\n"+value : value < 50 ? "Good\n"+value : "Great\n"+value;
 			}
 		});

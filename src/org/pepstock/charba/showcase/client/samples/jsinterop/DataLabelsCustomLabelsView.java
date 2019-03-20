@@ -103,7 +103,7 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				Labels labels = chart.getData().getLabels();
 				return labels.getString(context.getIndex());
 			}

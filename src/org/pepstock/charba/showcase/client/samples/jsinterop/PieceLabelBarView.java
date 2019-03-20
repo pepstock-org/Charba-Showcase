@@ -58,14 +58,14 @@ public class PieceLabelBarView extends BaseComposite{
 		option.setRender(new RenderCallback<String>() {
 			
 			@Override
-			public String render(AbstractChart<?, ?> chart, RenderItem item) {
+			public String invoke(AbstractChart<?, ?> chart, RenderItem item) {
 				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
 			}
 		});
 		option.setFontColor(new FontColorCallback<IsColor>() {
 			
 			@Override
-			public IsColor color(AbstractChart<?, ?> chart, FontColorItem item) {
+			public IsColor invoke(AbstractChart<?, ?> chart, FontColorItem item) {
 				return item.getValue() > 25 ? HtmlColor.Red : HtmlColor.Black;
 			}
 		});

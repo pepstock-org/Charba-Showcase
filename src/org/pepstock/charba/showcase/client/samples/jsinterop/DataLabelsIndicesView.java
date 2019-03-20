@@ -123,7 +123,7 @@ public class DataLabelsIndicesView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				return context.getIndex()+": "+Math.round(value)+"'";
 			}
 		});

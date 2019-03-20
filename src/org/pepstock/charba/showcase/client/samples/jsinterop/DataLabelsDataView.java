@@ -113,7 +113,7 @@ public class DataLabelsDataView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
 				StringBuffer sb = new StringBuffer();

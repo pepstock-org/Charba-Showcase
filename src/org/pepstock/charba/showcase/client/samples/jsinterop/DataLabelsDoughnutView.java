@@ -117,11 +117,8 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		option.getFont().setWeight(Weight.bold);
 		option.setFormatter(new FormatterCallback() {
 
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.datalabels.callbacks.FormatterCallback#format(org.pepstock.charba.client.AbstractChart, double, org.pepstock.charba.client.callbacks.ScriptableContext)
-			 */
 			@Override
-			public String format(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
 				double percentage = Percentage.compute(chart, value, context, false);
 				return percentageFormatter.format(percentage);
 			}
