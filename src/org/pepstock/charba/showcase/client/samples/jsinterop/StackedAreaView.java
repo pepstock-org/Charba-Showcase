@@ -46,11 +46,11 @@ public class StackedAreaView extends BaseComposite{
 		
 		IsColor color1 = Colors.ALL[0];
 		
-		dataset1.setBackgroundColor(color1.toHex());
+		dataset1.setBackgroundColor(color1.toHSL());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months, false));
 		dataset1.setFill(Fill.origin);
-
+		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		

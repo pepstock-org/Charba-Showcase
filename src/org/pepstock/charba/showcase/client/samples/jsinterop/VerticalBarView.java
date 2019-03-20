@@ -55,6 +55,7 @@ public class VerticalBarView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+		
 	}
 
 	@UiHandler("randomize")

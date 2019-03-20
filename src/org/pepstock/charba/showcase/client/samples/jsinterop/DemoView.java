@@ -15,7 +15,6 @@ import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
-import org.pepstock.charba.client.rough.RoughPlugin;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -82,8 +81,6 @@ public class DemoView extends Composite {
 		LabelsPlugin.enable();
 		
 		DataLabelsPlugin.enable();
-		
-		RoughPlugin.enable();
 	}
 
 	private void clearPreviousChart() {
