@@ -646,16 +646,16 @@ public class DemoView extends Composite {
 		 content.add(new HTMLAnnnotationByElementView());
 	}
 
-	@UiHandler("piePatternomaly")
-	protected void handlePatternomalyPie(ClickEvent event) {
+	@UiHandler("doughnutTiles")
+	protected void handletilesDoughnut(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PatternomalyDoughnutView());
+		 content.add(new TilesDoughnutView());
 	}
 
-	@UiHandler("barPatternomaly")
-	protected void handlePatternomalyBar(ClickEvent event) {
+	@UiHandler("barTiles")
+	protected void handleTilesBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PatternomalyBarView());
+		 content.add(new TilesBarView());
 	}
 
 }

@@ -2,11 +2,11 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.tiles.Shape;
+import org.pepstock.charba.client.colors.tiles.TilesBuilder;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.patterns.Patternomaly;
-import org.pepstock.charba.client.patterns.Shape;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -18,11 +18,11 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PatternomalyDoughnutView extends BaseComposite{
+public class TilesDoughnutView extends BaseComposite{
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PatternomalyDoughnutView> {
+	interface ViewUiBinder extends UiBinder<Widget, TilesDoughnutView> {
 	}
 
 	@UiField
@@ -31,7 +31,7 @@ public class PatternomalyDoughnutView extends BaseComposite{
 	@UiField
 	VerticalPanel container;
 
-	public PatternomalyDoughnutView() {
+	public TilesDoughnutView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
@@ -42,10 +42,10 @@ public class PatternomalyDoughnutView extends BaseComposite{
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		
-		Pattern p1 = Patternomaly.get().createPattern(Shape.square, Colors.ALL[0]);
-		Pattern p2 = Patternomaly.get().createPattern(Shape.zigzag_vertical, Colors.ALL[1]);
-		Pattern p3 = Patternomaly.get().createPattern(Shape.diagonal, Colors.ALL[2]);
-		Pattern p4 = Patternomaly.get().createPattern(Shape.ring, Colors.ALL[3]);
+		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[4]);
+		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[5]);
+		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[6]);
+		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[7]);
 		dataset.setBackgroundColor(p1, p2, p3, p4);
 
 		dataset.setData(getRandomDigits(4, false));

@@ -173,10 +173,10 @@
 									styleName='{myStyle.myLabel}'>Linear gradient (line)</g:Label>
 								<g:Label ui:field="pieGradient"
 									styleName='{myStyle.myLabel}'>Radial gradient (pie) </g:Label>
-								<g:Label ui:field="barPatternomaly"
-									styleName='{myStyle.myLabel}'>Patternomaly (bar) </g:Label>
-								<g:Label ui:field="piePatternomaly"
-									styleName='{myStyle.myLabel}'>Patternomaly (pie) </g:Label>
+								<g:Label ui:field="barTiles"
+									styleName='{myStyle.myLabel}'>Tiles pattern (bar) </g:Label>
+								<g:Label ui:field="doughnutTiles"
+									styleName='{myStyle.myLabel}'>Tiles pattern (doughnut) </g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

@@ -3,10 +3,10 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.tiles.Shape;
+import org.pepstock.charba.client.colors.tiles.TilesBuilder;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.patterns.Patternomaly;
-import org.pepstock.charba.client.patterns.Shape;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -17,17 +17,17 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PatternomalyBarView extends BaseComposite{
+public class TilesBarView extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget,PatternomalyBarView> {
+	interface ViewUiBinder extends UiBinder<Widget,TilesBarView> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public PatternomalyBarView() {
+	public TilesBarView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -42,10 +42,10 @@ public class PatternomalyBarView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.alpha(0.80D));
 	
-		Pattern p1 = Patternomaly.get().createPattern(Shape.square, Colors.ALL[0]);
-		Pattern p2 = Patternomaly.get().createPattern(Shape.zigzag_vertical, Colors.ALL[1]);
-		Pattern p3 = Patternomaly.get().createPattern(Shape.diagonal, Colors.ALL[2]);
-		Pattern p4 = Patternomaly.get().createPattern(Shape.ring, Colors.ALL[3]);
+		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[0]);
+		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[1]);
+		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[2]);
+		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[3]);
 		dataset1.setBackgroundColor(p1, p2, p3, p4);
 
 		dataset1.setData(getFixedDigits(4));
