@@ -30,14 +30,6 @@ public class Charba_Showcase implements EntryPoint {
 		JsWindowHelper.get().enableResizeOnBeforePrint();
 		
 		RootPanel.get().add(new DemoView());
-
-//		EntryPointStarter.run(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				RootPanel.get().add(new DemoView());
-//			}
-//		});
 		
 	}
 
