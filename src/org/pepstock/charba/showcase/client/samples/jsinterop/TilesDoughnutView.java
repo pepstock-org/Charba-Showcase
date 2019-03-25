@@ -46,7 +46,7 @@ public class TilesDoughnutView extends BaseComposite{
 		
 		ImageShape image = new ImageShape(Images.INSTANCE.githubWhite());
 		
-		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[4]);
+		Pattern p1 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[4]);
 		Pattern p2 = TilesBuilder.get().createPattern(image, Colors.ALL[5]);
 		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[6]);
 		Pattern p4 = TilesBuilder.get().createPattern(Shape.star, Colors.ALL[7]);
