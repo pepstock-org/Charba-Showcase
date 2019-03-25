@@ -7,6 +7,7 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.CubicInterpolationMode;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
@@ -55,7 +56,7 @@ public class LineInterpolationView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(data);
 		dataset1.setFill(Fill.nofill);
-		dataset1.setCubicInterpolationMode("monotone");
+		dataset1.setCubicInterpolationMode(CubicInterpolationMode.monotone);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Cubic interpolation (default)");
