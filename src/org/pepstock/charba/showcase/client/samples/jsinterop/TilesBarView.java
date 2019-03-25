@@ -46,18 +46,22 @@ public class TilesBarView extends BaseComposite{
 		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[1]);
 		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[2]);
 		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[3]);
-		dataset1.setBackgroundColor(p1, p2, p3, p4);
+		Pattern p5 = TilesBuilder.get().createPattern(Shape.dotDash, Colors.ALL[4]);
+		Pattern p6 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[5]);
+		Pattern p7 = TilesBuilder.get().createPattern(Shape.zigzag, Colors.ALL[6]);
 
-		dataset1.setData(getFixedDigits(4));
+		dataset1.setBackgroundColor(p1, p2, p3, p4, p5, p6,p7);
+
+		dataset1.setData(getFixedDigits(7));
 		
-		chart.getData().setLabels(getLabels(4));
+		chart.getData().setLabels(getLabels(7));
 		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){
-			dataset.setData(getRandomDigits(4));
+			dataset.setData(getRandomDigits(7));
 		}
 		chart.update();
 	}
