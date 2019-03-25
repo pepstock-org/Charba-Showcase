@@ -10,7 +10,10 @@ public interface Images extends ClientBundle {
 
 	@Source("/images/GitHub-Mark-32px.png")
 	ImageResource github();
-	
+
+	@Source("/images/GitHub-Mark-Light-32px.png")
+	ImageResource githubWhite();
+
 	@Source("/images/gwt.png")
 	ImageResource gwt();
 

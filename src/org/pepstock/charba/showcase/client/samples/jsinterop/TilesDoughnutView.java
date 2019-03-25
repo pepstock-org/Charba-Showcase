@@ -2,11 +2,13 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.tiles.ImageShape;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesBuilder;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -42,10 +44,12 @@ public class TilesDoughnutView extends BaseComposite{
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		
+		ImageShape image = new ImageShape(Images.INSTANCE.githubWhite());
+		
 		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[4]);
-		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[5]);
+		Pattern p2 = TilesBuilder.get().createPattern(image, Colors.ALL[5]);
 		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[6]);
-		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[7]);
+		Pattern p4 = TilesBuilder.get().createPattern(Shape.star, Colors.ALL[7]);
 		dataset.setBackgroundColor(p1, p2, p3, p4);
 
 		dataset.setData(getRandomDigits(4, false));

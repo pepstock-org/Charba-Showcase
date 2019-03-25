@@ -24,6 +24,8 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagFR().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagDE().getSafeUri());
+		
+		Image.prefetch(Images.INSTANCE.githubWhite().getSafeUri());
 
 		ResourcesType.setClientBundle(EmbeddedResources.INSTANCE);
 
