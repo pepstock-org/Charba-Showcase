@@ -38,7 +38,7 @@ public class DemoView extends Composite {
 	}
 
 	@UiField
-	VerticalPanel content;
+	VerticalPanel content; 
 
 	public DemoView() {
 		initWidget(uiBinder.createAndBindUi(this));
