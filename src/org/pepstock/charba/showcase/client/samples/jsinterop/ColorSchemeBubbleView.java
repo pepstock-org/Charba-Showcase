@@ -50,6 +50,9 @@ public class ColorSchemeBubbleView extends BaseComposite{
 	@UiField
 	ListBox name;
 	
+	@UiField
+	CheckBox reverse;
+	
 	public ColorSchemeBubbleView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -195,13 +198,21 @@ public class ColorSchemeBubbleView extends BaseComposite{
 	}
 	
 	@UiHandler("data")
-	protected void handleSemiCircle(ClickEvent event) {
+	protected void handleScope(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		if (data.getValue()) {
 			options.setSchemeScope(SchemeScope.data);
 		} else {
 			options.setSchemeScope(SchemeScope.dataset);
 		}
+		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
+		chart.update();
+	}
+	
+	@UiHandler("reverse")
+	protected void handleReverse(ClickEvent event) {
+		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
+		options.setReverse(reverse.getValue());
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
@@ -248,12 +259,16 @@ public class ColorSchemeBubbleView extends BaseComposite{
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
 			options.setScheme(BrewerScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
 			options.setScheme(OfficeScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			options.setScheme(TableauScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			options.setScheme(GwtMaterialScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.95D);
 		} else {
 			
 		}

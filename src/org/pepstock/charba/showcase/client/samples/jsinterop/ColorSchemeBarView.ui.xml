@@ -22,6 +22,7 @@
 					<g:CheckBox ui:field="data" checked="false">Data colors</g:CheckBox>
 					<g:ListBox ui:field="category"/>
 					<g:ListBox ui:field="name"/>
+					<g:CheckBox ui:field="reverse" checked="false">Reverse</g:CheckBox>
  					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />
 					</g:PushButton>

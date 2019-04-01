@@ -21,6 +21,7 @@
 					<g:Button ui:field="remove_data">Remove data</g:Button>
 					<g:ListBox ui:field="category"/>
 					<g:ListBox ui:field="name"/>
+					<g:CheckBox ui:field="reverse" checked="false">Reverse</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />
 					</g:PushButton>

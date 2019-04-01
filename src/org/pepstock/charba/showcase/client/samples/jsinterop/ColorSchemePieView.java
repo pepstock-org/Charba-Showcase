@@ -21,6 +21,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -39,6 +40,9 @@ public class ColorSchemePieView extends BaseComposite{
 
 	@UiField
 	ListBox name;
+	
+	@UiField
+	CheckBox reverse;
 
 	public ColorSchemePieView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -161,15 +165,27 @@ public class ColorSchemePieView extends BaseComposite{
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
 			options.setScheme(BrewerScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
 			options.setScheme(OfficeScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			options.setScheme(TableauScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			options.setScheme(GwtMaterialScheme.valueOf(name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.95D);
 		} else {
 			
 		}
+		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
+		chart.update();
+	}
+	
+	@UiHandler("reverse")
+	protected void handleReverse(ClickEvent event) {
+		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
+		options.setReverse(reverse.getValue());
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
