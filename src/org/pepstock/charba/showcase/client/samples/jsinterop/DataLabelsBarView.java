@@ -140,7 +140,7 @@ public class DataLabelsBarView extends BaseComposite{
 		});
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-
+		
 	}
 
 	@UiHandler("randomize")

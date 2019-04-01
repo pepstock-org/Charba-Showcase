@@ -60,6 +60,7 @@ public class LineView extends BaseComposite {
 		for (int i = 0; i < values.length; i++) {
 			data.add(values[i]);
 		}
+		datasets.add(dataset1);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -69,7 +70,7 @@ public class LineView extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(false);
+		dataset2.setFill(true);
 		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -81,11 +82,12 @@ public class LineView extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-
+		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
+	
 	}
 
 	@UiHandler("randomize")

@@ -177,6 +177,12 @@
 									styleName='{myStyle.myLabel}'>Tiles pattern (bar) </g:Label>
 								<g:Label ui:field="doughnutTiles"
 									styleName='{myStyle.myLabel}'>Tiles pattern (doughnut) </g:Label>
+								<g:Label ui:field="barScheme"
+									styleName='{myStyle.myLabel}'>Color Scheme (bar) </g:Label>
+								<g:Label ui:field="pieScheme"
+									styleName='{myStyle.myLabel}'>Color Scheme (pie) </g:Label>
+								<g:Label ui:field="bubbleScheme"
+									styleName='{myStyle.myLabel}'>Color Scheme (bubble) </g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

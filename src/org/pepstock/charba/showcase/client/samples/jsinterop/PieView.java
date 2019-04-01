@@ -6,6 +6,8 @@ import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.ColorSchemes;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -38,6 +40,10 @@ public class PieView extends BaseComposite{
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 
+		Charba_Showcase.LOG.info(""+dataset.getBorderWidth());
+		
+		chart.getPlugins().add(new ColorSchemes());
+		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 	}

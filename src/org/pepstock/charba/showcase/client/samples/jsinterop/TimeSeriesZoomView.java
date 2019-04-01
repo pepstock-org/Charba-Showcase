@@ -171,6 +171,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 				}
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
+		
 	}
 	
 	@UiHandler("randomize")

@@ -15,6 +15,7 @@ import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.rough.RoughPlugin;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -81,6 +82,8 @@ public class DemoView extends Composite {
 		LabelsPlugin.enable();
 		
 		DataLabelsPlugin.enable();
+		
+		RoughPlugin.enable();
 	}
 
 	private void clearPreviousChart() {
@@ -656,6 +659,24 @@ public class DemoView extends Composite {
 	protected void handleTilesBar(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new TilesBarView());
+	}
+
+	@UiHandler("barScheme")
+	protected void handleSchemeBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColorSchemeBarView());
+	}
+
+	@UiHandler("pieScheme")
+	protected void handleSchemePie(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColorSchemePieView());
+	}
+
+	@UiHandler("bubbleScheme")
+	protected void handleSchemeBubble(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColorSchemeBubbleView());
 	}
 
 }

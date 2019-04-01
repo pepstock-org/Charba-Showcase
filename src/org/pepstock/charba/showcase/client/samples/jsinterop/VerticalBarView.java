@@ -55,7 +55,6 @@ public class VerticalBarView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
 	}
 
 	@UiHandler("randomize")
@@ -64,6 +63,7 @@ public class VerticalBarView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+		
 	}
 
 	@UiHandler("add_dataset")
