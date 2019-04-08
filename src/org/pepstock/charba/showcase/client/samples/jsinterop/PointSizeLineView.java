@@ -33,12 +33,12 @@ public class PointSizeLineView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.bottom);
+		chart.getOptions().getLegend().setPosition(Position.BOTTOM);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Point size Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.index);
+		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Big Points");
@@ -48,7 +48,7 @@ public class PointSizeLineView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 		dataset1.setBorderDash(5,5);
 		dataset1.setPointRadius(15D);
 		dataset1.setPointHoverRadius(10D);
@@ -61,7 +61,7 @@ public class PointSizeLineView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 		dataset2.setBorderDash(5,5);
 		dataset2.setPointRadius(2, 4, 6, 18, 0, 12, 20);
 		
@@ -73,7 +73,7 @@ public class PointSizeLineView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
-		dataset3.setFill(Fill.nofill);
+		dataset3.setFill(Fill.FALSE);
 		dataset3.setPointHoverRadius(30D);
 
 		LineDataset dataset4 = chart.newDataset();
@@ -84,7 +84,7 @@ public class PointSizeLineView extends BaseComposite{
 		dataset4.setBackgroundColor(color4.toHex());
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
-		dataset4.setFill(Fill.nofill);
+		dataset4.setFill(Fill.FALSE);
 		dataset4.setPointHitRadius(20D);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);

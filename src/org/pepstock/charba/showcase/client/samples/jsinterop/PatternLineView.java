@@ -34,12 +34,12 @@ public class PatternLineView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
@@ -51,7 +51,7 @@ public class PatternLineView extends BaseComposite{
 		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.Color;
@@ -86,34 +86,34 @@ public class DataLabelsDataView extends BaseComposite{
 		option.setBorderWidth(1);
 		option.setOffset(8);
 		option.getFont().setSize(11);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		option.setAlign(new AlignCallback() {
 
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Align invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double curr = ds.getData().get(context.getIndex());
 				double prev = context.getIndex() > 0 ? ds.getData().get(context.getIndex()-1) : 0;
 				double next = context.getIndex() < ds.getData().size() ? ds.getData().get(context.getIndex()+1) : 0;
-				return prev < curr && next < curr ? Align.end :	prev > curr && next > curr ? Align.start :	Align.center;
+				return prev < curr && next < curr ? Align.END :	prev > curr && next > curr ? Align.START :	Align.CENTER;
 			}
 			
 		});
-		option.setColor(new ColorCallback<IsColor>() {
+		option.setColor(new ColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
-				return diff < 0 ? HtmlColor.Red : diff > 0 ? HtmlColor.Green : HtmlColor.Gray ;
+				return diff < 0 ? HtmlColor.RED : diff > 0 ? HtmlColor.GREEN : HtmlColor.GRAY ;
 			}
 			
 		});
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
 				StringBuffer sb = new StringBuffer();

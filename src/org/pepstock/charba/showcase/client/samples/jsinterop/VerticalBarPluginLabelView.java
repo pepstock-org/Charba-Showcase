@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
@@ -45,7 +45,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 		wrapper.appendChild(element);
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -81,7 +81,7 @@ public class VerticalBarPluginLabelView extends BaseComposite{
 			}
 			
 			@Override
-			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int fontSize = 16;
 				final int padding = 5;
 				final Context2d ctx = chart.getCanvas().getContext2d();

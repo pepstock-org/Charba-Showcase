@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.tiles.CharacterShape;
 import org.pepstock.charba.client.colors.tiles.ImageShape;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesBuilder;
@@ -37,7 +38,7 @@ public class TilesDoughnutView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Doughnut Chart");
 		
@@ -46,10 +47,13 @@ public class TilesDoughnutView extends BaseComposite{
 		
 		ImageShape image = new ImageShape(Images.INSTANCE.githubWhite());
 		
-		Pattern p1 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[4]);
-		Pattern p2 = TilesBuilder.get().createPattern(image, Colors.ALL[5]);
-		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[6]);
-		Pattern p4 = TilesBuilder.get().createPattern(Shape.star, Colors.ALL[7]);
+		CharacterShape charShape = new CharacterShape("m");
+		
+		Pattern p1 = TilesBuilder.create().setShape(Shape.EMPTY_STAR).setBackgroundColor(Colors.ALL[4]).asPattern();
+		Pattern p2 = TilesBuilder.create().setShape(image).setBackgroundColor(Colors.ALL[5]).asPattern();
+//		Pattern p3 = TilesBuilder.create().setShape(Shape.diagonal).setBackgroundColor(Colors.ALL[6]).asPattern();
+		Pattern p3 = TilesBuilder.create().setShape(charShape).setBackgroundColor(Colors.ALL[6]).setSize(20).asPattern();
+		Pattern p4 = TilesBuilder.create().setShape(Shape.STAR).setBackgroundColor(Colors.ALL[7]).asPattern();
 		dataset.setBackgroundColor(p1, p2, p3, p4);
 
 		dataset.setData(getRandomDigits(4, false));

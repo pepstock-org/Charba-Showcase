@@ -34,9 +34,9 @@ public class StyledLineView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Styled Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
@@ -47,7 +47,7 @@ public class StyledLineView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Dashed");
@@ -57,7 +57,7 @@ public class StyledLineView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 		dataset2.setBorderDash(5,5);
 
 		LineDataset dataset3 = chart.newDataset();
@@ -68,7 +68,7 @@ public class StyledLineView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
-		dataset3.setFill(Fill.origin);
+		dataset3.setFill(Fill.ORIGIN);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

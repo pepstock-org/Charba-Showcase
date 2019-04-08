@@ -35,7 +35,7 @@ public class NoNumericYAxesView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart with Non Numeric Y Axis");
 		
@@ -48,7 +48,7 @@ public class NoNumericYAxesView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		
 		dataset1.setDataString(getData(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -59,16 +59,16 @@ public class NoNumericYAxesView extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 
 		dataset2.setDataString(getData(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
 		
-		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, CartesianAxisType.y);
+		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, CartesianAxisType.Y);
 		axis2.setDisplay(true);
-		axis2.setPosition(Position.left);
+		axis2.setPosition(Position.LEFT);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Request State");
 		axis2.getTicks().setReverse(true);

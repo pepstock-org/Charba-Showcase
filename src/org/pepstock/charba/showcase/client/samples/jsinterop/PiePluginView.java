@@ -34,7 +34,7 @@ public class PiePluginView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -46,10 +46,10 @@ public class PiePluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		Gradient gradient = new Gradient(GradientType.radial, GradientOrientation.inOut,  GradientScope.canvas);
+		Gradient gradient = new Gradient(GradientType.RADIAL, GradientOrientation.IN_OUT,  GradientScope.CANVAS);
 
-		gradient.addColorStop(0, HtmlColor.White);
-		gradient.addColorStop(1, HtmlColor.Gray);
+		gradient.addColorStop(0, HtmlColor.WHITE);
+		gradient.addColorStop(1, HtmlColor.GRAY);
 	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);

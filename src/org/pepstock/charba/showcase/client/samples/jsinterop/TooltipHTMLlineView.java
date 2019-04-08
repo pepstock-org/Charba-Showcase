@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
 import org.pepstock.charba.client.colors.IsColor;
@@ -47,25 +48,26 @@ public class TooltipHTMLlineView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Custom info in tooltip");
 		chart.getOptions().getTooltips().setEnabled(false);
-		chart.getOptions().getTooltips().setPosition(TooltipPosition.nearest);
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {
 			
 			private DivElement element = null;
 			
 			@Override
-			public void onCustom(AbstractChart<?, ?> chart, TooltipModel model) {
+			public void onCustom(IsChart chart, TooltipModel model) {
 				if (model.getOpacity() == 0){
 					element.getStyle().setOpacity(0);
 					return;
 				}
 				if (element == null){
 					element = Document.get().createDivElement();
-					chart.getElement().appendChild(element);
+					AbstractChart<?> chartInstance = (AbstractChart<?>)chart;
+					chartInstance.getElement().appendChild(element);
 				}
 				element.removeClassName("above");
 				element.removeClassName("below");
@@ -137,7 +139,7 @@ public class TooltipHTMLlineView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -147,7 +149,7 @@ public class TooltipHTMLlineView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

@@ -7,7 +7,7 @@ import org.pepstock.charba.client.controllers.ControllerType;
 
 public class LineMyChart extends LineChart {
 	
-	public static final ControllerType TYPE = new ControllerType("stock", ChartType.line);
+	public static final ControllerType TYPE = new ControllerType("stock", ChartType.LINE);
 
 	@Override
 	public Type getType() {

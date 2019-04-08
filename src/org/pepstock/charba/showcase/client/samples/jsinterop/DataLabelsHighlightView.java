@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
@@ -70,7 +70,7 @@ public class DataLabelsHighlightView extends BaseComposite{
 		dataset1.setData(values);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAlign(Align.start);
+		option1.setAlign(Align.START);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		LineDataset dataset2 = chart.newDataset();
@@ -92,7 +92,7 @@ public class DataLabelsHighlightView extends BaseComposite{
 		dataset3.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAlign(Align.end);
+		option3.setAlign(Align.END);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -113,43 +113,43 @@ public class DataLabelsHighlightView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return hovered.isHovered() ? ds.getBackgroundColor() : HtmlColor.White;
+				return hovered.isHovered() ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
-		option.setBorderColor(new BorderColorCallback<IsColor>() {
+		option.setBorderColor(new BorderColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColor();
 			}
 
 		});
-		option.setColor(new ColorCallback<IsColor>() {
+		option.setColor(new ColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return hovered.isHovered() ? HtmlColor.White : ds.getBackgroundColor() ;
+				return hovered.isHovered() ? HtmlColor.WHITE : ds.getBackgroundColor() ;
 			}
 			
 		});
 		option.setBorderRadius(16);
 		option.setBorderWidth(3);
 		option.setOffset(8);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		option.getListeners().setEnterEventHandler(new EnterEventHandler() {
 
 			@Override
-			public boolean onEnter(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public boolean onEnter(IsChart chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				hovered.setHovered(true);
 				context.setOptions(hovered);
@@ -160,7 +160,7 @@ public class DataLabelsHighlightView extends BaseComposite{
 		option.getListeners().setLeaveEventHandler(new LeaveEventHandler() {
 
 			@Override
-			public boolean onLeave(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public boolean onLeave(IsChart chart, ScriptableContext context) {
 				Hovered hovered = context.getOptions(factory);
 				hovered.setHovered(false);
 				context.setOptions(hovered);
@@ -208,7 +208,13 @@ public class DataLabelsHighlightView extends BaseComposite{
 	static class Hovered extends NativeObjectContainer{
 		
 		private enum Property implements Key{
-			hovered
+			hovered;
+
+			@Override
+			public String value() {
+				return "hovered";
+			}
+			
 		}
 
 		Hovered() {

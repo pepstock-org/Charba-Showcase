@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.DoughnutChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -64,7 +64,7 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		dataset1.setData(getRandomDigits(months, false));
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAnchor(Anchor.end);
+		option1.setAnchor(Anchor.END);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		DoughnutDataset dataset2 = chart.newDataset();
@@ -73,7 +73,7 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option2 = new DataLabelsOptions();
-		option2.setAnchor(Anchor.center);
+		option2.setAnchor(Anchor.CENTER);
 		option2.setBackgroundColor(UndefinedValues.STRING);
 		option2.setBorderWidth(0);
 		dataset2.setOptions(DataLabelsPlugin.ID, option2);
@@ -84,17 +84,17 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		dataset3.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAnchor(Anchor.start);
+		option3.setAnchor(Anchor.START);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				DoughnutDataset ds = (DoughnutDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getIndex());
 			}
@@ -103,22 +103,22 @@ public class DataLabelsDoughnutView extends BaseComposite{
 		option.setDisplay(new DisplayCallback() {
 
 			@Override
-			public Display invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Display invoke(IsChart chart, ScriptableContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
 				int count  = ds.getData().size();
 				double value = ds.getData().get(context.getIndex());
-				return value > count * 1.5D ? Display.yes : Display.no;
+				return value > count * 1.5D ? Display.TRUE : Display.FALSE;
 			}
 		});
-		option.setBorderColor(HtmlColor.White);
+		option.setBorderColor(HtmlColor.WHITE);
 		option.setBorderRadius(25);
 		option.setBorderWidth(2);
-		option.setColor(HtmlColor.White);
-		option.getFont().setWeight(Weight.bold);
+		option.setColor(HtmlColor.WHITE);
+		option.getFont().setWeight(Weight.BOLD);
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				double percentage = Percentage.compute(chart, value, context, false);
 				return percentageFormatter.format(percentage);
 			}

@@ -29,20 +29,20 @@ public class MultiAxisBarView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Multi Axis Bar Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
-		axis1.setPosition(Position.left);
+		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
 		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
-		axis2.setPosition(Position.right);
+		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 		

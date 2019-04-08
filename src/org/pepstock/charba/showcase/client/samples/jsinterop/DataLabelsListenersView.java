@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -80,11 +80,11 @@ public class DataLabelsListenersView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAlign(Align.start);
-		option1.setAnchor(Anchor.start);
+		option1.setAlign(Align.START);
+		option1.setAnchor(Anchor.START);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		LineDataset dataset2 = chart.newDataset();
@@ -95,7 +95,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("dataset 2");
@@ -105,11 +105,11 @@ public class DataLabelsListenersView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months, false));
-		dataset3.setFill(Fill.nofill);
+		dataset3.setFill(Fill.FALSE);
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAlign(Align.end);
-		option3.setAnchor(Anchor.end);
+		option3.setAlign(Align.END);
+		option3.setAnchor(Anchor.END);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -130,10 +130,10 @@ public class DataLabelsListenersView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				if (context.isActive()) {
 					return null;
 				}
@@ -142,8 +142,8 @@ public class DataLabelsListenersView extends BaseComposite{
 			}
 		});
 		option.setBorderRadius(4);
-		option.setColor(HtmlColor.White);
-		option.getFont().setWeight(Weight.bold);
+		option.setColor(HtmlColor.WHITE);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		MyListener listener = new MyListener(element);
 		option.setListenersHandler(listener);
@@ -185,7 +185,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		}
 
 		@Override
-		public boolean onLeave(AbstractChart<?, ?> chart, ScriptableContext context) {
+		public boolean onLeave(IsChart chart, ScriptableContext context) {
 			super.onLeave(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 			DivElement newDiv= Document.get().createDivElement();
@@ -198,7 +198,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		}
 
 		@Override
-		public boolean onEnter(AbstractChart<?, ?> chart, ScriptableContext context) {
+		public boolean onEnter(IsChart chart, ScriptableContext context) {
 			super.onEnter(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 			DivElement newDiv= Document.get().createDivElement();
@@ -211,7 +211,7 @@ public class DataLabelsListenersView extends BaseComposite{
 		}
 
 		@Override
-		public boolean onClick(AbstractChart<?, ?> chart, ScriptableContext context) {
+		public boolean onClick(IsChart chart, ScriptableContext context) {
 			super.onClick(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 			Labels labels = chart.getData().getLabels();

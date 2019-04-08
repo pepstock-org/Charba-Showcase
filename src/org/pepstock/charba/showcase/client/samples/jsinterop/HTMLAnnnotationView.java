@@ -1,9 +1,9 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.ChartNode;
 import org.pepstock.charba.client.ChartType;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -43,16 +43,16 @@ public class HTMLAnnnotationView extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Raster Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		chart.getOptions().getLayout().getPadding().setBottom(200);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
-		axis1.setPosition(Position.left);
+		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
 		axis1.getTicks().setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -60,7 +60,7 @@ public class HTMLAnnnotationView extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
-		axis2.setPosition(Position.right);
+		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
@@ -70,20 +70,20 @@ public class HTMLAnnnotationView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis1, axis2);
 
 		final BarDataset dataset1 = chart.newDataset();
-		dataset1.setType(ChartType.bar);
+		dataset1.setType(ChartType.BAR);
 		dataset1.setLabel("Humidity");
 
 		dataset1.setData(getRandomDigits(months, 0, 100));
 		dataset1.setYAxisID("y-axis-1");
 
 		final LineDataset dataset2 = new LineDataset();
-		dataset2.setType(ChartType.line);
+		dataset2.setType(ChartType.LINE);
 		dataset2.setLabel("Temperature");
 
-		dataset2.setBackgroundColor(HtmlColor.Blue);
-		dataset2.setBorderColor(HtmlColor.Blue);
+		dataset2.setBackgroundColor(HtmlColor.BLUE);
+		dataset2.setBorderColor(HtmlColor.BLUE);
 		dataset2.setData(getRandomDigits(months, 0, 35));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 		dataset2.setYAxisID("y-axis-2");
 
 		chart.getData().setLabels(getLabels());
@@ -103,7 +103,7 @@ public class HTMLAnnnotationView extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDraw(IsChart chart, double easing) {
 				final Context2d ctx = chart.getCanvas().getContext2d();
 
 				ChartNode node = chart.getNode();

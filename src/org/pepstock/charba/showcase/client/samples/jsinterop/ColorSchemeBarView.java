@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
@@ -61,16 +62,16 @@ public class ColorSchemeBarView extends BaseComposite{
 		category.addItem("GWT material", "gwtmaterial");
 		
 		int index = 0;
-		for (ColorScheme scheme : BrewerScheme.values()) {
-			name.addItem(scheme.name(), scheme.name());
-			if (BrewerScheme.Paired12.equals(scheme)) {
+		for (BrewerScheme scheme : BrewerScheme.values()) {
+			name.addItem(scheme.value(), scheme.name());
+			if (BrewerScheme.PAIRED12.equals(scheme)) {
 				name.setSelectedIndex(index);
 			}
 			index++;
 		}
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -90,7 +91,7 @@ public class ColorSchemeBarView extends BaseComposite{
 		dataset1.setData(getFixedDigits(months));
 		
 		ColorSchemesOptions options = new ColorSchemesOptions();
-		options.setSchemeScope(SchemeScope.dataset);
+		options.setSchemeScope(SchemeScope.DATASET);
 		
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.getPlugins().add(new ColorSchemes());
@@ -145,9 +146,9 @@ public class ColorSchemeBarView extends BaseComposite{
 	protected void handleScope(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		if (data.getValue()) {
-			options.setSchemeScope(SchemeScope.data);
+			options.setSchemeScope(SchemeScope.DATA);
 		} else {
-			options.setSchemeScope(SchemeScope.dataset);
+			options.setSchemeScope(SchemeScope.DATASET);
 		}
 		chart.update();
 	}
@@ -167,8 +168,8 @@ public class ColorSchemeBarView extends BaseComposite{
 			name.clear();
 			int index = 0;
 			for (ColorScheme scheme : BrewerScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
-				if (BrewerScheme.Paired12.equals(scheme)) {
+				name.addItem(scheme.value(), scheme.value());
+				if (BrewerScheme.PAIRED12.equals(scheme)) {
 					name.setSelectedIndex(index);
 				}
 				index++;
@@ -176,19 +177,19 @@ public class ColorSchemeBarView extends BaseComposite{
 		} else if ("office".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : OfficeScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		}
@@ -201,20 +202,18 @@ public class ColorSchemeBarView extends BaseComposite{
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
-			options.setScheme(BrewerScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(BrewerScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
-			options.setScheme(OfficeScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(OfficeScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
-			options.setScheme(TableauScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(TableauScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
-			options.setScheme(GwtMaterialScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
-		} else {
-			
-		}
+		} 
 		chart.update();
 	}
 
@@ -222,4 +221,5 @@ public class ColorSchemeBarView extends BaseComposite{
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
+	
 }

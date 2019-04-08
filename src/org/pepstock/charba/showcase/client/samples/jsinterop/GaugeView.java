@@ -45,34 +45,34 @@ public class GaugeView extends BaseComposite{
 		
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("GAUGE chart to represent percentage value");
-		chartPercent.getOptions().setDisplay(MeterDisplay.percentage);
+		chartPercent.getOptions().setDisplay(MeterDisplay.PERCENTAGE);
 		chartPercent.getOptions().setFormat("###.##%");
 		chartPercent.getOptions().setAnimatedDisplay(true);;
 		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));
 
 		chartValue.getOptions().getTitle().setDisplay(true);
 		chartValue.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label");
-		chartValue.getOptions().setDisplay(MeterDisplay.valueAndLabel);
+		chartValue.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
 		chartValue.getOptions().setFormat("#### MB");
 		chartValue.getData().setDatasets(getDataset(chartValue, "Memory", 2048D));
 
 		chartValueColor.getOptions().getTitle().setDisplay(true);
 		chartValueColor.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label", "changing the color of label");
-		chartValueColor.getOptions().setDisplay(MeterDisplay.valueAndLabel);
+		chartValueColor.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
 		chartValueColor.getOptions().setFormat("#### GB");
 		chartValueColor.getOptions().setDisplayFontColor(ColorBuilder.build(90, 173, 255));
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 		chartValueReverse.getOptions().getTitle().setDisplay(true);
 		chartValueReverse.getOptions().getTitle().setText("GAUGE chart with thresholds on reverse mode");
-		chartValueReverse.getOptions().setDisplay(MeterDisplay.value);
+		chartValueReverse.getOptions().setDisplay(MeterDisplay.VALUE);
 		chartValueReverse.getOptions().setFormat("###");
 		
 		GaugeDataset ds = getDataset(chartValueReverse, "Reverse", 400D);
 		
-		ds.setThresholds(GaugeThreshold.normal.getThreshold().setValue(Double.MAX_VALUE),
-				GaugeThreshold.warning.getThreshold().setValue(100),
-				GaugeThreshold.critical.getThreshold().setValue(40));
+		ds.setThresholds(GaugeThreshold.NORMAL.getThreshold().setValue(Double.MAX_VALUE),
+				GaugeThreshold.WARNING.getThreshold().setValue(100),
+				GaugeThreshold.CRITICAL.getThreshold().setValue(40));
 		ds.setPercentageThreshold(false);
 		chartValueReverse.getData().setDatasets(ds);
 

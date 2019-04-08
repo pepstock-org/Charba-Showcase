@@ -40,7 +40,7 @@ public class SteppedLineView extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chartNoStepped.getOptions().setResponsive(true);
-		chartNoStepped.getOptions().getLegend().setPosition(Position.top);
+		chartNoStepped.getOptions().getLegend().setPosition(Position.TOP);
 		chartNoStepped.getOptions().getTitle().setDisplay(true);
 		chartNoStepped.getOptions().getTitle().setText("Charba NO Stepped Line Chart");
 
@@ -49,13 +49,13 @@ public class SteppedLineView extends BaseComposite {
 		IsColor color1 = Colors.ALL[0];
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
-		dataset1.setSteppedLine(SteppedLine.nosteppedline);
+		dataset1.setFill(Fill.FALSE);
+		dataset1.setSteppedLine(SteppedLine.FALSE);
 		chartNoStepped.getData().setLabels(getLabels());
 		chartNoStepped.getData().setDatasets(dataset1);
 
 		chartStepped.getOptions().setResponsive(true);
-		chartStepped.getOptions().getLegend().setPosition(Position.top);
+		chartStepped.getOptions().getLegend().setPosition(Position.TOP);
 		chartStepped.getOptions().getTitle().setDisplay(true);
 		chartStepped.getOptions().getTitle().setText("Charba Stepped Line Chart");
 
@@ -64,13 +64,13 @@ public class SteppedLineView extends BaseComposite {
 		IsColor color2 = Colors.ALL[1];
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
-		dataset2.setSteppedLine(SteppedLine.before);
+		dataset2.setFill(Fill.FALSE);
+		dataset2.setSteppedLine(SteppedLine.BEFORE);
 		chartStepped.getData().setLabels(getLabels());
 		chartStepped.getData().setDatasets(dataset2);
 
 		chartBeforeStepped.getOptions().setResponsive(true);
-		chartBeforeStepped.getOptions().getLegend().setPosition(Position.top);
+		chartBeforeStepped.getOptions().getLegend().setPosition(Position.TOP);
 		chartBeforeStepped.getOptions().getTitle().setDisplay(true);
 		chartBeforeStepped.getOptions().getTitle().setText("Charba BEFORE Stepped Line Chart");
 
@@ -79,13 +79,13 @@ public class SteppedLineView extends BaseComposite {
 		IsColor color3 = Colors.ALL[2];
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
-		dataset3.setFill(Fill.nofill);
-		dataset3.setSteppedLine(SteppedLine.before);
+		dataset3.setFill(Fill.FALSE);
+		dataset3.setSteppedLine(SteppedLine.BEFORE);
 		chartBeforeStepped.getData().setLabels(getLabels());
 		chartBeforeStepped.getData().setDatasets(dataset3);
 
 		chartAfterStepped.getOptions().setResponsive(true);
-		chartAfterStepped.getOptions().getLegend().setPosition(Position.top);
+		chartAfterStepped.getOptions().getLegend().setPosition(Position.TOP);
 		chartAfterStepped.getOptions().getTitle().setDisplay(true);
 		chartAfterStepped.getOptions().getTitle().setText("Charba AFTER Stepped Line Chart");
 
@@ -94,8 +94,8 @@ public class SteppedLineView extends BaseComposite {
 		IsColor color4 = Colors.ALL[3];
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
-		dataset4.setFill(Fill.nofill);
-		dataset4.setSteppedLine(SteppedLine.after);
+		dataset4.setFill(Fill.FALSE);
+		dataset4.setSteppedLine(SteppedLine.AFTER);
 		chartAfterStepped.getData().setLabels(getLabels());
 		chartAfterStepped.getData().setDatasets(dataset4);
 

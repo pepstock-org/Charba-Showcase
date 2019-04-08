@@ -44,7 +44,7 @@ public class TimeSeriesBarView extends BaseComposite{
 		long time = System.currentTimeMillis();
 		
 	    BarDataset dataset1 = chart.newDataset();
-	    dataset1.setType(ChartType.bar);
+	    dataset1.setType(ChartType.BAR);
 		dataset1.setLabel("dataset 2");
 
 	    DataPoint[] points = new DataPoint[AMOUNT_OF_POINTS];
@@ -67,9 +67,9 @@ public class TimeSeriesBarView extends BaseComposite{
 	    dataset1.setDataPoints(rainPoints);
 
 	    CartesianTimeAxis axis = new CartesianTimeAxis(chart);
-	    axis.setDistribution(ScaleDistribution.series);
-	    axis.getTicks().setSource(TickSource.data);
-	    axis.getTime().setUnit(TimeUnit.day);
+	    axis.setDistribution(ScaleDistribution.SERIES);
+	    axis.getTicks().setSource(TickSource.DATA);
+	    axis.getTime().setUnit(TimeUnit.DAY);
 	    
 	    chart.getData().setDatasets(dataset1);
 	    chart.getOptions().getScales().setXAxes(axis);

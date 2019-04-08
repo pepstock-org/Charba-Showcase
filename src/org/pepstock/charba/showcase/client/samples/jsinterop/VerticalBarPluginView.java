@@ -36,7 +36,7 @@ public class VerticalBarPluginView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -64,7 +64,7 @@ public class VerticalBarPluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		Gradient gradient  = new Gradient(GradientType.linear, GradientOrientation.topDown, GradientScope.canvas);
+		Gradient gradient  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CANVAS);
 
 		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
 		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);

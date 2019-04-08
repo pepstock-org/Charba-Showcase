@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
@@ -60,10 +60,10 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.leftRight, GradientScope.chart);
+		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
 
-		gradient1.addColorStop(1, HtmlColor.Purple);
-		gradient1.addColorStop(0, HtmlColor.Orange);
+		gradient1.addColorStop(1, HtmlColor.PURPLE);
+		gradient1.addColorStop(0, HtmlColor.ORANGE);
 
 		
 		dataset1.setBackgroundColor(gradient1);
@@ -77,7 +77,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -96,20 +96,20 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setAlign(Align.end);
-		option.setAnchor(Anchor.end);
+		option.setAlign(Align.END);
+		option.setAnchor(Anchor.END);
 		option.setBorderRadius(4);
 		option.setBorderWidth(4);
-		option.setColor(HtmlColor.White);
-		option.getFont().setWeight(Weight.bold);
+		option.setColor(HtmlColor.WHITE);
+		option.getFont().setWeight(Weight.BOLD);
 		option.getFont().setSize(11);
 		option.setOffset(4);
 		option.getPadding().set(8);
 		
-		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				Gradient gradient = ds.getBackgroundColorAsGradient();
 				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() -1) : 0;
@@ -117,16 +117,16 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 			}
 		});
 		
-		option.setBorderColor(new BorderColorCallback<CanvasGradient>() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			CanvasGradient gr1 = null;
 			
 			@Override
-			public CanvasGradient invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public CanvasGradient invoke(IsChart chart, ScriptableContext context) {
 				if (gr1 == null) {
 					gr1 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
-					gr1.addColorStop(1, HtmlColor.Orange.toRGBA());
-					gr1.addColorStop(0, HtmlColor.Purple.toRGBA());
+					gr1.addColorStop(1, HtmlColor.ORANGE.toRGBA());
+					gr1.addColorStop(0, HtmlColor.PURPLE.toRGBA());
 				}
 				return gr1;
 			}
@@ -135,7 +135,7 @@ public class DataLabelsLinearGradientLineView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				return value < 20 ? "Poor\n"+value : value < 50 ? "Good\n"+value : "Great\n"+value;
 			}
 		});

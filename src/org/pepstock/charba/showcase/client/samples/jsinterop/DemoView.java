@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
@@ -55,7 +55,7 @@ public class DemoView extends Composite {
 			}
 
 			@Override
-			public void draw(ControllerContext jsThis, AbstractChart<?, ?> chart, double ease) {
+			public void draw(ControllerContext jsThis, IsChart chart, double ease) {
 				super.draw(jsThis, chart, ease);
 
 				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());

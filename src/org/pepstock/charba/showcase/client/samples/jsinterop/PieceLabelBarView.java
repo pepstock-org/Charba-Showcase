@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
@@ -39,7 +39,7 @@ public class PieceLabelBarView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -55,18 +55,18 @@ public class PieceLabelBarView extends BaseComposite{
 		
 		
 		LabelsOptions option = new LabelsOptions();
-		option.setRender(new RenderCallback<String>() {
+		option.setRender(new RenderCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, RenderItem item) {
+			public String invoke(IsChart chart, RenderItem item) {
 				return "$$ "+ (int)(item.getValue() * item.getPercentage() / 100);
 			}
 		});
-		option.setFontColor(new FontColorCallback<IsColor>() {
+		option.setFontColor(new FontColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, FontColorItem item) {
-				return item.getValue() > 25 ? HtmlColor.Red : HtmlColor.Black;
+			public IsColor invoke(IsChart chart, FontColorItem item) {
+				return item.getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
 			}
 		});
 		

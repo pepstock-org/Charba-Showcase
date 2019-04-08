@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
@@ -52,7 +52,7 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setBottom(25);
 		chart.getOptions().getLayout().getPadding().setLeft(25);
 		chart.getOptions().getElements().getLine().setFill(false);
-		chart.getOptions().getHover().setMode(InteractionMode.index);
+		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		chart.getOptions().getHover().setIntersect(false);
 		
 		chart.getOptions().getPlugins().setEnabled("legend", false);
@@ -72,8 +72,8 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option1.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
-				return context.isActive() ? Align.start : Align.center;
+			public Align invoke(IsChart chart, ScriptableContext context) {
+				return context.isActive() ? Align.START : Align.CENTER;
 			}
 		});
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
@@ -100,8 +100,8 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		option3.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
-				return context.isActive() ? Align.end : Align.center;
+			public Align invoke(IsChart chart, ScriptableContext context) {
+				return context.isActive() ? Align.END : Align.CENTER;
 			}
 		});
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
@@ -125,34 +125,34 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.White.toRGBA();
+				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.WHITE.toRGBA();
 			}
 		});
-		option.setBorderColor(new BorderColorCallback<String>() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString();
 			}
 		});
-		option.setColor(new ColorCallback<String>() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.isActive() ? HtmlColor.White.toRGBA() : ds.getBackgroundColorAsString();
+				return context.isActive() ? HtmlColor.WHITE.toRGBA() : ds.getBackgroundColorAsString();
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double myValue = Math.round(value * 100) /100;
 				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue)+ "";
@@ -160,8 +160,8 @@ public class DataLabelsInteractionsView extends BaseComposite{
 		});
 		option.setBorderWidth(1);
 		option.setOffset(8);
-		option.setTextAlign(TextAlign.center);
-		option.getFont().setWeight(Weight.bold);
+		option.setTextAlign(TextAlign.CENTER);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		

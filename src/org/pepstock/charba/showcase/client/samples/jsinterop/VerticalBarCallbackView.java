@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.BorderSkippedCallback;
@@ -36,7 +36,7 @@ public class VerticalBarCallbackView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -53,18 +53,18 @@ public class VerticalBarCallbackView extends BaseComposite{
 		border.setRight(2);
 		dataset1.setBorderWidth(border);
 		
-		dataset1.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+		dataset1.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				return Colors.ALL[context.getIndex()+1];
 			}
 			
 		});
-		dataset1.setBorderColor(new BorderColorCallback<IsColor>() {
+		dataset1.setBorderColor(new BorderColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				return Colors.ALL[context.getIndex()+5];
 			}
 
@@ -72,8 +72,8 @@ public class VerticalBarCallbackView extends BaseComposite{
 		dataset1.setBorderSkipped(new BorderSkippedCallback() {
 
 			@Override
-			public BorderSkipped invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
-				return BorderSkipped.bottom;
+			public BorderSkipped invoke(IsChart chart, ScriptableContext context) {
+				return BorderSkipped.BOTTOM;
 			}
 			
 		});

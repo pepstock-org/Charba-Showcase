@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
@@ -84,46 +84,46 @@ public class DataLabelsIndicesView extends BaseComposite{
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(new AlignCallback() {
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
-				return context.getIndex() % 2 == 0 ? Align.end : Align.center;
+			public Align invoke(IsChart chart, ScriptableContext context) {
+				return context.getIndex() % 2 == 0 ? Align.END : Align.CENTER;
 			}
 		});
 
-		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
 		});
-		option.setBorderColor(new BorderColorCallback<IsColor>() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
 		});
-		option.setColor(new ColorCallback<IsColor>() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? HtmlColor.White : ds.getBorderColor();
+				return context.getIndex() % 2 == 0 ? HtmlColor.WHITE : ds.getBorderColor();
 			}
 		});
 		option.setBorderWidth(new BorderWidthCallback() {
 			
 			@Override
-			public Integer invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Integer invoke(IsChart chart, ScriptableContext context) {
 				return context.getIndex() % 2 == 0 ? 0 : 1;
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				return context.getIndex()+": "+Math.round(value)+"'";
 			}
 		});

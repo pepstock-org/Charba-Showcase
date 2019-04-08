@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
@@ -34,7 +34,7 @@ public class DatasetSelectionPieView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
 		
@@ -42,7 +42,7 @@ public class DatasetSelectionPieView extends BaseComposite{
 			
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
-				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getSource();
+				IsChart chart = (IsChart)event.getSource();
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
 				if (datasets != null && !datasets.isEmpty()){

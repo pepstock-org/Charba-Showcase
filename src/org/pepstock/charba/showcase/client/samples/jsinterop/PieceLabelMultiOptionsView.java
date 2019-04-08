@@ -44,14 +44,14 @@ public class PieceLabelMultiOptionsView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 		
 		LabelsOptions option1 = new LabelsOptions();
-		option1.setRender(Render.label);
-		option1.setFontColor(HtmlColor.Black);
+		option1.setRender(Render.LABEL);
+		option1.setFontColor(HtmlColor.BLACK);
 		option1.setArc(true);
-		option1.setPosition(Position.outside);
+		option1.setPosition(Position.OUTSIDE);
 
 		LabelsOptions option2 = new LabelsOptions();
-		option2.setRender(Render.percentage);
-		option2.setFontColor(HtmlColor.White);
+		option2.setRender(Render.PERCENTAGE);
+		option2.setFontColor(HtmlColor.WHITE);
 		option2.setOverlap(false);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));

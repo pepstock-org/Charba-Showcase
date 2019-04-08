@@ -39,7 +39,7 @@ public class LegendPositioningView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chartTop.getOptions().setResponsive(true);
-		chartTop.getOptions().getLegend().setPosition(Position.top);
+		chartTop.getOptions().getLegend().setPosition(Position.TOP);
 		chartTop.getOptions().getTitle().setDisplay(true);
 		chartTop.getOptions().getTitle().setText("Charba Legend top");
 		
@@ -49,12 +49,12 @@ public class LegendPositioningView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		chartTop.getData().setLabels(getLabels());
 		chartTop.getData().setDatasets(dataset1);
 		
 		chartRight.getOptions().setResponsive(true);
-		chartRight.getOptions().getLegend().setPosition(Position.right);
+		chartRight.getOptions().getLegend().setPosition(Position.RIGHT);
 		chartRight.getOptions().getTitle().setDisplay(true);
 		chartRight.getOptions().getTitle().setText("Charba Legend right");
 		
@@ -64,13 +64,13 @@ public class LegendPositioningView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(Fill.ORIGIN);
 		chartRight.getData().setLabels(getLabels());
 		chartRight.getData().setDatasets(dataset2);
 		
 
 		chartBottom.getOptions().setResponsive(true);
-		chartBottom.getOptions().getLegend().setPosition(Position.bottom);
+		chartBottom.getOptions().getLegend().setPosition(Position.BOTTOM);
 		chartBottom.getOptions().getTitle().setDisplay(true);
 		chartBottom.getOptions().getTitle().setText("Charba Legend bottom");
 		
@@ -80,12 +80,12 @@ public class LegendPositioningView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.alpha(0.2));
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
-		dataset3.setFill(Fill.origin);
+		dataset3.setFill(Fill.ORIGIN);
 		chartBottom.getData().setLabels(getLabels());
 		chartBottom.getData().setDatasets(dataset3);
 
 		chartLeft.getOptions().setResponsive(true);
-		chartLeft.getOptions().getLegend().setPosition(Position.left);
+		chartLeft.getOptions().getLegend().setPosition(Position.LEFT);
 		chartLeft.getOptions().getTitle().setDisplay(true);
 		chartLeft.getOptions().getTitle().setText("Charba Legend left");
 		
@@ -95,7 +95,7 @@ public class LegendPositioningView extends BaseComposite{
 		dataset4.setBackgroundColor(color4.alpha(0.2));
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
-		dataset4.setFill(Fill.origin);
+		dataset4.setFill(Fill.ORIGIN);
 		chartLeft.getData().setLabels(getLabels());
 		chartLeft.getData().setDatasets(dataset4);
 

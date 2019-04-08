@@ -34,16 +34,16 @@ public class MultiAxisLineView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Multi Axis Line Chart");
-		chart.getOptions().getHover().setMode(InteractionMode.index);
+		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
-		axis1.setPosition(Position.left);
+		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
-		axis2.setPosition(Position.right);
+		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 
@@ -58,7 +58,7 @@ public class MultiAxisLineView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setYAxisID("y-axis-1");
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -69,7 +69,7 @@ public class MultiAxisLineView extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setYAxisID("y-axis-2");
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);

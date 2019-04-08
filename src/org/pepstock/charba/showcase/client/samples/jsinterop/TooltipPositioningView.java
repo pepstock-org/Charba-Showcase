@@ -39,19 +39,19 @@ public class TooltipPositioningView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chartAverage.getOptions().setResponsive(true);
-		chartAverage.getOptions().getLegend().setPosition(Position.top);
+		chartAverage.getOptions().getLegend().setPosition(Position.TOP);
 		chartAverage.getOptions().getTitle().setDisplay(true);
 		chartAverage.getOptions().getTitle().setText("Charba Tooltip average");
-		chartAverage.getOptions().getTooltips().setPosition(TooltipPosition.average);
-		chartAverage.getOptions().getTooltips().setMode(InteractionMode.index);
+		chartAverage.getOptions().getTooltips().setPosition(TooltipPosition.AVERAGE);
+		chartAverage.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chartAverage.getOptions().getTooltips().setIntersect(false);
 
 		chartNearest.getOptions().setResponsive(true);
-		chartNearest.getOptions().getLegend().setPosition(Position.top);
+		chartNearest.getOptions().getLegend().setPosition(Position.TOP);
 		chartNearest.getOptions().getTitle().setDisplay(true);
 		chartNearest.getOptions().getTitle().setText("Charba Tooltip nearest");
-		chartNearest.getOptions().getTooltips().setPosition(TooltipPosition.nearest);
-		chartNearest.getOptions().getTooltips().setMode(InteractionMode.index);
+		chartNearest.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
+		chartNearest.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chartNearest.getOptions().getTooltips().setIntersect(false);
 	
 		dataset1 = chartAverage.newDataset();
@@ -60,7 +60,7 @@ public class TooltipPositioningView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		dataset2 = chartNearest.newDataset();
 		dataset2.setLabel("dataset 1");
@@ -68,7 +68,7 @@ public class TooltipPositioningView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 		
 		chartAverage.getData().setLabels(getLabels());
 		chartAverage.getData().setDatasets(dataset1, dataset2);

@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
 import org.pepstock.charba.client.colors.IsColor;
@@ -87,7 +87,7 @@ public class StandingView extends BaseComposite{
 			dataset.setBorderColor(color.toHex());
 			double[] values = STANDINGS[i];
 			dataset.setData(values);
-			dataset.setFill(Fill.nofill);
+			dataset.setFill(Fill.FALSE);
 			datasets.add(dataset);
 		}
 
@@ -123,7 +123,7 @@ public class StandingView extends BaseComposite{
 			}
 
 			@Override
-			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int padding = 30;
 				final int datasetsCount = chart.getData().getDatasets().size();
 				Context2d ctx = chart.getCanvas().getContext2d();

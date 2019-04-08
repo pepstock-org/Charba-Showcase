@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
@@ -54,15 +55,15 @@ public class ColorSchemePieView extends BaseComposite{
 		
 		int index = 0;
 		for (ColorScheme scheme : BrewerScheme.values()) {
-			name.addItem(scheme.name(), scheme.name());
-			if (BrewerScheme.Paired12.equals(scheme)) {
+			name.addItem(scheme.value(), scheme.value());
+			if (BrewerScheme.PAIRED12.equals(scheme)) {
 				name.setSelectedIndex(index);
 			}
 			index++;
 		}
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart");
 		
@@ -130,8 +131,8 @@ public class ColorSchemePieView extends BaseComposite{
 			name.clear();
 			int index = 0;
 			for (ColorScheme scheme : BrewerScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
-				if (BrewerScheme.Paired12.equals(scheme)) {
+				name.addItem(scheme.value(), scheme.value());
+				if (BrewerScheme.PAIRED12.equals(scheme)) {
 					name.setSelectedIndex(index);
 				}
 				index++;
@@ -139,19 +140,19 @@ public class ColorSchemePieView extends BaseComposite{
 		} else if ("office".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : OfficeScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		}
@@ -164,20 +165,18 @@ public class ColorSchemePieView extends BaseComposite{
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
-			options.setScheme(BrewerScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(BrewerScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
-			options.setScheme(OfficeScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(OfficeScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
-			options.setScheme(TableauScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(TableauScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
-			options.setScheme(GwtMaterialScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
-		} else {
-			
-		}
+		} 
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}

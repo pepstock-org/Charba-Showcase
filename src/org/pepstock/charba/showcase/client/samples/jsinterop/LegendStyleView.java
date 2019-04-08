@@ -35,7 +35,7 @@ public class LegendStyleView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chartNormal.getOptions().setResponsive(true);
-		chartNormal.getOptions().getLegend().setPosition(Position.top);
+		chartNormal.getOptions().getLegend().setPosition(Position.TOP);
 		chartNormal.getOptions().getTitle().setDisplay(true);
 		chartNormal.getOptions().getTitle().setText("Charba Normal Legend");
 		
@@ -46,15 +46,15 @@ public class LegendStyleView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
 		dataset1.setPointBackgroundColor(color1.toHex());
-		dataset1.setPointStyle(PointStyle.rectRot);
+		dataset1.setPointStyle(PointStyle.RECT_ROT);
 		dataset1.setPointRadius(10);
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		chartNormal.getData().setLabels(getLabels());
 		chartNormal.getData().setDatasets(dataset1);
 		
 		chartStyled.getOptions().setResponsive(true);
-		chartStyled.getOptions().getLegend().setPosition(Position.top);
+		chartStyled.getOptions().getLegend().setPosition(Position.TOP);
 		chartStyled.getOptions().getLegend().getLabels().setUsePointStyle(true);
 		chartStyled.getOptions().getTitle().setDisplay(true);
 		chartStyled.getOptions().getTitle().setText("Charba Point Style Legend");
@@ -65,9 +65,9 @@ public class LegendStyleView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(Fill.ORIGIN);
 		dataset2.setBorderWidth(1);
-		dataset2.setPointStyle(PointStyle.rectRot);
+		dataset2.setPointStyle(PointStyle.RECT_ROT);
 		dataset2.setPointRadius(10);
 		dataset2.setPointBackgroundColor(color2.toHex());
 

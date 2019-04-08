@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipFooterCallback;
 import org.pepstock.charba.client.colors.IsColor;
@@ -39,15 +39,15 @@ public class TooltipCallbacksView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Custom info in tooltip");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
-		chart.getOptions().getTooltips().setFooterFontStyle(FontStyle.normal);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setFooterFontStyle(FontStyle.NORMAL);
 		chart.getOptions().getTooltips().getCallbacks().setFooterCallback(new TooltipFooterCallback() {
 						
 			@Override
-			public String[] onFooter(AbstractChart<?, ?> chart, List<TooltipItem> items) {
+			public String[] onFooter(IsChart chart, List<TooltipItem> items) {
 				double sum = 0D;
 				for (TooltipItem item : items){
 					Dataset dataset = chart.getData().getDatasets().get(item.getDatasetIndex());
@@ -57,16 +57,16 @@ public class TooltipCallbacksView extends BaseComposite{
 			}
 			
 			@Override
-			public String[] onBeforeFooter(AbstractChart<?, ?> chart,List<TooltipItem> items) {
+			public String[] onBeforeFooter(IsChart chart,List<TooltipItem> items) {
 				return null;
 			}
 			
 			@Override
-			public String[] onAfterFooter(AbstractChart<?, ?> chart, List<TooltipItem> items) {
+			public String[] onAfterFooter(IsChart chart, List<TooltipItem> items) {
 				return null;
 			}
 		});
-		chart.getOptions().getHover().setMode(InteractionMode.index);
+		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		chart.getOptions().getHover().setIntersect(true);
 
 		
@@ -78,7 +78,7 @@ public class TooltipCallbacksView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -88,7 +88,7 @@ public class TooltipCallbacksView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

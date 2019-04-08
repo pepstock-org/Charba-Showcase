@@ -33,12 +33,12 @@ public class LineViewWithGwtMaterialColors extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
@@ -47,7 +47,7 @@ public class LineViewWithGwtMaterialColors extends BaseComposite{
 		dataset1.setBackgroundColor(GwtMaterialColor.INDIGO_ACCENT_4);
 		dataset1.setBorderColor(GwtMaterialColor.INDIGO_ACCENT_4);
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -55,7 +55,7 @@ public class LineViewWithGwtMaterialColors extends BaseComposite{
 		dataset2.setBackgroundColor(GwtMaterialColor.LIGHT_GREEN_ACCENT_2);
 		dataset2.setBorderColor(GwtMaterialColor.LIGHT_GREEN_ACCENT_2);
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(Fill.ORIGIN);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

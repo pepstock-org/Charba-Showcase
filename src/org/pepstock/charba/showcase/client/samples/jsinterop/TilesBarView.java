@@ -4,7 +4,7 @@ import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
-import org.pepstock.charba.client.colors.tiles.TilesBuilder;
+import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.showcase.client.samples.Colors;
@@ -42,13 +42,21 @@ public class TilesBarView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.alpha(0.80D));
 	
-		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[0]);
-		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[1]);
-		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[2]);
-		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[3]);
-		Pattern p5 = TilesBuilder.get().createPattern(Shape.dotDash, Colors.ALL[4]);
-		Pattern p6 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[5]);
-		Pattern p7 = TilesBuilder.get().createPattern(Shape.zigzag, Colors.ALL[6]);
+//		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[0]);
+//		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[1]);
+//		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[2]);
+//		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[3]);
+//		Pattern p5 = TilesBuilder.get().createPattern(Shape.dotDash, Colors.ALL[4]);
+//		Pattern p6 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[5]);
+//		Pattern p7 = TilesBuilder.get().createPattern(Shape.zigzag, Colors.ALL[6]);
+
+		Pattern p1 = TilesFactory.createPattern(Shape.SQUARE, Colors.ALL[0]);
+		Pattern p2 = TilesFactory.createPattern(Shape.VERTICAL_ZIGZAG, Colors.ALL[1]);
+		Pattern p3 = TilesFactory.createPattern(Shape.DIAGONAL, Colors.ALL[2]);
+		Pattern p4 = TilesFactory.createPattern(Shape.RING, Colors.ALL[3]);
+		Pattern p5 = TilesFactory.createPattern(Shape.DOT_DASH, Colors.ALL[4]);
+		Pattern p6 = TilesFactory.createPattern(Shape.EMPTY_STAR, Colors.ALL[5]);
+		Pattern p7 = TilesFactory.createPattern(Shape.ZIGZAG, Colors.ALL[6]);
 
 		dataset1.setBackgroundColor(p1, p2, p3, p4, p5, p6,p7);
 

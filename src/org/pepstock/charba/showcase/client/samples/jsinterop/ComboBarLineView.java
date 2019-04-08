@@ -34,14 +34,14 @@ public class ComboBarLineView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Combo Bar Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		
 		BarDataset dataset1 = chart.newDataset();
-		dataset1.setType(ChartType.bar);
+		dataset1.setType(ChartType.BAR);
 		dataset1.setLabel("dataset 1");
 		
 		IsColor color1 = Colors.ALL[0];
@@ -52,7 +52,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset1.setData(getRandomDigits(months));
 
 		BarDataset dataset2 = chart.newDataset();
-		dataset2.setType(ChartType.bar);
+		dataset2.setType(ChartType.BAR);
 		dataset2.setLabel("dataset 2");
 		
 		IsColor color2 = Colors.ALL[1];
@@ -63,7 +63,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months));
 
 		LineDataset dataset3 = new LineDataset();
-		dataset3.setType(ChartType.line);
+		dataset3.setType(ChartType.LINE);
 		dataset3.setLabel("dataset 3");
 		
 		IsColor color3 = Colors.ALL[3];
@@ -71,7 +71,7 @@ public class ComboBarLineView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
-		dataset3.setFill(Fill.nofill);
+		dataset3.setFill(Fill.FALSE);
 
 		
 		chart.getData().setLabels(getLabels());

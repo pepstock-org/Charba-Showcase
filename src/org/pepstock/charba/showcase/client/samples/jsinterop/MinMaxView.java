@@ -35,12 +35,12 @@ public class MinMaxView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Min 20 Max 80Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
@@ -51,7 +51,7 @@ public class MinMaxView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months, false));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -61,7 +61,7 @@ public class MinMaxView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -101,7 +101,7 @@ public class MinMaxView extends BaseComposite{
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.nofill);
+		dataset.setFill(Fill.FALSE);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);

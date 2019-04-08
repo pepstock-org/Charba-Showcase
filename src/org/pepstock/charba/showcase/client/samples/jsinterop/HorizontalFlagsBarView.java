@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -53,7 +53,7 @@ public class HorizontalFlagsBarView extends BaseComposite{
 	public HorizontalFlagsBarView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.right);
+		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Horizontal Bar Chart with Flags");
 		
@@ -102,7 +102,7 @@ public class HorizontalFlagsBarView extends BaseComposite{
 			}
 
 			@Override
-			public void onAfterDatasetsDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int padding = 4;
 				Context2d ctx = chart.getCanvas().getContext2d();
 				ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);

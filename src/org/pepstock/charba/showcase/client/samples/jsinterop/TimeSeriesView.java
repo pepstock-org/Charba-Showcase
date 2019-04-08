@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.Date;
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipTitleCallback;
 import org.pepstock.charba.client.colors.IsColor;
@@ -57,12 +57,12 @@ public class TimeSeriesView extends BaseComposite{
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new TooltipTitleCallback() {
 
 			@Override
-			public String[] onBeforeTitle(AbstractChart<?, ?> chart, List<TooltipItem> items) {
+			public String[] onBeforeTitle(IsChart chart, List<TooltipItem> items) {
 				return null;
 			}
 
 			@Override
-			public String[] onTitle(AbstractChart<?, ?> chart, List<TooltipItem> items) {
+			public String[] onTitle(IsChart chart, List<TooltipItem> items) {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getIndex());
@@ -70,7 +70,7 @@ public class TimeSeriesView extends BaseComposite{
 			}
 
 			@Override
-			public String[] onAfterTitle(AbstractChart<?, ?> chart, List<TooltipItem> items) {
+			public String[] onAfterTitle(IsChart chart, List<TooltipItem> items) {
 				return null;
 			}
 		});
@@ -78,7 +78,7 @@ public class TimeSeriesView extends BaseComposite{
 		final LineDataset dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		
 		IsColor color1 = Colors.ALL[0];
 		
@@ -98,9 +98,9 @@ public class TimeSeriesView extends BaseComposite{
 		dataset1.setDataPoints(dp1);
 		
 		final CartesianTimeAxis axis = new CartesianTimeAxis(chart);
-		axis.setDistribution(ScaleDistribution.series);
-		axis.getTicks().setSource(TickSource.data);
-		axis.getTime().setUnit(TimeUnit.day);
+		axis.setDistribution(ScaleDistribution.SERIES);
+		axis.getTicks().setSource(TickSource.DATA);
+		axis.getTime().setUnit(TimeUnit.DAY);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);

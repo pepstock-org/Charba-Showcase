@@ -40,10 +40,10 @@ public class BoundariesAreaView extends BaseComposite{
 	public BoundariesAreaView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		configureChart(chartNoFill, 0, Fill.nofill);
-		configureChart(chartFillOrigin, 1, Fill.origin);
-		configureChart(chartFillStart, 2, Fill.start);
-		configureChart(chartFillEnd, 3, Fill.end);
+		configureChart(chartNoFill, 0, Fill.FALSE);
+		configureChart(chartFillOrigin, 1, Fill.ORIGIN);
+		configureChart(chartFillStart, 2, Fill.START);
+		configureChart(chartFillEnd, 3, Fill.END);
 	}
 	
 	private void configureChart(LineChart chart, int index, Fill fill){

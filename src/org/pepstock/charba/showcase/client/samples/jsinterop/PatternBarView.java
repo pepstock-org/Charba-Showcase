@@ -30,7 +30,7 @@ public class PatternBarView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -40,7 +40,7 @@ public class PatternBarView extends BaseComposite{
 		Pattern pattern = new Pattern(Images.INSTANCE.patternHover());
 		dataset1.setBackgroundColor(pattern);
 		
-		dataset1.setBorderColor(HtmlColor.Black);
+		dataset1.setBorderColor(HtmlColor.BLACK);
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getFixedDigits(months));
 		

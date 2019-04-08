@@ -39,7 +39,7 @@ public class LogScatterView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Logarithmic X-Axis");
 	
@@ -59,10 +59,10 @@ public class LogScatterView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 
 		
-		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis(chart, CartesianAxisType.x);
+		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis(chart, CartesianAxisType.X);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
-		axis1.setPosition(Position.bottom);
+		axis1.setPosition(Position.BOTTOM);
 		axis1.getTicks().setCallback(new TickCallback() {
 			
 			@Override

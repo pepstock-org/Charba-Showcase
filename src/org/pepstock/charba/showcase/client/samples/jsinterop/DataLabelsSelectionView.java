@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
@@ -69,7 +69,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		dataset1.setData(values);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAlign(Align.start);
+		option1.setAlign(Align.START);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		LineDataset dataset2 = chart.newDataset();
@@ -91,7 +91,7 @@ public class DataLabelsSelectionView extends BaseComposite{
 		dataset3.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAlign(Align.end);
+		option3.setAlign(Align.END);
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -112,42 +112,42 @@ public class DataLabelsSelectionView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 	
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<IsColor>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
-				return items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.White;
+				return items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
-		option.setBorderColor(new BorderColorCallback<IsColor>() {
+		option.setBorderColor(new BorderColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor();
 			}
 		});
-		option.setColor(new ColorCallback<IsColor>() {
+		option.setColor(new ColorCallback() {
 			
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
-				return !items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.White;
+				return !items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
 		option.setBorderRadius(16);
 		option.setBorderWidth(1);
 		option.setOffset(8);
 		option.getPadding().set(4);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		option.getListeners().setClickEventHandler(new ClickEventHandler() {
 			
 			@Override
-			public boolean onClick(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public boolean onClick(IsChart chart, ScriptableContext context) {
 				int key = context.getDatasetIndex() * 1000 + context.getIndex();
 				if (items.containsKey(key)) {
 					items.remove(key);

@@ -2,14 +2,14 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.samples.AbstractComposite;
 
 public class BaseComposite extends AbstractComposite{
 
-	protected void removeDataset(AbstractChart<?, ?> chart) {
+	protected void removeDataset(IsChart chart) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		if (datasets.size() > 1) {
 			datasets.remove(datasets.size()-1);
@@ -17,11 +17,11 @@ public class BaseComposite extends AbstractComposite{
 		}
 	}
 
-	protected void addData(AbstractChart<?, ?> chart) {
+	protected void addData(IsChart chart) {
 		addData(chart, true);
 	}
 
-	protected void addData(AbstractChart<?, ?> chart, boolean negative) {
+	protected void addData(IsChart chart, boolean negative) {
 		if (months < 12){
 			chart.getData().getLabels().add(getLabel());
 			months++;
@@ -33,7 +33,7 @@ public class BaseComposite extends AbstractComposite{
 		}
 	}
 
-	protected void removeData(AbstractChart<?, ?> chart) {
+	protected void removeData(IsChart chart) {
 		if (months > 1){
 			months--;
 			chart.getData().setLabels(getLabels());

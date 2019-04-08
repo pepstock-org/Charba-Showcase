@@ -90,7 +90,7 @@ public abstract class AbstractComposite extends Composite{
 		IsColor[] colors = GwtMaterialColor.values();
 		Gradient[] gradients = new Gradient[length];
 		for(int i=0;i<length;i++){
-			Gradient gradient = new Gradient(GradientType.radial, GradientScope.chart);
+			Gradient gradient = new Gradient(GradientType.RADIAL, GradientScope.CHART);
 			int index = i * 14; 
 			gradient.addColorsStartStop(colors[index+7],  colors[index+2]);
 			gradients[i] = gradient;

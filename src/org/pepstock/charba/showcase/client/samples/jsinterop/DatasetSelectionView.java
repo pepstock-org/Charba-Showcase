@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
@@ -43,7 +43,7 @@ public class DatasetSelectionView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
 		
@@ -51,7 +51,7 @@ public class DatasetSelectionView extends BaseComposite{
 			
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
-				AbstractChart<?, ?> chart = (AbstractChart<?, ?>)event.getSource();
+				IsChart chart = (IsChart)event.getSource();
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
 				if (datasets != null && !datasets.isEmpty()){
@@ -125,7 +125,7 @@ public class DatasetSelectionView extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		ChartPointerOptions op = new ChartPointerOptions();
-		op.setElements(PointerElement.dataset);
+		op.setElements(PointerElement.DATASET);
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, op);
 		
 		chart.update();

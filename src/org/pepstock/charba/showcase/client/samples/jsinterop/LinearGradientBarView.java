@@ -35,18 +35,18 @@ public class LinearGradientBarView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart with linear gradient");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.bottomUp, GradientScope.chart);
+		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.BOTTOM_UP, GradientScope.CHART);
 
 		gradient1.addColorStop(0, "#3a1c71");
 		gradient1.addColorStop(0.5, "#d76d77");

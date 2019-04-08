@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.ChartType;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.Image;
 
 public class MyHorizontalBarController extends AbstractController {
 	
-	public static final ControllerType TYPE = new ControllerType("stock1", ChartType.horizontalBar);
+	public static final ControllerType TYPE = new ControllerType("stock1", ChartType.HORIZONTAL_BAR);
 	
 	private static final int MIN = 50;
 	
@@ -33,7 +33,7 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 	@Override
-	public void initialize(ControllerContext context, AbstractChart<?, ?> chart, int datasetIndex) {
+	public void initialize(ControllerContext context, IsChart chart, int datasetIndex) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.initialize(context, chart, datasetIndex);
@@ -41,7 +41,7 @@ public class MyHorizontalBarController extends AbstractController {
 
 
 	@Override
-	public void draw(ControllerContext context, AbstractChart<?, ?> chart, double ease) {
+	public void draw(ControllerContext context, IsChart chart, double ease) {
 		super.draw(context, chart, ease);
 		final int padding = 4;
 		Context2d ctx = chart.getCanvas().getContext2d();
@@ -80,7 +80,7 @@ public class MyHorizontalBarController extends AbstractController {
 	
 
 	@Override
-	public void update(ControllerContext context, AbstractChart<?, ?> chart, boolean reset) {
+	public void update(ControllerContext context, IsChart chart, boolean reset) {
 		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.update(context, chart, reset);

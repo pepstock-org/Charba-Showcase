@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.StackedBarChart;
 import org.pepstock.charba.client.callbacks.TooltipItemSortCallback;
 import org.pepstock.charba.client.colors.IsColor;
@@ -33,15 +33,15 @@ public class StackedGroupBarView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Stacked Bar Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getTooltips().setItemSortCallback(new TooltipItemSortCallback() {
 			
 			@Override
-			public int onItemSort(AbstractChart<?, ?> chart, TooltipItem item1, TooltipItem item2) {
+			public int onItemSort(IsChart chart, TooltipItem item1, TooltipItem item2) {
 				return 1;
 			}
 		});

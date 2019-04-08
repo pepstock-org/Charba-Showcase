@@ -33,7 +33,7 @@ public class PieceLabelView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
@@ -47,8 +47,8 @@ public class PieceLabelView extends BaseComposite{
 
 		
 		LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.label);
-		option.setFontColor(HtmlColor.FloralWhite);
+		option.setRender(Render.LABEL);
+		option.setFontColor(HtmlColor.FLORAL_WHITE);
 		option.setOverlap(false);
 	
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);

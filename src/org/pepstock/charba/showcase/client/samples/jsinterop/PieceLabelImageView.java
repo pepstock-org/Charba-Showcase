@@ -45,7 +45,7 @@ public class PieceLabelImageView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 
 		final LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.image);
+		option.setRender(Render.IMAGE);
 		option.setImages(Images.INSTANCE.flagIT(), Images.INSTANCE.flagFR(), Images.INSTANCE.flagDE());
 		option.setOverlap(false);
 

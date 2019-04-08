@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.pepstock.charba.client.BubbleChart;
+import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
@@ -63,8 +64,8 @@ public class ColorSchemeBubbleView extends BaseComposite{
 		
 		int index = 0;
 		for (ColorScheme scheme : BrewerScheme.values()) {
-			name.addItem(scheme.name(), scheme.name());
-			if (BrewerScheme.Paired12.equals(scheme)) {
+			name.addItem(scheme.value(), scheme.value());
+			if (BrewerScheme.PAIRED12.equals(scheme)) {
 				name.setSelectedIndex(index);
 			}
 			index++;
@@ -201,9 +202,9 @@ public class ColorSchemeBubbleView extends BaseComposite{
 	protected void handleScope(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		if (data.getValue()) {
-			options.setSchemeScope(SchemeScope.data);
+			options.setSchemeScope(SchemeScope.DATA);
 		} else {
-			options.setSchemeScope(SchemeScope.dataset);
+			options.setSchemeScope(SchemeScope.DATASET);
 		}
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
@@ -224,8 +225,8 @@ public class ColorSchemeBubbleView extends BaseComposite{
 			name.clear();
 			int index = 0;
 			for (ColorScheme scheme : BrewerScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
-				if (BrewerScheme.Paired12.equals(scheme)) {
+				name.addItem(scheme.value(), scheme.value());
+				if (BrewerScheme.PAIRED12.equals(scheme)) {
 					name.setSelectedIndex(index);
 				}
 				index++;
@@ -233,19 +234,19 @@ public class ColorSchemeBubbleView extends BaseComposite{
 		} else if ("office".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : OfficeScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
-				name.addItem(scheme.name(), scheme.name());
+				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
 		}
@@ -258,20 +259,18 @@ public class ColorSchemeBubbleView extends BaseComposite{
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
-			options.setScheme(BrewerScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(BrewerScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
-			options.setScheme(OfficeScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(OfficeScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
-			options.setScheme(TableauScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(TableauScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
-			options.setScheme(GwtMaterialScheme.valueOf(name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
-		} else {
-			
-		}
+		} 
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}

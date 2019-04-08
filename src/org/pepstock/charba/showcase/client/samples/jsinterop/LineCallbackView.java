@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
@@ -36,11 +36,11 @@ public class LineCallbackView extends BaseComposite {
 	@UiField
 	LineChart chart;
 	
-	BackgroundColorCallback<IsColor> backgroundColorCallback = new BackgroundColorCallback<IsColor>() {
+	BackgroundColorCallback backgroundColorCallback = new BackgroundColorCallback() {
 
 		@Override
-		public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
-			return HtmlColor.Pink;
+		public IsColor invoke(IsChart chart, ScriptableContext context) {
+			return HtmlColor.PINK;
 		}
 
 	};
@@ -48,7 +48,7 @@ public class LineCallbackView extends BaseComposite {
 	RadiusCallback radiusCallback = new RadiusCallback() {
 
 		@Override
-		public Double invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+		public Double invoke(IsChart chart, ScriptableContext context) {
 			int module = context.getIndex() % 2;
 			return context.getDatasetIndex() % 2 == 0  ? module == 0 ? 50D : 25D : module == 0 ? 25D : 50D;
 		}
@@ -59,13 +59,13 @@ public class LineCallbackView extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
 
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);
@@ -135,7 +135,7 @@ public class LineCallbackView extends BaseComposite {
 		IsColor color = Colors.ALL[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.nofill);
+		dataset.setFill(Fill.FALSE);
 		dataset.setData(getRandomDigits(months));
 		dataset.setPointHoverBackgroundColor(backgroundColorCallback);
 		dataset.setPointHoverRadius(radiusCallback);

@@ -56,16 +56,16 @@ public class PointStyleLineView extends BaseComposite{
 	public PointStyleLineView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		config(chartCircle, PointStyle.circle, 0);
-		config(chartCross, PointStyle.cross, 1);
-		config(chartCrossRot, PointStyle.crossRot, 2);
-		config(chartDash, PointStyle.dash, 3);
-		config(chartLine, PointStyle.line, 4);
-		config(chartRect, PointStyle.rect, 5);
-		config(chartRectRounded, PointStyle.rectRounded, 6);
-		config(chartRectRot, PointStyle.rectRot, 7);
-		config(chartStar, PointStyle.star, 8);
-		config(chartTriangle, PointStyle.triangle, 9);
+		config(chartCircle, PointStyle.CIRCLE, 0);
+		config(chartCross, PointStyle.CROSS, 1);
+		config(chartCrossRot, PointStyle.CROSS_ROT, 2);
+		config(chartDash, PointStyle.DASH, 3);
+		config(chartLine, PointStyle.LINE, 4);
+		config(chartRect, PointStyle.RECT, 5);
+		config(chartRectRounded, PointStyle.RECT_ROUNDED, 6);
+		config(chartRectRot, PointStyle.RECT_ROT, 7);
+		config(chartStar, PointStyle.STAR, 8);
+		config(chartTriangle, PointStyle.TRIANGLE, 9);
 
 	}
 
@@ -96,7 +96,7 @@ public class PointStyleLineView extends BaseComposite{
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
 		dataset.setData(getRandomDigits(months));
-		dataset.setFill(Fill.nofill);
+		dataset.setFill(Fill.FALSE);
 		dataset.setPointRadius(10D);
 		dataset.setPointHoverRadius(20D);
 		dataset.setShowLine(false);

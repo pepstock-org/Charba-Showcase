@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
 import org.pepstock.charba.client.data.Dataset;
@@ -47,14 +48,15 @@ public class TooltipHTMLPieView extends BaseComposite{
 			private DivElement element = null;
 			
 			@Override
-			public void onCustom(AbstractChart<?, ?> chart, TooltipModel model) {
+			public void onCustom(IsChart chart, TooltipModel model) {
 				if (model.getOpacity() == 0){
 					element.getStyle().setOpacity(0);
 					return;
 				}
 				if (element == null){
 					element = Document.get().createDivElement();
-					chart.getElement().appendChild(element);
+					AbstractChart<?> chartInstance = (AbstractChart<?>)chart;
+					chartInstance.getElement().appendChild(element);
 				}
 
 				element.removeClassName("above");

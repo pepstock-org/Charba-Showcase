@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -60,19 +60,19 @@ public class DataLabelsPolarAreaView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				PolarAreaDataset ds = (PolarAreaDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getIndex()).alpha(1D).toRGBA();
 			}
 		});
-		option.setBorderColor(HtmlColor.White);
+		option.setBorderColor(HtmlColor.WHITE);
 		option.setBorderRadius(25);
 		option.setBorderWidth(2);
-		option.setColor(HtmlColor.White);
-		option.getFont().setWeight(Weight.bold);
+		option.setColor(HtmlColor.WHITE);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 

@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -78,18 +78,18 @@ public class DataLabelsRadarView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				RadarDataset ds = (RadarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
 		});
-		option.setColor(HtmlColor.White);
+		option.setColor(HtmlColor.WHITE);
 		option.getPadding().set(4);
 		option.getFont().setSize(10);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 

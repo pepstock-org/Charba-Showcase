@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -66,8 +66,8 @@ public class DataLabelsBarView extends BaseComposite{
 		dataset1.setData(values);
 		
 		DataLabelsOptions option1 = new DataLabelsOptions();
-		option1.setAlign(Align.end);
-		option1.setAnchor(Anchor.start);
+		option1.setAlign(Align.END);
+		option1.setAnchor(Anchor.START);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		BarDataset dataset2 = chart.newDataset();
@@ -80,8 +80,8 @@ public class DataLabelsBarView extends BaseComposite{
 		dataset2.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option2 = new DataLabelsOptions();
-		option2.setAlign(Align.center);
-		option2.setAnchor(Anchor.center);
+		option2.setAlign(Align.CENTER);
+		option2.setAnchor(Anchor.CENTER);
 		dataset2.setOptions(DataLabelsPlugin.ID, option2);
 
 		BarDataset dataset3 = chart.newDataset();
@@ -94,8 +94,8 @@ public class DataLabelsBarView extends BaseComposite{
 		dataset3.setData(getRandomDigits(months, false));
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
-		option3.setAlign(Align.start);
-		option3.setAnchor(Anchor.end);
+		option3.setAlign(Align.START);
+		option3.setAnchor(Anchor.END);
 
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 		
@@ -121,19 +121,19 @@ public class DataLabelsBarView extends BaseComposite{
 		option.setDisplay(new DisplayCallback() {
 
 			@Override
-			public Display invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Display invoke(IsChart chart, ScriptableContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
-				return value > 15D ? Display.yes : Display.no;
+				return value > 15D ? Display.TRUE : Display.FALSE;
 			}
 		});
 		option.setBorderRadius(4);
-		option.setColor(HtmlColor.White);
-		option.getFont().setWeight(Weight.bold);
+		option.setColor(HtmlColor.WHITE);
+		option.getFont().setWeight(Weight.BOLD);
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				double percentage = Percentage.compute(chart, value, context, true);
 				return Math.round(percentage*100)+"%";
 			}

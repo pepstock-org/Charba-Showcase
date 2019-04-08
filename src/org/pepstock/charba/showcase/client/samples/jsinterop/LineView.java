@@ -36,13 +36,13 @@ public class LineView extends BaseComposite {
 	    
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
 
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);
@@ -108,7 +108,7 @@ public class LineView extends BaseComposite {
 		IsColor color = Colors.ALL[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.nofill);
+		dataset.setFill(Fill.FALSE);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);

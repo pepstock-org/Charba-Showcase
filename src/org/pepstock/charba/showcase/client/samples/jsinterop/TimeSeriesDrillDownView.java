@@ -102,7 +102,7 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+unit.name());
-		dataset.setFill(Fill.nofill);
+		dataset.setFill(Fill.FALSE);
 		
 		IsColor color1 = Colors.ALL[index];
 		
@@ -122,8 +122,8 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 		
 		final CartesianTimeAxis axis = new CartesianTimeAxis(chart);
-		axis.setDistribution(ScaleDistribution.series);
-		axis.getTicks().setSource(TickSource.data);
+		axis.setDistribution(ScaleDistribution.SERIES);
+		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(unit);
 		axis.getTicks().setAutoSkip(true);
 
@@ -142,9 +142,9 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 			pOptions.setBorderDash(6);
 			pOptions.getClearSelection().setDisplay(true);
 			pOptions.getClearSelection().setFontSize(18);
-			pOptions.getClearSelection().setAlign(Align.left);
-			pOptions.getClearSelection().setPosition(Position.top);
-			pOptions.getClearSelection().setRender(Render.label_image);
+			pOptions.getClearSelection().setAlign(Align.LEFT);
+			pOptions.getClearSelection().setPosition(Position.TOP);
+			pOptions.getClearSelection().setRender(Render.LABEL_IMAGE);
 		
 			chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 			chart.getPlugins().add(selector);
@@ -173,10 +173,10 @@ public class TimeSeriesDrillDownView extends BaseComposite{
 		TimeUnit result = null;
 		switch (index) {
 		case 0: 
-			result = TimeUnit.day;
+			result = TimeUnit.DAY;
 			break;
 		case 1: 
-			result = TimeUnit.hour;
+			result = TimeUnit.HOUR;
 			break;
 		default:
 			break;

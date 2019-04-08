@@ -35,11 +35,11 @@ public class StackedAreaView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Stacked area Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
-		chart.getOptions().getHover().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -49,7 +49,7 @@ public class StackedAreaView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHSL());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months, false));
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -59,7 +59,7 @@ public class StackedAreaView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(Fill.ORIGIN);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -97,7 +97,7 @@ public class StackedAreaView extends BaseComposite{
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.origin);
+		dataset.setFill(Fill.ORIGIN);
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);

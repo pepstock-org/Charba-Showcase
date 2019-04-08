@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -78,12 +78,12 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setAlign(Align.end);
-		option.setAnchor(Anchor.end);
-		option.setColor(new ColorCallback<IsColor>() {
+		option.setAlign(Align.END);
+		option.setAnchor(Anchor.END);
+		option.setColor(new ColorCallback() {
 
 			@Override
-			public IsColor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getDatasetIndex());
 			}
@@ -92,7 +92,7 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		option.setFont(new FontCallback() {
 
 			@Override
-			public Font invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Font invoke(IsChart chart, ScriptableContext context) {
 				Font font = new Font();
 				double width = chart.getNode().getWidth();
 				font.setSize(width < 512 ? 16 : 20);
@@ -103,7 +103,7 @@ public class DataLabelsCustomLabelsView extends BaseComposite{
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				Labels labels = chart.getData().getLabels();
 				return labels.getString(context.getIndex());
 			}

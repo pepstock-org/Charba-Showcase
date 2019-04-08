@@ -42,10 +42,10 @@ public class LineInterpolationView extends BaseComposite{
 		createData();
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Interpolation Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Cubic interpolation (monotone)");
@@ -55,8 +55,8 @@ public class LineInterpolationView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(data);
-		dataset1.setFill(Fill.nofill);
-		dataset1.setCubicInterpolationMode(CubicInterpolationMode.monotone);
+		dataset1.setFill(Fill.FALSE);
+		dataset1.setCubicInterpolationMode(CubicInterpolationMode.MONOTONE);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Cubic interpolation (default)");
@@ -66,7 +66,7 @@ public class LineInterpolationView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(data);
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Linear interpolation");
@@ -76,7 +76,7 @@ public class LineInterpolationView extends BaseComposite{
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(data);
-		dataset3.setFill(Fill.nofill);
+		dataset3.setFill(Fill.FALSE);
 		dataset3.setLineTension(0);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);

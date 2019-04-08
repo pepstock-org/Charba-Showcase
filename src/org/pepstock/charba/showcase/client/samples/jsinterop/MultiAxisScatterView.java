@@ -39,22 +39,22 @@ public class MultiAxisScatterView extends BaseComposite{
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Multi Axis Scatter Chart");
 		chart.getOptions().getHover().setIntersect(true);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 
-		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, CartesianAxisType.x);
-		xAxes.setPosition(Position.bottom);
+		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, CartesianAxisType.X);
+		xAxes.setPosition(Position.BOTTOM);
 		xAxes.getGrideLines().setZeroLineColor("rgba(0,0,0,1)");
 		xAxes.setId("x-axis-1");
 		
 		CartesianLinearAxis yAxes1 = new CartesianLinearAxis(chart);
 		yAxes1.setId("y-axis-1");
 		yAxes1.setDisplay(true);
-		yAxes1.setPosition(Position.left);
+		yAxes1.setPosition(Position.LEFT);
 
 		CartesianLinearAxis yAxes2 = new CartesianLinearAxis(chart);
 		yAxes2.setId("y-axis-2");
 		yAxes2.setDisplay(true);
-		yAxes2.setPosition(Position.right);
+		yAxes2.setPosition(Position.RIGHT);
 		yAxes2.getGrideLines().setDrawOnChartArea(false);
 		
 		chart.getOptions().getScales().setXAxes(xAxes);

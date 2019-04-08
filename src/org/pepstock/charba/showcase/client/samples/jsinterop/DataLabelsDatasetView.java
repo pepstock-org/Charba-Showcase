@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -92,29 +92,29 @@ public class DataLabelsDatasetView extends BaseComposite{
 		chart.getData().setDatasets(dataset1, dataset2);
 		
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
 			
 		});
 		option.setBorderRadius(4);
-		option.setColor(HtmlColor.White);
+		option.setColor(HtmlColor.WHITE);
 		option.setOffset(8);
 		option.getFont().setSize(11);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		option.setAlign(new AlignCallback() {
 
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Align invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				double v0 = ds.getData().get(0);
 				double v1 = ds.getData().get(1);
 				boolean invert = v0 - v1 > 0;
-				return context.getDatasetIndex() == 0 ? invert ? Align.end : Align.start : invert ? Align.start : Align.center;
+				return context.getDatasetIndex() == 0 ? invert ? Align.END : Align.START : invert ? Align.START : Align.CENTER;
 			}
 		});
 		

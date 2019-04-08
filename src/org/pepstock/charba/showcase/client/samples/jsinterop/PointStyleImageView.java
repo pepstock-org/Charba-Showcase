@@ -35,14 +35,14 @@ public class PointStyleImageView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(true);
 
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
@@ -54,7 +54,7 @@ public class PointStyleImageView extends BaseComposite{
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 		
 		dataset1.setPointStyle(Images.INSTANCE.customPoint());
 
@@ -66,7 +66,7 @@ public class PointStyleImageView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.origin);
+		dataset2.setFill(Fill.ORIGIN);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

@@ -37,21 +37,21 @@ public class LinearGradientLineView extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Line Chart with linear gradient");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.nearest);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Gradient gradient1  = new Gradient(GradientType.linear, GradientOrientation.leftRight, GradientScope.chart);
+		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
 
-		gradient1.addColorStop(0, HtmlColor.Orange);
-		gradient1.addColorStop(1, HtmlColor.Purple);
+		gradient1.addColorStop(0, HtmlColor.ORANGE);
+		gradient1.addColorStop(1, HtmlColor.PURPLE);
 		
 		dataset1.setBackgroundColor(gradient1);
 		
@@ -64,7 +64,7 @@ public class LinearGradientLineView extends BaseComposite{
 		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.origin);
+		dataset1.setFill(Fill.ORIGIN);
 		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

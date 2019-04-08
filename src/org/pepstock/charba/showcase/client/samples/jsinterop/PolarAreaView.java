@@ -30,7 +30,7 @@ public class PolarAreaView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.right);
+		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Polar Area Chart");
 		

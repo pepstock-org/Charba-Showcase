@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.RotationCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -85,39 +85,39 @@ public class DataLabelsMirrorView extends BaseComposite{
 		option.setAlign(new AlignCallback() {
 			
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Align invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getData().get(context.getIndex()) > 0 ? Align.end : Align.start;
+				return ds.getData().get(context.getIndex()) > 0 ? Align.END : Align.START;
 			}
 		});
 		
 		option.setAnchor(new AnchorCallback() {
 
 			@Override
-			public Anchor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Anchor invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getData().get(context.getIndex()) > 0 ? Anchor.end : Anchor.start;
+				return ds.getData().get(context.getIndex()) > 0 ? Anchor.END : Anchor.START;
 			}
 		});
 		option.setRotation(new RotationCallback() {
 			
 			@Override
-			public Double invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Double invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? 45D : 100D - 45D;
 			}
 		});
 
-		option.setBackgroundColor(new BackgroundColorCallback<String>() {
+		option.setBackgroundColor(new BackgroundColorCallback() {
 			
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(0);
 			}
 		});
 		option.setBorderRadius(4);
-		option.setColor(HtmlColor.White);
+		option.setColor(HtmlColor.WHITE);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 		

@@ -73,7 +73,7 @@ public class TooltipInteractionsView extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
-		dataset1.setFill(Fill.nofill);
+		dataset1.setFill(Fill.FALSE);
 
 		dataset2 = new LineDataset();
 		dataset2.setLabel("dataset 1");
@@ -81,25 +81,25 @@ public class TooltipInteractionsView extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.nofill);
+		dataset2.setFill(Fill.FALSE);
 		
-		configChart(chart1, InteractionMode.point, true);
-		configChart(chart2, InteractionMode.point, false);
-		configChart(chart3, InteractionMode.nearest, true);
-		configChart(chart4, InteractionMode.nearest, false);
-		configChart(chart5, InteractionMode.index, true);
-		configChart(chart6, InteractionMode.index, false);
-		configChart(chart7, InteractionMode.dataset, true);
-		configChart(chart8, InteractionMode.dataset, false);
-		configChart(chart9, InteractionMode.x, true);
-		configChart(chart10, InteractionMode.x, false);
-		configChart(chart11, InteractionMode.y, true);
-		configChart(chart12, InteractionMode.y, false);
+		configChart(chart1, InteractionMode.POINT, true);
+		configChart(chart2, InteractionMode.POINT, false);
+		configChart(chart3, InteractionMode.NEAREST, true);
+		configChart(chart4, InteractionMode.NEAREST, false);
+		configChart(chart5, InteractionMode.INDEX, true);
+		configChart(chart6, InteractionMode.INDEX, false);
+		configChart(chart7, InteractionMode.DATASET, true);
+		configChart(chart8, InteractionMode.DATASET, false);
+		configChart(chart9, InteractionMode.X, true);
+		configChart(chart10, InteractionMode.X, false);
+		configChart(chart11, InteractionMode.Y, true);
+		configChart(chart12, InteractionMode.Y, false);
 	}
 
 	private void configChart(LineChart chart, InteractionMode mode, boolean intersect){
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Tooltip mode: "+mode.name()+", intersect: "+intersect);
 		chart.getOptions().getTooltips().setMode(mode);

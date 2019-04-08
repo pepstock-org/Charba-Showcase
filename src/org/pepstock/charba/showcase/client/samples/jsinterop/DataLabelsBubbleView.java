@@ -2,8 +2,8 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BubbleChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
@@ -87,33 +87,33 @@ public class DataLabelsBubbleView extends BaseComposite{
 		option.setAnchor(new AnchorCallback() {
 
 			@Override
-			public Anchor invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Anchor invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				DataPoint point = ds.getDataPoints().get(context.getIndex());
-				return point.getR() < 20D ? Anchor.end : Anchor.center;
+				return point.getR() < 20D ? Anchor.END : Anchor.CENTER;
 			}
 			
 		});
 		option.setAlign(new AlignCallback() {
 
 			@Override
-			public Align invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public Align invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				DataPoint point = ds.getDataPoints().get(context.getIndex());
-				return point.getR() < 20D ? Align.end : Align.center;
+				return point.getR() < 20D ? Align.END : Align.CENTER;
 			}
 		});
-		option.setColor(new ColorCallback<String>() {
+		option.setColor(new ColorCallback() {
 
 			@Override
-			public String invoke(AbstractChart<?, ?> chart, ScriptableContext context) {
+			public String invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString().get(context.getIndex());
 			}
 			
 		});
 		option.setOffset(2);
-		option.getFont().setWeight(Weight.bold);
+		option.getFont().setWeight(Weight.BOLD);
 		option.getPadding().set(0);
 		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);

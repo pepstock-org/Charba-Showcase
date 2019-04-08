@@ -1,8 +1,8 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.ChartType;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -57,12 +57,12 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Charba Raster Chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.index);
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		chart.getOptions().getLayout().getPadding().setTop(100);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
-		axis1.setPosition(Position.left);
+		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
 		axis1.getTicks().setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -71,7 +71,7 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis1);
 
 		dataset = chart.newDataset();
-		dataset.setType(ChartType.bar);
+		dataset.setType(ChartType.BAR);
 		dataset.setLabel("Humidity");
 
 		dataset.setData(getRandomDigits(months, 0, 75));
@@ -80,9 +80,9 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 		for (int i=0; i<months; i++) {
 			if (i == 3) {
 				dataset.getData().set(3, getRandomDigits(1, 85, 100)[0]);
-				colors[i] = HtmlColor.Red;
+				colors[i] = HtmlColor.RED;
 			} else {
-				colors[i] = HtmlColor.Turquoise;
+				colors[i] = HtmlColor.TURQUOISE;
 			}
 		}
 		dataset.setBackgroundColor(colors);
@@ -134,7 +134,7 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDraw(AbstractChart<?, ?> chart, double easing) {
+			public void onAfterDraw(IsChart chart, double easing) {
 				Element element = toast.getElement();
 		
 				final Context2d ctx = chart.getCanvas().getContext2d();
@@ -172,9 +172,9 @@ public class HTMLAnnnotationByElementView extends BaseComposite {
 		for (int i=0; i<months; i++) {
 			if (i == 3) {
 				dataset.getData().set(3, getRandomDigits(1, 85, 100)[0]);
-				colors[i] = HtmlColor.Red;
+				colors[i] = HtmlColor.RED;
 			} else {
-				colors[i] = HtmlColor.Turquoise;
+				colors[i] = HtmlColor.TURQUOISE;
 			}
 		}
 		dataset.setBackgroundColor(colors);

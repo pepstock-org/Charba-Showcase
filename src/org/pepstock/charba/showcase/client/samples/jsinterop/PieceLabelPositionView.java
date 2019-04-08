@@ -48,12 +48,12 @@ public class PieceLabelPositionView extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 
 
-		option.setRender(Render.label);
-		option.setFontColor(HtmlColor.White);
+		option.setRender(Render.LABEL);
+		option.setFontColor(HtmlColor.WHITE);
 		option.setFontSize(16);
 		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		option.setArc(true);
-		option.setPosition(Position.border);
+		option.setPosition(Position.BORDER);
 		option.setOverlap(false);
 		
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
@@ -91,8 +91,8 @@ public class PieceLabelPositionView extends BaseComposite{
 	@UiHandler("outside")
 	protected void handleOutside(ClickEvent event) {
 		boolean checked = ((CheckBox) event.getSource()).getValue();
-		option.setPosition(checked ? Position.outside : Position.border);
-		option.setFontColor(checked ? HtmlColor.Black : HtmlColor.White);
+		option.setPosition(checked ? Position.OUTSIDE : Position.BORDER);
+		option.setFontColor(checked ? HtmlColor.BLACK : HtmlColor.WHITE);
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		chart.update();
 	}

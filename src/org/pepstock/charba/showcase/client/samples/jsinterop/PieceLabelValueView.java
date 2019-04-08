@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
+import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
@@ -42,7 +42,7 @@ public class PieceLabelValueView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.top);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Pie Chart with PieceLabel plugin");
 		
@@ -54,11 +54,11 @@ public class PieceLabelValueView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		option.setRender(Render.value);
-		option.setFontColor(HtmlColor.White);
+		option.setRender(Render.VALUE);
+		option.setFontColor(HtmlColor.WHITE);
 		option.setPrecision(2);
 		option.setFontSize(14);
-		option.setFontStyle(FontStyle.bold);
+		option.setFontStyle(FontStyle.BOLD);
 		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		option.setOverlap(false);
 		
@@ -119,7 +119,7 @@ public class PieceLabelValueView extends BaseComposite{
 		if (checked) {
 			option.setRender(renderer);	
 		} else {
-			option.setRender(Render.value);
+			option.setRender(Render.VALUE);
 		}
 		
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
@@ -131,10 +131,10 @@ public class PieceLabelValueView extends BaseComposite{
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	static class MyRenderer implements RenderCallback<String>{
+	static class MyRenderer implements RenderCallback{
 
 		@Override
-		public String invoke(AbstractChart<?, ?> chart, RenderItem item) {
+		public String invoke(IsChart chart, RenderItem item) {
 			return "$$ "+item.getValue();
 		}
 		
