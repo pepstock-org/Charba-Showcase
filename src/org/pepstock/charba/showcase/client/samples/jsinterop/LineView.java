@@ -44,7 +44,7 @@ public class LineView extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-
+		
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -96,6 +96,7 @@ public class LineView extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+		org.pepstock.charba.client.utils.Window.getConsole().log(chart.getNode().toJSON());
 	}
 
 	@UiHandler("add_dataset")
