@@ -48,7 +48,7 @@ public class LinearGradientLineView extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
+		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
 
 		gradient1.addColorStop(0, HtmlColor.ORANGE);
 		gradient1.addColorStop(1, HtmlColor.PURPLE);

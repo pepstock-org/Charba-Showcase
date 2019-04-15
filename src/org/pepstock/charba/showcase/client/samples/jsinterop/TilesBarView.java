@@ -42,14 +42,6 @@ public class TilesBarView extends BaseComposite{
 		
 		dataset1.setBackgroundColor(color1.alpha(0.80D));
 	
-//		Pattern p1 = TilesBuilder.get().createPattern(Shape.square, Colors.ALL[0]);
-//		Pattern p2 = TilesBuilder.get().createPattern(Shape.verticalZigzag, Colors.ALL[1]);
-//		Pattern p3 = TilesBuilder.get().createPattern(Shape.diagonal, Colors.ALL[2]);
-//		Pattern p4 = TilesBuilder.get().createPattern(Shape.ring, Colors.ALL[3]);
-//		Pattern p5 = TilesBuilder.get().createPattern(Shape.dotDash, Colors.ALL[4]);
-//		Pattern p6 = TilesBuilder.get().createPattern(Shape.emptyStar, Colors.ALL[5]);
-//		Pattern p7 = TilesBuilder.get().createPattern(Shape.zigzag, Colors.ALL[6]);
-
 		Pattern p1 = TilesFactory.createPattern(Shape.SQUARE, Colors.ALL[0]);
 		Pattern p2 = TilesFactory.createPattern(Shape.VERTICAL_ZIGZAG, Colors.ALL[1]);
 		Pattern p3 = TilesFactory.createPattern(Shape.DIAGONAL, Colors.ALL[2]);

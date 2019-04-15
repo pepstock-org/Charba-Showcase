@@ -51,7 +51,6 @@ public class TilesDoughnutView extends BaseComposite{
 		
 		Pattern p1 = TilesBuilder.create().setShape(Shape.EMPTY_STAR).setBackgroundColor(Colors.ALL[4]).asPattern();
 		Pattern p2 = TilesBuilder.create().setShape(image).setBackgroundColor(Colors.ALL[5]).asPattern();
-//		Pattern p3 = TilesBuilder.create().setShape(Shape.diagonal).setBackgroundColor(Colors.ALL[6]).asPattern();
 		Pattern p3 = TilesBuilder.create().setShape(charShape).setBackgroundColor(Colors.ALL[6]).setSize(20).asPattern();
 		Pattern p4 = TilesBuilder.create().setShape(Shape.STAR).setBackgroundColor(Colors.ALL[7]).asPattern();
 		dataset.setBackgroundColor(p1, p2, p3, p4);

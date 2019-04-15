@@ -66,7 +66,7 @@ public class BubbleView extends BaseComposite{
 		dataset1.setHoverBackgroundColor(hcolors);
 		dataset1.setHoverBorderWidth(hbwidth);
 		dataset1.setDataPoints(dp1);
-
+		
 		chart.getPlugins().add(new ColorSchemes());
 		chart.getData().setDatasets(dataset1);
 	}

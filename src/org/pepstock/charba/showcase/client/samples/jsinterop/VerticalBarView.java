@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
@@ -48,13 +47,8 @@ public class VerticalBarView extends BaseComposite{
 		border.setTop(5);
 		border.setLeft(5);
 		border.setRight(5);
-		
 		dataset1.setBorderWidth(border);
 		
-		List<String> list = Arrays.asList(color1.toRGBA(), Colors.ALL[1].toRGBA(),Colors.ALL[13].toRGBA(),Colors.ALL[15].toRGBA());
-		
-//		dataset1.setBorderColor(color1.toRGBA(), Colors.ALL[1].toRGBA(),Colors.ALL[13].toRGBA(),Colors.ALL[15].toRGBA());
-		dataset1.setBorderColor(list.toArray(new String[0]));
 		dataset1.setData(getFixedDigits(months));
 		
 		chart.getData().setLabels(getLabels());

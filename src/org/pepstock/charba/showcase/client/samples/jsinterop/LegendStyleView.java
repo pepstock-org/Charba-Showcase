@@ -56,6 +56,7 @@ public class LegendStyleView extends BaseComposite{
 		chartStyled.getOptions().setResponsive(true);
 		chartStyled.getOptions().getLegend().setPosition(Position.TOP);
 		chartStyled.getOptions().getLegend().getLabels().setUsePointStyle(true);
+		chartStyled.getOptions().getLegend().getLabels().setFontSize(20);
 		chartStyled.getOptions().getTitle().setDisplay(true);
 		chartStyled.getOptions().getTitle().setText("Charba Point Style Legend");
 		

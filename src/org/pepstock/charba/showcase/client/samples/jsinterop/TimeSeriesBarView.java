@@ -11,6 +11,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,6 +36,8 @@ public class TimeSeriesBarView extends BaseComposite{
 
 	@UiField
 	BarChart chart;
+	
+	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
 	
 	public TimeSeriesBarView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -73,6 +77,14 @@ public class TimeSeriesBarView extends BaseComposite{
 	    
 	    chart.getData().setDatasets(dataset1);
 	    chart.getOptions().getScales().setXAxes(axis);
+	    
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+		pOptions.setBorderDash(6);
+		pOptions.setFireEventOnClearSelection(false);
+		
+		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+		chart.getPlugins().add(selector);
+
 	}
 	
 	@UiHandler("randomize")

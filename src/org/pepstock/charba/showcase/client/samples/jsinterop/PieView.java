@@ -1,13 +1,11 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.OutlineStyle;
@@ -41,18 +39,8 @@ public class PieView extends BaseComposite{
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
-		dataset.setBorderWidth(5,5,5,5,5,5,5);
-		List<String> list = Arrays.asList(Colors.ALL[8].toRGBA(), Colors.ALL[5].toRGBA(),Colors.ALL[13].toRGBA(),Colors.ALL[15].toRGBA(),Colors.ALL[1].toRGBA(),Colors.ALL[0].toRGBA(),Colors.ALL[19].toRGBA());
-		dataset.setBorderColor(list.toArray(new String[0]));
-		
-//		dataset1.setBorderColor(color1.toRGBA(), Colors.ALL[1].toRGBA(),Colors.ALL[13].toRGBA(),Colors.ALL[15].toRGBA());
-
-		
 		dataset.setData(getRandomDigits(months, false));
 
-	
-//		chart.getPlugins().add(new ColorSchemes());
-		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 	}
@@ -73,11 +61,8 @@ public class PieView extends BaseComposite{
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
-
 		datasets.add(dataset);
-		
 		chart.update();
-
 	}
 
 	@UiHandler("remove_dataset")

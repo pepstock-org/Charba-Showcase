@@ -45,6 +45,8 @@ public class LineView extends BaseComposite {
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
+		chart.getOptions().setShowLines(true);
+		
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -70,7 +72,7 @@ public class LineView extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(true);
+		dataset2.setFill(false);
 		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -87,7 +89,7 @@ public class LineView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-	
+
 	}
 
 	@UiHandler("randomize")
@@ -96,7 +98,6 @@ public class LineView extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		org.pepstock.charba.client.utils.Window.getConsole().log(chart.getNode().toJSON());
 	}
 
 	@UiHandler("add_dataset")

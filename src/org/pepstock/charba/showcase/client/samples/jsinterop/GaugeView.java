@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.pepstock.charba.client.colors.ColorBuilder;
+import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.impl.charts.GaugeChart;
 import org.pepstock.charba.client.impl.charts.GaugeDataset;
 import org.pepstock.charba.client.impl.charts.GaugeThreshold;
@@ -54,6 +55,7 @@ public class GaugeView extends BaseComposite{
 		chartValue.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label");
 		chartValue.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
 		chartValue.getOptions().setFormat("#### MB");
+		chartValue.getOptions().setFontStyle(FontStyle.ITALIC);
 		chartValue.getData().setDatasets(getDataset(chartValue, "Memory", 2048D));
 
 		chartValueColor.getOptions().getTitle().setDisplay(true);
