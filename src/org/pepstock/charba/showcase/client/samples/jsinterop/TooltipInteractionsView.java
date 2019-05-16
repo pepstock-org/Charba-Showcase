@@ -76,7 +76,7 @@ public class TooltipInteractionsView extends BaseComposite{
 		dataset1.setFill(Fill.FALSE);
 
 		dataset2 = new LineDataset();
-		dataset2.setLabel("dataset 1");
+		dataset2.setLabel("dataset 2");
 		IsColor color2 = Colors.ALL[1];
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());

@@ -2,7 +2,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.HorizontalBarChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
@@ -25,7 +25,7 @@ public class HorizontalBarView extends BaseComposite{
 	}
 
 	@UiField
-	BarChart chart;
+	HorizontalBarChart chart;
 	
 	public HorizontalBarView() {
 		initWidget(uiBinder.createAndBindUi(this));

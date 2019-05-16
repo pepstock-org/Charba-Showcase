@@ -676,4 +676,16 @@ public class DemoView extends Composite {
 		 content.add(new ColorSchemeBubbleView());
 	}
 
+	@UiHandler("linetschart")
+	protected void handleLineTimeseriesChart(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesChartView());
+	}
+
+	@UiHandler("bartschart")
+	protected void handlebarTimeseriesChart(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new TimeSeriesBarChartView());
+	}
+
 }

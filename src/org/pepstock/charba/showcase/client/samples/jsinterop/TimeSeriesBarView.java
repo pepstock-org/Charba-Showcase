@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.Date;
 
 import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.ChartType;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.DataPoint;
@@ -48,7 +47,6 @@ public class TimeSeriesBarView extends BaseComposite{
 		long time = System.currentTimeMillis();
 		
 	    BarDataset dataset1 = chart.newDataset();
-	    dataset1.setType(ChartType.BAR);
 		dataset1.setLabel("dataset 2");
 
 	    DataPoint[] points = new DataPoint[AMOUNT_OF_POINTS];
@@ -57,7 +55,7 @@ public class TimeSeriesBarView extends BaseComposite{
 	    for (int i=0; i<AMOUNT_OF_POINTS; i++){
 	        DataPoint dataPoint=  new DataPoint();
 	        dataPoint.setT(new Date(time));
-	        dataPoint.setY(100 * Math.random());
+	        dataPoint.setX(100 * Math.random());
 	        points[idx] = dataPoint;
 
 	        DataPoint rainPoint=  new DataPoint();

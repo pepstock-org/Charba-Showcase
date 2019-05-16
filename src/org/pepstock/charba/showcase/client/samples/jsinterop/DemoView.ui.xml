@@ -216,6 +216,8 @@
 							<g:VerticalPanel spacing="4">
 								<g:Label ui:field="linets" styleName='{myStyle.myLabel}'>Line Timeseries</g:Label>
 								<g:Label ui:field="barts" styleName='{myStyle.myLabel}'>Bar Timeseries</g:Label>
+								<g:Label ui:field="linetschart" styleName='{myStyle.myLabel}'>Line Timeseries (chart)</g:Label>
+								<g:Label ui:field="bartschart" styleName='{myStyle.myLabel}'>Bar Timeseries (chart)</g:Label>
 								<g:Label ui:field="zooming"
 									styleName='{myStyle.myLabel}'>Zooming</g:Label>
 								<g:Label ui:field="drilldown"
