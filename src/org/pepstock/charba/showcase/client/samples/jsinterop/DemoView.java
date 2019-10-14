@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
@@ -15,6 +16,8 @@ import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
+import org.pepstock.charba.client.resources.ResourcesType;
+import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -44,6 +47,12 @@ public class DemoView extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		content.add(new HomeView());
+		
+		Injector.ensureInjected(ResourcesType.getClientBundle().chartJs());
+		Injector.ensureInjected(ResourcesType.getClientBundle().charbaHelper());
+		Injector.ensureInjected(MyResources.INSTANCE.chartJsAnnotationSource());
+		
+		Defaults.get().getScale().getScaleLabel().setDisplay(true);
 		
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
 
@@ -683,9 +692,15 @@ public class DemoView extends Composite {
 	}
 
 	@UiHandler("bartschart")
-	protected void handlebarTimeseriesChart(ClickEvent event) {
+	protected void handleBarTimeseriesChart(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new TimeSeriesBarChartView());
+	}
+
+	@UiHandler("customplugin")
+	protected void handleCustomPluginChart(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new VerticalBarCustomPluginView());
 	}
 
 }

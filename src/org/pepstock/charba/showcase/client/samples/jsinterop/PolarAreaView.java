@@ -36,7 +36,7 @@ public class PolarAreaView extends BaseComposite{
 		
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
-		axis.getTicks().setReverse(false);
+		axis.getTicks().setReverse(true);
 		chart.getOptions().setAxis(axis);
 		
 		PolarAreaDataset dataset = chart.newDataset();

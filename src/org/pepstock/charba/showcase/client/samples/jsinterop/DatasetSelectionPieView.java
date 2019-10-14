@@ -10,6 +10,9 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.impl.plugins.ChartPointer;
+import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
+import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
 import org.pepstock.charba.showcase.client.samples.Toast;
 
 import com.google.gwt.core.client.GWT;
@@ -62,6 +65,12 @@ public class DatasetSelectionPieView extends BaseComposite{
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
+
+
+		ChartPointerOptions op = new ChartPointerOptions();
+		op.setElements(PointerElement.DATASET);
+		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, op);
+		chart.getPlugins().add(new ChartPointer());
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);

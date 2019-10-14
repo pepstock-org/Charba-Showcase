@@ -146,6 +146,8 @@
 									styleName='{myStyle.myLabel}'>Dataset labelling</g:Label>
 								<g:Label ui:field="flagsplugin"
 									styleName='{myStyle.myLabel}'>Ticks with flags</g:Label>
+								<g:Label ui:field="customplugin"
+									styleName='{myStyle.myLabel}'>Custom imported plugin</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

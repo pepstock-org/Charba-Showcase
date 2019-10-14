@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.callbacks.TimeTickCallback;
 import org.pepstock.charba.client.callbacks.TooltipTitleCallback;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.DataPoint;
@@ -16,6 +18,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.items.TimeTickItem;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
@@ -96,10 +99,20 @@ public class TimeSeriesView extends BaseComposite{
 			time = time + DAY;
 		}
 		dataset1.setDataPoints(dp1);
-		
+	
 		final CartesianTimeAxis axis = new CartesianTimeAxis(chart);
 		axis.setDistribution(ScaleDistribution.SERIES);
 		axis.getTicks().setSource(TickSource.DATA);
+		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.DAY, "MMM D h:mm a");
+		axis.getTicks().setCallback(new TimeTickCallback() {
+			
+			@Override
+			public String onCallback(Axis axis, String value, int index, List<TimeTickItem> values) {
+				TimeTickItem item = values.get(index);
+				Date date = item.getValue();
+				return FORMAT.format(date);
+			}
+		});
 		axis.getTime().setUnit(TimeUnit.DAY);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
@@ -109,6 +122,7 @@ public class TimeSeriesView extends BaseComposite{
 		chart.getOptions().getScales().setXAxes(axis);
 		chart.getOptions().getScales().setYAxes(axis2);
 		chart.getData().setDatasets(dataset1);
+
 		
 	}
 	

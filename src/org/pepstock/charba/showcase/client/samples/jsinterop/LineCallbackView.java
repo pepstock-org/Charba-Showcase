@@ -5,6 +5,8 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
+import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.FillCallback;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -73,11 +75,22 @@ public class LineCallbackView extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		IsColor color1 = Colors.ALL[0];
+		dataset1.setBorderColor(new BorderColorCallback() {
+			
+			@Override
+			public Object invoke(IsChart chart, ScriptableContext context) {
+				return HtmlColor.PINK;
+			}
+		});
+		
+		dataset1.setFill(new FillCallback() {
+			
+			@Override
+			public Object invoke(IsChart chart, ScriptableContext context) {
+				return Fill.FALSE;
+			}
+		});
 
-		dataset1.setBackgroundColor(color1.toHex());
-		dataset1.setBorderColor(color1.toHex());
-		dataset1.setFill(false);
 		double[] values = getRandomDigits(months);
 		dataset1.setPointHoverBackgroundColor(backgroundColorCallback);
 		dataset1.setPointHoverRadius(radiusCallback);
@@ -139,7 +152,6 @@ public class LineCallbackView extends BaseComposite {
 		dataset.setData(getRandomDigits(months));
 		dataset.setPointHoverBackgroundColor(backgroundColorCallback);
 		dataset.setPointHoverRadius(radiusCallback);
-
 
 		datasets.add(dataset);
 

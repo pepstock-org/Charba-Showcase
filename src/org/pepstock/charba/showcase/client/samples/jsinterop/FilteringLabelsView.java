@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.samples.jsinterop;
 import java.util.List;
 
 import org.pepstock.charba.client.LineChart;
-import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.callbacks.CategoryTickCallback;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -68,12 +68,11 @@ public class FilteringLabelsView extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		axis1.getTicks().setCallback(new TickCallback() {
+		axis1.getTicks().setCallback(new CategoryTickCallback() {
 			
 			@Override
-			public String onCallback(Axis axis, double value, int index, List<Double> values) {
-				String label = chart.getData().getLabels().getStrings(index)[0];
-				return index % 2 == 0 ? label : "";
+			public String onCallback(Axis axis, String value, int index, List<String> values) {
+				return index % 2 == 0 ? value : "";
 			}
 		});
 		
