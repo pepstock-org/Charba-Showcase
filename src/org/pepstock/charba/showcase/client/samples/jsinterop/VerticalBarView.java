@@ -9,8 +9,6 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.samples.Colors;
-import org.pepstock.charba.showcase.client.samples.annotation.ChartJsAnnotationOptions;
-import org.pepstock.charba.showcase.client.samples.annotation.PlacementTaskAnnotationOptions;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -37,7 +35,7 @@ public class VerticalBarView extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Charba Bar Chart");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -55,15 +53,10 @@ public class VerticalBarView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-		chart.getOptions().getPlugins().setOptions(ChartJsAnnotationOptions.ID, new PlacementTaskAnnotationOptions(1L));
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log(chart.getOptions().toJSON());
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		org.pepstock.charba.client.utils.Window.getConsole().log(chart);
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}

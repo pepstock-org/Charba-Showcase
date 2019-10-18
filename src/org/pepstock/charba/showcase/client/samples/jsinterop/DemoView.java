@@ -594,7 +594,13 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new DataLabelsCustomLabelsView());
 	}
-	
+
+	@UiHandler("datalabelsMulti")
+	protected void handleDatalabelsMultiLabels(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new DataLabelsMultiLabelsView());
+	}
+
 	@UiHandler("piecelabelPieLabels")
 	protected void handleLabelsPieLabels(ClickEvent event) {
 		clearPreviousChart();

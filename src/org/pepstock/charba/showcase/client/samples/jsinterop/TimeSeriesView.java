@@ -107,22 +107,19 @@ public class TimeSeriesView extends BaseComposite{
 		axis.getTicks().setCallback(new TimeTickCallback() {
 			
 			@Override
-			public String onCallback(Axis axis, String value, int index, List<TimeTickItem> values) {
-				TimeTickItem item = values.get(index);
-				Date date = item.getValue();
-				return FORMAT.format(date);
+			public String onCallback(Axis axis, Date value, String label, int index, List<TimeTickItem> values) {
+				return FORMAT.format(value);
 			}
 		});
 		axis.getTime().setUnit(TimeUnit.DAY);
-
+		
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis);
 		chart.getOptions().getScales().setYAxes(axis2);
 		chart.getData().setDatasets(dataset1);
-
 		
 	}
 	

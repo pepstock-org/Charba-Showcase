@@ -12,6 +12,7 @@ import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.showcase.client.samples.Colors;
 
 import com.google.gwt.core.client.GWT;
@@ -58,7 +59,8 @@ public class DataLabelsRadarView extends BaseComposite{
 		dataset1.setPointBackgroundColor(color1.toHex());
 		dataset1.setBorderWidth(2);
 		dataset1.setData(getRandomDigits(months));
-
+		dataset1.setFill(Fill.START);
+		
 		RadarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
@@ -69,6 +71,7 @@ public class DataLabelsRadarView extends BaseComposite{
 		dataset2.setPointBackgroundColor(color2.toHex());
 		dataset2.setBorderWidth(2);
 		dataset2.setData(getRandomDigits(months));
+		dataset2.setFill(Fill.START);
 
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);

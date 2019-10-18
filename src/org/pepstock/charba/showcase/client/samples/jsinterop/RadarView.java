@@ -66,17 +66,15 @@ public class RadarView extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setPointBackgroundColor(color2.toHex());
 		dataset2.setBorderWidth(2);
-//		dataset2.setFill(Fill.START);
 		dataset2.setFill(new FillCallback() {
 			
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
-				org.pepstock.charba.client.utils.Window.getConsole().log("Eccome");
 				return Fill.START;
 			}
 		});
 		dataset2.setData(getRandomDigits(months));
-
+		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		

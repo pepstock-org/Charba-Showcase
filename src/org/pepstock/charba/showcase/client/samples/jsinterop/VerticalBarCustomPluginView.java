@@ -61,7 +61,6 @@ public class VerticalBarCustomPluginView extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		org.pepstock.charba.client.utils.Window.getConsole().log(chart);
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}
