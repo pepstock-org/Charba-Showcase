@@ -47,7 +47,7 @@ public class TooltipBorderView extends BaseComposite{
 		chart.getOptions().getTooltips().setTitleFontColor("black");
 		chart.getOptions().getTooltips().setBodyFontColor("black");
 		chart.getOptions().getTooltips().setBorderColor("rgba(0,0,0,1)");
-		chart.getOptions().getTooltips().setBorderWidth(4);;
+		chart.getOptions().getTooltips().setBorderWidth(4);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

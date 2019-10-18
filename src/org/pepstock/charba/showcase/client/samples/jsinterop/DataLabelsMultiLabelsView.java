@@ -94,7 +94,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 				return context.isActive() ? 1D : 0.5D;
 			}
 		});
-		option1.getLabels().setLabel("index", index);;
+		option1.getLabels().setLabel("index", index);
 
 		DataLabelsOptions name = new DataLabelsOptions();
 		name.setAlign(Align.TOP);
@@ -107,7 +107,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 				return context.isActive() ? "name" : chart.getData().getLabels().getString(context.getIndex());
 			}
 		});
-		option1.getLabels().setLabel("name", name);;
+		option1.getLabels().setLabel("name", name);
 
 		DataLabelsOptions value = new DataLabelsOptions();
 		value.setAlign(Align.BOTTOM);

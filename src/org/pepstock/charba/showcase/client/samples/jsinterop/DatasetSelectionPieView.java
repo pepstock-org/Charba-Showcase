@@ -55,7 +55,7 @@ public class DatasetSelectionPieView extends BaseComposite{
 					sb.append("Dataset data: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getData().get(event.getItem().getIndex())).append("</b><br>");
 					sb.append("Index: <b>").append(event.getItem().getIndex()).append("</b><br>");
 					sb.append("Value: <b>").append(labels.getStrings(event.getItem().getIndex())[0]).append("</b><br>");
-					new Toast("Dataset Selected!", sb.toString()).show();;
+					new Toast("Dataset Selected!", sb.toString()).show();
 				}
 				
 			}
