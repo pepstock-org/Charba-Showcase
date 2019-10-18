@@ -69,6 +69,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 		DataLabelsOptions index = new DataLabelsOptions();
 		index.setAlign(Align.END);
 		index.setAnchor(Anchor.END);
+		index.setDisplay(true);
 		index.setColor(new ColorCallback() {
 			
 			@Override
@@ -98,6 +99,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 		DataLabelsOptions name = new DataLabelsOptions();
 		name.setAlign(Align.TOP);
 		name.getFont().setSize(18);
+		name.setDisplay(true);
 		name.setFormatter(new FormatterCallback() {
 			
 			@Override
@@ -139,6 +141,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 			}
 		});
 		value.getPadding().set(4);
+		value.setDisplay(true);
 		option1.getLabels().setLabel("value", value);
 
 		
@@ -150,6 +153,7 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setColor(HtmlColor.WHITE);
 		option.getFont().setWeight(Weight.BOLD);
+		option.setDisplay(false);
 		option.setOffset(0);
 		option.getPadding().set(0);
 		
