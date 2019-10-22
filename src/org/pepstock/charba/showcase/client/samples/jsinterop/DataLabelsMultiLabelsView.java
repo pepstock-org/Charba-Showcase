@@ -16,7 +16,6 @@ import org.pepstock.charba.client.datalabels.callbacks.OpacityCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -162,8 +161,6 @@ public class DataLabelsMultiLabelsView extends BaseComposite{
 		DataLabelsOptions myOptions = dataset1.getOptions(DataLabelsPlugin.ID, DataLabelsPlugin.FACTORY);
 		DataLabelsOptions index1 = myOptions.getLabels().getLabel("index");
 		index1.getFont().setSize(18);
-		
-		Charba_Showcase.LOG.info(chart.getData().toJSON());
 
 	}
 

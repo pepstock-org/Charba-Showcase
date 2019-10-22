@@ -115,7 +115,6 @@ public class LineView extends BaseComposite {
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
-
 		chart.update();
 	}
 
