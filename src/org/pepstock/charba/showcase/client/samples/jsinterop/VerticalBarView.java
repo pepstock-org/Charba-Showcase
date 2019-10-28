@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -41,18 +40,24 @@ public class VerticalBarView extends BaseComposite{
 		
 		IsColor color1 = Colors.ALL[0];
 		
-		dataset1.setBackgroundColor(color1.alpha(0.80D));
+		dataset1.setBackgroundColor(color1.alpha(0.2));
+		dataset1.setBorderColor(color1.toHex());
+		dataset1.setBorderWidth(1);
 		
-		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(5);
-		border.setLeft(5);
-		border.setRight(5);
-		dataset1.setBorderWidth(border);
+		dataset1.setData(getRandomDigits(months));
+
+		BarDataset dataset2 = chart.newDataset();
+		dataset2.setLabel("dataset 2");
 		
-		dataset1.setData(getFixedDigits(months));
+		IsColor color2 = Colors.ALL[1];
 		
+		dataset2.setBackgroundColor(color2.alpha(0.2));
+		dataset2.setBorderColor(color2.toHex());
+		dataset2.setBorderWidth(1);
+		dataset2.setData(getRandomDigits(months));
+
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset1);
+		chart.getData().setDatasets(dataset1, dataset2);
 	}
 
 	@UiHandler("randomize")

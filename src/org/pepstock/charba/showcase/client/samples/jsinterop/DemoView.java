@@ -444,11 +444,11 @@ public class DemoView extends Composite {
 		 content.add(new LineMyView());
 	}
 	
-	@UiHandler("myflags")
-	protected void handleMyFlags(ClickEvent event) {
-		clearPreviousChart();
-		 content.add(new HorizontalMyFlagsBarView());
-	}
+//	@UiHandler("myflags")
+//	protected void handleMyFlags(ClickEvent event) {
+//		clearPreviousChart();
+//		 content.add(new HorizontalMyFlagsBarView());
+//	}
 	
 	@UiHandler("drilldown")
 	protected void handleDrilldown(ClickEvent event) {

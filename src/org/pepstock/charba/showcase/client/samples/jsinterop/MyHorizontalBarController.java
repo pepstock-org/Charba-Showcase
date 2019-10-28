@@ -68,14 +68,12 @@ public class MyHorizontalBarController extends AbstractController {
 			} else if (tick.equalsIgnoreCase("us")) {
 				image = getImageElement(Images.INSTANCE.flagUS());
 			}
-
 			if (image != null) {
 				int yToDraw = y + (heightAmongLabels - height) / 2;
 				ctx.drawImage(image, x, yToDraw, width, height);
 			}
 			y = y + heightAmongLabels;
 		}
-
 	}
 	
 
