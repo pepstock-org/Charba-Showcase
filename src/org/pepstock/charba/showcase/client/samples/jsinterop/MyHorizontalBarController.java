@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.Image;
 
 public class MyHorizontalBarController extends AbstractController {
 	
-	public static final ControllerType TYPE = new ControllerType("stock1", ChartType.HORIZONTAL_BAR);
+	public static final ControllerType TYPE = new ControllerType("pippo", ChartType.HORIZONTAL_BAR);
 	
 	private static final int MIN = 50;
 	

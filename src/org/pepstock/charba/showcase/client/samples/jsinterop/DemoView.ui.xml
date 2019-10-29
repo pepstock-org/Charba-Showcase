@@ -155,8 +155,8 @@
 							<g:header>Controllers</g:header>
 							<g:VerticalPanel spacing="4">
 								<g:Label ui:field="myline" styleName='{myStyle.myLabel}'>My Line</g:Label>
-								<!-- g:Label ui:field="myflags"
-									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label -->
+								<g:Label ui:field="myflags"
+									styleName='{myStyle.myLabel}'>My HorizontalBar with flags</g:Label>
 							</g:VerticalPanel>
 						</g:DisclosurePanel>
 						<g:DisclosurePanel animationEnabled="true"

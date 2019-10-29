@@ -17,6 +17,7 @@ import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.ResourcesType;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.samples.HomeView;
 
@@ -85,7 +86,8 @@ public class DemoView extends Composite {
 		pOptions.setBorderDash(6);
 		Defaults.get().getGlobal().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 
-		Defaults.get().getControllers().extend(new MyHorizontalBarController());
+		boolean add = Defaults.get().getControllers().extend(new MyHorizontalBarController());
+		Charba_Showcase.LOG.info(""+add);
 		
 		LabelsPlugin.enable();
 		
@@ -443,12 +445,12 @@ public class DemoView extends Composite {
 		clearPreviousChart();
 		 content.add(new LineMyView());
 	}
-	
-//	@UiHandler("myflags")
-//	protected void handleMyFlags(ClickEvent event) {
-//		clearPreviousChart();
-//		 content.add(new HorizontalMyFlagsBarView());
-//	}
+
+	@UiHandler("myflags")
+	protected void handleMyFlags(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new HorizontalMyFlagsBarView());
+	}
 	
 	@UiHandler("drilldown")
 	protected void handleDrilldown(ClickEvent event) {

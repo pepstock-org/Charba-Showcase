@@ -2,6 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:c="urn:import:org.pepstock.charba.showcase.client.samples.jsinterop">
+	<!--  xmlns:c="urn:import:org.pepstock.charba.client"-->
 
 	<ui:with field="downButton"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
@@ -10,6 +11,7 @@
 			<g:cell height="90%" width="100%" verticalAlignment="middle"
 				horizontalAlignment="center">
 				<c:HorizontalBarMyChart ui:field="chart" />
+				<!-- c:BarChart ui:field="chart" /-->
 			</g:cell>
 			<g:cell height="10%" width="100%" verticalAlignment="top"
 				horizontalAlignment="center">

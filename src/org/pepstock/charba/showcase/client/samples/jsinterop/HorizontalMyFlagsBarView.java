@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.samples.jsinterop;
 
+import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -25,7 +26,7 @@ public class HorizontalMyFlagsBarView extends BaseComposite{
 	}
 	
 	@UiField
-	HorizontalBarMyChart chart;
+	BarChart chart;
 	
 	CartesianCategoryAxis axis;
 
