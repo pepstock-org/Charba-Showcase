@@ -77,7 +77,7 @@ public class VerticalBarCallbackView extends BaseComposite{
 			}
 			
 		});
-		
+
 		dataset1.setData(getFixedDigits(months));
 		
 		chart.getData().setLabels(getLabels());

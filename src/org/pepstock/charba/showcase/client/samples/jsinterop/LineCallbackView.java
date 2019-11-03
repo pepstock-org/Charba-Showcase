@@ -74,7 +74,6 @@ public class LineCallbackView extends BaseComposite {
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
 		dataset1.setBorderColor(new BorderColorCallback() {
 			
 			@Override
@@ -90,7 +89,7 @@ public class LineCallbackView extends BaseComposite {
 				return Fill.FALSE;
 			}
 		});
-
+		
 		double[] values = getRandomDigits(months);
 		dataset1.setPointHoverBackgroundColor(backgroundColorCallback);
 		dataset1.setPointHoverRadius(radiusCallback);
@@ -110,7 +109,7 @@ public class LineCallbackView extends BaseComposite {
 		dataset2.setPointHoverRadius(radiusCallback);
 		
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(false);
+		dataset2.setFill(true);
 		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -127,7 +126,6 @@ public class LineCallbackView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
 	}
 
 	@UiHandler("randomize")
