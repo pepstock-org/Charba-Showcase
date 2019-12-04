@@ -13,7 +13,7 @@
 			</g:cell>
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
-				<g:HorizontalPanel spacing="5">
+				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />
 					</g:PushButton>

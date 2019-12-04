@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.elements;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,11 +23,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LogScatterView extends BaseComposite{
+public class LogarithmicAxisOnScatterCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LogScatterView> {
+	interface ViewUiBinder extends UiBinder<Widget, LogarithmicAxisOnScatterCase> {
 	}
 
 	private final static double[] X = new double[]{ 1, 1.26, 1.58, 2.0, 2.51, 3.16, 3.98, 5.01, 6.31, 7.94, 10.00, 12.6, 15.8, 20.0, 25.1, 31.6, 39.8, 50.1, 63.1, 79.4, 100.00, 126, 158, 200, 251, 316, 398, 501, 631, 794, 1000,};
@@ -35,13 +36,13 @@ public class LogScatterView extends BaseComposite{
 	@UiField
 	ScatterChart chart;
 	
-	public LogScatterView() {
+	public LogarithmicAxisOnScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Logarithmic X-Axis");
+		chart.getOptions().getTitle().setText("Logarithmic axis on scatter chart");
 	
 		ScatterDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("V(node2)");

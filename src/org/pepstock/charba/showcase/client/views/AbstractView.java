@@ -6,11 +6,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * MAIN VIEW
  */
-abstract class AbstractCategoryView extends Composite {
+abstract class AbstractView extends Composite {
 	
 	protected VerticalPanel content; 
 
-	public AbstractCategoryView(VerticalPanel content) {
+	public AbstractView(VerticalPanel content) {
 		this.content = content;
 	}
 

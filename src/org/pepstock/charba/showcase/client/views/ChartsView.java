@@ -31,7 +31,7 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * MAIN VIEW
  */
-public class ChartsView extends AbstractCategoryView {
+public class ChartsView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
 

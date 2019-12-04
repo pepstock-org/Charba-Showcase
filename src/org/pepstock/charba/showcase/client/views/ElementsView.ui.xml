@@ -80,8 +80,9 @@
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Title</g:Label>
-					<g:Label ui:field="titleChange" styleName='{myStyle.myLabel}'>Changing (TBD)</g:Label>
-					<g:Label ui:field="titleEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
+					<g:Label ui:field="titleChange" styleName='{myStyle.myLabel}'>Changing text</g:Label>
+					<g:Label ui:field="titleChangeStyle" styleName='{myStyle.myLabel}'>Changing style</g:Label>
+					<g:Label ui:field="titleClickEvent" styleName='{myStyle.myLabel}'>Click event</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

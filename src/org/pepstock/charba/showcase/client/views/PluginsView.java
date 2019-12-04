@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * MAIN VIEW
  */
-public class PluginsView extends AbstractCategoryView {
+public class PluginsView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
 

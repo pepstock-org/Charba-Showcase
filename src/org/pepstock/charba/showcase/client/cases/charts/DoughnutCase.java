@@ -26,7 +26,7 @@ public class DoughnutCase extends BaseComposite{
 
 	@UiField
 	DoughnutChart chart;
-
+	
 	public DoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -41,7 +41,7 @@ public class DoughnutCase extends BaseComposite{
 		
 		dataset.setData(getRandomDigits(months, false));
 
-		chart.getData().setLabels(getLabels(4));
+		chart.getData().setLabels(getLabels(months));
 		chart.getData().setDatasets(dataset);
 
 	}
@@ -61,9 +61,7 @@ public class DoughnutCase extends BaseComposite{
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
-
 		datasets.add(dataset);
-		
 		chart.update();
 	}
 

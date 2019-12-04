@@ -5,13 +5,18 @@ import org.pepstock.charba.showcase.client.cases.elements.GridLinesDisplayCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendPositioningCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendStyleCase;
-import org.pepstock.charba.showcase.client.cases.elements.TicksMinMaxCase;
+import org.pepstock.charba.showcase.client.cases.elements.LogarithmicAxisOnLineCase;
+import org.pepstock.charba.showcase.client.cases.elements.LogarithmicAxisOnScatterCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiAxisBarCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiAxisLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiAxisScatterCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiLineAxisLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.NoNumericYAxisCase;
+import org.pepstock.charba.showcase.client.cases.elements.TicksMinMaxCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksStepSizeCase;
+import org.pepstock.charba.showcase.client.cases.elements.TitleChangeCase;
+import org.pepstock.charba.showcase.client.cases.elements.TitleClickEventCase;
+import org.pepstock.charba.showcase.client.cases.elements.TitleStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipBorderCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipCallbacksCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipHTMLPieCase;
@@ -19,8 +24,6 @@ import org.pepstock.charba.showcase.client.cases.elements.TooltipHTMLlineCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipInteractionsCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipPositionerCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipPositioningCase;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LinearLogView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LogScatterView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -29,10 +32,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * MAIN VIEW
- */
-public class ElementsView extends AbstractCategoryView {
+public class ElementsView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
 
@@ -173,17 +173,35 @@ public class ElementsView extends AbstractCategoryView {
 	@UiHandler("logarithmicOnLine")
 	protected void handleLogarithmicOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LinearLogView());
+		content.add(new LogarithmicAxisOnLineCase());
 	}
 
 	@UiHandler("logarithmicOnScatter")
 	protected void handleLogarithmicOnScatter(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LogScatterView());
+		content.add(new LogarithmicAxisOnScatterCase());
 	}
 
 	// ----------------------------------------------
 	// Title
 	// ----------------------------------------------
 
+	@UiHandler("titleChange")
+	protected void handleTitleChange(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TitleChangeCase());
+	}
+
+	@UiHandler("titleChangeStyle")
+	protected void handleTitleChangeStyle(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TitleStyleCase());
+	}
+	
+	@UiHandler("titleClickEvent")
+	protected void handleTitleClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TitleClickEventCase());
+	}
+	
 }

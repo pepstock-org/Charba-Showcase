@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * MAIN VIEW
  */
-public class MiscellaneousView extends AbstractCategoryView {
+public class MiscellaneousView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
 

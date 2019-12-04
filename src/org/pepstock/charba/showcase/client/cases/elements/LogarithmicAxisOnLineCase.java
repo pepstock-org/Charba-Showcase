@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.elements;
 
 
 import org.pepstock.charba.client.LineChart;
@@ -11,6 +11,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,23 +21,23 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LinearLogView extends BaseComposite{
+public class LogarithmicAxisOnLineCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LinearLogView> {
+	interface ViewUiBinder extends UiBinder<Widget, LogarithmicAxisOnLineCase> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public LinearLogView() {
+	public LogarithmicAxisOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Line Chart - Logarithmic");
+		chart.getOptions().getTitle().setText("Logarithmic axis on line chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
