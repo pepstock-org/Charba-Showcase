@@ -1,0 +1,22 @@
+[class$="-legend"] {
+  list-style: none;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+[class$="-legend"] li {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+[class$="-legend"] li.hidden {
+  text-decoration: line-through;
+}
+
+[class$="-legend"] li span {
+  border-radius: 5px;
+  display: inline-block;
+  height: 10px;
+  margin-right: 10px;
+  width: 10px;
+}

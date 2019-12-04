@@ -1,0 +1,89 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:org.pepstock.charba.client"
+	xmlns:s="urn:import:org.pepstock.charba.showcase.client.cases">
+
+	<ui:style field="myStyle">
+	.myTitleItem {
+		font-size: 1rem;
+		font-family: 'Lato', sans-serif;
+		white-space: nowrap;
+		padding-left: 12px;
+		padding-bottom: 12px;
+	}
+	.myTitleItem::before {
+		content: 'Elements ';
+		color: #f27173;
+		font-size: 1.5rem;
+		font-weight: 600;
+		font-family: 'Lato', sans-serif;
+	}
+	.myCategory{
+		color: #aaa;
+		font-weight: 300;
+		font-size: 1.5rem;
+		padding-bottom: 16px;
+		padding-right: 48px;
+	}
+	.myLabel {
+		cursor: pointer;
+		color: #f27173;
+		padding-bottom: 6px;
+		font-size: 1.2rem;
+		margin: 0.1rem;
+	}
+	</ui:style>
+
+	<g:VerticalPanel width="100%" spacing="10">
+  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> category</g:Label>
+		<g:HorizontalPanel width="100%" horizontalAlignment="center">
+			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Legend</g:Label>
+					<g:Label ui:field="legendPositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
+					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style</g:Label>
+					<g:Label ui:field="legendCallback" styleName='{myStyle.myLabel}'>Callbacks (TBD)</g:Label>
+					<g:Label ui:field="legendEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Tooltip</g:Label>
+					<g:Label ui:field="tooltippositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
+					<g:Label ui:field="tooltipinteractions" styleName='{myStyle.myLabel}'>Interactions</g:Label>
+					<g:Label ui:field="tooltipcallbacks" styleName='{myStyle.myLabel}'>Callbacks</g:Label>
+					<g:Label ui:field="tooltipborder" styleName='{myStyle.myLabel}'>Border</g:Label>
+					<g:Label ui:field="tooltipPositioner" styleName='{myStyle.myLabel}'>Positioner</g:Label>
+					<g:Label ui:field="tooltiphtmlline" styleName='{myStyle.myLabel}'>HTML tooltip on line chart</g:Label>
+					<g:Label ui:field="tooltiphtmlpie" styleName='{myStyle.myLabel}'>HTML tooltip on pie chart</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Axes</g:Label>
+					<g:Label ui:field="multiAxesBar" styleName='{myStyle.myLabel}'>Multi-axes on bar chart</g:Label>
+					<g:Label ui:field="multiAxesLine" styleName='{myStyle.myLabel}'>Multi-axes on line chart</g:Label>
+					<g:Label ui:field="multiAxesScatter" styleName='{myStyle.myLabel}'>Multi-axes on scatter chart</g:Label>
+					<g:Label ui:field="gridLinesDisplay" styleName='{myStyle.myLabel}'>Grid lines display</g:Label>
+					<g:Label ui:field="gridLinesStyle" styleName='{myStyle.myLabel}'>Grid lines style</g:Label>
+					<g:Label ui:field="multiLinesAxisLabels" styleName='{myStyle.myLabel}'>Multi-lines axis labels</g:Label>
+					<g:Label ui:field="filterLabels" styleName='{myStyle.myLabel}'>Filtering labels on axis</g:Label>
+					<g:Label ui:field="noNumericYaxis" styleName='{myStyle.myLabel}'>Non numeric Y axis</g:Label>
+					<g:Label ui:field="ticksStepsize" styleName='{myStyle.myLabel}'>Ticks step size</g:Label>
+					<g:Label ui:field="ticksMinMax" styleName='{myStyle.myLabel}'>Ticks Min/Max</g:Label>
+					<g:Label ui:field="logarithmicOnLine" styleName='{myStyle.myLabel}'>Logarithmic axis on line chart</g:Label>
+					<g:Label ui:field="logarithmicOnScatter" styleName='{myStyle.myLabel}'>Logarithmic axis on scatter chart</g:Label>
+					<g:Label ui:field="axesEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Title</g:Label>
+					<g:Label ui:field="titleChange" styleName='{myStyle.myLabel}'>Changing (TBD)</g:Label>
+					<g:Label ui:field="titleEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+		</g:HorizontalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 

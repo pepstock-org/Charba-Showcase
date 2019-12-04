@@ -11,4 +11,7 @@ public interface MyResources extends ClientBundle {
 	@Source("js/chartjs-plugin-annotation.min.js")
 	TextResource chartJsAnnotationSource();
 
+	@Source("css/Legend.css")
+	TextResource legend();
+
 }

@@ -23,5 +23,12 @@ public interface Styles extends ClientBundle {
 		String lightGreen();
 		String lightBlue();
 	}
-	
+
+	@Source("css/Showcase.css")
+	Showcase showcase();
+
+	interface Showcase extends CssResource {
+		String myItemSelected();
+	}
+
 }

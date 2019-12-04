@@ -1,0 +1,96 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:org.pepstock.charba.client"
+	xmlns:s="urn:import:org.pepstock.charba.showcase.client.cases">
+
+	<ui:style field="myStyle">
+	.myTitleItem {
+		cursor: pointer;
+		font-size: 1rem;
+		font-weight: 600;
+		font-family: 'Lato', sans-serif;
+		white-space: nowrap;
+		padding-left: 12px;
+		padding-bottom: 12px;
+	}
+	
+	.myTitleItem::before {
+		content: 'Charts ';
+		color: #f27173;
+		font-size: 1.5rem;
+		font-weight: 600;
+		font-family: 'Lato', sans-serif;
+	}
+	
+	.myCategory {
+		color: #aaa;
+		font-weight: 300;
+		font-size: 1.5rem;
+		padding-bottom: 16px;
+		padding-right: 48px;
+	}
+	
+	.myLabel {
+		cursor: pointer;
+		color: #f27173;
+		padding-bottom: 4px;
+		font-size: 1.2rem;
+		margin: 0.1rem;
+	}
+	</ui:style>
+
+	<g:VerticalPanel width="100%" spacing="10">
+		<g:Label styleName='{myStyle.myTitleItem}'
+			horizontalAlignment="center"> category</g:Label>
+		<g:HorizontalPanel width="100%"
+			horizontalAlignment="center">
+			<g:cell width="25%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Charts</g:Label>
+					<g:Label ui:field="bar" styleName='{myStyle.myLabel}'>Bar</g:Label>
+					<g:Label ui:field="horizontalBar"
+						styleName='{myStyle.myLabel}'>Horizontal bar</g:Label>
+					<g:Label ui:field="line" styleName='{myStyle.myLabel}'>Line</g:Label>
+					<g:Label ui:field="scatter" styleName='{myStyle.myLabel}'>Scatter</g:Label>
+					<g:Label ui:field="doughnut" styleName='{myStyle.myLabel}'>Doughnut</g:Label>
+					<g:Label ui:field="pie" styleName='{myStyle.myLabel}'>Pie</g:Label>
+					<g:Label ui:field="polar" styleName='{myStyle.myLabel}'>Polar Area</g:Label>
+					<g:Label ui:field="radar" styleName='{myStyle.myLabel}'>Radar</g:Label>
+					<g:Label ui:field="bubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Other charts</g:Label>
+					<g:Label ui:field="timeSeriesLine"
+						styleName='{myStyle.myLabel}'>Timeseries line</g:Label>
+					<g:Label ui:field="timeSeriesBar"
+						styleName='{myStyle.myLabel}'>Timeseries bar</g:Label>
+					<g:Label ui:field="timeSeriesByLine"
+						styleName='{myStyle.myLabel}'>Timeseries by line chart</g:Label>
+					<g:Label ui:field="timeSeriesByBar"
+						styleName='{myStyle.myLabel}'>Timeseries by bar chart</g:Label>
+					<g:Label ui:field="stackedBar"
+						styleName='{myStyle.myLabel}'>Stacked bar</g:Label>
+					<g:Label ui:field="stackedGroupBar"
+						styleName='{myStyle.myLabel}'>Stacked group bar</g:Label>
+					<g:Label ui:field="stackedLine"
+						styleName='{myStyle.myLabel}'>Stacked line</g:Label>
+					<g:Label ui:field="area" styleName='{myStyle.myLabel}'>Area</g:Label>
+					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar/line</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Extended Charts</g:Label>
+					<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
+					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+		</g:HorizontalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder> 
