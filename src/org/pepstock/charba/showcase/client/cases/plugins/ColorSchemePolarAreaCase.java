@@ -1,11 +1,12 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.PieChart;
+import org.pepstock.charba.client.PolarAreaChart;
+import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
@@ -13,7 +14,10 @@ import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
 import org.pepstock.charba.client.impl.plugins.enums.BrewerScheme;
 import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
 import org.pepstock.charba.client.impl.plugins.enums.OfficeScheme;
+import org.pepstock.charba.client.impl.plugins.enums.SchemeScope;
 import org.pepstock.charba.client.impl.plugins.enums.TableauScheme;
+import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -26,16 +30,19 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColorSchemePieView extends BaseComposite{
+public class ColorSchemePolarAreaCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ColorSchemePieView> {
+	interface ViewUiBinder extends UiBinder<Widget, ColorSchemePolarAreaCase> {
 	}
 
 	@UiField
-	PieChart chart;
+	PolarAreaChart chart;
 	
+	@UiField
+	CheckBox data;
+
 	@UiField
 	ListBox category;
 
@@ -45,59 +52,73 @@ public class ColorSchemePieView extends BaseComposite{
 	@UiField
 	CheckBox reverse;
 
-	public ColorSchemePieView() {
-		initWidget(uiBinder.createAndBindUi(this));
+	public ColorSchemePolarAreaCase() {
 		
+		initWidget(uiBinder.createAndBindUi(this));
+
 		category.addItem("Brewer", "brewer");
 		category.addItem("MS Office", "office");
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
 		
 		int index = 0;
-		for (ColorScheme scheme : BrewerScheme.values()) {
-			name.addItem(scheme.value(), scheme.value());
+		for (BrewerScheme scheme : BrewerScheme.values()) {
+			name.addItem(scheme.value(), scheme.name());
 			if (BrewerScheme.PAIRED12.equals(scheme)) {
 				name.setSelectedIndex(index);
 			}
 			index++;
 		}
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Pie Chart");
+		chart.getOptions().getTitle().setText("Coloring polar area chart");
 		
-		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset 1");
-		dataset.setData(getRandomDigits(months, false));
-
+		PolarAreaDataset dataset1 = chart.newDataset();
+		dataset1.setLabel("dataset 1");
+		
+		IsColor color1 = Colors.ALL[0];
+		
+		dataset1.setBorderWidth(2);
+		dataset1.setBorderColor(color1);
+		dataset1.setData(getFixedDigits(months));
+		
+		ColorSchemesOptions options = new ColorSchemesOptions();
+		options.setSchemeScope(SchemeScope.DATASET);
+		
+		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.getPlugins().add(new ColorSchemes());
 		
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset);
+		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		chart.getDatasetMeta(0);
 		for (Dataset dataset : chart.getData().getDatasets()){
-			dataset.setData(getRandomDigits(months, false));
+			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+		
 	}
 
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		PieDataset dataset = chart.newDataset();
+		
+		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
-		dataset.setBackgroundColor(getSequenceColors(months, 1));
-		dataset.setData(getRandomDigits(months, false));
+		
+		IsColor color = Colors.ALL[datasets.size()]; 
+		dataset.setBackgroundColor(color.alpha(0.2));
+		dataset.setBorderColor(color.toHex());
+		dataset.setBorderWidth(2);
+		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
 		
 		chart.update();
-
 	}
 
 	@UiHandler("remove_dataset")
@@ -107,21 +128,31 @@ public class ColorSchemePieView extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
-			chart.getData().getLabels().add(getLabel());
-			months++;
-			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.getData().add(getRandomDigit(false));
-			}
-			chart.update();
-		}
+		addData(chart);
 	}
 
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
+	}
+	
+	@UiHandler("data")
+	protected void handleScope(ClickEvent event) {
+		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
+		if (data.getValue()) {
+			options.setSchemeScope(SchemeScope.DATA);
+		} else {
+			options.setSchemeScope(SchemeScope.DATASET);
+		}
+		chart.update();
+	}
+	
+	@UiHandler("reverse")
+	protected void handleReverse(ClickEvent event) {
+		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
+		options.setReverse(reverse.getValue());
+		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
+		chart.update();
 	}
 	
 	@UiHandler("category")
@@ -177,20 +208,12 @@ public class ColorSchemePieView extends BaseComposite{
 			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
 		} 
-		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
-	@UiHandler("reverse")
-	protected void handleReverse(ClickEvent event) {
-		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
-		options.setReverse(reverse.getValue());
-		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
-		chart.update();
-	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
+	
 }

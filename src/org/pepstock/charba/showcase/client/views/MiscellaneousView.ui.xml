@@ -7,16 +7,16 @@
 	<ui:style field="myStyle">
 	.myTitleItem {
 		font-size: 1rem;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 		white-space: nowrap;
-		padding-left: 12px;
 		padding-bottom: 12px;
 	}
 	.myTitleItem::before {
 		content: 'Miscellaneous ';
 		color: #f27173;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 	}
 	.myCategory{
@@ -36,7 +36,7 @@
 	</ui:style>
 
 	<g:VerticalPanel width="100%" spacing="10">
-  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> category</g:Label>
+  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> configuration and implementation items</g:Label>
 		<g:HorizontalPanel width="100%" horizontalAlignment="center">
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">

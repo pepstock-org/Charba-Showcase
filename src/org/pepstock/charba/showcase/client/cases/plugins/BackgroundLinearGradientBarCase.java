@@ -1,12 +1,17 @@
-package org.pepstock.charba.showcase.client.cases.charts;
-
-import java.util.List;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientOrientation;
+import org.pepstock.charba.client.colors.GradientScope;
+import org.pepstock.charba.client.colors.GradientType;
+import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
+import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
@@ -18,24 +23,24 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class BarCase extends BaseComposite{
+public class BackgroundLinearGradientBarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, BarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, BackgroundLinearGradientBarCase> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public BarCase() {
+	public BackgroundLinearGradientBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Bar chart");
-
+		chart.getOptions().getTitle().setText("Chart background plugin on bar chart");
+		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -55,11 +60,21 @@ public class BarCase extends BaseComposite{
 		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setBorderWidth(1);
+		
 		dataset2.setData(getRandomDigits(months));
-
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
+		Gradient gradient  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CANVAS);
+
+		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
+		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);
+		gradient.addColorStop(1, GwtMaterialColor.WHITE);
+	
+		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
+		option.setBackgroundColor(gradient);
+
+		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
 	}
 
 	@UiHandler("randomize")
@@ -68,39 +83,6 @@ public class BarCase extends BaseComposite{
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-	}
-
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-		
-		BarDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = Colors.ALL[datasets.size()]; 
-		dataset.setBackgroundColor(color.alpha(0.2));
-		dataset.setBorderColor(color.toHex());
-		dataset.setBorderWidth(1);
-		dataset.setData(getRandomDigits(months));
-
-		datasets.add(dataset);
-		
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
-	}
-
-	@UiHandler("add_data")
-	protected void handleAddData(ClickEvent event) {
-		addData(chart);
-	}
-
-	@UiHandler("remove_data")
-	protected void handleRemoveData(ClickEvent event) {
-		removeData(chart);
 	}
 	
 	

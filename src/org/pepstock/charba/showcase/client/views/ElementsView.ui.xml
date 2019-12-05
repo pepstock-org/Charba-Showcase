@@ -7,16 +7,16 @@
 	<ui:style field="myStyle">
 	.myTitleItem {
 		font-size: 1rem;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 		white-space: nowrap;
-		padding-left: 12px;
 		padding-bottom: 12px;
 	}
 	.myTitleItem::before {
 		content: 'Elements ';
 		color: #f27173;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 	}
 	.myCategory{
@@ -36,13 +36,13 @@
 	</ui:style>
 
 	<g:VerticalPanel width="100%" spacing="10">
-  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> category</g:Label>
+  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> options to change how the chart behaves</g:Label>
 		<g:HorizontalPanel width="100%" horizontalAlignment="center">
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Legend</g:Label>
 					<g:Label ui:field="legendPositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
-					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style</g:Label>
+					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style from line datasets</g:Label>
 					<g:Label ui:field="legendCallback" styleName='{myStyle.myLabel}'>Callbacks (TBD)</g:Label>
 					<g:Label ui:field="legendEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
 				</g:VerticalPanel>
@@ -50,13 +50,13 @@
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Tooltip</g:Label>
-					<g:Label ui:field="tooltippositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
-					<g:Label ui:field="tooltipinteractions" styleName='{myStyle.myLabel}'>Interactions</g:Label>
-					<g:Label ui:field="tooltipcallbacks" styleName='{myStyle.myLabel}'>Callbacks</g:Label>
-					<g:Label ui:field="tooltipborder" styleName='{myStyle.myLabel}'>Border</g:Label>
-					<g:Label ui:field="tooltipPositioner" styleName='{myStyle.myLabel}'>Positioner</g:Label>
-					<g:Label ui:field="tooltiphtmlline" styleName='{myStyle.myLabel}'>HTML tooltip on line chart</g:Label>
-					<g:Label ui:field="tooltiphtmlpie" styleName='{myStyle.myLabel}'>HTML tooltip on pie chart</g:Label>
+					<g:Label ui:field="tooltipPositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
+					<g:Label ui:field="tooltipInteractions" styleName='{myStyle.myLabel}'>Interactions among datasets</g:Label>
+					<g:Label ui:field="tooltipCallbacks" styleName='{myStyle.myLabel}'>Callbacks</g:Label>
+					<g:Label ui:field="tooltipStyling" styleName='{myStyle.myLabel}'>Styling</g:Label>
+					<g:Label ui:field="tooltipPositioner" styleName='{myStyle.myLabel}'>Positioner for custom positioning</g:Label>
+					<g:Label ui:field="tooltipHtmlLine" styleName='{myStyle.myLabel}'>HTML tooltip on line chart</g:Label>
+					<g:Label ui:field="tooltipHtmlPie" styleName='{myStyle.myLabel}'>HTML tooltip on pie chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

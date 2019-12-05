@@ -36,6 +36,9 @@ public class Charba_Showcase implements EntryPoint {
 	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/tree/2.6/src/";
 
 	public void onModuleLoad() {
+		Image.prefetch(Images.INSTANCE.backgroundPattern().getSafeUri());
+		Image.prefetch(Images.INSTANCE.backgroundPattern1().getSafeUri());
+		Image.prefetch(Images.INSTANCE.backgroundPattern2().getSafeUri());
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());

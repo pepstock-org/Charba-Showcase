@@ -1,20 +1,14 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.coloring;
 
-import java.util.List;
-
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
-import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
+import org.pepstock.charba.client.RadarChart;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
-import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
-import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.items.LegendLabelItem;
-import org.pepstock.charba.client.utils.Utilities;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -23,77 +17,45 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PatternLineView extends BaseComposite{
+public class ColoringPatternRadarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PatternLineView> {
+	interface ViewUiBinder extends UiBinder<Widget, ColoringPatternRadarCase> {
 	}
 
 	@UiField
-	LineChart chart;
+	RadarChart chart;
 	
-	@UiField
-	HTMLPanel image;
-	
-	public PatternLineView() {
+	public ColoringPatternRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Line Chart");
+		chart.getOptions().getTitle().setText("Applying a pattern on radar chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		
-		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
-			@Override
-			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
-				//FIXME
-				for (LegendLabelItem item : defaultLabels) {
-					item.setText(item.getText()+" my");
-				}
-				return defaultLabels;
-			}
-		});
-
-		
-		LineDataset dataset1 = chart.newDataset();
+		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern2());
 		
 		dataset1.setBackgroundColor(pattern);
 		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		dataset1.setFill(Fill.ORIGIN);
-		
-		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
-		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
-		
-		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
-		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
-		
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		dataset1.setFill(Fill.START);
+		dataset1.setBorderColor(HtmlColor.RED);
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-		// FIXME
-		image.getElement().getStyle().setProperty("background", Utilities.toCSSBackgroundProperty(pattern));
 	}
 	
 	@UiHandler("randomize")

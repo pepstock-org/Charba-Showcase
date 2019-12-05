@@ -1,18 +1,16 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.colors.Gradient;
-import org.pepstock.charba.client.colors.GradientOrientation;
-import org.pepstock.charba.client.colors.GradientScope;
-import org.pepstock.charba.client.colors.GradientType;
-import org.pepstock.charba.client.colors.GwtMaterialColor;
+import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.data.BarDataset;
+import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,25 +20,25 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class VerticalBarPluginView extends BaseComposite{
+public class BackgroundPatternLineCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, VerticalBarPluginView> {
+	interface ViewUiBinder extends UiBinder<Widget, BackgroundPatternLineCase> {
 	}
 
 	@UiField
-	BarChart chart;
+	LineChart chart;
 	
-	public VerticalBarPluginView() {
+	public BackgroundPatternLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		chart.getOptions().getTitle().setText("Chart background plugin on line chart");
 		
-		BarDataset dataset1 = chart.newDataset();
+		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
 		IsColor color1 = Colors.ALL[0];
@@ -51,7 +49,7 @@ public class VerticalBarPluginView extends BaseComposite{
 		
 		dataset1.setData(getRandomDigits(months));
 
-		BarDataset dataset2 = chart.newDataset();
+		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
 		IsColor color2 = Colors.ALL[1];
@@ -64,14 +62,10 @@ public class VerticalBarPluginView extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		Gradient gradient  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CANVAS);
-
-		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
-		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);
-		gradient.addColorStop(1, GwtMaterialColor.WHITE);
+		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern());
 	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
-		option.setBackgroundColor(gradient);
+		option.setBackgroundColor(pattern);
 
 		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
 	}

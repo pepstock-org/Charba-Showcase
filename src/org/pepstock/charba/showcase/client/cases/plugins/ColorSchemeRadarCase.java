@@ -1,13 +1,12 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
-import org.pepstock.charba.client.data.BarBorderWidth;
-import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
@@ -18,6 +17,7 @@ import org.pepstock.charba.client.impl.plugins.enums.OfficeScheme;
 import org.pepstock.charba.client.impl.plugins.enums.SchemeScope;
 import org.pepstock.charba.client.impl.plugins.enums.TableauScheme;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -30,15 +30,15 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColorSchemeBarView extends BaseComposite{
+public class ColorSchemeRadarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ColorSchemeBarView> {
+	interface ViewUiBinder extends UiBinder<Widget, ColorSchemeRadarCase> {
 	}
 
 	@UiField
-	BarChart chart;
+	RadarChart chart;
 	
 	@UiField
 	CheckBox data;
@@ -52,7 +52,7 @@ public class ColorSchemeBarView extends BaseComposite{
 	@UiField
 	CheckBox reverse;
 
-	public ColorSchemeBarView() {
+	public ColorSchemeRadarCase() {
 		
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -73,20 +73,14 @@ public class ColorSchemeBarView extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		chart.getOptions().getTitle().setText("Coloring radar chart");
 		
-		BarDataset dataset1 = chart.newDataset();
+		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
 		IsColor color1 = Colors.ALL[0];
 		
-		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(2);
-		border.setLeft(2);
-		border.setRight(2);
-		
-		dataset1.setBorderWidth(border);
-		
+		dataset1.setBorderWidth(2);
 		dataset1.setBorderColor(color1);
 		dataset1.setData(getFixedDigits(months));
 		
@@ -95,9 +89,6 @@ public class ColorSchemeBarView extends BaseComposite{
 		
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.getPlugins().add(new ColorSchemes());
-		
-		
-//		chart.getPlugins().add(new HtmlLegend());
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
@@ -116,13 +107,13 @@ public class ColorSchemeBarView extends BaseComposite{
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		
-		BarDataset dataset = chart.newDataset();
+		RadarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
-		dataset.setBorderWidth(1);
+		dataset.setBorderWidth(2);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);

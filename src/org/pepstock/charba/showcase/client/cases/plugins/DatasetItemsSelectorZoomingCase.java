@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -7,7 +7,6 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipTitleCallback;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -26,6 +25,7 @@ import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -38,7 +38,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TimeSeriesZoomView extends BaseComposite{
+public class DatasetItemsSelectorZoomingCase extends BaseComposite{
 	
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 	
@@ -48,7 +48,7 @@ public class TimeSeriesZoomView extends BaseComposite{
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, TimeSeriesZoomView> {
+	interface ViewUiBinder extends UiBinder<Widget, DatasetItemsSelectorZoomingCase> {
 	}
 
 	@UiField
@@ -62,14 +62,14 @@ public class TimeSeriesZoomView extends BaseComposite{
 	
 	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
 	
-	public TimeSeriesZoomView() {
+	public DatasetItemsSelectorZoomingCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Line Timeseries Chart");
+		chart.getOptions().getTitle().setText("Zooming dataset data on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new TooltipTitleCallback() {
 
@@ -182,8 +182,6 @@ public class TimeSeriesZoomView extends BaseComposite{
 			for (DataPoint dp : scDataset.getDataPoints()){
 				dp.setY(getRandomDigit(false));
 			}
-			boolean c = Math.random() > 0.5d;
-			scDataset.setBackgroundColor(c ? HtmlColor.RED : HtmlColor.YELLOW);
 		}
 		small.update();
 	}

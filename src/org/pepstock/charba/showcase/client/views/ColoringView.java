@@ -1,10 +1,13 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternBarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternBubbleCase;
+import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternLineCase;
+import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternPolarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternRadarCase;
 import org.pepstock.charba.showcase.client.cases.jsinterop.LineViewWithGwtMaterialColors;
 import org.pepstock.charba.showcase.client.cases.jsinterop.LinearGradientBarView;
 import org.pepstock.charba.showcase.client.cases.jsinterop.LinearGradientLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PatternBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PatternLineView;
 import org.pepstock.charba.showcase.client.cases.jsinterop.RadialGradientPieView;
 import org.pepstock.charba.showcase.client.cases.jsinterop.TilesBarView;
 import org.pepstock.charba.showcase.client.cases.jsinterop.TilesDoughnutView;
@@ -16,9 +19,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * MAIN VIEW
- */
 public class ColoringView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
@@ -38,15 +38,33 @@ public class ColoringView extends AbstractView {
 	@UiHandler("coloringPatternOnBar")
 	protected void handleColoringPatternOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PatternBarView());
+		 content.add(new ColoringPatternBarCase());
 	}
 
 	@UiHandler("coloringPatternOnLine")
 	protected void handleColoringPatternOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PatternLineView());
+		 content.add(new ColoringPatternLineCase());
 	}
 
+	@UiHandler("coloringPatternOnRadar")
+	protected void handleColoringPatternOnRadar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColoringPatternRadarCase());
+	}
+
+	@UiHandler("coloringPatternOnPolar")
+	protected void handleColoringPatternOnPolar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColoringPatternPolarCase());
+	}
+
+	@UiHandler("coloringPatternOnBubble")
+	protected void handleColoringPatternOnBubble(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ColoringPatternBubbleCase());
+	}
+	
 	// ----------------------------------------------
 	// Gradient
 	// ----------------------------------------------

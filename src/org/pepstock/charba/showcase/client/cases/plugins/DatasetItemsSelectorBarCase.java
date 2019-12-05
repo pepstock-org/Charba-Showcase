@@ -1,13 +1,20 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
+import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
+import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.commons.Toast;
 import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -18,23 +25,23 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class BarCase extends BaseComposite{
+public class DatasetItemsSelectorBarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, BarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, DatasetItemsSelectorBarCase> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public BarCase() {
+	public DatasetItemsSelectorBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Bar chart");
+		chart.getOptions().getTitle().setText("Dataset items selector plugin on bar chart");
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -60,6 +67,30 @@ public class BarCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+		pOptions.setBorderWidth(2);
+		pOptions.setBorderDash(6,2);
+		pOptions.setBorderColor(HtmlColor.GREY);
+		pOptions.getClearSelection().setDisplay(true);
+		pOptions.getClearSelection().setLabel("Reset selection");
+		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFontSize());
+		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
+		pOptions.setFireEventOnClearSelection(true);
+		
+		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+		chart.getPlugins().add(new DatasetsItemsSelector());
+		
+		chart.addHandler(new DatasetRangeSelectionEventHandler() {
+			
+			@Override
+			public void onSelect(DatasetRangeSelectionEvent event) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				new Toast("Dataset Range Selected!", sb.toString()).show();
+			}
+		}, DatasetRangeSelectionEvent.TYPE);
+
 	}
 
 	@UiHandler("randomize")
@@ -102,7 +133,6 @@ public class BarCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
 	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {

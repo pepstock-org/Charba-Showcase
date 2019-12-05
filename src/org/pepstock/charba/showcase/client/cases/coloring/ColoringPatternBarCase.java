@@ -1,11 +1,17 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.coloring;
+
+import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.LegendLabelItem;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -16,30 +22,39 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PatternBarView extends BaseComposite{
+public class ColoringPatternBarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PatternBarView> {
+	interface ViewUiBinder extends UiBinder<Widget, ColoringPatternBarCase> {
 	}
 
 	@UiField
 	BarChart chart;
-	
-	public PatternBarView() {
+
+	Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern1());
+
+	public ColoringPatternBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
+			
+			@Override
+			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
+				for (LegendLabelItem item : defaultLabels) {
+					item.setFillStyle(chart, pattern);
+				}
+				return defaultLabels;
+			}
+		});
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		chart.getOptions().getTitle().setText("Applying a pattern on bar chart");
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
-		Pattern pattern = new Pattern(Images.INSTANCE.patternHover());
 		dataset1.setBackgroundColor(pattern);
-		
 		dataset1.setBorderColor(HtmlColor.BLACK);
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getFixedDigits(months));
@@ -52,10 +67,7 @@ public class PatternBarView extends BaseComposite{
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){
-			BarDataset bdataset = (BarDataset)dataset;
-			bdataset.setData(getRandomDigits(months));
-			Pattern pattern1 = new Pattern(Images.INSTANCE.pattern());
-			bdataset.setBackgroundColor(pattern1);
+			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}

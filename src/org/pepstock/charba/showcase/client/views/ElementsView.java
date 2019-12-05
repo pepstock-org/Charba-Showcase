@@ -63,38 +63,38 @@ public class ElementsView extends AbstractView {
 	// ----------------------------------------------
 	// Tooltip
 	// ----------------------------------------------
-
-	@UiHandler("tooltippositioning")
+	
+	@UiHandler("tooltipPositioning")
 	protected void handleTooltipPositioning(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TooltipPositioningCase());
 	}
 
-	@UiHandler("tooltipinteractions")
+	@UiHandler("tooltipInteractions")
 	protected void handletooltipInteractions(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TooltipInteractionsCase());
 	}
 
-	@UiHandler("tooltipcallbacks")
+	@UiHandler("tooltipCallbacks")
 	protected void handletooltipCallbacks(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TooltipCallbacksCase());
 	}
 
-	@UiHandler("tooltipborder")
+	@UiHandler("tooltipStyling")
 	protected void handleBorder(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TooltipBorderCase());
 	}
 
-	@UiHandler("tooltiphtmlline")
+	@UiHandler("tooltipHtmlLine")
 	protected void handleHTMLline(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TooltipHTMLlineCase());
 	}
 
-	@UiHandler("tooltiphtmlpie")
+	@UiHandler("tooltipHtmlPie")
 	protected void handleHTMLpie(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new TooltipHTMLPieCase());

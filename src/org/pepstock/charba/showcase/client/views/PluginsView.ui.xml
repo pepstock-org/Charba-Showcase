@@ -7,9 +7,9 @@
 	<ui:style field="myStyle">
 	.myTitleItem {
 		font-size: 1rem;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 		white-space: nowrap;
-		padding-left: 12px;
 		padding-bottom: 12px;
 	}
 	
@@ -17,7 +17,7 @@
 		content: 'Plugins ';
 		color: #f27173;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 	}
 	
@@ -40,34 +40,39 @@
 
 	<g:VerticalPanel width="100%" spacing="10">
 		<g:Label styleName='{myStyle.myTitleItem}'
-			horizontalAlignment="center"> category</g:Label>
+			horizontalAlignment="center"> provided out of the box by CHARBA</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
 			<g:cell width="20%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Chart background</g:Label>
-					<g:Label ui:field="bgcolorplugin"
-						styleName='{myStyle.myLabel}'>Background color</g:Label>
-					<g:Label ui:field="piebgcolorplugin"
-						styleName='{myStyle.myLabel}'>Background gradient</g:Label>
+					<g:Label ui:field="backgroundColorOnBar" styleName='{myStyle.myLabel}'>Color on bar chart</g:Label>
+					<g:Label ui:field="backgroundGradientOnBar" styleName='{myStyle.myLabel}'>Linear gradient on bar chart</g:Label>
+					<g:Label ui:field="backgroundGradientOnPie" styleName='{myStyle.myLabel}'>Radial gradient on pie chart</g:Label>
+					<g:Label ui:field="backgroundPatternOnLine" styleName='{myStyle.myLabel}'>Pattern on line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="20%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Dataset item selector</g:Label>
-					<g:Label ui:field="zooming" styleName='{myStyle.myLabel}'>Zooming</g:Label>
-					<g:Label ui:field="drilldown" styleName='{myStyle.myLabel}'>Drill down</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Dataset items selector</g:Label>
+					<g:Label ui:field="datasetItemsSelectorBar" styleName='{myStyle.myLabel}'>Selecting on bar chart</g:Label>
+					<g:Label ui:field="datasetItemsSelectorLine" styleName='{myStyle.myLabel}'>Selecting on line chart</g:Label>
+					<g:Label ui:field="datasetItemsSelectorZooming" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
+					<g:Label ui:field="datasetItemsSelectorDrillingDown" styleName='{myStyle.myLabel}'>Drilling down on timeseries chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="20%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Color schemes</g:Label>
-					<g:Label ui:field="barScheme" styleName='{myStyle.myLabel}'>Color Scheme (bar) </g:Label>
-					<g:Label ui:field="pieScheme" styleName='{myStyle.myLabel}'>Color Scheme (pie) </g:Label>
-					<g:Label ui:field="bubbleScheme" styleName='{myStyle.myLabel}'>Color Scheme (bubble) </g:Label>
+					<g:Label ui:field="colorSchemeOnBar" styleName='{myStyle.myLabel}'>Coloring bar chart</g:Label>
+					<g:Label ui:field="colorSchemeOnLine" styleName='{myStyle.myLabel}'>Coloring line chart</g:Label>
+					<g:Label ui:field="colorSchemeOnRadar" styleName='{myStyle.myLabel}'>Coloring rader chart</g:Label>
+					<g:Label ui:field="colorSchemeOnPie" styleName='{myStyle.myLabel}'>Coloring pie chart </g:Label>
+					<g:Label ui:field="colorSchemeOnPolar" styleName='{myStyle.myLabel}'>Coloring polar area chart</g:Label>
+					<g:Label ui:field="colorSchemeOnBubble" styleName='{myStyle.myLabel}'>Coloring bubble chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="20%" verticalAlignment="top"

@@ -6,12 +6,10 @@
 
 	<ui:style field="myStyle">
 	.myTitleItem {
-		cursor: pointer;
 		font-size: 1rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 		white-space: nowrap;
-		padding-left: 12px;
 		padding-bottom: 12px;
 	}
 	
@@ -19,7 +17,7 @@
 		content: 'Charts ';
 		color: #f27173;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 	}
 	
@@ -42,7 +40,7 @@
 
 	<g:VerticalPanel width="100%" spacing="10">
 		<g:Label styleName='{myStyle.myTitleItem}'
-			horizontalAlignment="center"> category</g:Label>
+			horizontalAlignment="center"> available out of the box by CHART.JS or by CHARBA</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
 			<g:cell width="25%" verticalAlignment="top"
@@ -80,7 +78,7 @@
 					<g:Label ui:field="stackedLine"
 						styleName='{myStyle.myLabel}'>Stacked line</g:Label>
 					<g:Label ui:field="area" styleName='{myStyle.myLabel}'>Area</g:Label>
-					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar/line</g:Label>
+					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

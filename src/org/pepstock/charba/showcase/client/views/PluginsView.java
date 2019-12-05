@@ -1,13 +1,20 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.jsinterop.ColorSchemeBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.ColorSchemeBubbleView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.ColorSchemePieView;
 import org.pepstock.charba.showcase.client.cases.jsinterop.HtmlLegendBuilderBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PiePluginView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.TimeSeriesDrillDownView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.TimeSeriesZoomView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.VerticalBarPluginView;
+import org.pepstock.charba.showcase.client.cases.plugins.BackgroundColorBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.BackgroundLinearGradientBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.BackgroundPatternLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.BackgroundRadialGradientPieCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeBubbleCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePieCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePolarAreaCase;
+import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeRadarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorDrillingDownCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorZoomingCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,9 +23,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * MAIN VIEW
- */
 public class PluginsView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);
@@ -35,55 +39,96 @@ public class PluginsView extends AbstractView {
 	// background color
 	// ----------------------------------------------
 
-	@UiHandler("bgcolorplugin")
-	protected void handleBGColorPlugin(ClickEvent event) {
+	@UiHandler("backgroundColorOnBar")
+	protected void handleBackgroundColorOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new VerticalBarPluginView());
+		content.add(new BackgroundColorBarCase());
 	}
 
-	@UiHandler("piebgcolorplugin")
-	protected void handlePieBGColorPlugin(ClickEvent event) {
+	@UiHandler("backgroundGradientOnBar")
+	protected void handleBackgroundGradientOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PiePluginView());
+		content.add(new BackgroundLinearGradientBarCase());
+	}
+
+	@UiHandler("backgroundGradientOnPie")
+	protected void handleBackgroundGradientOnPie(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new BackgroundRadialGradientPieCase());
+	}
+
+	@UiHandler("backgroundPatternOnLine")
+	protected void handleBackgroundPatternOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new BackgroundPatternLineCase());
 	}
 
 	// ----------------------------------------------
 	// Dataset item selector
 	// ----------------------------------------------
 
-	@UiHandler("drilldown")
-	protected void handleDrilldown(ClickEvent event) {
+	@UiHandler("datasetItemsSelectorBar")
+	protected void handleDatasetItemsSelectorBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesDrillDownView());
+		content.add(new DatasetItemsSelectorBarCase());
 	}
 
-	@UiHandler("zooming")
-	protected void handleZooming(ClickEvent event) {
+	@UiHandler("datasetItemsSelectorLine")
+	protected void handleDatasetItemsSelectorLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesZoomView());
+		content.add(new DatasetItemsSelectorLineCase());
 	}
 
+	@UiHandler("datasetItemsSelectorDrillingDown")
+	protected void handleDatasetItemsSelectorDrillingDown(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetItemsSelectorDrillingDownCase());
+	}
+
+	@UiHandler("datasetItemsSelectorZooming")
+	protected void handleDatasetItemsSelectorZooming(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetItemsSelectorZoomingCase());
+	}
 
 	// ----------------------------------------------
 	// color scheme
 	// ----------------------------------------------
 
-	@UiHandler("barScheme")
-	protected void handleSchemeBar(ClickEvent event) {
+	@UiHandler("colorSchemeOnBar")
+	protected void handleColorSchemeOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColorSchemeBarView());
+		content.add(new ColorSchemeBarCase());
 	}
 
-	@UiHandler("pieScheme")
-	protected void handleSchemePie(ClickEvent event) {
+	@UiHandler("colorSchemeOnLine")
+	protected void handleColorSchemeOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColorSchemePieView());
+		content.add(new ColorSchemeLineCase());
 	}
 
-	@UiHandler("bubbleScheme")
-	protected void handleSchemeBubble(ClickEvent event) {
+	@UiHandler("colorSchemeOnRadar")
+	protected void handleColorSchemeOnRadar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColorSchemeBubbleView());
+		content.add(new ColorSchemeRadarCase());
+	}
+	
+	@UiHandler("colorSchemeOnPie")
+	protected void handleColorSchemeOnPie(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ColorSchemePieCase());
+	}
+//	
+	@UiHandler("colorSchemeOnPolar")
+	protected void handleColorSchemeOnPolar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ColorSchemePolarAreaCase());
+	}
+
+	@UiHandler("colorSchemeOnBubble")
+	protected void handleColorSchemeOnBubble(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ColorSchemeBubbleCase());
 	}
 
 	// ----------------------------------------------
@@ -93,10 +138,9 @@ public class PluginsView extends AbstractView {
 	@UiHandler("htmlLegendBarPlugin")
 	protected void handleHtmlLegendBarPlugin(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HtmlLegendBuilderBarView());
+		content.add(new HtmlLegendBuilderBarView());
 	}
 
-	
 	// ----------------------------------------------
 	// Chart pointer
 	// ----------------------------------------------

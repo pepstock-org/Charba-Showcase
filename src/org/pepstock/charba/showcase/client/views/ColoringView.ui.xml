@@ -6,12 +6,10 @@
 
 	<ui:style field="myStyle">
 	.myTitleItem {
-		cursor: pointer;
 		font-size: 1rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 		white-space: nowrap;
-		padding-left: 12px;
 		padding-bottom: 12px;
 	}
 	
@@ -19,7 +17,7 @@
 		content: 'Coloring ';
 		color: #f27173;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 400;
 		font-family: 'Lato', sans-serif;
 	}
 	
@@ -42,7 +40,7 @@
 
 	<g:VerticalPanel width="100%" spacing="10">
 		<g:Label styleName='{myStyle.myTitleItem}'
-			horizontalAlignment="center"> category</g:Label>
+			horizontalAlignment="center"> section to have a look how the chart can use patterns, gradient and colors</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
 			<g:cell width="25%" verticalAlignment="top"
@@ -51,6 +49,9 @@
 					<g:Label styleName='{myStyle.myCategory}'>Patterns</g:Label>
 					<g:Label ui:field="coloringPatternOnBar" styleName='{myStyle.myLabel}'>Pattern on bar chart</g:Label>
 					<g:Label ui:field="coloringPatternOnLine" styleName='{myStyle.myLabel}'>Pattern on line chart</g:Label>
+					<g:Label ui:field="coloringPatternOnRadar" styleName='{myStyle.myLabel}'>Pattern on radar chart</g:Label>
+					<g:Label ui:field="coloringPatternOnPolar" styleName='{myStyle.myLabel}'>Pattern on polar area chart</g:Label>
+					<g:Label ui:field="coloringPatternOnBubble" styleName='{myStyle.myLabel}'>Pattern on bubble chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"
