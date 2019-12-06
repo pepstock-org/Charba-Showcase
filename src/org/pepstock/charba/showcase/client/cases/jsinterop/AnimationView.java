@@ -15,6 +15,7 @@ import org.pepstock.charba.client.events.AnimationCompleteEvent;
 import org.pepstock.charba.client.events.AnimationCompleteEventHandler;
 import org.pepstock.charba.client.events.AnimationProgressEvent;
 import org.pepstock.charba.client.events.AnimationProgressEventHandler;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.ProgressBar;
 

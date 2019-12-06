@@ -17,6 +17,8 @@ import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.ResourcesType;
+import org.pepstock.charba.showcase.client.cases.extensions.DatasetSelectionPieCase;
+import org.pepstock.charba.showcase.client.cases.extensions.DatasetSelectionCase;
 import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.views.HomeView;
 
@@ -399,13 +401,13 @@ public class DemoView extends Composite {
 	@UiHandler("dsselection")
 	protected void handleDatasetSelection(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DatasetSelectionView());
+		 content.add(new DatasetSelectionCase());
 	}
 
 	@UiHandler("dsselectionpie")
 	protected void handleDatasetSelectionPie(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DatasetSelectionPieView());
+		 content.add(new DatasetSelectionPieCase());
 	}
 
 //	@UiHandler("bgcolorplugin")

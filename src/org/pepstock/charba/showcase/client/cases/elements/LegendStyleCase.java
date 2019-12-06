@@ -7,8 +7,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;

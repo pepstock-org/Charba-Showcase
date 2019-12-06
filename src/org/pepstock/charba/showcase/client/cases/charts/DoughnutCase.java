@@ -7,7 +7,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.OptionsNode;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

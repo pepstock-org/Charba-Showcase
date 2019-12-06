@@ -10,8 +10,8 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

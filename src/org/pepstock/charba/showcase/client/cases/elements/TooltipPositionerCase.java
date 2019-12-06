@@ -23,8 +23,8 @@ import org.pepstock.charba.client.positioner.CustomTooltipPosition;
 import org.pepstock.charba.client.positioner.Point;
 import org.pepstock.charba.client.positioner.Positioner;
 import org.pepstock.charba.client.positioner.TooltipPositioner;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;

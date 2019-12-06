@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

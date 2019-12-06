@@ -60,7 +60,7 @@
 					<g:Label styleName='{myStyle.myCategory}'>Gradients</g:Label>
 					<g:Label ui:field="coloringLinearGradientOnBar" styleName='{myStyle.myLabel}'>Linear gradient on bar chart</g:Label>
 					<g:Label ui:field="coloringLinearGradientOnLine" styleName='{myStyle.myLabel}'>Linear gradient on line chart</g:Label>
-					<g:Label ui:field="coloringLinearGradientOnRadar" styleName='{myStyle.myLabel}'>Linear gradient on radar chart</g:Label>
+					<g:Label ui:field="coloringRadialGradientOnRadar" styleName='{myStyle.myLabel}'>Radial gradient on radar chart</g:Label>
 					<g:Label ui:field="coloringRadialGradientOnPolar" styleName='{myStyle.myLabel}'>Radial gradient on polar area chart</g:Label>
 					<g:Label ui:field="coloringRadialGradientOnPie" styleName='{myStyle.myLabel}'>Radial gradient on pie chart</g:Label>
 				</g:VerticalPanel>
@@ -82,8 +82,9 @@
 			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>GWT Material</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Palette</g:Label>
 					<g:Label ui:field="coloringGwtMaterial" styleName='{myStyle.myLabel}'>GWT Material</g:Label>
+					<g:Label ui:field="coloringUiGradients" styleName='{myStyle.myLabel}'>UI Gradients</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

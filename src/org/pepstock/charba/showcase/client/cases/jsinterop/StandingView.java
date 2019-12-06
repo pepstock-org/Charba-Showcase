@@ -16,6 +16,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.canvas.dom.client.Context2d;

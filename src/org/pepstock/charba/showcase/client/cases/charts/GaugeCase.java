@@ -10,7 +10,7 @@ import org.pepstock.charba.client.impl.charts.GaugeDataset;
 import org.pepstock.charba.client.impl.charts.GaugeThreshold;
 import org.pepstock.charba.client.impl.charts.MeterDisplay;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

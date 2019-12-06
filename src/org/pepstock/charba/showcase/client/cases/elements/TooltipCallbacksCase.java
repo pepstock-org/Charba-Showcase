@@ -17,8 +17,8 @@ import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

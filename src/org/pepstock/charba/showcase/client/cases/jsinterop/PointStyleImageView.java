@@ -17,6 +17,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.resources.Images;
 

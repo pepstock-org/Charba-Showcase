@@ -15,6 +15,7 @@ import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.RenderItem;
 import org.pepstock.charba.client.labels.callbacks.FontColorCallback;
 import org.pepstock.charba.client.labels.callbacks.RenderCallback;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;

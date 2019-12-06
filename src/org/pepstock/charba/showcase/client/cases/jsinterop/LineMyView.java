@@ -10,6 +10,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;

@@ -1,13 +1,18 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
+import java.util.List;
+
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.items.LegendLabelItem;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -40,6 +45,16 @@ public class TilesBarCase extends BaseComposite{
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
+		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
+			
+			@Override
+			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
+				org.pepstock.charba.client.utils.Window.getConsole().log("generateLegendLabels");
+				org.pepstock.charba.client.utils.Window.getConsole().log(defaultLabels.get(0).getFillStyleAsCanvasPattern());
+				//org.pepstock.charba.client.utils.Window.getConsole().log(chart.getData().getDatasets().get(0));
+				return defaultLabels;
+			}
+		});
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using tiles on bar chart datasets");
 		

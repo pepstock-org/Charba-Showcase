@@ -11,6 +11,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.canvas.dom.client.Context2d;

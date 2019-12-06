@@ -7,8 +7,8 @@ import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

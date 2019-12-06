@@ -16,7 +16,7 @@ import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
 import org.pepstock.charba.client.impl.plugins.enums.OfficeScheme;
 import org.pepstock.charba.client.impl.plugins.enums.SchemeScope;
 import org.pepstock.charba.client.impl.plugins.enums.TableauScheme;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;

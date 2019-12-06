@@ -6,6 +6,7 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Render;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;

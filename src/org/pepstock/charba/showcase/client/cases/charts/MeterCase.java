@@ -7,7 +7,7 @@ import org.pepstock.charba.client.colors.ColorBuilder;
 import org.pepstock.charba.client.impl.charts.MeterChart;
 import org.pepstock.charba.client.impl.charts.MeterDataset;
 import org.pepstock.charba.client.impl.charts.MeterDisplay;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

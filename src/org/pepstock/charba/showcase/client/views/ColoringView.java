@@ -1,8 +1,8 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.coloring.GwtMaterialColorsCase;
 import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientBarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientLineCase;
-import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientRadarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.PatternBarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.PatternBubbleCase;
 import org.pepstock.charba.showcase.client.cases.coloring.PatternLineCase;
@@ -10,6 +10,7 @@ import org.pepstock.charba.showcase.client.cases.coloring.PatternPolarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.PatternRadarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.RadialGradientPieCase;
 import org.pepstock.charba.showcase.client.cases.coloring.RadialGradientPolarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.RadialGradientRadarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesBarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesCharactersCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesDoughnutCase;
@@ -18,7 +19,7 @@ import org.pepstock.charba.showcase.client.cases.coloring.TilesLineCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesPointStylesCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesPolarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.TilesRadarCase;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LineViewWithGwtMaterialColors;
+import org.pepstock.charba.showcase.client.cases.coloring.UiGradientsCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -89,10 +90,10 @@ public class ColoringView extends AbstractView {
 		content.add(new LinearGradientLineCase());
 	}
 
-	@UiHandler("coloringLinearGradientOnRadar")
-	protected void handleColoringLinearGradientOnRadar(ClickEvent event) {
+	@UiHandler("coloringRadialGradientOnRadar")
+	protected void handleColoringRadialGradientOnRadar(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LinearGradientRadarCase());
+		content.add(new RadialGradientRadarCase());
 	}
 
 	@UiHandler("coloringRadialGradientOnPie")
@@ -164,9 +165,17 @@ public class ColoringView extends AbstractView {
 	// ----------------------------------------------
 
 	@UiHandler("coloringGwtMaterial")
-	protected void handlecoloringGwtMaterial(ClickEvent event) {
+	protected void handleColoringGwtMaterial(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LineViewWithGwtMaterialColors());
+		content.add(new GwtMaterialColorsCase());
 	}
+
+	@UiHandler("coloringUiGradients")
+	protected void handleColoringUiGradients(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new UiGradientsCase());
+	}
+
+	
 
 }

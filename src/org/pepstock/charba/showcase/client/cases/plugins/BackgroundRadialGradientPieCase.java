@@ -11,7 +11,7 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
-import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

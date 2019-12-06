@@ -12,6 +12,7 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.BorderSkipped;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;

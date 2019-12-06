@@ -14,6 +14,7 @@ import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.RenderItem;
 import org.pepstock.charba.client.labels.callbacks.RenderCallback;
 import org.pepstock.charba.client.labels.enums.Render;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

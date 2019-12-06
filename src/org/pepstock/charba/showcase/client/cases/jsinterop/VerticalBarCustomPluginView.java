@@ -10,6 +10,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.annotation.ChartJsAnnotationOptions;
 import org.pepstock.charba.showcase.client.cases.annotation.PlacementTaskAnnotationOptions;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;

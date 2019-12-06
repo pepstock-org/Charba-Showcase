@@ -12,6 +12,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.client.items.LegendItem;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;

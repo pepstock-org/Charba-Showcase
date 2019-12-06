@@ -8,6 +8,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
