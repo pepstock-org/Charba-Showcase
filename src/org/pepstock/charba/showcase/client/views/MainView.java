@@ -67,7 +67,9 @@ public class MainView extends Composite {
 	protected void handleCharts(ClickEvent event) {
 		if (changeSelection(event)) {
 			clearPreviousChart();
-			content.add(new ChartsView(content));
+			ChartsView view = new ChartsView(content);
+			content.add(view);
+//			view.coloring.getElement().scrollIntoView();
 		}
 	}
 

@@ -2,11 +2,8 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.Gradient;
-import org.pepstock.charba.client.colors.GradientOrientation;
-import org.pepstock.charba.client.colors.GradientScope;
-import org.pepstock.charba.client.colors.GradientType;
-import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -65,12 +62,8 @@ public class BackgroundLinearGradientBarCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		Gradient gradient  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CANVAS);
+		Gradient gradient = UiGradient.CLOUDS.createGradient();
 
-		gradient.addColorStop(0, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_4);
-		gradient.addColorStop(0.5, GwtMaterialColor.LIGHT_GREEN_LIGHTEN_5);
-		gradient.addColorStop(1, GwtMaterialColor.WHITE);
-	
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);
 

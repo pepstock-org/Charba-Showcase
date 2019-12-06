@@ -38,7 +38,7 @@ public class TooltipBorderCase extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Configured tooltip to change borders");
+		chart.getOptions().getTitle().setText("Configured tooltip to change borders and style");
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);

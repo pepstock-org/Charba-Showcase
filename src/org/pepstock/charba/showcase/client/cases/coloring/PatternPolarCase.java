@@ -19,11 +19,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColoringPatternPolarCase extends BaseComposite {
+public class PatternPolarCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ColoringPatternPolarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, PatternPolarCase> {
 	}
 
 	private static final int ITEMS = 3;
@@ -31,14 +31,14 @@ public class ColoringPatternPolarCase extends BaseComposite {
 	@UiField
 	PolarAreaChart chart;
 
-	public ColoringPatternPolarCase() {
+	public PatternPolarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Applying a pattern on polar area chart");
+		chart.getOptions().getTitle().setText("Applying a pattern on polar area chart dataset");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);

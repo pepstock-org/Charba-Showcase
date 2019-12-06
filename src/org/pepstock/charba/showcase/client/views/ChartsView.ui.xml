@@ -43,7 +43,7 @@
 			horizontalAlignment="center"> available out of the box by CHART.JS or by CHARBA</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
-			<g:cell width="25%" verticalAlignment="top"
+			<g:cell width="33%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Charts</g:Label>
@@ -59,7 +59,7 @@
 					<g:Label ui:field="bubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="25%" verticalAlignment="top"
+			<g:cell width="33%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Other charts</g:Label>
@@ -81,7 +81,7 @@
 					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="25%" verticalAlignment="top"
+			<g:cell width="33%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Extended Charts</g:Label>

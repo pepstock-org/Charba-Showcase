@@ -21,11 +21,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColoringPatternBubbleCase extends BaseComposite {
+public class PatternBubbleCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ColoringPatternBubbleCase> {
+	interface ViewUiBinder extends UiBinder<Widget, PatternBubbleCase> {
 	}
 
 	private static final int AMOUNT_OF_POINTS = 8;
@@ -35,13 +35,13 @@ public class ColoringPatternBubbleCase extends BaseComposite {
 	@UiField
 	BubbleChart chart;
 
-	public ColoringPatternBubbleCase() {
+	public PatternBubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Applying a pattern on bubble chart");
+		chart.getOptions().getTitle().setText("Applying a pattern on bubble chart dataset");
 
 		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern());
 		Pattern pattern2 = new Pattern(Images.INSTANCE.backgroundPattern2());

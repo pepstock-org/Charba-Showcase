@@ -46,10 +46,16 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.flagDE().getSafeUri());
 		
 		Image.prefetch(Images.INSTANCE.githubWhite().getSafeUri());
+		Image.prefetch(Images.INSTANCE.extensionWhite().getSafeUri());
+		Image.prefetch(Images.INSTANCE.fingerprintWhite().getSafeUri());
+		Image.prefetch(Images.INSTANCE.headlineWhite().getSafeUri());
+		Image.prefetch(Images.INSTANCE.visibilityWhite().getSafeUri());
 
 		ResourcesType.setClientBundle(EmbeddedResources.INSTANCE);
 
 		JsWindowHelper.get().enableResizeOnBeforePrint();
+
+		Defaults.get().getGlobal().setDefaultFontFamily("'Lato', sans-serif");
 		
 		Defaults.get().getGlobal().getTitle().setFontSize(16);
 		

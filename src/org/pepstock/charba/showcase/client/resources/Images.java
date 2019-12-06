@@ -14,6 +14,18 @@ public interface Images extends ClientBundle {
 	@Source("/images/GitHub-Mark-Light-32px.png")
 	ImageResource githubWhite();
 
+	@Source("/images/baseline_extension_white_18dp.png")
+	ImageResource extensionWhite();
+
+	@Source("/images/baseline_fingerprint_white_18dp.png")
+	ImageResource fingerprintWhite();
+
+	@Source("/images/baseline_view_headline_white_18dp.png")
+	ImageResource headlineWhite();
+
+	@Source("/images/baseline_visibility_white_18dp.png")
+	ImageResource visibilityWhite();
+	
 	@Source("/images/gwt.png")
 	ImageResource gwt();
 

@@ -95,7 +95,9 @@
 		</g:VerticalPanel>
 		</g:cell>
 		<g:cell width="90%" verticalAlignment="top">
+			<g:ScrollPanel ui:field="scrollPanel" width="100%" height="100%">
 				<g:VerticalPanel width="100%" ui:field="content" />
+			</g:ScrollPanel>
 		</g:cell>
 	</g:HorizontalPanel>
 	</g:HTMLPanel>

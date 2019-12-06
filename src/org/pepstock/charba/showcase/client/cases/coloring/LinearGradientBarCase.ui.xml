@@ -9,11 +9,11 @@
 		<g:VerticalPanel width="100%" height="100%">
 			<g:cell width="10%" verticalAlignment="middle"
 				horizontalAlignment="center">
-				<c:LineChart ui:field="chart" />
+				<c:BarChart ui:field="chart" />
 			</g:cell>
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
-				<g:HorizontalPanel spacing="5">
+				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
 					<g:Button ui:field="add_data">Add data</g:Button>
 					<g:Button ui:field="remove_data">Remove data</g:Button>
@@ -23,9 +23,5 @@
 				</g:HorizontalPanel>
 			</g:cell>
 		</g:VerticalPanel>
-		<g:HTMLPanel ui:field="image" width="100%" height="50px">
-			<g:Label>Questa è una mi aprova</g:Label>
-		</g:HTMLPanel>
-		
 	</g:HTMLPanel>
 </ui:UiBinder> 

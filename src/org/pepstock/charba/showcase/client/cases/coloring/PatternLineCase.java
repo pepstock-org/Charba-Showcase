@@ -1,16 +1,14 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import java.util.List;
-
-import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
-import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.Pattern;
-import org.pepstock.charba.client.data.BarDataset;
+import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
+import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -22,48 +20,57 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColoringPatternBarCase extends BaseComposite{
+public class PatternLineCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ColoringPatternBarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, PatternLineCase> {
 	}
 
 	@UiField
-	BarChart chart;
-
-	Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern1());
-
-	public ColoringPatternBarCase() {
+	LineChart chart;
+	
+	public PatternLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.TOP);
-		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
-			@Override
-			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
-				for (LegendLabelItem item : defaultLabels) {
-					item.setFillStyle(chart, pattern);
-				}
-				return defaultLabels;
-			}
-		});
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Applying a pattern on bar chart");
 		
-		BarDataset dataset1 = chart.newDataset();
+		chart.getOptions().setResponsive(true);
+		chart.getOptions().setMaintainAspectRatio(true);
+		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getTitle().setDisplay(true);
+		chart.getOptions().getTitle().setText("Applying a pattern on line chart dataset");
+		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setIntersect(false);
+		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getHover().setIntersect(true);
+		
+		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
+		
+		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		
 		dataset1.setBackgroundColor(pattern);
-		dataset1.setBorderColor(HtmlColor.BLACK);
-		dataset1.setBorderWidth(1);
-		dataset1.setData(getFixedDigits(months));
+		
+		double[] values = getRandomDigits(months);
+		dataset1.setData(values);
+		dataset1.setFill(Fill.ORIGIN);
+		
+		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
+		axis1.setDisplay(true);
+		axis1.getScaleLabel().setDisplay(true);
+		axis1.getScaleLabel().setLabelString("Month");
+		
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
+		axis2.setDisplay(true);
+		axis2.getScaleLabel().setDisplay(true);
+		axis2.getScaleLabel().setLabelString("Value");
+		
+		chart.getOptions().getScales().setXAxes(axis1);
+		chart.getOptions().getScales().setYAxes(axis2);
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
 	}
-
+	
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()){

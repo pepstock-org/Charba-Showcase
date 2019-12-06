@@ -1,21 +1,19 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
-import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.impl.plugins.HtmlLegend;
-import org.pepstock.charba.client.utils.Utilities;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.showcase.client.cases.jsinterop.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,54 +21,40 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LinearGradientLineView extends BaseComposite{
+public class LinearGradientLineCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LinearGradientLineView> {
+	interface ViewUiBinder extends UiBinder<Widget, LinearGradientLineCase> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	@UiField
-	HTMLPanel image;
-	
-	public LinearGradientLineView() {
+	public LinearGradientLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Line Chart with linear gradient");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
-		chart.getOptions().getHover().setIntersect(true);
+		chart.getOptions().getTitle().setText("Applying a linear gradient on line chart dataset");
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
-
-		gradient1.addColorStop(0, HtmlColor.ORANGE);
-		gradient1.addColorStop(0.24, HtmlColor.RED);
-		gradient1.addColorStop(1, HtmlColor.PURPLE);
+		Gradient gradient1  = UiGradient.EASYMED.createGradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
+		IsColor firstColor = gradient1.getColors().get(0).getColor();
 		
 		dataset1.setBackgroundColor(gradient1);
 		
-		dataset1.setBorderColor(gradient1);
+		dataset1.setBorderColor(firstColor.darker());
 		dataset1.setPointBackgroundColor(gradient1);
 		dataset1.setPointHoverBackgroundColor(gradient1);
-		dataset1.setPointHoverBorderColor(gradient1);
-		
+		dataset1.setPointHoverBorderColor(firstColor.darker());
 		dataset1.setPointRadius(5);
-		
-		Charba_Showcase.LOG.info(Utilities.toCSSBackgroundProperty(gradient1));
 		
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
@@ -91,12 +75,6 @@ public class LinearGradientLineView extends BaseComposite{
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
-		chart.getPlugins().add(new HtmlLegend());
-
-		// FIXME
-		image.getElement().getStyle().setBackgroundImage(Utilities.toCSSBackgroundProperty(gradient1));
-
 	}
 	
 	@UiHandler("randomize")

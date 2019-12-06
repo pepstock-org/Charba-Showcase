@@ -1,16 +1,24 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternBarCase;
-import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternBubbleCase;
-import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternLineCase;
-import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternPolarCase;
-import org.pepstock.charba.showcase.client.cases.coloring.ColoringPatternRadarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientBarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientLineCase;
+import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientRadarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.PatternBarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.PatternBubbleCase;
+import org.pepstock.charba.showcase.client.cases.coloring.PatternLineCase;
+import org.pepstock.charba.showcase.client.cases.coloring.PatternPolarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.PatternRadarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.RadialGradientPieCase;
+import org.pepstock.charba.showcase.client.cases.coloring.RadialGradientPolarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesBarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesCharactersCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesDoughnutCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesImagesCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesLineCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesPointStylesCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesPolarCase;
+import org.pepstock.charba.showcase.client.cases.coloring.TilesRadarCase;
 import org.pepstock.charba.showcase.client.cases.jsinterop.LineViewWithGwtMaterialColors;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LinearGradientBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LinearGradientLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.RadialGradientPieView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.TilesBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.TilesDoughnutView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,37 +42,37 @@ public class ColoringView extends AbstractView {
 	// ----------------------------------------------
 	// Pattern
 	// ----------------------------------------------
-	
+
 	@UiHandler("coloringPatternOnBar")
 	protected void handleColoringPatternOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColoringPatternBarCase());
+		content.add(new PatternBarCase());
 	}
 
 	@UiHandler("coloringPatternOnLine")
 	protected void handleColoringPatternOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColoringPatternLineCase());
+		content.add(new PatternLineCase());
 	}
 
 	@UiHandler("coloringPatternOnRadar")
 	protected void handleColoringPatternOnRadar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColoringPatternRadarCase());
+		content.add(new PatternRadarCase());
 	}
 
 	@UiHandler("coloringPatternOnPolar")
 	protected void handleColoringPatternOnPolar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColoringPatternPolarCase());
+		content.add(new PatternPolarCase());
 	}
 
 	@UiHandler("coloringPatternOnBubble")
 	protected void handleColoringPatternOnBubble(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ColoringPatternBubbleCase());
+		content.add(new PatternBubbleCase());
 	}
-	
+
 	// ----------------------------------------------
 	// Gradient
 	// ----------------------------------------------
@@ -72,20 +80,31 @@ public class ColoringView extends AbstractView {
 	@UiHandler("coloringLinearGradientOnBar")
 	protected void handleColoringLinearGradientOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LinearGradientBarView());
+		content.add(new LinearGradientBarCase());
 	}
 
 	@UiHandler("coloringLinearGradientOnLine")
 	protected void handleColoringLinearGradientOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LinearGradientLineView());
+		content.add(new LinearGradientLineCase());
 	}
 
+	@UiHandler("coloringLinearGradientOnRadar")
+	protected void handleColoringLinearGradientOnRadar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LinearGradientRadarCase());
+	}
 
 	@UiHandler("coloringRadialGradientOnPie")
 	protected void handleColoringRadialGradientOnPie(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new RadialGradientPieView());
+		content.add(new RadialGradientPieCase());
+	}
+
+	@UiHandler("coloringRadialGradientOnPolar")
+	protected void handleColoringRadialGradientOnPolar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new RadialGradientPolarCase());
 	}
 
 	// ----------------------------------------------
@@ -93,17 +112,53 @@ public class ColoringView extends AbstractView {
 	// ----------------------------------------------
 
 	@UiHandler("coloringTilesOnBar")
-	protected void handleColoringTilesOnBar(ClickEvent event) {
+	protected void handleTilesOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TilesBarView());
+		content.add(new TilesBarCase());
+	}
+
+	@UiHandler("coloringTilesOnLine")
+	protected void handleTilesOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesLineCase());
+	}
+
+	@UiHandler("coloringTilesOnRadar")
+	protected void handleTilesOnRadar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesRadarCase());
+	}
+
+	@UiHandler("coloringTilesOnPolar")
+	protected void handleTilesOnPolar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesPolarCase());
 	}
 
 	@UiHandler("coloringTilesOnDoughnut")
-	protected void handletilesDoughnut(ClickEvent event) {
+	protected void handleTilesOnDoughnut(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TilesDoughnutView());
+		content.add(new TilesDoughnutCase());
+	}
+	
+	@UiHandler("coloringTilesByImageShapes")
+	protected void handleImagesTiles(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesImagesCase());
 	}
 
+	@UiHandler("coloringTilesByCharShapes")
+	protected void handleCharactersTiles(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesCharactersCase());
+	}
+
+	@UiHandler("coloringTilesByPointStyleShapes")
+	protected void handlePoinStylesTiles(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TilesPointStylesCase());
+	}	
+	
 	// ----------------------------------------------
 	// GWT material
 	// ----------------------------------------------
@@ -111,7 +166,7 @@ public class ColoringView extends AbstractView {
 	@UiHandler("coloringGwtMaterial")
 	protected void handlecoloringGwtMaterial(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LineViewWithGwtMaterialColors());
+		content.add(new LineViewWithGwtMaterialColors());
 	}
 
 }

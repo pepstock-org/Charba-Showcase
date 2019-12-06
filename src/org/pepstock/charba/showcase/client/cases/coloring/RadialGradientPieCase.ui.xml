@@ -15,8 +15,6 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Button ui:field="add_dataset">Add dataset</g:Button>
-					<g:Button ui:field="remove_dataset">Remove dataset</g:Button>
 					<g:Button ui:field="add_data">Add data</g:Button>
 					<g:Button ui:field="remove_data">Remove data</g:Button>
 					<g:PushButton ui:field='source' enabled='true'>
