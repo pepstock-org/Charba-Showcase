@@ -1,6 +1,8 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.elements.ChangingLegendLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.FilteringAxisLabelsCase;
+import org.pepstock.charba.showcase.client.cases.elements.FilteringLegendCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesDisplayCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendClickEventCase;
@@ -74,6 +76,18 @@ public class ElementsView extends AbstractView {
 		content.add(new LegendHoverAndLeaveEventsCase());
 	}
 
+	@UiHandler("legendFilterCallback")
+	protected void handleLegendFilterCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FilteringLegendCase());
+	}
+
+	@UiHandler("legendLabelsCallback")
+	protected void handleLegendLabelsCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ChangingLegendLabelsCase());
+	}
+	
 	// ----------------------------------------------
 	// Tooltip
 	// ----------------------------------------------

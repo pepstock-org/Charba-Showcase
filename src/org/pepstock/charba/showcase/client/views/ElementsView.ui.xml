@@ -43,7 +43,8 @@
 					<g:Label styleName='{myStyle.myCategory}'>Legend</g:Label>
 					<g:Label ui:field="legendPositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
 					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style from line datasets</g:Label>
-					<g:Label ui:field="legendCallback" styleName='{myStyle.myLabel}'>Callbacks (TBD)</g:Label>
+					<g:Label ui:field="legendFilterCallback" styleName='{myStyle.myLabel}'>Filtering hidden datasets by callbacks</g:Label>
+					<g:Label ui:field="legendLabelsCallback" styleName='{myStyle.myLabel}'>Changing text and color by callbacks</g:Label>
 					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Click event</g:Label>
 					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Hover and leave event</g:Label>
 				</g:VerticalPanel>

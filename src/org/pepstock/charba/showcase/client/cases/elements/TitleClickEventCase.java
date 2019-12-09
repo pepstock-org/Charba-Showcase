@@ -7,7 +7,6 @@ import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
-import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.events.TitleClickEvent;
 import org.pepstock.charba.client.events.TitleClickEventHandler;
@@ -39,7 +38,7 @@ public class TitleClickEventCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Catching title on click event");
+		chart.getOptions().getTitle().setText("Click title event on line chart");
 		
 		chart.addHandler(new TitleClickEventHandler() {
 
@@ -60,8 +59,6 @@ public class TitleClickEventCase extends BaseComposite {
 
 		}, TitleClickEvent.TYPE);
 		
-		List<Dataset> datasets = chart.getData().getDatasets(true);
-
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
@@ -70,12 +67,7 @@ public class TitleClickEventCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
-		double[] values = getRandomDigits(months);
-		List<Double> data = dataset1.getData(true);
-		for (int i = 0; i < values.length; i++) {
-			data.add(values[i]);
-		}
-		datasets.add(dataset1);
+		dataset1.setData(getRandomDigits(months));
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -86,7 +78,6 @@ public class TitleClickEventCase extends BaseComposite {
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(false);
-		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -100,8 +91,9 @@ public class TitleClickEventCase extends BaseComposite {
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-
+		
 		chart.getData().setLabels(getLabels());
+		chart.getData().setDatasets(dataset1, dataset2);
 		
 	}
 
