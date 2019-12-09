@@ -12,6 +12,7 @@ import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
@@ -47,8 +48,8 @@ public class DataLabelsRadarCase extends BaseComposite{
 		chart.getOptions().getElements().getPoint().setHoverRadius(7);
 		chart.getOptions().getElements().getPoint().setRadius(7);
 		
-		chart.getOptions().getPlugins().setEnabled("legend", false);
-		chart.getOptions().getPlugins().setEnabled("title", false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
 		
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

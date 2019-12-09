@@ -17,8 +17,9 @@ import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.DatasetViewItem;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.ResourcesType;
-import org.pepstock.charba.showcase.client.cases.extensions.DatasetSelectionPieCase;
-import org.pepstock.charba.showcase.client.cases.extensions.DatasetSelectionCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.views.HomeView;
 
@@ -80,7 +81,7 @@ public class DemoView extends Composite {
 
 			@Override
 			public ControllerType getType() {
-				return LineMyChart.TYPE;
+				return MyLineChart.TYPE;
 			}
 
 			@Override
@@ -176,7 +177,7 @@ public class DemoView extends Composite {
 	@UiHandler("lineCallback")
 	protected void handleLineCallback(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LineCallbackView());
+		content.add(new CallbacksLineCase());
 	}
 
 //	@UiHandler("lineMultiAxis")

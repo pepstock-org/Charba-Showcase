@@ -42,25 +42,30 @@
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Options</g:Label>
 					<g:Label ui:field="animation" styleName='{myStyle.myLabel}'>Animation events</g:Label>
-					<g:Label ui:field="miscellaneousSteppedOnLine" styleName='{myStyle.myLabel}'>Stepped on line chart</g:Label>
-					<g:Label ui:field="miscellaneousInterpolationOnLine" styleName='{myStyle.myLabel}'>Interpolation on line chart</g:Label>
-					<g:Label ui:field="miscellaneousStylesOnLine" styleName='{myStyle.myLabel}'>Line styles on line chart</g:Label>
-					<g:Label ui:field="miscellaneousPointStylesOnLine" styleName='{myStyle.myLabel}'>Point styles on line chart</g:Label>
-					<g:Label ui:field="miscellaneousPointStyleImagesOnLine" styleName='{myStyle.myLabel}'>Point styles images on line chart</g:Label>
-					<g:Label ui:field="miscellaneousPointSizeOnLine" styleName='{myStyle.myLabel}'>Point Size on line chart</g:Label>
+					<g:Label ui:field="miscellaneousSteppedOnLine" styleName='{myStyle.myLabel}'>Stepped line options on line chart</g:Label>
+					<g:Label ui:field="miscellaneousInterpolationOnLine" styleName='{myStyle.myLabel}'>Interpolation options on line chart</g:Label>
+					<g:Label ui:field="miscellaneousStylesOnLine" styleName='{myStyle.myLabel}'>Applying styles on line chart</g:Label>
+					<g:Label ui:field="miscellaneousPointStylesOnLine" styleName='{myStyle.myLabel}'>Applying point styles on line chart</g:Label>
+					<g:Label ui:field="miscellaneousPointStyleImagesOnLine" styleName='{myStyle.myLabel}'>Applying point styles as images on line chart</g:Label>
+					<g:Label ui:field="miscellaneousPointSizeOnLine" styleName='{myStyle.myLabel}'>Applying point sizes on line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Scriptable options</g:Label>
-					<g:Label ui:field="barCallback"	styleName='{myStyle.myLabel}'>Callback on bar chart</g:Label>
-					<g:Label ui:field="lineCallback" styleName='{myStyle.myLabel}'>Callback on line chart</g:Label>
+					<g:Label ui:field="callbacksOnBar"	styleName='{myStyle.myLabel}'>Callbacks on bar dataset</g:Label>
+					<g:Label ui:field="callbacksOnLine"	styleName='{myStyle.myLabel}'>Callbacks on line dataset</g:Label>
+					<g:Label ui:field="callbacksOnRadar"	styleName='{myStyle.myLabel}'>Callbacks on radar dataset</g:Label>
+					<g:Label ui:field="callbacksOnDoughnut"	styleName='{myStyle.myLabel}'>Callbacks on doughnut dataset</g:Label>
+					<g:Label ui:field="callbacksOnPie"	styleName='{myStyle.myLabel}'>Callbacks on pie dataset</g:Label>
+					<g:Label ui:field="callbacksOnPolar"	styleName='{myStyle.myLabel}'>Callbacks on polar area dataset</g:Label>
+					<g:Label ui:field="callbacksOnBubble"	styleName='{myStyle.myLabel}'>Callbacks on bubble dataset</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Plugins</g:Label>
-					<g:Label ui:field="miscellaneousPluginLabel" styleName='{myStyle.myLabel}'>Simple dataset labels</g:Label>
+					<g:Label ui:field="miscellaneousSimplePluginLabelOnBar" styleName='{myStyle.myLabel}'>Simple dataset labels</g:Label>
 					<g:Label ui:field="miscellaneousPluginFlags" styleName='{myStyle.myLabel}'>Flags as ticks</g:Label>
 					<g:Label ui:field="miscellaneousPluginStandings" styleName='{myStyle.myLabel}'>Standings chart</g:Label>
 					<g:Label ui:field="htmlAnnotation" styleName='{myStyle.myLabel}'>HTML annotation as ticks</g:Label>
@@ -71,9 +76,8 @@
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Controllers</g:Label>
-					<g:Label ui:field="myLine" styleName='{myStyle.myLabel}'>My line</g:Label>
-					<g:Label ui:field="myHorizontalBar"
-						styleName='{myStyle.myLabel}'>My horizontal bar</g:Label>
+					<g:Label ui:field="controllerMyLine" styleName='{myStyle.myLabel}'>My line by a controller</g:Label>
+					<g:Label ui:field="controllerMyHorizontalBar" styleName='{myStyle.myLabel}'>My horizontal bar by a controller</g:Label>
 				</g:VerticalPanel>
 			</g:cell>			
 		</g:HorizontalPanel>

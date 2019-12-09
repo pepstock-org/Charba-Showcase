@@ -42,36 +42,36 @@
 			<g:cell width="33%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Datalabels</g:Label>
-					<g:Label ui:field="datalabelsBar" styleName='{myStyle.myLabel}'>Bar</g:Label>
-					<g:Label ui:field="datalabelsBubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
-					<g:Label ui:field="datalabelsDoughnut" styleName='{myStyle.myLabel}'>Doughnut</g:Label>
-					<g:Label ui:field="datalabelsLine" styleName='{myStyle.myLabel}'>Line</g:Label>
-					<g:Label ui:field="datalabelsPolar"	styleName='{myStyle.myLabel}'>Polar</g:Label>
-					<g:Label ui:field="datalabelsRadar" styleName='{myStyle.myLabel}'>Radar</g:Label>
-					<g:Label ui:field="datalabelsGradient" styleName='{myStyle.myLabel}'>Gradient</g:Label>
-					<g:Label ui:field="datalabelsInteractions" styleName='{myStyle.myLabel}'>Interactions</g:Label>
-					<g:Label ui:field="datalabelsData" styleName='{myStyle.myLabel}'>Data</g:Label>
-					<g:Label ui:field="datalabelsDataset" styleName='{myStyle.myLabel}'>Dataset</g:Label>
-					<g:Label ui:field="datalabelsIndices" styleName='{myStyle.myLabel}'>Indices</g:Label>
-					<g:Label ui:field="datalabelsMirror" styleName='{myStyle.myLabel}'>Mirror</g:Label>
-					<g:Label ui:field="datalabelsListeners" styleName='{myStyle.myLabel}'>Listeners</g:Label>
-					<g:Label ui:field="datalabelsHighlight" styleName='{myStyle.myLabel}'>Highlight</g:Label>
-					<g:Label ui:field="datalabelsSelection" styleName='{myStyle.myLabel}'>Selection</g:Label>
-					<g:Label ui:field="datalabelsCustom" styleName='{myStyle.myLabel}'>Custom labels</g:Label>
-					<g:Label ui:field="datalabelsMulti" styleName='{myStyle.myLabel}'>Multi labels</g:Label>
+					<g:Label ui:field="datalabelsBar" styleName='{myStyle.myLabel}'>Using bar chart</g:Label>
+					<g:Label ui:field="datalabelsBubble" styleName='{myStyle.myLabel}'>Using bubble chart</g:Label>
+					<g:Label ui:field="datalabelsDoughnut" styleName='{myStyle.myLabel}'>Using doughnut chart</g:Label>
+					<g:Label ui:field="datalabelsLine" styleName='{myStyle.myLabel}'>Using line chart</g:Label>
+					<g:Label ui:field="datalabelsPolar"	styleName='{myStyle.myLabel}'>Using polar chart</g:Label>
+					<g:Label ui:field="datalabelsRadar" styleName='{myStyle.myLabel}'>Using radar chart</g:Label>
+					<g:Label ui:field="datalabelsGradient" styleName='{myStyle.myLabel}'>Labels and gradient</g:Label>
+					<g:Label ui:field="datalabelsInteractions" styleName='{myStyle.myLabel}'>Interactions among labels</g:Label>
+					<g:Label ui:field="datalabelsData" styleName='{myStyle.myLabel}'>Using data on labels</g:Label>
+					<g:Label ui:field="datalabelsDataset" styleName='{myStyle.myLabel}'>Joinind datasets</g:Label>
+					<g:Label ui:field="datalabelsIndices" styleName='{myStyle.myLabel}'>Indices on datasets</g:Label>
+					<g:Label ui:field="datalabelsMirror" styleName='{myStyle.myLabel}'>Mirror on labels on bar chart</g:Label>
+					<g:Label ui:field="datalabelsListeners" styleName='{myStyle.myLabel}'>Listening event on labels</g:Label>
+					<g:Label ui:field="datalabelsHighlight" styleName='{myStyle.myLabel}'>Highlighting labels</g:Label>
+					<g:Label ui:field="datalabelsSelection" styleName='{myStyle.myLabel}'>Selecting labels</g:Label>
+					<g:Label ui:field="datalabelsCustom" styleName='{myStyle.myLabel}'>Customizing labels on bar chart</g:Label>
+					<g:Label ui:field="datalabelsMulti" styleName='{myStyle.myLabel}'>Multiple labels options on pie chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="33%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Labels</g:Label>
-					<g:Label ui:field="piecelabelPieLabels" styleName='{myStyle.myLabel}'>Labels </g:Label>
-					<g:Label ui:field="piecelabelPiePercentage" styleName='{myStyle.myLabel}'>Percentage</g:Label>
-					<g:Label ui:field="piecelabelPieValue" styleName='{myStyle.myLabel}'>Value</g:Label>
-					<g:Label ui:field="piecelabelPiePosition" styleName='{myStyle.myLabel}'>Position</g:Label>
-					<g:Label ui:field="piecelabelPieImages" styleName='{myStyle.myLabel}'>Images</g:Label>
-					<g:Label ui:field="piecelabelPieMulti" styleName='{myStyle.myLabel}'>Multi-options</g:Label>
-					<g:Label ui:field="piecelabelPolar" styleName='{myStyle.myLabel}'>Polar</g:Label>
-					<g:Label ui:field="piecelabelBar" styleName='{myStyle.myLabel}'>Bar</g:Label>
+					<g:Label ui:field="labelsOnBar" styleName='{myStyle.myLabel}'>Using bar chart</g:Label>
+					<g:Label ui:field="labelsOnPolar" styleName='{myStyle.myLabel}'>Using on polar chart</g:Label>
+					<g:Label ui:field="labelsPieUsingLabels" styleName='{myStyle.myLabel}'>Using labels as render</g:Label>
+					<g:Label ui:field="labelsPieUsingPercentage" styleName='{myStyle.myLabel}'>Using percentage as render</g:Label>
+					<g:Label ui:field="labelsPieUsingValue" styleName='{myStyle.myLabel}'>Using value as render</g:Label>
+					<g:Label ui:field="labelsPieUsingImages" styleName='{myStyle.myLabel}'>Using images as render</g:Label>
+					<g:Label ui:field="labelsPiePosition" styleName='{myStyle.myLabel}'>Positioning</g:Label>
+					<g:Label ui:field="labelsPieMulti" styleName='{myStyle.myLabel}'>Multiple labels options</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="33%" verticalAlignment="top"	horizontalAlignment="center">

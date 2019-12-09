@@ -17,15 +17,15 @@ import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsMultiLabel
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsRadarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsSelectionCase;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelImageView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelMultiOptionsView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelPercentageView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelPolarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelPositionView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelValueView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PieceLabelView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.VerticalBarCustomPluginView;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsPolarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsPositioningCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -160,52 +160,52 @@ public class ExtensionsView extends AbstractView {
 	// Labels
 	// ----------------------------------------------
 
-	@UiHandler("piecelabelPieLabels")
+	@UiHandler("labelsPieUsingLabels")
 	protected void handleLabelsPieLabels(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelView());
+		 content.add(new LabelsUsingLabelRenderCase());
 	}
 
-	@UiHandler("piecelabelPiePercentage")
+	@UiHandler("labelsPieUsingPercentage")
 	protected void handleLabelsPiePercentage(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelPercentageView());
+		 content.add(new LabelsUsingPercentageRenderCase());
 	}
 
-	@UiHandler("piecelabelPieValue")
+	@UiHandler("labelsPieUsingValue")
 	protected void handleLabelsPieValue(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelValueView());
+		 content.add(new LabelsUsingValueRenderCase());
 	}
 
-	@UiHandler("piecelabelPiePosition")
-	protected void handleLabelsPiePosition(ClickEvent event) {
-		clearPreviousChart();
-		 content.add(new PieceLabelPositionView());
-	}
-
-	@UiHandler("piecelabelPieImages")
+	@UiHandler("labelsPieUsingImages")
 	protected void handleLabelsPieImages(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new PieceLabelImageView());
+		content.add(new LabelsUsingImageRenderCase());
 	}
 
-	@UiHandler("piecelabelPieMulti")
+	@UiHandler("labelsPieMulti")
 	protected void handleLabelsPieMulti(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new PieceLabelMultiOptionsView());
+		content.add(new LabelsMultiOptionsCase());
 	}
 
-	@UiHandler("piecelabelPolar")
+	@UiHandler("labelsOnPolar")
 	protected void handleLabelsPolar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelPolarView());
+		 content.add(new LabelsPolarCase());
 	}
 
-	@UiHandler("piecelabelBar")
+	@UiHandler("labelsOnBar")
 	protected void handleLabelsBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PieceLabelBarView());
+		 content.add(new LabelsBarCase());
+	}
+
+	@UiHandler("labelsPiePosition")
+	protected void handleLabelsPiePosition(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new LabelsPositioningCase());
 	}
 
 	// ----------------------------------------------
@@ -215,7 +215,7 @@ public class ExtensionsView extends AbstractView {
 	@UiHandler("importPlugin")
 	protected void handleCustomPluginChart(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new VerticalBarCustomPluginView());
+		 content.add(new ImportingPluginCase());
 	}
 
 }

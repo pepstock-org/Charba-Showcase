@@ -17,4 +17,17 @@ public class HomeView extends BaseComposite{
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
+//	V1.2 746 KB
+//	V1.3 760 KB
+//	V1.4 763 KB
+//	V1.5 832 KB
+//	V1.6 861 KB
+//	V1.7 863 KB
+//	V2.0 1200 MB
+//	V2.1 1550 MB
+//	V2.2 1710 MB
+//	V2.3 1720 MB
+//	V2.4 1910 MB
+//	V2.5 1950 MB
+//	V2.6 2040 MB
 }

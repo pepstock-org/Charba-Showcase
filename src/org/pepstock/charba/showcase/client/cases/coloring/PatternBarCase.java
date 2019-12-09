@@ -1,16 +1,11 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import java.util.List;
-
 import org.pepstock.charba.client.BarChart;
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -39,16 +34,6 @@ public class PatternBarCase extends BaseComposite{
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
-		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
-			@Override
-			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
-				for (LegendLabelItem item : defaultLabels) {
-					item.setFillStyle(chart, pattern);
-				}
-				return defaultLabels;
-			}
-		});
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a pattern on bar chart dataset");
 		

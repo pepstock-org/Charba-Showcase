@@ -24,30 +24,30 @@
 	</ui:style>
 	<g:HTMLPanel width="100%">
 	  <g:HorizontalPanel width="100%" height="100%" verticalAlignment="middle" horizontalAlignment="center" spacing="30">
-	   <g:HorizontalPanel width="80%" height="100%" horizontalAlignment="center">
-			<g:cell verticalAlignment="top" horizontalAlignment="center">
-				<g:VerticalPanel width="100%" horizontalAlignment="center">
-					<g:Image resource="{img.gwt}"/>
-		   			<g:Label styleName='{myStyle.hero-name}'>GWT</g:Label>
-				</g:VerticalPanel>
-			</g:cell>
-	   		<g:cell verticalAlignment="middle" horizontalAlignment="center">
-	   			<g:HTMLPanel styleName='{myStyle.hero-title}'>
-		   			<h1>Google Web toolkit meets Chart.JS</h1>
-		   			<h1>by CHARBA</h1>
-		   			<br/>
-		   			<p>CHARBA is a GWT module which wraps Chart.JS to enable charts on your GWT web application.</p>
-		   			<br/>
-		   			<p>This is a showcase about how to use some CHARBA features.</p>
-				</g:HTMLPanel>
-			</g:cell>
-			<g:cell verticalAlignment="top" horizontalAlignment="center">
-				<g:VerticalPanel width="100%" horizontalAlignment="center">
-					<g:Image resource="{img.chartjs}"/>
-		   			<g:Label styleName='{myStyle.hero-name}'>Chart.js</g:Label>
-				</g:VerticalPanel>
-			</g:cell>
-       </g:HorizontalPanel>
+		  <g:HorizontalPanel width="80%" height="100%" horizontalAlignment="center">
+				<g:cell verticalAlignment="top" horizontalAlignment="center">
+					<g:VerticalPanel width="100%" horizontalAlignment="center">
+						<g:Image resource="{img.gwt}"/>
+			   			<g:Label styleName='{myStyle.hero-name}'>GWT</g:Label>
+					</g:VerticalPanel>
+				</g:cell>
+		   		<g:cell verticalAlignment="middle" horizontalAlignment="center">
+		   			<g:HTMLPanel styleName='{myStyle.hero-title}'>
+			   			<h1>Google Web toolkit meets Chart.JS</h1>
+			   			<h1>by CHARBA</h1>
+			   			<br/>
+			   			<p>CHARBA is a GWT module which wraps Chart.JS to enable charts on your GWT web application.</p>
+			   			<br/>
+			   			<p>This is a showcase about how to use some CHARBA features.</p>
+					</g:HTMLPanel>
+				</g:cell>
+				<g:cell verticalAlignment="top" horizontalAlignment="center">
+					<g:VerticalPanel width="100%" horizontalAlignment="center">
+						<g:Image resource="{img.chartjs}"/>
+			   			<g:Label styleName='{myStyle.hero-name}'>Chart.js</g:Label>
+					</g:VerticalPanel>
+				</g:cell>
+	       </g:HorizontalPanel>
        </g:HorizontalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -18,8 +18,8 @@ import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.EmbeddedResources;
 import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.client.utils.JsWindowHelper;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LineMyChart;
-import org.pepstock.charba.showcase.client.cases.jsinterop.MyHorizontalBarController;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
 import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.views.MainView;
@@ -65,7 +65,7 @@ public class Charba_Showcase implements EntryPoint {
 
 			@Override
 			public ControllerType getType() {
-				return LineMyChart.TYPE;
+				return MyLineChart.TYPE;
 			}
 
 			@Override

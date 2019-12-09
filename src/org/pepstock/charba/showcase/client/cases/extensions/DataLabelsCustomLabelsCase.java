@@ -17,6 +17,7 @@ import org.pepstock.charba.client.datalabels.callbacks.FontCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -47,9 +48,8 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setTop(32);
 		chart.getOptions().getElements().getLine().setFill(false);
 		
-		chart.getOptions().getPlugins().setEnabled("legend", false);
-		chart.getOptions().getPlugins().setEnabled("title", false);	
-
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

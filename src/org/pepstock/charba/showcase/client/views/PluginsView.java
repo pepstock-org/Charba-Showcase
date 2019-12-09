@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.jsinterop.HtmlLegendBuilderBarView;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundColorBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundLinearGradientBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundPatternLineCase;
@@ -15,6 +14,7 @@ import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBar
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorDrillingDownCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorZoomingCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendBuilderBarCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -138,7 +138,7 @@ public class PluginsView extends AbstractView {
 	@UiHandler("htmlLegendBarPlugin")
 	protected void handleHtmlLegendBarPlugin(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new HtmlLegendBuilderBarView());
+		content.add(new HtmlLegendBuilderBarCase());
 	}
 
 	// ----------------------------------------------

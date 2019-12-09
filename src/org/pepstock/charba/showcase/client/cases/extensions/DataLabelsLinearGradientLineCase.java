@@ -21,6 +21,7 @@ import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -55,8 +56,8 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
 		
-		chart.getOptions().getPlugins().setEnabled("legend", false);
-		chart.getOptions().getPlugins().setEnabled("title", false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

@@ -15,6 +15,7 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -50,8 +51,8 @@ public class DataLabelsDatasetCase extends BaseComposite{
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getElements().getLine().setBorderWidth(2);
 		
-		chart.getOptions().getPlugins().setEnabled("legend", false);
-		chart.getOptions().getPlugins().setEnabled("title", false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

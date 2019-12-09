@@ -49,9 +49,6 @@ public class TilesBarCase extends BaseComposite{
 			
 			@Override
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
-				org.pepstock.charba.client.utils.Window.getConsole().log("generateLegendLabels");
-				org.pepstock.charba.client.utils.Window.getConsole().log(defaultLabels.get(0).getFillStyleAsCanvasPattern());
-				//org.pepstock.charba.client.utils.Window.getConsole().log(chart.getData().getDatasets().get(0));
 				return defaultLabels;
 			}
 		});

@@ -18,6 +18,7 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
@@ -57,6 +58,18 @@ public class DataLabelsListenersCase extends BaseComposite{
 	public DataLabelsListenersCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
+//		#logs > div {
+//			border-bottom: 1px dashed #ddd;
+//			padding: 0.5em 1em;
+//		}
+
+//		#logs > div:nth-child(n) { opacity: 0.2; }
+//		#logs > div:nth-child(5) { opacity: 0.4; }
+//		#logs > div:nth-child(4) { opacity: 0.6; }
+//		#logs > div:nth-child(3) { opacity: 0.8; }
+//		#logs > div:nth-child(2) { opacity: 1.0; }
+//		#logs > div:nth-child(1) { opacity: 1.0; font-weight: bold; }
+		
 		log.getElement().appendChild(element);
 		
 		chart.getOptions().setResponsive(true);
@@ -69,8 +82,8 @@ public class DataLabelsListenersCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
 		
-		chart.getOptions().getPlugins().setEnabled("legend", false);
-		chart.getOptions().getPlugins().setEnabled("title", false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

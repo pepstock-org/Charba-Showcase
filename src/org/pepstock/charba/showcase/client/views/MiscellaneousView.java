@@ -1,21 +1,26 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.jsinterop.AnimationView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.HTMLAnnnotationByElementView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.HTMLAnnnotationView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.HorizontalFlagsBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.HorizontalMyFlagsBarView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LineCallbackView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LineInterpolationView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.LineMyView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PointSizeLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PointStyleImageView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.PointStyleLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.StandingView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.SteppedLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.StyledLineView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.VerticalBarCallbackView;
-import org.pepstock.charba.showcase.client.cases.jsinterop.VerticalBarPluginLabelView;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.AnimationCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointSizesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsImageOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingStylesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksBubbleCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksDoughnutCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksPieCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksPolarAreaCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksRadarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationByElementCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.InterpolationOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.SimpleLabelPluginOnBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.StandingPluginOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.SteppedLineOnLineCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -46,109 +51,139 @@ public class MiscellaneousView extends AbstractView {
 	@UiHandler("animation")
 	protected void handleAnimation(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnimationView());
+		 content.add(new AnimationCase());
 	}
 	
 	@UiHandler("miscellaneousSteppedOnLine")
 	protected void handleMiscellaneousSteppedOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new SteppedLineView());
+		content.add(new SteppedLineOnLineCase());
 	}
 
 	@UiHandler("miscellaneousInterpolationOnLine")
 	protected void handleMiscellaneousInterpolationOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LineInterpolationView());
+		content.add(new InterpolationOnLineCase());
 	}
 
 	@UiHandler("miscellaneousStylesOnLine")
 	protected void handleMiscellaneousStylesOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new StyledLineView());
+		content.add(new ApplyingStylesOnLineCase());
 	}
 
 	@UiHandler("miscellaneousPointStylesOnLine")
 	protected void handleMiscellaneousPointStylesOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new PointStyleLineView());
+		content.add(new ApplyingPointStylesOnLineCase());
 	}
 
 	@UiHandler("miscellaneousPointStyleImagesOnLine")
 	protected void handleMiscellaneousPointStyleImagesOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new PointStyleImageView());
+		 content.add(new ApplyingPointStylesAsImageOnLineCase());
 	}
 
 	@UiHandler("miscellaneousPointSizeOnLine")
 	protected void handleMiscellaneousPointSizeOnLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new PointSizeLineView());
+		content.add(new ApplyingPointSizesOnLineCase());
 	}
 	
 	// ----------------------------------------------
 	// plugins
 	// ----------------------------------------------
 
-	@UiHandler("miscellaneousPluginLabel")
+	@UiHandler("miscellaneousSimplePluginLabelOnBar")
 	protected void handleMiscellaneousPluginLabel(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new VerticalBarPluginLabelView());
+		 content.add(new SimpleLabelPluginOnBarCase());
 	}
 	
 	@UiHandler("miscellaneousPluginFlags")
 	protected void handleMiscellaneousPluginFlags(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HorizontalFlagsBarView());
+		 content.add(new FlagsPluginOnBarCase());
 	}
 	
 	@UiHandler("miscellaneousPluginStandings")
 	protected void handleMiscellaneousPluginStandings(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new StandingView());
+		 content.add(new StandingPluginOnLineCase());
 	}
 
 	@UiHandler("htmlAnnotation")
 	protected void handleHTMLAnnotation(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HTMLAnnnotationView());
+		 content.add(new HTMLAnnnotationCase());
 	}
 
 	@UiHandler("htmlAnnotationByElement")
 	protected void handleHTMLAnnotationByElement(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HTMLAnnnotationByElementView());
+		 content.add(new HTMLAnnnotationByElementCase());
 	}
 
 	// ----------------------------------------------
 	// callbacks
 	// ----------------------------------------------
 
-	@UiHandler("barCallback")
+	@UiHandler("callbacksOnBar")
 	protected void handleBarVerticalCallback(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new VerticalBarCallbackView());
+		content.add(new CallbacksBarCase());
 	}
 
-	@UiHandler("lineCallback")
+	@UiHandler("callbacksOnLine")
 	protected void handleLineCallback(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LineCallbackView());
+		content.add(new CallbacksLineCase());
 	}
-	
+
+	@UiHandler("callbacksOnRadar")
+	protected void handleRadarCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksRadarCase());
+	}
+
+	@UiHandler("callbacksOnDoughnut")
+	protected void handleDoughnutCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksDoughnutCase());
+	}
+
+	@UiHandler("callbacksOnPie")
+	protected void handlePieCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksPieCase());
+	}
+
+	@UiHandler("callbacksOnPolar")
+	protected void handlePolarCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksPolarAreaCase());
+	}
+
+	@UiHandler("callbacksOnBubble")
+	protected void handleBubbleCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksBubbleCase());
+	}
+
 	// ----------------------------------------------
 	// Controllers
 	// ----------------------------------------------
 
-	@UiHandler("myLine")
+	@UiHandler("controllerMyLine")
 	protected void handleMyLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new LineMyView());
+		content.add(new ControllerMyLineCase());
 	}
 
-	@UiHandler("myHorizontalBar")
+	@UiHandler("controllerMyHorizontalBar")
 	protected void handleMyHorizontalBar(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new HorizontalMyFlagsBarView());
+		content.add(new ControllerMyHorizontalBarCase());
 	}
 
 
