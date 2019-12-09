@@ -44,7 +44,8 @@
 					<g:Label ui:field="legendPositioning" styleName='{myStyle.myLabel}'>Positioning</g:Label>
 					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style from line datasets</g:Label>
 					<g:Label ui:field="legendCallback" styleName='{myStyle.myLabel}'>Callbacks (TBD)</g:Label>
-					<g:Label ui:field="legendEvent" styleName='{myStyle.myLabel}'>Events (TBD)</g:Label>
+					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Click event</g:Label>
+					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Hover and leave event</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

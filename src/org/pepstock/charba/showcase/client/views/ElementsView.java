@@ -3,6 +3,8 @@ package org.pepstock.charba.showcase.client.views;
 import org.pepstock.charba.showcase.client.cases.elements.FilteringAxisLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesDisplayCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesStyleCase;
+import org.pepstock.charba.showcase.client.cases.elements.LegendClickEventCase;
+import org.pepstock.charba.showcase.client.cases.elements.LegendHoverAndLeaveEventsCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendPositioningCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.LogarithmicAxisOnLineCase;
@@ -58,6 +60,18 @@ public class ElementsView extends AbstractView {
 	protected void handleLegendStyle(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new LegendStyleCase());
+	}
+
+	@UiHandler("legendClickEvent")
+	protected void handleLegendClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LegendClickEventCase());
+	}
+
+	@UiHandler("legendHoverAndLeaveEvent")
+	protected void handleLegendHoverAndLeaveEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LegendHoverAndLeaveEventsCase());
 	}
 
 	// ----------------------------------------------
