@@ -26,18 +26,16 @@ import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.PreElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DataLabelsListenersCase extends BaseComposite{
@@ -51,26 +49,10 @@ public class DataLabelsListenersCase extends BaseComposite{
 	LineChart chart;
 
 	@UiField
-	SimplePanel log;
+	LogView mylog;
 	
-	PreElement element = Document.get().createPreElement();
-
 	public DataLabelsListenersCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-//		#logs > div {
-//			border-bottom: 1px dashed #ddd;
-//			padding: 0.5em 1em;
-//		}
-
-//		#logs > div:nth-child(n) { opacity: 0.2; }
-//		#logs > div:nth-child(5) { opacity: 0.4; }
-//		#logs > div:nth-child(4) { opacity: 0.6; }
-//		#logs > div:nth-child(3) { opacity: 0.8; }
-//		#logs > div:nth-child(2) { opacity: 1.0; }
-//		#logs > div:nth-child(1) { opacity: 1.0; font-weight: bold; }
-		
-		log.getElement().appendChild(element);
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
@@ -159,7 +141,7 @@ public class DataLabelsListenersCase extends BaseComposite{
 		option.setColor(HtmlColor.WHITE);
 		option.getFont().setWeight(Weight.BOLD);
 		
-		MyListener listener = new MyListener(element);
+		MyListener listener = new MyListener();
 		option.setListenersHandler(listener);
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
@@ -189,25 +171,17 @@ public class DataLabelsListenersCase extends BaseComposite{
 		Window.open(getUrl(), "_blank", "");
 	}
 	
-	static class MyListener extends DataLabelsPointerHandler{
+	class MyListener extends DataLabelsPointerHandler{
 		
-		final PreElement element;
-
-		MyListener(PreElement element) {
+		MyListener() {
 			super();
-			this.element = element;
 		}
 
 		@Override
 		public boolean onLeave(IsChart chart, ScriptableContext context) {
 			super.onLeave(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			DivElement newDiv= Document.get().createDivElement();
-			newDiv.setInnerHTML("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-			element.insertBefore(newDiv, element.getFirstChild());
-			if (element.getChildCount() > 8) {
-				element.removeChild(element.getLastChild());
-			}
+			mylog.addLogEvent("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
 			return true;
 		}
 
@@ -215,12 +189,7 @@ public class DataLabelsListenersCase extends BaseComposite{
 		public boolean onEnter(IsChart chart, ScriptableContext context) {
 			super.onEnter(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			DivElement newDiv= Document.get().createDivElement();
-			newDiv.setInnerHTML("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-			element.insertBefore(newDiv, element.getFirstChild());
-			if (element.getChildCount() > 8) {
-				element.removeChild(element.getLastChild());
-			}
+			mylog.addLogEvent("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
 			return true;
 		}
 
@@ -241,12 +210,8 @@ public class DataLabelsListenersCase extends BaseComposite{
 				sb.append("Value: <b>").append(labels.getStrings(item.getIndex()).get(0)).append("</b><br>");
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
-			DivElement newDiv= Document.get().createDivElement();
-			newDiv.setInnerHTML("> CLICK: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")");
-			element.insertBefore(newDiv, element.getFirstChild());
-			if (element.getChildCount() > 8) {
-				element.removeChild(element.getLastChild());
-			}
+
+			mylog.addLogEvent("> CLICK: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
 			chart.fireEvent(new DatasetSelectionEvent(Document.get().createChangeEvent(), item));
 			return true;
 		}

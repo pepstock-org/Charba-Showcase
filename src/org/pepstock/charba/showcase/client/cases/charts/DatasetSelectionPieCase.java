@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class DatasetSelectionPieCase extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Pie Chart");
+		chart.getOptions().getTitle().setText("Selecting dataset on pie chart");
 		
 		chart.addHandler(new DatasetSelectionEventHandler() {
 			
@@ -66,7 +66,6 @@ public class DatasetSelectionPieCase extends BaseComposite{
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
-
 
 		ChartPointerOptions op = new ChartPointerOptions();
 		op.setElements(PointerElement.DATASET);

@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.jsinterop;
+package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
@@ -9,12 +9,8 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.AxisClickEvent;
-import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
-import org.pepstock.charba.client.events.TitleClickEvent;
-import org.pepstock.charba.client.events.TitleClickEventHandler;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
@@ -30,23 +26,23 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DatasetSelectionCase extends BaseComposite{
+public class DatasetSelectionBarCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, DatasetSelectionCase> {
+	interface ViewUiBinder extends UiBinder<Widget, DatasetSelectionBarCase> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public DatasetSelectionCase() {
+	public DatasetSelectionBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
+		chart.getOptions().getTitle().setText("Selecting dataset on bar chart");
 		
 		chart.addHandler(new DatasetSelectionEventHandler() {
 			
@@ -66,32 +62,6 @@ public class DatasetSelectionCase extends BaseComposite{
 				}
 			}
 		}, DatasetSelectionEvent.TYPE);
-		
-		chart.addHandler(new TitleClickEventHandler() {
-			
-			@Override
-			public void onClick(TitleClickEvent event) {
-				StringBuilder sb1 = new StringBuilder();
-				for (String t : event.getItem().getText()) {
-					sb1.append(t);
-				}
-				StringBuilder sb = new StringBuilder();
-				sb.append("Ttile: <b>").append(sb1).append("</b><br>");
-				new Toast("Title Selected!", sb.toString()).show();
-			}
-		}, TitleClickEvent.TYPE);
-		
-		chart.addHandler(new AxisClickEventHandler() {
-			
-			@Override
-			public void onClick(AxisClickEvent event) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("Id: <b>").append(event.getItem().getId()).append("</b><br>");
-				sb.append("Type: <b>").append(event.getItem().getType()).append("</b><br>");
-				sb.append("Has axis: <b>").append(event.getAxis() != null).append("</b><br>");
-				new Toast("Axis Selected!", sb.toString()).show();
-			}
-		}, AxisClickEvent.TYPE);
 		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -113,10 +83,14 @@ public class DatasetSelectionCase extends BaseComposite{
 		dataset2.setBorderWidth(1);
 		dataset2.setData(getRandomDigits(months));
 		
-		chart.getPlugins().add(new ChartPointer());
-
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
+		
+		ChartPointerOptions op = new ChartPointerOptions();
+		op.setElements(PointerElement.DATASET);
+		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, op);
+		chart.getPlugins().add(new ChartPointer());
+
 	}
 
 	@UiHandler("randomize")
@@ -124,10 +98,6 @@ public class DatasetSelectionCase extends BaseComposite{
 		for (Dataset dataset : chart.getData().getDatasets()){
 			dataset.setData(getRandomDigits(months));
 		}
-		ChartPointerOptions op = new ChartPointerOptions();
-		op.setElements(PointerElement.DATASET);
-		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, op);
-		
 		chart.update();
 		
 	}

@@ -3,7 +3,12 @@ package org.pepstock.charba.showcase.client.views;
 import org.pepstock.charba.showcase.client.cases.charts.AreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.BarCase;
 import org.pepstock.charba.showcase.client.cases.charts.BubbleCase;
+import org.pepstock.charba.showcase.client.cases.charts.ChartClickEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.ChartHoverEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.ChartResizeEventCase;
 import org.pepstock.charba.showcase.client.cases.charts.ComboBarLineCase;
+import org.pepstock.charba.showcase.client.cases.charts.DatasetSelectionBarCase;
+import org.pepstock.charba.showcase.client.cases.charts.DatasetSelectionPieCase;
 import org.pepstock.charba.showcase.client.cases.charts.DoughnutCase;
 import org.pepstock.charba.showcase.client.cases.charts.GaugeCase;
 import org.pepstock.charba.showcase.client.cases.charts.HorizontalBarCase;
@@ -175,4 +180,38 @@ public class ChartsView extends AbstractView {
 		content.add(new GaugeCase());
 	}
 
+	// ----------------------------------------------
+	// Events
+	// ----------------------------------------------
+
+	@UiHandler("chartClickEvent")
+	protected void handleChartClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ChartClickEventCase());
+	}
+
+	@UiHandler("chartHoverEvent")
+	protected void handleChartHoverEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ChartHoverEventCase());
+	}
+
+	@UiHandler("chartResizeEvent")
+	protected void handleChartResizeEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ChartResizeEventCase());
+	}
+
+	@UiHandler("chartDatasetSelectionEventOnBar")
+	protected void handleChartDatasetSelectionEventOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetSelectionBarCase());
+	}
+	
+	@UiHandler("chartDatasetSelectionEventOnPie")
+	protected void handleChartDatasetSelectionEventOnPie(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetSelectionPieCase());
+	}
+	
 }

@@ -43,7 +43,7 @@
 			horizontalAlignment="center"> available out of the box by CHART.JS or by CHARBA</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
-			<g:cell width="33%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Charts</g:Label>
@@ -59,7 +59,7 @@
 					<g:Label ui:field="bubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="33%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Other charts</g:Label>
@@ -81,12 +81,23 @@
 					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="33%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Extended Charts</g:Label>
 					<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
 					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Events</g:Label>
+					<g:Label ui:field="chartClickEvent" styleName='{myStyle.myLabel}'>Click event</g:Label>
+					<g:Label ui:field="chartHoverEvent" styleName='{myStyle.myLabel}'>Hover event</g:Label>
+					<g:Label ui:field="chartResizeEvent" styleName='{myStyle.myLabel}'>Resize event</g:Label>
+					<g:Label ui:field="chartDatasetSelectionEventOnBar" styleName='{myStyle.myLabel}'>Selecting a dataset on bar chart</g:Label>
+					<g:Label ui:field="chartDatasetSelectionEventOnPie" styleName='{myStyle.myLabel}'>Selecting a dataset on pie chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>
