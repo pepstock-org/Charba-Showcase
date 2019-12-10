@@ -55,7 +55,7 @@ public class ChartClickEventCase extends BaseComposite{
 			
 			@Override
 			public void onClick(ChartClickEvent event) {
-				mylog.addLogEvent("> CLICK: " + event.getNativeEvent().getScreenX() + "-" + event.getNativeEvent().getScreenY()); 
+				mylog.addLogEvent("> CLICK: ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY()); 
 				Defaults.get().invokeChartOnClick(event);
 			}
 			

@@ -40,9 +40,6 @@ public class ChartsView extends AbstractView {
 	interface DemoViewUiBinder extends UiBinder<Widget, ChartsView> {
 	}
 
-//	@UiField
-//	HorizontalPanel coloring;
-	
 	public ChartsView(VerticalPanel content) {
 		super(content);
 		initWidget(uiBinder.createAndBindUi(this));

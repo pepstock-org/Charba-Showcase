@@ -181,7 +181,7 @@ public class DataLabelsListenersCase extends BaseComposite{
 		public boolean onLeave(IsChart chart, ScriptableContext context) {
 			super.onLeave(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			mylog.addLogEvent("> LEAVE: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
+			mylog.addLogEvent("> LEAVE: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")"); 
 			return true;
 		}
 
@@ -189,7 +189,7 @@ public class DataLabelsListenersCase extends BaseComposite{
 		public boolean onEnter(IsChart chart, ScriptableContext context) {
 			super.onEnter(chart, context);
 			LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-			mylog.addLogEvent("> ENTER: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
+			mylog.addLogEvent("> ENTER: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")"); 
 			return true;
 		}
 
@@ -210,8 +210,7 @@ public class DataLabelsListenersCase extends BaseComposite{
 				sb.append("Value: <b>").append(labels.getStrings(item.getIndex()).get(0)).append("</b><br>");
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
-
-			mylog.addLogEvent("> CLICK: " + context.getDatasetIndex() + "-" + context.getIndex() + " (" + ds.getData().get(context.getIndex()) + ")"); 
+			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")"); 
 			chart.fireEvent(new DatasetSelectionEvent(Document.get().createChangeEvent(), item));
 			return true;
 		}

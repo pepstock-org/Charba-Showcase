@@ -59,7 +59,7 @@ public class LegendClickEventCase extends BaseComposite{
 			
 			@Override
 			public void onClick(LegendClickEvent event) {
-				mylog.addLogEvent("> CLICK: " + event.getItem().getText() + " - "+ event.getItem().getDatasetIndex()); 
+				mylog.addLogEvent("> CLICK: Dataset label:" + event.getItem().getText() + ", index: "+ event.getItem().getDatasetIndex()); 
 				if (cascade.getValue()) {
 					Defaults.get().invokeLegendOnClick(event);
 				}

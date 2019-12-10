@@ -45,7 +45,7 @@ public class MainView extends Composite {
 				}
 				currentPanel = (HorizontalPanel) w.getParent();
 				currentPanel.getElement().getStyle().setBorderColor("#d0d0d0");
-				currentPanel.getElement().getStyle().setBorderWidth(2, Unit.PX);
+				currentPanel.getElement().getStyle().setBorderWidth(3, Unit.PX);
 				currentPanel.getElement().getStyle().setBorderStyle(BorderStyle.DASHED);
 				return true;
 			}

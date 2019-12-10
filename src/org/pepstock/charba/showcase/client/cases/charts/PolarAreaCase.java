@@ -40,10 +40,7 @@ public class PolarAreaCase extends BaseComposite{
 		axis.getTicks().setBeginAtZero(true);
 		axis.getTicks().setReverse(true);
 		axis.getGrideLines().setCircular(true);
-		axis.getTicks().setFontColor(HtmlColor.DARK_GRAY);
-		axis.getAngleLines().setColor(HtmlColor.DARK_GRAY);
-		axis.getPointLabels().setFontColor(HtmlColor.DARK_GRAY);
-		axis.getGrideLines().setColor(HtmlColor.DARK_GRAY);
+		axis.getTicks().setFontColor(HtmlColor.GRAY);
 		chart.getOptions().setAxis(axis);
 		
 		

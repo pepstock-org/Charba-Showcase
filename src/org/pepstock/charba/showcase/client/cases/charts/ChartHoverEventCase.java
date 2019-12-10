@@ -55,7 +55,7 @@ public class ChartHoverEventCase extends BaseComposite{
 			
 			@Override
 			public void onHover(ChartHoverEvent event) {
-				mylog.addLogEvent("> HOVER: " + event.getNativeEvent().getScreenX() + "-" + event.getNativeEvent().getScreenY() + ")"); 
+				mylog.addLogEvent("> HOVER: ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY()); 
 				Defaults.get().invokeChartOnHover(event);
 			}
 			

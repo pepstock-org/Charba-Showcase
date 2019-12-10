@@ -14,8 +14,8 @@
 	</ui:style>
 
 	<g:HTMLPanel width="100%">
-		<g:VerticalPanel horizontalAlignment="left">
-			<g:Label  ui:field="titleLog" styleName='{myLogs.myCategory}'>Event logs</g:Label>
+		<g:VerticalPanel width="100%" horizontalAlignment="left">
+			<g:Label ui:field="titleLog" styleName='{myLogs.myCategory}' width="100%">Event logs</g:Label>
 			<g:VerticalPanel ui:field="log" width="100%" horizontalAlignment="left"/>
 		</g:VerticalPanel>
 	</g:HTMLPanel>

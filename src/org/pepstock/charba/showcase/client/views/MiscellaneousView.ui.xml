@@ -64,7 +64,7 @@
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Plugins</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Implementing plugins</g:Label>
 					<g:Label ui:field="miscellaneousSimplePluginLabelOnBar" styleName='{myStyle.myLabel}'>Simple dataset labels</g:Label>
 					<g:Label ui:field="miscellaneousPluginFlags" styleName='{myStyle.myLabel}'>Flags as ticks</g:Label>
 					<g:Label ui:field="miscellaneousPluginStandings" styleName='{myStyle.myLabel}'>Standings chart</g:Label>
@@ -75,9 +75,9 @@
 			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Controllers</g:Label>
-					<g:Label ui:field="controllerMyLine" styleName='{myStyle.myLabel}'>My line by a controller</g:Label>
-					<g:Label ui:field="controllerMyHorizontalBar" styleName='{myStyle.myLabel}'>My horizontal bar by a controller</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Implementing controllers</g:Label>
+					<g:Label ui:field="controllerMyLine" styleName='{myStyle.myLabel}'>My simple line chart</g:Label>
+					<g:Label ui:field="controllerMyHorizontalBar" styleName='{myStyle.myLabel}'>My horizontal bar chart with flags</g:Label>
 				</g:VerticalPanel>
 			</g:cell>			
 		</g:HorizontalPanel>

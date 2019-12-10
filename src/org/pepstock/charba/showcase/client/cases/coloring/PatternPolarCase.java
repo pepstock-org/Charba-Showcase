@@ -59,6 +59,7 @@ public class PatternPolarCase extends BaseComposite {
 
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
+		axis.getGrideLines().setCircular(true);
 		chart.getOptions().setAxis(axis);
 
 		chart.getData().setLabels(getLabels(ITEMS));

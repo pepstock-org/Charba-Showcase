@@ -57,7 +57,7 @@ public class LegendHoverAndLeaveEventsCase extends BaseComposite{
 			
 			@Override
 			public void onHover(LegendHoverEvent event) {
-				mylog.addLogEvent("> HOVER: " + event.getItem().getText() + " - "+ event.getItem().getDatasetIndex()); 
+				mylog.addLogEvent("> HOVER: Legend text:" + event.getItem().getText() + ", dataset : "+ event.getItem().getDatasetIndex()); 
 				Defaults.get().invokeLegendOnHover(event);
 			}
 			
@@ -67,7 +67,7 @@ public class LegendHoverAndLeaveEventsCase extends BaseComposite{
 			
 			@Override
 			public void onLeave(LegendLeaveEvent event) {
-				mylog.addLogEvent("> LEAVE: " + event.getItem().getText() + " - "+ event.getItem().getDatasetIndex()); 
+				mylog.addLogEvent("> LEAVE: Legend text:" + event.getItem().getText() + ", dataset : "+ event.getItem().getDatasetIndex()); 
 				Defaults.get().invokeLegendOnLeave(event);
 			}
 			

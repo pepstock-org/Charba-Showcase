@@ -61,7 +61,7 @@ public class ChartResizeEventCase extends BaseComposite{
 			
 			@Override
 			public void onResize(ChartResizeEvent event) {
-				mylog.addLogEvent("> RESIZE: " + event.getSize().getWidth() + "-" + event.getSize().getHeight() + ")"); 
+				mylog.addLogEvent("> RESIZE: width: " + event.getSize().getWidth() + "px , height: " + event.getSize().getHeight() + "px"); 
 			}
 			
 		}, ChartResizeEvent.TYPE);
