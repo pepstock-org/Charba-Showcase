@@ -51,6 +51,9 @@
 					<g:Label ui:field="backgroundGradientOnBar" styleName='{myStyle.myLabel}'>Applying linear gradient on bar chart</g:Label>
 					<g:Label ui:field="backgroundGradientOnPie" styleName='{myStyle.myLabel}'>Applying radial gradient on pie chart</g:Label>
 					<g:Label ui:field="backgroundPatternOnLine" styleName='{myStyle.myLabel}'>Applying pattern on line chart</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
+					<g:Label ui:field="pointerCursorOnLine" styleName='{myStyle.myLabel}'>Setting cursor on line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"
@@ -61,8 +64,6 @@
 					<g:Label ui:field="datasetItemsSelectorLine" styleName='{myStyle.myLabel}'>Selecting on line chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorZooming" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorDrillingDown" styleName='{myStyle.myLabel}'>Drilling down on timeseries chart</g:Label>
-					<g:Label styleName='{myStyle.myCategory}'></g:Label>
-					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

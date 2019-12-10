@@ -26,6 +26,7 @@ import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPointStylesAs
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendRadialGradientCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendSplittingTextCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendStyleCase;
+import org.pepstock.charba.showcase.client.cases.plugins.PointerLineCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -223,4 +224,10 @@ public class PluginsView extends AbstractView {
 	// Chart pointer
 	// ----------------------------------------------
 
+	@UiHandler("pointerCursorOnLine")
+	protected void handlePointerCursorOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new PointerLineCase());
+	}
+	
 }
