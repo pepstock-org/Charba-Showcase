@@ -1,17 +1,22 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.HtmlLegendTextCallback;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.LegendLabels;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.client.items.LegendItem;
+import org.pepstock.charba.client.utils.Utilities;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -25,42 +30,26 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class HtmlLegendBuilderBarCase extends BaseComposite{
+public class HtmlLegendCustomCallbackCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, HtmlLegendBuilderBarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, HtmlLegendCustomCallbackCase> {
 	}
 
 	@UiField
 	BarChart chart;
 	
-	public HtmlLegendBuilderBarCase() {
+	public HtmlLegendCustomCallbackCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba Bar Chart");
-
-		chart.getPlugins().add(new HtmlLegend());
-		
-		HtmlLegendOptions defaultOptions = new HtmlLegendOptions();
-		defaultOptions.setMaximumLegendColumns(2);
-		defaultOptions.setLegendTextCallback(new HtmlLegendTextCallback() {
-			
-			@Override
-			public SafeHtml generateLegendText(IsChart chart, LegendItem item, String currentText) {
-				SafeHtmlBuilder builder = new SafeHtmlBuilder();
-				builder.appendHtmlConstant(currentText+" <BR> ECOCME");
-				return builder.toSafeHtml();
-			}
-		});
-		chart.getOptions().getPlugins().setOptions(HtmlLegend.ID, defaultOptions);
-
+		chart.getOptions().getTitle().setText("HTML legend callback to manage item text on bar chart");
 
 		BarDataset dataset1 = chart.newDataset();
-		dataset1.setLabel("dataset 1");
+		dataset1.setLabel("This is dataset 1 which contains data");
 		
 		IsColor color1 = Colors.ALL[0];
 		
@@ -71,7 +60,7 @@ public class HtmlLegendBuilderBarCase extends BaseComposite{
 		dataset1.setData(getRandomDigits(months));
 
 		BarDataset dataset2 = chart.newDataset();
-		dataset2.setLabel("dataset 2");
+		dataset2.setLabel("This is dataset 2 which contains data");
 		
 		IsColor color2 = Colors.ALL[1];
 		
@@ -82,6 +71,30 @@ public class HtmlLegendBuilderBarCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
+		
+		HtmlLegendOptions options = new HtmlLegendOptions();
+		options.setLegendTextCallback(new HtmlLegendTextCallback() {
+
+			Map<String, SafeHtml> values = new HashMap<>(); 
+
+			@Override
+			public SafeHtml generateLegendText(IsChart chart, LegendItem item, String currentText) {
+				if (!values.containsKey(currentText)) {
+					SafeHtmlBuilder builder = new SafeHtmlBuilder();
+					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");
+					newText = newText.replaceAll("which contains data", "<font style='color: "+item.getStrokeStyle().toRGBA()+"'>which contains data</font>");
+					builder.appendHtmlConstant(newText);
+					values.put(currentText, builder.toSafeHtml());
+					LegendLabels labels = chart.getOptions().getLegend().getLabels();
+					Charba_Showcase.LOG.info(Utilities.toCSSFontProperty(labels.getFontStyle(), labels.getFontSize(), labels.getFontFamily()));
+				}
+				return values.get(currentText);
+			}
+		});
+		
+		chart.getOptions().getPlugins().setOptions(HtmlLegend.ID, options);
+		chart.getPlugins().add(new HtmlLegend());
+		
 	}
 
 	@UiHandler("randomize")
@@ -97,7 +110,7 @@ public class HtmlLegendBuilderBarCase extends BaseComposite{
 		List<Dataset> datasets = chart.getData().getDatasets();
 		
 		BarDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("This is dataset "+(datasets.size()+1)+" which contains data ");
 		
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.2));

@@ -41,9 +41,9 @@ public class HomeView extends BaseComposite{
 
 	private static final String COLOR = "#f27173";
 	
-	private static final String[] LABELS = {"", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", ""};
+	private static final String[] LABELS = {"", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", ""};
 	
-	private static final double[] VALUES = {Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, Double.NaN};
+	private static final double[] VALUES = {Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2319, Double.NaN};
 
 	// it formats the number of ticks
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
@@ -111,7 +111,7 @@ public class HomeView extends BaseComposite{
 		
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Dimension");
-		axis2.getScaleLabel().setFontColor(HtmlColor.GRAY);
+		axis2.getScaleLabel().setFontColor(HtmlColor.BLACK);
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);

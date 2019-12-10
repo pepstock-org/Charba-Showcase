@@ -39,9 +39,8 @@
 
 	<g:HTMLPanel>
 	<g:HorizontalPanel width="100%" height="100%">
-		<g:cell width="250px" verticalAlignment="top"
+		<g:cell width="250px" height="100%" verticalAlignment="top"
 				horizontalAlignment="left">
-	
 		<g:VerticalPanel width="250px">
 	        <g:Label ui:field="title" styleName='{internalStyle.myTitle}' horizontalAlignment="center"> showcase</g:Label>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%">
@@ -94,10 +93,8 @@
 	     	</g:HorizontalPanel>
 		</g:VerticalPanel>
 		</g:cell>
-		<g:cell width="90%" verticalAlignment="top">
-			<g:ScrollPanel ui:field="scrollPanel" width="100%" height="100%">
-				<g:VerticalPanel width="100%" ui:field="content" />
-			</g:ScrollPanel>
+		<g:cell width="90%" height="100%" verticalAlignment="top">
+			<g:VerticalPanel width="100%" ui:field="content" />
 		</g:cell>
 	</g:HorizontalPanel>
 	</g:HTMLPanel>

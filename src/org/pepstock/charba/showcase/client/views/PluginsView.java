@@ -14,7 +14,18 @@ import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBar
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorDrillingDownCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorZoomingCase;
-import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendBuilderBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendCustomCallbackCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendLinearGradientCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendMaxItemsCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPatternCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPieCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPointStylesAsImageCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendRadialGradientCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendSplittingTextCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendStyleCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -135,12 +146,79 @@ public class PluginsView extends AbstractView {
 	// html legend
 	// ----------------------------------------------
 
-	@UiHandler("htmlLegendBarPlugin")
-	protected void handleHtmlLegendBarPlugin(ClickEvent event) {
+	@UiHandler("htmlLegendOnBar")
+	protected void handleHtmlLegendBar(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new HtmlLegendBuilderBarCase());
+		content.add(new HtmlLegendBarCase());
 	}
 
+	@UiHandler("htmlLegendOnLine")
+	protected void handleHtmlLegendLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendLineCase());
+	}
+
+	@UiHandler("htmlLegendOnHorizontalBar")
+	protected void handleHtmlLegendHorizontalBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendHorizontalBarCase());
+	}
+
+	@UiHandler("htmlLegendOnPie")
+	protected void handleHtmlLegendPie(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendPieCase());
+	}
+
+	@UiHandler("htmlLegendMaxItems")
+	protected void handleHtmlLegendMaxItems(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendMaxItemsCase());
+	}
+
+	@UiHandler("htmlLegendLineSeparator")
+	protected void handleHtmlLegendLineSeparator(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendSplittingTextCase());
+	}
+
+	@UiHandler("htmlLegendWithLinearGradient")
+	protected void handleHtmlLegendLinearGradient(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendLinearGradientCase());
+	}
+
+	@UiHandler("htmlLegendWithRadialGradient")
+	protected void handleHtmlLegendRadialGradient(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendRadialGradientCase());
+	}
+	
+	@UiHandler("htmlLegendWithPattern")
+	protected void handleHtmlLegendPattern(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendPatternCase());
+	}
+
+	@UiHandler("htmlLegendWithPointStyle")
+	protected void handleHtmlLegendPointStyle(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendStyleCase());
+	}
+
+	@UiHandler("htmlLegendWithPointStyleImage")
+	protected void handleHtmlLegendPointStyleImage(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendPointStylesAsImageCase());
+	}
+
+	@UiHandler("htmlLegendWithCallback")
+	protected void handleHtmlLegendWithCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendCustomCallbackCase());
+	}
+	
+	
 	// ----------------------------------------------
 	// Chart pointer
 	// ----------------------------------------------

@@ -98,8 +98,6 @@ public class Charba_Showcase implements EntryPoint {
 		
 		Injector.ensureCssInjected(MyResources.INSTANCE.legend());
 
-
-		//RootPanel.get().add(new DemoView());
 		RootPanel.get().add(new MainView());
 		
 	}

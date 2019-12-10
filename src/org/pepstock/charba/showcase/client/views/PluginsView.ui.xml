@@ -43,7 +43,7 @@
 			horizontalAlignment="center"> provided out of the box by CHARBA</g:Label>
 		<g:HorizontalPanel width="100%"
 			horizontalAlignment="center">
-			<g:cell width="20%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Chart background</g:Label>
@@ -53,7 +53,7 @@
 					<g:Label ui:field="backgroundPatternOnLine" styleName='{myStyle.myLabel}'>Applying pattern on line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="20%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Dataset items selector</g:Label>
@@ -61,9 +61,11 @@
 					<g:Label ui:field="datasetItemsSelectorLine" styleName='{myStyle.myLabel}'>Selecting on line chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorZooming" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorDrillingDown" styleName='{myStyle.myLabel}'>Drilling down on timeseries chart</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="20%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Color schemes</g:Label>
@@ -75,19 +77,30 @@
 					<g:Label ui:field="colorSchemeOnBubble" styleName='{myStyle.myLabel}'>Coloring bubble chart by scheme</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="20%" verticalAlignment="top"
+			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>HTML legend</g:Label>
-					<g:Label ui:field="htmlLegendBarPlugin" styleName='{myStyle.myLabel}'>HTML legend builder ()bar)</g:Label>
+					<g:Label ui:field="htmlLegendOnBar" styleName='{myStyle.myLabel}'>Using a bar chart</g:Label>
+					<g:Label ui:field="htmlLegendOnHorizontalBar" styleName='{myStyle.myLabel}'>Using a horizontal bar chart</g:Label>
+					<g:Label ui:field="htmlLegendOnLine" styleName='{myStyle.myLabel}'>Using a line chart</g:Label>
+					<g:Label ui:field="htmlLegendOnPie" styleName='{myStyle.myLabel}'>Using a pie chart</g:Label>
+					<g:Label ui:field="htmlLegendMaxItems" styleName='{myStyle.myLabel}'>Setting max legend items per row</g:Label>
+					<g:Label ui:field="htmlLegendLineSeparator" styleName='{myStyle.myLabel}'>Splitting text by line separator</g:Label>
+					<g:Label ui:field="htmlLegendWithLinearGradient" styleName='{myStyle.myLabel}'>Managing linear gradients</g:Label>
+					<g:Label ui:field="htmlLegendWithRadialGradient" styleName='{myStyle.myLabel}'>Managing radial gradients</g:Label>
+					<g:Label ui:field="htmlLegendWithPattern" styleName='{myStyle.myLabel}'>Managing patterns</g:Label>
+					<g:Label ui:field="htmlLegendWithPointStyle" styleName='{myStyle.myLabel}'>Managing point styles</g:Label>
+					<g:Label ui:field="htmlLegendWithPointStyleImage" styleName='{myStyle.myLabel}'>Managing image as point styles</g:Label>
+					<g:Label ui:field="htmlLegendWithCallback" styleName='{myStyle.myLabel}'>Custom legend item text by callback</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<g:cell width="20%" verticalAlignment="top"
+			<!-- g:cell width="20%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
 				</g:VerticalPanel>
-			</g:cell>
+			</g:cell -->
 		</g:HorizontalPanel>
 	</g:VerticalPanel>
 </ui:UiBinder> 
