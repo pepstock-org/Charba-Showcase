@@ -9,9 +9,10 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.events.ChartClickEvent;
-import org.pepstock.charba.client.events.ChartClickEventHandler;
-import org.pepstock.charba.client.impl.plugins.ChartPointer;
+import org.pepstock.charba.client.events.LegendHoverEvent;
+import org.pepstock.charba.client.events.LegendHoverEventHandler;
+import org.pepstock.charba.client.events.LegendLeaveEvent;
+import org.pepstock.charba.client.events.LegendLeaveEventHandler;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
@@ -24,20 +25,20 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ChartClickEventCase extends BaseComposite{
+public class LegendHoverAndLeaveEventsCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ChartClickEventCase> {
+	interface ViewUiBinder extends UiBinder<Widget, LegendHoverAndLeaveEventsCase> {
 	}
 
 	@UiField
 	LineChart chart;
-
+	
 	@UiField
 	LogView mylog;
 	
-	public ChartClickEventCase() {
+	public LegendHoverAndLeaveEventsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -45,19 +46,29 @@ public class ChartClickEventCase extends BaseComposite{
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Click events on line chart");
+		chart.getOptions().getTitle().setText("Hover and leave legend events on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 		
-		chart.addHandler(new ChartClickEventHandler() {
+		chart.addHandler(new LegendHoverEventHandler() {
 			
 			@Override
-			public void onClick(ChartClickEvent event) {
-				mylog.addLogEvent("> CLICK: ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY()); 
-				Defaults.get().invokeChartOnClick(event);
+			public void onHover(LegendHoverEvent event) {
+				mylog.addLogEvent("> HOVER: Legend text:" + event.getItem().getText() + ", dataset : "+ event.getItem().getDatasetIndex()); 
+				Defaults.get().invokeLegendOnHover(event);
 			}
 			
-		}, ChartClickEvent.TYPE);
-		
+		}, LegendHoverEvent.TYPE);
+
+		chart.addHandler(new LegendLeaveEventHandler() {
+			
+			@Override
+			public void onLeave(LegendLeaveEvent event) {
+				mylog.addLogEvent("> LEAVE: Legend text:" + event.getItem().getText() + ", dataset : "+ event.getItem().getDatasetIndex()); 
+				Defaults.get().invokeLegendOnLeave(event);
+			}
+			
+		}, LegendLeaveEvent.TYPE);
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -101,8 +112,6 @@ public class ChartClickEventCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		
-		chart.getPlugins().add(ChartPointer.get());
-
 	}
 	
 	@UiHandler("randomize")

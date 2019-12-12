@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.views;
 
 import org.pepstock.charba.showcase.client.cases.charts.AreaCase;
+import org.pepstock.charba.showcase.client.cases.charts.AxesClickEventCase;
 import org.pepstock.charba.showcase.client.cases.charts.BarCase;
 import org.pepstock.charba.showcase.client.cases.charts.BubbleCase;
 import org.pepstock.charba.showcase.client.cases.charts.ChartClickEventCase;
@@ -12,6 +13,8 @@ import org.pepstock.charba.showcase.client.cases.charts.DatasetSelectionPieCase;
 import org.pepstock.charba.showcase.client.cases.charts.DoughnutCase;
 import org.pepstock.charba.showcase.client.cases.charts.GaugeCase;
 import org.pepstock.charba.showcase.client.cases.charts.HorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.charts.LegendClickEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.LegendHoverAndLeaveEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.LineCase;
 import org.pepstock.charba.showcase.client.cases.charts.MeterCase;
 import org.pepstock.charba.showcase.client.cases.charts.PieCase;
@@ -25,6 +28,7 @@ import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.charts.TitleClickEventCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -211,4 +215,28 @@ public class ChartsView extends AbstractView {
 		content.add(new DatasetSelectionPieCase());
 	}
 	
+	@UiHandler("legendClickEvent")
+	protected void handleLegendClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LegendClickEventCase());
+	}
+
+	@UiHandler("legendHoverAndLeaveEvent")
+	protected void handleLegendHoverAndLeaveEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new LegendHoverAndLeaveEventsCase());
+	}
+
+	@UiHandler("titleClickEvent")
+	protected void handleTitleClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TitleClickEventCase());
+	}
+
+	@UiHandler("axesClickEvent")
+	protected void handleAxesClickEvent(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AxesClickEventCase());
+	}
+
 }

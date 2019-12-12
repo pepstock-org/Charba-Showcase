@@ -10,6 +10,7 @@ import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -35,9 +36,7 @@ public class CallbacksPieCase extends BaseComposite{
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
-		chart.getOptions().getLegend().setReverse(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getLegend().setFullWidth(true);
 		chart.getOptions().getTitle().setText("Callbacks on pie chart dataset");
 		
 		PieDataset dataset = chart.newDataset();
@@ -57,6 +56,8 @@ public class CallbacksPieCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
+		
+		chart.getPlugins().add(new HtmlLegend());
 
 	}
 

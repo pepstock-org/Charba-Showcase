@@ -65,7 +65,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	
 	CartesianTimeAxis axis;
 		
-	DatasetsItemsSelector plugin = new DatasetsItemsSelector();
+	DatasetsItemsSelector plugin = DatasetsItemsSelector.get();
 	
 	DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 	

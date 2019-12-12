@@ -14,7 +14,6 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -40,8 +39,6 @@ public class TimeSeriesBarCase extends BaseComposite{
 
 	@UiField
 	TimeSeriesBarChart chart;
-	
-	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
 	
 	public TimeSeriesBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

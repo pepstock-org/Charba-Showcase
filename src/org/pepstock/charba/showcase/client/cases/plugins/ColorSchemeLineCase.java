@@ -88,7 +88,7 @@ public class ColorSchemeLineCase extends BaseComposite{
 		options.setSchemeScope(SchemeScope.DATASET);
 		
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
-		chart.getPlugins().add(new ColorSchemes());
+		chart.getPlugins().add(ColorSchemes.get());
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);

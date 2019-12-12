@@ -14,6 +14,7 @@ import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -71,6 +72,8 @@ public class CallbacksPolarAreaCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
+
+		chart.getPlugins().add(new HtmlLegend());
 
 	}
 

@@ -9,7 +9,6 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.events.ChartHoverEvent;
 import org.pepstock.charba.client.events.ChartHoverEventHandler;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -46,10 +45,7 @@ public class ChartHoverEventCase extends BaseComposite{
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Hover events on line chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
-		chart.getOptions().getHover().setIntersect(true);
+		chart.getOptions().getTooltips().setEnabled(false);
 		
 		chart.addHandler(new ChartHoverEventHandler() {
 			

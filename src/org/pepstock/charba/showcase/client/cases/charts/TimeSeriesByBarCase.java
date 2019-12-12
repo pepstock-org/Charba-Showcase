@@ -11,7 +11,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TimeUnit;
-import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -37,8 +36,6 @@ public class TimeSeriesByBarCase extends BaseComposite {
 	BarChart chart;
 
 	private long starting = System.currentTimeMillis();
-
-	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
 
 	public TimeSeriesByBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

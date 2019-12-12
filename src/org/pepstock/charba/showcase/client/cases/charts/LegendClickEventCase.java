@@ -1,18 +1,20 @@
-package org.pepstock.charba.showcase.client.cases.elements;
+package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
+import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.events.TitleClickEvent;
-import org.pepstock.charba.client.events.TitleClickEventHandler;
+import org.pepstock.charba.client.events.LegendClickEvent;
+import org.pepstock.charba.client.events.LegendClickEventHandler;
+import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
-import org.pepstock.charba.showcase.client.cases.commons.Toast;
+import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,45 +22,50 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TitleClickEventCase extends BaseComposite {
-
+public class LegendClickEventCase extends BaseComposite{
+	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, TitleClickEventCase> {
+	interface ViewUiBinder extends UiBinder<Widget, LegendClickEventCase> {
 	}
 
 	@UiField
 	LineChart chart;
 	
-	public TitleClickEventCase() {
+	@UiField
+	CheckBox cascade;
+
+	@UiField
+	LogView mylog;
+	
+	public LegendClickEventCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
+		chart.getOptions().setAspectRatio(3);
+		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Click title event on line chart");
+		chart.getOptions().getTitle().setText("Click legend events on line chart");
+		chart.getOptions().getTooltips().setEnabled(false);
 		
-		chart.addHandler(new TitleClickEventHandler() {
-
+		chart.addHandler(new LegendClickEventHandler() {
+			
 			@Override
-			public void onClick(TitleClickEvent event) {
-				IsChart chart = (IsChart)event.getSource();
-				List<String> values = chart.getOptions().getTitle().getText();
-				StringBuilder title = new StringBuilder();
-				if (!values.isEmpty()) {
-					for (String value : values) {
-						title.append(value).append(" ");
-					}
+			public void onClick(LegendClickEvent event) {
+				mylog.addLogEvent("> CLICK: Dataset label:" + event.getItem().getText() + ", index: "+ event.getItem().getDatasetIndex()); 
+				if (cascade.getValue()) {
+					Defaults.get().invokeLegendOnClick(event);
 				}
-				StringBuilder sb = new StringBuilder();
-				sb.append("Title: <b>").append(title.toString()).append("</b><br>");
-				new Toast("Title Selected!", sb.toString()).show();
 			}
-
-		}, TitleClickEvent.TYPE);
+			
+		}, LegendClickEvent.TYPE);
 		
+		List<Dataset> datasets = chart.getData().getDatasets(true);
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
@@ -67,7 +74,12 @@ public class TitleClickEventCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
-		dataset1.setData(getRandomDigits(months));
+		double[] values = getRandomDigits(months);
+		List<Double> data = dataset1.getData(true);
+		for (int i = 0; i < values.length; i++) {
+			data.add(values[i]);
+		}
+		datasets.add(dataset1);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -78,6 +90,7 @@ public class TitleClickEventCase extends BaseComposite {
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(false);
+		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -91,12 +104,21 @@ public class TitleClickEventCase extends BaseComposite {
 		
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset1, dataset2);
+		
+		chart.getPlugins().add(ChartPointer.get());
 		
 	}
-
+	
+	@UiHandler("randomize")
+	protected void handleRandomize(ClickEvent event) {
+		for (Dataset dataset : chart.getData().getDatasets()){
+			dataset.setData(getRandomDigits(months, false));
+		}
+		chart.update();
+	}
+	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

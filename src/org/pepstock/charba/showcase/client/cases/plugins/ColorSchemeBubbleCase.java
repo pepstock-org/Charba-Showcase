@@ -107,7 +107,7 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		dataset1.setHoverBorderWidth(hbwidth);
 		dataset1.setDataPoints(dp1);
 
-		chart.getPlugins().add(new ColorSchemes());
+		chart.getPlugins().add(ColorSchemes.get());
 		chart.getData().setDatasets(dataset1);
 		
 
@@ -157,7 +157,6 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			bDataset.setBorderColor(bcolors);
 			bDataset.setBorderWidth(bwidth);
 		}
-
 		chart.update();
 	}
 

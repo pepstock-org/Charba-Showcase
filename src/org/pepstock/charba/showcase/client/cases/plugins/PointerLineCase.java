@@ -187,7 +187,7 @@ public class PointerLineCase extends BaseComposite {
 			}
 		}, AxisClickEvent.TYPE);
 
-		chart.getPlugins().add(new ChartPointer());
+		chart.getPlugins().add(ChartPointer.get());
 		
 	}
 	

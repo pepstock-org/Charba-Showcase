@@ -45,8 +45,6 @@
 					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style from line datasets</g:Label>
 					<g:Label ui:field="legendFilterCallback" styleName='{myStyle.myLabel}'>Filtering hidden datasets by callbacks</g:Label>
 					<g:Label ui:field="legendLabelsCallback" styleName='{myStyle.myLabel}'>Changing texts and colors by callbacks</g:Label>
-					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Click events</g:Label>
-					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Hover and leave events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
@@ -76,7 +74,6 @@
 					<g:Label ui:field="ticksMinMax" styleName='{myStyle.myLabel}'>Setting min/max on ticks</g:Label>
 					<g:Label ui:field="logarithmicOnLine" styleName='{myStyle.myLabel}'>Logarithmic axis on line chart</g:Label>
 					<g:Label ui:field="logarithmicOnScatter" styleName='{myStyle.myLabel}'>Logarithmic axis on scatter chart</g:Label>
-					<g:Label ui:field="axesClickEvent" styleName='{myStyle.myLabel}'>Click events (TBD)</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
@@ -84,7 +81,6 @@
 					<g:Label styleName='{myStyle.myCategory}'>Title</g:Label>
 					<g:Label ui:field="titleChange" styleName='{myStyle.myLabel}'>Changing text</g:Label>
 					<g:Label ui:field="titleChangeStyle" styleName='{myStyle.myLabel}'>Changing style</g:Label>
-					<g:Label ui:field="titleClickEvent" styleName='{myStyle.myLabel}'>Click events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

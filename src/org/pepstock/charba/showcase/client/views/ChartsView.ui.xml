@@ -93,11 +93,15 @@
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Events</g:Label>
-					<g:Label ui:field="chartClickEvent" styleName='{myStyle.myLabel}'>Click events</g:Label>
-					<g:Label ui:field="chartHoverEvent" styleName='{myStyle.myLabel}'>Hover events</g:Label>
-					<g:Label ui:field="chartResizeEvent" styleName='{myStyle.myLabel}'>Resize events</g:Label>
+					<g:Label ui:field="chartClickEvent" styleName='{myStyle.myLabel}'>Chart click events</g:Label>
+					<g:Label ui:field="chartHoverEvent" styleName='{myStyle.myLabel}'>Chart hover events</g:Label>
+					<g:Label ui:field="chartResizeEvent" styleName='{myStyle.myLabel}'>Chart resize events</g:Label>
 					<g:Label ui:field="chartDatasetSelectionEventOnBar" styleName='{myStyle.myLabel}'>Selecting dataset on bar chart</g:Label>
 					<g:Label ui:field="chartDatasetSelectionEventOnPie" styleName='{myStyle.myLabel}'>Selecting dataset on pie chart</g:Label>
+					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Legend click events</g:Label>
+					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Legend hover and leave events</g:Label>
+					<g:Label ui:field="titleClickEvent" styleName='{myStyle.myLabel}'>Title click events</g:Label>
+					<g:Label ui:field="axesClickEvent" styleName='{myStyle.myLabel}'>Axes click events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

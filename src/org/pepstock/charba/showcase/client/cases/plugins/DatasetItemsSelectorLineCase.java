@@ -104,7 +104,7 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 		pOptions.setFireEventOnClearSelection(true);
 		
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-		chart.getPlugins().add(new DatasetsItemsSelector());
+		chart.getPlugins().add(DatasetsItemsSelector.get());
 		
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 			

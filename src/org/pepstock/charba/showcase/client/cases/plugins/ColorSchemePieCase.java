@@ -72,7 +72,7 @@ public class ColorSchemePieCase extends BaseComposite{
 		dataset.setLabel("dataset 1");
 		dataset.setData(getRandomDigits(months, false));
 
-		chart.getPlugins().add(new ColorSchemes());
+		chart.getPlugins().add(ColorSchemes.get());
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);

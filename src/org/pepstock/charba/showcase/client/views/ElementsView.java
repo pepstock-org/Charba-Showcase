@@ -5,8 +5,6 @@ import org.pepstock.charba.showcase.client.cases.elements.FilteringAxisLabelsCas
 import org.pepstock.charba.showcase.client.cases.elements.FilteringLegendCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesDisplayCase;
 import org.pepstock.charba.showcase.client.cases.elements.GridLinesStyleCase;
-import org.pepstock.charba.showcase.client.cases.elements.LegendClickEventCase;
-import org.pepstock.charba.showcase.client.cases.elements.LegendHoverAndLeaveEventsCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendPositioningCase;
 import org.pepstock.charba.showcase.client.cases.elements.LegendStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.LogarithmicAxisOnLineCase;
@@ -19,7 +17,6 @@ import org.pepstock.charba.showcase.client.cases.elements.NoNumericYAxisCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksMinMaxCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksStepSizeCase;
 import org.pepstock.charba.showcase.client.cases.elements.TitleChangeCase;
-import org.pepstock.charba.showcase.client.cases.elements.TitleClickEventCase;
 import org.pepstock.charba.showcase.client.cases.elements.TitleStyleCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipBorderCase;
 import org.pepstock.charba.showcase.client.cases.elements.TooltipCallbacksCase;
@@ -62,18 +59,6 @@ public class ElementsView extends AbstractView {
 	protected void handleLegendStyle(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new LegendStyleCase());
-	}
-
-	@UiHandler("legendClickEvent")
-	protected void handleLegendClickEvent(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new LegendClickEventCase());
-	}
-
-	@UiHandler("legendHoverAndLeaveEvent")
-	protected void handleLegendHoverAndLeaveEvent(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new LegendHoverAndLeaveEventsCase());
 	}
 
 	@UiHandler("legendFilterCallback")
@@ -224,12 +209,6 @@ public class ElementsView extends AbstractView {
 	protected void handleTitleChangeStyle(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TitleStyleCase());
-	}
-	
-	@UiHandler("titleClickEvent")
-	protected void handleTitleClickEvent(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new TitleClickEventCase());
 	}
 	
 }

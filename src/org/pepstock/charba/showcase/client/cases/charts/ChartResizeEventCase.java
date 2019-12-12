@@ -8,7 +8,6 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.events.ChartResizeEvent;
 import org.pepstock.charba.client.events.ChartResizeEventHandler;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -52,10 +51,7 @@ public class ChartResizeEventCase extends BaseComposite{
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Resize events on line chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
-		chart.getOptions().getHover().setIntersect(true);
+		chart.getOptions().getTooltips().setEnabled(false);
 		
 		chart.addHandler(new ChartResizeEventHandler() {
 			

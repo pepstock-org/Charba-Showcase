@@ -89,7 +89,7 @@ public class DatasetSelectionBarCase extends BaseComposite{
 		ChartPointerOptions op = new ChartPointerOptions();
 		op.setElements(PointerElement.DATASET);
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, op);
-		chart.getPlugins().add(new ChartPointer());
+		chart.getPlugins().add(ChartPointer.get());
 
 	}
 

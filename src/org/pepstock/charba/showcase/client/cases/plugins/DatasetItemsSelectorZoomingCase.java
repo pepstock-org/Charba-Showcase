@@ -60,7 +60,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite{
 	@UiField
 	VerticalPanel img;
 	
-	final DatasetsItemsSelector selector = new DatasetsItemsSelector();
+	final DatasetsItemsSelector selector = DatasetsItemsSelector.get();
 	
 	public DatasetItemsSelectorZoomingCase() {
 		initWidget(uiBinder.createAndBindUi(this));

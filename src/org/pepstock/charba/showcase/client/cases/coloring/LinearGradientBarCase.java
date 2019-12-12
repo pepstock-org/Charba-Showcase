@@ -1,6 +1,10 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
+import java.util.List;
+
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -11,6 +15,7 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -37,6 +42,14 @@ public class LinearGradientBarCase extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
+			
+			@Override
+			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
+				org.pepstock.charba.client.utils.Window.getConsole().log("LEGEND CALLBACK "+defaultLabels.get(0).isFillStyleAsCanvasGradient());
+				return defaultLabels;
+			}
+		});
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a linear gradient on bar chart dataset");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);

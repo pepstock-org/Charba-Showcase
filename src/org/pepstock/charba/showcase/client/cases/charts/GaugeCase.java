@@ -9,7 +9,6 @@ import org.pepstock.charba.client.impl.charts.GaugeChart;
 import org.pepstock.charba.client.impl.charts.GaugeDataset;
 import org.pepstock.charba.client.impl.charts.GaugeThreshold;
 import org.pepstock.charba.client.impl.charts.MeterDisplay;
-import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -37,7 +36,6 @@ public class GaugeCase extends BaseComposite{
 	@UiField
 	GaugeChart chartValueReverse;
 
-	
 	@UiField
 	VerticalPanel container;
 	
@@ -79,9 +77,6 @@ public class GaugeCase extends BaseComposite{
 				GaugeThreshold.CRITICAL.getThreshold().setValue(40));
 		ds.setPercentageThreshold(false);
 		chartValueReverse.getData().setDatasets(ds);
-		
-		chartValueReverse.getPlugins().add(new ColorSchemes());
-
 	}
 	
 	private GaugeDataset getDataset(GaugeChart chart, String label, double max){
