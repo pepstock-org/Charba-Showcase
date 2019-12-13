@@ -77,7 +77,7 @@ public class HtmlLegendLinearGradientCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 		
-		chart.getPlugins().add(new HtmlLegend());
+		chart.getPlugins().add(HtmlLegend.get());
 
 	}
 	

@@ -88,7 +88,7 @@ public class HtmlLegendLineCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		
-		chart.getPlugins().add(new HtmlLegend());
+		chart.getPlugins().add(HtmlLegend.get());
 		
 	}
 	

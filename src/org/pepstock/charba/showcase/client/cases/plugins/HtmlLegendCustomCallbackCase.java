@@ -8,7 +8,6 @@ import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.HtmlLegendTextCallback;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.configuration.LegendLabels;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -83,14 +82,13 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 					newText = newText.replaceAll("which contains data", "<font style='color: "+item.getStrokeStyle().toRGBA()+"'>which contains data</font>");
 					builder.appendHtmlConstant(newText);
 					values.put(currentText, builder.toSafeHtml());
-					LegendLabels labels = chart.getOptions().getLegend().getLabels();
 				}
 				return values.get(currentText);
 			}
 		});
 		
 		chart.getOptions().getPlugins().setOptions(HtmlLegend.ID, options);
-		chart.getPlugins().add(new HtmlLegend());
+		chart.getPlugins().add(HtmlLegend.get());
 		
 	}
 

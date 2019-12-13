@@ -62,7 +62,7 @@ public class HtmlLegendHorizontalBarCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		chart.getPlugins().add(new HtmlLegend());
+		chart.getPlugins().add(HtmlLegend.get());
 	
 	}
 

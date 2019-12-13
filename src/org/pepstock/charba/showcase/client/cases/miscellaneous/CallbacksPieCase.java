@@ -57,7 +57,7 @@ public class CallbacksPieCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		chart.getPlugins().add(new HtmlLegend());
+		chart.getPlugins().add(HtmlLegend.get());
 
 	}
 
