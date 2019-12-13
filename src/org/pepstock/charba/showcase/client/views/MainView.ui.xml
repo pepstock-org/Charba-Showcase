@@ -45,7 +45,7 @@
 	        <g:Label ui:field="title" styleName='{internalStyle.myTitle}' horizontalAlignment="center"> showcase</g:Label>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgCharts" styleName="{internalStyle.myImgItem}" url="showcaseCharts.png"></g:Image>
+		     		<g:Image ui:field="imgCharts" styleName="{internalStyle.myImgItem}" url="icons/showcaseCharts.png"></g:Image>
 	     		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 		     		<g:Label ui:field="labelCharts" styleName="{internalStyle.myLabelItem}">Charts</g:Label>
@@ -53,7 +53,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgElements" styleName="{internalStyle.myImgItem}" url="showcaseElements.png"></g:Image>
+		     		<g:Image ui:field="imgElements" styleName="{internalStyle.myImgItem}" url="icons/showcaseElements.png"></g:Image>
 	     		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 	 	    		<g:Label ui:field="labelElements" styleName="{internalStyle.myLabelItem}">Elements</g:Label>
@@ -61,7 +61,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgPlugins" styleName="{internalStyle.myImgItem}" url="showcasePlugins.png"></g:Image>
+		     		<g:Image ui:field="imgPlugins" styleName="{internalStyle.myImgItem}" url="icons/showcasePlugins.png"></g:Image>
 	     		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 			     	<g:Label ui:field="labelPlugins" styleName="{internalStyle.myLabelItem}">Plugins</g:Label>
@@ -69,7 +69,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-	    	 		<g:Image ui:field="imgColoring" styleName="{internalStyle.myImgItem}" url="showcaseColoring.png"></g:Image>
+	    	 		<g:Image ui:field="imgColoring" styleName="{internalStyle.myImgItem}" url="icons/showcaseColoring.png"></g:Image>
 	      		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 	 	    		<g:Label ui:field="labelColoring" styleName="{internalStyle.myLabelItem}">Coloring</g:Label>
@@ -77,7 +77,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgExtensions" styleName="{internalStyle.myImgItem}" url="showcaseExtensions.png"></g:Image>
+		     		<g:Image ui:field="imgExtensions" styleName="{internalStyle.myImgItem}" url="icons/showcaseExtensions.png"></g:Image>
 	      		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 			     	<g:Label ui:field="labelExtensions" styleName="{internalStyle.myLabelItem}">Extensions</g:Label>
@@ -85,7 +85,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgMiscellaneous" styleName="{internalStyle.myImgItem}" url="showcaseMiscellaneous.png"></g:Image>
+		     		<g:Image ui:field="imgMiscellaneous" styleName="{internalStyle.myImgItem}" url="icons/showcaseMiscellaneous.png"></g:Image>
 	      		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 			     	<g:Label ui:field="labelMiscellaneous" styleName="{internalStyle.myLabelItem}">Miscellaneous</g:Label>

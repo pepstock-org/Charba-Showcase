@@ -16,7 +16,7 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Button ui:field="smooth">Smooth</g:Button>
+					<g:CheckBox ui:field="smooth" checked="false">Smooth</g:CheckBox>
 					<g:Label>Filling mode:</g:Label>
 					<g:ListBox ui:field="fill"/>
 					<g:PushButton ui:field='source' enabled='true'>

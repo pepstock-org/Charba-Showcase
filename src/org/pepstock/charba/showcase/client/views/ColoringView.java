@@ -1,5 +1,8 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.coloring.FillingBoundariesCase;
+import org.pepstock.charba.showcase.client.cases.coloring.FillingDatasetsOnLineCase;
+import org.pepstock.charba.showcase.client.cases.coloring.FillingDatasetsOnRadarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.GwtMaterialColorsCase;
 import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientBarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.LinearGradientLineCase;
@@ -161,7 +164,7 @@ public class ColoringView extends AbstractView {
 	}	
 	
 	// ----------------------------------------------
-	// GWT material
+	// palette
 	// ----------------------------------------------
 
 	@UiHandler("coloringGwtMaterial")
@@ -176,6 +179,26 @@ public class ColoringView extends AbstractView {
 		content.add(new UiGradientsCase());
 	}
 
-	
+	// ----------------------------------------------
+	// Filling type
+	// ----------------------------------------------
+
+	@UiHandler("fillingBoundaries")
+	protected void handleFillingBoundaries(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FillingBoundariesCase());
+	}
+
+	@UiHandler("fillingDatasetsOnLine")
+	protected void handleFillingDatasetsOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FillingDatasetsOnLineCase());
+	}
+
+	@UiHandler("fillingDatasetsOnRadar")
+	protected void handleFillingDatasetsOnRadar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FillingDatasetsOnRadarCase());
+	}
 
 }

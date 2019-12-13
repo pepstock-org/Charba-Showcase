@@ -15,8 +15,6 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.client.items.LegendItem;
-import org.pepstock.charba.client.utils.Utilities;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -86,7 +84,6 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 					builder.appendHtmlConstant(newText);
 					values.put(currentText, builder.toSafeHtml());
 					LegendLabels labels = chart.getOptions().getLegend().getLabels();
-					Charba_Showcase.LOG.info(Utilities.toCSSFontProperty(labels.getFontStyle(), labels.getFontSize(), labels.getFontFamily()));
 				}
 				return values.get(currentText);
 			}

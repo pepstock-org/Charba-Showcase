@@ -19,8 +19,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MultiAxisLineCase extends BaseComposite{
-	
+public class MultiAxisLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, MultiAxisLineCase> {
@@ -28,15 +28,15 @@ public class MultiAxisLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public MultiAxisLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Multiple axes on line chart");
 		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
-		
+
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
 		axis1.setPosition(Position.LEFT);
@@ -49,12 +49,12 @@ public class MultiAxisLineCase extends BaseComposite{
 		axis2.getGrideLines().setDrawOnChartArea(false);
 
 		chart.getOptions().getScales().setYAxes(axis1, axis2);
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = Colors.ALL[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
@@ -63,7 +63,7 @@ public class MultiAxisLineCase extends BaseComposite{
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = Colors.ALL[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
@@ -79,12 +79,12 @@ public class MultiAxisLineCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

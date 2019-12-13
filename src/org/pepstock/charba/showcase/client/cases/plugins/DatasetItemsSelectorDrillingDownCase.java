@@ -22,7 +22,6 @@ import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TimeTickItem;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -110,7 +109,6 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 			@SuppressWarnings("deprecation")
 			@Override
 			public String onCallback(Axis axis, Date value, String label, int index, List<TimeTickItem> values) {
-				Charba_Showcase.LOG.info("TICK CALLBACK");
 				boolean toPrintDate = index == 0 || index == (values.size()-1);
 				if (reset.isEnabled()) {
 					if (toPrintDate) {

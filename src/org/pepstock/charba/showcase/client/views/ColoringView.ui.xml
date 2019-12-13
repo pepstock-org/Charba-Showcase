@@ -82,6 +82,11 @@
 			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Filling</g:Label>
+					<g:Label ui:field="fillingBoundaries" styleName='{myStyle.myLabel}'>Setting filling boundaries</g:Label>
+					<g:Label ui:field="fillingDatasetsOnLine" styleName='{myStyle.myLabel}'>Setting filling on line chart</g:Label>
+					<g:Label ui:field="fillingDatasetsOnRadar" styleName='{myStyle.myLabel}'>Setting filling on radar chart</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Palette</g:Label>
 					<g:Label ui:field="coloringGwtMaterial" styleName='{myStyle.myLabel}'>GWT Material</g:Label>
 					<g:Label ui:field="coloringUiGradients" styleName='{myStyle.myLabel}'>UI Gradients</g:Label>

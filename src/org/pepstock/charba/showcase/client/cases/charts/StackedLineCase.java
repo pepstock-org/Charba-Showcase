@@ -8,8 +8,6 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
@@ -39,8 +37,6 @@ public class StackedLineCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Stacked line chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -50,7 +46,7 @@ public class StackedLineCase extends BaseComposite{
 		dataset1.setBackgroundColor(color1.toHSL());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months, false));
-		dataset1.setFill(Fill.ORIGIN);
+		dataset1.setFill(false);
 		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -60,7 +56,7 @@ public class StackedLineCase extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.ORIGIN);
+		dataset2.setFill(false);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -94,12 +90,12 @@ public class StackedLineCase extends BaseComposite{
 		
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
-		
+
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.ORIGIN);
 		dataset.setData(getRandomDigits(months, false));
+		dataset.setFill(false);
 
 		datasets.add(dataset);
 		

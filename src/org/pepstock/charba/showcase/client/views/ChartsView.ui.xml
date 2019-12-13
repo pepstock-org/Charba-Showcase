@@ -77,7 +77,8 @@
 						styleName='{myStyle.myLabel}'>Stacked group bar</g:Label>
 					<g:Label ui:field="stackedLine"
 						styleName='{myStyle.myLabel}'>Stacked line</g:Label>
-					<g:Label ui:field="area" styleName='{myStyle.myLabel}'>Area</g:Label>
+					<g:Label ui:field="stackedArea"
+						styleName='{myStyle.myLabel}'>Stacked Area</g:Label>
 					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
 				</g:VerticalPanel>
 			</g:cell>

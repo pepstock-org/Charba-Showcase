@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.charts.AreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.AxesClickEventCase;
 import org.pepstock.charba.showcase.client.cases.charts.BarCase;
 import org.pepstock.charba.showcase.client.cases.charts.BubbleCase;
@@ -21,6 +20,7 @@ import org.pepstock.charba.showcase.client.cases.charts.PieCase;
 import org.pepstock.charba.showcase.client.cases.charts.PolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.RadarCase;
 import org.pepstock.charba.showcase.client.cases.charts.ScatterCase;
+import org.pepstock.charba.showcase.client.cases.charts.StackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedGroupBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedLineCase;
@@ -129,10 +129,10 @@ public class ChartsView extends AbstractView {
 		content.add(new StackedLineCase());
 	}
 
-	@UiHandler("area")
-	protected void handleArea(ClickEvent event) {
+	@UiHandler("stackedArea")
+	protected void handleStackedArea(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new AreaCase());
+		content.add(new StackedAreaCase());
 	}
 
 	@UiHandler("combo")

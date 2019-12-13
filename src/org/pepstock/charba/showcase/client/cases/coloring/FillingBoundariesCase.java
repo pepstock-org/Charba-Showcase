@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
@@ -16,27 +16,29 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AreaCase extends BaseComposite{
+public class FillingBoundariesCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	private boolean isSmooth = false;
-	
-	interface ViewUiBinder extends UiBinder<Widget, AreaCase> {
+	interface ViewUiBinder extends UiBinder<Widget, FillingBoundariesCase> {
 	}
 
 	@UiField
 	LineChart chart;
 	
 	@UiField
+	CheckBox smooth;
+	
+	@UiField
 	ListBox fill;
 	
 	private LineDataset dataset = null;
 	
-	public AreaCase() {
+	public FillingBoundariesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		for (Fill cFill : Fill.values()) {
@@ -45,7 +47,7 @@ public class AreaCase extends BaseComposite{
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Area chart");
+		chart.getOptions().getTitle().setText("Setting filling modes on line chart");
 		chart.getOptions().setSpanGaps(false);
 		chart.getOptions().getElements().getLine().setTension(0.000001D);
 		
@@ -74,10 +76,9 @@ public class AreaCase extends BaseComposite{
 
 	@UiHandler("smooth")
 	protected void handleSmooth(ClickEvent event) {
-		isSmooth = !isSmooth;
-		double value = isSmooth ? 0.4D : 0.000001D;
+		double value = smooth.getValue() ? 0.4D : 0.000001D;
 		chart.getOptions().getElements().getLine().setTension(value);
-		chart.reconfigure();;
+		chart.reconfigure();
 	}
 
 	@UiHandler("fill")
