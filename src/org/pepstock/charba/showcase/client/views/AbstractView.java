@@ -3,9 +3,6 @@ package org.pepstock.charba.showcase.client.views;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-/**
- * MAIN VIEW
- */
 abstract class AbstractView extends Composite {
 	
 	protected VerticalPanel content; 

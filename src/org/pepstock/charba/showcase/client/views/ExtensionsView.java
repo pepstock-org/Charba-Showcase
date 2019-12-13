@@ -17,6 +17,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsMultiLabel
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsRadarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsSelectionCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsPolarCase;
@@ -25,7 +26,6 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,9 +34,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * MAIN VIEW
- */
 public class ExtensionsView extends AbstractView {
 
 	private static DemoViewUiBinder uiBinder = GWT.create(DemoViewUiBinder.class);

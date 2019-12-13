@@ -126,9 +126,6 @@ public class ChartJsAnnotation extends NativeObjectContainer {
         setValue(Property.BACKGROUND_COLOR, backgroundColor);
     }
 
-    /**
-     * Enums for valid values above
-     */
     public enum Type {
         LINE("line"),
         BOX("box");
