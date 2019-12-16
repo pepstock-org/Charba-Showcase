@@ -10,6 +10,7 @@ import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePieCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeRadarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorTimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorDrillingDownCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorLineCase;
@@ -91,6 +92,13 @@ public class PluginsView extends AbstractView {
 		content.add(new DatasetItemsSelectorLineCase());
 	}
 
+	@UiHandler("datasetItemsSelectorTimeseriesBar")
+	protected void handleDatasetItemsSelectorTimeseriesBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetItemsSelectorTimeSeriesByBarCase());
+	}
+	
+	
 	@UiHandler("datasetItemsSelectorDrillingDown")
 	protected void handleDatasetItemsSelectorDrillingDown(ClickEvent event) {
 		clearPreviousChart();

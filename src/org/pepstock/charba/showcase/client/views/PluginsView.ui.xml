@@ -62,6 +62,7 @@
 					<g:Label styleName='{myStyle.myCategory}'>Dataset items selector</g:Label>
 					<g:Label ui:field="datasetItemsSelectorBar" styleName='{myStyle.myLabel}'>Selecting on bar chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorLine" styleName='{myStyle.myLabel}'>Selecting on line chart</g:Label>
+					<g:Label ui:field="datasetItemsSelectorTimeseriesBar" styleName='{myStyle.myLabel}'>Selecting on timeseries bar chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorZooming" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
 					<g:Label ui:field="datasetItemsSelectorDrillingDown" styleName='{myStyle.myLabel}'>Drilling down on timeseries chart</g:Label>
 				</g:VerticalPanel>

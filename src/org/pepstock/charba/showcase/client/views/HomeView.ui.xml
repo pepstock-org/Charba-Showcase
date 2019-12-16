@@ -37,9 +37,6 @@
 			   			<h1>by CHARBA</h1>
 			   			<br/>
 			   			<p>CHARBA is a GWT module which wraps Chart.JS to enable charts on your GWT web application.</p>
-			   			<g:VerticalPanel width="100%" height="400px" horizontalAlignment="center">
-			   				<c:LineChart ui:field="chart" />
-			   			</g:VerticalPanel>
 					</g:HTMLPanel>
 				</g:cell>
 				<g:cell verticalAlignment="top" height="100%" horizontalAlignment="center">
@@ -49,6 +46,13 @@
 					</g:VerticalPanel>
 				</g:cell>
 	       </g:HorizontalPanel>
+       </g:HorizontalPanel>
+	  <g:HorizontalPanel width="100%" height="400px" verticalAlignment="top" horizontalAlignment="center">
+		<g:cell verticalAlignment="top" height="100%" horizontalAlignment="center">
+   			<g:VerticalPanel width="60%" height="400px" horizontalAlignment="center">
+   				<c:LineChart ui:field="chart" />
+   			</g:VerticalPanel>
+		</g:cell>
        </g:HorizontalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

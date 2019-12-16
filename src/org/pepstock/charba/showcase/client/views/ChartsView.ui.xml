@@ -54,7 +54,7 @@
 					<g:Label ui:field="scatter" styleName='{myStyle.myLabel}'>Scatter</g:Label>
 					<g:Label ui:field="doughnut" styleName='{myStyle.myLabel}'>Doughnut</g:Label>
 					<g:Label ui:field="pie" styleName='{myStyle.myLabel}'>Pie</g:Label>
-					<g:Label ui:field="polar" styleName='{myStyle.myLabel}'>Polar Area</g:Label>
+					<g:Label ui:field="polar" styleName='{myStyle.myLabel}'>Polar area</g:Label>
 					<g:Label ui:field="radar" styleName='{myStyle.myLabel}'>Radar</g:Label>
 					<g:Label ui:field="bubble" styleName='{myStyle.myLabel}'>Bubble</g:Label>
 				</g:VerticalPanel>
@@ -78,7 +78,7 @@
 					<g:Label ui:field="stackedLine"
 						styleName='{myStyle.myLabel}'>Stacked line</g:Label>
 					<g:Label ui:field="stackedArea"
-						styleName='{myStyle.myLabel}'>Stacked Area</g:Label>
+						styleName='{myStyle.myLabel}'>Stacked area</g:Label>
 					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
