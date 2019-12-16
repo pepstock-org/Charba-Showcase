@@ -148,6 +148,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				if (!reset.isEnabled()) {
 					reset.setEnabled(true);
+					dataset.setBackgroundColor(HtmlColor.DARK_MAGENTA);
+					dataset.setBorderColor(HtmlColor.DARK_MAGENTA);
 					List<TimeSeriesItem> items = dataset.getTimeSeriesData();
 					TimeSeriesItem from = items.get(event.getFrom());
 					TimeSeriesItem to = items.get(event.getTo());
@@ -173,6 +175,9 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	@UiHandler("reset")
 	protected void handleReset(ClickEvent event) {
 		reset.setEnabled(false);
+		IsColor color1 = Colors.ALL[0];
+		dataset.setBackgroundColor(color1.toHex());
+		dataset.setBorderColor(color1.toHex());
 		axis.getTicks().setMin(null);
 		axis.getTicks().setMax(null);
 		axis.getTime().setUnit(TimeUnit.DAY);

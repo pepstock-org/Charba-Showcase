@@ -22,8 +22,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class HtmlLegendStyleCase extends BaseComposite{
-	
+public class HtmlLegendStyleCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, HtmlLegendStyleCase> {
@@ -34,7 +34,7 @@ public class HtmlLegendStyleCase extends BaseComposite{
 
 	@UiField
 	ListBox pointStyle;
-	
+
 	@UiField
 	CheckBox usePointStyle;
 
@@ -42,7 +42,7 @@ public class HtmlLegendStyleCase extends BaseComposite{
 
 	public HtmlLegendStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (PointStyle style : PointStyle.values()) {
 			pointStyle.addItem(style.name(), style.name());
 		}
@@ -51,7 +51,7 @@ public class HtmlLegendStyleCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend labels styling");
-		
+
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		IsColor color1 = Colors.ALL[0];
@@ -65,7 +65,7 @@ public class HtmlLegendStyleCase extends BaseComposite{
 		dataset.setFill(Fill.ORIGIN);
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-	
+
 		chart.getPlugins().add(HtmlLegend.get());
 
 	}
@@ -75,7 +75,7 @@ public class HtmlLegendStyleCase extends BaseComposite{
 		dataset.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("pointStyle")
 	protected void handlePointStyle(ChangeEvent event) {
 		String selected = pointStyle.getSelectedValue();
@@ -93,13 +93,13 @@ public class HtmlLegendStyleCase extends BaseComposite{
 			i++;
 		}
 	}
-	
+
 	@UiHandler("usePointStyle")
 	protected void handleUsePointStyle(ClickEvent event) {
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

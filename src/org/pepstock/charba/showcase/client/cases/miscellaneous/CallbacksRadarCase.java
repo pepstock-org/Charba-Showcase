@@ -4,16 +4,11 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.RadarChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.FillCallback;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
-import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -37,16 +32,7 @@ public class CallbacksRadarCase extends BaseComposite {
 	@UiField
 	RadarChart chart;
 
-	BackgroundColorCallback backgroundColorCallback = new BackgroundColorCallback() {
-
-		@Override
-		public IsColor invoke(IsChart chart, ScriptableContext context) {
-			return HtmlColor.PINK;
-		}
-
-	};
-
-	RadiusCallback radiusCallback = new RadiusCallback() {
+	private final RadiusCallback radiusCallback = new RadiusCallback() {
 
 		@Override
 		public Double invoke(IsChart chart, ScriptableContext context) {
@@ -55,7 +41,11 @@ public class CallbacksRadarCase extends BaseComposite {
 		}
 
 	};
+	
+	private static final double MAX = 20D; 
 
+	private static final double MIN = 5D;
+	
 	public CallbacksRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		chart.getOptions().setResponsive(true);
@@ -73,43 +63,25 @@ public class CallbacksRadarCase extends BaseComposite {
 
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		dataset1.setBorderColor(new BorderColorCallback() {
-
+		
+		IsColor color = Colors.ALL[0];
+		
+		dataset1.setBackgroundColor(color.alpha(0.2D));
+		dataset1.setBorderColor(color);
+		dataset1.setPointBackgroundColor(color);
+		dataset1.setPointRadius(new RadiusCallback() {
+			
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
-				return HtmlColor.PINK;
+			public Double invoke(IsChart chart, ScriptableContext context) {
+				return  (double)((int) (Math.random() * (MAX - MIN))) + MIN;
 			}
 		});
-
-		dataset1.setFill(new FillCallback() {
-
-			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
-				return Fill.FALSE;
-			}
-		});
-
 		double[] values = getRandomDigits(months);
-		dataset1.setPointHoverBackgroundColor(backgroundColorCallback);
+		dataset1.setPointHoverBackgroundColor(color);
 		dataset1.setPointHoverRadius(radiusCallback);
 
 		dataset1.setData(values);
 		datasets.add(dataset1);
-
-		RadarDataset dataset2 = chart.newDataset();
-		dataset2.setLabel("dataset 2");
-
-		IsColor color2 = Colors.ALL[1];
-
-		dataset2.setBackgroundColor(color2.toHex());
-		dataset2.setBorderColor(color2.toHex());
-
-		dataset2.setPointHoverBackgroundColor(backgroundColorCallback);
-		dataset2.setPointHoverRadius(radiusCallback);
-
-		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.START);
-		datasets.add(dataset2);
 
 		chart.getData().setLabels(getLabels());
 	}
@@ -120,31 +92,6 @@ public class CallbacksRadarCase extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-	}
-
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-
-		RadarDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset " + (datasets.size() + 1));
-
-		IsColor color = Colors.ALL[datasets.size()];
-		dataset.setBackgroundColor(color.toHex());
-		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.FALSE);
-		dataset.setData(getRandomDigits(months));
-		dataset.setPointHoverBackgroundColor(backgroundColorCallback);
-		dataset.setPointHoverRadius(radiusCallback);
-
-		datasets.add(dataset);
-
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
 	}
 
 	@UiHandler("add_data")

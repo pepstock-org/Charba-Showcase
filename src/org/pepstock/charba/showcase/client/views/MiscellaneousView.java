@@ -12,6 +12,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksLineCase
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksPieCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksRadarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksWithThresholdBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
@@ -165,6 +166,12 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleBubbleCallback(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new CallbacksBubbleCase());
+	}
+
+	@UiHandler("callbacksWithThresholdOnBar")
+	protected void handleBarWithThresholdCallback(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CallbacksWithThresholdBarCase());
 	}
 
 	// ----------------------------------------------

@@ -60,6 +60,7 @@
 					<g:Label ui:field="callbacksOnPie"	styleName='{myStyle.myLabel}'>Callbacks on pie dataset</g:Label>
 					<g:Label ui:field="callbacksOnPolar"	styleName='{myStyle.myLabel}'>Callbacks on polar area dataset</g:Label>
 					<g:Label ui:field="callbacksOnBubble"	styleName='{myStyle.myLabel}'>Callbacks on bubble dataset</g:Label>
+					<g:Label ui:field="callbacksWithThresholdOnBar"	styleName='{myStyle.myLabel}'>Callbacks with threshold on bar dataset</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

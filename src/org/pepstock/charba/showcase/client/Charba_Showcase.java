@@ -33,7 +33,7 @@ public class Charba_Showcase implements EntryPoint {
 	
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
 	
-	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/tree/2.6/src/";
+	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/tree/2.7/src/";
 
 	public void onModuleLoad() {
 		Image.prefetch(Images.INSTANCE.backgroundPattern().getSafeUri());
@@ -60,7 +60,7 @@ public class Charba_Showcase implements EntryPoint {
 		Defaults.get().getGlobal().getTitle().setFontSize(16);
 		
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
-
+		
 		Defaults.get().getControllers().extend(new AbstractController() {
 
 			@Override
