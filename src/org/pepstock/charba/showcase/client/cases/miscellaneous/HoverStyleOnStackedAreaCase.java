@@ -1,9 +1,10 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
 import org.pepstock.charba.client.StackedAreaChart;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -13,6 +14,7 @@ import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
+import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,25 +24,26 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class StackedAreaCase extends BaseComposite{
+public class HoverStyleOnStackedAreaCase extends BaseComposite{
 	
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, StackedAreaCase> {
+	interface ViewUiBinder extends UiBinder<Widget, HoverStyleOnStackedAreaCase> {
 	}
 
 	@UiField
 	StackedAreaChart chart;
 	
-	public StackedAreaCase() {
+	public HoverStyleOnStackedAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Stacked area chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTitle().setText("Hover styles on stacked area chart");
+		chart.getOptions().getTooltips().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getTooltips().setIntersect(true);
+		chart.getOptions().getHover().setMode(InteractionMode.DATASET);
 		
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -52,6 +55,12 @@ public class StackedAreaCase extends BaseComposite{
 		dataset1.setData(getRandomDigits(months, false));
 		dataset1.setFill(Fill.ORIGIN);
 		
+		dataset1.setBorderWidth(5);
+		
+		dataset1.setHoverBackgroundColor(color1.brighter());
+		dataset1.setHoverBorderColor(color1.darker());
+		dataset1.setPointHoverBackgroundColor("#fff");
+		
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
@@ -61,6 +70,14 @@ public class StackedAreaCase extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(Fill.ORIGIN);
+
+		dataset2.setBorderWidth(5);
+
+		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		dataset2.setHoverBackgroundColor(pattern);
+//		dataset2.setHoverBackgroundColor(color2.brighter());
+		dataset2.setHoverBorderColor(color2.darker());
+		dataset2.setPointHoverBackgroundColor("#fff");
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -98,6 +115,11 @@ public class StackedAreaCase extends BaseComposite{
 		IsColor color = Colors.ALL[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.5D));
 		dataset.setBorderColor(color.toHex());
+		
+		dataset.setHoverBackgroundColor(color.brighter());
+		dataset.setHoverBorderColor(color.darker());
+		dataset.setPointHoverBackgroundColor("#fff");
+		
 		dataset.setFill(Fill.ORIGIN);
 		dataset.setData(getRandomDigits(months, false));
 

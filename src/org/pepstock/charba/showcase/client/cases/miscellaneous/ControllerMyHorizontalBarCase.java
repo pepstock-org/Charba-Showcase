@@ -4,6 +4,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
@@ -54,6 +55,8 @@ public class ControllerMyHorizontalBarCase extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 
 		chart.getOptions().getScales().setYAxes(axis);
+		
+		chart.getPlugins().add(ColorSchemes.get());
 	
 	}
 	

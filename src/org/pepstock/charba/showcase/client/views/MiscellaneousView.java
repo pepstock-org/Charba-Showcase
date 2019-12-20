@@ -18,6 +18,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineC
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationByElementCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.HoverStyleOnStackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.InterpolationOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.SimpleLabelPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.StandingPluginOnLineCase;
@@ -86,6 +87,12 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleMiscellaneousPointSizeOnLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ApplyingPointSizesOnLineCase());
+	}
+	
+	@UiHandler("miscellaneousHoverStyleOnStackedArea")
+	protected void handleMiscellaneousHoverStyleOnStackedArea(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HoverStyleOnStackedAreaCase());
 	}
 	
 	// ----------------------------------------------

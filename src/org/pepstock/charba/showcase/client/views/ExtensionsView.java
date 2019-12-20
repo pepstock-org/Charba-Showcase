@@ -26,6 +26,15 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomHandlersOnTimeSeriesCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomModeOnBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnScatterCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnTimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomPanOnBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomStyledZoomOnBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomXOnBarCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -203,6 +212,64 @@ public class ExtensionsView extends AbstractView {
 	protected void handleLabelsPiePosition(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new LabelsPositioningCase());
+	}
+	
+	// ----------------------------------------------
+	// Zoom
+	// ----------------------------------------------
+
+	@UiHandler("zoomPanOnBar")
+	protected void handleZoomPanOnBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ZoomPanOnBarCase());
+	}
+
+	@UiHandler("zoomStyledZoomOnBar")
+	protected void handleZoomStyledZoomOnBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ZoomStyledZoomOnBarCase());
+	}
+
+	@UiHandler("zoomXZoomOnBar")
+	protected void handleZoomXZoomOnBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ZoomXOnBarCase());
+	}
+
+	@UiHandler("zoomZoomOnBar")
+	protected void handleZoomOnBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new ZoomOnBarCase());
+	}
+	
+	@UiHandler("zoomZoomOnHorizontalBar")
+	protected void handleZoomOnHorizontalBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomOnHorizontalBarCase());
+	}
+
+	@UiHandler("zoomZoomOnTimeseriesLine")
+	protected void handleZoomOnTimeseriesLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomOnTimeSeriesLineCase());
+	}
+
+	@UiHandler("zoomZoomOnScatter")
+	protected void handleZoomOnScatter(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomOnScatterCase());
+	}
+
+	@UiHandler("zoomZoomHandlerOnTimeseriesLine")
+	protected void handleZoomHandlerOnTimeseriesLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomHandlersOnTimeSeriesCase());
+	}
+
+	@UiHandler("zoomModeCallbackOnBar")
+	protected void handleZoomModeCallbackOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomModeOnBarCase());
 	}
 
 	// ----------------------------------------------

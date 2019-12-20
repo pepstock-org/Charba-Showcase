@@ -18,6 +18,7 @@ import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.EmbeddedResources;
 import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.client.utils.JsWindowHelper;
+import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -91,6 +92,8 @@ public class Charba_Showcase implements EntryPoint {
 		LabelsPlugin.enable();
 		
 		DataLabelsPlugin.enable();
+		
+		ZoomPlugin.enable();
 		
 		Injector.ensureInjected(ResourcesType.getClientBundle().chartJs());
 		Injector.ensureInjected(ResourcesType.getClientBundle().charbaHelper());
