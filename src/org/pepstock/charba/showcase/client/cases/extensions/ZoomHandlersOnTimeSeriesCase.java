@@ -139,7 +139,7 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
 		options.getZoom().setSpeed(0.05D);;
-		drag = options.getZoom().createDrag();
+		drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
 		options.getZoom().setCompleteHandler(new CompleteHandler() {

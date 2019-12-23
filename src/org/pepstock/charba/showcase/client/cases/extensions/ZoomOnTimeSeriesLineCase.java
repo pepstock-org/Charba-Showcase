@@ -127,7 +127,7 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
 		options.getZoom().setSpeed(0.05D);;
-		Drag drag = options.getZoom().createDrag();
+		Drag drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
 		

@@ -71,7 +71,7 @@ public class ZoomStyledZoomOnBarCase extends BaseComposite{
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.Y);
 
-		Drag drag = options.getZoom().createDrag();
+		Drag drag = ZoomPlugin.createDrag();
 		drag.setBackgroundColor(HtmlColor.LIGHT_GREEN.alpha(0.3));
 		drag.setBorderColor(HtmlColor.LIGHT_GREEN);
 		drag.setBorderWidth(4);

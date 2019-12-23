@@ -63,9 +63,10 @@ public class ZoomOnBarCase extends BaseComposite{
 		
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
-		options.getPan().setMode(InteractionAxis.Y);
-		options.getZoom().setEnabled(true);
-		options.getZoom().setMode(InteractionAxis.Y);
+		options.getPan().setMode(InteractionAxis.XY);
+		options.getZoom().setEnabled(false);
+		// FIXME
+	//	options.getZoom().setMode(InteractionAxis.XY);
 		
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
