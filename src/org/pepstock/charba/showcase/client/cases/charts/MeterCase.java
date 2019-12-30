@@ -15,11 +15,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MeterCase extends BaseComposite{
-	
+public class MeterCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, MeterCase> {
@@ -32,14 +31,11 @@ public class MeterCase extends BaseComposite{
 	@UiField
 	MeterChart chartValueColor;
 
-	@UiField
-	VerticalPanel container;
-	
 	private final List<MeterDataset> datasets = new ArrayList<MeterDataset>();
 
 	public MeterCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("METER chart to represent percentage value");
 		chartPercent.getOptions().setDisplay(MeterDisplay.PERCENTAGE);
@@ -60,27 +56,26 @@ public class MeterCase extends BaseComposite{
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 	}
-	
-	private MeterDataset getDataset(MeterChart chart, String label, double max){
+
+	private MeterDataset getDataset(MeterChart chart, String label, double max) {
 		chart.getOptions().setResponsive(true);
 		MeterDataset dataset = chart.newDataset(max);
 		dataset.setLabel(label);
-		dataset.setValue(Math.random()*max);
+		dataset.setValue(Math.random() * max);
 		datasets.add(dataset);
 		return dataset;
 	}
-	
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (MeterDataset dataset : datasets){
-		    dataset.setValue(Math.random()*dataset.getMax());
+		for (MeterDataset dataset : datasets) {
+			dataset.setValue(Math.random() * dataset.getMax());
 		}
 		chartPercent.update();
 		chartValue.update();
 		chartValueColor.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

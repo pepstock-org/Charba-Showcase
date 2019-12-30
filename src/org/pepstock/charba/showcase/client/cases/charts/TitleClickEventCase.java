@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -12,7 +13,6 @@ import org.pepstock.charba.client.events.TitleClickEvent;
 import org.pepstock.charba.client.events.TitleClickEventHandler;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
@@ -33,10 +33,10 @@ public class TitleClickEventCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	LogView mylog;
-	
+
 	public TitleClickEventCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -46,12 +46,12 @@ public class TitleClickEventCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Click title event on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
-		
+
 		chart.addHandler(new TitleClickEventHandler() {
 
 			@Override
 			public void onClick(TitleClickEvent event) {
-				IsChart chart = (IsChart)event.getSource();
+				IsChart chart = (IsChart) event.getSource();
 				List<String> values = chart.getOptions().getTitle().getText();
 				StringBuilder title = new StringBuilder();
 				if (!values.isEmpty()) {
@@ -59,18 +59,18 @@ public class TitleClickEventCase extends BaseComposite {
 						title.append(value).append(" ");
 					}
 				}
-				mylog.addLogEvent("> CLICK: title text:" + title.toString()); 
+				mylog.addLogEvent("> CLICK: title text:" + title.toString());
 				StringBuilder sb = new StringBuilder();
 				sb.append("Title: <b>").append(title.toString()).append("</b><br>");
 				new Toast("Title Selected!", sb.toString()).show();
 			}
 
 		}, TitleClickEvent.TYPE);
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -80,7 +80,7 @@ public class TitleClickEventCase extends BaseComposite {
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -96,15 +96,15 @@ public class TitleClickEventCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 		chart.getPlugins().add(ChartPointer.get());
-		
+
 	}
 
 	@UiHandler("source")

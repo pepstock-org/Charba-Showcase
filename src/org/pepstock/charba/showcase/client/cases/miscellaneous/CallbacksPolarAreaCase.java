@@ -7,6 +7,7 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
@@ -16,7 +17,6 @@ import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -60,7 +60,7 @@ public class CallbacksPolarAreaCase extends BaseComposite{
 				if (patterns.isEmpty()) {
 					for (int i=0; i<months; i++) {
 						Shape shape = Shape.values()[i];
-						Pattern pattern = TilesFactory.createPattern(shape, Colors.ALL[i]);
+						Pattern pattern = TilesFactory.createPattern(shape, GoogleChartColor.values()[i]);
 						patterns.add(pattern);
 					}
 				}

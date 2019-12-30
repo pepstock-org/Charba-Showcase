@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -40,7 +40,7 @@ public class ControllerMyHorizontalBarCase extends BaseComposite{
 		MyHorizontalBarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Countries");
 		
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());

@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -13,7 +14,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -55,9 +55,9 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 			@Override
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
 				if (!useDefault.getValue()) {
-					int size = Colors.ALL.length - 1;
+					int size = GoogleChartColor.values().length - 1;
 					for (LegendLabelItem item: defaultLabels) {
-						IsColor color = Colors.ALL[size - item.getDatasetIndex()];
+						IsColor color = GoogleChartColor.values()[size - item.getDatasetIndex()];
 						item.setFillStyle(color);
 						String text = "Changed label for "+item.getText();
 						item.setText(text);
@@ -72,7 +72,7 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -87,7 +87,7 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -125,7 +125,7 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 		List<Dataset> datasets = chart.getData().getDatasets();
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
-		IsColor color = Colors.ALL[datasets.size()];
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));

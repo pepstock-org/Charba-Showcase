@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
@@ -12,7 +13,6 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -39,7 +39,7 @@ public class TilesBarCase extends BaseComposite{
 
 		Pattern[] tiles= new Pattern[ITEMS];
 		for (int i=0; i<ITEMS; i++) {
-			Pattern p = TilesFactory.createPattern(Shape.values()[i], Colors.ALL[i]);
+			Pattern p = TilesFactory.createPattern(Shape.values()[i], GoogleChartColor.values()[i]);
 			tiles[i] = p;
 		}
 

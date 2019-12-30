@@ -3,13 +3,13 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 import java.util.Random;
 
 import org.pepstock.charba.client.RadarChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -37,7 +37,7 @@ public class TilesRadarCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		int index = getIndex(0, Shape.values().length-1);
-		Pattern p = TilesFactory.createPattern(Shape.values()[index], Colors.ALL[1]);
+		Pattern p = TilesFactory.createPattern(Shape.values()[index], GoogleChartColor.values()[1]);
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
@@ -63,7 +63,7 @@ public class TilesRadarCase extends BaseComposite {
 			RadarDataset dataset1 = (RadarDataset) dataset;
 			dataset1.setData(getRandomDigits(ITEMS));
 			int index = getIndex(0, Shape.values().length-1);
-			Pattern p = TilesFactory.createPattern(Shape.values()[index], Colors.ALL[1]);
+			Pattern p = TilesFactory.createPattern(Shape.values()[index], GoogleChartColor.values()[1]);
 			dataset1.setBackgroundColor(p);
 		}
 		chart.update();

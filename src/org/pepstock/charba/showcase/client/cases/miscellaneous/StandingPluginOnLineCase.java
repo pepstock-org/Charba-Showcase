@@ -6,6 +6,7 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -17,7 +18,6 @@ import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
@@ -83,7 +83,7 @@ public class StandingPluginOnLineCase extends BaseComposite{
 		for (int i=0; i<FACTORS.length; i++) {
 			LineDataset dataset = chart.newDataset();
 			dataset.setLabel(FACTORS[i]);
-			IsColor color = Colors.ALL[i];
+			IsColor color = GoogleChartColor.values()[i];
 			dataset.setBackgroundColor(color.toHex());
 			dataset.setBorderColor(color.toHex());
 			double[] values = STANDINGS[i];

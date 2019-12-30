@@ -6,8 +6,7 @@
 	<ui:with field="downButton"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 	<g:HTMLPanel width="100%">
-		<g:VerticalPanel width="100%" height="100%"
-			ui:field="container">
+		<g:VerticalPanel width="100%" height="100%">
 			<g:cell width="100%" height="90%" verticalAlignment="middle"
 				horizontalAlignment="center">
 				<c:DoughnutChart ui:field="chart" />

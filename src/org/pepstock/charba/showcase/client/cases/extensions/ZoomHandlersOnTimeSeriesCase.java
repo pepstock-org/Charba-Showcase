@@ -8,6 +8,7 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -28,7 +29,6 @@ import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.client.zoom.events.CompleteHandler;
 import org.pepstock.charba.client.zoom.events.ProgressHandler;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
@@ -92,7 +92,7 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.FALSE);
 
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -102,7 +102,7 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		dataset2.setLabel("dataset 2");
 		dataset2.setFill(Fill.FALSE);
 
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());

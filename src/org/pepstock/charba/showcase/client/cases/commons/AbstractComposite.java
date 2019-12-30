@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.commons;
 
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
@@ -81,7 +82,7 @@ public abstract class AbstractComposite extends Composite{
 	protected IsColor[] getSequenceColors(int length, double alpha){
 		IsColor[] values = new IsColor[length];
 		for(int i=0;i<length;i++){
-			values[i] = Colors.ALL[i].alpha(alpha);
+			values[i] = GoogleChartColor.values()[i].alpha(alpha);
 		}
 		return values;
 	}

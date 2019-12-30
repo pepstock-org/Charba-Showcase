@@ -15,11 +15,8 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Button ui:field="add_dataset">Add dataset</g:Button>
-					<g:Button ui:field="remove_dataset">Remove dataset</g:Button>
 					<g:Button ui:field="add_data">Add data</g:Button>
 					<g:Button ui:field="remove_data">Remove data</g:Button>
-					<g:CheckBox ui:field="data" checked="false">Data colors</g:CheckBox>
 					<g:ListBox ui:field="category"/>
 					<g:ListBox ui:field="name"/>
 					<g:CheckBox ui:field="reverse" checked="false">Reverse</g:CheckBox>

@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 import java.util.List;
 
 import org.pepstock.charba.client.StackedAreaChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -13,7 +14,6 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -48,7 +48,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite{
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		
 		dataset1.setBackgroundColor(color1.alpha(0.5D));
 		dataset1.setBorderColor(color1.toHSL());
@@ -64,7 +64,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite{
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 		
 		dataset2.setBackgroundColor(color2.alpha(0.5D));
 		dataset2.setBorderColor(color2.toHex());
@@ -112,7 +112,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite{
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		
-		IsColor color = Colors.ALL[datasets.size()]; 
+		IsColor color = GoogleChartColor.values()[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.5D));
 		dataset.setBorderColor(color.toHex());
 		

@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.cases.elements;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -48,7 +48,7 @@ public class LegendPositioningCase extends BaseComposite{
 		
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.alpha(0.2));
 		dataset.setBorderColor(color1.toHex());
 		dataset.setData(getRandomDigits(months));
@@ -69,7 +69,7 @@ public class LegendPositioningCase extends BaseComposite{
 		int i = 0;
 		for (Position cPos : Position.values()) {
 			if (cPos.name().equalsIgnoreCase(selected)) {
-				IsColor color = Colors.ALL[i];
+				IsColor color = GoogleChartColor.values()[i];
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
 				chart.getOptions().getLegend().setPosition(cPos);

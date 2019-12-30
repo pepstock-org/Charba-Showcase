@@ -4,13 +4,13 @@ import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.items.OptionsNode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -45,8 +45,8 @@ public class CallbacksDoughnutCase extends BaseComposite{
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				int size = Colors.ALL.length-1;
-				return Colors.ALL[size - context.getIndex()];
+				int size = GoogleChartColor.values().length-1;
+				return GoogleChartColor.values()[size - context.getIndex()];
 			}
 			
 		});

@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 import java.util.List;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.commons.NativeObjectContainer;
@@ -13,7 +14,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.IsFill;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -63,7 +63,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 			LineDataset dataset1 = chart.newDataset();
 			dataset1.setLabel("dataset "+i);
 
-			IsColor color1 = Colors.ALL[i];
+			IsColor color1 = GoogleChartColor.values()[i];
 
 			dataset1.setBackgroundColor(color1.alpha(0.2D));
 			dataset1.setBorderColor(color1);

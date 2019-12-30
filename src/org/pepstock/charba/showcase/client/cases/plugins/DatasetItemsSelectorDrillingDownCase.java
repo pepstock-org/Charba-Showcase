@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.callbacks.TimeTickCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
@@ -17,13 +18,12 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
-import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
-import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
+import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TimeTickItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -80,7 +80,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setLabel("dataset 1");
 		dataset.setFill(Fill.FALSE);
 
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
@@ -175,7 +175,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	@UiHandler("reset")
 	protected void handleReset(ClickEvent event) {
 		reset.setEnabled(false);
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
 		axis.getTicks().setMin(null);

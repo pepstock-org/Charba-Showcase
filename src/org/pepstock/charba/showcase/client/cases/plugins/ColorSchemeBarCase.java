@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BarBorderWidth;
@@ -13,12 +14,12 @@ import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
 import org.pepstock.charba.client.impl.plugins.enums.BrewerScheme;
+import org.pepstock.charba.client.impl.plugins.enums.GoogleChartScheme;
 import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
 import org.pepstock.charba.client.impl.plugins.enums.OfficeScheme;
 import org.pepstock.charba.client.impl.plugins.enums.SchemeScope;
 import org.pepstock.charba.client.impl.plugins.enums.TableauScheme;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -61,6 +62,7 @@ public class ColorSchemeBarCase extends BaseComposite{
 		category.addItem("MS Office", "office");
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
+		category.addItem("Google Chart", "googlechart");
 		
 		int index = 0;
 		for (BrewerScheme scheme : BrewerScheme.values()) {
@@ -79,7 +81,7 @@ public class ColorSchemeBarCase extends BaseComposite{
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		
 		BarBorderWidth border = new BarBorderWidth();
 		border.setTop(2);
@@ -117,7 +119,7 @@ public class ColorSchemeBarCase extends BaseComposite{
 		BarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		
-		IsColor color = Colors.ALL[datasets.size()]; 
+		IsColor color = GoogleChartColor.values()[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		
@@ -200,6 +202,12 @@ public class ColorSchemeBarCase extends BaseComposite{
 				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
+		} else if ("googlechart".equalsIgnoreCase(selected)) {
+			name.clear();
+			for (ColorScheme scheme : GoogleChartScheme.values()) {
+				name.addItem(scheme.value(), scheme.value());
+			}
+			name.setSelectedIndex(0);	
 		}
 		handleName(event);
 		chart.update();
@@ -221,6 +229,9 @@ public class ColorSchemeBarCase extends BaseComposite{
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
+		} else if ("googlechart".equalsIgnoreCase(selected)) {
+			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} 
 		chart.update();
 	}

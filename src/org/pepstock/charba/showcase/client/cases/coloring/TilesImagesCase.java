@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.DoughnutChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.ImageShape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
@@ -8,7 +9,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
@@ -44,7 +44,7 @@ public class TilesImagesCase extends BaseComposite {
 
 		Pattern[] tiles = new Pattern[ITEMS];
 		for (int i = 0; i < ITEMS; i++) {
-			Pattern p = TilesFactory.createPattern(imgShapes[i], Colors.ALL[i]);
+			Pattern p = TilesFactory.createPattern(imgShapes[i], GoogleChartColor.values()[i]);
 			tiles[i] = p;
 		}
 

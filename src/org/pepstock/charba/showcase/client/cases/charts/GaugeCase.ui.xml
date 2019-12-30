@@ -6,7 +6,7 @@
 	<ui:with field="downButton"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 	<g:HTMLPanel width="100%">
-		<g:VerticalPanel width="100%" ui:field="container">
+		<g:VerticalPanel width="100%">
 			<g:cell width="100%" verticalAlignment="middle"
 				horizontalAlignment="center">
 				<g:HorizontalPanel width="80%" height="100%"

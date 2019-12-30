@@ -17,7 +17,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DoughnutCase extends BaseComposite{
+public class DoughnutCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -26,19 +26,19 @@ public class DoughnutCase extends BaseComposite{
 
 	@UiField
 	DoughnutChart chart;
-	
+
 	public DoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Doughnut chart");
-		
+
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
-		
+
 		dataset.setData(getRandomDigits(months, false));
 
 		chart.getData().setLabels(getLabels(months));
@@ -48,7 +48,7 @@ public class DoughnutCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -58,7 +58,7 @@ public class DoughnutCase extends BaseComposite{
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		DoughnutDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("dataset " + (datasets.size() + 1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 		datasets.add(dataset);
@@ -72,13 +72,13 @@ public class DoughnutCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				DoughnutDataset pds = (DoughnutDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				DoughnutDataset pds = (DoughnutDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -89,7 +89,7 @@ public class DoughnutCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("semiCircle")
 	protected void handleSemiCircle(ClickEvent event) {
 		OptionsNode options = chart.getNode().getOptions();
@@ -102,7 +102,7 @@ public class DoughnutCase extends BaseComposite{
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

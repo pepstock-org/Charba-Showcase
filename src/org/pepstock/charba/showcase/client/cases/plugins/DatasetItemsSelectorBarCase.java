@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEvent;
-import org.pepstock.charba.client.impl.plugins.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
+import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
@@ -46,7 +46,7 @@ public class DatasetItemsSelectorBarCase extends BaseComposite{
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 		
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
@@ -57,7 +57,7 @@ public class DatasetItemsSelectorBarCase extends BaseComposite{
 		BarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 		
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 		
 		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
@@ -108,7 +108,7 @@ public class DatasetItemsSelectorBarCase extends BaseComposite{
 		BarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset "+(datasets.size()+1));
 		
-		IsColor color = Colors.ALL[datasets.size()]; 
+		IsColor color = GoogleChartColor.values()[datasets.size()]; 
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setBorderWidth(1);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -39,8 +40,6 @@ public class HomeView extends BaseComposite{
 	
 	private static final String DEFAULT_FORMAT = "#0.#";
 
-	private static final String COLOR = "#f27173";
-	
 	private static final String[] LABELS = {"", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", ""};
 	
 	private static final double[] VALUES = {Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, Double.NaN};
@@ -61,11 +60,11 @@ public class HomeView extends BaseComposite{
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("JAR dimension");
 
-		dataset.setBackgroundColor(COLOR);
-		dataset.setBorderColor(COLOR);
+		dataset.setBackgroundColor(Color.CHARBA);
+		dataset.setBorderColor(Color.CHARBA);
 		dataset.setBorderWidth(5);
 		dataset.setPointBackgroundColor(HtmlColor.WHITE);
-		dataset.setPointBorderColor(COLOR);
+		dataset.setPointBorderColor(Color.CHARBA);
 		dataset.setPointBorderWidth(1);
 		dataset.setPointRadius(4);
 		dataset.setPointHoverRadius(4);

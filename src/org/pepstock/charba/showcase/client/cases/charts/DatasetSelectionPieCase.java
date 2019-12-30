@@ -24,8 +24,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DatasetSelectionPieCase extends BaseComposite{
-	
+public class DatasetSelectionPieCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DatasetSelectionPieCase> {
@@ -36,20 +36,20 @@ public class DatasetSelectionPieCase extends BaseComposite{
 
 	public DatasetSelectionPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Selecting dataset on pie chart");
-		
+
 		chart.addHandler(new DatasetSelectionEventHandler() {
-			
+
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
-				IsChart chart = (IsChart)event.getSource();
+				IsChart chart = (IsChart) event.getSource();
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
-				if (datasets != null && !datasets.isEmpty()){
+				if (datasets != null && !datasets.isEmpty()) {
 					StringBuilder sb = new StringBuilder();
 					sb.append("Dataset index: <b>").append(event.getItem().getDatasetIndex()).append("</b><br>");
 					sb.append("Dataset label: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getLabel()).append("</b><br>");
@@ -58,7 +58,7 @@ public class DatasetSelectionPieCase extends BaseComposite{
 					sb.append("Value: <b>").append(labels.getStrings(event.getItem().getIndex()).get(0)).append("</b><br>");
 					new Toast("Dataset Selected!", sb.toString()).show();
 				}
-				
+
 			}
 		}, DatasetSelectionEvent.TYPE);
 
@@ -79,22 +79,22 @@ public class DatasetSelectionPieCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("dataset " + (datasets.size() + 1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 	}
 
@@ -105,13 +105,13 @@ public class DatasetSelectionPieCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				PieDataset pds = (PieDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -122,7 +122,7 @@ public class DatasetSelectionPieCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -13,7 +14,6 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -47,7 +47,7 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite{
 		ScatterDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("V(node2)");
 		
-		IsColor color1 = Colors.ALL[1];
+		IsColor color1 = GoogleChartColor.values()[1];
 
 		DataPoint[] points = new DataPoint[X.length];
 		for (int i=0; i<X.length; i++){

@@ -9,6 +9,7 @@ import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.FillCallback;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -19,7 +20,6 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -101,7 +101,7 @@ public class CallbacksLineCase extends BaseComposite {
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -144,7 +144,7 @@ public class CallbacksLineCase extends BaseComposite {
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
 
-		IsColor color = Colors.ALL[datasets.size()];
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setFill(Fill.FALSE);

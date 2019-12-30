@@ -5,13 +5,13 @@ import java.util.List;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -70,7 +70,7 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		dataset = chart.newDataset();
 		dataset.setLabel("My dataset");
 		
-		color = Colors.ALL[0];
+		color = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));
@@ -96,7 +96,7 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		int index = 0;
 		for (PointStyle style : PointStyle.values()) {
 			if (style.name().equalsIgnoreCase(selectedPointStyle)) {
-				color = Colors.ALL[index];
+				color = GoogleChartColor.values()[index];
 				dataset.setPointStyle(style);
 				dataset.setBackgroundColor(color.toHex());
 				dataset.setBorderColor(color.toHex());

@@ -6,6 +6,7 @@ import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.BorderSkippedCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
@@ -13,7 +14,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.BorderSkipped;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -54,7 +54,7 @@ public class CallbacksBarCase extends BaseComposite{
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return Colors.ALL[context.getIndex()+1];
+				return GoogleChartColor.values()[context.getIndex()+1];
 			}
 			
 		});
@@ -62,7 +62,7 @@ public class CallbacksBarCase extends BaseComposite{
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return Colors.ALL[context.getIndex()+5];
+				return GoogleChartColor.values()[context.getIndex()+5];
 			}
 
 		});

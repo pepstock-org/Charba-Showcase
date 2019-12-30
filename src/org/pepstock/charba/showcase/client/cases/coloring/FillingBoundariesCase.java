@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -53,7 +53,7 @@ public class FillingBoundariesCase extends BaseComposite{
 		
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
-		IsColor color = Colors.ALL[0];
+		IsColor color = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));
@@ -87,7 +87,7 @@ public class FillingBoundariesCase extends BaseComposite{
 		int i = 0;
 		for (Fill cFill : Fill.values()) {
 			if (cFill.name().equalsIgnoreCase(selected)) {
-				IsColor color = Colors.ALL[i];
+				IsColor color = GoogleChartColor.values()[i];
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
 				dataset.setFill(cFill);

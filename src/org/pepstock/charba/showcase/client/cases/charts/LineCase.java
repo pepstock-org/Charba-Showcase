@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.List;
 
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -10,7 +11,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -29,7 +29,7 @@ public class LineCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	public LineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -42,13 +42,13 @@ public class LineCase extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		IsColor color1 = Colors.ALL[0];
+		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -63,7 +63,7 @@ public class LineCase extends BaseComposite {
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
-		IsColor color2 = Colors.ALL[1];
+		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
@@ -80,14 +80,14 @@ public class LineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
@@ -101,7 +101,7 @@ public class LineCase extends BaseComposite {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		LineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
-		IsColor color = Colors.ALL[datasets.size()];
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));

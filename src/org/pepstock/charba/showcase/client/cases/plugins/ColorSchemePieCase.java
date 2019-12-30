@@ -11,6 +11,7 @@ import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
 import org.pepstock.charba.client.impl.plugins.enums.BrewerScheme;
+import org.pepstock.charba.client.impl.plugins.enums.GoogleChartScheme;
 import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
 import org.pepstock.charba.client.impl.plugins.enums.OfficeScheme;
 import org.pepstock.charba.client.impl.plugins.enums.TableauScheme;
@@ -53,6 +54,7 @@ public class ColorSchemePieCase extends BaseComposite{
 		category.addItem("MS Office", "office");
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
+		category.addItem("Google Chart", "googlechart");
 		
 		int index = 0;
 		for (ColorScheme scheme : BrewerScheme.values()) {
@@ -156,6 +158,12 @@ public class ColorSchemePieCase extends BaseComposite{
 				name.addItem(scheme.value(), scheme.value());
 			}
 			name.setSelectedIndex(0);	
+		} else if ("googlechart".equalsIgnoreCase(selected)) {
+			name.clear();
+			for (ColorScheme scheme : GoogleChartScheme.values()) {
+				name.addItem(scheme.value(), scheme.value());
+			}
+			name.setSelectedIndex(0);	
 		}
 		handleName(event);
 		chart.update();
@@ -177,6 +185,9 @@ public class ColorSchemePieCase extends BaseComposite{
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
+		} else if ("googlechart".equalsIgnoreCase(selected)) {
+			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
+			options.setBackgroundColorAlpha(0.5D);
 		} 
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();

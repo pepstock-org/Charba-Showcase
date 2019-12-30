@@ -6,13 +6,13 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Colors;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -64,7 +64,7 @@ public class CallbacksRadarCase extends BaseComposite {
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
-		IsColor color = Colors.ALL[0];
+		IsColor color = GoogleChartColor.values()[0];
 		
 		dataset1.setBackgroundColor(color.alpha(0.2D));
 		dataset1.setBorderColor(color);

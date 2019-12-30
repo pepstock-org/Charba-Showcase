@@ -26,7 +26,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DataLabelsMultiLabelsCase extends BaseComposite{
@@ -41,9 +40,6 @@ public class DataLabelsMultiLabelsCase extends BaseComposite{
 	@UiField
 	PieChart chart;
 
-	@UiField
-	VerticalPanel container;
-	
 	final NumberFormat percentageFormatter = NumberFormat.getPercentFormat();
 
 	public DataLabelsMultiLabelsCase() {

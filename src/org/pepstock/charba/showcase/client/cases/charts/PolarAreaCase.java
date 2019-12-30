@@ -18,8 +18,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PolarAreaCase extends BaseComposite{
-	
+public class PolarAreaCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, PolarAreaCase> {
@@ -30,20 +30,19 @@ public class PolarAreaCase extends BaseComposite{
 
 	public PolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Polar area chart");
-		
+
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
 		axis.getTicks().setReverse(true);
 		axis.getGrideLines().setCircular(true);
 		axis.getTicks().setFontColor(HtmlColor.GRAY);
 		chart.getOptions().setAxis(axis);
-		
-		
+
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 0.2D));
@@ -56,7 +55,7 @@ public class PolarAreaCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -64,13 +63,13 @@ public class PolarAreaCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PolarAreaDataset pds = (PolarAreaDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 0.2D));	
+			for (Dataset ds : datasets) {
+				PolarAreaDataset pds = (PolarAreaDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 0.2D));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -81,7 +80,7 @@ public class PolarAreaCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
