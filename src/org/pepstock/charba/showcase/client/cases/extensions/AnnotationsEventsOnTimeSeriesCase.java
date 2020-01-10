@@ -78,7 +78,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Zoom callbacks on timeseries line chart");
+		chart.getOptions().getTitle().setText("Annotations events on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -145,6 +145,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		options.setEvents(Event.CLICK, Event.DOUBLE_CLICK, Event.MOUSE_OUT, Event.MOUSE_OVER);
 		
 		LineAnnotation line = new LineAnnotation();
+		line.setAnnotationId("LineAnnotation");
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
 		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
@@ -160,6 +161,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.setDoubleClickCallback(callback);
 		
 		BoxAnnotation box = new BoxAnnotation();
+		box.setAnnotationId("BoxAnnotation");
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
 		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);

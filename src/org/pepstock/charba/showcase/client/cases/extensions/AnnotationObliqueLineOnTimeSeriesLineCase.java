@@ -64,7 +64,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Oblique line annotations on timeseries line chart");
+		chart.getOptions().getTitle().setText("Oblique line annotation on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 

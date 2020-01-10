@@ -95,7 +95,7 @@
 					<g:Label ui:field="annotationLineOnTimeseries" styleName='{myStyle.myLabel}'>Line annotation on timeseries chart</g:Label>
 					<g:Label ui:field="annotationLineOnHorizontalBar" styleName='{myStyle.myLabel}'>Line annotation on horizontal bar chart</g:Label>
 					<g:Label ui:field="annotationObliqueLineOnTimeseries" styleName='{myStyle.myLabel}'>Oblique line annotation on timeseries chart</g:Label>
-					<g:Label ui:field="annotationsEventsOnTimeseries" styleName='{myStyle.myLabel}'>Annotation events</g:Label>
+					<g:Label ui:field="annotationsEventsOnTimeseries" styleName='{myStyle.myLabel}'>Catching annotations events</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Importing Chart.JS plugin</g:Label>
 					<g:Label ui:field="importingChartJsPlugin" styleName='{myStyle.myLabel}'>Using Stacked100 plugin</g:Label>
