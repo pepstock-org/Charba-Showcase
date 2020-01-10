@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
@@ -35,8 +36,9 @@ public class Charba_Showcase implements EntryPoint {
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
 	
 	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/tree/2.7/src/";
-
+	
 	public void onModuleLoad() {
+		
 		Image.prefetch(Images.INSTANCE.backgroundPattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.backgroundPattern1().getSafeUri());
 		Image.prefetch(Images.INSTANCE.backgroundPattern2().getSafeUri());
@@ -94,13 +96,11 @@ public class Charba_Showcase implements EntryPoint {
 		DataLabelsPlugin.enable();
 		
 		ZoomPlugin.enable();
-		
-		Injector.ensureInjected(ResourcesType.getClientBundle().chartJs());
-		Injector.ensureInjected(ResourcesType.getClientBundle().charbaHelper());
-		Injector.ensureInjected(MyResources.INSTANCE.chartJsAnnotationSource());
+
+		AnnotationPlugin.enable();
 		
 		Injector.ensureCssInjected(MyResources.INSTANCE.legend());
-
+		
 		RootPanel.get().add(new MainView());
 		
 	}

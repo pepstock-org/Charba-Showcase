@@ -93,7 +93,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		List<TimeSeriesItem> data = new LinkedList<>();
 
 		time = time + HOUR * AMOUNT_OF_POINTS;
-		for (int i = AMOUNT_OF_POINTS; i >= 0; i--) {
+		for (int i = AMOUNT_OF_POINTS - 1; i >= 0; i--) {
 			data.add(new TimeSeriesItem(new Date(time), xs1[i]));
 			time = time - HOUR;
 		}

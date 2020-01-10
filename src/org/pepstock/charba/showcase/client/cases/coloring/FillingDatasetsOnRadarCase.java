@@ -6,11 +6,12 @@ import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
-import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
+import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.IsFill;
+import org.pepstock.charba.client.plugins.AbstractPluginOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -83,7 +84,7 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		
 		options.setPropagate(false);
-		chart.getOptions().getPlugins().setOptions("filler", options);
+		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
 		
 	}
 	
@@ -110,7 +111,7 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 	@UiHandler("propagate")
 	protected void handlePropagate(ClickEvent event) {
 		options.setPropagate(propagate.getValue());
-		chart.getOptions().getPlugins().setOptions("filler", options);
+		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
 		chart.reconfigure();
 	}
 
@@ -119,10 +120,17 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 		Window.open(getUrl(), "_blank", "");
 	}
 		
-	private static class FillerOptions extends NativeObjectContainer{
+	private static class FillerOptions extends AbstractPluginOptions{
 		
 		private Key propagate = Key.create("propagate");
 		
+		/**
+		 * @param pluginId
+		 */
+		FillerOptions() {
+			super(DefaultPlugin.FILLER.value());
+		}
+
 		void setPropagate(boolean prop) {
 			setValue(propagate, prop);
 		}

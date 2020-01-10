@@ -85,7 +85,6 @@ public class LineCase extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-
 	}
 
 	@UiHandler("randomize")

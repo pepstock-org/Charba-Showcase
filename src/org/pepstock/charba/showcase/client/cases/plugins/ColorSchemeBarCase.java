@@ -63,7 +63,7 @@ public class ColorSchemeBarCase extends BaseComposite{
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
 		category.addItem("Google Chart", "googlechart");
-		
+
 		int index = 0;
 		for (BrewerScheme scheme : BrewerScheme.values()) {
 			name.addItem(scheme.value(), scheme.name());

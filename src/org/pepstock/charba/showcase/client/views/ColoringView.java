@@ -164,7 +164,7 @@ public class ColoringView extends AbstractView {
 	}	
 	
 	// ----------------------------------------------
-	// palette
+	// Palette
 	// ----------------------------------------------
 
 	@UiHandler("coloringGwtMaterial")

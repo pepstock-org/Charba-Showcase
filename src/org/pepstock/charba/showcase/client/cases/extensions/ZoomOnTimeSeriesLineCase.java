@@ -103,7 +103,7 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 		List<TimeSeriesItem> data1 = new LinkedList<>();
 
 		time = time + DAY * AMOUNT_OF_POINTS;
-		for (int i = AMOUNT_OF_POINTS; i >= 0; i--) {
+		for (int i = AMOUNT_OF_POINTS - 1; i >= 0; i--) {
 			data.add(new TimeSeriesItem(new Date(time), xs1[i]));
 			data1.add(new TimeSeriesItem(new Date(time), xs2[i]));
 			time = time - DAY;
@@ -126,13 +126,16 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 		ZoomOptions options = new ZoomOptions();
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
+		
+		time = new Date().getTime() + (DAY * AMOUNT_OF_POINTS / 2);
+		
+		options.getZoom().getRangeMax().setX(new Date(time));
 		options.getZoom().setSpeed(0.05D);;
 		Drag drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
 		
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
-
 	}
 
 	@UiHandler("randomize")

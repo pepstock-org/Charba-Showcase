@@ -31,7 +31,6 @@ public class PieCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
-		chart.getOptions().getLegend().setReverse(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getLegend().setFullWidth(true);
 		chart.getOptions().getTitle().setText("Pie chart");

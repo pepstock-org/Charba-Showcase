@@ -84,14 +84,21 @@
 					<g:Label ui:field="zoomZoomOnTimeseriesLine" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
 					<g:Label ui:field="zoomZoomOnScatter" styleName='{myStyle.myLabel}'>Zooming on scatter chart</g:Label>
 					<g:Label ui:field="zoomStyledZoomOnBar" styleName='{myStyle.myLabel}'>Styling zooming on bar chart</g:Label>
-					<g:Label ui:field="zoomZoomHandlerOnTimeseriesLine" styleName='{myStyle.myLabel}'>Zoom handlers on timeseries line chart</g:Label>
+					<g:Label ui:field="zoomZoomCallbacksOnTimeseriesLine" styleName='{myStyle.myLabel}'>Zoom callbacks on timeseries line chart</g:Label>
 					<g:Label ui:field="zoomModeCallbackOnBar" styleName='{myStyle.myLabel}'>Mode direction callback on bar chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Importing JS plugin</g:Label>
-					<g:Label ui:field="importPlugin" styleName='{myStyle.myLabel}'>Chart.JS Annotation</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Annotation plugin</g:Label>
+					<g:Label ui:field="annotationsLineAndBoxOnCombined" styleName='{myStyle.myLabel}'>Applying line and box on combined chart</g:Label>
+					<g:Label ui:field="annotationLineOnTimeseries" styleName='{myStyle.myLabel}'>Line annotation on timeseries chart</g:Label>
+					<g:Label ui:field="annotationLineOnHorizontalBar" styleName='{myStyle.myLabel}'>Line annotation on horizontal bar chart</g:Label>
+					<g:Label ui:field="annotationObliqueLineOnTimeseries" styleName='{myStyle.myLabel}'>Oblique line annotation on timeseries chart</g:Label>
+					<g:Label ui:field="annotationsEventsOnTimeseries" styleName='{myStyle.myLabel}'>Annotation events</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Importing Chart.JS plugin</g:Label>
+					<g:Label ui:field="importingChartJsPlugin" styleName='{myStyle.myLabel}'>Using Stacked100 plugin</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

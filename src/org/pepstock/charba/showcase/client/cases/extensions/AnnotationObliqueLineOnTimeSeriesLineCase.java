@@ -7,8 +7,15 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.TimeSeriesLineChart;
+import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
+import org.pepstock.charba.client.annotation.LineAnnotation;
+import org.pepstock.charba.client.annotation.enums.DrawTime;
+import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
+import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -18,20 +25,15 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.zoom.Drag;
-import org.pepstock.charba.client.zoom.ZoomOptions;
-import org.pepstock.charba.client.zoom.ZoomPlugin;
-import org.pepstock.charba.client.zoom.events.CompleteHandler;
-import org.pepstock.charba.client.zoom.events.ProgressHandler;
+import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JsDate;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
@@ -39,41 +41,30 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
-	
+public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
+
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
 	private static final long DAY = 1000 * 60 * 60 * 24;
 
 	private static final int AMOUNT_OF_POINTS = 60;
-	
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ZoomHandlersOnTimeSeriesCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationObliqueLineOnTimeSeriesLineCase> {
 	}
 
 	@UiField
 	TimeSeriesLineChart chart;
 
-	@UiField
-	LogView mylog;
-	
-	@UiField
-	CheckBox dragging;
-	
-	private final Drag drag;
-	
-	public ZoomHandlersOnTimeSeriesCase() {
+	public AnnotationObliqueLineOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Zoom handlers on timeseries line chart");
+		chart.getOptions().getTitle().setText("Oblique line annotations on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -107,17 +98,20 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		long time = new Date().getTime();
+		JsDate myDate = JsDate.create(2020, 1, 1, 0, 0, 0, 0);
+		long time = (long) myDate.getTime();
 
+		double max = 0D;
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		List<TimeSeriesItem> data = new LinkedList<>();
 		List<TimeSeriesItem> data1 = new LinkedList<>();
 
 		time = time + DAY * AMOUNT_OF_POINTS;
-		for (int i = AMOUNT_OF_POINTS; i >= 0; i--) {
+		for (int i = AMOUNT_OF_POINTS - 1; i >= 0; i--) {
 			data.add(new TimeSeriesItem(new Date(time), xs1[i]));
 			data1.add(new TimeSeriesItem(new Date(time), xs2[i]));
+			max = Math.max(xs1[i] + xs2[i], max);
 			time = time - DAY;
 		}
 		dataset1.setTimeSeriesData(data);
@@ -134,32 +128,27 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		axis2.setStacked(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);
+
+		AnnotationOptions options = new AnnotationOptions();
+
+		LineAnnotation line1 = new LineAnnotation();
+		line1.setDrawTime(DrawTime.AFTER_DRAW);
+		line1.setMode(LineMode.HORIZONTAL);
+		line1.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line1.setBorderColor(HtmlColor.VIOLET);
+		line1.setBorderWidth(4);
+		line1.setBorderDash(4, 4);
+		line1.setValue(40);
+		line1.setEndValue(max);
+		line1.getLabel().setEnabled(true);
+		line1.getLabel().setContent("My trendline");
+		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
+		line1.getLabel().setBackgroundColor(HtmlColor.VIOLET);
+		line1.getLabel().setFontColor(HtmlColor.BLACK);
+
+		options.setAnnotations(line1);
 		
-		ZoomOptions options = new ZoomOptions();
-		options.getZoom().setEnabled(true);
-		options.getZoom().setMode(InteractionAxis.X);
-		options.getZoom().setSpeed(0.05D);;
-		drag = ZoomPlugin.createDrag();
-		drag.setAnimationDuration(1000);
-		options.getZoom().setDrag(drag);
-		options.getZoom().setCompleteHandler(new CompleteHandler() {
-			
-			@Override
-			public void onComplete(IsChart chart) {
-				mylog.addLogEvent("> ZOOM COMPLETE on chart"); 
-			}
-		});
-
-		options.getZoom().setProgressHandler(new ProgressHandler() {
-			
-			@Override
-			public void onProgress(IsChart chart) {
-				mylog.addLogEvent("> ZOOM in PROGRESS on chart"); 
-			}
-		});
-
-		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
-
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}
 
 	@UiHandler("randomize")
@@ -173,23 +162,6 @@ public class ZoomHandlersOnTimeSeriesCase extends BaseComposite{
 		chart.update();
 	}
 
-	@UiHandler("dragging")
-	protected void handleDragging(ClickEvent event) {
-		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
-		if (dragging.getValue()) {
-			options.getZoom().setDrag(drag);
-		} else {
-			options.getZoom().setDrag(false);
-		}
-		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
-		chart.reconfigure();
-	}
-	
-	@UiHandler("reset")
-	protected void handleResetZoom(ClickEvent event) {
-		ZoomPlugin.resetZoom(chart);
-	}
-	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

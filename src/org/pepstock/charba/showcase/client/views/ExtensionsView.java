@@ -1,5 +1,10 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationObliqueLineOnTimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsOnTimeSeriesCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsOnCombinedCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsBubbleCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsCustomLabelsCase;
@@ -26,7 +31,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomHandlersOnTimeSeriesCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomCallbacksOnTimeSeriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomModeOnBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnHorizontalBarCase;
@@ -260,10 +265,10 @@ public class ExtensionsView extends AbstractView {
 		content.add(new ZoomOnScatterCase());
 	}
 
-	@UiHandler("zoomZoomHandlerOnTimeseriesLine")
-	protected void handleZoomHandlerOnTimeseriesLine(ClickEvent event) {
+	@UiHandler("zoomZoomCallbacksOnTimeseriesLine")
+	protected void handleZoomCallbacksOnTimeseriesLine(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomHandlersOnTimeSeriesCase());
+		content.add(new ZoomCallbacksOnTimeSeriesCase());
 	}
 
 	@UiHandler("zoomModeCallbackOnBar")
@@ -273,13 +278,48 @@ public class ExtensionsView extends AbstractView {
 	}
 
 	// ----------------------------------------------
-	// Imported
+	// Annotation
 	// ----------------------------------------------
 
-	@UiHandler("importPlugin")
+	@UiHandler("annotationsLineAndBoxOnCombined")
+	protected void handleAnnotationsLineAndBoxOnCombined(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationsOnCombinedCase());
+	}
+	
+	@UiHandler("annotationLineOnTimeseries")
+	protected void handleAnnotationTimeseriesLine(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationLineOnTimeSeriesLineCase());
+	}
+
+	@UiHandler("annotationLineOnHorizontalBar")
+	protected void handleAnnotationLineOnHorizontalBar(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationLineOnHorizontalBarCase());
+	}
+
+	@UiHandler("annotationObliqueLineOnTimeseries")
+	protected void handleAnnotationObliqueLineOnTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationObliqueLineOnTimeSeriesLineCase());
+	}
+	
+	@UiHandler("annotationsEventsOnTimeseries")
+	protected void handleAnnotationsEventsOnTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationsEventsOnTimeSeriesCase());
+	}		
+
+	// ----------------------------------------------
+	// Imported
+	// ----------------------------------------------
+	
+
+	@UiHandler("importingChartJsPlugin")
 	protected void handleCustomPluginChart(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new ImportingPluginCase());
 	}
-
+	
 }

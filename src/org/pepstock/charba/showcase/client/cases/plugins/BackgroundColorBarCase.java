@@ -7,7 +7,6 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -31,7 +30,7 @@ public class BackgroundColorBarCase extends BaseComposite{
 	
 	public BackgroundColorBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -61,10 +60,9 @@ public class BackgroundColorBarCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
+		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions(chart);
 		option.setBackgroundColor(GwtMaterialColor.ORANGE_LIGHTEN_5);
-
-		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
+		option.store(chart);
 	}
 
 	@UiHandler("randomize")

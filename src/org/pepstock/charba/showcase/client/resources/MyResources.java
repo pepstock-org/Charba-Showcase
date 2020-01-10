@@ -8,8 +8,8 @@ public interface MyResources extends ClientBundle {
 	
 	public static final MyResources INSTANCE = GWT.create(MyResources.class);
 
-	@Source("js/chartjs-plugin-annotation.min.js")
-	TextResource chartJsAnnotationSource();
+	@Source("js/chartjs-plugin-stacked100.js")
+	TextResource chartJsStacked100Source();
 
 	@Source("css/Legend.css")
 	TextResource legend();

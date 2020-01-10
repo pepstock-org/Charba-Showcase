@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -7,8 +7,21 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.TimeSeriesLineChart;
+import org.pepstock.charba.client.annotation.AbstractAnnotation;
+import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
+import org.pepstock.charba.client.annotation.BoxAnnotation;
+import org.pepstock.charba.client.annotation.LineAnnotation;
+import org.pepstock.charba.client.annotation.callbacks.ClickCallback;
+import org.pepstock.charba.client.annotation.callbacks.DoubleClickCallback;
+import org.pepstock.charba.client.annotation.callbacks.MouseOutCallback;
+import org.pepstock.charba.client.annotation.callbacks.MouseOverCallback;
+import org.pepstock.charba.client.annotation.enums.DrawTime;
+import org.pepstock.charba.client.annotation.enums.Event;
+import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -22,9 +35,12 @@ import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
@@ -34,7 +50,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TimeSeriesLineCase extends BaseComposite {
+public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
@@ -44,20 +60,25 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, TimeSeriesLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationsEventsOnTimeSeriesCase> {
 	}
 
 	@UiField
 	TimeSeriesLineChart chart;
 
-	public TimeSeriesLineCase() {
+	@UiField
+	LogView mylog;
+	
+	final MyEventsCallback callback = new MyEventsCallback();
+
+	public AnnotationsEventsOnTimeSeriesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Timeseries line chart");
+		chart.getOptions().getTitle().setText("Zoom callbacks on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -91,7 +112,8 @@ public class TimeSeriesLineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		long time = new Date().getTime();
+		Date myDate = new Date();
+		long time = myDate.getTime();
 
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS, false);
@@ -119,6 +141,46 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 		chart.getData().setDatasets(dataset1, dataset2);
 
+		AnnotationOptions options = new AnnotationOptions();
+		options.setEvents(Event.CLICK, Event.DOUBLE_CLICK, Event.MOUSE_OUT, Event.MOUSE_OVER);
+		
+		LineAnnotation line = new LineAnnotation();
+		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
+		line.setMode(LineMode.HORIZONTAL);
+		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line.setBorderColor(HtmlColor.BLACK);
+		line.setBorderWidth(5);
+		line.setValue(40);
+		line.getLabel().setEnabled(true);
+		line.getLabel().setContent("My threshold");
+		line.getLabel().setBackgroundColor(HtmlColor.RED);
+		line.setClickCallback(callback);
+		line.setMouseOverCallback(callback);
+		line.setMouseOutCallback(callback);
+		line.setDoubleClickCallback(callback);
+		
+		BoxAnnotation box = new BoxAnnotation();
+		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
+		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
+		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4);
+		box.setXMin(new Date(time));
+		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4 * 3);
+		box.setXMax(new Date(time));
+		box.setYMax(100);
+		box.setYMin(60);
+		box.setBackgroundColor("rgba(101, 33, 171, 0.5)");
+		box.setBorderColor("rgb(101, 33, 171)");
+		box.setBorderWidth(1);
+		box.setClickCallback(callback);
+		box.setMouseOverCallback(callback);
+		box.setMouseOutCallback(callback);
+		box.setDoubleClickCallback(callback);
+		
+		options.setAnnotations(line, box);
+
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+
 	}
 
 	@UiHandler("randomize")
@@ -135,5 +197,29 @@ public class TimeSeriesLineCase extends BaseComposite {
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
+	}
+	
+	class MyEventsCallback implements ClickCallback, MouseOverCallback, MouseOutCallback, DoubleClickCallback {
+
+		@Override
+		public void onMouseOut(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+			mylog.addLogEvent("> MOUSEOUT on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+		}
+
+		@Override
+		public void onMouseOver(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+			mylog.addLogEvent("> MOUSEOVER on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+		}
+
+		@Override
+		public void onClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+			mylog.addLogEvent("> CLICK on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+		}
+
+		@Override
+		public void onDoubleClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+			mylog.addLogEvent("> DOUBLE CLICK on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+		}
+		
 	}
 }

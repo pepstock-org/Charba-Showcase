@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -7,8 +7,15 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.TimeSeriesLineChart;
+import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
+import org.pepstock.charba.client.annotation.LineAnnotation;
+import org.pepstock.charba.client.annotation.enums.DrawTime;
+import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
+import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -22,9 +29,11 @@ import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JsDate;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
@@ -34,7 +43,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TimeSeriesLineCase extends BaseComposite {
+public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
@@ -44,20 +53,18 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, TimeSeriesLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationLineOnTimeSeriesLineCase> {
 	}
 
 	@UiField
 	TimeSeriesLineChart chart;
 
-	public TimeSeriesLineCase() {
+	public AnnotationLineOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Timeseries line chart");
+		chart.getOptions().getTitle().setText("Line annotations on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -91,7 +98,8 @@ public class TimeSeriesLineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		long time = new Date().getTime();
+		JsDate myDate = JsDate.create(2020, 1, 1, 0, 0, 0, 0);
+		long time = (long) myDate.getTime();
 
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS, false);
@@ -119,6 +127,38 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 		chart.getData().setDatasets(dataset1, dataset2);
 
+		AnnotationOptions options = new AnnotationOptions();
+
+		LineAnnotation line = new LineAnnotation();
+		line.setDrawTime(DrawTime.AFTER_DRAW);
+		line.setMode(LineMode.VERTICAL);
+		line.setScaleID(Scales.DEFAULT_X_AXIS_ID);
+		line.setBorderColor(HtmlColor.DARK_GRAY);
+		line.setBorderWidth(2);
+		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 2);
+		line.setValue(new Date(time));
+		line.getLabel().setEnabled(true);
+		line.getLabel().setContent("Now");
+		line.getLabel().setPosition(LineLabelPosition.TOP);
+
+		LineAnnotation line1 = new LineAnnotation();
+		line1.setDrawTime(DrawTime.AFTER_DRAW);
+		line1.setMode(LineMode.HORIZONTAL);
+		line1.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line1.setBorderColor(HtmlColor.ORANGE);
+		line1.setBorderWidth(4);
+		line1.setBorderDash(4, 4);
+		line1.setValue(40);
+		line1.getLabel().setEnabled(true);
+		line1.getLabel().setContent("My threshold");
+		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
+		line1.getLabel().setBackgroundColor(HtmlColor.ORANGE);
+		line1.getLabel().setFontColor(HtmlColor.BLACK);
+		line1.getLabel().setFontSize(18);
+
+		options.setAnnotations(line, line1);
+
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}
 
 	@UiHandler("randomize")
