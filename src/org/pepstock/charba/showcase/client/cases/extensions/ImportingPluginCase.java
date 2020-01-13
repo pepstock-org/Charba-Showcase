@@ -68,6 +68,7 @@ public class ImportingPluginCase extends BaseComposite {
 		Stacked100Options options = new Stacked100Options();
 		options.setEnable(true);
 		options.store(chart);
+		
 	}
 
 	@UiHandler("randomize")
