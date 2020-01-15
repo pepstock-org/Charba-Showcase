@@ -124,7 +124,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 		axis2.setStacked(true);
-
+		
 		chart.getData().setDatasets(dataset1, dataset2);
 
 		AnnotationOptions options = new AnnotationOptions();

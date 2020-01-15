@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.views;
 
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnLogarithmicAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationObliqueLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsOnTimeSeriesCase;
@@ -297,6 +298,12 @@ public class ExtensionsView extends AbstractView {
 	protected void handleAnnotationLineOnHorizontalBar(ClickEvent event) {
 		clearPreviousChart();
 		 content.add(new AnnotationLineOnHorizontalBarCase());
+	}
+
+	@UiHandler("annotationLogarithmicAxisOnLine")
+	protected void handleAnnotationLogarithmicAxisOnLine(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationLineOnLogarithmicAxisCase());
 	}
 
 	@UiHandler("annotationObliqueLineOnTimeseries")
