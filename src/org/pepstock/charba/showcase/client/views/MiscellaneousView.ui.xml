@@ -49,6 +49,7 @@
 					<g:Label ui:field="miscellaneousPointStyleImagesOnLine" styleName='{myStyle.myLabel}'>Applying point styles as images on line chart</g:Label>
 					<g:Label ui:field="miscellaneousPointSizeOnLine" styleName='{myStyle.myLabel}'>Applying point sizes on line chart</g:Label>
 					<g:Label ui:field="miscellaneousHoverStyleOnStackedArea" styleName='{myStyle.myLabel}'>Applying hover styles on stacked area chart</g:Label>
+					<g:Label ui:field="miscellaneousTrendAndForecasetOnTimeseries" styleName='{myStyle.myLabel}'>Drawing trend and forecast on timeseries chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

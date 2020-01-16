@@ -23,6 +23,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.InterpolationOnLi
 import org.pepstock.charba.showcase.client.cases.miscellaneous.SimpleLabelPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.StandingPluginOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.SteppedLineOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.TrendAndForecastCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -94,6 +95,13 @@ public class MiscellaneousView extends AbstractView {
 		clearPreviousChart();
 		content.add(new HoverStyleOnStackedAreaCase());
 	}
+	
+	@UiHandler("miscellaneousTrendAndForecasetOnTimeseries")
+	protected void handleMiscellaneousTrendAndForecasetOnTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TrendAndForecastCase());
+	}
+	
 	
 	// ----------------------------------------------
 	// plugins
