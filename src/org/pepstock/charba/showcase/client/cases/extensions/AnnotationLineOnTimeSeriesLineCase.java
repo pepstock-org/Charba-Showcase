@@ -58,6 +58,10 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 	@UiField
 	TimeSeriesLineChart chart;
+	
+	final LineAnnotation line1 = new LineAnnotation();
+	
+	final TimeSeriesLineDataset dataset1;
 
 	public AnnotationLineOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -78,7 +82,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 		});
 
-		final TimeSeriesLineDataset dataset1 = chart.newDataset();
+		dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.FALSE);
@@ -141,16 +145,22 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		line.getLabel().setContent("Now");
 		line.getLabel().setPosition(LineLabelPosition.TOP);
 
-		LineAnnotation line1 = new LineAnnotation();
+		
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
 		line1.setMode(LineMode.HORIZONTAL);
 		line1.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
 		line1.setBorderColor(HtmlColor.ORANGE);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);
-		line1.setValue(40);
+		List<DataPoint> dataPoints = dataset1.getDataPoints();
+		int size = dataPoints.size();
+		double sum = 0D;
+		for (DataPoint dp : dataPoints) {
+			sum += dp.getY();
+		}
+		line1.setValue(sum/size);
 		line1.getLabel().setEnabled(true);
-		line1.getLabel().setContent("My threshold");
+		line1.getLabel().setContent("Average "+dataset1.getLabel());
 		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
 		line1.getLabel().setBackgroundColor(HtmlColor.ORANGE);
 		line1.getLabel().setFontColor(HtmlColor.BLACK);
@@ -169,7 +179,14 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 				dp.setValue(getRandomDigit(false));
 			}
 		}
-		chart.update();
+		List<DataPoint> dataPoints = dataset1.getDataPoints();
+		int size = dataPoints.size();
+		double sum = 0D;
+		for (DataPoint dp : dataPoints) {
+			sum += dp.getY();
+		}
+		line1.setValue((sum/size));
+		chart.reconfigure();
 	}
 
 	@UiHandler("source")

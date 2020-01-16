@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationBoxesOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnLogarithmicAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
@@ -282,6 +283,14 @@ public class ExtensionsView extends AbstractView {
 	// Annotation
 	// ----------------------------------------------
 
+	
+
+	@UiHandler("annotationBoxesOnLine")
+	protected void handleAnnotationBoxesOnLine(ClickEvent event) {
+		clearPreviousChart();
+		 content.add(new AnnotationBoxesOnLineCase());
+	}
+
 	@UiHandler("annotationsLineAndBoxOnCombined")
 	protected void handleAnnotationsLineAndBoxOnCombined(ClickEvent event) {
 		clearPreviousChart();
@@ -317,7 +326,7 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new AnnotationsEventsOnTimeSeriesCase());
 	}		
-
+	
 	// ----------------------------------------------
 	// Imported
 	// ----------------------------------------------

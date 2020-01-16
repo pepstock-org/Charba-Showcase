@@ -145,7 +145,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		options.setEvents(Event.CLICK, Event.DOUBLE_CLICK, Event.MOUSE_OUT, Event.MOUSE_OVER);
 		
 		LineAnnotation line = new LineAnnotation();
-		line.setAnnotationId("LineAnnotation");
+		line.setName("LineAnnotation");
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
 		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
@@ -161,7 +161,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.setDoubleClickCallback(callback);
 		
 		BoxAnnotation box = new BoxAnnotation();
-		box.setAnnotationId("BoxAnnotation");
+		box.setName("BoxAnnotation");
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
 		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
@@ -205,22 +205,22 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 		@Override
 		public void onMouseOut(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> MOUSEOUT on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> MOUSEOUT on annotation "+annotation.getName()+" type "+annotation.getType()); 
 		}
 
 		@Override
 		public void onMouseOver(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> MOUSEOVER on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> MOUSEOVER on annotation "+annotation.getName()+" type "+annotation.getType()); 
 		}
 
 		@Override
 		public void onClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> CLICK on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> CLICK on annotation "+annotation.getName()+" type "+annotation.getType()); 
 		}
 
 		@Override
 		public void onDoubleClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> DOUBLE CLICK on annotation "+annotation.getAnnotationId()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> DOUBLE CLICK on annotation "+annotation.getName()+" type "+annotation.getType()); 
 		}
 		
 	}
