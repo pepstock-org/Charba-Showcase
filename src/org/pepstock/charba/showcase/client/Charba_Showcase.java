@@ -35,7 +35,7 @@ public class Charba_Showcase implements EntryPoint {
 	
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
 	
-	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/tree/2.7/src/";
+	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/2.8/src/";
 	
 	public void onModuleLoad() {
 		
