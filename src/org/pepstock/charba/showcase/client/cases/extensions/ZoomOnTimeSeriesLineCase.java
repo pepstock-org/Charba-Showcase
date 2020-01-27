@@ -122,19 +122,20 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 		axis2.setStacked(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 		ZoomOptions options = new ZoomOptions();
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
-		
+
 		time = new Date().getTime() + (DAY * AMOUNT_OF_POINTS / 2);
-		
+
 		options.getZoom().getRangeMax().setX(new Date(time));
-		options.getZoom().setSpeed(0.05D);;
+		options.getZoom().setSpeed(0.05D);
+		;
 		Drag drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
-		
+
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
 
@@ -153,7 +154,7 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 	protected void handleResetZoom(ClickEvent event) {
 		ZoomPlugin.resetZoom(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

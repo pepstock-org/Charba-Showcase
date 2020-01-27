@@ -33,13 +33,13 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox maxItems;
-	
+
 	public HtmlLegendMaxItemsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		maxItems.addItem("Default", String.valueOf(HtmlLegendOptions.DEFAULT_MAXIMUM_LEGEND_COLUMNS));
 		maxItems.addItem("8", String.valueOf(8));
 		maxItems.addItem("6", String.valueOf(6));
@@ -54,7 +54,7 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -92,16 +92,16 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 		chart.getPlugins().add(HtmlLegend.get());
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
@@ -109,7 +109,7 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("maxItems")
 	protected void handleMaxItems(ChangeEvent event) {
 		String selected = maxItems.getSelectedValue();
@@ -118,7 +118,6 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		chart.getOptions().getPlugins().setOptions(HtmlLegend.ID, options);
 		chart.reconfigure();
 	}
-
 
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {

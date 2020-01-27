@@ -1,8 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
-import java.util.Date;
-
 import org.pepstock.charba.client.BarChart;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -11,6 +10,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -23,8 +23,6 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class TimeSeriesByBarCase extends BaseComposite {
 
-	private static final long DAY = 1000 * 60 * 60 * 24;
-
 	private static final int AMOUNT_OF_POINTS = 15;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -35,7 +33,7 @@ public class TimeSeriesByBarCase extends BaseComposite {
 	@UiField
 	BarChart chart;
 
-	private long starting = System.currentTimeMillis();
+	private final long startingPoint = System.currentTimeMillis();
 
 	public TimeSeriesByBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -43,28 +41,28 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries by bar chart");
-		long time = starting;
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(HtmlColor.GREEN);
+
+		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
 
 		DataPoint[] points = new DataPoint[AMOUNT_OF_POINTS];
 		DataPoint[] rainPoints = new DataPoint[AMOUNT_OF_POINTS];
 		int idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(new Date(time));
+			dataPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
 			dataPoint.setX(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint = new DataPoint();
-			rainPoint.setT(new Date(time));
+			rainPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
 			rainPoint.setY(100 * Math.random());
 			rainPoints[idx] = rainPoint;
 
 			idx++;
-			time = time + DAY;
 		}
 		dataset1.setDataPoints(rainPoints);
 
@@ -73,21 +71,19 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		dataset2.setLabel("dataset 2");
 
 		DataPoint[] rainPoints2 = new DataPoint[AMOUNT_OF_POINTS];
-		time = starting;
 		idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(new Date(time));
+			dataPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
 			dataPoint.setX(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint2 = new DataPoint();
-			rainPoint2.setT(new Date(time));
+			rainPoint2.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
 			rainPoint2.setY(100 * Math.random());
 			rainPoints2[idx] = rainPoint2;
 
 			idx++;
-			time = time + DAY;
 		}
 		dataset2.setDataPoints(rainPoints2);
 

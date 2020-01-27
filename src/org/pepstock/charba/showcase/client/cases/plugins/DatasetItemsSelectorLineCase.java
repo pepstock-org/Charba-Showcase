@@ -36,7 +36,7 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	public DatasetItemsSelectorLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -49,7 +49,7 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -87,12 +87,12 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 3, 6);
@@ -102,12 +102,12 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFontSize());
 		pOptions.setColor(HtmlColor.LIGHT_GOLDEN_ROD_YELLOW.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 		pOptions.setFireEventOnClearSelection(true);
-		
+
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(DatasetsItemsSelector.get());
-		
+
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
-			
+
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
@@ -116,9 +116,9 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {

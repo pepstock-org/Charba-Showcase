@@ -31,38 +31,38 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
-public class FlagsPluginOnBarCase extends BaseComposite{
-	
+public class FlagsPluginOnBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	private static final String[] COUNTRIES = {"br","de","fr","gb","it","us"};
-	
+	private static final String[] COUNTRIES = { "br", "de", "fr", "gb", "it", "us" };
+
 	interface ViewUiBinder extends UiBinder<Widget, FlagsPluginOnBarCase> {
 	}
-	
+
 	@UiField
 	BarChart chart;
-	
+
 	CartesianCategoryAxis axis;
-	
+
 	private static final int MIN = 50;
-	
+
 	private static final int MAX = 100;
-	
+
 	private static final int PERCENT = 10;
-	
+
 	public FlagsPluginOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Flags plugin on bar chart");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Countries");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
@@ -76,7 +76,7 @@ public class FlagsPluginOnBarCase extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 
 		chart.getOptions().getScales().setYAxes(axis);
-		
+
 		chart.addHandler(new ChartResizeEventHandler() {
 
 			private final Timer t = new Timer() {
@@ -86,7 +86,7 @@ public class FlagsPluginOnBarCase extends BaseComposite{
 					chart.draw();
 				}
 			};
-			
+
 			@Override
 			public void onResize(final ChartResizeEvent event) {
 				int width = event.getSize().getWidth();
@@ -94,9 +94,9 @@ public class FlagsPluginOnBarCase extends BaseComposite{
 				t.schedule(500);
 			}
 		}, ChartResizeEvent.TYPE);
-		
+
 		AbstractPlugin p = new AbstractPlugin() {
-			
+
 			@Override
 			public String getId() {
 				return "flagsplugin";
@@ -138,9 +138,9 @@ public class FlagsPluginOnBarCase extends BaseComposite{
 			}
 		};
 		chart.getPlugins().add(p);
-	
+
 	}
-	
+
 	@Override
 	protected void onAttach() {
 		calculateAndSetScaleLabelPadding(chart.getCanvas().getParent().getOffsetWidth());
@@ -149,23 +149,23 @@ public class FlagsPluginOnBarCase extends BaseComposite{
 
 	private ImageElement getImageElement(ImageResource resource) {
 		Image img = new Image(resource.getSafeUri());
-	    return ImageElement.as(img.getElement());
+		return ImageElement.as(img.getElement());
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	private void calculateAndSetScaleLabelPadding(int width) {
 		int percent = width * PERCENT / 100;
 		int padding = Math.min(Math.max(MIN, percent), MAX);
 		axis.getScaleLabel().getPadding().setTop(padding);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

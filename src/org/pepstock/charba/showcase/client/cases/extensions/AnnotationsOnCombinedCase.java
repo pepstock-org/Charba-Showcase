@@ -28,8 +28,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationsOnCombinedCase extends BaseComposite{
-	
+public class AnnotationsOnCombinedCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, AnnotationsOnCombinedCase> {
@@ -37,7 +37,7 @@ public class AnnotationsOnCombinedCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-		
+
 	public AnnotationsOnCombinedCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -72,15 +72,15 @@ public class AnnotationsOnCombinedCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-	
-		double max = Math.max(Collections.max(dataset1.getData()),Collections.max(dataset2.getData()));
+
+		double max = Math.max(Collections.max(dataset1.getData()), Collections.max(dataset2.getData()));
 		max = Math.max(max, Collections.max(dataset3.getData()));
-		
-		double min = Math.min(Collections.min(dataset1.getData()),Collections.min(dataset2.getData()));
+
+		double min = Math.min(Collections.min(dataset1.getData()), Collections.min(dataset2.getData()));
 		min = Math.min(min, Collections.min(dataset3.getData()));
-		
+
 		AnnotationOptions options = new AnnotationOptions();
-	
+
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
@@ -88,37 +88,38 @@ public class AnnotationsOnCombinedCase extends BaseComposite{
 		line.setBorderColor(HtmlColor.BLACK);
 		line.setBorderWidth(5);
 		line.setValue(getRandomDigits(1, min, max)[0]);
-		
+
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
-		
+
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
 		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
 		box.setXMin("February");
 		box.setXMax("April");
-		
+
 		double value = getRandomDigits(1, min, max)[0];
 		box.setYMax(value);
 		box.setYMin(value - 40);
-		
+
 		box.setBackgroundColor("rgba(101, 33, 171, 0.5)");
 		box.setBorderColor("rgb(101, 33, 171)");
 		box.setBorderWidth(1);
 		options.setAnnotations(line, box);
-		
+
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
-		
+
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
-		chart.update();;
+		chart.update();
+		;
 	}
 
 	@UiHandler("source")

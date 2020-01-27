@@ -20,8 +20,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ApplyingPointSizesOnLineCase extends BaseComposite{
-	
+public class ApplyingPointSizesOnLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ApplyingPointSizesOnLineCase> {
@@ -29,10 +29,10 @@ public class ApplyingPointSizesOnLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public ApplyingPointSizesOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.BOTTOM);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -40,37 +40,37 @@ public class ApplyingPointSizesOnLineCase extends BaseComposite{
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Big Points");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setFill(Fill.FALSE);
-		dataset1.setBorderDash(5,5);
+		dataset1.setBorderDash(5, 5);
 		dataset1.setPointRadius(15D);
 		dataset1.setPointHoverRadius(10D);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Individual point sizes");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.FALSE);
-		dataset2.setBorderDash(5,5);
+		dataset2.setBorderDash(5, 5);
 		dataset2.setPointRadius(2, 4, 6, 18, 0, 12, 20);
-		
+
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Large pointHoverRadius");
-		
+
 		IsColor color3 = GoogleChartColor.values()[2];
-		
+
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
@@ -79,9 +79,9 @@ public class ApplyingPointSizesOnLineCase extends BaseComposite{
 
 		LineDataset dataset4 = chart.newDataset();
 		dataset4.setLabel("Large pointHitRadius");
-		
+
 		IsColor color4 = GoogleChartColor.values()[3];
-		
+
 		dataset4.setBackgroundColor(color4.toHex());
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
@@ -92,27 +92,27 @@ public class ApplyingPointSizesOnLineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

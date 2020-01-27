@@ -105,22 +105,22 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 
 		chart.getData().setDatasets(dataset1, dataset2);
 		chart.getOptions().getScales().setXAxes(axis);
-		
+
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(2);
-		pOptions.setBorderDash(6,2);
+		pOptions.setBorderDash(6, 2);
 		pOptions.setBorderColor(HtmlColor.GREY);
 		pOptions.getClearSelection().setDisplay(true);
 		pOptions.getClearSelection().setLabel("Reset selection");
 		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFontSize());
 		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 		pOptions.setFireEventOnClearSelection(true);
-		
+
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(DatasetsItemsSelector.get());
-		
+
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
-			
+
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();

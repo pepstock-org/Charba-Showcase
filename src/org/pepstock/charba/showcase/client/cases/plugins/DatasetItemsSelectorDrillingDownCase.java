@@ -36,17 +36,17 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
-	
+
 	private static final DateTimeFormat DAY_FORMAT = DateTimeFormat.getFormat("dd MMM yyyy");
-	
+
 	private static final DateTimeFormat HOUR_FORMAT = DateTimeFormat.getFormat("HH:mm");
 
 	private static final DateTimeFormat DAY_HOUR_FORMAT = DateTimeFormat.getFormat("dd MMM yyyy HH:mm");
 
 	private static final long MINUTE = 1000 * 60;
-	
+
 	private static final long HOUR = MINUTE * 60;
-	
+
 	private static final int AMOUNT_OF_POINTS = 6 * 24;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -61,16 +61,16 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	Button reset;
 
 	TimeSeriesLineDataset dataset;
-	
+
 	CartesianTimeAxis axis;
-		
+
 	DatasetsItemsSelector plugin = DatasetsItemsSelector.get();
-	
+
 	DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
-	
+
 	public DatasetItemsSelectorDrillingDownCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Drilling down into dataset data on timeseries line chart");
@@ -84,7 +84,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
-		
+
 		@SuppressWarnings("deprecation")
 		Date myDate = new Date(119, 11, 1, 0, 0);
 		long time = myDate.getTime();
@@ -105,20 +105,20 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		axis.getTime().setStepSize(2);
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTicks().setCallback(new TimeTickCallback() {
-			
+
 			@SuppressWarnings("deprecation")
 			@Override
 			public String onCallback(Axis axis, Date value, String label, int index, List<TimeTickItem> values) {
-				boolean toPrintDate = index == 0 || index == (values.size()-1);
+				boolean toPrintDate = index == 0 || index == (values.size() - 1);
 				if (reset.isEnabled()) {
 					if (toPrintDate) {
 						return DAY_HOUR_FORMAT.format(value);
-					} else	if (value.getHours() == 0 && value.getMinutes() == 0) {
+					} else if (value.getHours() == 0 && value.getMinutes() == 0) {
 						return DAY_FORMAT.format(value);
 					} else {
 						return HOUR_FORMAT.format(value);
 					}
-				} else	if (toPrintDate || value.getHours() == 0) {
+				} else if (toPrintDate || value.getHours() == 0) {
 					return DAY_FORMAT.format(value);
 				} else if (value.getHours() == 12) {
 					return HOUR_FORMAT.format(value);
@@ -126,24 +126,24 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 				return "";
 			}
 		});
-		
+
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 
 		chart.getData().setDatasets(dataset);
-		
+
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 3, 6);
 		pOptions.setBorderColor(HtmlColor.GREY);
 		pOptions.setColor(HtmlColor.LIGHT_GOLDEN_ROD_YELLOW.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 		pOptions.setFireEventOnClearSelection(false);
-		
+
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(plugin);
-		
+
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
-			
+
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				if (!reset.isEnabled()) {

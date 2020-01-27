@@ -25,7 +25,7 @@ public interface Images extends ClientBundle {
 
 	@Source("/images/baseline_visibility_white_18dp.png")
 	ImageResource visibilityWhite();
-	
+
 	@Source("/images/gwt.png")
 	ImageResource gwt();
 
@@ -34,7 +34,7 @@ public interface Images extends ClientBundle {
 
 	@Source("/images/chartjs.png")
 	ImageResource chartjs();
-	
+
 	@Source("/images/crossline-lines.png")
 	ImageResource pattern();
 

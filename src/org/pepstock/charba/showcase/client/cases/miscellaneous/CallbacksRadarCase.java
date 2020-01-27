@@ -41,11 +41,11 @@ public class CallbacksRadarCase extends BaseComposite {
 		}
 
 	};
-	
-	private static final double MAX = 20D; 
+
+	private static final double MAX = 20D;
 
 	private static final double MIN = 5D;
-	
+
 	public CallbacksRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		chart.getOptions().setResponsive(true);
@@ -63,17 +63,17 @@ public class CallbacksRadarCase extends BaseComposite {
 
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color.alpha(0.2D));
 		dataset1.setBorderColor(color);
 		dataset1.setPointBackgroundColor(color);
 		dataset1.setPointRadius(new RadiusCallback() {
-			
+
 			@Override
 			public Double invoke(IsChart chart, ScriptableContext context) {
-				return  (double)((int) (Math.random() * (MAX - MIN))) + MIN;
+				return (double) ((int) (Math.random() * (MAX - MIN))) + MIN;
 			}
 		});
 		double[] values = getRandomDigits(months);

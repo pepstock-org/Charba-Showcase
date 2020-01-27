@@ -22,23 +22,23 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TilesBarCase extends BaseComposite{
-	
+public class TilesBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget,TilesBarCase> {
+	interface ViewUiBinder extends UiBinder<Widget, TilesBarCase> {
 	}
 
 	@UiField
 	BarChart chart;
-	
+
 	private static final int ITEMS = 12;
-	
+
 	public TilesBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		Pattern[] tiles= new Pattern[ITEMS];
-		for (int i=0; i<ITEMS; i++) {
+		Pattern[] tiles = new Pattern[ITEMS];
+		for (int i = 0; i < ITEMS; i++) {
 			Pattern p = TilesFactory.createPattern(Shape.values()[i], GoogleChartColor.values()[i]);
 			tiles[i] = p;
 		}
@@ -46,7 +46,7 @@ public class TilesBarCase extends BaseComposite{
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
+
 			@Override
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
 				return defaultLabels;
@@ -54,19 +54,19 @@ public class TilesBarCase extends BaseComposite{
 		});
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using tiles on bar chart datasets");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(tiles);
 		dataset1.setData(getFixedDigits(ITEMS));
-		
+
 		chart.getData().setLabels(getLabels(ITEMS));
 		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(ITEMS));
 		}
 		chart.update();

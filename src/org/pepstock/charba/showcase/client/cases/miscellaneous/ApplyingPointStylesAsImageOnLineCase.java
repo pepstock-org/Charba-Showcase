@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
-	
+public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ApplyingPointStylesAsImageOnLineCase> {
@@ -30,10 +30,10 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public ApplyingPointStylesAsImageOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
@@ -45,25 +45,25 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.FALSE);
-		
+
 		dataset1.setPointStyle(Images.INSTANCE.customPoint());
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
@@ -73,7 +73,7 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
@@ -81,19 +81,19 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
 
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		
+
 	}
 
 	@UiHandler("add_data")
@@ -105,7 +105,7 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

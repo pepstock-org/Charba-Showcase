@@ -30,21 +30,21 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 	interface ViewUiBinder extends UiBinder<Widget, FillingDatasetsOnRadarCase> {
 	}
 
-	private static final boolean[] HIDDENS = {false, true, false, false, false, false};
-	
-	private static final  IsFill[] FILLS = {null, Fill.getFill("-1"), Fill.getFill(1), Fill.FALSE, Fill.getFill("-1"), Fill.getFill("-1")};
+	private static final boolean[] HIDDENS = { false, true, false, false, false, false };
+
+	private static final IsFill[] FILLS = { null, Fill.getFill("-1"), Fill.getFill(1), Fill.FALSE, Fill.getFill("-1"), Fill.getFill("-1") };
 
 	@UiField
 	RadarChart chart;
-	
+
 	@UiField
 	CheckBox smooth;
 
 	@UiField
 	CheckBox propagate;
-	
+
 	private final FillerOptions options = new FillerOptions();
-	
+
 	public FillingDatasetsOnRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -55,16 +55,16 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 		chart.getOptions().getTitle().setText("Filling datasets mode on radar chart");
 		chart.getOptions().getElements().getLine().setTension(0.000001D);
 		chart.getOptions().setSpanGaps(false);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
-		
+
 		// radar chart doesn't support stacked values, let's do it manually
 		double increment = 10;
 		double max = 0;
-		
-		for (int i=0; i<6; i++) {
+
+		for (int i = 0; i < 6; i++) {
 			RadarDataset dataset1 = chart.newDataset();
-			dataset1.setLabel("dataset "+i);
+			dataset1.setLabel("dataset " + i);
 
 			IsColor color1 = GoogleChartColor.values()[i];
 
@@ -76,18 +76,18 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 			}
 			dataset1.setHidden(HIDDENS[i]);
 			// radar chart doesn't support stacked values, let's do it manually
-			dataset1.setData(getRandomDigits(months, max+1, max + increment));
+			dataset1.setData(getRandomDigits(months, max + 1, max + increment));
 			datasets.add(dataset1);
 			max += increment;
 		}
 
 		chart.getData().setLabels(getLabels());
-		
+
 		options.setPropagate(false);
 		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		// radar chart doesn't support stacked values, let's do it manually
@@ -95,12 +95,12 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 		double max = 0;
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			// radar chart doesn't support stacked values, let's do it manually
-			dataset.setData(getRandomDigits(months, max+1, max + increment));
+			dataset.setData(getRandomDigits(months, max + 1, max + increment));
 			max += increment;
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("smooth")
 	protected void handleSmooth(ClickEvent event) {
 		double value = smooth.getValue() ? 0.4D : 0.000001D;
@@ -119,11 +119,11 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-		
-	private static class FillerOptions extends AbstractPluginOptions{
-		
+
+	private static class FillerOptions extends AbstractPluginOptions {
+
 		private Key propagate = Key.create("propagate");
-		
+
 		/**
 		 * @param pluginId
 		 */
@@ -135,6 +135,5 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 			setValue(propagate, prop);
 		}
 
-		
 	}
 }

@@ -16,8 +16,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class RadialGradientPolarCase extends BaseComposite{
-	
+public class RadialGradientPolarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, RadialGradientPolarCase> {
@@ -28,12 +28,12 @@ public class RadialGradientPolarCase extends BaseComposite{
 
 	public RadialGradientPolarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a radial gradient on polar chart dataset");
-		
+
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getRadialGradients(months));
@@ -46,7 +46,7 @@ public class RadialGradientPolarCase extends BaseComposite{
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		chart.getDatasetMeta(0);
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -54,13 +54,13 @@ public class RadialGradientPolarCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PolarAreaDataset pds = (PolarAreaDataset)ds;
-				pds.setBackgroundColor(getRadialGradients(months));	
+			for (Dataset ds : datasets) {
+				PolarAreaDataset pds = (PolarAreaDataset) ds;
+				pds.setBackgroundColor(getRadialGradients(months));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -71,7 +71,7 @@ public class RadialGradientPolarCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

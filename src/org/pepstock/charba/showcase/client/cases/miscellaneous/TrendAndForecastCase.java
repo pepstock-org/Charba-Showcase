@@ -71,33 +71,33 @@ public class TrendAndForecastCase extends BaseComposite {
 	final LineDataset trend;
 
 	final LineDataset forecast;
-	
+
 	final CartesianTimeAxis axis;
 
 	public TrendAndForecastCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		
+
 		chart.addHandler(new LegendClickEventHandler() {
-			
+
 			@Override
 			public void onClick(LegendClickEvent event) {
 				Defaults.get().invokeLegendOnClick(event);
 				if (event.getItem().getDatasetIndex() == 2) {
 					DatasetMetaItem metadata = chart.getDatasetMeta(event.getItem().getDatasetIndex());
 					if (metadata.isHidden()) {
-						axis.getTicks().setMax(new Date((long)now.getTime()));
+						axis.getTicks().setMax(new Date((long) now.getTime()));
 						chart.reconfigure();
 					} else {
-						axis.getTicks().setMax((Date)null);
+						axis.getTicks().setMax((Date) null);
 						chart.reconfigure();
 					}
 				}
 			}
-		
+
 		}, LegendClickEvent.TYPE);
-		
+
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Trend and forecast on timeseries chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
@@ -128,7 +128,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		trend.setBackgroundColor(color2.toHex());
 		trend.setBorderColor(color2.toHex());
 		trend.setBorderDash(4, 4);
-		trend.setPointRadius(trend.getBorderWidth()/2);
+		trend.setPointRadius(trend.getBorderWidth() / 2);
 
 		forecast = chart.newDataset();
 		forecast.setLabel("Forecast");
@@ -137,7 +137,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		forecast.setBackgroundColor(color3.toHex());
 		forecast.setBorderColor(color3.toHex());
 		forecast.setBorderDash(4, 4);
-		forecast.setPointRadius(forecast.getBorderWidth()/2);		
+		forecast.setPointRadius(forecast.getBorderWidth() / 2);
 
 		double time = now.getTime() - PREVIOUS_PERIOD * DAY;
 
@@ -152,7 +152,7 @@ public class TrendAndForecastCase extends BaseComposite {
 			Date newDate = new Date((long) time);
 			if (time < now.getTime()) {
 				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i]*0.80D);
+				trendDp[i].setY(xs1[i] * 0.80D);
 				forecastDp[i].setY(Double.NaN);
 			} else if (time == now.getTime()) {
 				dataDp[i].setY(xs1[i]);
@@ -185,7 +185,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		chart.getOptions().getScales().setXAxes(axis);
 		chart.getOptions().getScales().setYAxes(axis2);
 		chart.getData().setDatasets(dataset, trend, forecast);
-		
+
 		AnnotationOptions options = new AnnotationOptions();
 
 		LineAnnotation line = new LineAnnotation();
@@ -220,7 +220,7 @@ public class TrendAndForecastCase extends BaseComposite {
 			Date newDate = new Date((long) time);
 			if (time < now.getTime()) {
 				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i]*0.80D);
+				trendDp[i].setY(xs1[i] * 0.80D);
 				forecastDp[i].setY(Double.NaN);
 			} else if (time == now.getTime()) {
 				dataDp[i].setY(xs1[i]);

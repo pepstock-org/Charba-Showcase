@@ -34,8 +34,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsLinearGradientLineCase extends BaseComposite{
-	
+public class DataLabelsLinearGradientLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsLinearGradientLineCase> {
@@ -43,10 +43,10 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public DataLabelsLinearGradientLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -55,28 +55,27 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setRight(32);
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
-		
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
-		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
+
+		Gradient gradient1 = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
 
 		gradient1.addColorStop(1, HtmlColor.PURPLE);
 		gradient1.addColorStop(0, HtmlColor.ORANGE);
 
-		
 		dataset1.setBackgroundColor(gradient1);
-		
+
 		dataset1.setBorderColor(gradient1);
 		dataset1.setPointBackgroundColor(gradient1);
 		dataset1.setPointHoverBackgroundColor(gradient1);
 		dataset1.setPointHoverBorderColor(gradient1);
-		
+
 		dataset1.setPointRadius(5);
-		
+
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.FALSE);
@@ -85,18 +84,18 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(Align.END);
 		option.setAnchor(Anchor.END);
@@ -107,22 +106,22 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 		option.getFont().setSize(11);
 		option.setOffset(4);
 		option.getPadding().set(8);
-		
+
 		option.setBackgroundColor(new BackgroundColorCallback() {
-			
+
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				Gradient gradient = ds.getBackgroundColorAsGradient();
-				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() -1) : 0;
+				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() - 1) : 0;
 				return gradient.getInterpolatedColorByOffset(factor);
 			}
 		});
-		
+
 		option.setBorderColor(new BorderColorCallback() {
-			
+
 			CanvasGradient gr1 = null;
-			
+
 			@Override
 			public CanvasGradient invoke(IsChart chart, ScriptableContext context) {
 				if (gr1 == null) {
@@ -133,22 +132,22 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 				return gr1;
 			}
 		});
-		
+
 		option.setFormatter(new FormatterCallback() {
-			
+
 			@Override
 			public String invoke(IsChart chart, double value, ScriptableContext context) {
-				return value < 20 ? "Poor\n"+value : value < 50 ? "Good\n"+value : "Great\n"+value;
+				return value < 20 ? "Poor\n" + value : value < 50 ? "Good\n" + value : "Great\n" + value;
 			}
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -163,7 +162,7 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

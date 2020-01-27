@@ -32,8 +32,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsInteractionsCase extends BaseComposite{
-	
+public class DataLabelsInteractionsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsInteractionsCase> {
@@ -41,10 +41,10 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public DataLabelsInteractionsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-	
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -56,23 +56,23 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		chart.getOptions().getHover().setIntersect(false);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
-		
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		
+
 		DataLabelsOptions option1 = new DataLabelsOptions();
 		option1.setAlign(new AlignCallback() {
-			
+
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
 				return context.isActive() ? Align.START : Align.CENTER;
@@ -82,7 +82,7 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
@@ -91,7 +91,7 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("dataset 2");
-		
+
 		IsColor color3 = GoogleChartColor.values()[2];
 
 		dataset3.setBackgroundColor(color3.toHex());
@@ -100,7 +100,7 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 
 		DataLabelsOptions option3 = new DataLabelsOptions();
 		option3.setAlign(new AlignCallback() {
-			
+
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
 				return context.isActive() ? Align.END : Align.CENTER;
@@ -108,70 +108,69 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 		});
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
 
-		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.isActive() ? ds.getBackgroundColorAsString() : HtmlColor.WHITE.toRGBA();
 			}
 		});
 		option.setBorderColor(new BorderColorCallback() {
-			
+
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString();
 			}
 		});
 		option.setColor(new ColorCallback() {
-			
+
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.isActive() ? HtmlColor.WHITE.toRGBA() : ds.getBackgroundColorAsString();
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
-			
+
 			@Override
 			public String invoke(IsChart chart, double value, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				double myValue = Math.round(value * 100) /100;
-				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue)+ "";
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
+				double myValue = Math.round(value * 100) / 100;
+				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue) + "";
 			}
 		});
 		option.setBorderWidth(1);
 		option.setOffset(8);
 		option.setTextAlign(TextAlign.CENTER);
 		option.getFont().setWeight(Weight.BOLD);
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -186,7 +185,7 @@ public class DataLabelsInteractionsCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

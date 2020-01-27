@@ -30,12 +30,12 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColorSchemeBubbleCase extends BaseComposite{
-	
+public class ColorSchemeBubbleCase extends BaseComposite {
+
 	private static final int AMOUNT_OF_POINTS = 16;
 	private static final int MIN_XY = -150;
 	private static final int MAX_XY = 100;
-	
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ColorSchemeBubbleCase> {
@@ -43,7 +43,7 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 
 	@UiField
 	BubbleChart chart;
-	
+
 	@UiField
 	CheckBox data;
 
@@ -52,19 +52,19 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 
 	@UiField
 	ListBox name;
-	
+
 	@UiField
 	CheckBox reverse;
-	
+
 	public ColorSchemeBubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		category.addItem("Brewer", "brewer");
 		category.addItem("MS Office", "office");
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
 		category.addItem("Google Chart", "googlechart");
-		
+
 		int index = 0;
 		for (ColorScheme scheme : BrewerScheme.values()) {
 			name.addItem(scheme.value(), scheme.value());
@@ -73,25 +73,25 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			}
 			index++;
 		}
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(true);
 		chart.getOptions().getLegend().getLabels().setFontSize(18);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring buble chart");
-		
+
 		BubbleDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		String[] colors = new String[AMOUNT_OF_POINTS];
 		String[] hcolors = new String[AMOUNT_OF_POINTS];
 		String[] bcolors = new String[AMOUNT_OF_POINTS];
 		int[] bwidth = new int[AMOUNT_OF_POINTS];
 		int[] hbwidth = new int[AMOUNT_OF_POINTS];
-		
+
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setX(getData());
 			dp1[i].setY(getData());
@@ -99,8 +99,8 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			colors[i] = colorize(false, dp1[i]);
 			bcolors[i] = colorize(true, dp1[i]);
 			bwidth[i] = Math.min(Math.max(1, i + 1), 5);
-			hcolors[i] = "transparent"; 
-			hbwidth[i] = (int)Math.round(8 * dp1[i].getR() / 1000);
+			hcolors[i] = "transparent";
+			hbwidth[i] = (int) Math.round(8 * dp1[i].getR() / 1000);
 		}
 		dataset1.setBackgroundColor(colors);
 		dataset1.setBorderColor(bcolors);
@@ -111,19 +111,18 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 
 		chart.getPlugins().add(ColorSchemes.get());
 		chart.getData().setDatasets(dataset1);
-		
 
 	}
 
-	private int getData(){
+	private int getData() {
 		return getData(MIN_XY, MAX_XY);
 	}
 
-	private int getData(int min, int max){
+	private int getData(int min, int max) {
 		Random random = new Random();
 		return random.nextInt(max + 1 - min) + min;
 	}
-	
+
 	private String colorize(boolean opaque, DataPoint value) {
 		double x = value.getX() / 100;
 		double y = value.getY() / 100;
@@ -142,17 +141,17 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		int[] bwidth = new int[AMOUNT_OF_POINTS];
 		int[] hbwidth = new int[AMOUNT_OF_POINTS];
 
-		for (Dataset dataset : chart.getData().getDatasets()){
-			BubbleDataset bDataset = (BubbleDataset)dataset;
+		for (Dataset dataset : chart.getData().getDatasets()) {
+			BubbleDataset bDataset = (BubbleDataset) dataset;
 			int i = 0;
-			for (DataPoint dp : bDataset.getDataPoints()){
+			for (DataPoint dp : bDataset.getDataPoints()) {
 				dp.setX(getData());
 				dp.setY(getData());
 				dp.setR(getData(0, 50));
 				colors[i] = colorize(false, dp);
 				bcolors[i] = colorize(true, dp);
 				bwidth[i] = Math.min(Math.max(1, i + 1), 5);
-				hbwidth[i] = (int)Math.round(8 * dp.getR() / 1000);
+				hbwidth[i] = (int) Math.round(8 * dp.getR() / 1000);
 				i++;
 			}
 			bDataset.setBackgroundColor(colors);
@@ -166,16 +165,16 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		BubbleDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
+		dataset.setLabel("dataset " + (datasets.size() + 1));
+
 		String[] colors = new String[AMOUNT_OF_POINTS];
 		String[] hcolors = new String[AMOUNT_OF_POINTS];
 		String[] bcolors = new String[AMOUNT_OF_POINTS];
 		int[] bwidth = new int[AMOUNT_OF_POINTS];
 		int[] hbwidth = new int[AMOUNT_OF_POINTS];
-		
+
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setX(getData());
 			dp1[i].setY(getData());
@@ -183,8 +182,8 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			colors[i] = colorize(false, dp1[i]);
 			bcolors[i] = colorize(true, dp1[i]);
 			bwidth[i] = Math.min(Math.max(1, i + 1), 5);
-			hcolors[i] = "transparent"; 
-			hbwidth[i] = (int)Math.round(8 * dp1[i].getR() / 1000);
+			hcolors[i] = "transparent";
+			hbwidth[i] = (int) Math.round(8 * dp1[i].getR() / 1000);
 		}
 		dataset.setBackgroundColor(colors);
 		dataset.setBorderColor(bcolors);
@@ -194,16 +193,15 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		dataset.setDataPoints(dp1);
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 	}
-
 
 	@UiHandler("remove_dataset")
 	protected void handleRemoveDataset(ClickEvent event) {
 		removeDataset(chart);
 	}
-	
+
 	@UiHandler("data")
 	protected void handleScope(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
@@ -215,7 +213,7 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("reverse")
 	protected void handleReverse(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
@@ -223,7 +221,7 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("category")
 	protected void handleCategory(ChangeEvent event) {
 		String selected = category.getSelectedValue();
@@ -242,7 +240,7 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			for (ColorScheme scheme : OfficeScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
@@ -254,13 +252,13 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GoogleChartScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		}
 		handleName(event);
 		chart.update();
@@ -285,15 +283,14 @@ public class ColorSchemeBubbleCase extends BaseComposite{
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
-		} 
+		}
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-
 
 }

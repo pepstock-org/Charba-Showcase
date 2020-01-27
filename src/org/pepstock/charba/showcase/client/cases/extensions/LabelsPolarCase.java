@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LabelsPolarCase extends BaseComposite{
-	
+public class LabelsPolarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LabelsPolarCase> {
@@ -30,16 +30,16 @@ public class LabelsPolarCase extends BaseComposite{
 
 	@UiField
 	PolarAreaChart chart;
-	
-	final int myMonths = 3; 
-	
+
+	final int myMonths = 3;
+
 	public LabelsPolarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Using labels on polar chart");
-		
+
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(myMonths, 1));
@@ -47,7 +47,7 @@ public class LabelsPolarCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels(myMonths));
 		chart.getData().setDatasets(dataset);
-		
+
 		LabelsOptions option1 = new LabelsOptions();
 		option1.setRender(Render.LABEL);
 		option1.setFontColor(HtmlColor.BLACK);
@@ -61,12 +61,12 @@ public class LabelsPolarCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(myMonths, false));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

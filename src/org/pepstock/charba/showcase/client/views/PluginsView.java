@@ -97,8 +97,7 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new DatasetItemsSelectorTimeSeriesByBarCase());
 	}
-	
-	
+
 	@UiHandler("datasetItemsSelectorDrillingDown")
 	protected void handleDatasetItemsSelectorDrillingDown(ClickEvent event) {
 		clearPreviousChart();
@@ -132,13 +131,14 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new ColorSchemeRadarCase());
 	}
-	
+
 	@UiHandler("colorSchemeOnPie")
 	protected void handleColorSchemeOnPie(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ColorSchemePieCase());
 	}
-//	
+
+	//
 	@UiHandler("colorSchemeOnPolar")
 	protected void handleColorSchemeOnPolar(ClickEvent event) {
 		clearPreviousChart();
@@ -202,7 +202,7 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new HtmlLegendRadialGradientCase());
 	}
-	
+
 	@UiHandler("htmlLegendWithPattern")
 	protected void handleHtmlLegendPattern(ClickEvent event) {
 		clearPreviousChart();
@@ -226,8 +226,7 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new HtmlLegendCustomCallbackCase());
 	}
-	
-	
+
 	// ----------------------------------------------
 	// Chart pointer
 	// ----------------------------------------------
@@ -237,5 +236,5 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new PointerLineCase());
 	}
-	
+
 }

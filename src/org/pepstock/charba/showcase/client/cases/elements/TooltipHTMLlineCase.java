@@ -35,7 +35,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TooltipHTMLlineCase extends BaseComposite{
+public class TooltipHTMLlineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -44,10 +44,10 @@ public class TooltipHTMLlineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public TooltipHTMLlineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -56,43 +56,43 @@ public class TooltipHTMLlineCase extends BaseComposite{
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {
-			
+
 			private DivElement element = null;
-			
+
 			@Override
 			public void onCustom(IsChart chart, TooltipModel model) {
-				if (model.getOpacity() == 0){
+				if (model.getOpacity() == 0) {
 					element.getStyle().setOpacity(0);
 					return;
 				}
-				if (element == null){
+				if (element == null) {
 					element = Document.get().createDivElement();
-					AbstractChart<?> chartInstance = (AbstractChart<?>)chart;
+					AbstractChart<?> chartInstance = (AbstractChart<?>) chart;
 					chartInstance.getElement().appendChild(element);
 				}
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
-				if (model.getYAlign() != null){
+				if (model.getYAlign() != null) {
 					element.addClassName(model.getYAlign());
 				} else {
 					element.addClassName("no-transform");
 				}
 				StringBuilder innerHTML = new StringBuilder("<table cellpadding=2>");
-				
-				if (model.getBody() != null && !model.getBody().isEmpty()){
+
+				if (model.getBody() != null && !model.getBody().isEmpty()) {
 					innerHTML.append("<thead>");
-					if (model.getTitle() != null && !model.getTitle().isEmpty()){
-						for (String title : model.getTitle()){
+					if (model.getTitle() != null && !model.getTitle().isEmpty()) {
+						for (String title : model.getTitle()) {
 							innerHTML.append("<tr><th style='font-size: 18px;'>").append(title).append("</th></tr>");
 						}
 					}
 					innerHTML.append("</thead><tbody>");
 					List<TooltipLabelColor> colors = model.getLabelColors();
 					int index = 0;
-					for (TooltipBodyItem item : model.getBody()){
+					for (TooltipBodyItem item : model.getBody()) {
 						List<String> lines = item.getLines();
-						for (int i=0; i<lines.size(); i++){
+						for (int i = 0; i < lines.size(); i++) {
 							TooltipLabelColor color = colors.get(index);
 							DivElement wrapper = Document.get().createDivElement();
 							SpanElement span = Document.get().createSpanElement();
@@ -131,12 +131,12 @@ public class TooltipHTMLlineCase extends BaseComposite{
 				element.getStyle().setProperty("transform", "translate(-50%, 0)");
 			}
 		});
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
@@ -144,9 +144,9 @@ public class TooltipHTMLlineCase extends BaseComposite{
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
@@ -156,28 +156,28 @@ public class TooltipHTMLlineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

@@ -7,6 +7,5 @@ public final class MyLineDataset extends LineDataset {
 	public MyLineDataset() {
 		super(MyLineChart.TYPE);
 	}
-	
-	
+
 }

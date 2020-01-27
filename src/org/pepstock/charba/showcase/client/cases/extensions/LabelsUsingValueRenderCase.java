@@ -25,8 +25,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LabelsUsingValueRenderCase extends BaseComposite{
-	
+public class LabelsUsingValueRenderCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LabelsUsingValueRenderCase> {
@@ -34,9 +34,9 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 
 	@UiField
 	PieChart chart;
-	
+
 	final MyRenderer renderer = new MyRenderer();
-	
+
 	final LabelsOptions option = new LabelsOptions();
 
 	public LabelsUsingValueRenderCase() {
@@ -46,7 +46,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using labels with values on pie chart");
-		
+
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
@@ -54,7 +54,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
+
 		option.setRender(Render.VALUE);
 		option.setFontColor(HtmlColor.WHITE);
 		option.setPrecision(2);
@@ -62,13 +62,13 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 		option.setFontStyle(FontStyle.BOLD);
 		option.setFontFamily("'Lucida Console', Monaco, monospace");
 		option.setOverlap(false);
-		
+
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -78,12 +78,12 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("dataset " + (datasets.size() + 1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 
 	}
@@ -95,49 +95,49 @@ public class LabelsUsingValueRenderCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				PieDataset pds = (PieDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
 		}
-		
+
 	}
 
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("format")
 	protected void handleFormat(ClickEvent event) {
 		boolean checked = ((CheckBox) event.getSource()).getValue();
 		if (checked) {
-			option.setRender(renderer);	
+			option.setRender(renderer);
 		} else {
 			option.setRender(Render.VALUE);
 		}
-		
+
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	static class MyRenderer implements RenderCallback{
+	static class MyRenderer implements RenderCallback {
 
 		@Override
 		public String invoke(IsChart chart, RenderItem item) {
-			return "$$ "+item.getValue();
+			return "$$ " + item.getValue();
 		}
-		
+
 	}
 }

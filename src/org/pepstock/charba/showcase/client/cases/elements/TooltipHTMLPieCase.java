@@ -28,8 +28,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TooltipHTMLPieCase extends BaseComposite{
-	
+public class TooltipHTMLPieCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, TooltipHTMLPieCase> {
@@ -40,42 +40,42 @@ public class TooltipHTMLPieCase extends BaseComposite{
 
 	public TooltipHTMLPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML custom tooltip on pie chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {
-			
+
 			private DivElement element = null;
-			
+
 			@Override
 			public void onCustom(IsChart chart, TooltipModel model) {
-				if (model.getOpacity() == 0){
+				if (model.getOpacity() == 0) {
 					element.getStyle().setOpacity(0);
 					return;
 				}
-				if (element == null){
+				if (element == null) {
 					element = Document.get().createDivElement();
-					AbstractChart<?> chartInstance = (AbstractChart<?>)chart;
+					AbstractChart<?> chartInstance = (AbstractChart<?>) chart;
 					chartInstance.getElement().appendChild(element);
 				}
 
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
-				if (model.getYAlign() != null){
+				if (model.getYAlign() != null) {
 					element.addClassName(model.getYAlign());
 				} else {
 					element.addClassName("no-transform");
 				}
 				StringBuilder innerHTML = new StringBuilder("<table cellpadding=5>");
 
-				if (model.getBody() != null && !model.getBody().isEmpty()){
-					if (model.getTitle() != null && !model.getTitle().isEmpty()){
+				if (model.getBody() != null && !model.getBody().isEmpty()) {
+					if (model.getTitle() != null && !model.getTitle().isEmpty()) {
 						innerHTML.append("<thead>");
-						for (String title : model.getTitle()){
+						for (String title : model.getTitle()) {
 							innerHTML.append("<tr><th>").append(title).append("</th></tr>");
 						}
 						innerHTML.append("<tbody>");
@@ -83,9 +83,9 @@ public class TooltipHTMLPieCase extends BaseComposite{
 					innerHTML.append("<tbody>");
 					List<TooltipLabelColor> colors = model.getLabelColors();
 					int index = 0;
-					for (TooltipBodyItem item : model.getBody()){
+					for (TooltipBodyItem item : model.getBody()) {
 						List<String> lines = item.getLines();
-						for (int i=0; i<lines.size(); i++){
+						for (int i = 0; i < lines.size(); i++) {
 							TooltipLabelColor color = colors.get(index);
 							DivElement wrapper = Document.get().createDivElement();
 							SpanElement span = Document.get().createSpanElement();
@@ -136,22 +136,22 @@ public class TooltipHTMLPieCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("dataset " + (datasets.size() + 1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 
 	}
@@ -163,13 +163,13 @@ public class TooltipHTMLPieCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				PieDataset pds = (PieDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -181,7 +181,6 @@ public class TooltipHTMLPieCase extends BaseComposite{
 		removeData(chart);
 	}
 
-	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

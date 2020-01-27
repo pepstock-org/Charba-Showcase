@@ -68,7 +68,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 	@UiField
 	LogView mylog;
-	
+
 	final MyEventsCallback callback = new MyEventsCallback();
 
 	public AnnotationsEventsOnTimeSeriesCase() {
@@ -143,7 +143,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 		AnnotationOptions options = new AnnotationOptions();
 		options.setEvents(Event.CLICK, Event.DOUBLE_CLICK, Event.MOUSE_OUT, Event.MOUSE_OVER);
-		
+
 		LineAnnotation line = new LineAnnotation();
 		line.setName("LineAnnotation");
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
@@ -159,7 +159,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.setMouseOverCallback(callback);
 		line.setMouseOutCallback(callback);
 		line.setDoubleClickCallback(callback);
-		
+
 		BoxAnnotation box = new BoxAnnotation();
 		box.setName("BoxAnnotation");
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -178,7 +178,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		box.setMouseOverCallback(callback);
 		box.setMouseOutCallback(callback);
 		box.setDoubleClickCallback(callback);
-		
+
 		options.setAnnotations(line, box);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
@@ -200,28 +200,28 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-	
+
 	class MyEventsCallback implements ClickCallback, MouseOverCallback, MouseOutCallback, DoubleClickCallback {
 
 		@Override
 		public void onMouseOut(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> MOUSEOUT on annotation "+annotation.getName()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> MOUSEOUT on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
 		public void onMouseOver(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> MOUSEOVER on annotation "+annotation.getName()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> MOUSEOVER on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
 		public void onClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> CLICK on annotation "+annotation.getName()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> CLICK on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
 		public void onDoubleClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> DOUBLE CLICK on annotation "+annotation.getName()+" type "+annotation.getType()); 
+			mylog.addLogEvent("> DOUBLE CLICK on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
-		
+
 	}
 }

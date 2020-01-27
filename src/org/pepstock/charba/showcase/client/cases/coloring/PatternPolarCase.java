@@ -27,7 +27,7 @@ public class PatternPolarCase extends BaseComposite {
 	}
 
 	private static final int ITEMS = 3;
-	
+
 	@UiField
 	PolarAreaChart chart;
 

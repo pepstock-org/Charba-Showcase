@@ -1,11 +1,11 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -19,12 +19,11 @@ import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -33,9 +32,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class TimeSeriesByLineCase extends BaseComposite {
 
-	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
-
-	private static final long DAY = 1000 * 60 * 60 * 24;
+	// private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
 	private static final int AMOUNT_OF_POINTS = 60;
 
@@ -47,12 +44,16 @@ public class TimeSeriesByLineCase extends BaseComposite {
 	@UiField
 	LineChart chart;
 
+	private final long startingPoint = System.currentTimeMillis();
+
+	private final DateAdapter adapter;
+
 	public TimeSeriesByLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
+		adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries by line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
@@ -63,7 +64,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getIndex());
-				return Arrays.asList(FORMAT.format(dp.getT()));
+				return Arrays.asList(adapter.format(dp.getT(), TimeUnit.DAY));
 			}
 
 		});
@@ -78,15 +79,12 @@ public class TimeSeriesByLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
-		long time = new Date().getTime();
-
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setY(xs1[i]);
-			dp1[i].setT(new Date(time));
-			time = time + DAY;
+			dp1[i].setT(adapter.add(startingPoint, i, TimeUnit.DAY));
 		}
 		dataset1.setDataPoints(dp1);
 

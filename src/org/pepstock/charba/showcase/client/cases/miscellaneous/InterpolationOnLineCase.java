@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -22,37 +21,37 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class InterpolationOnLineCase extends BaseComposite{
-	
+public class InterpolationOnLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
-	
+
 	private static final int AMOUNT = 12;
 
 	interface ViewUiBinder extends UiBinder<Widget, InterpolationOnLineCase> {
 	}
-	
+
 	private double[] data = null;
 
 	@UiField
 	LineChart chart;
-	
+
 	public InterpolationOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		super.months = AMOUNT;
 		createData();
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Interpolation options on line chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Cubic interpolation (monotone)");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(data);
@@ -61,9 +60,9 @@ public class InterpolationOnLineCase extends BaseComposite{
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("Cubic interpolation (default)");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(data);
@@ -71,9 +70,9 @@ public class InterpolationOnLineCase extends BaseComposite{
 
 		LineDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("Linear interpolation");
-		
+
 		IsColor color3 = GoogleChartColor.values()[2];
-		
+
 		dataset3.setBackgroundColor(color3.toHex());
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(data);
@@ -84,40 +83,40 @@ public class InterpolationOnLineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.getTicks().setSuggestedMax(200);
 		axis2.getTicks().setSuggestedMin(-10);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		createData();
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(data);
 		}
 		chart.update();
 	}
-	
-	private void createData(){
+
+	private void createData() {
 		data = getRandomDigits(AMOUNT);
-		for (int i=0; i<AMOUNT; i++){
-			if (i == 5){
+		for (int i = 0; i < AMOUNT; i++) {
+			if (i == 5) {
 				data[i] = Double.NaN;
 			}
 		}
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

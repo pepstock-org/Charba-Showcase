@@ -147,7 +147,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.getLabel().setFontColor(HtmlColor.BLACK);
 
 		options.setAnnotations(line1);
-		
+
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}
 

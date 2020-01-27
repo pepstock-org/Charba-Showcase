@@ -23,8 +23,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ApplyingPointStylesOnLineCase extends BaseComposite{
-	
+public class ApplyingPointStylesOnLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ApplyingPointStylesOnLineCase> {
@@ -32,17 +32,17 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox pointStyles;
-	
+
 	LineDataset dataset = null;
-	
+
 	IsColor color = null;
-	
+
 	public ApplyingPointStylesOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (PointStyle myPointStyle : PointStyle.values()) {
 			pointStyles.addItem(myPointStyle.name(), myPointStyle.name());
 		}
@@ -52,7 +52,7 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(true);
 		chart.getOptions().getLegend().getLabels().setFontSize(15);
 		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
+
 			@Override
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
 				String selectedPointStyle = pointStyles.getSelectedValue();
@@ -66,10 +66,10 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		});
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying point styles on line chart");
-		
+
 		dataset = chart.newDataset();
 		dataset.setLabel("My dataset");
-		
+
 		color = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
@@ -79,7 +79,7 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		dataset.setPointHoverRadius(20D);
 		dataset.setShowLine(false);
 		dataset.setPointStyle(PointStyle.CIRCLE);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 	}
@@ -89,7 +89,7 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		dataset.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("pointStyles")
 	protected void handlePointStyle(ChangeEvent event) {
 		String selectedPointStyle = pointStyles.getSelectedValue();
@@ -107,7 +107,6 @@ public class ApplyingPointStylesOnLineCase extends BaseComposite{
 		}
 	}
 
-	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

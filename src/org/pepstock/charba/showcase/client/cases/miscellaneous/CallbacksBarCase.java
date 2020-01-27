@@ -23,8 +23,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CallbacksBarCase extends BaseComposite{
-	
+public class CallbacksBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, CallbacksBarCase> {
@@ -32,7 +32,7 @@ public class CallbacksBarCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public CallbacksBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -40,7 +40,7 @@ public class CallbacksBarCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Callbacks on bar chart dataset");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
@@ -49,20 +49,20 @@ public class CallbacksBarCase extends BaseComposite{
 		border.setLeft(2);
 		border.setRight(2);
 		dataset1.setBorderWidth(border);
-		
+
 		dataset1.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return GoogleChartColor.values()[context.getIndex()+1];
+				return GoogleChartColor.values()[context.getIndex() + 1];
 			}
-			
+
 		});
 		dataset1.setBorderColor(new BorderColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return GoogleChartColor.values()[context.getIndex()+5];
+				return GoogleChartColor.values()[context.getIndex() + 5];
 			}
 
 		});
@@ -72,23 +72,23 @@ public class CallbacksBarCase extends BaseComposite{
 			public BorderSkipped invoke(IsChart chart, ScriptableContext context) {
 				return BorderSkipped.BOTTOM;
 			}
-			
+
 		});
 
 		dataset1.setData(getFixedDigits(months));
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

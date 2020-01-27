@@ -36,7 +36,7 @@ public class ImportingPluginCase extends BaseComposite {
 
 	public ImportingPluginCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		Injector.ensureInjected(MyResources.INSTANCE.chartJsStacked100Source());
 
 		chart.getOptions().setResponsive(true);
@@ -68,7 +68,7 @@ public class ImportingPluginCase extends BaseComposite {
 		Stacked100Options options = new Stacked100Options();
 		options.setEnable(true);
 		options.store(chart);
-		
+
 	}
 
 	@UiHandler("randomize")

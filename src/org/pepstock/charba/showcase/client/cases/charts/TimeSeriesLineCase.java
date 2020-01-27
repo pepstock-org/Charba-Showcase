@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.TimeSeriesLineChart;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -18,10 +18,12 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -38,8 +40,6 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
-	private static final long DAY = 1000 * 60 * 60 * 24;
-
 	private static final int AMOUNT_OF_POINTS = 60;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -50,12 +50,12 @@ public class TimeSeriesLineCase extends BaseComposite {
 	@UiField
 	TimeSeriesLineChart chart;
 
+	private final long startingPoint = System.currentTimeMillis();
+
 	public TimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
@@ -91,18 +91,16 @@ public class TimeSeriesLineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		long time = new Date().getTime();
+		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
 
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		List<TimeSeriesItem> data = new LinkedList<>();
 		List<TimeSeriesItem> data1 = new LinkedList<>();
 
-		time = time + DAY * AMOUNT_OF_POINTS;
 		for (int i = AMOUNT_OF_POINTS - 1; i >= 0; i--) {
-			data.add(new TimeSeriesItem(new Date(time), xs1[i]));
-			data1.add(new TimeSeriesItem(new Date(time), xs2[i]));
-			time = time - DAY;
+			data.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), xs1[i]));
+			data1.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), xs2[i]));
 		}
 		dataset1.setTimeSeriesData(data);
 		dataset2.setTimeSeriesData(data1);
@@ -110,6 +108,7 @@ public class TimeSeriesLineCase extends BaseComposite {
 		CartesianTimeAxis axis = chart.getOptions().getScales().getTimeAxis();
 		axis.setDistribution(ScaleDistribution.SERIES);
 		axis.getTicks().setSource(TickSource.DATA);
+		axis.setBounds(ScaleBounds.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();

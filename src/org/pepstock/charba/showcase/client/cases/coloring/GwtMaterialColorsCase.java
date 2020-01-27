@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.ColorBuilder;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
@@ -20,8 +19,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class GwtMaterialColorsCase extends BaseComposite{
-	
+public class GwtMaterialColorsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, GwtMaterialColorsCase> {
@@ -29,17 +28,17 @@ public class GwtMaterialColorsCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox color;
 
 	LineDataset dataset1 = null;
-	
+
 	public GwtMaterialColorsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		GwtMaterialColor first = null;
-		
+
 		for (GwtMaterialColor myColor : GwtMaterialColor.values()) {
 			if (first == null) {
 				first = myColor;
@@ -51,7 +50,7 @@ public class GwtMaterialColorsCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("GWT material colors on line chart");
-		
+
 		dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
@@ -59,17 +58,17 @@ public class GwtMaterialColorsCase extends BaseComposite{
 		dataset1.setBorderColor(first.darker());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setFill(Fill.ORIGIN);
-	
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		dataset1.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("color")
 	protected void handleColors(ChangeEvent event) {
 		String selectedColor = color.getSelectedValue();

@@ -29,8 +29,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsMirrorCase extends BaseComposite{
-	
+public class DataLabelsMirrorCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsMirrorCase> {
@@ -38,10 +38,10 @@ public class DataLabelsMirrorCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public DataLabelsMirrorCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTooltips().setEnabled(false);
@@ -52,15 +52,15 @@ public class DataLabelsMirrorCase extends BaseComposite{
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getElements().getPoint().setHoverRadius(7);
 		chart.getOptions().getElements().getPoint().setRadius(5);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1);
 		dataset1.setBorderColor(color1);
 		double[] values = getRandomDigits(months);
@@ -70,64 +70,64 @@ public class DataLabelsMirrorCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(new AlignCallback() {
-			
+
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
-				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? Align.END : Align.START;
 			}
 		});
-		
+
 		option.setAnchor(new AnchorCallback() {
 
 			@Override
 			public Anchor invoke(IsChart chart, ScriptableContext context) {
-				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? Anchor.END : Anchor.START;
 			}
 		});
 		option.setRotation(new RotationCallback() {
-			
+
 			@Override
 			public Double invoke(IsChart chart, ScriptableContext context) {
-				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getData().get(context.getIndex()) > 0 ? 45D : 100D - 45D;
 			}
 		});
 
 		option.setBackgroundColor(new BackgroundColorCallback() {
-			
+
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(0);
 			}
 		});
 		option.setBorderRadius(4);
 		option.setColor(HtmlColor.WHITE);
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -142,7 +142,7 @@ public class DataLabelsMirrorCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

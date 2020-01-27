@@ -26,10 +26,10 @@ public class TilesPointStylesCase extends BaseComposite {
 	interface ViewUiBinder extends UiBinder<Widget, TilesPointStylesCase> {
 	}
 
-	private static final HtmlColor[] BACKGROUND = {HtmlColor.ORANGE_RED, HtmlColor.LIGHT_BLUE, HtmlColor.LIGHT_GREEN, HtmlColor.ORANGE, HtmlColor.IVORY};
+	private static final HtmlColor[] BACKGROUND = { HtmlColor.ORANGE_RED, HtmlColor.LIGHT_BLUE, HtmlColor.LIGHT_GREEN, HtmlColor.ORANGE, HtmlColor.IVORY };
 
-	private static final HtmlColor[] COLORS = {HtmlColor.BLACK, HtmlColor.WHITE, HtmlColor.LIGHT_GRAY};
-	
+	private static final HtmlColor[] COLORS = { HtmlColor.BLACK, HtmlColor.WHITE, HtmlColor.LIGHT_GRAY };
+
 	@UiField
 	LineChart chart;
 
@@ -43,7 +43,7 @@ public class TilesPointStylesCase extends BaseComposite {
 	ListBox color;
 
 	private static final int ITEMS = 12;
-	
+
 	LineDataset dataset1 = null;
 
 	public TilesPointStylesCase() {
@@ -62,7 +62,7 @@ public class TilesPointStylesCase extends BaseComposite {
 		for (HtmlColor myColor : COLORS) {
 			color.addItem(myColor.name(), myColor.toRGB());
 		}
-		
+
 		Pattern p = TilesFactory.createPattern(PointStyle.CIRCLE);
 
 		chart.getOptions().setResponsive(true);
@@ -84,8 +84,8 @@ public class TilesPointStylesCase extends BaseComposite {
 		dataset1.setData(getRandomDigits(ITEMS));
 		applyTile();
 	}
-	
-	@UiHandler(value = {"pointStyles", "color", "background"})
+
+	@UiHandler(value = { "pointStyles", "color", "background" })
 	protected void handleShapes(ChangeEvent event) {
 		applyTile();
 	}
@@ -94,7 +94,7 @@ public class TilesPointStylesCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-	
+
 	protected void applyTile() {
 		String selectedPointStyle = pointStyles.getSelectedValue();
 		String selectedColor = color.getSelectedValue();

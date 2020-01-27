@@ -32,14 +32,8 @@ public class TilesCharactersCase extends BaseComposite {
 
 	public TilesCharactersCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		CharacterShape[] charShapes = {
-				new CharacterShape("A"),
-				new CharacterShape("\u00DF"),
-				new CharacterShape("Z"),
-				new CharacterShape("M"),
-				new CharacterShape("O")
-		};
+
+		CharacterShape[] charShapes = { new CharacterShape("A"), new CharacterShape("\u00DF"), new CharacterShape("Z"), new CharacterShape("M"), new CharacterShape("O") };
 
 		Pattern[] tiles = new Pattern[ITEMS];
 		for (int i = 0; i < ITEMS; i++) {

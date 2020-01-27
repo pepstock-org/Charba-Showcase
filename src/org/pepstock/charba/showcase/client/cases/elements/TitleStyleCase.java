@@ -31,9 +31,9 @@ public class TitleStyleCase extends BaseComposite {
 	interface ViewUiBinder extends UiBinder<Widget, TitleStyleCase> {
 	}
 
-	private static final HtmlColor[] COLORS = {HtmlColor.BLACK, HtmlColor.RED, HtmlColor.BLUE, HtmlColor.GREEN, HtmlColor.ORANGE};
-	
-	private static final int[] FONT_SIZES = {8, 12, 16, 20, 24};
+	private static final HtmlColor[] COLORS = { HtmlColor.BLACK, HtmlColor.RED, HtmlColor.BLUE, HtmlColor.GREEN, HtmlColor.ORANGE };
+
+	private static final int[] FONT_SIZES = { 8, 12, 16, 20, 24 };
 
 	@UiField
 	LineChart chart;
@@ -44,10 +44,9 @@ public class TitleStyleCase extends BaseComposite {
 	@UiField
 	ListBox fontSize;
 
-	
 	public TitleStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		color.addItem("Default", Defaults.get().getGlobal().getTitle().getFontColorAsString());
 		for (HtmlColor myColor : COLORS) {
 			color.addItem(myColor.name(), myColor.toRGB());
@@ -62,7 +61,7 @@ public class TitleStyleCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Changing title style on line chart");
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -100,12 +99,12 @@ public class TitleStyleCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 	}
 
 	@UiHandler("color")

@@ -36,7 +36,7 @@ public class TilesRadarCase extends BaseComposite {
 	public TilesRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		int index = getIndex(0, Shape.values().length-1);
+		int index = getIndex(0, Shape.values().length - 1);
 		Pattern p = TilesFactory.createPattern(Shape.values()[index], GoogleChartColor.values()[1]);
 
 		chart.getOptions().setResponsive(true);
@@ -62,7 +62,7 @@ public class TilesRadarCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			RadarDataset dataset1 = (RadarDataset) dataset;
 			dataset1.setData(getRandomDigits(ITEMS));
-			int index = getIndex(0, Shape.values().length-1);
+			int index = getIndex(0, Shape.values().length - 1);
 			Pattern p = TilesFactory.createPattern(Shape.values()[index], GoogleChartColor.values()[1]);
 			dataset1.setBackgroundColor(p);
 		}

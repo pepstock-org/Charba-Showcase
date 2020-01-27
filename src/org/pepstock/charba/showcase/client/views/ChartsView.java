@@ -140,29 +140,29 @@ public class ChartsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new ComboBarLineCase());
 	}
-	
+
 	@UiHandler("timeSeriesLine")
 	protected void handleTimeSeriesLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesLineCase());
+		content.add(new TimeSeriesLineCase());
 	}
 
 	@UiHandler("timeSeriesBar")
 	protected void handleTimeSeriesBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesBarCase());
+		content.add(new TimeSeriesBarCase());
 	}
 
 	@UiHandler("timeSeriesByLine")
 	protected void handleTimeSeriesByLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesByLineCase());
+		content.add(new TimeSeriesByLineCase());
 	}
 
 	@UiHandler("timeSeriesByBar")
 	protected void handleTimeSeriesByBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TimeSeriesByBarCase());
+		content.add(new TimeSeriesByBarCase());
 	}
 
 	// ----------------------------------------------
@@ -208,13 +208,13 @@ public class ChartsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new DatasetSelectionBarCase());
 	}
-	
+
 	@UiHandler("chartDatasetSelectionEventOnPie")
 	protected void handleChartDatasetSelectionEventOnPie(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new DatasetSelectionPieCase());
 	}
-	
+
 	@UiHandler("legendClickEvent")
 	protected void handleLegendClickEvent(ClickEvent event) {
 		clearPreviousChart();

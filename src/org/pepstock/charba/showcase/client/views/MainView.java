@@ -69,7 +69,7 @@ public class MainView extends Composite {
 			clearPreviousChart();
 			ChartsView view = new ChartsView(content);
 			content.add(view);
-//			view.coloring.getElement().scrollIntoView();
+			// view.coloring.getElement().scrollIntoView();
 		}
 	}
 

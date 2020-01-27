@@ -29,8 +29,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsDataCase extends BaseComposite{
-	
+public class DataLabelsDataCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsDataCase> {
@@ -38,7 +38,7 @@ public class DataLabelsDataCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public DataLabelsDataCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -50,37 +50,37 @@ public class DataLabelsDataCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(16);
 		chart.getOptions().getElements().getLine().setFill(false);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new Color(255, 255, 255).alpha(0.7));
 		option.setBorderColor(new Color(128, 128, 128).alpha(0.7));
@@ -93,45 +93,45 @@ public class DataLabelsDataCase extends BaseComposite{
 
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				double curr = ds.getData().get(context.getIndex());
-				double prev = context.getIndex() > 0 ? ds.getData().get(context.getIndex()-1) : 0;
-				double next = context.getIndex() < ds.getData().size() ? ds.getData().get(context.getIndex()+1) : 0;
-				return prev < curr && next < curr ? Align.END :	prev > curr && next > curr ? Align.START :	Align.CENTER;
+				double prev = context.getIndex() > 0 ? ds.getData().get(context.getIndex() - 1) : 0;
+				double next = context.getIndex() < ds.getData().size() ? ds.getData().get(context.getIndex() + 1) : 0;
+				return prev < curr && next < curr ? Align.END : prev > curr && next > curr ? Align.START : Align.CENTER;
 			}
-			
+
 		});
 		option.setColor(new ColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getIndex());
-				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
-				return diff < 0 ? HtmlColor.RED : diff > 0 ? HtmlColor.GREEN : HtmlColor.GRAY ;
+				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex() - 1) : 0;
+				return diff < 0 ? HtmlColor.RED : diff > 0 ? HtmlColor.GREEN : HtmlColor.GRAY;
 			}
-			
+
 		});
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
 			public String invoke(IsChart chart, double value, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
-				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex()-1) : 0;
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
+				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex() - 1) : 0;
 				StringBuffer sb = new StringBuffer();
 				sb.append(diff < 0 ? '\u25B2' : diff > 0 ? '\u25BC' : '\u25C6');
 				return sb.append(" ").append(Math.round(value)).toString();
 			}
-			
+
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -146,7 +146,7 @@ public class DataLabelsDataCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

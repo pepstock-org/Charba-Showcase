@@ -22,8 +22,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LabelsPositioningCase extends BaseComposite{
-	
+public class LabelsPositioningCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LabelsPositioningCase> {
@@ -31,16 +31,16 @@ public class LabelsPositioningCase extends BaseComposite{
 
 	@UiField
 	DoughnutChart chart;
-	
+
 	final LabelsOptions option = new LabelsOptions();
-	
+
 	public LabelsPositioningCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Positioning labels");
-		
+
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
@@ -49,7 +49,6 @@ public class LabelsPositioningCase extends BaseComposite{
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-
 		option.setRender(Render.LABEL);
 		option.setFontColor(HtmlColor.WHITE);
 		option.setFontSize(16);
@@ -57,13 +56,13 @@ public class LabelsPositioningCase extends BaseComposite{
 		option.setArc(true);
 		option.setPosition(Position.BORDER);
 		option.setOverlap(false);
-		
+
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -71,25 +70,25 @@ public class LabelsPositioningCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				PieDataset pds = (PieDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
 		}
-		
+
 	}
 
 	@UiHandler("remove_data")
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("outside")
 	protected void handleOutside(ClickEvent event) {
 		boolean checked = ((CheckBox) event.getSource()).getValue();

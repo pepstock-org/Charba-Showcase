@@ -4,8 +4,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 abstract class AbstractView extends Composite {
-	
-	protected VerticalPanel content; 
+
+	protected VerticalPanel content;
 
 	public AbstractView(VerticalPanel content) {
 		this.content = content;
@@ -17,5 +17,5 @@ abstract class AbstractView extends Composite {
 			content.remove(i);
 		}
 	}
-	
+
 }

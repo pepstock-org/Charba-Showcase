@@ -47,13 +47,13 @@ public class MiscellaneousView extends AbstractView {
 	// ----------------------------------------------
 	// options
 	// ----------------------------------------------
-	
+
 	@UiHandler("animation")
 	protected void handleAnimation(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnimationCase());
+		content.add(new AnimationCase());
 	}
-	
+
 	@UiHandler("miscellaneousSteppedOnLine")
 	protected void handleMiscellaneousSteppedOnLine(ClickEvent event) {
 		clearPreviousChart();
@@ -81,7 +81,7 @@ public class MiscellaneousView extends AbstractView {
 	@UiHandler("miscellaneousPointStyleImagesOnLine")
 	protected void handleMiscellaneousPointStyleImagesOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ApplyingPointStylesAsImageOnLineCase());
+		content.add(new ApplyingPointStylesAsImageOnLineCase());
 	}
 
 	@UiHandler("miscellaneousPointSizeOnLine")
@@ -89,20 +89,19 @@ public class MiscellaneousView extends AbstractView {
 		clearPreviousChart();
 		content.add(new ApplyingPointSizesOnLineCase());
 	}
-	
+
 	@UiHandler("miscellaneousHoverStyleOnStackedArea")
 	protected void handleMiscellaneousHoverStyleOnStackedArea(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new HoverStyleOnStackedAreaCase());
 	}
-	
+
 	@UiHandler("miscellaneousTrendAndForecasetOnTimeseries")
 	protected void handleMiscellaneousTrendAndForecasetOnTimeseries(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TrendAndForecastCase());
 	}
-	
-	
+
 	// ----------------------------------------------
 	// plugins
 	// ----------------------------------------------
@@ -110,31 +109,31 @@ public class MiscellaneousView extends AbstractView {
 	@UiHandler("miscellaneousSimplePluginLabelOnBar")
 	protected void handleMiscellaneousPluginLabel(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new SimpleLabelPluginOnBarCase());
+		content.add(new SimpleLabelPluginOnBarCase());
 	}
-	
+
 	@UiHandler("miscellaneousPluginFlags")
 	protected void handleMiscellaneousPluginFlags(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new FlagsPluginOnBarCase());
+		content.add(new FlagsPluginOnBarCase());
 	}
-	
+
 	@UiHandler("miscellaneousPluginStandings")
 	protected void handleMiscellaneousPluginStandings(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new StandingPluginOnLineCase());
+		content.add(new StandingPluginOnLineCase());
 	}
 
 	@UiHandler("htmlAnnotation")
 	protected void handleHTMLAnnotation(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HTMLAnnnotationCase());
+		content.add(new HTMLAnnnotationCase());
 	}
 
 	@UiHandler("htmlAnnotationByElement")
 	protected void handleHTMLAnnotationByElement(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new HTMLAnnnotationByElementCase());
+		content.add(new HTMLAnnnotationByElementCase());
 	}
 
 	// ----------------------------------------------
@@ -204,6 +203,5 @@ public class MiscellaneousView extends AbstractView {
 		clearPreviousChart();
 		content.add(new ControllerMyHorizontalBarCase());
 	}
-
 
 }

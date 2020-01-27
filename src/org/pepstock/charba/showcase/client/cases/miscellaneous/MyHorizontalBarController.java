@@ -18,13 +18,13 @@ import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.Image;
 
 public class MyHorizontalBarController extends AbstractController {
-	
+
 	public static final ControllerType TYPE = new ControllerType("myHorizontalBar", ChartType.HORIZONTAL_BAR);
-	
+
 	private static final int MIN = 50;
-	
+
 	private static final int MAX = 100;
-	
+
 	private static final int PERCENT = 10;
 
 	@Override
@@ -34,11 +34,10 @@ public class MyHorizontalBarController extends AbstractController {
 
 	@Override
 	public void initialize(ControllerContext context, IsChart chart, int datasetIndex) {
-		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.initialize(context, chart, datasetIndex);
 	}
-
 
 	@Override
 	public void draw(ControllerContext context, IsChart chart, double ease) {
@@ -46,7 +45,7 @@ public class MyHorizontalBarController extends AbstractController {
 		final int padding = 4;
 		Context2d ctx = chart.getCanvas().getContext2d();
 		ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
-		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
 		List<String> ticks = scale.getTicks();
 		int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 		final int height = Math.min(heightAmongLabels - (padding * 2), MIN);
@@ -75,11 +74,10 @@ public class MyHorizontalBarController extends AbstractController {
 			y = y + heightAmongLabels;
 		}
 	}
-	
 
 	@Override
 	public void update(ControllerContext context, IsChart chart, boolean reset) {
-		Scale axis = (Scale)context.getNode().getOptions().getScales().getYAxes().get(0);
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
 		super.update(context, chart, reset);
 	}
@@ -89,9 +87,9 @@ public class MyHorizontalBarController extends AbstractController {
 		int padding = Math.min(Math.max(MIN, percent), MAX);
 		axis.getScaleLabel().getPadding().setTop(padding);
 	}
-	
+
 	private ImageElement getImageElement(ImageResource resource) {
 		Image img = new Image(resource.getSafeUri());
-	    return ImageElement.as(img.getElement());
-	}		
+		return ImageElement.as(img.getElement());
+	}
 }

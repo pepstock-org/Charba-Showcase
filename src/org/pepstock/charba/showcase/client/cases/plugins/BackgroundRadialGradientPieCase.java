@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class BackgroundRadialGradientPieCase extends BaseComposite{
-	
+public class BackgroundRadialGradientPieCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, BackgroundRadialGradientPieCase> {
@@ -30,15 +30,15 @@ public class BackgroundRadialGradientPieCase extends BaseComposite{
 
 	@UiField
 	PieChart chart;
-	
+
 	public BackgroundRadialGradientPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Chart background plugin on pie chart");
-		
+
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
@@ -46,12 +46,12 @@ public class BackgroundRadialGradientPieCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
-		Gradient gradient = new Gradient(GradientType.RADIAL, GradientOrientation.IN_OUT,  GradientScope.CANVAS);
+
+		Gradient gradient = new Gradient(GradientType.RADIAL, GradientOrientation.IN_OUT, GradientScope.CANVAS);
 
 		gradient.addColorStop(0, HtmlColor.WHITE);
 		gradient.addColorStop(1, HtmlColor.GRAY);
-	
+
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);
 
@@ -60,12 +60,12 @@ public class BackgroundRadialGradientPieCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

@@ -17,8 +17,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LabelsUsingImageRenderCase extends BaseComposite{
-	
+public class LabelsUsingImageRenderCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LabelsUsingImageRenderCase> {
@@ -26,8 +26,8 @@ public class LabelsUsingImageRenderCase extends BaseComposite{
 
 	@UiField
 	PieChart chart;
-	
-	final int myMonths = 3; 
+
+	final int myMonths = 3;
 
 	public LabelsUsingImageRenderCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -36,7 +36,7 @@ public class LabelsUsingImageRenderCase extends BaseComposite{
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using images as labels");
-		
+
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(myMonths, 1));
@@ -55,7 +55,7 @@ public class LabelsUsingImageRenderCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(myMonths, false));
 		}
 		chart.update();
@@ -65,6 +65,5 @@ public class LabelsUsingImageRenderCase extends BaseComposite{
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-
 
 }

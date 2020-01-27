@@ -20,8 +20,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LabelsMultiOptionsCase extends BaseComposite{
-	
+public class LabelsMultiOptionsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LabelsMultiOptionsCase> {
@@ -29,14 +29,14 @@ public class LabelsMultiOptionsCase extends BaseComposite{
 
 	@UiField
 	DoughnutChart chart;
-	
+
 	public LabelsMultiOptionsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Using multiple labels");
-		
+
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
@@ -44,7 +44,7 @@ public class LabelsMultiOptionsCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
+
 		LabelsOptions option1 = new LabelsOptions();
 		option1.setRender(Render.LABEL);
 		option1.setFontColor(HtmlColor.BLACK);
@@ -61,7 +61,7 @@ public class LabelsMultiOptionsCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();

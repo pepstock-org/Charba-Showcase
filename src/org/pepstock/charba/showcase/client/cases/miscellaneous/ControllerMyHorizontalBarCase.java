@@ -16,18 +16,18 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ControllerMyHorizontalBarCase extends BaseComposite{
-	
+public class ControllerMyHorizontalBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	private static final String[] COUNTRIES = {"br","de","fr","gb","it","us"};
-	
+	private static final String[] COUNTRIES = { "br", "de", "fr", "gb", "it", "us" };
+
 	interface ViewUiBinder extends UiBinder<Widget, ControllerMyHorizontalBarCase> {
 	}
-	
+
 	@UiField
 	MyHorizontalBarChart chart;
-	
+
 	CartesianCategoryAxis axis;
 
 	public ControllerMyHorizontalBarCase() {
@@ -36,12 +36,12 @@ public class ControllerMyHorizontalBarCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("My horizontal bar chart by controller");
-		
+
 		MyHorizontalBarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Countries");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
@@ -55,22 +55,22 @@ public class ControllerMyHorizontalBarCase extends BaseComposite{
 		chart.getData().setDatasets(dataset1);
 
 		chart.getOptions().getScales().setYAxes(axis);
-		
+
 		chart.getPlugins().add(ColorSchemes.get());
-	
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-	
+
 }

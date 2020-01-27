@@ -20,7 +20,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CallbacksDoughnutCase extends BaseComposite{
+public class CallbacksDoughnutCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -29,26 +29,26 @@ public class CallbacksDoughnutCase extends BaseComposite{
 
 	@UiField
 	DoughnutChart chart;
-	
+
 	public CallbacksDoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Callbacks on bar chart dataset");
-		
+
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
-		
+
 		dataset.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				int size = GoogleChartColor.values().length-1;
+				int size = GoogleChartColor.values().length - 1;
 				return GoogleChartColor.values()[size - context.getIndex()];
 			}
-			
+
 		});
 
 		dataset.setData(getRandomDigits(months, false));
@@ -60,7 +60,7 @@ public class CallbacksDoughnutCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -78,7 +78,7 @@ public class CallbacksDoughnutCase extends BaseComposite{
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

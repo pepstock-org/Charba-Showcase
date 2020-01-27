@@ -5,7 +5,7 @@ import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.controllers.ControllerType;
 
 public class MyLineChart extends LineChart {
-	
+
 	public static final ControllerType TYPE = new ControllerType("stock", ChartType.LINE);
 
 	public MyLineChart() {

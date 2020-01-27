@@ -47,10 +47,10 @@ public class PointerLineCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox cursor;
-	
+
 	@UiField
 	CheckBox dataset;
 
@@ -64,17 +64,17 @@ public class PointerLineCase extends BaseComposite {
 	CheckBox axes;
 
 	private final ChartPointerOptions options = new ChartPointerOptions();
-	
+
 	private final List<PointerElement> elements = new LinkedList<>();
-	
+
 	public PointerLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		cursor.addItem("Default", Cursor.POINTER.name());
 		for (Cursor myC : Cursor.values()) {
 			cursor.addItem(myC.name(), myC.name());
 		}
-		
+
 		for (PointerElement element : PointerElement.values()) {
 			elements.add(element);
 		}
@@ -85,7 +85,7 @@ public class PointerLineCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Setting cursors on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -123,20 +123,20 @@ public class PointerLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 		chart.addHandler(new DatasetSelectionEventHandler() {
 
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
-				IsChart chart = (IsChart)event.getSource();
+				IsChart chart = (IsChart) event.getSource();
 				Labels labels = chart.getData().getLabels();
 				List<Dataset> datasets = chart.getData().getDatasets();
-				if (datasets != null && !datasets.isEmpty()){
+				if (datasets != null && !datasets.isEmpty()) {
 					StringBuilder sb = new StringBuilder();
 					sb.append("Dataset index: <b>").append(event.getItem().getDatasetIndex()).append("</b><br>");
 					sb.append("Dataset label: <b>").append(datasets.get(event.getItem().getDatasetIndex()).getLabel()).append("</b><br>");
@@ -146,14 +146,14 @@ public class PointerLineCase extends BaseComposite {
 					new Toast("Dataset Selected!", sb.toString()).show();
 				}
 			}
-			
+
 		}, DatasetSelectionEvent.TYPE);
 
 		chart.addHandler(new TitleClickEventHandler() {
-			
+
 			@Override
 			public void onClick(TitleClickEvent event) {
-				IsChart chart = (IsChart)event.getSource();
+				IsChart chart = (IsChart) event.getSource();
 				List<String> values = chart.getOptions().getTitle().getText();
 				StringBuilder title = new StringBuilder();
 				if (!values.isEmpty()) {
@@ -168,16 +168,16 @@ public class PointerLineCase extends BaseComposite {
 		}, TitleClickEvent.TYPE);
 
 		chart.addHandler(new AxisClickEventHandler() {
-			
+
 			@Override
 			public void onClick(AxisClickEvent event) {
 				Axis axis = event.getAxis();
 				String scaleLabel = null;
 				if (axis instanceof CartesianCategoryAxis) {
-					CartesianCategoryAxis category = (CartesianCategoryAxis)axis;
+					CartesianCategoryAxis category = (CartesianCategoryAxis) axis;
 					scaleLabel = category.getScaleLabel().getLabelString();
 				} else {
-					CartesianLinearAxis linear = (CartesianLinearAxis)axis;
+					CartesianLinearAxis linear = (CartesianLinearAxis) axis;
 					scaleLabel = linear.getScaleLabel().getLabelString();
 				}
 				StringBuilder sb = new StringBuilder();
@@ -188,9 +188,9 @@ public class PointerLineCase extends BaseComposite {
 		}, AxisClickEvent.TYPE);
 
 		chart.getPlugins().add(ChartPointer.get());
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
@@ -198,7 +198,7 @@ public class PointerLineCase extends BaseComposite {
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("cursor")
 	protected void handleCursor(ChangeEvent event) {
 		String selected = cursor.getSelectedValue();
@@ -207,8 +207,8 @@ public class PointerLineCase extends BaseComposite {
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, options);
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
-	
-	@UiHandler(value = {"dataset", "legend", "title", "axes"})
+
+	@UiHandler(value = { "dataset", "legend", "title", "axes" })
 	protected void handleElement(ClickEvent event) {
 		checkElement(dataset, PointerElement.DATASET);
 		checkElement(legend, PointerElement.LEGEND);
@@ -218,15 +218,14 @@ public class PointerLineCase extends BaseComposite {
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, options);
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
-	
+
 	private void checkElement(CheckBox status, PointerElement element) {
 		if (status.getValue() && !elements.contains(element)) {
 			elements.add(element);
-		} else if (!status.getValue()){
+		} else if (!status.getValue()) {
 			elements.remove(element);
 		}
 	}
-
 
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {

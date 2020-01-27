@@ -31,7 +31,7 @@ public class PatternBubbleCase extends BaseComposite {
 	private static final int AMOUNT_OF_POINTS = 8;
 	private static final int MIN_XY = -150;
 	private static final int MAX_XY = 100;
-	
+
 	@UiField
 	BubbleChart chart;
 
@@ -52,9 +52,9 @@ public class PatternBubbleCase extends BaseComposite {
 		Pattern[] patterns = new Pattern[AMOUNT_OF_POINTS];
 		IsColor[] colors = new IsColor[AMOUNT_OF_POINTS];
 		int[] bwidth = new int[AMOUNT_OF_POINTS];
-		
+
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setX(getData());
 			dp1[i].setY(getData());
@@ -70,12 +70,12 @@ public class PatternBubbleCase extends BaseComposite {
 
 		BubbleDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		Pattern[] patterns2 = new Pattern[AMOUNT_OF_POINTS];
 		IsColor[] colors2 = new IsColor[AMOUNT_OF_POINTS];
 		int[] bwidth2 = new int[AMOUNT_OF_POINTS];
 		DataPoint[] dp12 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp12[i] = new DataPoint();
 			dp12[i].setX(getData());
 			dp12[i].setY(getData());
@@ -91,12 +91,12 @@ public class PatternBubbleCase extends BaseComposite {
 
 		chart.getData().setDatasets(dataset1, dataset2);
 	}
-	
-	private int getData(){
+
+	private int getData() {
 		return getData(MIN_XY, MAX_XY);
 	}
 
-	private int getData(int min, int max){
+	private int getData(int min, int max) {
 		Random random = new Random();
 		return random.nextInt(max + 1 - min) + min;
 	}
@@ -105,10 +105,10 @@ public class PatternBubbleCase extends BaseComposite {
 	protected void handleRandomize(ClickEvent event) {
 		int[] bwidth = new int[AMOUNT_OF_POINTS];
 
-		for (Dataset dataset : chart.getData().getDatasets()){
-			BubbleDataset bDataset = (BubbleDataset)dataset;
+		for (Dataset dataset : chart.getData().getDatasets()) {
+			BubbleDataset bDataset = (BubbleDataset) dataset;
 			int i = 0;
-			for (DataPoint dp : bDataset.getDataPoints()){
+			for (DataPoint dp : bDataset.getDataPoints()) {
 				dp.setX(getData());
 				dp.setY(getData());
 				dp.setR(getData(0, 50));

@@ -23,8 +23,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LinearGradientLineCase extends BaseComposite{
-	
+public class LinearGradientLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LinearGradientLineCase> {
@@ -32,54 +32,54 @@ public class LinearGradientLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public LinearGradientLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a linear gradient on line chart dataset");
-		
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
-		Gradient gradient1  = UiGradient.EASYMED.createGradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
+
+		Gradient gradient1 = UiGradient.EASYMED.createGradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
 		IsColor firstColor = gradient1.getColors().get(0).getColor();
-		
+
 		dataset1.setBackgroundColor(gradient1);
-		
+
 		dataset1.setBorderColor(firstColor.darker());
 		dataset1.setPointBackgroundColor(gradient1);
 		dataset1.setPointHoverBackgroundColor(gradient1);
 		dataset1.setPointHoverBorderColor(firstColor.darker());
 		dataset1.setPointRadius(5);
-		
+
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.ORIGIN);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -94,7 +94,7 @@ public class LinearGradientLineCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

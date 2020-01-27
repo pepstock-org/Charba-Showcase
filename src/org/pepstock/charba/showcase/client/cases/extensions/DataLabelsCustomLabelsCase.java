@@ -29,8 +29,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsCustomLabelsCase extends BaseComposite{
-	
+public class DataLabelsCustomLabelsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsCustomLabelsCase> {
@@ -38,7 +38,7 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public DataLabelsCustomLabelsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -47,34 +47,33 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getLayout().getPadding().setTop(32);
 		chart.getOptions().getElements().getLine().setFill(false);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		
-			
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(false);
 		axis1.setOffset(true);
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 
@@ -85,10 +84,10 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				BarDataset ds = (BarDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getDatasetIndex());
 			}
-			
+
 		});
 		option.setFont(new FontCallback() {
 
@@ -99,7 +98,7 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 				font.setSize(width < 512 ? 16 : 20);
 				return font;
 			}
-			
+
 		});
 		option.setFormatter(new FormatterCallback() {
 
@@ -108,16 +107,16 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 				Labels labels = chart.getData().getLabels();
 				return labels.getString(context.getIndex());
 			}
-			
+
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -132,7 +131,7 @@ public class DataLabelsCustomLabelsCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

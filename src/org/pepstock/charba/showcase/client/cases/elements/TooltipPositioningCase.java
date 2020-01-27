@@ -21,8 +21,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TooltipPositioningCase extends BaseComposite{
-	
+public class TooltipPositioningCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, TooltipPositioningCase> {
@@ -30,22 +30,21 @@ public class TooltipPositioningCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox position;
-	
+
 	private LineDataset dataset1 = null;
-	
+
 	private LineDataset dataset2 = null;
 
 	public TooltipPositioningCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (TooltipPosition pos : TooltipPosition.values()) {
 			position.addItem(pos.name(), pos.name());
 		}
 
-		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -69,10 +68,10 @@ public class TooltipPositioningCase extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.FALSE);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 	}
 
 	@UiHandler("randomize")
@@ -81,7 +80,7 @@ public class TooltipPositioningCase extends BaseComposite{
 		dataset2.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("position")
 	protected void handlePosition(ChangeEvent event) {
 		String selected = position.getSelectedValue();
@@ -93,7 +92,7 @@ public class TooltipPositioningCase extends BaseComposite{
 			}
 		}
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

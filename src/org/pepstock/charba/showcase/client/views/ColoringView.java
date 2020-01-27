@@ -144,7 +144,7 @@ public class ColoringView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TilesDoughnutCase());
 	}
-	
+
 	@UiHandler("coloringTilesByImageShapes")
 	protected void handleImagesTiles(ClickEvent event) {
 		clearPreviousChart();
@@ -161,8 +161,8 @@ public class ColoringView extends AbstractView {
 	protected void handlePoinStylesTiles(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TilesPointStylesCase());
-	}	
-	
+	}
+
 	// ----------------------------------------------
 	// Palette
 	// ----------------------------------------------

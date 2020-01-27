@@ -31,8 +31,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColorSchemeRadarCase extends BaseComposite{
-	
+public class ColorSchemeRadarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ColorSchemeRadarCase> {
@@ -40,18 +40,18 @@ public class ColorSchemeRadarCase extends BaseComposite{
 
 	@UiField
 	RadarChart chart;
-	
+
 	@UiField
 	ListBox category;
 
 	@UiField
 	ListBox name;
-	
+
 	@UiField
 	CheckBox reverse;
 
 	public ColorSchemeRadarCase() {
-		
+
 		initWidget(uiBinder.createAndBindUi(this));
 
 		category.addItem("Brewer", "brewer");
@@ -59,7 +59,7 @@ public class ColorSchemeRadarCase extends BaseComposite{
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
 		category.addItem("Google Chart", "googlechart");
-		
+
 		int index = 0;
 		for (BrewerScheme scheme : BrewerScheme.values()) {
 			name.addItem(scheme.value(), scheme.name());
@@ -73,50 +73,50 @@ public class ColorSchemeRadarCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring radar chart");
-		
+
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBorderWidth(2);
 		dataset1.setBorderColor(color1);
 		dataset1.setData(getFixedDigits(months));
-		
+
 		ColorSchemesOptions options = new ColorSchemesOptions();
 		options.setSchemeScope(SchemeScope.DATASET);
-		
+
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.getPlugins().add(ColorSchemes.get());
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		
+
 	}
 
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		
+
 		RadarDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = GoogleChartColor.values()[datasets.size()]; 
+		dataset.setLabel("dataset " + (datasets.size() + 1));
+
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setBorderWidth(2);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 	}
 
@@ -134,7 +134,7 @@ public class ColorSchemeRadarCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("reverse")
 	protected void handleReverse(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
@@ -142,7 +142,7 @@ public class ColorSchemeRadarCase extends BaseComposite{
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("category")
 	protected void handleCategory(ChangeEvent event) {
 		String selected = category.getSelectedValue();
@@ -161,7 +161,7 @@ public class ColorSchemeRadarCase extends BaseComposite{
 			for (ColorScheme scheme : OfficeScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
@@ -173,13 +173,13 @@ public class ColorSchemeRadarCase extends BaseComposite{
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GoogleChartScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		}
 		handleName(event);
 		chart.update();
@@ -204,7 +204,7 @@ public class ColorSchemeRadarCase extends BaseComposite{
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
-		} 
+		}
 		chart.update();
 	}
 
@@ -212,5 +212,5 @@ public class ColorSchemeRadarCase extends BaseComposite{
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-	
+
 }

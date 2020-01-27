@@ -16,8 +16,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MultiAxisBarCase extends BaseComposite{
-	
+public class MultiAxisBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, MultiAxisBarCase> {
@@ -25,33 +25,33 @@ public class MultiAxisBarCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public MultiAxisBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Multiple axes on bar chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
-		
+
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setId("y-axis-1");
 		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setId("y-axis-2");
 		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
-		
+
 		chart.getOptions().getScales().setYAxes(axis1, axis2);
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		dataset1.setBackgroundColor(getSequenceColors(months, 0.2));
 		dataset1.setBorderColor(getSequenceColors(months, 1));
 		dataset1.setBorderWidth(1);
@@ -71,12 +71,12 @@ public class MultiAxisBarCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

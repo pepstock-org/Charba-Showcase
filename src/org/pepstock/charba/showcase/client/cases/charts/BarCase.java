@@ -68,6 +68,7 @@ public class BarCase extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+
 	}
 
 	@UiHandler("add_dataset")

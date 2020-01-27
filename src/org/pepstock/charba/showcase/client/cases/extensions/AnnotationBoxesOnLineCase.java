@@ -38,7 +38,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 	public AnnotationBoxesOnLineCase() {
 		super.months = 12;
-		
+
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
@@ -62,10 +62,10 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
+
 		AnnotationOptions options = new AnnotationOptions();
 		options.setEvents(Event.CLICK, Event.DOUBLE_CLICK, Event.MOUSE_OUT, Event.MOUSE_OVER);
-		
+
 		BoxAnnotation box1 = new BoxAnnotation();
 		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box1.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
@@ -106,7 +106,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box4.setBorderColor(HtmlColor.TRANSPARENT);
 
 		options.setAnnotations(box1, box2, box3, box4);
-		
+
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}
 

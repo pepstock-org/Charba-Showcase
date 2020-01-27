@@ -31,13 +31,13 @@ public class TitleChangeCase extends BaseComposite {
 	}
 
 	private static final String ORIGINAL_TITLE = "Changing title text on line chart";
-	
+
 	@UiField
 	LineChart chart;
 
 	@UiField
 	TextBox text;
-	
+
 	@UiField
 	CheckBox split;
 
@@ -48,7 +48,7 @@ public class TitleChangeCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText(ORIGINAL_TITLE);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -86,14 +86,14 @@ public class TitleChangeCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 	}
-	
+
 	@UiHandler("text")
 	protected void handleTextChange(KeyUpEvent event) {
 		String value = text.getText().length() > 0 ? text.getText() : ORIGINAL_TITLE;
@@ -125,7 +125,7 @@ public class TitleChangeCase extends BaseComposite {
 			}
 		}
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

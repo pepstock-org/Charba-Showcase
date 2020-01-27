@@ -1,10 +1,10 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.TimeSeriesBarChart;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -15,6 +15,7 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -27,8 +28,6 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class TimeSeriesBarCase extends BaseComposite {
 
-	private static final long DAY = 1000 * 60 * 60 * 24;
-
 	private static final int AMOUNT_OF_POINTS = 15;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -39,13 +38,14 @@ public class TimeSeriesBarCase extends BaseComposite {
 	@UiField
 	TimeSeriesBarChart chart;
 
+	private final long startingPoint = System.currentTimeMillis();
+
 	public TimeSeriesBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries bar chart");
-		long time = System.currentTimeMillis();
 
 		TimeSeriesBarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -66,10 +66,12 @@ public class TimeSeriesBarCase extends BaseComposite {
 
 		List<TimeSeriesItem> data1 = new LinkedList<>();
 		List<TimeSeriesItem> data2 = new LinkedList<>();
+
+		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
-			data1.add(new TimeSeriesItem(new Date(time), 100 * Math.random()));
-			data2.add(new TimeSeriesItem(new Date(time), 100 * Math.random()));
-			time = time + DAY;
+			data1.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), 100 * Math.random()));
+			data2.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), 100 * Math.random()));
 		}
 		dataset1.setTimeSeriesData(data1);
 		dataset2.setTimeSeriesData(data2);

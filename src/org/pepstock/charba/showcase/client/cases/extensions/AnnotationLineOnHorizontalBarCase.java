@@ -25,8 +25,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationLineOnHorizontalBarCase extends BaseComposite{
-	
+public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, AnnotationLineOnHorizontalBarCase> {
@@ -34,7 +34,7 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite{
 
 	@UiField
 	HorizontalBarChart chart;
-	
+
 	public AnnotationLineOnHorizontalBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -53,9 +53,9 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-	
+
 		AnnotationOptions options = new AnnotationOptions();
-	
+
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
@@ -64,12 +64,12 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite{
 		line.setBorderDash(4, 4);
 		line.setBorderWidth(2);
 		line.setValue("April");
-		
+
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("Crtitical month");
 		line.getLabel().setBackgroundColor(HtmlColor.LIGHT_SALMON);
 		line.getLabel().setPosition(LineLabelPosition.RIGHT);
-		
+
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
@@ -78,17 +78,18 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite{
 		box.setBorderWidth(0);
 
 		options.setAnnotations(line, box);
-		
+
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
-		
+
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
-		chart.update();;
+		chart.update();
+		;
 	}
 
 	@UiHandler("source")

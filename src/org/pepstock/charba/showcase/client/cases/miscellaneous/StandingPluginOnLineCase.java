@@ -30,37 +30,24 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class StandingPluginOnLineCase extends BaseComposite{
-	
-	private static final String[] YEARS = {"2004",
-			"2006",
-			"2008",
-			"2010",
-			"2012",
-			"2013"};
-	
-	private static final String[] FACTORS = {"Market Factors",
-			"People Skills",
-			"Macro-economic Factors",
-			"Globalization",
-			"Regulatory Concerns",
-			"Technology Factors",
-			"Socio-economic Factors",
-			"Environmental Issues",
-			"Geopolitical Factors"};
-	
-	private static final double[] STANDINGS_1 = new double[]{1,1,1,1,3,2}; 
-	private static final double[] STANDINGS_2 = new double[]{2,2,2,4,2,4}; 
-	private static final double[] STANDINGS_3 = new double[]{3,6,6,3,4,3}; 
-	private static final double[] STANDINGS_4 = new double[]{4,5,4,6,6,7}; 
-	private static final double[] STANDINGS_5 = new double[]{5,4,5,5,5,5}; 
-	private static final double[] STANDINGS_6 = new double[]{6,3,3,2,1,1}; 
-	private static final double[] STANDINGS_7 = new double[]{7,7,8,8,7,6}; 
-	private static final double[] STANDINGS_8 = new double[]{8,8,7,7,8,8}; 
-	private static final double[] STANDINGS_9 = new double[]{9,9,9,9,9,9}; 
-	
-	private static final double[][] STANDINGS = new double[][]{STANDINGS_1, STANDINGS_2, STANDINGS_3, STANDINGS_4, STANDINGS_5, STANDINGS_6, STANDINGS_7, STANDINGS_8, STANDINGS_9};
-	
+public class StandingPluginOnLineCase extends BaseComposite {
+
+	private static final String[] YEARS = { "2004", "2006", "2008", "2010", "2012", "2013" };
+
+	private static final String[] FACTORS = { "Market Factors", "People Skills", "Macro-economic Factors", "Globalization", "Regulatory Concerns", "Technology Factors", "Socio-economic Factors", "Environmental Issues", "Geopolitical Factors" };
+
+	private static final double[] STANDINGS_1 = new double[] { 1, 1, 1, 1, 3, 2 };
+	private static final double[] STANDINGS_2 = new double[] { 2, 2, 2, 4, 2, 4 };
+	private static final double[] STANDINGS_3 = new double[] { 3, 6, 6, 3, 4, 3 };
+	private static final double[] STANDINGS_4 = new double[] { 4, 5, 4, 6, 6, 7 };
+	private static final double[] STANDINGS_5 = new double[] { 5, 4, 5, 5, 5, 5 };
+	private static final double[] STANDINGS_6 = new double[] { 6, 3, 3, 2, 1, 1 };
+	private static final double[] STANDINGS_7 = new double[] { 7, 7, 8, 8, 7, 6 };
+	private static final double[] STANDINGS_8 = new double[] { 8, 8, 7, 7, 8, 8 };
+	private static final double[] STANDINGS_9 = new double[] { 9, 9, 9, 9, 9, 9 };
+
+	private static final double[][] STANDINGS = new double[][] { STANDINGS_1, STANDINGS_2, STANDINGS_3, STANDINGS_4, STANDINGS_5, STANDINGS_6, STANDINGS_7, STANDINGS_8, STANDINGS_9 };
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, StandingPluginOnLineCase> {
@@ -68,19 +55,19 @@ public class StandingPluginOnLineCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public StandingPluginOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Standing plugin on line chart");
 		chart.getOptions().getLayout().getPadding().setTop(40);
 		chart.getOptions().getLayout().getPadding().setRight(40);
-		
+
 		List<Dataset> datasets = new LinkedList<Dataset>();
-		for (int i=0; i<FACTORS.length; i++) {
+		for (int i = 0; i < FACTORS.length; i++) {
 			LineDataset dataset = chart.newDataset();
 			dataset.setLabel(FACTORS[i]);
 			IsColor color = GoogleChartColor.values()[i];
@@ -94,13 +81,13 @@ public class StandingPluginOnLineCase extends BaseComposite{
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getTicks().setReverse(true);
-		
+
 		axis2.getTicks().setCallback(new TickCallback() {
-		
+
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				List<Dataset> dss = chart.getData().getDatasets();
@@ -108,14 +95,13 @@ public class StandingPluginOnLineCase extends BaseComposite{
 				return ds.getLabel();
 			}
 		});
-		
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(YEARS);
 		chart.getData().setDatasets(datasets.toArray(new Dataset[0]));
-		
+
 		AbstractPlugin p = new AbstractPlugin() {
 
 			@Override
@@ -131,13 +117,13 @@ public class StandingPluginOnLineCase extends BaseComposite{
 
 				ScaleItem scaleX = chart.getNode().getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
 				ScaleItem scaleY = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
-				
-				int heightAmongLabels = (scaleY.getBottom() - scaleY.getTop()) / (datasetsCount-1);
+
+				int heightAmongLabels = (scaleY.getBottom() - scaleY.getTop()) / (datasetsCount - 1);
 
 				int x = scaleX.getRight() + padding;
 				int y = scaleY.getTop();
-				
-				for (int i=0; i<datasetsCount; i++) {
+
+				for (int i = 0; i < datasetsCount; i++) {
 					int index = i + 1;
 					ctx.setFillStyle("rgb(0, 0, 0)");
 					ctx.setFont("22px bold Helvetica Neue");
@@ -150,7 +136,7 @@ public class StandingPluginOnLineCase extends BaseComposite{
 		};
 		chart.getPlugins().add(p);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

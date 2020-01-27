@@ -28,8 +28,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ColorSchemePieCase extends BaseComposite{
-	
+public class ColorSchemePieCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ColorSchemePieCase> {
@@ -37,25 +37,25 @@ public class ColorSchemePieCase extends BaseComposite{
 
 	@UiField
 	PieChart chart;
-	
+
 	@UiField
 	ListBox category;
 
 	@UiField
 	ListBox name;
-	
+
 	@UiField
 	CheckBox reverse;
 
 	public ColorSchemePieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		category.addItem("Brewer", "brewer");
 		category.addItem("MS Office", "office");
 		category.addItem("Tableau", "tableau");
 		category.addItem("GWT material", "gwtmaterial");
 		category.addItem("Google Chart", "googlechart");
-		
+
 		int index = 0;
 		for (ColorScheme scheme : BrewerScheme.values()) {
 			name.addItem(scheme.value(), scheme.value());
@@ -64,18 +64,18 @@ public class ColorSchemePieCase extends BaseComposite{
 			}
 			index++;
 		}
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring pie chart");
-		
+
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setData(getRandomDigits(months, false));
 
 		chart.getPlugins().add(ColorSchemes.get());
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 	}
@@ -83,7 +83,7 @@ public class ColorSchemePieCase extends BaseComposite{
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		chart.getDatasetMeta(0);
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -93,12 +93,12 @@ public class ColorSchemePieCase extends BaseComposite{
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 		PieDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
+		dataset.setLabel("dataset " + (datasets.size() + 1));
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 
 	}
@@ -110,12 +110,12 @@ public class ColorSchemePieCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PieDataset pds = (PieDataset)ds;
+			for (Dataset ds : datasets) {
+				PieDataset pds = (PieDataset) ds;
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -126,7 +126,7 @@ public class ColorSchemePieCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("category")
 	protected void handleCategory(ChangeEvent event) {
 		String selected = category.getSelectedValue();
@@ -145,7 +145,7 @@ public class ColorSchemePieCase extends BaseComposite{
 			for (ColorScheme scheme : OfficeScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : TableauScheme.values()) {
@@ -157,13 +157,13 @@ public class ColorSchemePieCase extends BaseComposite{
 			for (ColorScheme scheme : GwtMaterialScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			name.clear();
 			for (ColorScheme scheme : GoogleChartScheme.values()) {
 				name.addItem(scheme.value(), scheme.value());
 			}
-			name.setSelectedIndex(0);	
+			name.setSelectedIndex(0);
 		}
 		handleName(event);
 		chart.update();
@@ -188,11 +188,11 @@ public class ColorSchemePieCase extends BaseComposite{
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
-		} 
+		}
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("reverse")
 	protected void handleReverse(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
@@ -200,7 +200,7 @@ public class ColorSchemePieCase extends BaseComposite{
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

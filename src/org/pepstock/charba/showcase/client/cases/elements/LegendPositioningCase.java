@@ -19,8 +19,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LegendPositioningCase extends BaseComposite{
-	
+public class LegendPositioningCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LegendPositioningCase> {
@@ -28,24 +28,24 @@ public class LegendPositioningCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox position;
 
 	LineDataset dataset;
-	
+
 	public LegendPositioningCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (Position pos : Position.values()) {
 			position.addItem(pos.name(), pos.name());
 		}
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Legend positioning");
-		
+
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		IsColor color1 = GoogleChartColor.values()[0];
@@ -62,7 +62,7 @@ public class LegendPositioningCase extends BaseComposite{
 		dataset.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("position")
 	protected void handlePosition(ChangeEvent event) {
 		String selected = position.getSelectedValue();
@@ -79,7 +79,7 @@ public class LegendPositioningCase extends BaseComposite{
 			i++;
 		}
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

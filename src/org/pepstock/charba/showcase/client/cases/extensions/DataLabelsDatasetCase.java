@@ -27,8 +27,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsDatasetCase extends BaseComposite{
-	
+public class DataLabelsDatasetCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsDatasetCase> {
@@ -36,7 +36,7 @@ public class DataLabelsDatasetCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	public DataLabelsDatasetCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -50,15 +50,15 @@ public class DataLabelsDatasetCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setLeft(16);
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getElements().getLine().setBorderWidth(2);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.alpha(0.7));
 		dataset1.setPointBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
@@ -68,40 +68,40 @@ public class DataLabelsDatasetCase extends BaseComposite{
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setPointBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		double[] values2 = getRandomDigits(months, false);
 		dataset2.setData(values2);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBorderColorAsString();
 			}
-			
+
 		});
 		option.setBorderRadius(4);
 		option.setColor(HtmlColor.WHITE);
@@ -112,21 +112,21 @@ public class DataLabelsDatasetCase extends BaseComposite{
 
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				double v0 = ds.getData().get(0);
 				double v1 = ds.getData().get(1);
 				boolean invert = v0 - v1 > 0;
 				return context.getDatasetIndex() == 0 ? invert ? Align.END : Align.START : invert ? Align.START : Align.CENTER;
 			}
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -141,7 +141,7 @@ public class DataLabelsDatasetCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

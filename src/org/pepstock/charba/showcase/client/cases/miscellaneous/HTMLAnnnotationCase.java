@@ -89,11 +89,8 @@ public class HTMLAnnnotationCase extends BaseComposite {
 
 		chart.getPlugins().add(new AbstractPlugin() {
 
-			private final static String ANNOTATION_TEMPLATE = "<center>" + 
-					"<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + 
-						"<tr><th><img src=\"{0}\"></img></th></tr>" +
-					    "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr>"+
-						"<tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
+			private final static String ANNOTATION_TEMPLATE = "<center>" + "<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + "<tr><th><img src=\"{0}\"></img></th></tr>"
+					+ "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr>" + "<tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
 
 			@Override
 			public String getId() {
@@ -147,7 +144,7 @@ public class HTMLAnnnotationCase extends BaseComposite {
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

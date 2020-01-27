@@ -30,8 +30,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsBarCase extends BaseComposite{
-	
+public class DataLabelsBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsBarCase> {
@@ -39,7 +39,7 @@ public class DataLabelsBarCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public DataLabelsBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -53,20 +53,20 @@ public class DataLabelsBarCase extends BaseComposite{
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getElements().getPoint().setHoverRadius(7);
 		chart.getOptions().getElements().getPoint().setRadius(5);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
-		
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-		
+
 		DataLabelsOptions option1 = new DataLabelsOptions();
 		option1.setAlign(Align.END);
 		option1.setAnchor(Anchor.START);
@@ -74,7 +74,7 @@ public class DataLabelsBarCase extends BaseComposite{
 
 		BarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
 
 		dataset2.setBackgroundColor(color2.toHex());
@@ -88,7 +88,7 @@ public class DataLabelsBarCase extends BaseComposite{
 
 		BarDataset dataset3 = chart.newDataset();
 		dataset3.setLabel("dataset 2");
-		
+
 		IsColor color3 = GoogleChartColor.values()[2];
 
 		dataset3.setBackgroundColor(color3.toHex());
@@ -100,25 +100,25 @@ public class DataLabelsBarCase extends BaseComposite{
 		option3.setAnchor(Anchor.END);
 
 		dataset3.setOptions(DataLabelsPlugin.ID, option3);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.setStacked(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setDisplay(new DisplayCallback() {
 
@@ -137,17 +137,17 @@ public class DataLabelsBarCase extends BaseComposite{
 			@Override
 			public String invoke(IsChart chart, double value, ScriptableContext context) {
 				double percentage = Percentage.compute(chart, value, context, true);
-				return Math.round(percentage*100)+"%";
+				return Math.round(percentage * 100) + "%";
 			}
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-		
+
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -162,7 +162,7 @@ public class DataLabelsBarCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

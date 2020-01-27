@@ -13,14 +13,23 @@ public interface Styles extends ClientBundle {
 
 	interface Toast extends CssResource {
 		String main();
+
 		String title();
+
 		String message();
+
 		String blue();
+
 		String green();
+
 		String grey();
+
 		String yellow();
+
 		String red();
+
 		String lightGreen();
+
 		String lightBlue();
 	}
 

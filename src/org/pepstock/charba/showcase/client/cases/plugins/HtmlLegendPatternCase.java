@@ -18,8 +18,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class HtmlLegendPatternCase extends BaseComposite{
-	
+public class HtmlLegendPatternCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, HtmlLegendPatternCase> {
@@ -37,24 +37,24 @@ public class HtmlLegendPatternCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend applying a pattern on bar chart dataset");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(pattern);
 		dataset1.setBorderColor(HtmlColor.BLACK);
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getFixedDigits(months));
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
+
 		chart.getPlugins().add(HtmlLegend.get());
 
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -69,7 +69,6 @@ public class HtmlLegendPatternCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
 
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {

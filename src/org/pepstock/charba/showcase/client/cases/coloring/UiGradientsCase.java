@@ -92,7 +92,7 @@ public class UiGradientsCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-	
+
 	private void applyGradient() {
 		String selectedGradient = gradient.getSelectedValue();
 		String selectedOrientation = orientation.getSelectedValue();

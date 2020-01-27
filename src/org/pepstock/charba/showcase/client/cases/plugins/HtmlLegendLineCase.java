@@ -30,7 +30,7 @@ public class HtmlLegendLineCase extends BaseComposite {
 
 	@UiField
 	LineChart chart;
-	
+
 	public HtmlLegendLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -44,7 +44,7 @@ public class HtmlLegendLineCase extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -82,16 +82,16 @@ public class HtmlLegendLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 		chart.getPlugins().add(HtmlLegend.get());
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {

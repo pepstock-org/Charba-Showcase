@@ -43,14 +43,14 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite{
-	
+public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
+
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
 	private static final long DAY = 1000 * 60 * 60 * 24;
 
 	private static final int AMOUNT_OF_POINTS = 60;
-	
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ZoomCallbacksOnTimeSeriesCase> {
@@ -61,12 +61,12 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite{
 
 	@UiField
 	LogView mylog;
-	
+
 	@UiField
 	CheckBox dragging;
-	
+
 	private final Drag drag;
-	
+
 	public ZoomCallbacksOnTimeSeriesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -135,27 +135,28 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite{
 		axis2.setStacked(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 		ZoomOptions options = new ZoomOptions();
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
-		options.getZoom().setSpeed(0.05D);;
+		options.getZoom().setSpeed(0.05D);
+		;
 		drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
 		options.getZoom().setCompleteCallback(new CompleteCallback() {
-			
+
 			@Override
 			public void onComplete(IsChart chart, AbstractConfigurationItem item) {
-				mylog.addLogEvent("> ZOOM COMPLETE on chart"); 
+				mylog.addLogEvent("> ZOOM COMPLETE on chart");
 			}
 		});
 
 		options.getZoom().setProgressCallback(new ProgressCallback() {
-			
+
 			@Override
 			public void onProgress(IsChart chart, AbstractConfigurationItem item) {
-				mylog.addLogEvent("> ZOOM in PROGRESS on chart"); 
+				mylog.addLogEvent("> ZOOM in PROGRESS on chart");
 			}
 		});
 
@@ -184,12 +185,12 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite{
 		}
 		chart.reconfigure();
 	}
-	
+
 	@UiHandler("reset")
 	protected void handleResetZoom(ClickEvent event) {
 		ZoomPlugin.resetZoom(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

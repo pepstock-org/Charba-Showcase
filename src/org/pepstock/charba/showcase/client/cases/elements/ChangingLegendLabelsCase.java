@@ -24,8 +24,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ChangingLegendLabelsCase extends BaseComposite{
-	
+public class ChangingLegendLabelsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ChangingLegendLabelsCase> {
@@ -33,7 +33,7 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	CheckBox useDefault;
 
@@ -49,24 +49,24 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
-			
+
 			@Override
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
 				if (!useDefault.getValue()) {
 					int size = GoogleChartColor.values().length - 1;
-					for (LegendLabelItem item: defaultLabels) {
+					for (LegendLabelItem item : defaultLabels) {
 						IsColor color = GoogleChartColor.values()[size - item.getDatasetIndex()];
 						item.setFillStyle(color);
-						String text = "Changed label for "+item.getText();
+						String text = "Changed label for " + item.getText();
 						item.setText(text);
 					}
 				}
 				return defaultLabels;
 			}
 		});
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -104,14 +104,14 @@ public class ChangingLegendLabelsCase extends BaseComposite{
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {

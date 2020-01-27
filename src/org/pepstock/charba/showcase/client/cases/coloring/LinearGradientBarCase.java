@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LinearGradientBarCase extends BaseComposite{
-	
+public class LinearGradientBarCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LinearGradientBarCase> {
@@ -30,10 +30,10 @@ public class LinearGradientBarCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public LinearGradientBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
@@ -43,21 +43,21 @@ public class LinearGradientBarCase extends BaseComposite{
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
-		Gradient gradient1  = new Gradient(GradientType.LINEAR, GradientOrientation.BOTTOM_UP, GradientScope.CHART);
+
+		Gradient gradient1 = new Gradient(GradientType.LINEAR, GradientOrientation.BOTTOM_UP, GradientScope.CHART);
 
 		gradient1.addColorStop(0, "#3a1c71");
 		gradient1.addColorStop(0.5, "#d76d77");
 		gradient1.addColorStop(1, "#ffaf7b");
-		
+
 		dataset1.setBackgroundColor(gradient1);
 		dataset1.setBorderColor(gradient1);
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -67,17 +67,17 @@ public class LinearGradientBarCase extends BaseComposite{
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -92,7 +92,7 @@ public class LinearGradientBarCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

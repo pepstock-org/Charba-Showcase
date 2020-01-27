@@ -32,21 +32,21 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 	interface ViewUiBinder extends UiBinder<Widget, FillingDatasetsOnLineCase> {
 	}
 
-	private static final boolean[] HIDDENS = {true, false, true, false, false, false, false, false, true};
-	
-	private static final  IsFill[] FILLS = {null, Fill.getFill("-1"), Fill.getFill(1), Fill.getFill("-1"), Fill.getFill("-1"), Fill.getFill("+2"), Fill.FALSE, Fill.getFill(8), Fill.END};
+	private static final boolean[] HIDDENS = { true, false, true, false, false, false, false, false, true };
+
+	private static final IsFill[] FILLS = { null, Fill.getFill("-1"), Fill.getFill(1), Fill.getFill("-1"), Fill.getFill("-1"), Fill.getFill("+2"), Fill.FALSE, Fill.getFill(8), Fill.END };
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	CheckBox smooth;
 
 	@UiField
 	CheckBox propagate;
-	
+
 	private final FillerOptions options = new FillerOptions();
-	
+
 	public FillingDatasetsOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -57,12 +57,12 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		chart.getOptions().getTitle().setText("Filling datasets mode on line chart");
 		chart.getOptions().getElements().getLine().setTension(0.000001D);
 		chart.getOptions().setSpanGaps(false);
-		
+
 		List<Dataset> datasets = chart.getData().getDatasets(true);
-		
-		for (int i=0; i<9; i++) {
+
+		for (int i = 0; i < 9; i++) {
 			LineDataset dataset1 = chart.newDataset();
-			dataset1.setLabel("dataset "+i);
+			dataset1.setLabel("dataset " + i);
 
 			IsColor color1 = GoogleChartColor.values()[i];
 
@@ -83,17 +83,17 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.setStacked(true);
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(getLabels());
-		
+
 		options.setPropagate(false);
 		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
-		
+
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
@@ -101,7 +101,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("smooth")
 	protected void handleSmooth(ClickEvent event) {
 		double value = smooth.getValue() ? 0.4D : 0.000001D;
@@ -120,11 +120,11 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-		
-	private static class FillerOptions extends AbstractPluginOptions{
-		
+
+	private static class FillerOptions extends AbstractPluginOptions {
+
 		private Key propagate = Key.create("propagate");
-		
+
 		/**
 		 * @param pluginId
 		 */
@@ -136,6 +136,5 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 			setValue(propagate, prop);
 		}
 
-		
 	}
 }

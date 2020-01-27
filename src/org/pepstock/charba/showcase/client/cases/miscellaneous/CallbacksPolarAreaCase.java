@@ -26,8 +26,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CallbacksPolarAreaCase extends BaseComposite{
-	
+public class CallbacksPolarAreaCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, CallbacksPolarAreaCase> {
@@ -38,34 +38,34 @@ public class CallbacksPolarAreaCase extends BaseComposite{
 
 	public CallbacksPolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Callbacks on polar area chart dataset");
-		
+
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
 		axis.getTicks().setReverse(true);
 		chart.getOptions().setAxis(axis);
-		
+
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(new BackgroundColorCallback() {
-			
+
 			private final List<Pattern> patterns = new LinkedList<>();;
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
 				if (patterns.isEmpty()) {
-					for (int i=0; i<months; i++) {
+					for (int i = 0; i < months; i++) {
 						Shape shape = Shape.values()[i];
 						Pattern pattern = TilesFactory.createPattern(shape, GoogleChartColor.values()[i]);
 						patterns.add(pattern);
 					}
 				}
 				return patterns.get(context.getIndex());
-			}			
+			}
 		});
 
 		dataset.setData(getRandomDigits(months, false));
@@ -79,7 +79,7 @@ public class CallbacksPolarAreaCase extends BaseComposite{
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();

@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ControllerMyLineCase extends BaseComposite{
-	
+public class ControllerMyLineCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ControllerMyLineCase> {
@@ -30,10 +30,10 @@ public class ControllerMyLineCase extends BaseComposite{
 
 	@UiField
 	MyLineChart chart;
-	
+
 	public ControllerMyLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -43,12 +43,12 @@ public class ControllerMyLineCase extends BaseComposite{
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 		chart.getOptions().getElements().getPoint().setPointStyle(PointStyle.TRIANGLE);
-		
+
 		MyLineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months);
@@ -57,9 +57,9 @@ public class ControllerMyLineCase extends BaseComposite{
 
 		MyLineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
@@ -69,23 +69,23 @@ public class ControllerMyLineCase extends BaseComposite{
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Month");
-		
+
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		
+
 		chart.getOptions().getScales().setXAxes(axis1);
 		chart.getOptions().getScales().setYAxes(axis2);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -94,18 +94,18 @@ public class ControllerMyLineCase extends BaseComposite{
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		
+
 		MyLineDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset "+(datasets.size()+1));
-		
-		IsColor color = GoogleChartColor.values()[datasets.size()]; 
+		dataset.setLabel("dataset " + (datasets.size() + 1));
+
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setFill(Fill.FALSE);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 	}
 
@@ -123,7 +123,7 @@ public class ControllerMyLineCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

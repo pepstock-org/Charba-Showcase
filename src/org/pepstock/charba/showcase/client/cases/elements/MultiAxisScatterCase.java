@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-
 import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -21,10 +20,10 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MultiAxisScatterCase extends BaseComposite{
-	
+public class MultiAxisScatterCase extends BaseComposite {
+
 	private static final int AMOUNT_OF_POINTS = 16;
-	
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, MultiAxisScatterCase> {
@@ -32,10 +31,10 @@ public class MultiAxisScatterCase extends BaseComposite{
 
 	@UiField
 	ScatterChart chart;
-	
+
 	public MultiAxisScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Multiple axes on scatter chart");
@@ -46,7 +45,7 @@ public class MultiAxisScatterCase extends BaseComposite{
 		xAxes.setPosition(Position.BOTTOM);
 		xAxes.getGrideLines().setZeroLineColor("rgba(0,0,0,1)");
 		xAxes.setId("x-axis-1");
-		
+
 		CartesianLinearAxis yAxes1 = new CartesianLinearAxis(chart);
 		yAxes1.setId("y-axis-1");
 		yAxes1.setDisplay(true);
@@ -57,22 +56,22 @@ public class MultiAxisScatterCase extends BaseComposite{
 		yAxes2.setDisplay(true);
 		yAxes2.setPosition(Position.RIGHT);
 		yAxes2.getGrideLines().setDrawOnChartArea(false);
-		
+
 		chart.getOptions().getScales().setXAxes(xAxes);
 		chart.getOptions().getScales().setYAxes(yAxes1, yAxes2);
 
 		ScatterDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS);
 		double[] ys1 = getRandomDigits(AMOUNT_OF_POINTS);
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setX(xs1[i]);
 			dp1[i].setY(ys1[i]);
@@ -83,15 +82,15 @@ public class MultiAxisScatterCase extends BaseComposite{
 
 		ScatterDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS);
 		double[] ys2 = getRandomDigits(AMOUNT_OF_POINTS);
 		DataPoint[] dp2 = new DataPoint[AMOUNT_OF_POINTS];
-		for (int i=0; i<AMOUNT_OF_POINTS; i++){
+		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp2[i] = new DataPoint();
 			dp2[i].setX(xs2[i]);
 			dp2[i].setY(ys2[i]);
@@ -99,22 +98,22 @@ public class MultiAxisScatterCase extends BaseComposite{
 		dataset2.setDataPoints(dp2);
 		dataset2.setXAxisID("x-axis-1");
 		dataset2.setYAxisID("y-axis-2");
-		
+
 		chart.getData().setDatasets(dataset1, dataset2);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
-			ScatterDataset scDataset = (ScatterDataset)dataset;
-			for (DataPoint dp : scDataset.getDataPoints()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
+			ScatterDataset scDataset = (ScatterDataset) dataset;
+			for (DataPoint dp : scDataset.getDataPoints()) {
 				dp.setX(getRandomDigit());
 				dp.setY(getRandomDigit());
 			}
 		}
 		chart.update();
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

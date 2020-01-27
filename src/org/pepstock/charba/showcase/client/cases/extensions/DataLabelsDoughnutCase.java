@@ -30,7 +30,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsDoughnutCase extends BaseComposite{
+public class DataLabelsDoughnutCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -44,7 +44,7 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 
 	public DataLabelsDoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTooltips().setEnabled(false);
@@ -54,13 +54,13 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 		chart.getOptions().getLayout().getPadding().setLeft(8);
 
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
-		
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+
 		DoughnutDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(getSequenceColors(months, 1));
 		dataset1.setData(getRandomDigits(months, false));
-		
+
 		DataLabelsOptions option1 = new DataLabelsOptions();
 		option1.setAnchor(Anchor.END);
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
@@ -93,7 +93,7 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				DoughnutDataset ds = (DoughnutDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				DoughnutDataset ds = (DoughnutDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getIndex());
 			}
 
@@ -103,7 +103,7 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 			@Override
 			public Display invoke(IsChart chart, ScriptableContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
-				int count  = ds.getData().size();
+				int count = ds.getData().size();
 				double value = ds.getData().get(context.getIndex());
 				return value > count * 1.5D ? Display.TRUE : Display.FALSE;
 			}
@@ -120,15 +120,15 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 				double percentage = Percentage.compute(chart, value, context, false);
 				return percentageFormatter.format(percentage);
 			}
-			
+
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -136,13 +136,13 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				DoughnutDataset pds = (DoughnutDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 1));	
+			for (Dataset ds : datasets) {
+				DoughnutDataset pds = (DoughnutDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 1));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -153,7 +153,7 @@ public class DataLabelsDoughnutCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

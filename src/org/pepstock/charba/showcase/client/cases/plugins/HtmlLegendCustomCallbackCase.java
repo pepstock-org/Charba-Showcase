@@ -27,8 +27,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class HtmlLegendCustomCallbackCase extends BaseComposite{
-	
+public class HtmlLegendCustomCallbackCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, HtmlLegendCustomCallbackCase> {
@@ -36,7 +36,7 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 
 	@UiField
 	BarChart chart;
-	
+
 	public HtmlLegendCustomCallbackCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -47,20 +47,20 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("This is dataset 1 which contains data");
-		
+
 		IsColor color1 = GoogleChartColor.values()[0];
-		
+
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
-		
+
 		dataset1.setData(getRandomDigits(months));
 
 		BarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("This is dataset 2 which contains data");
-		
+
 		IsColor color2 = GoogleChartColor.values()[1];
-		
+
 		dataset2.setBackgroundColor(color2.alpha(0.2));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setBorderWidth(1);
@@ -68,33 +68,33 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
+
 		HtmlLegendOptions options = new HtmlLegendOptions();
 		options.setLegendTextCallback(new HtmlLegendTextCallback() {
 
-			Map<String, SafeHtml> values = new HashMap<>(); 
+			Map<String, SafeHtml> values = new HashMap<>();
 
 			@Override
 			public SafeHtml generateLegendText(IsChart chart, LegendItem item, String currentText) {
 				if (!values.containsKey(currentText)) {
 					SafeHtmlBuilder builder = new SafeHtmlBuilder();
 					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");
-					newText = newText.replaceAll("which contains data", "<font style='color: "+item.getStrokeStyle().toRGBA()+"'>which contains data</font>");
+					newText = newText.replaceAll("which contains data", "<font style='color: " + item.getStrokeStyle().toRGBA() + "'>which contains data</font>");
 					builder.appendHtmlConstant(newText);
 					values.put(currentText, builder.toSafeHtml());
 				}
 				return values.get(currentText);
 			}
 		});
-		
+
 		chart.getOptions().getPlugins().setOptions(HtmlLegend.ID, options);
 		chart.getPlugins().add(HtmlLegend.get());
-		
+
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
@@ -103,18 +103,18 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		
+
 		BarDataset dataset = chart.newDataset();
-		dataset.setLabel("This is dataset "+(datasets.size()+1)+" which contains data ");
-		
-		IsColor color = GoogleChartColor.values()[datasets.size()]; 
+		dataset.setLabel("This is dataset " + (datasets.size() + 1) + " which contains data ");
+
+		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.alpha(0.2));
 		dataset.setBorderColor(color.toHex());
 		dataset.setBorderWidth(1);
 		dataset.setData(getRandomDigits(months));
 
 		datasets.add(dataset);
-		
+
 		chart.update();
 	}
 
@@ -132,8 +132,7 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

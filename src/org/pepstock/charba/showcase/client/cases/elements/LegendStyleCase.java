@@ -21,8 +21,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LegendStyleCase extends BaseComposite{
-	
+public class LegendStyleCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, LegendStyleCase> {
@@ -33,7 +33,7 @@ public class LegendStyleCase extends BaseComposite{
 
 	@UiField
 	ListBox pointStyle;
-	
+
 	@UiField
 	CheckBox usePointStyle;
 
@@ -41,7 +41,7 @@ public class LegendStyleCase extends BaseComposite{
 
 	public LegendStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (PointStyle style : PointStyle.values()) {
 			pointStyle.addItem(style.name(), style.name());
 		}
@@ -50,7 +50,7 @@ public class LegendStyleCase extends BaseComposite{
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Legend labels styling");
-		
+
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		IsColor color1 = GoogleChartColor.values()[0];
@@ -64,7 +64,7 @@ public class LegendStyleCase extends BaseComposite{
 		dataset.setFill(Fill.ORIGIN);
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-	
+
 	}
 
 	@UiHandler("randomize")
@@ -72,7 +72,7 @@ public class LegendStyleCase extends BaseComposite{
 		dataset.setData(getRandomDigits(months));
 		chart.update();
 	}
-	
+
 	@UiHandler("pointStyle")
 	protected void handlePointStyle(ChangeEvent event) {
 		String selected = pointStyle.getSelectedValue();
@@ -90,13 +90,13 @@ public class LegendStyleCase extends BaseComposite{
 			i++;
 		}
 	}
-	
+
 	@UiHandler("usePointStyle")
 	protected void handleUsePointStyle(ClickEvent event) {
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

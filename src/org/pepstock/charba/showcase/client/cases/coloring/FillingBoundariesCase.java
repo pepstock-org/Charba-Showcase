@@ -20,8 +20,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class FillingBoundariesCase extends BaseComposite{
-	
+public class FillingBoundariesCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, FillingBoundariesCase> {
@@ -29,18 +29,18 @@ public class FillingBoundariesCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	CheckBox smooth;
-	
+
 	@UiField
 	ListBox fill;
-	
+
 	private LineDataset dataset = null;
-	
+
 	public FillingBoundariesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (Fill cFill : Fill.values()) {
 			fill.addItem(cFill.name(), cFill.name());
 		}
@@ -50,7 +50,7 @@ public class FillingBoundariesCase extends BaseComposite{
 		chart.getOptions().getTitle().setText("Setting filling modes on line chart");
 		chart.getOptions().setSpanGaps(false);
 		chart.getOptions().getElements().getLine().setTension(0.000001D);
-		
+
 		dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 		IsColor color = GoogleChartColor.values()[0];
@@ -67,7 +67,7 @@ public class FillingBoundariesCase extends BaseComposite{
 		chart.getData().setDatasets(dataset);
 		chart.getOptions().getScales().setYAxes(axis);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		dataset.setData(getRandomDigits(months));
@@ -97,11 +97,10 @@ public class FillingBoundariesCase extends BaseComposite{
 			i++;
 		}
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-
 
 }

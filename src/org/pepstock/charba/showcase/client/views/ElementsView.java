@@ -72,11 +72,11 @@ public class ElementsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new ChangingLegendLabelsCase());
 	}
-	
+
 	// ----------------------------------------------
 	// Tooltip
 	// ----------------------------------------------
-	
+
 	@UiHandler("tooltipPositioning")
 	protected void handleTooltipPositioning(ClickEvent event) {
 		clearPreviousChart();
@@ -110,19 +110,19 @@ public class ElementsView extends AbstractView {
 	@UiHandler("tooltipHtmlPie")
 	protected void handleHTMLpie(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TooltipHTMLPieCase());
+		content.add(new TooltipHTMLPieCase());
 	}
 
 	@UiHandler("tooltipPositioner")
 	protected void handlePositioner(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new TooltipPositionerCase());
+		content.add(new TooltipPositionerCase());
 	}
 
 	// ----------------------------------------------
 	// Axis
 	// ----------------------------------------------
-	
+
 	@UiHandler("multiAxesBar")
 	protected void handleBarMultiAxis(ClickEvent event) {
 		clearPreviousChart();
@@ -170,7 +170,7 @@ public class ElementsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new NoNumericYAxisCase());
 	}
-	
+
 	@UiHandler("ticksStepsize")
 	protected void handleTicksStepsize(ClickEvent event) {
 		clearPreviousChart();
@@ -210,5 +210,5 @@ public class ElementsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TitleStyleCase());
 	}
-	
+
 }

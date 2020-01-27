@@ -21,8 +21,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CallbacksPieCase extends BaseComposite{
-	
+public class CallbacksPieCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, CallbacksPieCase> {
@@ -33,12 +33,12 @@ public class CallbacksPieCase extends BaseComposite{
 
 	public CallbacksPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Callbacks on pie chart dataset");
-		
+
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 
@@ -49,14 +49,14 @@ public class CallbacksPieCase extends BaseComposite{
 				UiGradient gradient = UiGradient.values()[context.getIndex()];
 				return gradient.createGradient(GradientType.RADIAL, GradientOrientation.IN_OUT);
 			}
-			
+
 		});
 
 		dataset.setData(getRandomDigits(months, false));
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
+
 		chart.getPlugins().add(HtmlLegend.get());
 
 	}
@@ -64,7 +64,7 @@ public class CallbacksPieCase extends BaseComposite{
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		chart.getDatasetMeta(0);
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();

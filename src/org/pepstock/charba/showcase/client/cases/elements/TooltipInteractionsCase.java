@@ -22,8 +22,8 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TooltipInteractionsCase extends BaseComposite{
-	
+public class TooltipInteractionsCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, TooltipInteractionsCase> {
@@ -31,24 +31,24 @@ public class TooltipInteractionsCase extends BaseComposite{
 
 	@UiField
 	LineChart chart;
-	
+
 	@UiField
 	ListBox mode;
-	
+
 	@UiField
 	CheckBox intersect;
-	
+
 	private LineDataset dataset1 = null;
-	
+
 	private LineDataset dataset2 = null;
 
 	public TooltipInteractionsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		for (InteractionMode cMode : InteractionMode.values()) {
 			mode.addItem(cMode.name(), cMode.name());
 		}
-		
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -73,20 +73,19 @@ public class TooltipInteractionsCase extends BaseComposite{
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.FALSE);
-		
+
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 	}
-	
+
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
 	}
 
-	
 	@UiHandler("mode")
 	protected void handleMode(ChangeEvent event) {
 		String selected = mode.getSelectedValue();
@@ -99,7 +98,7 @@ public class TooltipInteractionsCase extends BaseComposite{
 			}
 		}
 	}
-	
+
 	@UiHandler("intersect")
 	protected void handleUsePointStyle(ClickEvent event) {
 		chart.getOptions().getTooltips().setIntersect(intersect.getValue());
@@ -107,7 +106,6 @@ public class TooltipInteractionsCase extends BaseComposite{
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
 
-	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

@@ -69,104 +69,103 @@ public class ExtensionsView extends AbstractView {
 	@UiHandler("datalabelsBar")
 	protected void handleDatalabelsBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsBarCase());
+		content.add(new DataLabelsBarCase());
 	}
 
 	@UiHandler("datalabelsBubble")
 	protected void handleDatalabelsBubble(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsBubbleCase());
+		content.add(new DataLabelsBubbleCase());
 	}
 
 	@UiHandler("datalabelsLine")
 	protected void handleDatalabelsLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsLineCase());
+		content.add(new DataLabelsLineCase());
 	}
 
 	@UiHandler("datalabelsDoughnut")
 	protected void handleDatalabelsDoughnut(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsDoughnutCase());
+		content.add(new DataLabelsDoughnutCase());
 	}
 
 	@UiHandler("datalabelsPolar")
 	protected void handleDatalabelsPolar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsPolarAreaCase());
+		content.add(new DataLabelsPolarAreaCase());
 	}
-	
+
 	@UiHandler("datalabelsRadar")
 	protected void handleDatalabelsRadar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsRadarCase());
+		content.add(new DataLabelsRadarCase());
 	}
 
 	@UiHandler("datalabelsInteractions")
 	protected void handleDatalabelsInteractions(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsInteractionsCase());
-	}	
-	
+		content.add(new DataLabelsInteractionsCase());
+	}
+
 	@UiHandler("datalabelsData")
 	protected void handleDatalabelsData(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsDataCase());
-	}	
-	
+		content.add(new DataLabelsDataCase());
+	}
+
 	@UiHandler("datalabelsDataset")
 	protected void handleDatalabelsDataset(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsDatasetCase());
-	}	
-
+		content.add(new DataLabelsDatasetCase());
+	}
 
 	@UiHandler("datalabelsIndices")
 	protected void handleDatalabelsIndices(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsIndicesCase());
-	}	
+		content.add(new DataLabelsIndicesCase());
+	}
 
 	@UiHandler("datalabelsMirror")
 	protected void handleDatalabelsMirror(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsMirrorCase());
-	}	
+		content.add(new DataLabelsMirrorCase());
+	}
 
 	@UiHandler("datalabelsListeners")
 	protected void handleDatalabelsListeners(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsListenersCase());
-	}	
+		content.add(new DataLabelsListenersCase());
+	}
 
 	@UiHandler("datalabelsHighlight")
 	protected void handleDatalabelsHighlight(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsHighlightCase());
-	}	
+		content.add(new DataLabelsHighlightCase());
+	}
 
 	@UiHandler("datalabelsGradient")
 	protected void handleDatalabelsGradient(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsLinearGradientLineCase());
-	}	
-	
+		content.add(new DataLabelsLinearGradientLineCase());
+	}
+
 	@UiHandler("datalabelsSelection")
 	protected void handleDatalabelsSelection(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsSelectionCase());
-	}	
-	
+		content.add(new DataLabelsSelectionCase());
+	}
+
 	@UiHandler("datalabelsCustom")
 	protected void handleDatalabelsCustomLabels(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsCustomLabelsCase());
+		content.add(new DataLabelsCustomLabelsCase());
 	}
 
 	@UiHandler("datalabelsMulti")
 	protected void handleDatalabelsMultiLabels(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new DataLabelsMultiLabelsCase());
+		content.add(new DataLabelsMultiLabelsCase());
 	}
 
 	// ----------------------------------------------
@@ -176,19 +175,19 @@ public class ExtensionsView extends AbstractView {
 	@UiHandler("labelsPieUsingLabels")
 	protected void handleLabelsPieLabels(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsUsingLabelRenderCase());
+		content.add(new LabelsUsingLabelRenderCase());
 	}
 
 	@UiHandler("labelsPieUsingPercentage")
 	protected void handleLabelsPiePercentage(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsUsingPercentageRenderCase());
+		content.add(new LabelsUsingPercentageRenderCase());
 	}
 
 	@UiHandler("labelsPieUsingValue")
 	protected void handleLabelsPieValue(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsUsingValueRenderCase());
+		content.add(new LabelsUsingValueRenderCase());
 	}
 
 	@UiHandler("labelsPieUsingImages")
@@ -206,21 +205,21 @@ public class ExtensionsView extends AbstractView {
 	@UiHandler("labelsOnPolar")
 	protected void handleLabelsPolar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsPolarCase());
+		content.add(new LabelsPolarCase());
 	}
 
 	@UiHandler("labelsOnBar")
 	protected void handleLabelsBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsBarCase());
+		content.add(new LabelsBarCase());
 	}
 
 	@UiHandler("labelsPiePosition")
 	protected void handleLabelsPiePosition(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new LabelsPositioningCase());
+		content.add(new LabelsPositioningCase());
 	}
-	
+
 	// ----------------------------------------------
 	// Zoom
 	// ----------------------------------------------
@@ -228,27 +227,27 @@ public class ExtensionsView extends AbstractView {
 	@UiHandler("zoomPanOnBar")
 	protected void handleZoomPanOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ZoomPanOnBarCase());
+		content.add(new ZoomPanOnBarCase());
 	}
 
 	@UiHandler("zoomStyledZoomOnBar")
 	protected void handleZoomStyledZoomOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ZoomStyledZoomOnBarCase());
+		content.add(new ZoomStyledZoomOnBarCase());
 	}
 
 	@UiHandler("zoomXZoomOnBar")
 	protected void handleZoomXZoomOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ZoomXOnBarCase());
+		content.add(new ZoomXOnBarCase());
 	}
 
 	@UiHandler("zoomZoomOnBar")
 	protected void handleZoomOnBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ZoomOnBarCase());
+		content.add(new ZoomOnBarCase());
 	}
-	
+
 	@UiHandler("zoomZoomOnHorizontalBar")
 	protected void handleZoomOnHorizontalBar(ClickEvent event) {
 		clearPreviousChart();
@@ -283,59 +282,56 @@ public class ExtensionsView extends AbstractView {
 	// Annotation
 	// ----------------------------------------------
 
-	
-
 	@UiHandler("annotationBoxesOnLine")
 	protected void handleAnnotationBoxesOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationBoxesOnLineCase());
+		content.add(new AnnotationBoxesOnLineCase());
 	}
 
 	@UiHandler("annotationsLineAndBoxOnCombined")
 	protected void handleAnnotationsLineAndBoxOnCombined(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationsOnCombinedCase());
+		content.add(new AnnotationsOnCombinedCase());
 	}
-	
+
 	@UiHandler("annotationLineOnTimeseries")
 	protected void handleAnnotationTimeseriesLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationLineOnTimeSeriesLineCase());
+		content.add(new AnnotationLineOnTimeSeriesLineCase());
 	}
 
 	@UiHandler("annotationLineOnHorizontalBar")
 	protected void handleAnnotationLineOnHorizontalBar(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationLineOnHorizontalBarCase());
+		content.add(new AnnotationLineOnHorizontalBarCase());
 	}
 
 	@UiHandler("annotationLogarithmicAxisOnLine")
 	protected void handleAnnotationLogarithmicAxisOnLine(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationLineOnLogarithmicAxisCase());
+		content.add(new AnnotationLineOnLogarithmicAxisCase());
 	}
 
 	@UiHandler("annotationObliqueLineOnTimeseries")
 	protected void handleAnnotationObliqueLineOnTimeseries(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new AnnotationObliqueLineOnTimeSeriesLineCase());
+		content.add(new AnnotationObliqueLineOnTimeSeriesLineCase());
 	}
-	
+
 	@UiHandler("annotationsEventsOnTimeseries")
 	protected void handleAnnotationsEventsOnTimeseries(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new AnnotationsEventsOnTimeSeriesCase());
-	}		
-	
+	}
+
 	// ----------------------------------------------
 	// Imported
 	// ----------------------------------------------
-	
 
 	@UiHandler("importingChartJsPlugin")
 	protected void handleCustomPluginChart(ClickEvent event) {
 		clearPreviousChart();
-		 content.add(new ImportingPluginCase());
+		content.add(new ImportingPluginCase());
 	}
-	
+
 }

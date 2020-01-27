@@ -24,8 +24,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DataLabelsPolarAreaCase extends BaseComposite{
-	
+public class DataLabelsPolarAreaCase extends BaseComposite {
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, DataLabelsPolarAreaCase> {
@@ -44,9 +44,9 @@ public class DataLabelsPolarAreaCase extends BaseComposite{
 		chart.getOptions().getElements().getLine().setFill(false);
 		chart.getOptions().getElements().getPoint().setHoverRadius(7);
 		chart.getOptions().getElements().getPoint().setRadius(7);
-		
+
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);	
+		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
@@ -60,13 +60,13 @@ public class DataLabelsPolarAreaCase extends BaseComposite{
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		
+
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
-				PolarAreaDataset ds = (PolarAreaDataset)chart.getData().getDatasets().get(context.getDatasetIndex());
+				PolarAreaDataset ds = (PolarAreaDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor().get(context.getIndex()).alpha(1D).toRGBA();
 			}
 		});
@@ -75,14 +75,14 @@ public class DataLabelsPolarAreaCase extends BaseComposite{
 		option.setBorderWidth(2);
 		option.setColor(HtmlColor.WHITE);
 		option.getFont().setWeight(Weight.BOLD);
-		
+
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		for (Dataset dataset : chart.getData().getDatasets()){
+		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
@@ -90,13 +90,13 @@ public class DataLabelsPolarAreaCase extends BaseComposite{
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		if (months < 12){
+		if (months < 12) {
 			chart.getData().getLabels().add(getLabel());
 			months++;
 			List<Dataset> datasets = chart.getData().getDatasets();
-			for (Dataset ds : datasets){
-				PolarAreaDataset pds = (PolarAreaDataset)ds;
-				pds.setBackgroundColor(getSequenceColors(months, 0.2D));	
+			for (Dataset ds : datasets) {
+				PolarAreaDataset pds = (PolarAreaDataset) ds;
+				pds.setBackgroundColor(getSequenceColors(months, 0.2D));
 				pds.getData().add(getRandomDigit(false));
 			}
 			chart.update();
@@ -107,7 +107,7 @@ public class DataLabelsPolarAreaCase extends BaseComposite{
 	protected void handleRemoveData(ClickEvent event) {
 		removeData(chart);
 	}
-	
+
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
