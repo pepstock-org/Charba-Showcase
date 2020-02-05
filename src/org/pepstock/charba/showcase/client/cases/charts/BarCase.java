@@ -68,6 +68,7 @@ public class BarCase extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
+		org.pepstock.charba.client.utils.Window.getConsole().log("chart", chart);
 
 	}
 
