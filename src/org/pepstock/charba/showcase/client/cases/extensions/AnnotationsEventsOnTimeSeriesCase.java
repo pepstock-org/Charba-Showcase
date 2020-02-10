@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.annotation.AbstractAnnotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
@@ -30,17 +29,18 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.dom.BaseNativeEvent;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
@@ -64,7 +64,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	}
 
 	@UiField
-	TimeSeriesLineChart chart;
+	TimeSeriesLineChartWidget chart;
 
 	@UiField
 	LogView mylog;
@@ -204,22 +204,22 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	class MyEventsCallback implements ClickCallback, MouseOverCallback, MouseOutCallback, DoubleClickCallback {
 
 		@Override
-		public void onMouseOut(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+		public void onMouseOut(IsChart chart, BaseNativeEvent event, AbstractAnnotation annotation) {
 			mylog.addLogEvent("> MOUSEOUT on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
-		public void onMouseOver(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+		public void onMouseOver(IsChart chart, BaseNativeEvent event, AbstractAnnotation annotation) {
 			mylog.addLogEvent("> MOUSEOVER on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
-		public void onClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+		public void onClick(IsChart chart, BaseNativeEvent event, AbstractAnnotation annotation) {
 			mylog.addLogEvent("> CLICK on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 
 		@Override
-		public void onDoubleClick(IsChart chart, NativeEvent event, AbstractAnnotation annotation) {
+		public void onDoubleClick(IsChart chart, BaseNativeEvent event, AbstractAnnotation annotation) {
 			mylog.addLogEvent("> DOUBLE CLICK on annotation " + annotation.getName() + " type " + annotation.getType());
 		}
 

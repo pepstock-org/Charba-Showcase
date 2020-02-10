@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
@@ -8,6 +7,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.SteppedLine;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -26,16 +26,16 @@ public class SteppedLineOnLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chartNoStepped;
+	LineChartWidget chartNoStepped;
 
 	@UiField
-	LineChart chartStepped;
+	LineChartWidget chartStepped;
 
 	@UiField
-	LineChart chartBeforeStepped;
+	LineChartWidget chartBeforeStepped;
 
 	@UiField
-	LineChart chartAfterStepped;
+	LineChartWidget chartAfterStepped;
 
 	public SteppedLineOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -115,7 +115,7 @@ public class SteppedLineOnLineCase extends BaseComposite {
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	private void newData(LineChart chart) {
+	private void newData(LineChartWidget chart) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}

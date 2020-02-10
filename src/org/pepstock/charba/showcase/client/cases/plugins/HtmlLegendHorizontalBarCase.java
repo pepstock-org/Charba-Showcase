@@ -2,13 +2,13 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.HorizontalBarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.HorizontalBarDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -28,7 +28,7 @@ public class HtmlLegendHorizontalBarCase extends BaseComposite {
 	}
 
 	@UiField
-	HorizontalBarChart chart;
+	HorizontalBarChartWidget chart;
 
 	public HtmlLegendHorizontalBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

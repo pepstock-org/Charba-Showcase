@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipFooterCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -16,6 +15,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -35,7 +35,7 @@ public class TooltipCallbacksCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public TooltipCallbacksCase() {
 		initWidget(uiBinder.createAndBindUi(this));

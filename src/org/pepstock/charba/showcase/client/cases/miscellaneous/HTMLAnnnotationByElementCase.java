@@ -1,16 +1,19 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
+import org.pepstock.charba.client.dom.BaseHtmlElement;
+import org.pepstock.charba.client.dom.BaseNativeEvent;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.ChartClickEvent;
 import org.pepstock.charba.client.events.ChartClickEventHandler;
-import org.pepstock.charba.client.events.ChartNativeEvent;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
@@ -18,10 +21,8 @@ import org.pepstock.charba.client.utils.AnnotationBuilder;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -29,6 +30,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
+
+import jsinterop.base.Js;
 
 public class HTMLAnnnotationByElementCase extends BaseComposite {
 
@@ -38,7 +41,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	BarDataset dataset;
 
@@ -48,7 +51,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 
 	double imgY = 0;
 
-	ImageElement imgElement = null;
+	Img imgElement = null;
 
 	public HTMLAnnnotationByElementCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -93,7 +96,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 
 			@Override
 			public void onClick(ChartClickEvent clickEvent) {
-				ChartNativeEvent event = (ChartNativeEvent) clickEvent.getNativeEvent();
+				BaseNativeEvent event = (BaseNativeEvent) clickEvent.getNativeEvent();
 
 				boolean isX = event.getLayerX() >= imgX && event.getLayerX() <= (imgX + imgElement.getWidth());
 				boolean isY = event.getLayerY() >= imgY && event.getLayerY() <= (imgY + imgElement.getHeight());
@@ -123,14 +126,15 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 			public void onAfterDraw(IsChart chart, double easing) {
 				Element element = toast.getElement();
 
-				final Context2d ctx = chart.getCanvas().getContext2d();
+				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				DatasetMetaItem meta = chart.getDatasetMeta(0);
 				DatasetItem item = meta.getDatasets().get(3);
 
-				ImageElement img;
+				Img img;
 				if (useElement) {
-					img = AnnotationBuilder.build(element, 300, 48);
+					BaseHtmlElement el = Js.cast(element);
+					img = AnnotationBuilder.build(el, 300, 48);
 				} else {
 					img = AnnotationBuilder.build(ANNOTATION, 300, 64);
 				}

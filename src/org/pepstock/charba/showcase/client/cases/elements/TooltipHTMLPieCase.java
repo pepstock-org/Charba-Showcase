@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.items.TooltipBodyItem;
 import org.pepstock.charba.client.items.TooltipLabelColor;
 import org.pepstock.charba.client.items.TooltipModel;
@@ -28,6 +29,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
+import jsinterop.base.Js;
+
 public class TooltipHTMLPieCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -36,7 +39,7 @@ public class TooltipHTMLPieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	public TooltipHTMLPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -59,7 +62,9 @@ public class TooltipHTMLPieCase extends BaseComposite {
 				if (element == null) {
 					element = Document.get().createDivElement();
 					AbstractChart<?> chartInstance = (AbstractChart<?>) chart;
-					chartInstance.getElement().appendChild(element);
+					// FIXME
+					Div el = Js.cast(element);
+					chartInstance.getChartElement().appendChild(el);
 				}
 
 				element.removeClassName("above");

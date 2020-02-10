@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -28,7 +28,7 @@ public class ScatterCase extends BaseComposite {
 	}
 
 	@UiField
-	ScatterChart chart;
+	ScatterChartWidget chart;
 
 	public ScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));

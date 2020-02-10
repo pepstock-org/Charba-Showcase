@@ -1,12 +1,13 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -28,7 +29,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public BackgroundPatternLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -62,7 +63,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
 
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(pattern);

@@ -3,12 +3,15 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.ValueCallback;
 import org.pepstock.charba.client.colors.ColorBuilder;
 import org.pepstock.charba.client.enums.FontStyle;
-import org.pepstock.charba.client.impl.charts.GaugeChart;
+import org.pepstock.charba.client.gwt.widgets.GaugeChartWidget;
 import org.pepstock.charba.client.impl.charts.GaugeDataset;
 import org.pepstock.charba.client.impl.charts.GaugeThreshold;
 import org.pepstock.charba.client.impl.charts.MeterDisplay;
+import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -27,13 +30,13 @@ public class GaugeCase extends BaseComposite {
 	}
 
 	@UiField
-	GaugeChart chartPercent;
+	GaugeChartWidget chartPercent;
 	@UiField
-	GaugeChart chartValue;
+	GaugeChartWidget chartValue;
 	@UiField
-	GaugeChart chartValueColor;
+	GaugeChartWidget chartValueColor;
 	@UiField
-	GaugeChart chartValueReverse;
+	GaugeChartWidget chartValueReverse;
 
 	private final List<GaugeDataset> datasets = new ArrayList<GaugeDataset>();
 
@@ -43,28 +46,46 @@ public class GaugeCase extends BaseComposite {
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("GAUGE chart to represent percentage value");
 		chartPercent.getOptions().setDisplay(MeterDisplay.PERCENTAGE);
-		chartPercent.getOptions().setFormat("###.##%");
+		chartPercent.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 2)+ "%";
+			}
+		});
 		chartPercent.getOptions().setAnimatedDisplay(true);
 		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));
 
 		chartValue.getOptions().getTitle().setDisplay(true);
 		chartValue.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label");
 		chartValue.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
-		chartValue.getOptions().setFormat("#### MB");
+		chartValue.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 0)+ " MB";
+			}
+		});
 		chartValue.getOptions().setFontStyle(FontStyle.ITALIC);
 		chartValue.getData().setDatasets(getDataset(chartValue, "Memory", 2048D));
 
 		chartValueColor.getOptions().getTitle().setDisplay(true);
 		chartValueColor.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label", "changing the color of label");
 		chartValueColor.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
-		chartValueColor.getOptions().setFormat("#### GB");
+		chartValueColor.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 0)+ " GB";
+			}
+		});
 		chartValueColor.getOptions().setDisplayFontColor(ColorBuilder.build(90, 173, 255));
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 		chartValueReverse.getOptions().getTitle().setDisplay(true);
 		chartValueReverse.getOptions().getTitle().setText("GAUGE chart with thresholds on reverse mode");
 		chartValueReverse.getOptions().setDisplay(MeterDisplay.VALUE);
-		chartValueReverse.getOptions().setFormat("###");
+		chartValueReverse.getOptions().setPrecision(0);
 
 		GaugeDataset ds = getDataset(chartValueReverse, "Reverse", 400D);
 
@@ -73,7 +94,7 @@ public class GaugeCase extends BaseComposite {
 		chartValueReverse.getData().setDatasets(ds);
 	}
 
-	private GaugeDataset getDataset(GaugeChart chart, String label, double max) {
+	private GaugeDataset getDataset(GaugeChartWidget chart, String label, double max) {
 		chart.getOptions().setResponsive(true);
 		GaugeDataset dataset = chart.newDataset(max);
 		dataset.setLabel(label);

@@ -2,10 +2,10 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Arrays;
 
-import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
+import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsOptionsBuilder;
 import org.pepstock.charba.client.labels.LabelsPlugin;
@@ -29,7 +29,7 @@ public class LabelsPolarCase extends BaseComposite {
 	}
 
 	@UiField
-	PolarAreaChart chart;
+	PolarAreaChartWidget chart;
 
 	final int myMonths = 3;
 

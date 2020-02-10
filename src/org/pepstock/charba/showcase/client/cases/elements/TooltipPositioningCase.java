@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -9,6 +8,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipPosition;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -29,7 +29,7 @@ public class TooltipPositioningCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	ListBox position;

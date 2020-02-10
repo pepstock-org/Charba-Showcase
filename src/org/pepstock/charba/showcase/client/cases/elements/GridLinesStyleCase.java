@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -8,6 +7,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -26,7 +26,7 @@ public class GridLinesStyleCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public GridLinesStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));

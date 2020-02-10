@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -22,6 +21,7 @@ import org.pepstock.charba.client.datalabels.enums.TextAlign;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -40,7 +40,7 @@ public class DataLabelsInteractionsCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public DataLabelsInteractionsCase() {
 		initWidget(uiBinder.createAndBindUi(this));

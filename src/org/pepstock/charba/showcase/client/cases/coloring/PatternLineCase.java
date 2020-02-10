@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -9,6 +8,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -28,7 +29,7 @@ public class PatternLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public PatternLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -46,7 +47,7 @@ public class PatternLineCase extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.pattern()));
 
 		dataset1.setBackgroundColor(pattern);
 

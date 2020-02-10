@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.InteractionAxis;
+import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -29,7 +29,7 @@ public class ZoomOnScatterCase extends BaseComposite {
 	}
 
 	@UiField
-	ScatterChart chart;
+	ScatterChartWidget chart;
 
 	public ZoomOnScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));

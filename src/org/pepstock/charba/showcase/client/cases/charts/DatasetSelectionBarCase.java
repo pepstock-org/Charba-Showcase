@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -12,6 +11,7 @@ import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
@@ -34,7 +34,7 @@ public class DatasetSelectionBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public DatasetSelectionBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

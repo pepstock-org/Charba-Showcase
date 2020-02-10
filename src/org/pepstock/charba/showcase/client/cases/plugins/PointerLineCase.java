@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -14,12 +13,14 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.enums.CursorType;
 import org.pepstock.charba.client.events.AxisClickEvent;
 import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.events.TitleClickEvent;
 import org.pepstock.charba.client.events.TitleClickEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
@@ -27,7 +28,6 @@ import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -46,7 +46,7 @@ public class PointerLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	ListBox cursor;
@@ -70,8 +70,8 @@ public class PointerLineCase extends BaseComposite {
 	public PointerLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		cursor.addItem("Default", Cursor.POINTER.name());
-		for (Cursor myC : Cursor.values()) {
+		cursor.addItem("Default", CursorType.POINTER.name());
+		for (CursorType myC : CursorType.values()) {
 			cursor.addItem(myC.name(), myC.name());
 		}
 
@@ -202,7 +202,7 @@ public class PointerLineCase extends BaseComposite {
 	@UiHandler("cursor")
 	protected void handleCursor(ChangeEvent event) {
 		String selected = cursor.getSelectedValue();
-		Cursor myC = Cursor.valueOf(selected);
+		CursorType myC = CursorType.valueOf(selected);
 		options.setCursorPointer(myC);
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, options);
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());

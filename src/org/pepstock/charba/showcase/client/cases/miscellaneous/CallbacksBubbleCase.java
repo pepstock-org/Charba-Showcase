@@ -2,13 +2,13 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.BubbleChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
+import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -31,7 +31,7 @@ public class CallbacksBubbleCase extends BaseComposite {
 	}
 
 	@UiField
-	BubbleChart chart;
+	BubbleChartWidget chart;
 
 	BubbleDataset dataset = null;
 

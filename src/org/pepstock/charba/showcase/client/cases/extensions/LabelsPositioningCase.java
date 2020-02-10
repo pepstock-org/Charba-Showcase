@@ -2,11 +2,11 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Position;
@@ -30,7 +30,7 @@ public class LabelsPositioningCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	final LabelsOptions option = new LabelsOptions();
 

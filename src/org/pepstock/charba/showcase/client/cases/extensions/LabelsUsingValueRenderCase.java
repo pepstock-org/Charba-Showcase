@@ -3,12 +3,12 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.RenderItem;
@@ -33,7 +33,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	final MyRenderer renderer = new MyRenderer();
 

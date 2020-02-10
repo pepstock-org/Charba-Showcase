@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.StackedAreaChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
@@ -13,6 +12,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.StackedAreaChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -32,7 +33,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite {
 	}
 
 	@UiField
-	StackedAreaChart chart;
+	StackedAreaChartWidget chart;
 
 	public HoverStyleOnStackedAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -73,7 +74,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite {
 
 		dataset2.setBorderWidth(5);
 
-		Pattern pattern = new Pattern(Images.INSTANCE.pattern());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.pattern()));
 		dataset2.setHoverBackgroundColor(pattern);
 		// dataset2.setHoverBackgroundColor(color2.brighter());
 		dataset2.setHoverBorderColor(color2.darker());

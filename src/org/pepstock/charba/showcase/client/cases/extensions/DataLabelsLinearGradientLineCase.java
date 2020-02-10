@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -21,11 +20,12 @@ import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.dom.elements.CanvasGradientItem;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
-import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -42,7 +42,7 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public DataLabelsLinearGradientLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -120,10 +120,10 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 
 		option.setBorderColor(new BorderColorCallback() {
 
-			CanvasGradient gr1 = null;
+			CanvasGradientItem gr1 = null;
 
 			@Override
-			public CanvasGradient invoke(IsChart chart, ScriptableContext context) {
+			public CanvasGradientItem invoke(IsChart chart, ScriptableContext context) {
 				if (gr1 == null) {
 					gr1 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
 					gr1.addColorStop(1, HtmlColor.ORANGE.toRGBA());

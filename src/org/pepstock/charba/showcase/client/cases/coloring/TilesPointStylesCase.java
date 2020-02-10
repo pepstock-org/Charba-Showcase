@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.colors.tiles.TilesFactoryDefaults;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.PointStyle;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -31,7 +31,7 @@ public class TilesPointStylesCase extends BaseComposite {
 	private static final HtmlColor[] COLORS = { HtmlColor.BLACK, HtmlColor.WHITE, HtmlColor.LIGHT_GRAY };
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	ListBox pointStyles;

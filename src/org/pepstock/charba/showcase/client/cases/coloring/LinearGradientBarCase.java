@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -11,6 +10,7 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -29,7 +29,7 @@ public class LinearGradientBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public LinearGradientBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

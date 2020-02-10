@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.labels.FontColorItem;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
@@ -34,7 +34,7 @@ public class LabelsBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public LabelsBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

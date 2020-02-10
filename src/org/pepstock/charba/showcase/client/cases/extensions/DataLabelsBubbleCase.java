@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.BubbleChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.data.BubbleDataset;
@@ -17,6 +16,7 @@ import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -39,7 +39,7 @@ public class DataLabelsBubbleCase extends BaseComposite {
 	}
 
 	@UiField
-	BubbleChart chart;
+	BubbleChartWidget chart;
 
 	public DataLabelsBubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));

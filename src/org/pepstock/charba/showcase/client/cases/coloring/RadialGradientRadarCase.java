@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -28,7 +28,7 @@ public class RadialGradientRadarCase extends BaseComposite {
 	}
 
 	@UiField
-	RadarChart chart;
+	RadarChartWidget chart;
 
 	public RadialGradientRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

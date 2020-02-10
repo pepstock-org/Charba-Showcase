@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -27,7 +27,7 @@ public class HtmlLegendSplittingTextCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public HtmlLegendSplittingTextCase() {
 		initWidget(uiBinder.createAndBindUi(this));

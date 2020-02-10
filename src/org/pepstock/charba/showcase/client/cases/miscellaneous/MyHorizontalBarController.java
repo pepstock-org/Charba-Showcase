@@ -7,15 +7,17 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scale;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.user.client.ui.Image;
 
 public class MyHorizontalBarController extends AbstractController {
 
@@ -35,7 +37,7 @@ public class MyHorizontalBarController extends AbstractController {
 	@Override
 	public void initialize(ControllerContext context, IsChart chart, int datasetIndex) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
-		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
+		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.initialize(context, chart, datasetIndex);
 	}
 
@@ -43,7 +45,7 @@ public class MyHorizontalBarController extends AbstractController {
 	public void draw(ControllerContext context, IsChart chart, double ease) {
 		super.draw(context, chart, ease);
 		final int padding = 4;
-		Context2d ctx = chart.getCanvas().getContext2d();
+		Context2dItem ctx = chart.getCanvas().getContext2d();
 		ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
 		List<String> ticks = scale.getTicks();
@@ -53,7 +55,7 @@ public class MyHorizontalBarController extends AbstractController {
 		int x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFontSize();
 		int y = scale.getTop();
 		for (String tick : ticks) {
-			ImageElement image = null;
+			Img image = null;
 			if (tick.equalsIgnoreCase("br")) {
 				image = getImageElement(Images.INSTANCE.flagBR());
 			} else if (tick.equalsIgnoreCase("de")) {
@@ -73,12 +75,22 @@ public class MyHorizontalBarController extends AbstractController {
 			}
 			y = y + heightAmongLabels;
 		}
+		// FIXME
+		CanvasElement canvas = chart.getCanvas().as();
+		Context2d c = canvas.getContext2d();
+		c.save();
+		c.beginPath();
+		c.setStrokeStyle("red");
+		c.moveTo(0, 0);
+		c.lineTo(400, 400);
+		c.stroke();
+		c.restore();
 	}
 
 	@Override
 	public void update(ControllerContext context, IsChart chart, boolean reset) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
-		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParent().getOffsetWidth());
+		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.update(context, chart, reset);
 	}
 
@@ -88,8 +100,7 @@ public class MyHorizontalBarController extends AbstractController {
 		axis.getScaleLabel().getPadding().setTop(padding);
 	}
 
-	private ImageElement getImageElement(ImageResource resource) {
-		Image img = new Image(resource.getSafeUri());
-		return ImageElement.as(img.getElement());
+	private Img getImageElement(ImageResource resource) {
+		return ImagesHelper.toImageElement(resource);
 	}
 }

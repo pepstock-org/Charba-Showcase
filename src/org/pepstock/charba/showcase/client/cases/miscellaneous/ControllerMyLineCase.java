@@ -29,7 +29,7 @@ public class ControllerMyLineCase extends BaseComposite {
 	}
 
 	@UiField
-	MyLineChart chart;
+	MyLineChartWidget chart;
 
 	public ControllerMyLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));

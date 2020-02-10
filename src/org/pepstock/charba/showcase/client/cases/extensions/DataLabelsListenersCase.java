@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -19,9 +18,11 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
+import org.pepstock.charba.client.dom.DOMBuilder;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
@@ -30,7 +31,6 @@ import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -46,7 +46,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	LogView mylog;
@@ -211,7 +211,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
 			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");
-			chart.fireEvent(new DatasetSelectionEvent(Document.get().createChangeEvent(), item));
+			chart.fireEvent(new DatasetSelectionEvent(DOMBuilder.get().createChangeEvent(), item));
 			return true;
 		}
 	}

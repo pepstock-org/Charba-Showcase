@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.IsColor;
@@ -8,6 +7,7 @@ import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -28,7 +28,7 @@ public class BackgroundLinearGradientBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public BackgroundLinearGradientBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -9,6 +8,7 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -29,7 +29,7 @@ public class BackgroundRadialGradientPieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	public BackgroundRadialGradientPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));

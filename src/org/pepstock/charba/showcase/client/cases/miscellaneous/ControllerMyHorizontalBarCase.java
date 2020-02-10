@@ -26,7 +26,7 @@ public class ControllerMyHorizontalBarCase extends BaseComposite {
 	}
 
 	@UiField
-	MyHorizontalBarChart chart;
+	MyHorizontalBarChartWidget chart;
 
 	CartesianCategoryAxis axis;
 

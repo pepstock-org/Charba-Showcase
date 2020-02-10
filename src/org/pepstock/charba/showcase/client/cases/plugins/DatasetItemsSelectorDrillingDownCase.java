@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.callbacks.TimeTickCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -20,6 +19,7 @@ import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TimeTickItem;
@@ -55,7 +55,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	}
 
 	@UiField
-	TimeSeriesLineChart chart;
+	TimeSeriesLineChartWidget chart;
 
 	@UiField
 	Button reset;

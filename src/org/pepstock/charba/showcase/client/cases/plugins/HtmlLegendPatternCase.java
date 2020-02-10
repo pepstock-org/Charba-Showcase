@@ -1,11 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -26,9 +27,9 @@ public class HtmlLegendPatternCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
-	Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern1());
+	Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern1()));
 
 	public HtmlLegendPatternCase() {
 		initWidget(uiBinder.createAndBindUi(this));

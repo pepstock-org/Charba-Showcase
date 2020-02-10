@@ -2,10 +2,10 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.client.items.OptionsNode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -25,7 +25,7 @@ public class DoughnutCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	public DoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));

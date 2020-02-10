@@ -2,10 +2,10 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -24,7 +24,7 @@ public class PieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	public PieCase() {
 		initWidget(uiBinder.createAndBindUi(this));

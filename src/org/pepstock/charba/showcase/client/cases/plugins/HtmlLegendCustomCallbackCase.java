@@ -4,14 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.HtmlLegendTextCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.safehtml.SafeHtml;
+import org.pepstock.charba.client.dom.safehtml.SafeHtmlBuilder;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.client.items.LegendItem;
@@ -19,8 +21,6 @@ import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.safehtml.shared.SafeHtml;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -35,7 +35,7 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public HtmlLegendCustomCallbackCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -77,7 +77,7 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite {
 			@Override
 			public SafeHtml generateLegendText(IsChart chart, LegendItem item, String currentText) {
 				if (!values.containsKey(currentText)) {
-					SafeHtmlBuilder builder = new SafeHtmlBuilder();
+					SafeHtmlBuilder builder = SafeHtmlBuilder.create();
 					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");
 					newText = newText.replaceAll("which contains data", "<font style='color: " + item.getStrokeStyle().toRGBA() + "'>which contains data</font>");
 					builder.appendHtmlConstant(newText);

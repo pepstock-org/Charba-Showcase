@@ -3,13 +3,13 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
@@ -32,7 +32,7 @@ public class DatasetSelectionPieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	public DatasetSelectionPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));

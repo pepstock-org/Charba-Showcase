@@ -2,25 +2,26 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.ChartResizeEvent;
 import org.pepstock.charba.client.events.ChartResizeEventHandler;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -28,7 +29,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
 public class FlagsPluginOnBarCase extends BaseComposite {
@@ -41,7 +41,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	HorizontalBarChartWidget chart;
 
 	CartesianCategoryAxis axis;
 
@@ -105,7 +105,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int padding = 4;
-				Context2d ctx = chart.getCanvas().getContext2d();
+				Context2dItem ctx = chart.getCanvas().getContext2d();
 				ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
 				List<String> ticks = scale.getTicks();
 				int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
@@ -114,7 +114,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 				int x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFontSize();
 				int y = scale.getTop();
 				for (String tick : ticks) {
-					ImageElement image = null;
+					Img image = null;
 					if (tick.equalsIgnoreCase("br")) {
 						image = getImageElement(Images.INSTANCE.flagBR());
 					} else if (tick.equalsIgnoreCase("de")) {
@@ -143,13 +143,12 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 	@Override
 	protected void onAttach() {
-		calculateAndSetScaleLabelPadding(chart.getCanvas().getParent().getOffsetWidth());
+		calculateAndSetScaleLabelPadding(chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.onAttach();
 	}
 
-	private ImageElement getImageElement(ImageResource resource) {
-		Image img = new Image(resource.getSafeUri());
-		return ImageElement.as(img.getElement());
+	private Img getImageElement(ImageResource resource) {
+		return ImagesHelper.toImageElement(resource);
 	}
 
 	@UiHandler("randomize")

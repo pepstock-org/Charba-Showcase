@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
@@ -13,6 +12,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -32,7 +32,7 @@ public class HtmlLegendLinearGradientCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public HtmlLegendLinearGradientCase() {
 		initWidget(uiBinder.createAndBindUi(this));

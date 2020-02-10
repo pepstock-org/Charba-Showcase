@@ -2,13 +2,13 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
@@ -39,7 +39,7 @@ public class ColorSchemeRadarCase extends BaseComposite {
 	}
 
 	@UiField
-	RadarChart chart;
+	RadarChartWidget chart;
 
 	@UiField
 	ListBox category;

@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -15,6 +14,7 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -33,7 +33,7 @@ public class DataLabelsRadarCase extends BaseComposite {
 	}
 
 	@UiField
-	RadarChart chart;
+	RadarChartWidget chart;
 
 	public DataLabelsRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

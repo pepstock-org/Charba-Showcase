@@ -1,11 +1,11 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -24,7 +24,7 @@ public class MultiAxisBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public MultiAxisBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

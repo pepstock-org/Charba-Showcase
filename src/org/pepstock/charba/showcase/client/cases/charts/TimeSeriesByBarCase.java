@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -31,7 +31,7 @@ public class TimeSeriesByBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	private final long startingPoint = System.currentTimeMillis();
 

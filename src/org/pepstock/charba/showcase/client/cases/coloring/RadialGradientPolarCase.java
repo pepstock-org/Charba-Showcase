@@ -2,10 +2,10 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import java.util.List;
 
-import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -24,7 +24,7 @@ public class RadialGradientPolarCase extends BaseComposite {
 	}
 
 	@UiField
-	PolarAreaChart chart;
+	PolarAreaChartWidget chart;
 
 	public RadialGradientPolarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

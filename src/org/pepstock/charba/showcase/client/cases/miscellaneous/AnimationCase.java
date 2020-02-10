@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -16,6 +15,7 @@ import org.pepstock.charba.client.events.AnimationCompleteEvent;
 import org.pepstock.charba.client.events.AnimationCompleteEventHandler;
 import org.pepstock.charba.client.events.AnimationProgressEvent;
 import org.pepstock.charba.client.events.AnimationProgressEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.ProgressBar;
 
@@ -39,7 +39,7 @@ public class AnimationCase extends BaseComposite {
 	private static final int DURATION = 2 * SECOND;
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	ProgressBar progress;

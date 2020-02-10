@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.ImageShape;
@@ -8,6 +7,8 @@ import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -27,15 +28,19 @@ public class TilesImagesCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	private static final int ITEMS = 5;
 
 	public TilesImagesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		ImageShape[] imgShapes = { new ImageShape(Images.INSTANCE.githubWhite()), new ImageShape(Images.INSTANCE.extensionWhite()), new ImageShape(Images.INSTANCE.fingerprintWhite()), new ImageShape(Images.INSTANCE.headlineWhite()),
-				new ImageShape(Images.INSTANCE.visibilityWhite()) };
+		ImageShape[] imgShapes = { new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.githubWhite())), 
+				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.extensionWhite())), 
+				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.fingerprintWhite())), 
+				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.headlineWhite())),
+				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.visibilityWhite()))
+		};
 
 		Pattern[] tiles = new Pattern[ITEMS];
 		for (int i = 0; i < ITEMS; i++) {

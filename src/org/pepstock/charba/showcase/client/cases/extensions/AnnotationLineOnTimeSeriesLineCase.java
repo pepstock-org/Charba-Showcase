@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
@@ -29,6 +28,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.resources.ResourcesType;
@@ -56,7 +56,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 	}
 
 	@UiField
-	TimeSeriesLineChart chart;
+	TimeSeriesLineChartWidget chart;
 
 	final LineAnnotation line1 = new LineAnnotation();
 

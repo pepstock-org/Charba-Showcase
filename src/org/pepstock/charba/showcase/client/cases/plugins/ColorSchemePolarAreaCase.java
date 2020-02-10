@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
-import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
@@ -37,7 +37,7 @@ public class ColorSchemePolarAreaCase extends BaseComposite {
 	}
 
 	@UiField
-	PolarAreaChart chart;
+	PolarAreaChartWidget chart;
 
 	@UiField
 	ListBox category;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -12,10 +11,12 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipPosition;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipBodyItem;
 import org.pepstock.charba.client.items.TooltipLabelColor;
 import org.pepstock.charba.client.items.TooltipModel;
@@ -35,6 +36,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
+import jsinterop.base.Js;
+
 public class TooltipHTMLlineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
@@ -43,7 +46,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public TooltipHTMLlineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -68,7 +71,9 @@ public class TooltipHTMLlineCase extends BaseComposite {
 				if (element == null) {
 					element = Document.get().createDivElement();
 					AbstractChart<?> chartInstance = (AbstractChart<?>) chart;
-					chartInstance.getElement().appendChild(element);
+					// FIXME
+					Div el = Js.cast(element);
+					chartInstance.getChartElement().appendChild(el);
 				}
 				element.removeClassName("above");
 				element.removeClassName("below");

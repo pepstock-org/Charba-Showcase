@@ -1,7 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GradientOrientation;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -29,7 +29,7 @@ public class CallbacksPieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	public CallbacksPieCase() {
 		initWidget(uiBinder.createAndBindUi(this));

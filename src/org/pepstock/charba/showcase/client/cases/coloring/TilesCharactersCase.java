@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.CharacterShape;
@@ -8,6 +7,7 @@ import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -26,7 +26,7 @@ public class TilesCharactersCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	private static final int ITEMS = 5;
 

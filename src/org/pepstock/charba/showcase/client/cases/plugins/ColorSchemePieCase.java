@@ -2,11 +2,11 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
@@ -36,7 +36,7 @@ public class ColorSchemePieCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	@UiField
 	ListBox category;

@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -17,6 +16,7 @@ import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Display;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.client.impl.callbacks.Percentage;
 import org.pepstock.charba.client.items.UndefinedValues;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -38,7 +38,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	final NumberFormat percentageFormatter = NumberFormat.getPercentFormat();
 

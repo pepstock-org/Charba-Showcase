@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.plugins.AbstractPluginOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.MyResources;
@@ -30,7 +30,7 @@ public class ImportingPluginCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	private static final String STACKED100_PLUGIN = "stacked100";
 

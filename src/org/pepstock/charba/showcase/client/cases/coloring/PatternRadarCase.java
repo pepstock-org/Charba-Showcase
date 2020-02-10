@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.Dataset;
@@ -8,6 +7,8 @@ import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -27,7 +28,7 @@ public class PatternRadarCase extends BaseComposite {
 	}
 
 	@UiField
-	RadarChart chart;
+	RadarChartWidget chart;
 
 	public PatternRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -45,7 +46,7 @@ public class PatternRadarCase extends BaseComposite {
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern2());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
 
 		dataset1.setBackgroundColor(pattern);
 

@@ -2,13 +2,13 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.RadarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
+import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -27,7 +27,7 @@ public class TilesRadarCase extends BaseComposite {
 	}
 
 	@UiField
-	RadarChart chart;
+	RadarChartWidget chart;
 
 	Random random = new Random();
 

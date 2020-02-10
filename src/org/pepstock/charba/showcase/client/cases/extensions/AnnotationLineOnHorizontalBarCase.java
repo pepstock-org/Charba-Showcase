@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.HorizontalBarChart;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
@@ -14,6 +13,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.HorizontalBarDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -33,7 +33,7 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 	}
 
 	@UiField
-	HorizontalBarChart chart;
+	HorizontalBarChartWidget chart;
 
 	public AnnotationLineOnHorizontalBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

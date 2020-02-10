@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -13,15 +12,16 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.enums.TextAlign;
+import org.pepstock.charba.client.dom.enums.TextBaseline;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
-import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
-import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -54,7 +54,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public StandingPluginOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -113,7 +113,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int padding = 30;
 				final int datasetsCount = chart.getData().getDatasets().size();
-				Context2d ctx = chart.getCanvas().getContext2d();
+				Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				ScaleItem scaleX = chart.getNode().getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
 				ScaleItem scaleY = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
@@ -125,7 +125,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 
 				for (int i = 0; i < datasetsCount; i++) {
 					int index = i + 1;
-					ctx.setFillStyle("rgb(0, 0, 0)");
+					ctx.setFillColor("rgb(0, 0, 0)");
 					ctx.setFont("22px bold Helvetica Neue");
 					ctx.setTextAlign(TextAlign.CENTER);
 					ctx.setTextBaseline(TextBaseline.MIDDLE);

@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
@@ -28,6 +27,7 @@ import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.events.LegendClickEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.options.Scales;
@@ -60,7 +60,7 @@ public class TrendAndForecastCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	final Date nowDate = new Date();
 	@SuppressWarnings("deprecation")

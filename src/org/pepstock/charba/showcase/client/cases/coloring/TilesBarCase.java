@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -11,6 +10,7 @@ import org.pepstock.charba.client.colors.tiles.Shape;
 import org.pepstock.charba.client.colors.tiles.TilesFactory;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -30,7 +30,7 @@ public class TilesBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	private static final int ITEMS = 12;
 

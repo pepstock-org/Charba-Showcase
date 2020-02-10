@@ -2,12 +2,12 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -26,7 +26,7 @@ public class BarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public BarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -68,8 +68,6 @@ public class BarCase extends BaseComposite {
 			dataset.setData(getRandomDigits(months));
 		}
 		chart.update();
-		org.pepstock.charba.client.utils.Window.getConsole().log("chart", chart);
-
 	}
 
 	@UiHandler("add_dataset")

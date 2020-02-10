@@ -3,10 +3,13 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.ValueCallback;
 import org.pepstock.charba.client.colors.ColorBuilder;
-import org.pepstock.charba.client.impl.charts.MeterChart;
+import org.pepstock.charba.client.gwt.widgets.MeterChartWidget;
 import org.pepstock.charba.client.impl.charts.MeterDataset;
 import org.pepstock.charba.client.impl.charts.MeterDisplay;
+import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -25,11 +28,11 @@ public class MeterCase extends BaseComposite {
 	}
 
 	@UiField
-	MeterChart chartPercent;
+	MeterChartWidget chartPercent;
 	@UiField
-	MeterChart chartValue;
+	MeterChartWidget chartValue;
 	@UiField
-	MeterChart chartValueColor;
+	MeterChartWidget chartValueColor;
 
 	private final List<MeterDataset> datasets = new ArrayList<MeterDataset>();
 
@@ -39,25 +42,43 @@ public class MeterCase extends BaseComposite {
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("METER chart to represent percentage value");
 		chartPercent.getOptions().setDisplay(MeterDisplay.PERCENTAGE);
-		chartPercent.getOptions().setFormat("###.##%");
+		chartPercent.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 2)+"%";
+			}
+		});
 		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));
 
 		chartValue.getOptions().getTitle().setDisplay(true);
 		chartValue.getOptions().getTitle().setText("METER chart to represent value and dataset label");
 		chartValue.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
-		chartValue.getOptions().setFormat("#### MB");
+		chartValue.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 0)+" MB";
+			}
+		});
 		chartValue.getData().setDatasets(getDataset(chartPercent, "memory", 2048D));
 
 		chartValueColor.getOptions().getTitle().setDisplay(true);
 		chartValueColor.getOptions().getTitle().setText("METER chart to represent value and dataset label", "changing the color of label");
 		chartValueColor.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
-		chartValueColor.getOptions().setFormat("#### GB");
+		chartValueColor.getOptions().setValueCallback(new ValueCallback() {
+			
+			@Override
+			public String onFormat(IsChart chart, double value, double easing) {
+				return Utilities.applyPrecision(value, 0)+" GB";
+			}
+		});
 		chartValueColor.getOptions().setDisplayFontColor(ColorBuilder.build(90, 173, 255));
 		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
 
 	}
 
-	private MeterDataset getDataset(MeterChart chart, String label, double max) {
+	private MeterDataset getDataset(MeterChartWidget chart, String label, double max) {
 		chart.getOptions().setResponsive(true);
 		MeterDataset dataset = chart.newDataset(max);
 		dataset.setLabel(label);

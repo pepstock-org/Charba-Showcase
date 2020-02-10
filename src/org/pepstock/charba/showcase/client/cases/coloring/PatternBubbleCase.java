@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.BubbleChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
@@ -10,6 +9,8 @@ import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -33,7 +34,7 @@ public class PatternBubbleCase extends BaseComposite {
 	private static final int MAX_XY = 100;
 
 	@UiField
-	BubbleChart chart;
+	BubbleChartWidget chart;
 
 	public PatternBubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -43,8 +44,8 @@ public class PatternBubbleCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a pattern on bubble chart dataset");
 
-		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern());
-		Pattern pattern2 = new Pattern(Images.INSTANCE.backgroundPattern2());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
+		Pattern pattern2 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
 
 		BubbleDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

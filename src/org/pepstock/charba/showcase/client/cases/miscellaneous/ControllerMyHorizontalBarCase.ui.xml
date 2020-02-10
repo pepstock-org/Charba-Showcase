@@ -9,7 +9,7 @@
 		<g:VerticalPanel width="100%" height="100%">
 			<g:cell height="90%" width="100%" verticalAlignment="middle"
 				horizontalAlignment="center">
-				<c:MyHorizontalBarChart ui:field="chart" />
+				<c:MyHorizontalBarChartWidget ui:field="chart" />
 			</g:cell>
 			<g:cell height="10%" width="100%" verticalAlignment="top"
 				horizontalAlignment="center">

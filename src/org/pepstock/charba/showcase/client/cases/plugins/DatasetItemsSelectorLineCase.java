@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -14,6 +13,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -35,7 +35,7 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	public DatasetItemsSelectorLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));

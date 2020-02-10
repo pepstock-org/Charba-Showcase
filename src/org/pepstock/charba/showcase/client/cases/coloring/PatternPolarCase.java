@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
-import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.configuration.RadialAxis;
@@ -8,6 +7,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -29,7 +30,7 @@ public class PatternPolarCase extends BaseComposite {
 	private static final int ITEMS = 3;
 
 	@UiField
-	PolarAreaChart chart;
+	PolarAreaChartWidget chart;
 
 	public PatternPolarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -47,9 +48,9 @@ public class PatternPolarCase extends BaseComposite {
 		PolarAreaDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(Images.INSTANCE.backgroundPattern());
-		Pattern pattern1 = new Pattern(Images.INSTANCE.backgroundPattern1());
-		Pattern pattern2 = new Pattern(Images.INSTANCE.backgroundPattern2());
+		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
+		Pattern pattern1 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern1()));
+		Pattern pattern2 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
 
 		dataset1.setBackgroundColor(pattern, pattern1, pattern2);
 

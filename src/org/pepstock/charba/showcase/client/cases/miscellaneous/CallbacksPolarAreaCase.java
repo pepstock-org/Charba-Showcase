@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.PolarAreaChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -15,6 +14,7 @@ import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -34,7 +34,7 @@ public class CallbacksPolarAreaCase extends BaseComposite {
 	}
 
 	@UiField
-	PolarAreaChart chart;
+	PolarAreaChartWidget chart;
 
 	public CallbacksPolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));

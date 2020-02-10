@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -30,7 +30,7 @@ public class MultiAxisScatterCase extends BaseComposite {
 	}
 
 	@UiField
-	ScatterChart chart;
+	ScatterChartWidget chart;
 
 	public MultiAxisScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));

@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
-import org.pepstock.charba.client.StackedBarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.StackedBarDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.StackedBarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -25,7 +25,7 @@ public class StackedGroupBarCase extends BaseComposite {
 	}
 
 	@UiField
-	StackedBarChart chart;
+	StackedBarChartWidget chart;
 
 	public StackedGroupBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

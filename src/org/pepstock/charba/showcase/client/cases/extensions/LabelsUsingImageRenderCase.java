@@ -1,8 +1,9 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.PieChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.gwt.ImagesHelper;
+import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Render;
@@ -25,7 +26,7 @@ public class LabelsUsingImageRenderCase extends BaseComposite {
 	}
 
 	@UiField
-	PieChart chart;
+	PieChartWidget chart;
 
 	final int myMonths = 3;
 
@@ -47,7 +48,7 @@ public class LabelsUsingImageRenderCase extends BaseComposite {
 
 		final LabelsOptions option = new LabelsOptions();
 		option.setRender(Render.IMAGE);
-		option.setImages(Images.INSTANCE.flagIT(), Images.INSTANCE.flagFR(), Images.INSTANCE.flagDE());
+		option.setImages(ImagesHelper.toImageElement(Images.INSTANCE.flagIT()), ImagesHelper.toImageElement(Images.INSTANCE.flagFR()), ImagesHelper.toImageElement(Images.INSTANCE.flagDE()));
 		option.setOverlap(false);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);

@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Collections;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
@@ -17,6 +16,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -36,7 +36,7 @@ public class AnnotationsOnCombinedCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public AnnotationsOnCombinedCase() {
 		initWidget(uiBinder.createAndBindUi(this));

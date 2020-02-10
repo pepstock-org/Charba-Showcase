@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.pepstock.charba.client.TimeSeriesBarChart;
 import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -15,6 +14,7 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.gwt.widgets.TimeSeriesBarChartWidget;
 import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -36,7 +36,7 @@ public class TimeSeriesBarCase extends BaseComposite {
 	}
 
 	@UiField
-	TimeSeriesBarChart chart;
+	TimeSeriesBarChartWidget chart;
 
 	private final long startingPoint = System.currentTimeMillis();
 

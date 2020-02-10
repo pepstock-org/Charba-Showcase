@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.ChartNode;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -8,9 +7,12 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.ChartAreaNode;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scales;
@@ -19,9 +21,7 @@ import org.pepstock.charba.client.utils.AnnotationBuilder;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
 
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -37,7 +37,7 @@ public class HTMLAnnnotationCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public HTMLAnnnotationCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -99,7 +99,7 @@ public class HTMLAnnnotationCase extends BaseComposite {
 
 			@Override
 			public void onAfterDraw(IsChart chart, double easing) {
-				final Context2d ctx = chart.getCanvas().getContext2d();
+				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				ChartNode node = chart.getNode();
 				ChartAreaNode chartArea = node.getChartArea();
@@ -122,7 +122,7 @@ public class HTMLAnnnotationCase extends BaseComposite {
 					result = result.replaceAll("\\{1\\}", String.valueOf(temperature));
 					result = result.replaceAll("\\{2\\}", String.valueOf(humidity));
 
-					ImageElement img = AnnotationBuilder.build(result, scaleTickLength - 4, heightRaster);
+					Img img = AnnotationBuilder.build(result, scaleTickLength - 4, heightRaster);
 					ctx.drawImage(img, scaleTickX + 2, topRaster);
 
 					scaleTickX = scaleTickX + scaleTickLength;

@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -14,6 +13,7 @@ import org.pepstock.charba.client.events.LegendHoverEvent;
 import org.pepstock.charba.client.events.LegendHoverEventHandler;
 import org.pepstock.charba.client.events.LegendLeaveEvent;
 import org.pepstock.charba.client.events.LegendLeaveEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
@@ -33,7 +33,7 @@ public class LegendHoverAndLeaveEventsCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	LogView mylog;

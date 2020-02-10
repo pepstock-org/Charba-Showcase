@@ -1,12 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -27,7 +27,7 @@ public class ZoomXOnBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public ZoomXOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

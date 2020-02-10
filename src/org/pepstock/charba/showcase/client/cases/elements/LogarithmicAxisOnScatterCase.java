@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.elements;
 
 import java.util.List;
 
-import org.pepstock.charba.client.ScatterChart;
 import org.pepstock.charba.client.callbacks.TickCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -13,6 +12,7 @@ import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.CartesianAxisType;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -35,7 +35,7 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite {
 			-1.607e1, -1.803e1, -2e1, -2.199e1, -2.398e1, -2.597e1, -2.797e1, -2.996e1, -3.196e1, -3.396e1, -3.596e1, };
 
 	@UiField
-	ScatterChart chart;
+	ScatterChartWidget chart;
 
 	public LogarithmicAxisOnScatterCase() {
 		initWidget(uiBinder.createAndBindUi(this));

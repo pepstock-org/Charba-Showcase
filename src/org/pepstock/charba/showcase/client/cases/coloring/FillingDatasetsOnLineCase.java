@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import java.util.List;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
@@ -13,6 +12,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.IsFill;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.plugins.AbstractPluginOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -37,7 +37,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 	private static final IsFill[] FILLS = { null, Fill.getFill("-1"), Fill.getFill(1), Fill.getFill("-1"), Fill.getFill("-1"), Fill.getFill("+2"), Fill.FALSE, Fill.getFill(8), Fill.END };
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	CheckBox smooth;

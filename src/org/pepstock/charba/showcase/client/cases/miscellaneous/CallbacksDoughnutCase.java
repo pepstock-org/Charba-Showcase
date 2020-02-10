@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.DoughnutChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
@@ -9,6 +8,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.client.items.OptionsNode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -28,7 +28,7 @@ public class CallbacksDoughnutCase extends BaseComposite {
 	}
 
 	@UiField
-	DoughnutChart chart;
+	DoughnutChartWidget chart;
 
 	public CallbacksDoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));

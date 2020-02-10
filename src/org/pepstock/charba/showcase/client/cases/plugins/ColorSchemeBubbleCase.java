@@ -3,11 +3,11 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import java.util.List;
 import java.util.Random;
 
-import org.pepstock.charba.client.BubbleChart;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
 import org.pepstock.charba.client.impl.plugins.ColorSchemesOptions;
@@ -42,7 +42,7 @@ public class ColorSchemeBubbleCase extends BaseComposite {
 	}
 
 	@UiField
-	BubbleChart chart;
+	BubbleChartWidget chart;
 
 	@UiField
 	CheckBox data;

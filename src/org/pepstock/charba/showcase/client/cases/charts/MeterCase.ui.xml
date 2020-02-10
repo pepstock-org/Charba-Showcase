@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:c="urn:import:org.pepstock.charba.client.impl.charts">
+	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets">
 
 	<ui:with field="downButton"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
@@ -12,12 +12,12 @@
 				<g:HorizontalPanel width="90%" spacing="10">
 					<g:cell width="50%" verticalAlignment="middle"
 						horizontalAlignment="center">
-						<c:MeterChart ui:field="chartPercent" width="500px"
+						<c:MeterChartWidget ui:field="chartPercent" width="500px"
 							height="300px" />
 					</g:cell>
 					<g:cell width="50%" verticalAlignment="middle"
 						horizontalAlignment="center">
-						<c:MeterChart ui:field="chartValue" width="500px"
+						<c:MeterChartWidget ui:field="chartValue" width="500px"
 							height="300px" />
 					</g:cell>
 				</g:HorizontalPanel>
@@ -27,7 +27,7 @@
 				<g:HorizontalPanel width="90%" spacing="10">
 					<g:cell width="50%" verticalAlignment="middle"
 						horizontalAlignment="center">
-						<c:MeterChart ui:field="chartValueColor"
+						<c:MeterChartWidget ui:field="chartValueColor"
 							width="500px" height="300px" />
 					</g:cell>
 					<g:cell width="50%" verticalAlignment="middle"

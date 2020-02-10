@@ -2,20 +2,20 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.enums.Unit;
 import org.pepstock.charba.client.events.ChartResizeEvent;
 import org.pepstock.charba.client.events.ChartResizeEventHandler;
+import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -31,7 +31,7 @@ public class ChartResizeEventCase extends BaseComposite {
 	}
 
 	@UiField
-	LineChart chart;
+	LineChartWidget chart;
 
 	@UiField
 	LogView mylog;
@@ -118,14 +118,14 @@ public class ChartResizeEventCase extends BaseComposite {
 	@UiHandler("resize")
 	protected void handleResize(ClickEvent event) {
 		if (Double.isNaN(width)) {
-			width = chart.getOffsetWidth();
+			width = chart.getChartElement().getOffsetWidth();
 			halfWidth = width / 2D;
 		}
 		if (resized) {
-			chart.getElement().getStyle().setWidth(width, Unit.PX);
+			chart.getChartElement().getStyle().setWidth(Unit.PX.format(width));
 			resized = false;
 		} else {
-			chart.getElement().getStyle().setWidth(halfWidth, Unit.PX);
+			chart.getChartElement().getStyle().setWidth(Unit.PX.format(halfWidth));
 			resized = true;
 		}
 		chart.resize();

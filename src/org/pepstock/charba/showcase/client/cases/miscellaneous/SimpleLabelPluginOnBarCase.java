@@ -2,24 +2,24 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.enums.TextAlign;
+import org.pepstock.charba.client.dom.enums.TextBaseline;
 import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
-import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
-import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
@@ -38,7 +38,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public SimpleLabelPluginOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -88,7 +88,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int fontSize = Defaults.get().getGlobal().getDefaultFontSize();
 				final int padding = 5;
-				final Context2d ctx = chart.getCanvas().getContext2d();
+				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				List<Dataset> dss = chart.getData().getDatasets();
 				for (int i = 0; i < dss.size(); i++) {
@@ -99,7 +99,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 						for (int k = 0; k < items.size(); k++) {
 							DatasetItem item = items.get(k);
 							String dataString = ds.getData().get(k).toString();
-							ctx.setFillStyle("rgb(0, 0, 0)");
+							ctx.setFillColor("rgb(0, 0, 0)");
 							String fontString = Utilities.toCSSFontProperty(FontStyle.NORMAL, fontSize, Defaults.get().getGlobal().getDefaultFontFamily());
 							ctx.setFont(fontString);
 							ctx.setTextAlign(TextAlign.CENTER);

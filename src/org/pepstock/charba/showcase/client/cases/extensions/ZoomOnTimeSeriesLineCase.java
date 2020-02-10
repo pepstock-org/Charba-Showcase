@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.TimeSeriesLineChart;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -22,6 +21,7 @@ import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.zoom.Drag;
 import org.pepstock.charba.client.zoom.ZoomOptions;
@@ -52,7 +52,7 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 	}
 
 	@UiField
-	TimeSeriesLineChart chart;
+	TimeSeriesLineChartWidget chart;
 
 	public ZoomOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));

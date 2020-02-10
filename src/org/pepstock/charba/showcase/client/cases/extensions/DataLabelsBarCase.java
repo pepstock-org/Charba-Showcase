@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.BarChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -19,6 +18,7 @@ import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Display;
+import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.callbacks.Percentage;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -38,7 +38,7 @@ public class DataLabelsBarCase extends BaseComposite {
 	}
 
 	@UiField
-	BarChart chart;
+	BarChartWidget chart;
 
 	public DataLabelsBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

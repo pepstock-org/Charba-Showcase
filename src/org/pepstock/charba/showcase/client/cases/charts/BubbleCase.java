@@ -3,10 +3,10 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.List;
 import java.util.Random;
 
-import org.pepstock.charba.client.BubbleChart;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -29,7 +29,7 @@ public class BubbleCase extends BaseComposite {
 	}
 
 	@UiField
-	BubbleChart chart;
+	BubbleChartWidget chart;
 
 	public BubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
