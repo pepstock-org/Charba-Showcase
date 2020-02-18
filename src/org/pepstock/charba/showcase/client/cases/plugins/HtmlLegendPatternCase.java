@@ -29,7 +29,7 @@ public class HtmlLegendPatternCase extends BaseComposite {
 	@UiField
 	BarChartWidget chart;
 
-	Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern1()));
+	Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
 
 	public HtmlLegendPatternCase() {
 		initWidget(uiBinder.createAndBindUi(this));

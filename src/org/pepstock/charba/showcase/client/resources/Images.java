@@ -62,13 +62,4 @@ public interface Images extends ClientBundle {
 	@Source("/images/us.png")
 	ImageResource flagUS();
 
-	@Source("/images/backgroundPattern.jpg")
-	ImageResource backgroundPattern();
-
-	@Source("/images/backgroundPattern1.jpg")
-	ImageResource backgroundPattern1();
-
-	@Source("/images/backgroundPattern2.png")
-	ImageResource backgroundPattern2();
-
 }

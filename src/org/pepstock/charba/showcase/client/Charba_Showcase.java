@@ -26,6 +26,7 @@ import org.pepstock.charba.client.resources.DatefnsEmbeddedResources;
 import org.pepstock.charba.client.resources.DeferredResources;
 import org.pepstock.charba.client.resources.EmbeddedResources;
 import org.pepstock.charba.client.resources.EntryPointStarter;
+import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.client.resources.LuxonDeferredResources;
 import org.pepstock.charba.client.resources.LuxonEmbeddedResources;
 import org.pepstock.charba.client.resources.ResourcesType;
@@ -65,9 +66,6 @@ public class Charba_Showcase implements EntryPoint {
 
 	public void onModuleLoad() {
 
-		Image.prefetch(Images.INSTANCE.backgroundPattern().getSafeUri());
-		Image.prefetch(Images.INSTANCE.backgroundPattern1().getSafeUri());
-		Image.prefetch(Images.INSTANCE.backgroundPattern2().getSafeUri());
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());
@@ -194,7 +192,7 @@ public class Charba_Showcase implements EntryPoint {
 
 		AnnotationPlugin.enable();
 
-		Injector.ensureCssInjected(MyResources.INSTANCE.legend());
+		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
 
 		RootPanel.get().add(new MainView());
 	}

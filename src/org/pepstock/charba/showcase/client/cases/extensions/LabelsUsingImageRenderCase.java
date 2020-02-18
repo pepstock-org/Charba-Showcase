@@ -48,7 +48,7 @@ public class LabelsUsingImageRenderCase extends BaseComposite {
 
 		final LabelsOptions option = new LabelsOptions();
 		option.setRender(Render.IMAGE);
-		option.setImages(ImagesHelper.toImageElement(Images.INSTANCE.flagIT()), ImagesHelper.toImageElement(Images.INSTANCE.flagFR()), ImagesHelper.toImageElement(Images.INSTANCE.flagDE()));
+		option.setImages(ImagesHelper.toImg(Images.INSTANCE.flagIT()), ImagesHelper.toImg(Images.INSTANCE.flagFR()), ImagesHelper.toImg(Images.INSTANCE.flagDE()));
 		option.setOverlap(false);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);

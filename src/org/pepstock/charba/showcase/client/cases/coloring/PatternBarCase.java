@@ -28,7 +28,7 @@ public class PatternBarCase extends BaseComposite {
 	@UiField
 	BarChartWidget chart;
 
-	final Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern1()));
+	final Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.github()));
 
 	public PatternBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -47,7 +47,6 @@ public class PatternBarCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-
 	}
 
 	@UiHandler("randomize")

@@ -89,7 +89,8 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 		line.setBorderColor(HtmlColor.ORANGE);
 		line.setBorderDash(4, 4);
 		line.setBorderWidth(2);
-		line.setValue(dataset1.getData().get(3));
+		
+		line.setValue(dataset1.getData().get(3)*100);
 
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("My threshold");

@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.elements;
 
 import java.util.List;
 
-import org.pepstock.charba.client.AbstractChart;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
@@ -11,7 +10,7 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.elements.CastHelper;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
@@ -40,8 +39,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-
-import jsinterop.base.Js;
 
 public class TooltipPositionerCase extends BaseComposite {
 
@@ -95,10 +92,7 @@ public class TooltipPositionerCase extends BaseComposite {
 				}
 				if (element == null) {
 					element = Document.get().createDivElement();
-					AbstractChart<?> chartInstance = (AbstractChart<?>) chart;
-					// FIXME
-					Div el = Js.cast(element);
-					chartInstance.getChartElement().appendChild(el);
+					chart.getChartElement().appendChild(CastHelper.toDiv(element));
 				}
 				element.removeClassName("above");
 				element.removeClassName("below");

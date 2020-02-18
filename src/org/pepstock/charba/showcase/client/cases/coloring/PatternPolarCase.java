@@ -48,15 +48,15 @@ public class PatternPolarCase extends BaseComposite {
 		PolarAreaDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
-		Pattern pattern1 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern1()));
-		Pattern pattern2 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
+		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
+		Pattern pattern1 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.github()));
+		Pattern pattern2 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
 
 		dataset1.setBackgroundColor(pattern, pattern1, pattern2);
 
 		double[] values = getRandomDigits(ITEMS, 20, 100);
 		dataset1.setData(values);
-		dataset1.setBorderColor(HtmlColor.DARK_GREY, HtmlColor.DARK_GREY, HtmlColor.RED);
+		dataset1.setBorderColor(HtmlColor.DARK_GREY, HtmlColor.DARK_GREY, HtmlColor.BLACK);
 
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);

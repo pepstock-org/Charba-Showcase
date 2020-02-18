@@ -44,8 +44,8 @@ public class PatternBubbleCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a pattern on bubble chart dataset");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
-		Pattern pattern2 = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
+		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.github()));
+		Pattern pattern2 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
 
 		BubbleDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -82,7 +82,7 @@ public class PatternBubbleCase extends BaseComposite {
 			dp12[i].setY(getData());
 			dp12[i].setR(getData(0, 50));
 			patterns2[i] = pattern2;
-			colors2[i] = HtmlColor.RED;
+			colors2[i] = HtmlColor.BLACK;
 			bwidth2[i] = Math.min(Math.max(1, i + 1), 5);
 		}
 		dataset2.setBackgroundColor(patterns2);

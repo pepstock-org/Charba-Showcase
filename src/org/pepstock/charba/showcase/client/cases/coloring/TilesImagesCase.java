@@ -35,11 +35,11 @@ public class TilesImagesCase extends BaseComposite {
 	public TilesImagesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		ImageShape[] imgShapes = { new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.githubWhite())), 
-				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.extensionWhite())), 
-				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.fingerprintWhite())), 
-				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.headlineWhite())),
-				new ImageShape(ImagesHelper.toImageElement(Images.INSTANCE.visibilityWhite()))
+		ImageShape[] imgShapes = { new ImageShape(ImagesHelper.toImg(Images.INSTANCE.githubWhite())), 
+				new ImageShape(ImagesHelper.toImg(Images.INSTANCE.extensionWhite())), 
+				new ImageShape(ImagesHelper.toImg(Images.INSTANCE.fingerprintWhite())), 
+				new ImageShape(ImagesHelper.toImg(Images.INSTANCE.headlineWhite())),
+				new ImageShape(ImagesHelper.toImg(Images.INSTANCE.visibilityWhite()))
 		};
 
 		Pattern[] tiles = new Pattern[ITEMS];

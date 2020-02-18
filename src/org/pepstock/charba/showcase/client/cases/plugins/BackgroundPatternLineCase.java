@@ -63,7 +63,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern()));
+		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
 
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(pattern);

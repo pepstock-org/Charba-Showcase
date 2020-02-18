@@ -58,7 +58,7 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite {
 		dataset1.setData(values);
 		dataset1.setFill(Fill.FALSE);
 
-		dataset1.setPointStyle(ImagesHelper.toImageElement(Images.INSTANCE.customPoint()));
+		dataset1.setPointStyle(ImagesHelper.toImg(Images.INSTANCE.customPoint()));
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");

@@ -15,8 +15,6 @@ import org.pepstock.charba.client.options.Scale;
 import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.resources.Images;
 
-import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.resources.client.ImageResource;
 
 public class MyHorizontalBarController extends AbstractController {
@@ -75,16 +73,6 @@ public class MyHorizontalBarController extends AbstractController {
 			}
 			y = y + heightAmongLabels;
 		}
-		// FIXME
-		CanvasElement canvas = chart.getCanvas().as();
-		Context2d c = canvas.getContext2d();
-		c.save();
-		c.beginPath();
-		c.setStrokeStyle("red");
-		c.moveTo(0, 0);
-		c.lineTo(400, 400);
-		c.stroke();
-		c.restore();
 	}
 
 	@Override
@@ -101,6 +89,6 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 	private Img getImageElement(ImageResource resource) {
-		return ImagesHelper.toImageElement(resource);
+		return ImagesHelper.toImg(resource);
 	}
 }

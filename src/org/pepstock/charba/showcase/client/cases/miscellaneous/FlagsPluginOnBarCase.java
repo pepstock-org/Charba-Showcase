@@ -148,7 +148,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 	}
 
 	private Img getImageElement(ImageResource resource) {
-		return ImagesHelper.toImageElement(resource);
+		return ImagesHelper.toImg(resource);
 	}
 
 	@UiHandler("randomize")

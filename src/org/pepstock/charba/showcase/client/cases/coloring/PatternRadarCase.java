@@ -4,6 +4,7 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
+import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
@@ -46,14 +47,16 @@ public class PatternRadarCase extends BaseComposite {
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.backgroundPattern2()));
+		Img i = ImagesHelper.toImg(Images.INSTANCE.patternHover());
+		org.pepstock.charba.client.utils.Window.getConsole().log(i);
+		Pattern pattern = new Pattern(i);
 
 		dataset1.setBackgroundColor(pattern);
 
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
 		dataset1.setFill(Fill.START);
-		dataset1.setBorderColor(HtmlColor.RED);
+		dataset1.setBorderColor(HtmlColor.BLACK);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);

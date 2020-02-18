@@ -11,6 +11,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.plugins.AbstractPluginOptions;
+import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.MyResources;
 
@@ -37,12 +38,12 @@ public class ImportingPluginCase extends BaseComposite {
 	public ImportingPluginCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		Injector.ensureInjected(MyResources.INSTANCE.chartJsStacked100Source());
+		Injector.ensureInjected(new InjectableTextResource(MyResources.INSTANCE.chartJsStacked100Source()));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Importing Stacked100 pluign on bar chart");
+		chart.getOptions().getTitle().setText("Importing Stacked100 plugin on bar chart");
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

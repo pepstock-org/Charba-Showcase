@@ -47,7 +47,7 @@ public class PatternLineCase extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImageElement(Images.INSTANCE.pattern()));
+		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
 
 		dataset1.setBackgroundColor(pattern);
 
