@@ -103,7 +103,6 @@ public class Charba_Showcase implements EntryPoint {
 		}
 		ResourcesType.setClientBundle(resources);
 		start();
-
 	}
 
 	private void deferredLoading(DefaultDateAdapter adapter) {
