@@ -49,7 +49,7 @@ public class PatternPolarCase extends BaseComposite {
 		dataset1.setLabel("dataset 1");
 
 		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
-		Pattern pattern1 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.github()));
+		Pattern pattern1 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
 		Pattern pattern2 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
 
 		dataset1.setBackgroundColor(pattern, pattern1, pattern2);

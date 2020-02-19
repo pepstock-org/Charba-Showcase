@@ -32,8 +32,6 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class TimeSeriesByLineCase extends BaseComposite {
 
-	// private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
-
 	private static final int AMOUNT_OF_POINTS = 60;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);

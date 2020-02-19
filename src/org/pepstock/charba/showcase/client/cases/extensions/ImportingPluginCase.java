@@ -118,9 +118,6 @@ public class ImportingPluginCase extends BaseComposite {
 
 		private Key enableKey = Key.create("enable");
 
-		/**
-		 * @param pluginId
-		 */
 		Stacked100Options() {
 			super(STACKED100_PLUGIN);
 		}

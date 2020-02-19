@@ -44,7 +44,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 
 		IsColor color1 = GoogleChartColor.values()[0];
 
-		dataset1.setBackgroundColor(color1.alpha(0.2));
+		dataset1.setBackgroundColor(color1.alpha(0.2D));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
 
@@ -55,7 +55,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 
 		IsColor color2 = GoogleChartColor.values()[1];
 
-		dataset2.setBackgroundColor(color2.alpha(0.2));
+		dataset2.setBackgroundColor(color2.alpha(0.2D));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setBorderWidth(1);
 
@@ -63,7 +63,7 @@ public class BackgroundPatternLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
+		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
 
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(pattern);

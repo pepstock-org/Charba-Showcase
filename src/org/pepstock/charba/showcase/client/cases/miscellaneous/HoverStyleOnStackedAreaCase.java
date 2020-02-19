@@ -76,7 +76,6 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite {
 
 		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
 		dataset2.setHoverBackgroundColor(pattern);
-		// dataset2.setHoverBackgroundColor(color2.brighter());
 		dataset2.setHoverBorderColor(color2.darker());
 		dataset2.setPointHoverBackgroundColor("#fff");
 

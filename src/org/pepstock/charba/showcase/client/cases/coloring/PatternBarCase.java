@@ -28,7 +28,7 @@ public class PatternBarCase extends BaseComposite {
 	@UiField
 	BarChartWidget chart;
 
-	final Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.github()));
+	final Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
 
 	public PatternBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));

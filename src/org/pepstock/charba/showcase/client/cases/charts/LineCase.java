@@ -92,11 +92,7 @@ public class LineCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
-//		chart.update();
-		CartesianLinearAxis axis1= (CartesianLinearAxis) chart.getOptions().getScales().getYAxes().get(0);
-		axis1.getScaleLabel().setLabelString("something new");
-		chart.getOptions().getScales().setYAxes(axis1);
-		chart.reconfigure();
+		chart.update();
 	}
 
 	@UiHandler("add_dataset")

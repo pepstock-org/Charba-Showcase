@@ -66,6 +66,7 @@ public class Charba_Showcase implements EntryPoint {
 
 	public void onModuleLoad() {
 
+		Image.prefetch(Images.INSTANCE.background().getSafeUri());
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
 		Image.prefetch(Images.INSTANCE.flagIT().getSafeUri());
@@ -77,7 +78,7 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.fingerprintWhite().getSafeUri());
 		Image.prefetch(Images.INSTANCE.headlineWhite().getSafeUri());
 		Image.prefetch(Images.INSTANCE.visibilityWhite().getSafeUri());
-		
+
 		DefaultDateAdapter adapter = Key.getKeyByValue(DefaultDateAdapter.class, Window.Location.getParameter(DATE_ADAPTER_PARAM), DefaultDateAdapter.MOMENT);
 		String loadingParam = Window.Location.getParameter(LOADING_PARAM) != null ? Window.Location.getParameter(LOADING_PARAM) : LOADING_EMBEDDED;
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;

@@ -54,11 +54,12 @@ public class HomeView extends BaseComposite {
 
 	private static final String DEFAULT_FORMAT = "#0.#";
 
-	private static final String[] LABELS = { "", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "" };
+	private static final String[] LABELS = { "", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0",  "" };
 
-	private static final double[] VALUES = { Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, Double.NaN };
+	private static final double[] VALUES_GWT = { Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3071, Double.NaN };
+	
+	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2536, 2887, Double.NaN };
 
-	// it formats the number of ticks
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
 	public HomeView() {
@@ -78,26 +79,42 @@ public class HomeView extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setDisplay(false);
+		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("charba-[version.release].jar");
+		chart.getOptions().getTitle().setText("Charba distribution artifatcs");
 		chart.getOptions().getTooltips().setEnabled(false);
 
-		LineDataset dataset = chart.newDataset();
-		dataset.setLabel("JAR dimension");
+		LineDataset datasetGwt = chart.newDataset();
+		datasetGwt.setLabel("GWT");
 
-		dataset.setBackgroundColor(Color.CHARBA);
-		dataset.setBorderColor(Color.CHARBA);
-		dataset.setBorderWidth(5);
-		dataset.setPointBackgroundColor(HtmlColor.WHITE);
-		dataset.setPointBorderColor(Color.CHARBA);
-		dataset.setPointBorderWidth(1);
-		dataset.setPointRadius(4);
-		dataset.setPointHoverRadius(4);
-		dataset.setPointHoverBorderWidth(1);
-		dataset.setPointHitRadius(4);
-		dataset.setFill(false);
-		dataset.setData(VALUES);
+		datasetGwt.setBackgroundColor(Color.CHARBA);
+		datasetGwt.setBorderColor(Color.CHARBA);
+		datasetGwt.setBorderWidth(5);
+		datasetGwt.setPointBackgroundColor(HtmlColor.WHITE);
+		datasetGwt.setPointBorderColor(Color.CHARBA);
+		datasetGwt.setPointBorderWidth(1);
+		datasetGwt.setPointRadius(4);
+		datasetGwt.setPointHoverRadius(4);
+		datasetGwt.setPointHoverBorderWidth(1);
+		datasetGwt.setPointHitRadius(4);
+		datasetGwt.setFill(false);
+		datasetGwt.setData(VALUES_GWT);
+
+		LineDataset datasetJ2CL = chart.newDataset();
+		datasetJ2CL.setLabel("J2CL");
+
+		datasetJ2CL.setBackgroundColor(HtmlColor.CORNFLOWER_BLUE);
+		datasetJ2CL.setBorderColor(HtmlColor.CORNFLOWER_BLUE);
+		datasetJ2CL.setBorderWidth(5);
+		datasetJ2CL.setPointBackgroundColor(HtmlColor.WHITE);
+		datasetJ2CL.setPointBorderColor(HtmlColor.CORNFLOWER_BLUE);
+		datasetJ2CL.setPointBorderWidth(1);
+		datasetJ2CL.setPointRadius(4);
+		datasetJ2CL.setPointHoverRadius(4);
+		datasetJ2CL.setPointHoverBorderWidth(1);
+		datasetJ2CL.setPointHitRadius(4);
+		datasetJ2CL.setFill(false);
+		datasetJ2CL.setData(VALUES_J2CL);
 
 		chart.addHandler(new DatasetSelectionEventHandler() {
 
@@ -142,7 +159,7 @@ public class HomeView extends BaseComposite {
 		chart.getOptions().getScales().setYAxes(axis2);
 
 		chart.getData().setLabels(LABELS);
-		chart.getData().setDatasets(dataset);
+		chart.getData().setDatasets(datasetGwt, datasetJ2CL);
 
 		ChartPointerOptions options = new ChartPointerOptions();
 		options.setElements(PointerElement.DATASET);

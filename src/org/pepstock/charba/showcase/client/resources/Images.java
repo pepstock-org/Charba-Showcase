@@ -61,5 +61,9 @@ public interface Images extends ClientBundle {
 
 	@Source("/images/us.png")
 	ImageResource flagUS();
+	
+	@Source("/images/embossed-diamond.png")
+	ImageResource background();
+	
 
 }
