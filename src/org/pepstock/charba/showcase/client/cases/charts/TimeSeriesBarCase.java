@@ -15,7 +15,6 @@ import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesBarChartWidget;
-import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -67,7 +66,7 @@ public class TimeSeriesBarCase extends BaseComposite {
 		List<TimeSeriesItem> data1 = new LinkedList<>();
 		List<TimeSeriesItem> data2 = new LinkedList<>();
 
-		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+		DateAdapter adapter = new DateAdapter();
 
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			data1.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), 100 * Math.random()));

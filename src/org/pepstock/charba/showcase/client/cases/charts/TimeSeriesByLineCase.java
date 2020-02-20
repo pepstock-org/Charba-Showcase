@@ -19,7 +19,6 @@ import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -49,7 +48,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 	public TimeSeriesByLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+		adapter = new DateAdapter();
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);

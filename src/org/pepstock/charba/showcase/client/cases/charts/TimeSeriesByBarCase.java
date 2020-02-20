@@ -10,7 +10,6 @@ import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -46,7 +45,7 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(HtmlColor.GREEN);
 
-		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+		DateAdapter adapter = new DateAdapter();
 
 		DataPoint[] points = new DataPoint[AMOUNT_OF_POINTS];
 		DataPoint[] rainPoints = new DataPoint[AMOUNT_OF_POINTS];

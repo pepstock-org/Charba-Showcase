@@ -31,7 +31,6 @@ import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.options.Scales;
-import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -103,7 +102,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		DateAdapter adapter = ResourcesType.getClientBundle().getModule().createDateAdapter();
+		DateAdapter adapter = new DateAdapter();
 
 		int gap = (int) (AMOUNT_OF_POINTS / 2);
 
