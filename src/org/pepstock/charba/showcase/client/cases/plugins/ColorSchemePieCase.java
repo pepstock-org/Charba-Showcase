@@ -174,19 +174,19 @@ public class ColorSchemePieCase extends BaseComposite {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		String selected = category.getSelectedValue();
 		if ("brewer".equalsIgnoreCase(selected)) {
-			options.setScheme(Key.getKeyByValue(BrewerScheme.class, name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(BrewerScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("office".equalsIgnoreCase(selected)) {
-			options.setScheme(Key.getKeyByValue(OfficeScheme.class, name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(OfficeScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("tableau".equalsIgnoreCase(selected)) {
-			options.setScheme(Key.getKeyByValue(TableauScheme.class, name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(TableauScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
-			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.class, name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.95D);
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
-			options.setScheme(Key.getKeyByValue(GoogleChartScheme.class, name.getSelectedValue()));
+			options.setScheme(Key.getKeyByValue(GoogleChartScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		}
 		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);

@@ -79,7 +79,7 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.headlineWhite().getSafeUri());
 		Image.prefetch(Images.INSTANCE.visibilityWhite().getSafeUri());
 
-		DefaultDateAdapter adapter = Key.getKeyByValue(DefaultDateAdapter.class, Window.Location.getParameter(DATE_ADAPTER_PARAM), DefaultDateAdapter.MOMENT);
+		DefaultDateAdapter adapter = Key.getKeyByValue(DefaultDateAdapter.values(), Window.Location.getParameter(DATE_ADAPTER_PARAM), DefaultDateAdapter.MOMENT);
 		String loadingParam = Window.Location.getParameter(LOADING_PARAM) != null ? Window.Location.getParameter(LOADING_PARAM) : LOADING_EMBEDDED;
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;
 
