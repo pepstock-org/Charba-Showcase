@@ -81,7 +81,7 @@ public class HomeView extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Charba distribution artifatcs");
+		chart.getOptions().getTitle().setText("Charba artifacts");
 		chart.getOptions().getTooltips().setEnabled(false);
 
 		LineDataset datasetGwt = chart.newDataset();
