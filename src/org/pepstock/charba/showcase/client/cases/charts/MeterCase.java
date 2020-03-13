@@ -46,7 +46,7 @@ public class MeterCase extends BaseComposite {
 			
 			@Override
 			public String onFormat(IsChart chart, double value, double easing) {
-				return Utilities.applyPrecision(value, 2)+"%";
+				return Utilities.applyPrecision(value*100, 2)+"%";
 			}
 		});
 		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));

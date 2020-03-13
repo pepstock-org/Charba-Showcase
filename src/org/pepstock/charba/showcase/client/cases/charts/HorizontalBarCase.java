@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.HorizontalBarDataset;
 import org.pepstock.charba.client.enums.Position;
@@ -75,7 +74,7 @@ public class HorizontalBarCase extends BaseComposite {
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 
-		BarDataset dataset = chart.newDataset();
+		HorizontalBarDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
 
 		IsColor color = GoogleChartColor.values()[datasets.size()];

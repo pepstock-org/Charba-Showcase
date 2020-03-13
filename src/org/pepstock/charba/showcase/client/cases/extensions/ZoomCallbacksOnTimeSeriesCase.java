@@ -140,7 +140,6 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
 		options.getZoom().setSpeed(0.05D);
-		;
 		drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);

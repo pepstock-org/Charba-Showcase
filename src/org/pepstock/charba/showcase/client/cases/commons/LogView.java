@@ -45,5 +45,6 @@ public class LogView extends BaseComposite {
 	@UiHandler("titleLog")
 	protected void handleTitleLog(ClickEvent event) {
 		element.removeAllChildren();
+		counter = 1;
 	}
 }

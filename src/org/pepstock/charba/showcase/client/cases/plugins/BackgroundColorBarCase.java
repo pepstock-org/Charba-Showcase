@@ -63,6 +63,7 @@ public class BackgroundColorBarCase extends BaseComposite {
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions(chart);
 		option.setBackgroundColor(GwtMaterialColor.ORANGE_LIGHTEN_5);
 		option.store(chart);
+		
 	}
 
 	@UiHandler("randomize")

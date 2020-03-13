@@ -84,7 +84,8 @@ public class LegendStyleCase extends BaseComposite {
 				dataset.setBorderColor(color.toHex());
 				dataset.setPointBackgroundColor(color.toHex());
 				dataset.setPointStyle(cPos);
-				chart.update();
+				usePointStyle.setValue(false);
+				handleUsePointStyle(null);
 				return;
 			}
 			i++;

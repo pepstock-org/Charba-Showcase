@@ -50,7 +50,7 @@ public class GaugeCase extends BaseComposite {
 			
 			@Override
 			public String onFormat(IsChart chart, double value, double easing) {
-				return Utilities.applyPrecision(value, 2)+ "%";
+				return Utilities.applyPrecision(value*100, 2)+ "%";
 			}
 		});
 		chartPercent.getOptions().setAnimatedDisplay(true);
