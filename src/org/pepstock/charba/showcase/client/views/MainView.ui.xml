@@ -22,6 +22,9 @@
 		font-family: 'Lato', sans-serif;
 	}
 	.myItem {
+		border-width: 3px;
+		border-style: dashed;
+		border-color: rgba(0,0,0,0);
 		padding-left: 12px;
   		height: 64px;
 	}

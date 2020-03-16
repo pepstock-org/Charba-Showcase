@@ -1,8 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.BorderStyle;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -41,12 +39,10 @@ public class MainView extends Composite {
 			Widget w = (Widget) event.getSource();
 			if (w.getParent() instanceof HorizontalPanel) {
 				if (currentPanel != null) {
-					currentPanel.getElement().getStyle().setBorderWidth(0, Unit.PX);
+					currentPanel.getElement().getStyle().setBorderColor("rgba(0,0,0,0)");
 				}
 				currentPanel = (HorizontalPanel) w.getParent();
 				currentPanel.getElement().getStyle().setBorderColor("#d0d0d0");
-				currentPanel.getElement().getStyle().setBorderWidth(3, Unit.PX);
-				currentPanel.getElement().getStyle().setBorderStyle(BorderStyle.DASHED);
 				return true;
 			}
 		}
@@ -56,7 +52,7 @@ public class MainView extends Composite {
 	@UiHandler("title")
 	protected void handleHome(ClickEvent event) {
 		if (currentPanel != null) {
-			currentPanel.getElement().getStyle().setBorderWidth(0, Unit.PX);
+			currentPanel.getElement().getStyle().setBorderColor("rgba(0,0,0,0)");
 			currentPanel = null;
 		}
 		clearPreviousChart();
@@ -69,7 +65,6 @@ public class MainView extends Composite {
 			clearPreviousChart();
 			ChartsView view = new ChartsView(content);
 			content.add(view);
-			// view.coloring.getElement().scrollIntoView();
 		}
 	}
 

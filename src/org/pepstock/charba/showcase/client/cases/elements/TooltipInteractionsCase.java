@@ -100,7 +100,7 @@ public class TooltipInteractionsCase extends BaseComposite {
 	}
 
 	@UiHandler("intersect")
-	protected void handleUsePointStyle(ClickEvent event) {
+	protected void handleIntersect(ClickEvent event) {
 		chart.getOptions().getTooltips().setIntersect(intersect.getValue());
 		chart.getOptions().getHover().setIntersect(intersect.getValue());
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
