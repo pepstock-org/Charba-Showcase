@@ -1,4 +1,4 @@
-# Charba Showcase
+# Charba Showcase GWT Web Toolkit
 
 This repository contains the source code of the **Charba** showcase site located [here](http://www.pepstock.org/Charba-Showcase/Charba_Showcase.html).
 
