@@ -21,7 +21,6 @@ import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -39,8 +38,6 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 
 	@UiField
 	PieChartWidget chart;
-
-	final NumberFormat percentageFormatter = NumberFormat.getPercentFormat();
 
 	public DataLabelsMultiLabelsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
