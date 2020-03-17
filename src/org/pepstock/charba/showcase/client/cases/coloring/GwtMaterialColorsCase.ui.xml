@@ -15,7 +15,7 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Label>GWT color:</g:Label>
+					<g:Label>GWT Material color:</g:Label>
 					<g:ListBox ui:field="color"/>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />

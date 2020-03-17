@@ -15,11 +15,11 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Label>PointStyle:</g:Label>
+					<g:Label>Point style:</g:Label>
 					<g:ListBox ui:field="pointStyles"/>
 					<g:Label>Color:</g:Label>
 					<g:ListBox ui:field="color"/>
-					<g:Label>Background Color:</g:Label>
+					<g:Label>Background color:</g:Label>
 					<g:ListBox ui:field="background"/>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />

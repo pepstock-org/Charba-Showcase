@@ -19,7 +19,7 @@
 					<g:ListBox ui:field="shapes"/>
 					<g:Label>Color:</g:Label>
 					<g:ListBox ui:field="color"/>
-					<g:Label>Background Color:</g:Label>
+					<g:Label>Background color:</g:Label>
 					<g:ListBox ui:field="background"/>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{downButton.github}' />

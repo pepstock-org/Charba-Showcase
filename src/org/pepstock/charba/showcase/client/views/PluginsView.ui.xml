@@ -74,7 +74,7 @@
 					<g:Label ui:field="colorSchemeOnBar" styleName='{myStyle.myLabel}'>Coloring bar chart by schemes</g:Label>
 					<g:Label ui:field="colorSchemeOnLine" styleName='{myStyle.myLabel}'>Coloring line chart by schemes</g:Label>
 					<g:Label ui:field="colorSchemeOnRadar" styleName='{myStyle.myLabel}'>Coloring radar chart by schemes</g:Label>
-					<g:Label ui:field="colorSchemeOnPie" styleName='{myStyle.myLabel}'>Coloring pie chart  by schemes</g:Label>
+					<g:Label ui:field="colorSchemeOnPie" styleName='{myStyle.myLabel}'>Coloring pie chart by schemes</g:Label>
 					<g:Label ui:field="colorSchemeOnPolar" styleName='{myStyle.myLabel}'>Coloring polar area chart by scheme</g:Label>
 					<g:Label ui:field="colorSchemeOnBubble" styleName='{myStyle.myLabel}'>Coloring bubble chart by scheme</g:Label>
 				</g:VerticalPanel>

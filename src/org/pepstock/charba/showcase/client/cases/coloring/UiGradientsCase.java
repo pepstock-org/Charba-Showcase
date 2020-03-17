@@ -59,7 +59,7 @@ public class UiGradientsCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("GWT material colors on line chart");
+		chart.getOptions().getTitle().setText("UI gradients on line chart");
 
 		dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
