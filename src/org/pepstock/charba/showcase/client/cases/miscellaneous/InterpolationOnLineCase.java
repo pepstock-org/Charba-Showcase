@@ -25,10 +25,10 @@ public class InterpolationOnLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	private static final int AMOUNT = 12;
-
 	interface ViewUiBinder extends UiBinder<Widget, InterpolationOnLineCase> {
 	}
+
+	private static final int AMOUNT = 12;
 
 	private double[] data = null;
 

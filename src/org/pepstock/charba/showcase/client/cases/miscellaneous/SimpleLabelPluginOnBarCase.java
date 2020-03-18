@@ -21,8 +21,6 @@ import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -42,11 +40,6 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 
 	public SimpleLabelPluginOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		DivElement wrapper = Document.get().createDivElement();
-		DivElement element = Document.get().createDivElement();
-		element.setAttribute("xmlns", Document.get().getDocumentElement().getAttribute("xmlns"));
-		wrapper.appendChild(element);
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);

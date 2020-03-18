@@ -35,8 +35,6 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	private static final String[] COUNTRIES = { "br", "de", "fr", "gb", "it", "us" };
-
 	interface ViewUiBinder extends UiBinder<Widget, FlagsPluginOnBarCase> {
 	}
 
@@ -44,6 +42,8 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 	HorizontalBarChartWidget chart;
 
 	CartesianCategoryAxis axis;
+
+	private static final String[] COUNTRIES = { "br", "de", "fr", "gb", "it", "us" };
 
 	private static final int MIN = 50;
 
