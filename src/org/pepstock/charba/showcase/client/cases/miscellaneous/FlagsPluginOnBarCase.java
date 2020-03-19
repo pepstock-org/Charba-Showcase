@@ -27,7 +27,6 @@ import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -79,19 +78,11 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 		chart.addHandler(new ChartResizeEventHandler() {
 
-			private final Timer t = new Timer() {
-				@Override
-				public void run() {
-					chart.reset();
-					chart.draw();
-				}
-			};
-
 			@Override
 			public void onResize(final ChartResizeEvent event) {
 				int width = event.getSize().getWidth();
 				calculateAndSetScaleLabelPadding(width);
-				t.schedule(500);
+				chart.reconfigure();
 			}
 		}, ChartResizeEvent.TYPE);
 
