@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.pepstock</groupId>
-	<artifactId>charba</artifactId>
-	<version>3.0-gwt</version>
+	<artifactId>charba-showcase</artifactId>
+	<version>3.1</version>
 	<packaging>jar</packaging>
 
 
@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>org.pepstock</groupId>
 			<artifactId>charba</artifactId>
-			<version>3.0</version>
+			<version>3.1-gwt</version>
 		</dependency>
 	</dependencies>
 
