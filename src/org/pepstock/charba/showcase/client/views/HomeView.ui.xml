@@ -33,7 +33,7 @@
 				</g:cell>
 		   		<g:cell verticalAlignment="middle" height="100%" horizontalAlignment="center">
 		   			<g:HTMLPanel styleName='{myStyle.hero-title}' height="100%">
-			   			<h1>GWT meet Chart.JS</h1>
+			   			<h1>GWT meets Chart.JS</h1>
 			   			<h1>by CHARBA</h1>
 			   			<br/>
 			   			<p>CHARBA is a GWT module which wraps Chart.JS to enable charts on your GWT web application.</p>
