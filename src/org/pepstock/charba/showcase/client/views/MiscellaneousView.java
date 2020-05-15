@@ -16,6 +16,9 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksWithThre
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataOnBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataOnStackedBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataTimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationByElementCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HoverStyleOnStackedAreaCase;
@@ -202,6 +205,28 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleMyHorizontalBar(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ControllerMyHorizontalBarCase());
+	}
+	
+	// ----------------------------------------------
+	// Datasets
+	// ----------------------------------------------
+
+	@UiHandler("miscellaneousFloatingDataOnBar")
+	protected void handleMyFloatingDataOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FloatingDataOnBarCase());
+	}
+	
+	@UiHandler("miscellaneousFloatingDataOnStackedBar")
+	protected void handleMyFloatingDataOnStackedBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FloatingDataOnStackedBarCase());
+	}
+	
+	@UiHandler("miscellaneousFloatingDataTimeseriesOnBar")
+	protected void handleMyFloatingTimeseriesDataOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FloatingDataTimeSeriesByBarCase());
 	}
 
 }

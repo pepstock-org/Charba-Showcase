@@ -97,12 +97,6 @@
 					<g:Label ui:field="htmlLegendWithCallback" styleName='{myStyle.myLabel}'>Custom legend item text by callback</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
-			<!-- g:cell width="20%" verticalAlignment="top"
-				horizontalAlignment="center">
-				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
-				</g:VerticalPanel>
-			</g:cell -->
 		</g:HorizontalPanel>
 	</g:VerticalPanel>
 </ui:UiBinder> 

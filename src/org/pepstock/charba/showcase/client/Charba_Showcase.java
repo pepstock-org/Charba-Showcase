@@ -90,6 +90,7 @@ public class Charba_Showcase implements EntryPoint {
 			isDeferred = false;
 			embeddedLoading(adapter);
 		}
+
 	}
 
 	private void embeddedLoading(DefaultDateAdapter adapter) {
