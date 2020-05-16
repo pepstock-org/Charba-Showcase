@@ -60,12 +60,12 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		int idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(new Date(time));
+			dataPoint.setX(new Date(time));
 			dataPoint.setX(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint = new DataPoint();
-			rainPoint.setT(new Date(time));
+			rainPoint.setX(new Date(time));
 			rainPoint.setY(100 * Math.random());
 			rainPoints[idx] = rainPoint;
 
@@ -83,12 +83,12 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(new Date(time));
+			dataPoint.setX(new Date(time));
 			dataPoint.setX(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint2 = new DataPoint();
-			rainPoint2.setT(new Date(time));
+			rainPoint2.setX(new Date(time));
 			rainPoint2.setY(100 * Math.random());
 			rainPoints2[idx] = rainPoint2;
 

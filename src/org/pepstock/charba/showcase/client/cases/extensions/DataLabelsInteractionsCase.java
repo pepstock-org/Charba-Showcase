@@ -22,6 +22,7 @@ import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -153,9 +154,9 @@ public class DataLabelsInteractionsCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double myValue = Math.round(value * 100) / 100;
+				double myValue = Math.round(dataItem.getValue() * 100) / 100;
 				return context.isActive() ? ds.getLabel() + "\n" + myValue + "%" : Math.round(myValue) + "";
 			}
 		});

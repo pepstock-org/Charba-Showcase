@@ -1,5 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
+import java.util.Date;
+
 import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
@@ -52,12 +54,12 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		int idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
-			dataPoint.setX(100 * Math.random());
+			dataPoint.setX(adapter.add(startingPoint, i, TimeUnit.DAY));
+			dataPoint.setY(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint = new DataPoint();
-			rainPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
+			rainPoint.setX(adapter.add(startingPoint, i, TimeUnit.DAY));
 			rainPoint.setY(100 * Math.random());
 			rainPoints[idx] = rainPoint;
 
@@ -72,13 +74,15 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		DataPoint[] rainPoints2 = new DataPoint[AMOUNT_OF_POINTS];
 		idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
+			Date newDate = adapter.add(startingPoint, i, TimeUnit.DAY);
+
 			DataPoint dataPoint = new DataPoint();
-			dataPoint.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
-			dataPoint.setX(100 * Math.random());
+			dataPoint.setX(newDate);
+			dataPoint.setY(100 * Math.random());
 			points[idx] = dataPoint;
 
 			DataPoint rainPoint2 = new DataPoint();
-			rainPoint2.setT(adapter.add(startingPoint, i, TimeUnit.DAY));
+			rainPoint2.setX(newDate);
 			rainPoint2.setY(100 * Math.random());
 			rainPoints2[idx] = rainPoint2;
 

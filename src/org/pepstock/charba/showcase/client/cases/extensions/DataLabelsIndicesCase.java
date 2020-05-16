@@ -21,6 +21,7 @@ import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -125,8 +126,8 @@ public class DataLabelsIndicesCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, double value, ScriptableContext context) {
-				return context.getIndex() + ": " + Math.round(value) + "'";
+			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+				return context.getIndex() + ": " + Math.round(dataItem.getValue()) + "'";
 			}
 		});
 		option.setOffset(8);

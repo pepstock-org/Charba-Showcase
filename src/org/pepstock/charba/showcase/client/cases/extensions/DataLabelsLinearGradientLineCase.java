@@ -24,6 +24,7 @@ import org.pepstock.charba.client.dom.elements.CanvasGradientItem;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -136,7 +137,8 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+				double value = dataItem.getValue();
 				return value < 20 ? "Poor\n" + value : value < 50 ? "Good\n" + value : "Great\n" + value;
 			}
 		});

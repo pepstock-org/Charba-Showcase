@@ -136,7 +136,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 
 		@Override
 		public String invoke(IsChart chart, RenderItem item) {
-			return "$$ " + item.getValue();
+			return "$$ " + item.getDataItem().getValue();
 		}
 
 	}

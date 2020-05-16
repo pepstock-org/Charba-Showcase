@@ -49,10 +49,11 @@ public class FloatingDataOnBarCase extends BaseComposite {
 		double[] values = getRandomDigits(months);
 		double[] gaps = getRandomDigits(months, false);
 
-		List<FloatingData> data = dataset1.getFloatingData(true);
+		double[][] dataToSet = new double[months][2];
 		for (int i=0; i<months; i++) {
-			data.add(new FloatingData(values[i], values[i] + gaps[i]));
+			dataToSet[i] = new double[] {values[i], values[i] + gaps[i]};
 		}
+		dataset1.setFloatingData(dataToSet);
 
 		BarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");

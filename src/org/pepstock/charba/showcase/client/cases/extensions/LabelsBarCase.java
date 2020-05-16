@@ -8,6 +8,8 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.FloatingData;
+import org.pepstock.charba.client.enums.DataType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.labels.FontColorItem;
@@ -52,21 +54,36 @@ public class LabelsBarCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1);
 
-		dataset1.setData(getFixedDigits(months));
+		double[] values = getRandomDigits(months);
+		double[] gaps = getRandomDigits(months, false);
 
+		List<FloatingData> data = dataset1.getFloatingData(true);
+		for (int i=0; i<months; i++) {
+			data.add(new FloatingData(values[i], values[i] + gaps[i]));
+		}
+		
 		LabelsOptions option = new LabelsOptions();
 		option.setRender(new RenderCallback() {
 
 			@Override
 			public String invoke(IsChart chart, RenderItem item) {
-				return "$$ " + (int) (item.getValue() * item.getPercentage() / 100);
+				double value = 0;
+				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
+					value = item.getDataItem().getValueAsFloatingData().getAbsValue();
+				} else {
+					value = item.getDataItem().getValue();
+				}
+				return "$$ " + value;
 			}
 		});
 		option.setFontColor(new FontColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, FontColorItem item) {
-				return item.getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
+					return item.getDataItem().getValueAsFloatingData().getAbsValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+				} 
+				return item.getDataItem().getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
 			}
 		});
 

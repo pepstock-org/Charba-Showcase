@@ -19,6 +19,7 @@ import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -58,9 +59,10 @@ public class DataLabelsCustomLabelsCase extends BaseComposite {
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
+		
 		double[] values = getRandomDigits(months, false);
 		dataset1.setData(values);
-
+		
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(false);
 		axis1.setOffset(true);
@@ -103,7 +105,7 @@ public class DataLabelsCustomLabelsCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				Labels labels = chart.getData().getLabels();
 				return labels.getString(context.getIndex());
 			}

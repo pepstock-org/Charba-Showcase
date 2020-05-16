@@ -61,7 +61,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getIndex());
-				return Arrays.asList(adapter.format(dp.getT(), TimeUnit.DAY));
+				return Arrays.asList(adapter.format(dp.getXAsDate(), TimeUnit.DAY));
 			}
 
 		});
@@ -81,7 +81,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setY(xs1[i]);
-			dp1[i].setT(adapter.add(startingPoint, i, TimeUnit.DAY));
+			dp1[i].setX(adapter.add(startingPoint, i, TimeUnit.DAY));
 		}
 		dataset1.setDataPoints(dp1);
 

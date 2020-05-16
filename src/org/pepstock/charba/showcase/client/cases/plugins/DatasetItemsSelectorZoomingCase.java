@@ -83,7 +83,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getIndex());
-				return Arrays.asList(FORMAT.format(dp.getT()));
+				return Arrays.asList(FORMAT.format(dp.getXAsDate()));
 			}
 
 			@Override
@@ -111,7 +111,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			dp1[i] = new DataPoint();
 			dp1[i].setY(xs1[i]);
-			dp1[i].setT(new Date(time));
+			dp1[i].setX(new Date(time));
 			time = time + DAY;
 		}
 		dataset2.setDataPoints(dp1);

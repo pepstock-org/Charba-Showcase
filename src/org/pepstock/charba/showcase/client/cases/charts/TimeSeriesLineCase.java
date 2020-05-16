@@ -65,7 +65,7 @@ public class TimeSeriesLineCase extends BaseComposite {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getIndex());
-				return Arrays.asList(FORMAT.format(dp.getT()));
+				return Arrays.asList(FORMAT.format(dp.getXAsDate()));
 			}
 
 		});

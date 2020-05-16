@@ -19,6 +19,7 @@ import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -115,12 +116,12 @@ public class DataLabelsDataCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, double value, ScriptableContext context) {
+			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex() - 1) : 0;
+				double diff = context.getIndex() > 0 ? dataItem.getValue() - ds.getData().get(context.getIndex() - 1) : 0;
 				StringBuffer sb = new StringBuffer();
-				sb.append(diff < 0 ? '\u25B2' : diff > 0 ? '\u25BC' : '\u25C6');
-				return sb.append(" ").append(Math.round(value)).toString();
+				sb.append(diff > 0 ? '\u25B2' : diff < 0 ? '\u25BC' : '\u25C6');
+				return sb.append(" ").append(Math.round(dataItem.getValue())).toString();
 			}
 
 		});
