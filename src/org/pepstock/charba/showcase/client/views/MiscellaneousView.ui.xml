@@ -69,8 +69,10 @@
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Datasets</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnBar" styleName='{myStyle.myLabel}'>Floating data on bar chart</g:Label>
+					<g:Label ui:field="miscellaneousFloatingDataOnHorizontalBar" styleName='{myStyle.myLabel}'>Floating data on horizontal bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnStackedBar" styleName='{myStyle.myLabel}'>Floating data on stacked bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataTimeseriesOnBar" styleName='{myStyle.myLabel}'>Floating data on timeseries by bar chart</g:Label>
+					<g:Label ui:field="miscellaneousFloatingDataOnBarAndDatalabels" styleName='{myStyle.myLabel}'>Floating data on bar chart and datalabels extension</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"
