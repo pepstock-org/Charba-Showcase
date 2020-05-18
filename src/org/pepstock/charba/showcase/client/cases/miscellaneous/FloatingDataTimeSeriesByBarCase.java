@@ -10,11 +10,13 @@ import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.FloatingData;
+import org.pepstock.charba.client.enums.DefaultDateAdapter;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -58,7 +60,7 @@ public class FloatingDataTimeSeriesByBarCase extends BaseComposite {
 		
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			Date date = adapter.add(startingPoint, i, TimeUnit.DAY);
-			labels.add(adapter.format(date, "YYYY-MM-DD"));
+			labels.add(adapter.format(date, getDateFormat()));
 			double value = 100 * Math.random();
 			data1.add(new FloatingData(value, Math.min(value + 50 * Math.random(), 100)));
 		}
@@ -103,5 +105,16 @@ public class FloatingDataTimeSeriesByBarCase extends BaseComposite {
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
+	}
+	
+	private String getDateFormat() {
+		if (DefaultDateAdapter.MOMENT.equals(Charba_Showcase.dateAdapterTyoe)) {
+			return "YYYY-MM-DD";
+		} else if (DefaultDateAdapter.LUXON.equals(Charba_Showcase.dateAdapterTyoe)) {
+			return "yyyy-MM-dd";
+		} else if (DefaultDateAdapter.DATE_FNS.equals(Charba_Showcase.dateAdapterTyoe)) {
+			return "yyyy-MM-dd";
+		}
+		return null;
 	}
 }

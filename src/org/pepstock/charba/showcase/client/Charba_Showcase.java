@@ -63,6 +63,8 @@ public class Charba_Showcase implements EntryPoint {
 	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/3.1/src/";
 
 	public static boolean isDeferred = false;
+	
+	public static DefaultDateAdapter dateAdapterTyoe = DefaultDateAdapter.UNKNOWN;
 
 	public void onModuleLoad() {
 
@@ -80,6 +82,7 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.visibilityWhite().getSafeUri());
 
 		DefaultDateAdapter adapter = Key.getKeyByValue(DefaultDateAdapter.values(), Window.Location.getParameter(DATE_ADAPTER_PARAM), DefaultDateAdapter.MOMENT);
+		Charba_Showcase.dateAdapterTyoe = adapter;
 		String loadingParam = Window.Location.getParameter(LOADING_PARAM) != null ? Window.Location.getParameter(LOADING_PARAM) : LOADING_EMBEDDED;
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;
 
