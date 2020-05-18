@@ -145,6 +145,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
 		line1.getLabel().setBackgroundColor(HtmlColor.VIOLET);
 		line1.getLabel().setFontColor(HtmlColor.BLACK);
+		line1.getLabel().setRotation(-18D);
 
 		options.setAnnotations(line1);
 
