@@ -20,6 +20,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.ScaleDistribution;
@@ -30,7 +31,6 @@ import org.pepstock.charba.client.events.LegendClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -182,8 +182,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 
-		chart.getOptions().getScales().setXAxes(axis);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis, axis2);
 		chart.getData().setDatasets(dataset, trend, forecast);
 
 		AnnotationOptions options = new AnnotationOptions();
@@ -191,7 +190,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		line.setMode(LineMode.VERTICAL);
-		line.setScaleID(Scales.DEFAULT_X_AXIS_ID);
+		line.setScaleID(DefaultScaleId.X.value());
 		line.setBorderColor(HtmlColor.DARK_GRAY);
 		line.setBorderWidth(2);
 		line.setValue(new Date((long) now.getTime()));

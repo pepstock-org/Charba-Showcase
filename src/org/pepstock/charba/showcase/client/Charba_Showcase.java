@@ -1,24 +1,12 @@
 package org.pepstock.charba.showcase.client;
 
-import java.util.List;
 import java.util.logging.Logger;
 
+import org.pepstock.charba.client.ChartType;
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.Injector;
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.commons.Key;
-import org.pepstock.charba.client.controllers.AbstractController;
-import org.pepstock.charba.client.controllers.ControllerContext;
-import org.pepstock.charba.client.controllers.ControllerType;
-import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.enums.DefaultDateAdapter;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
-import org.pepstock.charba.client.items.DatasetItem;
-import org.pepstock.charba.client.items.DatasetMetaItem;
-import org.pepstock.charba.client.items.DatasetViewItem;
-import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.AbstractDeferredResources;
 import org.pepstock.charba.client.resources.AbstractEmbeddedResources;
 import org.pepstock.charba.client.resources.DatefnsDeferredResources;
@@ -26,16 +14,11 @@ import org.pepstock.charba.client.resources.DatefnsEmbeddedResources;
 import org.pepstock.charba.client.resources.DeferredResources;
 import org.pepstock.charba.client.resources.EmbeddedResources;
 import org.pepstock.charba.client.resources.EntryPointStarter;
-import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.client.resources.LuxonDeferredResources;
 import org.pepstock.charba.client.resources.LuxonEmbeddedResources;
 import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.client.utils.JsWindowHelper;
-import org.pepstock.charba.client.zoom.ZoomPlugin;
-import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
-import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
-import org.pepstock.charba.showcase.client.resources.MyResources;
 import org.pepstock.charba.showcase.client.views.MainView;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -155,48 +138,52 @@ public class Charba_Showcase implements EntryPoint {
 
 		JsWindowHelper.get().enableResizeOnBeforePrint();
 
-		Defaults.get().getGlobal().setDefaultFontFamily("'Lato', sans-serif");
+		//Defaults.get().getGlobal().setDefaultFontFamily("'Lato', sans-serif");
 
-		Defaults.get().getGlobal().getTitle().setFontSize(16);
+		//Defaults.get().getGlobal().getTitle().setFontSize(16);
 
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
+		
+		Defaults.get().getOptions(ChartType.PIE).setAspectRatio(2D);
+		Defaults.get().getOptions(ChartType.POLAR_AREA).setAspectRatio(2D);
+		Defaults.get().getOptions(ChartType.RADAR).setAspectRatio(2D);
+		Defaults.get().getOptions(ChartType.DOUGHNUT).setAspectRatio(2D);
 
-		Defaults.get().getControllers().extend(new AbstractController() {
+//		Defaults.get().getControllers().extend(new AbstractController() {
+//
+//			@Override
+//			public ControllerType getType() {
+//				return MyLineChart.TYPE;
+//			}
+//
+//			@Override
+//			public void draw(ControllerContext jsThis, IsChart chart, double ease) {
+//				super.draw(jsThis, chart, ease);
+//
+//				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
+//				List<DatasetItem> items = metaItem.getDatasets();
+//				for (DatasetItem item : items) {
+//					Context2dItem ctx = chart.getCanvas().getContext2d();
+//					ctx.save();
+//					ctx.setStrokeColor(item.getOptions().getBorderColorAsString());
+//					ctx.setLineWidth(1D);
+//					ctx.strokeRect(item.getX() - 10, item.getY() - 10, 20, 20);
+//					ctx.restore();
+//				}
+//			}
+//		});
 
-			@Override
-			public ControllerType getType() {
-				return MyLineChart.TYPE;
-			}
-
-			@Override
-			public void draw(ControllerContext jsThis, IsChart chart, double ease) {
-				super.draw(jsThis, chart, ease);
-
-				DatasetMetaItem metaItem = chart.getDatasetMeta(jsThis.getIndex());
-				List<DatasetItem> items = metaItem.getDatasets();
-				for (DatasetItem item : items) {
-					DatasetViewItem view = item.getView();
-					Context2dItem ctx = chart.getCanvas().getContext2d();
-					ctx.save();
-					ctx.setStrokeColor(view.getBorderColorAsString());
-					ctx.setLineWidth(1D);
-					ctx.strokeRect(view.getX() - 10, view.getY() - 10, 20, 20);
-					ctx.restore();
-				}
-			}
-		});
-
-		Defaults.get().getControllers().extend(new MyHorizontalBarController());
-
-		LabelsPlugin.enable();
-
-		DataLabelsPlugin.enable();
-
-		ZoomPlugin.enable();
-
-		AnnotationPlugin.enable();
-
-		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
+//		Defaults.get().getControllers().extend(new MyHorizontalBarController());
+//
+//		LabelsPlugin.enable();
+//
+//		DataLabelsPlugin.enable();
+//
+//		ZoomPlugin.enable();
+//
+//		AnnotationPlugin.enable();
+//
+//		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
 
 		RootPanel.get().add(new MainView());
 	}

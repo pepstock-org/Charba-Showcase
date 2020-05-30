@@ -54,7 +54,7 @@ public class ControllerMyHorizontalBarCase extends BaseComposite {
 		chart.getData().setLabels(COUNTRIES);
 		chart.getData().setDatasets(dataset1);
 
-		chart.getOptions().getScales().setYAxes(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		chart.getPlugins().add(ColorSchemes.get());
 

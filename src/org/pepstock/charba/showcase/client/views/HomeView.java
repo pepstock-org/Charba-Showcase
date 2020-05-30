@@ -122,9 +122,11 @@ public class HomeView extends BaseComposite {
 			public void onSelect(DatasetSelectionEvent event) {
 				IsChart chart = (IsChart) event.getSource();
 				Labels labels = chart.getData().getLabels();
-				String version = labels.getString(event.getItem().getIndex());
+				// FIXME
+//				String version = labels.getString(event.getItem().getIndex());
 				StringBuilder sb = new StringBuilder(LINK_GITHUB_VERSION);
-				sb.append(version);
+				// FIXME
+//				sb.append(version);
 				Window.open(sb.toString(), "_blank", "");
 			}
 
@@ -155,8 +157,7 @@ public class HomeView extends BaseComposite {
 		axis2.getScaleLabel().setLabelString("JAR size");
 		axis2.getScaleLabel().setFontColor(HtmlColor.BLACK);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(LABELS);
 		chart.getData().setDatasets(datasetGwt, datasetJ2CL);

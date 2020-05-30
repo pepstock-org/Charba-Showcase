@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
@@ -36,11 +35,12 @@ public class PolarAreaCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Polar area chart");
 
+		// FIXME AXIS
 		RadialAxis axis = new RadialAxis(chart);
 		axis.getTicks().setBeginAtZero(true);
 		axis.getTicks().setReverse(true);
-		axis.getGrideLines().setCircular(true);
-		axis.getTicks().setFontColor(HtmlColor.GRAY);
+		axis.getGrideLines().setCircular(false);
+		//axis.getTicks().setFontColor(HtmlColor.GRAY);
 		chart.getOptions().setAxis(axis);
 
 		PolarAreaDataset dataset = chart.newDataset();

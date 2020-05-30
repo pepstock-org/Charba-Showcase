@@ -8,6 +8,7 @@ import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -73,6 +74,10 @@ public class ScatterCase extends BaseComposite {
 		dataset2.setDataPoints(dp2);
 
 		chart.getData().setDatasets(dataset1, dataset2);
+		
+		// FIXME
+		Charba_Showcase.LOG.info(dataset1.toJSON());
+	
 	}
 
 	@UiHandler("randomize")
@@ -83,13 +88,15 @@ public class ScatterCase extends BaseComposite {
 				dp.setX(getRandomDigit());
 				dp.setY(getRandomDigit());
 			}
+			Charba_Showcase.LOG.info(scDataset.toJSON());
 		}
+		Charba_Showcase.LOG.info("update");
 		chart.update();
 	}
 
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
+		List<Dataset> datasets = chart.getData().getDatasets(true);
 		ScatterDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
 

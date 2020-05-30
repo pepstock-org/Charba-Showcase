@@ -79,7 +79,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart, double easing) {
-				final int fontSize = Defaults.get().getGlobal().getDefaultFontSize();
+				final int fontSize = Defaults.get().getGlobal().getFontSize();
 				final int padding = 5;
 				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
@@ -93,11 +93,11 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 							DatasetItem item = items.get(k);
 							String dataString = ds.getData().get(k).toString();
 							ctx.setFillColor("rgb(0, 0, 0)");
-							String fontString = Utilities.toCSSFontProperty(FontStyle.NORMAL, fontSize, Defaults.get().getGlobal().getDefaultFontFamily());
+							String fontString = Utilities.toCSSFontProperty(FontStyle.NORMAL, fontSize, Defaults.get().getGlobal().getFontFamily());
 							ctx.setFont(fontString);
 							ctx.setTextAlign(TextAlign.CENTER);
 							ctx.setTextBaseline(TextBaseline.MIDDLE);
-							ctx.fillText(dataString, item.getView().getX(), item.getView().getY() - (fontSize / 2) - padding);
+							ctx.fillText(dataString, item.getX(), item.getY() - (fontSize / 2) - padding);
 						}
 					}
 				}

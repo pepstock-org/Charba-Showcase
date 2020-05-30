@@ -71,7 +71,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Percentage");
 
-		chart.getOptions().getScales().setYAxes(axis1);
+		chart.getOptions().getScales().setAxes(axis1);
 
 		dataset = chart.newDataset();
 		dataset.setLabel("Humidity");
@@ -139,8 +139,8 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 					img = AnnotationBuilder.build(ANNOTATION, 300, 64);
 				}
 
-				double x = item.getView().getX() - (item.getView().getWidth() / 2);
-				double y = item.getView().getY() - img.getHeight() - 10;
+				double x = item.getX() - (item.getWidth() / 2);
+				double y = item.getY() - img.getHeight() - 10;
 
 				ctx.drawImage(img, x, y);
 

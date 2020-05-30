@@ -13,11 +13,11 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLogarithmicAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -85,7 +85,7 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
-		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line.setScaleID(DefaultScaleId.Y.value());
 		line.setBorderColor(HtmlColor.ORANGE);
 		line.setBorderDash(4, 4);
 		line.setBorderWidth(2);
@@ -101,8 +101,7 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);

@@ -74,8 +74,7 @@ public class NoNumericYAxisCase extends BaseComposite {
 		axis2.getScaleLabel().setLabelString("Request State");
 		axis2.getTicks().setReverse(true);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setXLabels(getLabels());
 		chart.getData().setYLabels(VALUES);

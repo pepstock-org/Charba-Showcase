@@ -107,8 +107,7 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);

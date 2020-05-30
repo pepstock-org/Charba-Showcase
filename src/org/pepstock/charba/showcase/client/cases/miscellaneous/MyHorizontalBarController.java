@@ -9,10 +9,10 @@ import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.Scale;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -34,7 +34,7 @@ public class MyHorizontalBarController extends AbstractController {
 
 	@Override
 	public void initialize(ControllerContext context, IsChart chart, int datasetIndex) {
-		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.X);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.initialize(context, chart, datasetIndex);
 	}
@@ -44,8 +44,8 @@ public class MyHorizontalBarController extends AbstractController {
 		super.draw(context, chart, ease);
 		final int padding = 4;
 		Context2dItem ctx = chart.getCanvas().getContext2d();
-		ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
-		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
+		ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.X);
 		List<String> ticks = scale.getTicks();
 		int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 		final int height = Math.min(heightAmongLabels - (padding * 2), MIN);
@@ -77,7 +77,7 @@ public class MyHorizontalBarController extends AbstractController {
 
 	@Override
 	public void update(ControllerContext context, IsChart chart, boolean reset) {
-		Scale axis = (Scale) context.getNode().getOptions().getScales().getYAxes().get(0);
+		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.X);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.update(context, chart, reset);
 	}

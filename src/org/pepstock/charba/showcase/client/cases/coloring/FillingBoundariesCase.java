@@ -65,7 +65,7 @@ public class FillingBoundariesCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-		chart.getOptions().getScales().setYAxes(axis);
+		chart.getOptions().getScales().setAxes(axis);
 	}
 
 	@UiHandler("randomize")

@@ -15,10 +15,10 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.enums.TextAlign;
 import org.pepstock.charba.client.dom.enums.TextBaseline;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -96,8 +96,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 			}
 		});
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(YEARS);
 		chart.getData().setDatasets(datasets.toArray(new Dataset[0]));
@@ -115,8 +114,8 @@ public class StandingPluginOnLineCase extends BaseComposite {
 				final int datasetsCount = chart.getData().getDatasets().size();
 				Context2dItem ctx = chart.getCanvas().getContext2d();
 
-				ScaleItem scaleX = chart.getNode().getScales().getItems().get(Scales.DEFAULT_X_AXIS_ID);
-				ScaleItem scaleY = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
+				ScaleItem scaleX = chart.getNode().getScales().getItems().get(DefaultScaleId.X.value());
+				ScaleItem scaleY = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
 
 				int heightAmongLabels = (scaleY.getBottom() - scaleY.getTop()) / (datasetsCount - 1);
 

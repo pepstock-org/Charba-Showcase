@@ -36,18 +36,16 @@ public class MultiAxisBarCase extends BaseComposite {
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 
-		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
-		axis1.setId("y-axis-1");
+		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart, "y-axis-1");
 		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
 
-		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
-		axis2.setId("y-axis-2");
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
 		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 
-		chart.getOptions().getScales().setYAxes(axis1, axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

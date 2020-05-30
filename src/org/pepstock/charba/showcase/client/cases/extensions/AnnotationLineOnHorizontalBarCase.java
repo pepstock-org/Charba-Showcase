@@ -11,10 +11,10 @@ import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.HorizontalBarDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -59,7 +59,7 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
-		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line.setScaleID(DefaultScaleId.Y.value());
 		line.setBorderColor(HtmlColor.ORANGE);
 		line.setBorderDash(4, 4);
 		line.setBorderWidth(2);
@@ -72,8 +72,8 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box.setXScaleID(DefaultScaleId.X.value());
+		box.setYScaleID(DefaultScaleId.Y.value());
 		box.setBackgroundColor(HtmlColor.LIGHT_GRAY.alpha(0.3D));
 		box.setBorderWidth(0);
 

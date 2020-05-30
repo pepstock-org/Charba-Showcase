@@ -90,8 +90,7 @@ public class GridLinesDisplayCase extends BaseComposite {
 		axis2.getGrideLines().setDisplay(true);
 		axis2.getGrideLines().setColor(HtmlColor.DARK_GRAY);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);

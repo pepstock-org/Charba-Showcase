@@ -119,8 +119,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.setStacked(true);
 
-		chart.getOptions().getScales().setXAxes(axis1);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
@@ -203,11 +202,12 @@ public class DataLabelsListenersCase extends BaseComposite {
 			DatasetItem item = meta.getDatasets().get(context.getIndex());
 			if (datasets != null && !datasets.isEmpty()) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset index: <b>").append(item.getDatasetIndex()).append("</b><br>");
-				sb.append("Dataset label: <b>").append(datasets.get(item.getDatasetIndex()).getLabel()).append("</b><br>");
-				sb.append("Dataset data: <b>").append(datasets.get(item.getDatasetIndex()).getData().get(item.getIndex())).append("</b><br>");
-				sb.append("Index: <b>").append(item.getIndex()).append("</b><br>");
-				sb.append("Value: <b>").append(labels.getStrings(item.getIndex()).get(0)).append("</b><br>");
+				// FIXME
+//				sb.append("Dataset index: <b>").append(item.getDatasetIndex()).append("</b><br>");
+//				sb.append("Dataset label: <b>").append(datasets.get(item.getDatasetIndex()).getLabel()).append("</b><br>");
+//				sb.append("Dataset data: <b>").append(datasets.get(item.getDatasetIndex()).getData().get(item.getIndex())).append("</b><br>");
+//				sb.append("Index: <b>").append(item.getIndex()).append("</b><br>");
+//				sb.append("Value: <b>").append(labels.getStrings(item.getIndex()).get(0)).append("</b><br>");
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
 			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");

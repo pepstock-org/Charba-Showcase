@@ -6,7 +6,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.enums.SteppedLine;
+import org.pepstock.charba.client.enums.Stepped;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -51,7 +51,7 @@ public class SteppedLineOnLineCase extends BaseComposite {
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setFill(Fill.FALSE);
-		dataset1.setSteppedLine(SteppedLine.FALSE);
+		dataset1.setStepped(Stepped.FALSE);
 		chartNoStepped.getData().setLabels(getLabels());
 		chartNoStepped.getData().setDatasets(dataset1);
 
@@ -66,7 +66,7 @@ public class SteppedLineOnLineCase extends BaseComposite {
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(Fill.FALSE);
-		dataset2.setSteppedLine(SteppedLine.BEFORE);
+		dataset2.setStepped(Stepped.BEFORE);
 		chartStepped.getData().setLabels(getLabels());
 		chartStepped.getData().setDatasets(dataset2);
 
@@ -81,7 +81,7 @@ public class SteppedLineOnLineCase extends BaseComposite {
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(getRandomDigits(months));
 		dataset3.setFill(Fill.FALSE);
-		dataset3.setSteppedLine(SteppedLine.BEFORE);
+		dataset3.setStepped(Stepped.BEFORE);
 		chartBeforeStepped.getData().setLabels(getLabels());
 		chartBeforeStepped.getData().setDatasets(dataset3);
 
@@ -96,7 +96,7 @@ public class SteppedLineOnLineCase extends BaseComposite {
 		dataset4.setBorderColor(color4.toHex());
 		dataset4.setData(getRandomDigits(months));
 		dataset4.setFill(Fill.FALSE);
-		dataset4.setSteppedLine(SteppedLine.AFTER);
+		dataset4.setStepped(Stepped.AFTER);
 		chartAfterStepped.getData().setLabels(getLabels());
 		chartAfterStepped.getData().setDatasets(dataset4);
 

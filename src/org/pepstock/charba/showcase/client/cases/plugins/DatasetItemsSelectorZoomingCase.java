@@ -126,8 +126,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 
-		chart.getOptions().getScales().setXAxes(axis);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis, axis2);
 
 		small.getOptions().getPlugins().setEnabled(ChartBackgroundColor.ID, false);
 
@@ -141,7 +140,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		CartesianTimeAxis axis1Small = new CartesianTimeAxis(small);
 		axis1Small.setDisplay(false);
 
-		small.getOptions().getScales().setXAxes(axis1Small);
+		small.getOptions().getScales().setAxes(axis1Small);
 
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(5);

@@ -10,13 +10,13 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.ChartResizeEvent;
 import org.pepstock.charba.client.events.ChartResizeEventHandler;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -74,7 +74,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 		chart.getData().setLabels(COUNTRIES);
 		chart.getData().setDatasets(dataset1);
 
-		chart.getOptions().getScales().setYAxes(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		chart.addHandler(new ChartResizeEventHandler() {
 
@@ -97,7 +97,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 			public void onAfterDatasetsDraw(IsChart chart, double easing) {
 				final int padding = 4;
 				Context2dItem ctx = chart.getCanvas().getContext2d();
-				ScaleItem scale = chart.getNode().getScales().getItems().get(Scales.DEFAULT_Y_AXIS_ID);
+				ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
 				List<String> ticks = scale.getTicks();
 				int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 				final int height = Math.min(heightAmongLabels - (padding * 2), MIN);

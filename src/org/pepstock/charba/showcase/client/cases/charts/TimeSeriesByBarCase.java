@@ -97,7 +97,7 @@ public class TimeSeriesByBarCase extends BaseComposite {
 		axis.setOffset(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);
-		chart.getOptions().getScales().setXAxes(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 	}
 

@@ -23,13 +23,13 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -134,7 +134,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		LineAnnotation line1 = new LineAnnotation();
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
 		line1.setMode(LineMode.HORIZONTAL);
-		line1.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line1.setScaleID(DefaultScaleId.Y.value());
 		line1.setBorderColor(HtmlColor.VIOLET);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);

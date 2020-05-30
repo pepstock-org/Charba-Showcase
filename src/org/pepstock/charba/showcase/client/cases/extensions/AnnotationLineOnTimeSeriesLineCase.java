@@ -24,13 +24,13 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -135,7 +135,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DRAW);
 		line.setMode(LineMode.VERTICAL);
-		line.setScaleID(Scales.DEFAULT_X_AXIS_ID);
+		line.setScaleID(DefaultScaleId.X.value());
 		line.setBorderColor(HtmlColor.DARK_GRAY);
 		line.setBorderWidth(2);
 		line.setValue(new Date(startingPoint));
@@ -145,7 +145,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
 		line1.setMode(LineMode.HORIZONTAL);
-		line1.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line1.setScaleID(DefaultScaleId.Y.value());
 		line1.setBorderColor(HtmlColor.ORANGE);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);

@@ -30,13 +30,13 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.dom.BaseNativeEvent;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
@@ -148,7 +148,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.setName("LineAnnotation");
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setMode(LineMode.HORIZONTAL);
-		line.setScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		line.setScaleID(DefaultScaleId.Y.value());
 		line.setBorderColor(HtmlColor.BLACK);
 		line.setBorderWidth(5);
 		line.setValue(40);
@@ -163,8 +163,8 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		BoxAnnotation box = new BoxAnnotation();
 		box.setName("BoxAnnotation");
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box.setXScaleID(DefaultScaleId.X.value());
+		box.setYScaleID(DefaultScaleId.Y.value());
 		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4);
 		box.setXMin(new Date(time));
 		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4 * 3);

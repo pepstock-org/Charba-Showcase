@@ -94,8 +94,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTicks().setBeginAtZero(true);
 
-		chart.getOptions().getScales().setXAxes(axis);
-		chart.getOptions().getScales().setYAxes(axis2);
+		chart.getOptions().getScales().setAxes(axis, axis2);
 		chart.getData().setDatasets(dataset1);
 
 	}

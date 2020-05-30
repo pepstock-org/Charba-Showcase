@@ -86,7 +86,7 @@ public class FloatingDataTimeSeriesByBarCase extends BaseComposite {
 		
 		chart.getData().setLabels(labels.toArray(new String[0]));
 		chart.getData().setDatasets(dataset1, dataset2);
-		chart.getOptions().getScales().setXAxes(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 	}
 

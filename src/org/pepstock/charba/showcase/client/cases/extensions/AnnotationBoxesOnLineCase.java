@@ -13,9 +13,9 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.options.Scales;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -68,8 +68,8 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		BoxAnnotation box1 = new BoxAnnotation();
 		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box1.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box1.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box1.setXScaleID(DefaultScaleId.X.value());
+		box1.setYScaleID(DefaultScaleId.Y.value());
 		box1.setXMin("January");
 		box1.setXMax("April");
 		box1.setBackgroundColor(GwtMaterialColor.BLUE_GREY_LIGHTEN_3.alpha(0.3D));
@@ -78,8 +78,8 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		BoxAnnotation box2 = new BoxAnnotation();
 		box2.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box2.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box2.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box2.setXScaleID(DefaultScaleId.X.value());
+		box2.setYScaleID(DefaultScaleId.Y.value());
 		box2.setXMin("April");
 		box2.setXMax("July");
 		box2.setBackgroundColor(GwtMaterialColor.AMBER_LIGHTEN_3.alpha(0.3D));
@@ -88,8 +88,8 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		BoxAnnotation box3 = new BoxAnnotation();
 		box3.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box3.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box3.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box3.setXScaleID(DefaultScaleId.X.value());
+		box3.setYScaleID(DefaultScaleId.Y.value());
 		box3.setXMin("July");
 		box3.setXMax("October");
 		box3.setBackgroundColor(GwtMaterialColor.GREEN_LIGHTEN_3.alpha(0.3D));
@@ -98,8 +98,8 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		BoxAnnotation box4 = new BoxAnnotation();
 		box4.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box4.setXScaleID(Scales.DEFAULT_X_AXIS_ID);
-		box4.setYScaleID(Scales.DEFAULT_Y_AXIS_ID);
+		box4.setXScaleID(DefaultScaleId.X.value());
+		box4.setYScaleID(DefaultScaleId.Y.value());
 		box4.setXMin("October");
 		box4.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
 		box4.setBorderWidth(0);
