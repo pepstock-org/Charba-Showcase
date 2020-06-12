@@ -11,8 +11,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -54,8 +54,8 @@ public class DataLabelsPolarAreaCase extends BaseComposite {
 		dataset.setData(getRandomDigits(months, false));
 
 		RadialAxis axis = new RadialAxis(chart);
-		axis.getTicks().setBeginAtZero(true);
-		axis.getTicks().setReverse(false);
+		axis.setBeginAtZero(true);
+		axis.setReverse(false);
 		chart.getOptions().setAxis(axis);
 
 		chart.getData().setLabels(getLabels());

@@ -10,7 +10,6 @@ import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -72,8 +71,6 @@ public class RadarCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
-		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 
 	}
 

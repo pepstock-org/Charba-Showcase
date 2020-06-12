@@ -84,7 +84,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getTicks().setReverse(true);
+		axis2.setReverse(true);
 
 		axis2.getTicks().setCallback(new TickCallback() {
 

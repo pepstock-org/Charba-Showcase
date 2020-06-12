@@ -53,14 +53,14 @@ public class HTMLAnnnotationCase extends BaseComposite {
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart,"y-axis-1");
 		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
-		axis1.getTicks().setBeginAtZero(true);
+		axis1.setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Percentage");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
 		axis2.setPosition(Position.RIGHT);
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Degrees");

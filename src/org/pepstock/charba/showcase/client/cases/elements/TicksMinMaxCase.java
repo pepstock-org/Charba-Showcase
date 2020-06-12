@@ -73,8 +73,8 @@ public class TicksMinMaxCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getTicks().setMin(20);
-		axis2.getTicks().setMax(80);
+		axis2.setMin(20);
+		axis2.setMax(80);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

@@ -136,7 +136,7 @@ public class HomeView extends BaseComposite {
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Charba version");
-		axis1.getScaleLabel().setFontColor(HtmlColor.BLACK);
+		axis1.getScaleLabel().getFont().setColor(HtmlColor.BLACK);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
@@ -155,7 +155,7 @@ public class HomeView extends BaseComposite {
 
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("JAR size");
-		axis2.getScaleLabel().setFontColor(HtmlColor.BLACK);
+		axis2.getScaleLabel().getFont().setColor(HtmlColor.BLACK);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

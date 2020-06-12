@@ -45,7 +45,7 @@ public class TooltipCallbacksCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Tooltip footer callback");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		chart.getOptions().getTooltips().setFooterFontStyle(FontStyle.NORMAL);
+		chart.getOptions().getTooltips().getFooterFont().setStyle(FontStyle.NORMAL);
 		chart.getOptions().getTooltips().getCallbacks().setFooterCallback(new TooltipFooterCallback() {
 
 			@Override

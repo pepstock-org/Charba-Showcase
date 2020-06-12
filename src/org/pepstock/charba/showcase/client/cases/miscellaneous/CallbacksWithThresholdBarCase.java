@@ -92,9 +92,9 @@ public class CallbacksWithThresholdBarCase extends BaseComposite {
 		dataset1.setData(getRandomDigits(months, 0, 100));
 
 		CartesianLinearAxis axis = new CartesianLinearAxis(chart);
-		axis.getTicks().setMax(100);
-		axis.getTicks().setMin(0);
-		axis.getTicks().setBeginAtZero(true);
+		axis.setMax(100);
+		axis.setMin(0);
+		axis.setBeginAtZero(true);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);

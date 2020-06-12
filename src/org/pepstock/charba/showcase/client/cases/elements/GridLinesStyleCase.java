@@ -62,8 +62,8 @@ public class GridLinesStyleCase extends BaseComposite {
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.getGrideLines().setDrawBorder(false);
 		axis2.getGrideLines().setColor("pink", "red", "orange", "yellow", "green", "blue", "indigo", "purple");
-		axis2.getTicks().setMin(0D);
-		axis2.getTicks().setMax(100D);
+		axis2.setMin(0D);
+		axis2.setMax(100D);
 		axis2.getTicks().setStepSize(10D);
 		chart.getOptions().getScales().setAxes(axis2);
 

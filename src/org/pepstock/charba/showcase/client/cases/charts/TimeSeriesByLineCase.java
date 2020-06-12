@@ -92,7 +92,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 
 		chart.getOptions().getScales().setAxes(axis, axis2);
 		chart.getData().setDatasets(dataset1);

@@ -59,7 +59,7 @@ public class PatternPolarCase extends BaseComposite {
 		dataset1.setBorderColor(HtmlColor.DARK_GREY, HtmlColor.DARK_GREY, HtmlColor.BLACK);
 
 		RadialAxis axis = new RadialAxis(chart);
-		axis.getTicks().setBeginAtZero(true);
+		axis.setBeginAtZero(true);
 		axis.getGrideLines().setCircular(true);
 		chart.getOptions().setAxis(axis);
 

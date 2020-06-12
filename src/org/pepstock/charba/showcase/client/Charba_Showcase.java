@@ -138,9 +138,9 @@ public class Charba_Showcase implements EntryPoint {
 
 		JsWindowHelper.get().enableResizeOnBeforePrint();
 
-		//Defaults.get().getGlobal().setDefaultFontFamily("'Lato', sans-serif");
+		Defaults.get().getGlobal().getFont().setFamily("'Lato', sans-serif");
 
-		//Defaults.get().getGlobal().getTitle().setFontSize(16);
+		Defaults.get().getGlobal().getTitle().getFont().setSize(16);
 
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
 		

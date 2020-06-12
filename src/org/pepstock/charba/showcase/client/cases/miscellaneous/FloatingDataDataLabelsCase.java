@@ -17,9 +17,9 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
-import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Display;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.client.utils.Utilities;
@@ -78,7 +78,7 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 

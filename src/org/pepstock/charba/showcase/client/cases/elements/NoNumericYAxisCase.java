@@ -72,7 +72,9 @@ public class NoNumericYAxisCase extends BaseComposite {
 		axis2.setPosition(Position.LEFT);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Request State");
-		axis2.getTicks().setReverse(true);
+		
+		// FIXME
+		//axis2.setReverse(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

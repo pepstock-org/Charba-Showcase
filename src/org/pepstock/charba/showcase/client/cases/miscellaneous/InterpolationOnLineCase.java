@@ -88,8 +88,8 @@ public class InterpolationOnLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getTicks().setSuggestedMax(200);
-		axis2.getTicks().setSuggestedMin(-10);
+		axis2.setSuggestedMax(200);
+		axis2.setSuggestedMin(-10);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

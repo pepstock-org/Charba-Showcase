@@ -102,7 +102,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 				int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 				final int height = Math.min(heightAmongLabels - (padding * 2), MIN);
 				final int width = Math.min(60 * height / 40, axis.getScaleLabel().getPadding().getTop() - padding);
-				int x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFontSize();
+				int x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFont().getSize();
 				int y = scale.getTop();
 				for (String tick : ticks) {
 					Img image = null;

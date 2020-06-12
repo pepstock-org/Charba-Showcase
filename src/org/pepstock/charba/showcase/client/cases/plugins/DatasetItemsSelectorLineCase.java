@@ -98,7 +98,7 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 		pOptions.setBorderColor(HtmlColor.GREY);
 		pOptions.getClearSelection().setDisplay(true);
 		pOptions.getClearSelection().setLabel("Reset selection");
-		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFontSize());
+		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		pOptions.setColor(HtmlColor.LIGHT_GOLDEN_ROD_YELLOW.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 		pOptions.setFireEventOnClearSelection(true);
 

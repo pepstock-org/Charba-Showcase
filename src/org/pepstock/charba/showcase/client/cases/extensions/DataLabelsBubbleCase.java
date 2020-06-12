@@ -14,8 +14,8 @@ import org.pepstock.charba.client.datalabels.callbacks.AnchorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
-import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 

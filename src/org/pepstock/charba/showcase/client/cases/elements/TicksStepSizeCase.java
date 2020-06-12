@@ -73,8 +73,8 @@ public class TicksStepSizeCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getTicks().setMin(0);
-		axis2.getTicks().setMax(100);
+		axis2.setMin(0);
+		axis2.setMax(100);
 		axis2.getTicks().setStepSize(5);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);

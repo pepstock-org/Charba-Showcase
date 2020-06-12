@@ -87,10 +87,10 @@ public class TrendAndForecastCase extends BaseComposite {
 				if (event.getItem().getDatasetIndex() == 2) {
 					DatasetMetaItem metadata = chart.getDatasetMeta(event.getItem().getDatasetIndex());
 					if (metadata.isHidden()) {
-						axis.getTicks().setMax(new Date((long) now.getTime()));
+						axis.setMax(new Date((long) now.getTime()));
 						chart.reconfigure();
 					} else {
-						axis.getTicks().setMax((Date) null);
+						axis.setMax((Date) null);
 						chart.reconfigure();
 					}
 				}
@@ -180,7 +180,7 @@ public class TrendAndForecastCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 
 		chart.getOptions().getScales().setAxes(axis, axis2);
 		chart.getData().setDatasets(dataset, trend, forecast);

@@ -67,7 +67,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
 		axis1.setPosition(Position.LEFT);
 		axis1.setDisplay(true);
-		axis1.getTicks().setBeginAtZero(true);
+		axis1.setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Percentage");
 

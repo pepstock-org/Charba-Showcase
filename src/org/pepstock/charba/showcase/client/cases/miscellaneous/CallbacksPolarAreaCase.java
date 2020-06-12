@@ -45,8 +45,8 @@ public class CallbacksPolarAreaCase extends BaseComposite {
 		chart.getOptions().getTitle().setText("Callbacks on polar area chart dataset");
 
 		RadialAxis axis = new RadialAxis(chart);
-		axis.getTicks().setBeginAtZero(true);
-		axis.getTicks().setReverse(true);
+		axis.setBeginAtZero(true);
+		axis.setReverse(true);
 		chart.getOptions().setAxis(axis);
 
 		PolarAreaDataset dataset = chart.newDataset();

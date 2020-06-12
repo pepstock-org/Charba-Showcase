@@ -131,7 +131,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 		axis2.setStacked(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);

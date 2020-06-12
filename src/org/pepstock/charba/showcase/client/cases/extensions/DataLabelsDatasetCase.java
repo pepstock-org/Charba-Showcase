@@ -14,8 +14,8 @@ import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
-import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 

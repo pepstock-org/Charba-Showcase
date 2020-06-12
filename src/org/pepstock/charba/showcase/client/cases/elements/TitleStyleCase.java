@@ -3,7 +3,6 @@ package org.pepstock.charba.showcase.client.cases.elements;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
-import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -12,6 +11,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -47,12 +47,12 @@ public class TitleStyleCase extends BaseComposite {
 	public TitleStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		color.addItem("Default", Defaults.get().getGlobal().getTitle().getFontColorAsString());
+		color.addItem("Default", Defaults.get().getGlobal().getTitle().getFont().getColorAsString());
 		for (HtmlColor myColor : COLORS) {
 			color.addItem(myColor.name(), myColor.toRGB());
 		}
 
-		fontSize.addItem("Default", String.valueOf(Defaults.get().getGlobal().getTitle().getFontSize()));
+		fontSize.addItem("Default", String.valueOf(Defaults.get().getGlobal().getTitle().getFont().getSize()));
 		for (int myFontSize : FONT_SIZES) {
 			fontSize.addItem(String.valueOf(myFontSize), String.valueOf(myFontSize));
 		}
@@ -109,15 +109,19 @@ public class TitleStyleCase extends BaseComposite {
 	@UiHandler("color")
 	protected void handleColor(ChangeEvent event) {
 		String selected = color.getSelectedValue();
-		chart.getOptions().getTitle().setFontColor(selected);
-		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
+		chart.getOptions().getTitle().getFont().setColor(selected);
+		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
+		// FIXME
+//		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
+		chart.reconfigure();
 	}
 
 	@UiHandler("fontSize")
 	protected void handleFontSize(ChangeEvent event) {
 		String selected = fontSize.getSelectedValue();
-		chart.getOptions().getTitle().setFontSize(Integer.parseInt(selected));
-		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
+		chart.getOptions().getTitle().getFont().setSize(Integer.parseInt(selected));
+		//chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
+		chart.reconfigure();
 	}
 
 	@UiHandler("source")

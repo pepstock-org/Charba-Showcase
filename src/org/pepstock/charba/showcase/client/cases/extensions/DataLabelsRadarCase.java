@@ -11,9 +11,9 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.RadarDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.enums.Weight;
 import org.pepstock.charba.client.enums.DefaultPlugin;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.RadarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -76,7 +76,7 @@ public class DataLabelsRadarCase extends BaseComposite {
 		dataset2.setFill(Fill.START);
 
 		RadialAxis axis = new RadialAxis(chart);
-		axis.getTicks().setBeginAtZero(true);
+		axis.setBeginAtZero(true);
 		chart.getOptions().setAxis(axis);
 
 		chart.getData().setLabels(getLabels());

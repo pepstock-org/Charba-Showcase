@@ -22,7 +22,7 @@ import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
-import org.pepstock.charba.client.items.TimeTickItem;
+import org.pepstock.charba.client.items.ScaleTickItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -108,7 +108,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public String onCallback(Axis axis, Date value, String label, int index, List<TimeTickItem> values) {
+			public String onCallback(Axis axis, Date value, String label, int index, List<ScaleTickItem> values) {
 				boolean toPrintDate = index == 0 || index == (values.size() - 1);
 				if (reset.isEnabled()) {
 					if (toPrintDate) {
@@ -129,7 +129,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
-		axis2.getTicks().setBeginAtZero(true);
+		axis2.setBeginAtZero(true);
 
 		chart.getData().setDatasets(dataset);
 
@@ -153,8 +153,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 					List<TimeSeriesItem> items = dataset.getTimeSeriesData();
 					TimeSeriesItem from = items.get(event.getFrom());
 					TimeSeriesItem to = items.get(event.getTo());
-					axis.getTicks().setMin(from.getTime());
-					axis.getTicks().setMax(to.getTime());
+					axis.setMin(from.getTime());
+					axis.setMax(to.getTime());
 					axis.getTime().setUnit(TimeUnit.HOUR);
 					chart.getOptions().getPlugins().setEnabled(DatasetsItemsSelector.ID, false);
 					plugin.onDestroy(chart);
@@ -178,8 +178,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
-		axis.getTicks().setMin(null);
-		axis.getTicks().setMax(null);
+		axis.setMin(null);
+		axis.setMax(null);
 		axis.getTime().setUnit(TimeUnit.DAY);
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.reconfigure();

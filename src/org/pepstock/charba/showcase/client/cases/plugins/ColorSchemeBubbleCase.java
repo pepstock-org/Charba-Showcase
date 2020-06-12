@@ -77,7 +77,7 @@ public class ColorSchemeBubbleCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(true);
-		chart.getOptions().getLegend().getLabels().setFontSize(18);
+		chart.getOptions().getLegend().getLabels().getFont().setSize(18);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring buble chart");
 
