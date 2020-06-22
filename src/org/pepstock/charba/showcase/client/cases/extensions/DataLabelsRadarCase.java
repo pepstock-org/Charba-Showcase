@@ -77,7 +77,7 @@ public class DataLabelsRadarCase extends BaseComposite {
 
 		RadialAxis axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
-		chart.getOptions().setAxis(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);

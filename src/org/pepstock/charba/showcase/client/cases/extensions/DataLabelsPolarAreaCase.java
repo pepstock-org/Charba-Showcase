@@ -56,7 +56,7 @@ public class DataLabelsPolarAreaCase extends BaseComposite {
 		RadialAxis axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);
-		chart.getOptions().setAxis(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);

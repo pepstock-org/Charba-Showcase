@@ -42,7 +42,7 @@ public class RadarCase extends BaseComposite {
 		RadialAxis axis = new RadialAxis(chart);
 		axis.setDisplay(true);
 		//axis.getTicks().setBeginAtZero(true);
-		chart.getOptions().setAxis(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

@@ -77,7 +77,7 @@ public class TooltipPositionerCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Tooltip with a POSITIONER");
-		chart.getOptions().getTooltips().setEnabled(false);
+		chart.getOptions().getTooltips().setEnabled(true);
 		chart.getOptions().getTooltips().setPosition(newPosition);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {

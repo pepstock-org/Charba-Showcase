@@ -56,6 +56,8 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 	public ColorSchemeBarCase() {
 
+		// FIXME non funziona il cambio colore
+		
 		initWidget(uiBinder.createAndBindUi(this));
 
 		category.addItem("Brewer", "brewer");

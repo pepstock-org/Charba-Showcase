@@ -6,7 +6,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
-import org.pepstock.charba.client.enums.CartesianAxisType;
+import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
@@ -41,7 +41,7 @@ public class MultiAxisScatterCase extends BaseComposite {
 		chart.getOptions().getHover().setIntersect(true);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 
-		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, "x-axis-1", CartesianAxisType.X);
+		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, "x-axis-1", AxisKind.X);
 		xAxes.setPosition(Position.BOTTOM);
 		// FIXME
 		//xAxes.getGrideLines().setZeroLineColor("rgba(0,0,0,1)");

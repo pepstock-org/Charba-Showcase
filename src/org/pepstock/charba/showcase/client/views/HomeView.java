@@ -161,6 +161,8 @@ public class HomeView extends BaseComposite {
 
 		chart.getData().setLabels(LABELS);
 		chart.getData().setDatasets(datasetGwt, datasetJ2CL);
+		
+		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 
 		ChartPointerOptions options = new ChartPointerOptions();
 		options.setElements(PointerElement.DATASET);

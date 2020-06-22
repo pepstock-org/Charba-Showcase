@@ -8,6 +8,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -38,10 +39,10 @@ public class PolarAreaCase extends BaseComposite {
 
 		RadialAxis axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
-		axis.setReverse(true);
+		axis.setReverse(false);
 		axis.getGrideLines().setCircular(true);
 		axis.getTicks().getFont().setColor(HtmlColor.GRAY);
-		chart.getOptions().setAxis(axis);
+		chart.getOptions().getScales().setAxes(axis);
 
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
@@ -50,6 +51,8 @@ public class PolarAreaCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
+		
+		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 
 	}
 

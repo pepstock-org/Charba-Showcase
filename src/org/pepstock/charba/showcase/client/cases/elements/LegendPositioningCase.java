@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
@@ -72,8 +71,10 @@ public class LegendPositioningCase extends BaseComposite {
 				IsColor color = GoogleChartColor.values()[i];
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
-				chart.getOptions().getLegend().setPosition(cPos);
-				chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
+				//chart.getOptions().getLegend().setPosition(cPos);
+				//chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
+				chart.getNode().getOptions().getLegend().setPosition(cPos);
+				chart.update();
 				return;
 			}
 			i++;

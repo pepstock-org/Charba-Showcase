@@ -2,18 +2,14 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.callbacks.LineWidthCallback;
-import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -40,6 +36,8 @@ public class LineCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
+		chart.getOptions().getLegend().getTitle().setDisplay(true);
+		chart.getOptions().getLegend().getTitle().setText("This is the legend title");
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Line chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
@@ -84,19 +82,7 @@ public class LineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getGrideLines().setDisplay(true);
-		
-		//FIXME
-		axis2.getGrideLines().setLineWidthCallback(new LineWidthCallback() {
-			
-			@Override
-			public Integer invoke(Axis axis, ScaleScriptableContext context) {
-				Charba_Showcase.LOG.info("index "+context.getIndex());
-				Charba_Showcase.LOG.info("scale "+context.getScale().toJSON());
-				Charba_Showcase.LOG.info("tick "+context.getTick().toJSON());
-				return context.getIndex() % 3 + 1;
-			}
-		});
+
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
