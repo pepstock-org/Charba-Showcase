@@ -8,6 +8,7 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
+import org.pepstock.charba.client.configuration.Tooltips;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.dom.elements.CastHelper;
@@ -61,13 +62,13 @@ public class TooltipHTMLlineCase extends BaseComposite {
 
 			@Override
 			public void onCustom(IsChart chart, TooltipModel model) {
-				if (model.getOpacity() == 0) {
-					element.getStyle().setOpacity(0);
-					return;
-				}
 				if (element == null) {
 					element = Document.get().createDivElement();
 					chart.getChartElement().appendChild(CastHelper.toDiv(element));
+				}
+				if (model.getOpacity() == 0) {
+					element.getStyle().setOpacity(0);
+					return;
 				}
 				element.removeClassName("above");
 				element.removeClassName("below");
@@ -114,9 +115,11 @@ public class TooltipHTMLlineCase extends BaseComposite {
 				element.setInnerHTML(innerHTML.toString());
 				element.getStyle().setLeft(model.getCaretX(), Unit.PX);
 				element.getStyle().setTop(model.getCaretY(), Unit.PX);
-				element.getStyle().setFontSize(model.getBodyFontSize(), Unit.PX);
-				element.getStyle().setPaddingLeft(model.getXPadding(), Unit.PX);
-				element.getStyle().setPaddingTop(model.getYPadding(), Unit.PX);
+				
+				Tooltips tooltips = chart.getOptions().getTooltips();
+				element.getStyle().setFontSize(tooltips.getBodyFont().getSize(), Unit.PX);
+				element.getStyle().setPaddingLeft(tooltips.getXPadding(), Unit.PX);
+				element.getStyle().setPaddingTop(tooltips.getXPadding(), Unit.PX);
 
 				element.getStyle().setOpacity(1);
 				element.getStyle().setBackgroundColor("rgba(0, 0, 0, .7)");

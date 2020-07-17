@@ -212,7 +212,6 @@ public class ColorSchemeBarCase extends BaseComposite {
 			name.setSelectedIndex(0);
 		}
 		handleName(event);
-		chart.update();
 	}
 
 	@UiHandler("name")
@@ -230,7 +229,7 @@ public class ColorSchemeBarCase extends BaseComposite {
 			options.setBackgroundColorAlpha(0.5D);
 		} else if ("gwtmaterial".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GwtMaterialScheme.values(), name.getSelectedValue()));
-			options.setBackgroundColorAlpha(0.95D);
+			options.setBackgroundColorAlpha(0.5D);
 		} else if ("googlechart".equalsIgnoreCase(selected)) {
 			options.setScheme(Key.getKeyByValue(GoogleChartScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);

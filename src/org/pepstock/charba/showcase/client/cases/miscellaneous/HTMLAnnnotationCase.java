@@ -96,7 +96,7 @@ public class HTMLAnnnotationCase extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDraw(IsChart chart, double easing) {
+			public void onAfterDraw(IsChart chart) {
 				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				ChartNode node = chart.getNode();

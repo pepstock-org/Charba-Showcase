@@ -11,7 +11,6 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -110,7 +109,6 @@ public class TitleStyleCase extends BaseComposite {
 	protected void handleColor(ChangeEvent event) {
 		String selected = color.getSelectedValue();
 		chart.getOptions().getTitle().getFont().setColor(selected);
-		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 		// FIXME
 //		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
 		chart.reconfigure();

@@ -103,8 +103,7 @@ public class AxesClickEventCase extends BaseComposite {
 					CartesianLinearAxis linear = (CartesianLinearAxis) axis;
 					scaleLabel = linear.getScaleLabel().getLabelString();
 				}
-				mylog.addLogEvent("> CLICK: Scale label:" + scaleLabel);
-
+				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
 				StringBuilder sb = new StringBuilder();
 				sb.append("Axis: <b>").append(scaleLabel).append("</b><br>");
 				new Toast("Axis Selected!", sb.toString()).show();

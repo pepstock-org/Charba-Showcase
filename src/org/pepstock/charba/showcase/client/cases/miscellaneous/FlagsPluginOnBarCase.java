@@ -17,6 +17,7 @@ import org.pepstock.charba.client.events.ChartResizeEventHandler;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
+import org.pepstock.charba.client.items.ScaleTickItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -44,11 +45,11 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 	private static final String[] COUNTRIES = { "br", "de", "fr", "gb", "it", "us" };
 
-	private static final int MIN = 50;
+	private static final double MIN = 50D;
 
-	private static final int MAX = 100;
+	private static final double MAX = 100D;
 
-	private static final int PERCENT = 10;
+	private static final double PERCENT = 10D;
 
 	public FlagsPluginOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -80,7 +81,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 			@Override
 			public void onResize(final ChartResizeEvent event) {
-				int width = event.getSize().getWidth();
+				double width = event.getSize().getWidth();
 				calculateAndSetScaleLabelPadding(width);
 				chart.reconfigure();
 			}
@@ -94,34 +95,34 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDatasetsDraw(IsChart chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart) {
 				final int padding = 4;
 				Context2dItem ctx = chart.getCanvas().getContext2d();
 				ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
-				List<String> ticks = scale.getTicks();
-				int heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
-				final int height = Math.min(heightAmongLabels - (padding * 2), MIN);
-				final int width = Math.min(60 * height / 40, axis.getScaleLabel().getPadding().getTop() - padding);
-				int x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFont().getSize();
-				int y = scale.getTop();
-				for (String tick : ticks) {
+				List<ScaleTickItem> ticks = scale.getTicks();
+				double heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
+				final double height = Math.min(heightAmongLabels - (padding * 2), MIN);
+				final double width = Math.min(60 * height / 40, axis.getScaleLabel().getPadding().getTop() - padding);
+				double x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFont().getSize();
+				double y = scale.getTop();
+				for (ScaleTickItem tick : ticks) {
 					Img image = null;
-					if (tick.equalsIgnoreCase("br")) {
+					if (tick.getLabel().equalsIgnoreCase("br")) {
 						image = getImageElement(Images.INSTANCE.flagBR());
-					} else if (tick.equalsIgnoreCase("de")) {
+					} else if (tick.getLabel().equalsIgnoreCase("de")) {
 						image = getImageElement(Images.INSTANCE.flagDE());
-					} else if (tick.equalsIgnoreCase("fr")) {
+					} else if (tick.getLabel().equalsIgnoreCase("fr")) {
 						image = getImageElement(Images.INSTANCE.flagFR());
-					} else if (tick.equalsIgnoreCase("gb")) {
+					} else if (tick.getLabel().equalsIgnoreCase("gb")) {
 						image = getImageElement(Images.INSTANCE.flagGB());
-					} else if (tick.equalsIgnoreCase("it")) {
+					} else if (tick.getLabel().equalsIgnoreCase("it")) {
 						image = getImageElement(Images.INSTANCE.flagIT());
-					} else if (tick.equalsIgnoreCase("us")) {
+					} else if (tick.getLabel().equalsIgnoreCase("us")) {
 						image = getImageElement(Images.INSTANCE.flagUS());
 					}
 
 					if (image != null) {
-						int yToDraw = y + (heightAmongLabels - height) / 2;
+						double yToDraw = y + (heightAmongLabels - height) / 2;
 						ctx.drawImage(image, x, yToDraw, width, height);
 					}
 					y = y + heightAmongLabels;
@@ -150,9 +151,9 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 		chart.update();
 	}
 
-	private void calculateAndSetScaleLabelPadding(int width) {
-		int percent = width * PERCENT / 100;
-		int padding = Math.min(Math.max(MIN, percent), MAX);
+	private void calculateAndSetScaleLabelPadding(double width) {
+		double percent = width * PERCENT / 100D;
+		int padding = (int)Math.min(Math.max(MIN, percent), MAX);
 		axis.getScaleLabel().getPadding().setTop(padding);
 	}
 

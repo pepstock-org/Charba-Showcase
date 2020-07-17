@@ -59,7 +59,7 @@ public class TitleClickEventCase extends BaseComposite {
 						title.append(value).append(" ");
 					}
 				}
-				mylog.addLogEvent("> CLICK: title text:" + title.toString());
+				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
 				StringBuilder sb = new StringBuilder();
 				sb.append("Title: <b>").append(title.toString()).append("</b><br>");
 				new Toast("Title Selected!", sb.toString()).show();

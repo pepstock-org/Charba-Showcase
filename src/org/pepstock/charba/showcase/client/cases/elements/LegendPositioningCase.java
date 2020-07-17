@@ -71,10 +71,10 @@ public class LegendPositioningCase extends BaseComposite {
 				IsColor color = GoogleChartColor.values()[i];
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
-				//chart.getOptions().getLegend().setPosition(cPos);
+				chart.getOptions().getLegend().setPosition(cPos);
+				// FIXME
 				//chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
-				chart.getNode().getOptions().getLegend().setPosition(cPos);
-				chart.update();
+				chart.reconfigure();
 				return;
 			}
 			i++;

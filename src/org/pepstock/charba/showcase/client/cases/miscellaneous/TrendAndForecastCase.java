@@ -17,19 +17,18 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
-import org.pepstock.charba.client.configuration.CartesianTimeAxis;
+import org.pepstock.charba.client.configuration.CartesianTimeSeriesAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.events.LegendClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -72,7 +71,7 @@ public class TrendAndForecastCase extends BaseComposite {
 
 	final LineDataset forecast;
 
-	final CartesianTimeAxis axis;
+	final CartesianTimeSeriesAxis axis;
 
 	public TrendAndForecastCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -83,17 +82,16 @@ public class TrendAndForecastCase extends BaseComposite {
 
 			@Override
 			public void onClick(LegendClickEvent event) {
-				Defaults.get().invokeLegendOnClick(event);
 				if (event.getItem().getDatasetIndex() == 2) {
-					DatasetMetaItem metadata = chart.getDatasetMeta(event.getItem().getDatasetIndex());
-					if (metadata.isHidden()) {
+					if (chart.isDatasetVisible(2)) {
+						chart.getNode().getOptions().getScales().getAxis("my").setMax(new Date((long) now.getTime()));
 						axis.setMax(new Date((long) now.getTime()));
-						chart.reconfigure();
 					} else {
+						chart.getNode().getOptions().getScales().getAxis("my").setMax((Date) null);
 						axis.setMax((Date) null);
-						chart.reconfigure();
 					}
 				}
+				Defaults.get().invokeLegendOnClick(event);
 			}
 
 		}, LegendClickEvent.TYPE);
@@ -108,7 +106,7 @@ public class TrendAndForecastCase extends BaseComposite {
 			public List<String> onTitle(IsChart chart, List<TooltipItem> items) {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
-				DataPoint dp = ds.getDataPoints().get(item.getIndex());
+				DataPoint dp = ds.getDataPoints().get(item.getDataIndex());
 				return Arrays.asList(FORMAT.format(dp.getXAsDate()));
 			}
 
@@ -173,8 +171,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		trend.setDataPoints(trendDp);
 		forecast.setDataPoints(forecastDp);
 
-		axis = new CartesianTimeAxis(chart);
-		axis.setDistribution(ScaleDistribution.SERIES);
+		axis = new CartesianTimeSeriesAxis(chart, "my", AxisKind.X);
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 

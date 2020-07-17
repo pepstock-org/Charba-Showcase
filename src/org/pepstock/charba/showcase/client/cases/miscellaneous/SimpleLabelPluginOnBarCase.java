@@ -79,7 +79,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDatasetsDraw(IsChart chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart) {
 				final int fontSize = Defaults.get().getGlobal().getFont().getSize();
 				final int padding = 5;
 				final Context2dItem ctx = chart.getCanvas().getContext2d();

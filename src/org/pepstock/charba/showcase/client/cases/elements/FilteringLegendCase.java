@@ -54,7 +54,7 @@ public class FilteringLegendCase extends BaseComposite {
 
 			@Override
 			public boolean onFilter(IsChart chart, LegendItem item) {
-				if (filter.getValue() && item.isHidden()) {
+				if (filter.getValue() && item.isHidden(chart)) {
 					return false;
 				}
 				return true;

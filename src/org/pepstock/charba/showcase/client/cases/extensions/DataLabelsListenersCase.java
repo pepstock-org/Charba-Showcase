@@ -26,6 +26,7 @@ import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
+import org.pepstock.charba.client.items.DatasetReferenceItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
@@ -202,16 +203,16 @@ public class DataLabelsListenersCase extends BaseComposite {
 			DatasetItem item = meta.getDatasets().get(context.getIndex());
 			if (datasets != null && !datasets.isEmpty()) {
 				StringBuilder sb = new StringBuilder();
-				// FIXME
-//				sb.append("Dataset index: <b>").append(item.getDatasetIndex()).append("</b><br>");
-//				sb.append("Dataset label: <b>").append(datasets.get(item.getDatasetIndex()).getLabel()).append("</b><br>");
-//				sb.append("Dataset data: <b>").append(datasets.get(item.getDatasetIndex()).getData().get(item.getIndex())).append("</b><br>");
-//				sb.append("Index: <b>").append(item.getIndex()).append("</b><br>");
-//				sb.append("Value: <b>").append(labels.getStrings(item.getIndex()).get(0)).append("</b><br>");
+				sb.append("Dataset index: <b>").append(context.getDatasetIndex()).append("</b><br>");
+				sb.append("Dataset label: <b>").append(datasets.get(context.getDatasetIndex()).getLabel()).append("</b><br>");
+				sb.append("Dataset data: <b>").append(datasets.get(context.getDatasetIndex()).getData().get(context.getIndex())).append("</b><br>");
+				sb.append("Index: <b>").append(context.getIndex()).append("</b><br>");
+				sb.append("Value: <b>").append(labels.getStrings(context.getIndex()).get(0)).append("</b><br>");
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
 			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");
-			chart.fireEvent(new DatasetSelectionEvent(DOMBuilder.get().createChangeEvent(), item));
+			DatasetReferenceItem referenceItem = new DatasetReferenceItem(context, item);
+			chart.fireEvent(new DatasetSelectionEvent(DOMBuilder.get().createChangeEvent(), chart, referenceItem));
 			return true;
 		}
 	}

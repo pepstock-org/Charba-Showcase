@@ -123,7 +123,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDraw(IsChart chart, double easing) {
+			public void onAfterDraw(IsChart chart) {
 				Element element = toast.getElement();
 
 				final Context2dItem ctx = chart.getCanvas().getContext2d();

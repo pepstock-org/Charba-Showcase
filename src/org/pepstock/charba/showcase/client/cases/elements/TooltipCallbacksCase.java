@@ -53,7 +53,7 @@ public class TooltipCallbacksCase extends BaseComposite {
 				double sum = 0D;
 				for (TooltipItem item : items) {
 					Dataset dataset = chart.getData().getDatasets().get(item.getDatasetIndex());
-					sum += dataset.getData().get(item.getIndex());
+					sum += dataset.getData().get(item.getDataIndex());
 				}
 				return Arrays.asList("Sum: " + sum);
 			}

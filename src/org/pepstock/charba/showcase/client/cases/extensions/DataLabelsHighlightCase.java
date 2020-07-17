@@ -57,7 +57,7 @@ public class DataLabelsHighlightCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLayout().getPadding().setLeft(8);
 		chart.getOptions().getElements().getLine().setFill(false);
-
+		
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 

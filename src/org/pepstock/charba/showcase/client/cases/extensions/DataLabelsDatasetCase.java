@@ -54,6 +54,7 @@ public class DataLabelsDatasetCase extends BaseComposite {
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
 		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
 
+
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 

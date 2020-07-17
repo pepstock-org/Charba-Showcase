@@ -109,7 +109,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 			}
 
 			@Override
-			public void onAfterDatasetsDraw(IsChart chart, double easing) {
+			public void onAfterDatasetsDraw(IsChart chart) {
 				final int padding = 30;
 				final int datasetsCount = chart.getData().getDatasets().size();
 				Context2dItem ctx = chart.getCanvas().getContext2d();
@@ -117,10 +117,10 @@ public class StandingPluginOnLineCase extends BaseComposite {
 				ScaleItem scaleX = chart.getNode().getScales().getItems().get(DefaultScaleId.X.value());
 				ScaleItem scaleY = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
 
-				int heightAmongLabels = (scaleY.getBottom() - scaleY.getTop()) / (datasetsCount - 1);
+				double heightAmongLabels = (scaleY.getBottom() - scaleY.getTop()) / (datasetsCount - 1);
 
-				int x = scaleX.getRight() + padding;
-				int y = scaleY.getTop();
+				double x = scaleX.getRight() + padding;
+				double y = scaleY.getTop();
 
 				for (int i = 0; i < datasetsCount; i++) {
 					int index = i + 1;

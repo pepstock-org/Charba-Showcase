@@ -115,18 +115,15 @@ public class HomeView extends BaseComposite {
 		datasetJ2CL.setPointHitRadius(4);
 		datasetJ2CL.setFill(false);
 		datasetJ2CL.setData(VALUES_J2CL);
-
 		chart.addHandler(new DatasetSelectionEventHandler() {
 
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
 				IsChart chart = (IsChart) event.getSource();
 				Labels labels = chart.getData().getLabels();
-				// FIXME
-//				String version = labels.getString(event.getItem().getIndex());
+				String version = labels.getString(event.getItem().getIndex());
 				StringBuilder sb = new StringBuilder(LINK_GITHUB_VERSION);
-				// FIXME
-//				sb.append(version);
+				sb.append(version);
 				Window.open(sb.toString(), "_blank", "");
 			}
 
@@ -162,10 +159,8 @@ public class HomeView extends BaseComposite {
 		chart.getData().setLabels(LABELS);
 		chart.getData().setDatasets(datasetGwt, datasetJ2CL);
 		
-		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
-
 		ChartPointerOptions options = new ChartPointerOptions();
-		options.setElements(PointerElement.DATASET);
+		options.setElements(PointerElement.DATASET, PointerElement.LEGEND);
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, options);
 
 		chart.getPlugins().add(ChartPointer.get());

@@ -10,11 +10,10 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
-import org.pepstock.charba.client.configuration.CartesianTimeAxis;
+import org.pepstock.charba.client.configuration.CartesianTimeSeriesAxis;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.ScaleDistribution;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
@@ -62,7 +61,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 	TimeSeriesLineDataset dataset;
 
-	CartesianTimeAxis axis;
+	CartesianTimeSeriesAxis axis;
 
 	DatasetsItemsSelector plugin = DatasetsItemsSelector.get();
 
@@ -100,9 +99,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setTimeSeriesData(data);
 
 		axis = chart.getOptions().getScales().getTimeAxis();
-		axis.setDistribution(ScaleDistribution.SERIES);
 		axis.getTime().setUnit(TimeUnit.DAY);
-		axis.getTime().setStepSize(2);
+		axis.getTime().setStepSize(1);
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTicks().setCallback(new TimeTickCallback() {
 
@@ -155,6 +153,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 					TimeSeriesItem to = items.get(event.getTo());
 					axis.setMin(from.getTime());
 					axis.setMax(to.getTime());
+					chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMin(from.getTime());
+					chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMax(to.getTime());
 					axis.getTime().setUnit(TimeUnit.HOUR);
 					chart.getOptions().getPlugins().setEnabled(DatasetsItemsSelector.ID, false);
 					plugin.onDestroy(chart);
@@ -180,6 +180,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setBorderColor(color1.toHex());
 		axis.setMin(null);
 		axis.setMax(null);
+		chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMin((Date)null);
+		chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMax((Date)null);
 		axis.getTime().setUnit(TimeUnit.DAY);
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.reconfigure();
