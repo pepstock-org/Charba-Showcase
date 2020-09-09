@@ -1,7 +1,12 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
+import org.pepstock.charba.client.callbacks.ScaleBorderDashOffsetCallback;
+import org.pepstock.charba.client.callbacks.ScaleColorCallback;
+import org.pepstock.charba.client.callbacks.ScaleLineWidthCallback;
+import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -28,6 +33,8 @@ public class GridLinesStyleCase extends BaseComposite {
 	@UiField
 	LineChartWidget chart;
 
+	private static final String[] COLORS = new String[] {"pink", "red", "orange", "yellow", "green", "blue", "indigo", "purple"};
+	
 	public GridLinesStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -61,7 +68,32 @@ public class GridLinesStyleCase extends BaseComposite {
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Value");
 		axis2.getGrideLines().setDrawBorder(false);
-		axis2.getGrideLines().setColor("pink", "red", "orange", "yellow", "green", "blue", "indigo", "purple");
+				
+		axis2.getGrideLines().setColor(new ScaleColorCallback() {
+			
+			@Override
+			public Object invoke(Axis axis, ScaleScriptableContext context) {
+				int mod = context.getIndex() % COLORS.length;
+				return COLORS[mod];
+			}
+		});
+
+		axis2.getGrideLines().setLineWidth(new ScaleLineWidthCallback() {
+			
+			@Override
+			public Integer invoke(Axis axis, ScaleScriptableContext context) {
+				return context.getIndex() % 5;
+			}
+		});
+
+		axis2.getGrideLines().setBorderDashOffset(new ScaleBorderDashOffsetCallback() {
+			
+			@Override
+			public Integer invoke(Axis axis, ScaleScriptableContext context) {
+				return context.getIndex() % 10;
+			}
+		});
+		
 		axis2.setMin(0D);
 		axis2.setMax(100D);
 		axis2.getTicks().setStepSize(10D);

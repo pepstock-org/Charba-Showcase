@@ -14,6 +14,11 @@ public class MyLineChart extends LineChart {
 
 	@Override
 	public MyLineDataset newDataset() {
+		return newDataset(false);
+	}
+
+	@Override
+	public MyLineDataset newDataset(boolean hidden) {
 		return new MyLineDataset();
 	}
 

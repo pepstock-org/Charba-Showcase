@@ -56,8 +56,6 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 	public ColorSchemeBarCase() {
 
-		// FIXME non funziona il cambio colore
-		
 		initWidget(uiBinder.createAndBindUi(this));
 
 		category.addItem("Brewer", "brewer");
@@ -108,7 +106,7 @@ public class ColorSchemeBarCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
-			dataset.setData(getRandomDigits(months));
+			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
 
@@ -132,7 +130,7 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		dataset.setBorderWidth(border);
 
-		dataset.setData(getRandomDigits(months));
+		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);
 
@@ -146,7 +144,7 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 	@UiHandler("add_data")
 	protected void handleAddData(ClickEvent event) {
-		addData(chart);
+		addData(chart, false);
 	}
 
 	@UiHandler("remove_data")

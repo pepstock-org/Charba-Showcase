@@ -18,7 +18,7 @@ import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.TextAlign;
-import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -58,8 +58,8 @@ public class DataLabelsInteractionsCase extends BaseComposite {
 		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 		chart.getOptions().getHover().setIntersect(false);
 
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

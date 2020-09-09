@@ -1,14 +1,25 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.HtmlLegendTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.LegendTitle;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.safehtml.SafeHtml;
+import org.pepstock.charba.client.dom.safehtml.SafeHtmlBuilder;
+import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
+import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -35,6 +46,12 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getLegend().getTitle().setDisplay(true);
+		chart.getOptions().getLegend().getTitle().setText("Questa e una \n prova di title");
+		chart.getOptions().getLegend().getTitle().setPadding(10);
+		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
+
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend on bar chart");
 
@@ -62,6 +79,25 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
+		HtmlLegendOptions options = new HtmlLegendOptions();
+		options.setLegendTitleCallback(new HtmlLegendTitleCallback() {
+
+			Map<String, SafeHtml> values = new HashMap<>();
+
+			@Override
+			public SafeHtml generateText(IsChart chart, LegendTitle item, String currentText) {
+				if (!values.containsKey(currentText)) {
+					SafeHtmlBuilder builder = SafeHtmlBuilder.create();
+					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");
+					newText = newText.replaceAll("prova di title", "<font style='color: " + HtmlColor.RED.toRGBA() + "'>prova di title</font>");
+					builder.appendHtmlConstant(newText);
+					values.put(currentText, builder.toSafeHtml());
+				}
+				return values.get(currentText);
+			}
+		});
+
+		chart.getOptions().getPlugins().setOptions(options);
 		chart.getPlugins().add(HtmlLegend.get());
 
 	}

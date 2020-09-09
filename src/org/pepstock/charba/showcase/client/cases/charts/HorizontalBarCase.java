@@ -8,7 +8,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.HorizontalBarDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -30,8 +29,6 @@ public class HorizontalBarCase extends BaseComposite {
 	HorizontalBarChartWidget chart;
 
 	public HorizontalBarCase() {
-		
-		Charba_Showcase.LOG.info("Eccome");
 		
 		initWidget(uiBinder.createAndBindUi(this));
 

@@ -17,6 +17,7 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
+import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.enums.Display;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -51,9 +52,8 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setTop(32);
 		chart.getOptions().getElements().getLine().setFill(false);
 
-		// FIXME		
-//		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-//		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

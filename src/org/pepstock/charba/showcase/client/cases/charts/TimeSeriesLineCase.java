@@ -20,9 +20,12 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.events.AxisClickEvent;
+import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
+import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -69,6 +72,16 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 		});
 
+		chart.addHandler(new AxisClickEventHandler() {
+
+			@Override
+			public void onClick(AxisClickEvent event) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("Axis: value: <b>").append(event.getValue().getLabel()).append("</b><br>");
+				new Toast("Axis Selected!", sb.toString()).show();
+			}
+		}, AxisClickEvent.TYPE);
+		
 		final TimeSeriesLineDataset dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");

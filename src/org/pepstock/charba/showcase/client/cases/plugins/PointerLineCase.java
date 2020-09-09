@@ -7,7 +7,6 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -170,19 +169,9 @@ public class PointerLineCase extends BaseComposite {
 
 			@Override
 			public void onClick(AxisClickEvent event) {
-				Axis axis = event.getAxis();
-				String scaleLabel = null;
-				if (axis instanceof CartesianCategoryAxis) {
-					CartesianCategoryAxis category = (CartesianCategoryAxis) axis;
-					scaleLabel = category.getScaleLabel().getLabelString();
-				} else {
-					CartesianLinearAxis linear = (CartesianLinearAxis) axis;
-					scaleLabel = linear.getScaleLabel().getLabelString();
-				}
 				StringBuilder sb = new StringBuilder();
-				sb.append("Axis: <b>").append(scaleLabel).append("</b><br>");
+				sb.append("Axis: value: <b>").append(event.getValue().getLabel()).append("</b><br>");
 				new Toast("Axis Selected!", sb.toString()).show();
-
 			}
 		}, AxisClickEvent.TYPE);
 

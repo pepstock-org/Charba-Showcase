@@ -38,10 +38,9 @@ public class RadarCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Radar chart");
 
-		// FIXME AXIS
 		RadialAxis axis = new RadialAxis(chart);
 		axis.setDisplay(true);
-		//axis.getTicks().setBeginAtZero(true);
+		axis.setBeginAtZero(true);
 		chart.getOptions().getScales().setAxes(axis);
 
 		RadarDataset dataset1 = chart.newDataset();

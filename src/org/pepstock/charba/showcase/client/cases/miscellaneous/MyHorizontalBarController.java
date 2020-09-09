@@ -13,6 +13,7 @@ import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.items.ScaleTickItem;
+import org.pepstock.charba.client.options.IsAnimationModeKey;
 import org.pepstock.charba.client.options.Scale;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -77,10 +78,10 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 	@Override
-	public void update(ControllerContext context, IsChart chart, String reset) {
+	public void update(ControllerContext context, IsChart chart, IsAnimationModeKey mode) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.Y);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
-		super.update(context, chart, reset);
+		super.update(context, chart, mode);
 	}
 
 	private void calculateAndSetScaleLabelPadding(Scale axis, int width) {

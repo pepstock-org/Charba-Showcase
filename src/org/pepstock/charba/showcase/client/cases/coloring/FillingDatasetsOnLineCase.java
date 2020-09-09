@@ -9,7 +9,7 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.IsFill;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -61,7 +61,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		for (int i = 0; i < 9; i++) {
-			LineDataset dataset1 = chart.newDataset();
+			LineDataset dataset1 = chart.newDataset(HIDDENS[i]);
 			dataset1.setLabel("dataset " + i);
 
 			IsColor color1 = GoogleChartColor.values()[i];
@@ -72,7 +72,6 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 			if (fill != null) {
 				dataset1.setFill(fill);
 			}
-			dataset1.setHidden(HIDDENS[i]);
 			dataset1.setData(getRandomDigits(months, 5, 15));
 			datasets.add(dataset1);
 		}
@@ -89,7 +88,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 
 		options.setPropagate(false);
-		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
+		chart.getOptions().getPlugins().setOptions(DefaultPluginId.FILLER.value(), options);
 
 	}
 
@@ -111,7 +110,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 	@UiHandler("propagate")
 	protected void handlePropagate(ClickEvent event) {
 		options.setPropagate(propagate.getValue());
-		chart.getOptions().getPlugins().setOptions(DefaultPlugin.FILLER.value(), options);
+		chart.getOptions().getPlugins().setOptions(DefaultPluginId.FILLER.value(), options);
 		chart.reconfigure();
 	}
 
@@ -125,7 +124,7 @@ public class FillingDatasetsOnLineCase extends BaseComposite {
 		private Key propagate = Key.create("propagate");
 
 		FillerOptions() {
-			super(DefaultPlugin.FILLER.value());
+			super(DefaultPluginId.FILLER.value());
 		}
 
 		void setPropagate(boolean prop) {

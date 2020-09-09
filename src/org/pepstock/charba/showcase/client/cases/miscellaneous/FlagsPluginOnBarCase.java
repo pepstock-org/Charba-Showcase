@@ -6,18 +6,18 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
-import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.data.HorizontalBarDataset;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.ChartResizeEvent;
-import org.pepstock.charba.client.events.ChartResizeEventHandler;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.items.ScaleTickItem;
+import org.pepstock.charba.client.items.SizeItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -53,12 +53,13 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 	public FlagsPluginOnBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
+
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Flags plugin on bar chart");
 
-		BarDataset dataset1 = chart.newDataset();
+		HorizontalBarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("Countries");
 
 		IsColor color1 = GoogleChartColor.values()[0];
@@ -68,7 +69,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 		dataset1.setBorderWidth(1);
 		dataset1.setData(getRandomDigits(COUNTRIES.length, false));
 
-		axis = new CartesianCategoryAxis(chart);
+		axis = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis.setDisplay(true);
 		axis.getScaleLabel().setDisplay(true);
 
@@ -76,16 +77,6 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1);
 
 		chart.getOptions().getScales().setAxes(axis);
-
-		chart.addHandler(new ChartResizeEventHandler() {
-
-			@Override
-			public void onResize(final ChartResizeEvent event) {
-				double width = event.getSize().getWidth();
-				calculateAndSetScaleLabelPadding(width);
-				chart.reconfigure();
-			}
-		}, ChartResizeEvent.TYPE);
 
 		AbstractPlugin p = new AbstractPlugin() {
 
@@ -120,7 +111,6 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 					} else if (tick.getLabel().equalsIgnoreCase("us")) {
 						image = getImageElement(Images.INSTANCE.flagUS());
 					}
-
 					if (image != null) {
 						double yToDraw = y + (heightAmongLabels - height) / 2;
 						ctx.drawImage(image, x, yToDraw, width, height);
@@ -128,6 +118,13 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 					y = y + heightAmongLabels;
 				}
 			}
+
+			@Override
+			public void onResize(IsChart chart, SizeItem size) {
+				double width = size.getWidth();
+				calculateAndSetScaleLabelPadding(width);
+			}
+			
 		};
 		chart.getPlugins().add(p);
 
@@ -151,7 +148,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 		chart.update();
 	}
 
-	private void calculateAndSetScaleLabelPadding(double width) {
+	void calculateAndSetScaleLabelPadding(double width) {
 		double percent = width * PERCENT / 100D;
 		int padding = (int)Math.min(Math.max(MIN, percent), MAX);
 		axis.getScaleLabel().getPadding().setTop(padding);

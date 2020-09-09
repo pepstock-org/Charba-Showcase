@@ -122,7 +122,6 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 		} else {
 			option.setRender(Render.VALUE);
 		}
-
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		chart.update();
 	}

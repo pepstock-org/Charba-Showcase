@@ -17,7 +17,7 @@ import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.callbacks.AnchorCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
-import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -53,8 +53,8 @@ public class DataLabelsMirrorCase extends BaseComposite {
 		chart.getOptions().getElements().getPoint().setHoverRadius(7);
 		chart.getOptions().getElements().getPoint().setRadius(5);
 
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

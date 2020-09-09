@@ -13,4 +13,10 @@ public class MyHorizontalBarChart extends HorizontalBarChart{
 		return new MyHorizontalBarDataset();
 	}
 
+	
+	@Override
+	public MyHorizontalBarDataset newDataset(boolean hidden) {
+		return new MyHorizontalBarDataset();
+	}
+
 }

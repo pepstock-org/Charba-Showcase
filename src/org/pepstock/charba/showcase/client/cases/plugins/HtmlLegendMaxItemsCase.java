@@ -2,12 +2,14 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
+import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
@@ -48,6 +50,12 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
+		chart.getOptions().getLegend().getTitle().setDisplay(true);
+		chart.getOptions().getLegend().getTitle().setText("Questa e una prova di title");
+		chart.getOptions().getLegend().getTitle().setPadding(10);
+		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
+
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend setting max items on line chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);

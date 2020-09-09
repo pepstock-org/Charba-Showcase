@@ -15,7 +15,6 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -90,8 +89,6 @@ public class FloatingDataTimeSeriesByBarCase extends BaseComposite {
 		
 		chart.getData().setDatasets(dataset1, dataset2);
 		chart.getOptions().getScales().setAxes(axis);
-		
-		Charba_Showcase.LOG.info(chart.getData().toJSON());
 
 	}
 

@@ -19,7 +19,7 @@ import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
-import org.pepstock.charba.client.enums.DefaultPlugin;
+import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -54,8 +54,8 @@ public class DataLabelsIndicesCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setLeft(16);
 		chart.getOptions().getElements().getLine().setFill(false);
 
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.LEGEND, false);
-		chart.getOptions().getPlugins().setEnabled(DefaultPlugin.TITLE, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
+		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

@@ -148,13 +148,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 					reset.setEnabled(true);
 					dataset.setBackgroundColor(HtmlColor.DARK_MAGENTA);
 					dataset.setBorderColor(HtmlColor.DARK_MAGENTA);
-					List<TimeSeriesItem> items = dataset.getTimeSeriesData();
-					TimeSeriesItem from = items.get(event.getFrom());
-					TimeSeriesItem to = items.get(event.getTo());
-					axis.setMin(from.getTime());
-					axis.setMax(to.getTime());
-					chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMin(from.getTime());
-					chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMax(to.getTime());
+					axis.setMin(event.getFrom().getValueAsDate());
+					axis.setMax(event.getTo().getValueAsDate());
 					axis.getTime().setUnit(TimeUnit.HOUR);
 					chart.getOptions().getPlugins().setEnabled(DatasetsItemsSelector.ID, false);
 					plugin.onDestroy(chart);
@@ -180,8 +175,6 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setBorderColor(color1.toHex());
 		axis.setMin(null);
 		axis.setMax(null);
-		chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMin((Date)null);
-		chart.getNode().getOptions().getScales().getAxis(axis.getId()).setMax((Date)null);
 		axis.getTime().setUnit(TimeUnit.DAY);
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.reconfigure();

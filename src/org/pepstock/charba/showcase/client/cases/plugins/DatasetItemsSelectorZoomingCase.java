@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
@@ -154,17 +155,21 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
-				if (event.getFrom() != DatasetRangeSelectionEvent.CLEAR_SELECTION) {
-					int tot = event.getTo() - event.getFrom() + 1;
-					DataPoint[] dp1 = new DataPoint[tot];
-					for (int i = 0; i < tot; i++) {
-						dp1[i] = dataset2.getDataPoints().get(i + event.getFrom());
-
+				if (!event.isClearSelection()) {
+					List<DataPoint> newDataPoints = new LinkedList<>();
+					for (DataPoint dp : dataset2.getDataPoints()) {
+						newDataPoints.add(dp);
 					}
-					dataset1.setDataPoints(dp1);
+					dataset1.setDataPoints(newDataPoints);
+					chart.getData().setDatasets(dataset1);
+					axis.setMin(event.getFrom().getValueAsDate());
+					axis.setMax(event.getTo().getValueAsDate());
+					chart.reconfigure();
+				} else {
+					dataset1.setDataPoints(new LinkedList<>());
 					chart.getData().setDatasets(dataset1);
 					chart.update();
 				}

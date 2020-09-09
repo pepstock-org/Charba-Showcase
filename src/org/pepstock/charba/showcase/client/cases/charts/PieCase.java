@@ -39,7 +39,7 @@ public class PieCase extends BaseComposite {
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 1));
 		dataset.setData(getRandomDigits(months, false));
-
+		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 

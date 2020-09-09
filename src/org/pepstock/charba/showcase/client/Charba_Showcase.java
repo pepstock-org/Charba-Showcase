@@ -11,11 +11,13 @@ import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerType;
+import org.pepstock.charba.client.controllers.StyleElement;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.enums.DefaultDateAdapter;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.items.DatasetMetaItem;
+import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.AbstractDeferredResources;
 import org.pepstock.charba.client.resources.AbstractEmbeddedResources;
 import org.pepstock.charba.client.resources.DatefnsDeferredResources;
@@ -27,6 +29,7 @@ import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.client.resources.LuxonDeferredResources;
 import org.pepstock.charba.client.resources.LuxonEmbeddedResources;
 import org.pepstock.charba.client.resources.ResourcesType;
+import org.pepstock.charba.client.utils.NativeNumberFormat;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -88,6 +91,8 @@ public class Charba_Showcase implements EntryPoint {
 			isDeferred = false;
 			embeddedLoading(adapter);
 		}
+		
+		org.pepstock.charba.client.utils.Window.getConsole().log(new NativeNumberFormat());
 	}
 
 	private void embeddedLoading(DefaultDateAdapter adapter) {
@@ -147,11 +152,12 @@ public class Charba_Showcase implements EntryPoint {
 
 	private void start() {
 
-		//JsWindowHelper.get().enableResizeOnBeforePrint();
+		org.pepstock.charba.client.utils.Window.enableResizeOnBeforePrint();
 
 		Defaults.get().getGlobal().getFont().setFamily("'Lato', sans-serif");
 
 		Defaults.get().getGlobal().getTitle().getFont().setSize(16);
+		Defaults.get().getGlobal().getElements().getLine().setTension(0.4D);
 		
 		Defaults.get().getPlugins().register(new ChartBackgroundColor());
 		
@@ -165,6 +171,12 @@ public class Charba_Showcase implements EntryPoint {
 			@Override
 			public ControllerType getType() {
 				return MyLineChart.TYPE;
+			}
+
+			@Override
+			public void setHoverStyle(ControllerContext context, IsChart chart, StyleElement element, int datasetIndex, int index) {
+				org.pepstock.charba.client.utils.Window.getConsole().log(element);
+				super.setHoverStyle(context, chart, element, datasetIndex, index);
 			}
 
 			@Override
@@ -186,7 +198,7 @@ public class Charba_Showcase implements EntryPoint {
 
 		Defaults.get().getControllers().register(new MyHorizontalBarController());
 
-//		LabelsPlugin.enable();
+		LabelsPlugin.enable();
 //
 //		DataLabelsPlugin.enable();
 //

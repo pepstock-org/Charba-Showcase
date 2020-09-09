@@ -108,6 +108,10 @@ public class GaugeCase extends BaseComposite {
 		for (GaugeDataset dataset : datasets) {
 			dataset.setValue(Math.random() * dataset.getMax());
 		}
+		
+		boolean animatedDisplay = chartPercent.getOptions().isAnimatedDisplay();
+		chartPercent.getOptions().setAnimatedDisplay(!animatedDisplay);
+		
 		chartPercent.update();
 		chartValue.update();
 		chartValueColor.update();

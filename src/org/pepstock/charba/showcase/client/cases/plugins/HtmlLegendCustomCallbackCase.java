@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.HtmlLegendTextCallback;
+import org.pepstock.charba.client.callbacks.HtmlLegendItemCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
@@ -16,7 +16,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
-import org.pepstock.charba.client.items.LegendItem;
+import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -70,12 +70,12 @@ public class HtmlLegendCustomCallbackCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1, dataset2);
 
 		HtmlLegendOptions options = new HtmlLegendOptions();
-		options.setLegendTextCallback(new HtmlLegendTextCallback() {
+		options.setLegendItemCallback(new HtmlLegendItemCallback() {
 
 			Map<String, SafeHtml> values = new HashMap<>();
 
 			@Override
-			public SafeHtml generateLegendText(IsChart chart, LegendItem item, String currentText) {
+			public SafeHtml generateText(IsChart chart, LegendLabelItem item, String currentText) {
 				if (!values.containsKey(currentText)) {
 					SafeHtmlBuilder builder = SafeHtmlBuilder.create();
 					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");

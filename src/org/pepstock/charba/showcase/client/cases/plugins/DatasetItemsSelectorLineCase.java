@@ -110,8 +110,8 @@ public class DatasetItemsSelectorLineCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);

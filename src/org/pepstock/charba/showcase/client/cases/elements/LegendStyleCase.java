@@ -1,9 +1,11 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
+import org.pepstock.charba.client.UpdateConfiguration;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Easing;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
@@ -70,7 +72,7 @@ public class LegendStyleCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		dataset.setData(getRandomDigits(months));
-		chart.update();
+		chart.update(UpdateConfigurationBuilder.create().setEasing(Easing.EASE_IN_EXPO).build());
 	}
 
 	@UiHandler("pointStyle")
@@ -95,7 +97,9 @@ public class LegendStyleCase extends BaseComposite {
 	@UiHandler("usePointStyle")
 	protected void handleUsePointStyle(ClickEvent event) {
 		chart.getOptions().getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
-		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
+		UpdateConfiguration update = new UpdateConfiguration();
+		update.setDuration(1000);
+		chart.reconfigure(update);
 	}
 
 	@UiHandler("source")

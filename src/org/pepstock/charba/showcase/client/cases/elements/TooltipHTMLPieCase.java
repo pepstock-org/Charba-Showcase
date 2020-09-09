@@ -13,7 +13,6 @@ import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.items.TooltipBodyItem;
 import org.pepstock.charba.client.items.TooltipLabelColor;
 import org.pepstock.charba.client.items.TooltipModel;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -55,12 +54,10 @@ public class TooltipHTMLPieCase extends BaseComposite {
 			@Override
 			public void onCustom(IsChart chart, TooltipModel model) {
 				if (element == null) {
-					Charba_Showcase.LOG.info("created");
 					element = Document.get().createDivElement();
 					chart.getChartElement().appendChild(CastHelper.toDiv(element));
 				}
 				if (model.getOpacity() == 0) {
-					Charba_Showcase.LOG.info("opacity=0");
 					element.getStyle().setOpacity(0);
 					return;
 				}
@@ -108,28 +105,22 @@ public class TooltipHTMLPieCase extends BaseComposite {
 				}
 				innerHTML.append("</table>");
 				element.setInnerHTML(innerHTML.toString());
-				Charba_Showcase.LOG.info(innerHTML.toString());
 				element.getStyle().setLeft(model.getCaretX(), Unit.PX);
 				element.getStyle().setTop(model.getCaretY(), Unit.PX);
-				Charba_Showcase.LOG.info(model.getCaretX()+"");
-				Charba_Showcase.LOG.info(model.getCaretY()+"");
-
 				
 				Tooltips tooltips = chart.getOptions().getTooltips();
 				element.getStyle().setPaddingLeft(tooltips.getXPadding(), Unit.PX);
 				element.getStyle().setPaddingTop(tooltips.getXPadding(), Unit.PX);
-
-
 				element.getStyle().setOpacity(1);
 				element.getStyle().setBackgroundColor("rgba(0, 0, 0, .7)");
 				element.getStyle().setPosition(com.google.gwt.dom.client.Style.Position.ABSOLUTE);
 				element.getStyle().setColor("white");
 				element.getStyle().setProperty("borderRadius", "3px");
-//				element.getStyle().setProperty("WebkitTransition", "all .1s ease");
-//				element.getStyle().setProperty("transition", "all .1s ease");
-//				element.getStyle().setProperty("pointerEvents", "none");
-//				element.getStyle().setProperty("WebkitTransform", "translate(-50%, 0)");
-//				element.getStyle().setProperty("transform", "translate(-50%, 0)");
+				element.getStyle().setProperty("WebkitTransition", "all .1s ease");
+				element.getStyle().setProperty("transition", "all .1s ease");
+				element.getStyle().setProperty("pointerEvents", "none");
+				element.getStyle().setProperty("WebkitTransform", "translate(-50%, 0)");
+				element.getStyle().setProperty("transform", "translate(-50%, 0)");
 			}
 		});
 

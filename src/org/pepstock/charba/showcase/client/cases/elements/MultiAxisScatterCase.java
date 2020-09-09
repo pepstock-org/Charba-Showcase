@@ -43,8 +43,6 @@ public class MultiAxisScatterCase extends BaseComposite {
 
 		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, "x-axis-1", AxisKind.X);
 		xAxes.setPosition(Position.BOTTOM);
-		// FIXME
-		//xAxes.getGrideLines().setZeroLineColor("rgba(0,0,0,1)");
 
 		CartesianLinearAxis yAxes1 = new CartesianLinearAxis(chart, "y-axis-1");
 		yAxes1.setDisplay(true);

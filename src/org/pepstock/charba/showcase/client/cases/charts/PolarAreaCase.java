@@ -2,7 +2,14 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
+import org.pepstock.charba.client.callbacks.ScaleColorCallback;
+import org.pepstock.charba.client.callbacks.ScaleFontCallback;
+import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
+import org.pepstock.charba.client.callbacks.ScaleShowLabelBackdropCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.Axis;
+import org.pepstock.charba.client.configuration.FontOptions;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
@@ -40,7 +47,63 @@ public class PolarAreaCase extends BaseComposite {
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);
 		axis.getGrideLines().setCircular(true);
-		axis.getTicks().getFont().setColor(HtmlColor.GRAY);
+		axis.getAngleLines().setDisplay(true);
+		axis.getAngleLines().setColor(new ScaleColorCallback() {
+			
+			@Override
+			public IsColor invoke(Axis axis, ScaleScriptableContext context) {
+				return HtmlColor.RED;
+			}
+		});
+		
+		axis.getPointLabels().setDisplay(true);
+//		axis.getPointLabels().setCallback(new RadialPointLabelCallback() {
+//			
+//			@Override
+//			public String onCallback(Axis axis, String item) {
+//				return item;
+//			}
+//		});
+		
+		axis.getPointLabels().setFont(new ScaleFontCallback() {
+			
+			@Override
+			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
+				FontOptions fo = new FontOptions();
+				fo.setColor(context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK);
+				fo.setSize(16);
+				return fo;
+			}
+		});
+		
+		//axis.getTicks().getFont().setColor(HtmlColor.GRAY);
+		axis.getTicks().setFont(new ScaleFontCallback() {
+			
+			@Override
+			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
+				FontOptions fo = new FontOptions();
+				fo.setColor(context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK);
+				fo.setSize(24);
+				return fo;
+			}
+		});
+		
+		axis.getTicks().setBackdropColor(new ScaleColorCallback() {
+			
+			@Override
+			public Object invoke(Axis axis, ScaleScriptableContext context) {
+				return context.getIndex() % 2  == 0 ? HtmlColor.ORANGE : HtmlColor.GRAY;
+			}
+		});
+
+		axis.getTicks().setShowLabelBackdrop(new ScaleShowLabelBackdropCallback() {
+			
+			@Override
+			public Boolean invoke(Axis axis, ScaleScriptableContext context) {
+				return context.getIndex() % 2  == 0 ? false : false;
+			}
+		});
+
 		chart.getOptions().getScales().setAxes(axis);
 
 		PolarAreaDataset dataset = chart.newDataset();

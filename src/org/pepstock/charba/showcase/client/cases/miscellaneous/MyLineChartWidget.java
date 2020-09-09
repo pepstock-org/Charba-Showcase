@@ -7,10 +7,15 @@ public class MyLineChartWidget extends LineChartWidget {
 	public MyLineChartWidget() {
 		super(new MyLineChart());
 	}
-	
+
 	@Override
 	public MyLineDataset newDataset() {
-		return (MyLineDataset)getChart().newDataset();
+		return newDataset(false);
+	}
+
+	@Override
+	public MyLineDataset newDataset(boolean hidden) {
+		return (MyLineDataset) getChart().newDataset();
 	}
 
 }

@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.UpdateConfigurationBuilder;
+import org.pepstock.charba.client.UpdateConfiguration;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -124,6 +124,10 @@ public class GridLinesDisplayCase extends BaseComposite {
 		axis2.getGrideLines().setDrawBorder(drawBorder.getValue());
 		axis2.getGrideLines().setDrawOnChartArea(drawOnChartArea.getValue());
 		axis2.getGrideLines().setDrawTicks(drawTicks.getValue());
-		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
+		
+		UpdateConfiguration update = new UpdateConfiguration();
+		update.setDuration(1000);
+		chart.update(update);
+		chart.reconfigure(update);
 	}
 }

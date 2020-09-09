@@ -52,6 +52,8 @@ public class TrendAndForecastCase extends BaseComposite {
 	private static final int AMOUNT_OF_POINTS = 60;
 
 	private static final int PREVIOUS_PERIOD = 30;
+	
+	private static final String MY_SCALE_ID = "my";
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -84,10 +86,10 @@ public class TrendAndForecastCase extends BaseComposite {
 			public void onClick(LegendClickEvent event) {
 				if (event.getItem().getDatasetIndex() == 2) {
 					if (chart.isDatasetVisible(2)) {
-						chart.getNode().getOptions().getScales().getAxis("my").setMax(new Date((long) now.getTime()));
+						chart.getNode().getOptions().getScales().getAxis(MY_SCALE_ID).setMax(new Date((long) now.getTime()));
 						axis.setMax(new Date((long) now.getTime()));
 					} else {
-						chart.getNode().getOptions().getScales().getAxis("my").setMax((Date) null);
+						chart.getNode().getOptions().getScales().getAxis(MY_SCALE_ID).setMax((Date) null);
 						axis.setMax((Date) null);
 					}
 				}
@@ -171,7 +173,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		trend.setDataPoints(trendDp);
 		forecast.setDataPoints(forecastDp);
 
-		axis = new CartesianTimeSeriesAxis(chart, "my", AxisKind.X);
+		axis = new CartesianTimeSeriesAxis(chart, MY_SCALE_ID, AxisKind.X);
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 

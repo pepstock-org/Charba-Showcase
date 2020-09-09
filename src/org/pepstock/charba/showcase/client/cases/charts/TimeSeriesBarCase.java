@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,6 +67,10 @@ public class TimeSeriesBarCase extends BaseComposite {
 		List<TimeSeriesItem> data2 = new LinkedList<>();
 
 		DateAdapter adapter = new DateAdapter();
+
+		// FIXME
+		org.pepstock.charba.client.utils.Window.getConsole().log("start 1", adapter.startOf(new Date(), 0));
+		org.pepstock.charba.client.utils.Window.getConsole().log("start 2", adapter.startOf(new Date(), TimeUnit.DAY));
 
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			data1.add(new TimeSeriesItem(adapter.add(startingPoint, i, TimeUnit.DAY), 100 * Math.random()));

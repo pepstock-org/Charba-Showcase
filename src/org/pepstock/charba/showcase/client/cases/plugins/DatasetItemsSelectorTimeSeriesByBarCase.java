@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import java.util.Date;
 
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianTimeSeriesAxis;
 import org.pepstock.charba.client.data.BarDataset;
@@ -40,15 +41,15 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 	@UiField
 	BarChartWidget chart;
 
-	private long starting = System.currentTimeMillis();
-
 	public DatasetItemsSelectorTimeSeriesByBarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries by bar chart");
-		long time = starting;
+		
+		DateAdapter adapter = new DateAdapter();
+		long time = adapter.startOf(new Date(), TimeUnit.DAY).getTime();
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -78,7 +79,7 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		dataset2.setLabel("dataset 2");
 
 		DataPoint[] rainPoints2 = new DataPoint[AMOUNT_OF_POINTS];
-		time = starting;
+		time = adapter.startOf(new Date(), TimeUnit.DAY).getTime();;
 		idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();
@@ -122,8 +123,8 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);

@@ -71,7 +71,7 @@ public class FillingBoundariesCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		dataset.setData(getRandomDigits(months));
-		chart.update();
+		chart.update(UpdateConfigurationBuilder.create().setDuration(5000).build());
 	}
 
 	@UiHandler("smooth")
@@ -91,7 +91,7 @@ public class FillingBoundariesCase extends BaseComposite {
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
 				dataset.setFill(cFill);
-				chart.update(UpdateConfigurationBuilder.create().setDuration(1000).build());
+				chart.update();
 				return;
 			}
 			i++;

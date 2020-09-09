@@ -51,7 +51,7 @@ public class DatasetItemsSelectorBarCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setBorderWidth(1);
-		
+
 		dataset1.setData(getRandomDigits(months));
 
 		BarDataset dataset2 = chart.newDataset();
@@ -85,8 +85,8 @@ public class DatasetItemsSelectorBarCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.getFrom()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.getTo()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);

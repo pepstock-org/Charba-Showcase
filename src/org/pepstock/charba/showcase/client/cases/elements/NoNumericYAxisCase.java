@@ -69,12 +69,10 @@ public class NoNumericYAxisCase extends BaseComposite {
 
 		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis2.setDisplay(true);
+		axis2.setReverse(true);
 		axis2.setPosition(Position.LEFT);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Request State");
-		
-		// FIXME
-		//axis2.setReverse(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
