@@ -113,18 +113,17 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		pOptions.getClearSelection().setLabel("Reset selection");
 		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
-		pOptions.setFireEventOnClearSelection(true);
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(DatasetsItemsSelector.get());
-
+		
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);

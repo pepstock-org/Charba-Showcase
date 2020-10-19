@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.LegendFilterCallback;
+import org.pepstock.charba.client.callbacks.LegendItemSortCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -58,6 +59,14 @@ public class FilteringLegendCase extends BaseComposite {
 					return false;
 				}
 				return true;
+			}
+		});
+		
+		chart.getOptions().getLegend().getLabels().setItemSortCallback(new LegendItemSortCallback() {
+			
+			@Override
+			public int onItemSort(IsChart chart, LegendItem item1, LegendItem item2) {
+				return item2.getDatasetIndex() - item1.getDatasetIndex();
 			}
 		});
 

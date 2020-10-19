@@ -9,6 +9,8 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.events.DatasetRangeClearSelectionEvent;
+import org.pepstock.charba.client.events.DatasetRangeClearSelectionEventHandler;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -75,18 +77,27 @@ public class DatasetItemsSelectorBarCase extends BaseComposite {
 		pOptions.getClearSelection().setLabel("Reset selection");
 		pOptions.getClearSelection().setFontSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
-		pOptions.setFireEventOnClearSelection(true);
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(DatasetsItemsSelector.get());
 
+		chart.addHandler(new DatasetRangeClearSelectionEventHandler() {
+
+			@Override
+			public void onClear(DatasetRangeClearSelectionEvent event) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("<b>Clear selection event</b>");
+				new Toast("Dataset Range Clear Selection!", sb.toString()).show();
+			}
+		}, DatasetRangeClearSelectionEvent.TYPE);
+		
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);

@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
@@ -48,9 +49,9 @@ public class PatternPolarCase extends BaseComposite {
 		PolarAreaDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
-		Pattern pattern1 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
-		Pattern pattern2 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
+		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.pattern())).build(); 
+		Pattern pattern1 = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.background())).build(); ;
+		Pattern pattern2 = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.patternHover())).build(); 
 
 		dataset1.setBackgroundColor(pattern, pattern1, pattern2);
 

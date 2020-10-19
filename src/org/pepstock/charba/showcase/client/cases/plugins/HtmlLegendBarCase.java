@@ -7,6 +7,7 @@ import java.util.Map;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.HtmlLegendTitleCallback;
+import org.pepstock.charba.client.callbacks.LegendItemSortCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -20,6 +21,8 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
+import org.pepstock.charba.client.items.LegendItem;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -51,6 +54,15 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getOptions().getLegend().getTitle().setPadding(10);
 		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
+		
+		chart.getOptions().getLegend().getLabels().setItemSortCallback(new LegendItemSortCallback() {
+			
+			@Override
+			public int onItemSort(IsChart chart, LegendItem item1, LegendItem item2) {
+				Charba_Showcase.LOG.info("eccome");
+				return item2.getDatasetIndex() - item1.getDatasetIndex();
+			}
+		});
 
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend on bar chart");

@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientBuilder;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
@@ -46,12 +47,8 @@ public class LinearGradientBarCase extends BaseComposite {
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
-		Gradient gradient1 = new Gradient(GradientType.LINEAR, GradientOrientation.BOTTOM_UP, GradientScope.CHART);
-
-		gradient1.addColorStop(0, "#3a1c71");
-		gradient1.addColorStop(0.5, "#d76d77");
-		gradient1.addColorStop(1, "#ffaf7b");
+		
+		Gradient gradient1 = GradientBuilder.create(GradientType.LINEAR, GradientOrientation.BOTTOM_UP, GradientScope.CHART).addColorStop(0, "#3a1c71").addColorStop(0.5, "#d76d77").addColorStop(1, "#ffaf7b").build();
 
 		dataset1.setBackgroundColor(gradient1);
 		dataset1.setBorderColor(gradient1);

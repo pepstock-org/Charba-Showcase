@@ -9,7 +9,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.BorderSkipped;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -70,11 +69,7 @@ public class BarCase extends BaseComposite {
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
-			
-			BarDataset bDataset = (BarDataset)dataset;
-			Charba_Showcase.LOG.info(bDataset.getBorderSkipped().toString());
 		}
-		
 		chart.update();
 	}
 
@@ -94,13 +89,6 @@ public class BarCase extends BaseComposite {
 		datasets.add(dataset);
 
 		chart.update();
-// FIXME
-//		ScaleItem item = chart.getNode().getScales().getItems().get(DefaultScaleId.X.value());
-//
-//		double val = item.getValueForPixel(item.getWidth() / 2);
-//		Charba_Showcase.LOG.info("value " + val);
-//		Charba_Showcase.LOG.info("label " + item.getLabelForValue(val));
-
 	}
 
 	@UiHandler("remove_dataset")

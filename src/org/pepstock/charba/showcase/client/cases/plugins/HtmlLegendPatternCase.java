@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -29,7 +30,7 @@ public class HtmlLegendPatternCase extends BaseComposite {
 	@UiField
 	BarChartWidget chart;
 
-	Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
+	Pattern pattern =  PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.patternHover())).build();
 
 	public HtmlLegendPatternCase() {
 		initWidget(uiBinder.createAndBindUi(this));

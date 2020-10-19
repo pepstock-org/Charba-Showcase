@@ -6,12 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
-import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
-import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -57,6 +56,14 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 
 	@UiField
 	TimeSeriesLineChartWidget chart;
+	
+	final TimeSeriesLineDataset dataset1;
+	
+	final TimeSeriesLineDataset dataset2;
+	
+	final CartesianLinearAxis axis2;
+	
+	final LineAnnotation line1;
 
 	public AnnotationObliqueLineOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -77,7 +84,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 
 		});
 
-		final TimeSeriesLineDataset dataset1 = chart.newDataset();
+		dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.FALSE);
@@ -87,7 +94,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
-		final TimeSeriesLineDataset dataset2 = chart.newDataset();
+		dataset2 = chart.newDataset();
 
 		dataset2.setLabel("dataset 2");
 		dataset2.setFill(Fill.FALSE);
@@ -120,34 +127,37 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 
-		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
+		axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
 		axis2.setStacked(true);
-
+		axis2.setMax(((int)Math.floor(max/10)+1.5)*10D);
+		
 		chart.getData().setDatasets(dataset1, dataset2);
 
 		AnnotationOptions options = new AnnotationOptions();
 
-		LineAnnotation line1 = new LineAnnotation();
+		line1 = new LineAnnotation();
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
-		line1.setMode(LineMode.HORIZONTAL);
 		line1.setScaleID(DefaultScaleId.Y.value());
 		line1.setBorderColor(HtmlColor.VIOLET);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);
 		line1.setValue(40);
 		line1.setEndValue(max);
+		
 		line1.getLabel().setEnabled(true);
-		line1.getLabel().setContent("My trendline");
+		line1.getLabel().setContent("Line from 40 to max");
+		line1.getLabel().setYAdjust(-10);
 		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
 		line1.getLabel().setBackgroundColor(HtmlColor.VIOLET);
 		line1.getLabel().setFontColor(HtmlColor.BLACK);
-		line1.getLabel().setRotation(-18D);
 
 		options.setAnnotations(line1);
 
-		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		
+		chart.getPlugins().add(Annotation.get());
 	}
 
 	@UiHandler("randomize")
@@ -158,7 +168,15 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 				dp.setValue(getRandomDigit(false));
 			}
 		}
-		chart.update();
+		double max = 0D;
+		for (int i=0; i<AMOUNT_OF_POINTS; i++) {
+			TimeSeriesItem dp1 = dataset1.getTimeSeriesData().get(i);
+			TimeSeriesItem dp2 = dataset2.getTimeSeriesData().get(i);
+			max = Math.max(dp1.getValue() + dp2.getValue(), max);
+		}
+		axis2.setMax(((int)Math.floor(max/10)+1.5)*10D);
+		line1.setEndValue(max);
+		chart.reconfigure();
 	}
 
 	@UiHandler("source")

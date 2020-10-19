@@ -6,12 +6,11 @@ import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
-import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
-import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -21,7 +20,6 @@ import org.pepstock.charba.client.configuration.CartesianTimeSeriesAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
-import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.TickSource;
@@ -188,8 +186,7 @@ public class TrendAndForecastCase extends BaseComposite {
 
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		line.setMode(LineMode.VERTICAL);
-		line.setScaleID(DefaultScaleId.X.value());
+		line.setScaleID(MY_SCALE_ID);
 		line.setBorderColor(HtmlColor.DARK_GRAY);
 		line.setBorderWidth(2);
 		line.setValue(new Date((long) now.getTime()));
@@ -199,8 +196,10 @@ public class TrendAndForecastCase extends BaseComposite {
 
 		options.setAnnotations(line);
 
-		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+		chart.getPlugins().add(Annotation.get());
 
+		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		
 	}
 
 	@UiHandler("randomize")

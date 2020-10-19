@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.commons;
 
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientBuilder;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
@@ -91,10 +92,8 @@ public abstract class AbstractComposite extends Composite {
 		IsColor[] colors = GwtMaterialColor.values();
 		Gradient[] gradients = new Gradient[length];
 		for (int i = 0; i < length; i++) {
-			Gradient gradient = new Gradient(GradientType.RADIAL, GradientScope.CHART);
 			int index = i * 14;
-			gradient.addColorsStartStop(colors[index + 7], colors[index + 2]);
-			gradients[i] = gradient;
+			gradients[i] = GradientBuilder.create(GradientType.RADIAL, GradientScope.CHART).addColorsStartStop(colors[index + 7], colors[index + 2]).build();
 		}
 		return gradients;
 	}

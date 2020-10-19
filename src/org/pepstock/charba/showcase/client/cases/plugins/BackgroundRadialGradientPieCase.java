@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
 import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientBuilder;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
@@ -47,10 +48,7 @@ public class BackgroundRadialGradientPieCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-		Gradient gradient = new Gradient(GradientType.RADIAL, GradientOrientation.IN_OUT, GradientScope.CANVAS);
-
-		gradient.addColorStop(0, HtmlColor.WHITE);
-		gradient.addColorStop(1, HtmlColor.GRAY);
+		Gradient gradient = GradientBuilder.create(GradientType.RADIAL, GradientOrientation.IN_OUT, GradientScope.CANVAS).addColorStop(1, HtmlColor.GRAY).addColorStop(0, HtmlColor.WHITE).build();
 
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(gradient);

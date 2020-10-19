@@ -5,6 +5,7 @@ import java.util.Random;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
@@ -43,9 +44,9 @@ public class PatternBubbleCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Applying a pattern on bubble chart dataset");
-
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
-		Pattern pattern2 = new Pattern(ImagesHelper.toImg(Images.INSTANCE.patternHover()));
+		
+		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.background())).build(); 
+		Pattern pattern2 = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.patternHover())).build();
 
 		BubbleDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

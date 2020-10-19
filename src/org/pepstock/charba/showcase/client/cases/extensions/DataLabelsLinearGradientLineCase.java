@@ -5,6 +5,7 @@ import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
 import org.pepstock.charba.client.callbacks.BorderColorCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.Gradient;
+import org.pepstock.charba.client.colors.GradientBuilder;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
@@ -63,10 +64,7 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Gradient gradient1 = new Gradient(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART);
-
-		gradient1.addColorStop(1, HtmlColor.PURPLE);
-		gradient1.addColorStop(0, HtmlColor.ORANGE);
+		Gradient gradient1 = GradientBuilder.create(GradientType.LINEAR, GradientOrientation.LEFT_RIGHT, GradientScope.CHART).addColorStop(1, HtmlColor.PURPLE).addColorStop(0, HtmlColor.ORANGE).build();
 
 		dataset1.setBackgroundColor(gradient1);
 

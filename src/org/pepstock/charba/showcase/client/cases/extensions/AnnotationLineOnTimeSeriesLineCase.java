@@ -7,13 +7,14 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.adapters.DateAdapter;
+import org.pepstock.charba.client.annotation.AbstractAnnotation;
+import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
-import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
-import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
+import org.pepstock.charba.client.callbacks.AnnotationValueCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -59,6 +60,8 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 	final LineAnnotation line1 = new LineAnnotation();
 
 	final TimeSeriesLineDataset dataset1;
+	
+	final TimeSeriesLineDataset dataset2;
 
 	private final long startingPoint = System.currentTimeMillis();
 
@@ -91,7 +94,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
-		final TimeSeriesLineDataset dataset2 = chart.newDataset();
+		dataset2 = chart.newDataset();
 
 		dataset2.setLabel("dataset 2");
 		dataset2.setFill(Fill.FALSE);
@@ -132,30 +135,69 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DRAW);
-		line.setMode(LineMode.VERTICAL);
 		line.setScaleID(DefaultScaleId.X.value());
 		line.setBorderColor(HtmlColor.DARK_GRAY);
 		line.setBorderWidth(2);
-		line.setValue(new Date(startingPoint));
+		//line.setValue(new Date(startingPoint));
+		
+		line.setValue(new AnnotationValueCallback() {
+			
+			@Override
+			public Object compute(IsChart chart, AbstractAnnotation annotation) {
+				return new Date();
+			}
+		});
+		
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("Now");
 		line.getLabel().setPosition(LineLabelPosition.TOP);
 
+
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
-		line1.setMode(LineMode.HORIZONTAL);
 		line1.setScaleID(DefaultScaleId.Y.value());
 		line1.setBorderColor(HtmlColor.ORANGE);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);
-		List<DataPoint> dataPoints = dataset1.getDataPoints();
-		int size = dataPoints.size();
-		double sum = 0D;
-		for (DataPoint dp : dataPoints) {
-			sum += dp.getY();
-		}
-		line1.setValue(sum / size);
+		line1.setValue(new AnnotationValueCallback() {
+			
+			private double sum(List<DataPoint> dataPoints) {
+				double sum = 0D;
+				for (DataPoint dp : dataPoints) {
+					sum += dp.getY();
+				}
+				return sum;
+			}
+			
+			@Override
+			public Double compute(IsChart chart, AbstractAnnotation annotation) {
+				List<DataPoint> dataPoints1 = dataset1.getDataPoints();
+				List<DataPoint> dataPoints2 = dataset2.getDataPoints();
+				int size = dataPoints1.size() + dataPoints2.size();
+				double sum = sum(dataPoints1) + sum(dataPoints2);
+				return sum / size;
+			}
+		});
+		line1.setEndValue(new AnnotationValueCallback() {
+			
+			private double sum(List<DataPoint> dataPoints) {
+				double sum = 0D;
+				for (DataPoint dp : dataPoints) {
+					sum += dp.getY();
+				}
+				return sum;
+			}
+			
+			@Override
+			public Double compute(IsChart chart, AbstractAnnotation annotation) {
+				List<DataPoint> dataPoints1 = dataset1.getDataPoints();
+				List<DataPoint> dataPoints2 = dataset2.getDataPoints();
+				int size = dataPoints1.size() + dataPoints2.size();
+				double sum = sum(dataPoints1) + sum(dataPoints2);
+				return (sum / size) + (sum / size * 0.5D);
+			}
+		});
 		line1.getLabel().setEnabled(true);
-		line1.getLabel().setContent("Average " + dataset1.getLabel());
+		line1.getLabel().setContent("Average");
 		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
 		line1.getLabel().setBackgroundColor(HtmlColor.ORANGE);
 		line1.getLabel().setFontColor(HtmlColor.BLACK);
@@ -163,7 +205,8 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 
 		options.setAnnotations(line, line1);
 
-		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		chart.getPlugins().add(Annotation.get());
 	}
 
 	@UiHandler("randomize")
@@ -174,14 +217,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 				dp.setValue(getRandomDigit(false));
 			}
 		}
-		List<DataPoint> dataPoints = dataset1.getDataPoints();
-		int size = dataPoints.size();
-		double sum = 0D;
-		for (DataPoint dp : dataPoints) {
-			sum += dp.getY();
-		}
-		line1.setValue((sum / size));
-		chart.reconfigure();
+		chart.update();
 	}
 
 	@UiHandler("source")

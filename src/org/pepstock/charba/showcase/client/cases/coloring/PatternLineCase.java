@@ -1,6 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.coloring;
 
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -47,7 +48,7 @@ public class PatternLineCase extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
+		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.pattern())).build();
 
 		dataset1.setBackgroundColor(pattern);
 

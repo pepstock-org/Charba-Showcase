@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Position;
@@ -63,7 +64,8 @@ public class BackgroundPatternLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.background()));
+		
+		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.background())).build(); 
 
 		ChartBackgroundColorOptions option = new ChartBackgroundColorOptions();
 		option.setBackgroundColor(pattern);

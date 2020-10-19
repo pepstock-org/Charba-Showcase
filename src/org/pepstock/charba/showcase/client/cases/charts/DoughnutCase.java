@@ -93,12 +93,12 @@ public class DoughnutCase extends BaseComposite {
 	@UiHandler("semiCircle")
 	protected void handleSemiCircle(ClickEvent event) {
 		OptionsNode options = chart.getNode().getOptions();
-		if (options.getCircumference() == Math.PI) {
-			options.setCircumference(2 * Math.PI);
-			options.setRotation(-Math.PI / 2);
+		if (options.getCircumference() == 180D) {
+			options.setCircumference(360D);
+			options.setRotation(0D);
 		} else {
-			options.setCircumference(Math.PI);
-			options.setRotation(-Math.PI);
+			options.setCircumference(180D);
+			options.setRotation(-90D);
 		}
 		chart.update();
 	}

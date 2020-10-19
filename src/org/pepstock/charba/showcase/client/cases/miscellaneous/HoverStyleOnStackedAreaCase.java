@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.colors.Pattern;
+import org.pepstock.charba.client.colors.PatternBuilder;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -74,7 +75,7 @@ public class HoverStyleOnStackedAreaCase extends BaseComposite {
 
 		dataset2.setBorderWidth(5);
 
-		Pattern pattern = new Pattern(ImagesHelper.toImg(Images.INSTANCE.pattern()));
+		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.pattern())).build();
 		dataset2.setHoverBackgroundColor(pattern);
 		dataset2.setHoverBorderColor(color2.darker());
 		dataset2.setPointHoverBackgroundColor("#fff");

@@ -18,6 +18,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
+import org.pepstock.charba.client.events.DatasetRangeClearSelectionEvent;
+import org.pepstock.charba.client.events.DatasetRangeClearSelectionEventHandler;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -145,34 +147,40 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(5);
 		pOptions.setBorderDash(6);
-		pOptions.setFireEventOnClearSelection(true);
 
 		small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		small.getPlugins().add(selector);
+
+		chart.addHandler(new DatasetRangeClearSelectionEventHandler() {
+
+			@Override
+			public void onClear(DatasetRangeClearSelectionEvent event) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("<b>Clear selection event</b>");
+				new Toast("Dataset Range Clear Selection!", sb.toString()).show();
+				dataset1.setDataPoints(new LinkedList<>());
+				chart.getData().setDatasets(dataset1);
+				chart.update();
+			}
+		}, DatasetRangeClearSelectionEvent.TYPE);
 
 		small.addHandler(new DatasetRangeSelectionEventHandler() {
 
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getFrom().getLabel()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.isClearSelection() ? "Clear selection event" : event.getTo().getLabel()).append("</b><br>");
+				sb.append("Dataset from: <b>").append(event.getFrom().getLabel()).append("</b><br>");
+				sb.append("Dataset to: <b>").append(event.getTo().getLabel()).append("</b><br>");
 				new Toast("Dataset Range Selected!", sb.toString()).show();
-				if (!event.isClearSelection()) {
-					List<DataPoint> newDataPoints = new LinkedList<>();
-					for (DataPoint dp : dataset2.getDataPoints()) {
-						newDataPoints.add(dp);
-					}
-					dataset1.setDataPoints(newDataPoints);
-					chart.getData().setDatasets(dataset1);
-					axis.setMin(event.getFrom().getValueAsDate());
-					axis.setMax(event.getTo().getValueAsDate());
-					chart.reconfigure();
-				} else {
-					dataset1.setDataPoints(new LinkedList<>());
-					chart.getData().setDatasets(dataset1);
-					chart.update();
+				List<DataPoint> newDataPoints = new LinkedList<>();
+				for (DataPoint dp : dataset2.getDataPoints()) {
+					newDataPoints.add(dp);
 				}
+				dataset1.setDataPoints(newDataPoints);
+				chart.getData().setDatasets(dataset1);
+				axis.setMin(event.getFrom().getValueAsDate());
+				axis.setMax(event.getTo().getValueAsDate());
+				chart.reconfigure();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
 

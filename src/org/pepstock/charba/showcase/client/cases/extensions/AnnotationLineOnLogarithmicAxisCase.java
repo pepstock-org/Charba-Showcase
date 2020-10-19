@@ -1,11 +1,10 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
+import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
-import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
-import org.pepstock.charba.client.annotation.enums.LineMode;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -84,7 +83,6 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
-		line.setMode(LineMode.HORIZONTAL);
 		line.setScaleID(DefaultScaleId.Y.value());
 		line.setBorderColor(HtmlColor.ORANGE);
 		line.setBorderDash(4, 4);
@@ -99,7 +97,9 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 
 		options.setAnnotations(line);
 
-		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		
+		chart.getPlugins().add(Annotation.get());
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
