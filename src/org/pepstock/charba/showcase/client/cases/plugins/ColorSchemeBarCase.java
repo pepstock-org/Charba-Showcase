@@ -8,7 +8,6 @@ import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.ColorScheme;
 import org.pepstock.charba.client.impl.plugins.ColorSchemes;
@@ -74,7 +73,8 @@ public class ColorSchemeBarCase extends BaseComposite {
 		}
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getLegend().setDisplay(true);
+		//chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring bar chart");
 
@@ -101,10 +101,15 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+		
+		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions().toJSON());
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
+		
+		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions().toJSON());
+		
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}

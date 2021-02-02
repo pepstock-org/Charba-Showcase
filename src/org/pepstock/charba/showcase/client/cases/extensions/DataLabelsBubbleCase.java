@@ -91,7 +91,7 @@ public class DataLabelsBubbleCase extends BaseComposite {
 			@Override
 			public Anchor invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				DataPoint point = ds.getDataPoints().get(context.getIndex());
+				DataPoint point = ds.getDataPoints().get(context.getDataIndex());
 				return point.getR() < 20D ? Anchor.END : Anchor.CENTER;
 			}
 
@@ -101,7 +101,7 @@ public class DataLabelsBubbleCase extends BaseComposite {
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				DataPoint point = ds.getDataPoints().get(context.getIndex());
+				DataPoint point = ds.getDataPoints().get(context.getDataIndex());
 				return point.getR() < 20D ? Align.END : Align.CENTER;
 			}
 		});
@@ -110,7 +110,7 @@ public class DataLabelsBubbleCase extends BaseComposite {
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
 				BubbleDataset ds = (BubbleDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBorderColorAsString().get(context.getIndex());
+				return ds.getBorderColorAsString().get(context.getDataIndex());
 			}
 
 		});

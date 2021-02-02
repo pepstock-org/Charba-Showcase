@@ -82,7 +82,7 @@ public class ColorSchemePieCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		chart.getDatasetMeta(0);
+		chart.getDatasetItem(0);
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}

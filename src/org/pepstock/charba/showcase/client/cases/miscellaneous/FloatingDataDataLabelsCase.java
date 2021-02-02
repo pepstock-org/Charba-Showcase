@@ -13,12 +13,12 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.FloatingData;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsOptionsBuilder;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.enums.DefaultPluginId;
-import org.pepstock.charba.client.enums.Display;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.DataItem;
@@ -86,47 +86,63 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+
+
+//		DataLabelsOptions option = new DataLabelsOptions();
+//
+//		LabelItem top = option.getLabels().createLabel("top");
+//		top.setAlign(Align.CENTER);
+//		top.setAnchor(Anchor.END);
+//		top.setBackgroundColor(HtmlColor.WHITE);
+//		top.setColor(HtmlColor.GREEN);
+//		top.setBorderColor(color1);
+//		top.setBorderRadius(25);
+//		top.setBorderWidth(2);
+//		top.getFont().setWeight(Weight.BOLD);
+//		top.setFormatter(new FormatterCallback() {
+//
+//			@Override
+//			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+//				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getEnd(), 0);
+//			}
+//
+//		});
+//		
+//		LabelItem down = option.getLabels().createLabel("down");
+//		down.setAlign(Align.CENTER);
+//		down.setAnchor(Anchor.START);
+//		down.setBackgroundColor(HtmlColor.WHITE);
+//		down.setColor(HtmlColor.RED);
+//		down.setBorderColor(color1);
+//		down.setBorderRadius(25);
+//		down.setBorderWidth(2);
+//		down.getFont().setWeight(Weight.BOLD);
+//		down.setFormatter(new FormatterCallback() {
+//
+//			@Override
+//			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+//				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getStart(), 0);
+//			}
+//
+//		});
 		
-		DataLabelsOptions top = new DataLabelsOptions();
-		top.setAlign(Align.CENTER);
-		top.setAnchor(Anchor.END);
-		top.setBackgroundColor(HtmlColor.WHITE);
-		top.setColor(HtmlColor.GREEN);
-		top.setBorderColor(color1);
-		top.setBorderRadius(25);
-		top.setBorderWidth(2);
-		top.setDisplay(Display.AUTO);
-		top.getFont().setWeight(Weight.BOLD);
-		top.setFormatter(new FormatterCallback() {
+		DataLabelsOptionsBuilder builder = DataLabelsOptionsBuilder.create().createLabel("top").setAlign(Align.CENTER).setAnchor(Anchor.END).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.GREEN).setBorderColor(color1).setBorderRadius(25).setBorderWidth(2).setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
 
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getEnd(), 0);
 			}
 
-		});
+		}).getOptionsBuilder();
 		
-		DataLabelsOptions down = new DataLabelsOptions();
-		down.setAlign(Align.CENTER);
-		down.setAnchor(Anchor.START);
-		down.setBackgroundColor(HtmlColor.WHITE);
-		down.setColor(HtmlColor.RED);
-		down.setBorderColor(color1);
-		down.setBorderRadius(25);
-		down.setBorderWidth(2);
-		down.getFont().setWeight(Weight.BOLD);
-		down.setFormatter(new FormatterCallback() {
+		DataLabelsOptions option = builder.createLabel("down").setAlign(Align.CENTER).setAnchor(Anchor.START).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.RED).setBorderColor(color1).setBorderRadius(25).setBorderWidth(2).setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
 
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getStart(), 0);
 			}
 
-		});
-
-		DataLabelsOptions option = new DataLabelsOptions();
-		option.getLabels().setLabel("top", top);
-		option.getLabels().setLabel("down", down);
+		}).getOptionsBuilder().build(); 
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 

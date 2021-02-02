@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.callbacks.ScaleColorCallback;
 import org.pepstock.charba.client.callbacks.ScaleFontCallback;
 import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
@@ -15,6 +16,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -65,24 +67,38 @@ public class PolarAreaCase extends BaseComposite {
 //			}
 //		});
 		
+		axis.getPointLabels().setColor(new ColorCallback() {
+			
+			@Override
+			public Object invoke(Axis axis, ScaleScriptableContext context) {
+				return context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK;
+			}
+		});
+		
 		axis.getPointLabels().setFont(new ScaleFontCallback() {
 			
 			@Override
 			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
 				FontOptions fo = new FontOptions();
-				fo.setColor(context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK);
 				fo.setSize(16);
 				return fo;
 			}
 		});
 		
-		//axis.getTicks().getFont().setColor(HtmlColor.GRAY);
+		axis.getTicks().setColor(new ColorCallback() {
+			
+			@Override
+			public Object invoke(Axis axis, ScaleScriptableContext context) {
+				Charba_Showcase.LOG.info("context "+context.getIndex());
+				return context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK;
+			}
+		});
+		
 		axis.getTicks().setFont(new ScaleFontCallback() {
 			
 			@Override
 			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
 				FontOptions fo = new FontOptions();
-				fo.setColor(context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK);
 				fo.setSize(24);
 				return fo;
 			}

@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.elements;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -37,11 +38,11 @@ public class MultiAxisBarCase extends BaseComposite {
 		chart.getOptions().getTooltips().setIntersect(true);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart, "y-axis-1");
-		axis1.setPosition(Position.LEFT);
+		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setDisplay(true);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
-		axis2.setPosition(Position.RIGHT);
+		axis2.setPosition(AxisPosition.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 

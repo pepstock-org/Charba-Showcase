@@ -21,7 +21,7 @@ import com.google.gwt.resources.client.ImageResource;
 
 public class MyHorizontalBarController extends AbstractController {
 
-	public static final ControllerType TYPE = new ControllerType("myHorizontalBar", ChartType.BAR);
+	public static final ControllerType TYPE = new ControllerType("myHorizontalBar", ChartType.BAR, (controllerType) -> new MyHorizontalBarController()); 
 
 	private static final int MIN = 50;
 

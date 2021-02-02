@@ -46,7 +46,7 @@ public class TitleStyleCase extends BaseComposite {
 	public TitleStyleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		color.addItem("Default", Defaults.get().getGlobal().getTitle().getFont().getColorAsString());
+		color.addItem("Default", Defaults.get().getGlobal().getTitle().getColorAsString());
 		for (HtmlColor myColor : COLORS) {
 			color.addItem(myColor.name(), myColor.toRGB());
 		}
@@ -108,9 +108,7 @@ public class TitleStyleCase extends BaseComposite {
 	@UiHandler("color")
 	protected void handleColor(ChangeEvent event) {
 		String selected = color.getSelectedValue();
-		chart.getOptions().getTitle().getFont().setColor(selected);
-		// FIXME
-//		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
+		chart.getOptions().getTitle().setColor(selected);
 		chart.reconfigure();
 	}
 
@@ -118,7 +116,6 @@ public class TitleStyleCase extends BaseComposite {
 	protected void handleFontSize(ChangeEvent event) {
 		String selected = fontSize.getSelectedValue();
 		chart.getOptions().getTitle().getFont().setSize(Integer.parseInt(selected));
-		//chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(0).build());
 		chart.reconfigure();
 	}
 

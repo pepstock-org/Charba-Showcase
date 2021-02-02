@@ -24,6 +24,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ImportingPluginCase extends BaseComposite {
+	
+	static {
+		Injector.ensureInjected(new InjectableTextResource(MyResources.INSTANCE.chartJsStacked100Source()));
+	}
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
@@ -37,8 +41,6 @@ public class ImportingPluginCase extends BaseComposite {
 
 	public ImportingPluginCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		Injector.ensureInjected(new InjectableTextResource(MyResources.INSTANCE.chartJsStacked100Source()));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
@@ -119,7 +121,7 @@ public class ImportingPluginCase extends BaseComposite {
 		private Key enableKey = Key.create("enable");
 
 		Stacked100Options() {
-			super(STACKED100_PLUGIN);
+			super(STACKED100_PLUGIN, null);
 		}
 
 		void setEnable(boolean enable) {

@@ -7,7 +7,6 @@ import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
-import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -53,18 +52,22 @@ public class CallbacksWithThresholdBarCase extends BaseComposite {
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(2);
-		border.setLeft(2);
-		border.setRight(2);
-		dataset1.setBorderWidth(border);
+		// FIXME
+		// CHART.JS ISSUE : https://github.com/chartjs/Chart.js/issues/7942 
+//		BarBorderWidth border = new BarBorderWidth();
+//		border.setTop(2);
+//		border.setLeft(2);
+//		border.setRight(2);
+//		dataset1.setBorderWidth(border);
+		
+		dataset1.setBorderWidth(2);
 
 		dataset1.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				Dataset dataset = chart.getData().getDatasets().get(context.getDatasetIndex());
-				Double value = dataset.getData().get(context.getIndex());
+				Double value = dataset.getData().get(context.getDataIndex());
 				if (value >= ERROR) {
 					return ERROR_COLOR.alpha(0.2D);
 				} else if (value >= WARNING) {
@@ -79,7 +82,7 @@ public class CallbacksWithThresholdBarCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				Dataset dataset = chart.getData().getDatasets().get(context.getDatasetIndex());
-				Double value = dataset.getData().get(context.getIndex());
+				Double value = dataset.getData().get(context.getDataIndex());
 				if (value >= ERROR) {
 					return ERROR_COLOR;
 				} else if (value >= WARNING) {

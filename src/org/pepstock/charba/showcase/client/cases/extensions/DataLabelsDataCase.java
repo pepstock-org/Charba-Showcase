@@ -95,9 +95,9 @@ public class DataLabelsDataCase extends BaseComposite {
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double curr = ds.getData().get(context.getIndex());
-				double prev = context.getIndex() > 0 ? ds.getData().get(context.getIndex() - 1) : 0;
-				double next = context.getIndex() < ds.getData().size() ? ds.getData().get(context.getIndex() + 1) : 0;
+				double curr = ds.getData().get(context.getDataIndex());
+				double prev = context.getDataIndex() > 0 ? ds.getData().get(context.getDataIndex() - 1) : 0;
+				double next = context.getDataIndex() < ds.getData().size() ? ds.getData().get(context.getDataIndex() + 1) : 0;
 				return prev < curr && next < curr ? Align.END : prev > curr && next > curr ? Align.START : Align.CENTER;
 			}
 
@@ -107,8 +107,8 @@ public class DataLabelsDataCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double value = ds.getData().get(context.getIndex());
-				double diff = context.getIndex() > 0 ? value - ds.getData().get(context.getIndex() - 1) : 0;
+				double value = ds.getData().get(context.getDataIndex());
+				double diff = context.getDataIndex() > 0 ? value - ds.getData().get(context.getDataIndex() - 1) : 0;
 				return diff < 0 ? HtmlColor.RED : diff > 0 ? HtmlColor.GREEN : HtmlColor.GRAY;
 			}
 
@@ -118,7 +118,7 @@ public class DataLabelsDataCase extends BaseComposite {
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double diff = context.getIndex() > 0 ? dataItem.getValue() - ds.getData().get(context.getIndex() - 1) : 0;
+				double diff = context.getDataIndex() > 0 ? dataItem.getValue() - ds.getData().get(context.getDataIndex() - 1) : 0;
 				StringBuffer sb = new StringBuffer();
 				sb.append(diff > 0 ? '\u25B2' : diff < 0 ? '\u25BC' : '\u25C6');
 				return sb.append(" ").append(Math.round(dataItem.getValue())).toString();

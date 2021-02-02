@@ -7,6 +7,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -70,7 +71,7 @@ public class NoNumericYAxisCase extends BaseComposite {
 		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis2.setDisplay(true);
 		axis2.setReverse(true);
-		axis2.setPosition(Position.LEFT);
+		axis2.setPosition(AxisPosition.LEFT);
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("Request State");
 

@@ -5,7 +5,6 @@ import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientScope;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.colors.UiGradient;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -13,6 +12,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.impl.plugins.enums.BrewerScheme;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -45,7 +45,8 @@ public class LinearGradientLineCase extends BaseComposite {
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		Gradient gradient1 = UiGradient.EASYMED.createGradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
+		Gradient gradient1 = BrewerScheme.ACCENT3.createGradient(GradientType.LINEAR, GradientOrientation.TOP_DOWN, GradientScope.CHART);
+		
 		IsColor firstColor = gradient1.getColors().get(0).getColor();
 
 		dataset1.setBackgroundColor(gradient1);

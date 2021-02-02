@@ -88,7 +88,7 @@ public class DataLabelsMirrorCase extends BaseComposite {
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getData().get(context.getIndex()) > 0 ? Align.END : Align.START;
+				return ds.getData().get(context.getDataIndex()) > 0 ? Align.END : Align.START;
 			}
 		});
 
@@ -97,7 +97,7 @@ public class DataLabelsMirrorCase extends BaseComposite {
 			@Override
 			public Anchor invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getData().get(context.getIndex()) > 0 ? Anchor.END : Anchor.START;
+				return ds.getData().get(context.getDataIndex()) > 0 ? Anchor.END : Anchor.START;
 			}
 		});
 		option.setRotation(new RotationCallback() {
@@ -105,7 +105,7 @@ public class DataLabelsMirrorCase extends BaseComposite {
 			@Override
 			public Double invoke(IsChart chart, ScriptableContext context) {
 				BarDataset ds = (BarDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getData().get(context.getIndex()) > 0 ? 45D : 100D - 45D;
+				return ds.getData().get(context.getDataIndex()) > 0 ? 45D : 100D - 45D;
 			}
 		});
 

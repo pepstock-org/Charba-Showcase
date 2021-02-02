@@ -11,6 +11,7 @@ import org.pepstock.charba.client.configuration.CartesianLogarithmicAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.AxisKind;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -63,7 +64,7 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite {
 		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis(chart, AxisKind.X);
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
-		axis1.setPosition(Position.BOTTOM);
+		axis1.setPosition(AxisPosition.BOTTOM);
 		axis1.getTicks().setCallback(new TickCallback() {
 
 			@Override

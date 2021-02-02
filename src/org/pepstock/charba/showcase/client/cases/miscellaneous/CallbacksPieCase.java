@@ -46,7 +46,7 @@ public class CallbacksPieCase extends BaseComposite {
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
-				UiGradient gradient = UiGradient.values()[context.getIndex()];
+				UiGradient gradient = UiGradient.values()[context.getDataIndex()];
 				return gradient.createGradient(GradientType.RADIAL, GradientOrientation.IN_OUT);
 			}
 
@@ -63,7 +63,7 @@ public class CallbacksPieCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		chart.getDatasetMeta(0);
+		chart.getDatasetItem(0);
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}

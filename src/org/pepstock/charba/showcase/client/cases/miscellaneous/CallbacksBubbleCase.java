@@ -64,7 +64,7 @@ public class CallbacksBubbleCase extends BaseComposite {
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
-				DataPoint dp = dataset.getDataPoints().get(context.getIndex());
+				DataPoint dp = dataset.getDataPoints().get(context.getDataIndex());
 				return colorize(false, dp);
 			}
 
@@ -73,7 +73,7 @@ public class CallbacksBubbleCase extends BaseComposite {
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
-				DataPoint dp = dataset.getDataPoints().get(context.getIndex());
+				DataPoint dp = dataset.getDataPoints().get(context.getDataIndex());
 				return colorize(true, dp);
 			}
 

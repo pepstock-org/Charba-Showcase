@@ -24,9 +24,10 @@ import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
+import org.pepstock.charba.client.items.DatasetElement;
 import org.pepstock.charba.client.items.DatasetItem;
-import org.pepstock.charba.client.items.DatasetMetaItem;
-import org.pepstock.charba.client.items.DatasetReferenceItem;
+import org.pepstock.charba.client.items.DatasetReference;
+import org.pepstock.charba.client.utils.Window;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
@@ -36,7 +37,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DataLabelsListenersCase extends BaseComposite {
@@ -143,7 +143,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 
 		MyListener listener = new MyListener();
 		option.setListenersHandler(listener);
-
+		
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 
 	}
@@ -168,10 +168,16 @@ public class DataLabelsListenersCase extends BaseComposite {
 
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
-		Window.open(getUrl(), "_blank", "");
+
+//		Window.getConsole().log(chart.getDefaultChartOptions());
+
+		Window.getConsole().log(chart.getNode().getOptions());
+
+		
+//		Window.open(getUrl(), "_blank", "");
 	}
 
-	class MyListener extends DataLabelsPointerHandler {
+   class MyListener extends DataLabelsPointerHandler {
 
 		MyListener() {
 			super();
@@ -181,7 +187,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 		public boolean onLeave(IsChart chart, ScriptableContext context) {
 			super.onLeave(chart, context);
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-			mylog.addLogEvent("> LEAVE: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");
+			mylog.addLogEvent("> LEAVE: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getDataIndex() + ", value(" + ds.getData().get(context.getDataIndex()) + ")");
 			return true;
 		}
 
@@ -189,7 +195,7 @@ public class DataLabelsListenersCase extends BaseComposite {
 		public boolean onEnter(IsChart chart, ScriptableContext context) {
 			super.onEnter(chart, context);
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-			mylog.addLogEvent("> ENTER: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");
+			mylog.addLogEvent("> ENTER: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getDataIndex() + ", value(" + ds.getData().get(context.getDataIndex()) + ")");
 			return true;
 		}
 
@@ -199,19 +205,19 @@ public class DataLabelsListenersCase extends BaseComposite {
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 			Labels labels = chart.getData().getLabels();
 			List<Dataset> datasets = chart.getData().getDatasets();
-			DatasetMetaItem meta = chart.getDatasetMeta(context.getDatasetIndex());
-			DatasetItem item = meta.getDatasets().get(context.getIndex());
+			DatasetItem item = chart.getDatasetItem(context.getDatasetIndex());
+			DatasetElement element = item.getElements().get(context.getDataIndex());
 			if (datasets != null && !datasets.isEmpty()) {
 				StringBuilder sb = new StringBuilder();
 				sb.append("Dataset index: <b>").append(context.getDatasetIndex()).append("</b><br>");
 				sb.append("Dataset label: <b>").append(datasets.get(context.getDatasetIndex()).getLabel()).append("</b><br>");
-				sb.append("Dataset data: <b>").append(datasets.get(context.getDatasetIndex()).getData().get(context.getIndex())).append("</b><br>");
-				sb.append("Index: <b>").append(context.getIndex()).append("</b><br>");
-				sb.append("Value: <b>").append(labels.getStrings(context.getIndex()).get(0)).append("</b><br>");
+				sb.append("Dataset data: <b>").append(datasets.get(context.getDatasetIndex()).getData().get(context.getDataIndex())).append("</b><br>");
+				sb.append("Index: <b>").append(context.getDataIndex()).append("</b><br>");
+				sb.append("Value: <b>").append(labels.getStrings(context.getDataIndex()).get(0)).append("</b><br>");
 				new Toast("Dataset Selected!", sb.toString()).show();
 			}
-			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getIndex() + ", value(" + ds.getData().get(context.getIndex()) + ")");
-			DatasetReferenceItem referenceItem = new DatasetReferenceItem(context, item);
+			mylog.addLogEvent("> CLICK: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getDataIndex() + ", value(" + ds.getData().get(context.getDataIndex()) + ")");
+			DatasetReference referenceItem = new DatasetReference(context, element);
 			chart.fireEvent(new DatasetSelectionEvent(DOMBuilder.get().createChangeEvent(), chart, referenceItem));
 			return true;
 		}

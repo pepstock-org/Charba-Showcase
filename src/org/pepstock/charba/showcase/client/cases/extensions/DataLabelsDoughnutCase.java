@@ -95,7 +95,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
 				DoughnutDataset ds = (DoughnutDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBackgroundColorAsString().get(context.getIndex());
+				return ds.getBackgroundColorAsString().get(context.getDataIndex());
 			}
 
 		});
@@ -105,7 +105,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 			public Display invoke(IsChart chart, ScriptableContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
 				int count = ds.getData().size();
-				double value = ds.getData().get(context.getIndex());
+				double value = ds.getData().get(context.getDataIndex());
 				return value > count * 1.5D ? Display.TRUE : Display.FALSE;
 			}
 		});

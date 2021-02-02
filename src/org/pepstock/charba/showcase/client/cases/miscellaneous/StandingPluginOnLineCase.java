@@ -101,12 +101,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 		chart.getData().setLabels(YEARS);
 		chart.getData().setDatasets(datasets.toArray(new Dataset[0]));
 
-		AbstractPlugin p = new AbstractPlugin() {
-
-			@Override
-			public String getId() {
-				return "standings";
-			}
+		AbstractPlugin p = new AbstractPlugin("standings") {
 
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart) {

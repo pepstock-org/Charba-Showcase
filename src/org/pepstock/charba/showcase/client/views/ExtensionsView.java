@@ -1,10 +1,12 @@
 package org.pepstock.charba.showcase.client.views;
 
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationBoxesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationEllipseOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnLogarithmicAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationObliqueLineOnTimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationPointsOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsOnTimeSeriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsOnCombinedCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsBarCase;
@@ -323,6 +325,19 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new AnnotationsEventsOnTimeSeriesCase());
 	}
+
+	@UiHandler("annotationEllipseOnLine")
+	protected void handleAnnotationEllipseOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationEllipseOnLineCase());
+	}
+	
+	@UiHandler("annotationPointOnLine")
+	protected void handleAnnotationsPointOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationPointsOnLineCase());
+	}
+	
 
 	// ----------------------------------------------
 	// Imported

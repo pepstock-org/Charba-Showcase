@@ -65,6 +65,8 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 
 	final DatasetsItemsSelector selector = DatasetsItemsSelector.get();
 
+	final LineDataset dataset1;
+	
 	public DatasetItemsSelectorZoomingCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -95,7 +97,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 			}
 		});
 
-		final LineDataset dataset1 = chart.newDataset();
+		dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.ORIGIN);
@@ -151,7 +153,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		small.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		small.getPlugins().add(selector);
 
-		chart.addHandler(new DatasetRangeClearSelectionEventHandler() {
+		small.addHandler(new DatasetRangeClearSelectionEventHandler() {
 
 			@Override
 			public void onClear(DatasetRangeClearSelectionEvent event) {
@@ -161,6 +163,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 				dataset1.setDataPoints(new LinkedList<>());
 				chart.getData().setDatasets(dataset1);
 				chart.update();
+				// FIXME to be checked sounds do not work correctly
 			}
 		}, DatasetRangeClearSelectionEvent.TYPE);
 
@@ -188,13 +191,20 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
+		List<DataPoint> newDataPoints = new LinkedList<>();
 		for (Dataset dataset : small.getData().getDatasets()) {
 			LineDataset scDataset = (LineDataset) dataset;
 			for (DataPoint dp : scDataset.getDataPoints()) {
 				dp.setY(getRandomDigit(false));
+				newDataPoints.add(dp);
 			}
 		}
 		small.update();
+		if (!dataset1.getDataPoints().isEmpty()) {
+			dataset1.setDataPoints(newDataPoints);
+			chart.getData().setDatasets(dataset1);
+			chart.update();
+		}
 	}
 
 	@UiHandler("reset")

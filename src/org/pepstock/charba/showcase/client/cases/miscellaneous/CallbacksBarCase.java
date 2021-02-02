@@ -7,7 +7,6 @@ import org.pepstock.charba.client.callbacks.BorderSkippedCallback;
 import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.BorderSkipped;
@@ -44,17 +43,21 @@ public class CallbacksBarCase extends BaseComposite {
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(2);
-		border.setLeft(2);
-		border.setRight(2);
-		dataset1.setBorderWidth(border);
+		// FIXME
+		// CHART.JS ISSUE : https://github.com/chartjs/Chart.js/issues/7942 
+//		BarBorderWidth border = new BarBorderWidth();
+//		border.setTop(2);
+//		border.setLeft(2);
+//		border.setRight(2);
+//		dataset1.setBorderWidth(border);
+		
+		dataset1.setBorderWidth(5);
 
 		dataset1.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return GoogleChartColor.values()[context.getIndex() + 1];
+				return GoogleChartColor.values()[context.getDataIndex() + 1];
 			}
 
 		});
@@ -62,7 +65,7 @@ public class CallbacksBarCase extends BaseComposite {
 
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
-				return GoogleChartColor.values()[context.getIndex() + 5];
+				return GoogleChartColor.values()[context.getDataIndex() + 5];
 			}
 
 		});
@@ -76,7 +79,6 @@ public class CallbacksBarCase extends BaseComposite {
 		});
 
 		dataset1.setData(getFixedDigits(months));
-
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 	}

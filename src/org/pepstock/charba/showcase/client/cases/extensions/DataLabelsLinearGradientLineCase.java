@@ -111,7 +111,7 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				Gradient gradient = ds.getBackgroundColorAsGradient();
-				double factor = ds.getData().size() > 0 ? context.getIndex() * 1D / (ds.getData().size() - 1) : 0;
+				double factor = ds.getData().size() > 0 ? context.getDataIndex() * 1D / (ds.getData().size() - 1) : 0;
 				return gradient.getInterpolatedColorByOffset(factor);
 			}
 		});

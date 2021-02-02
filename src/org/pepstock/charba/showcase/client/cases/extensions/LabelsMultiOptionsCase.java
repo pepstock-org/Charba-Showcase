@@ -1,11 +1,10 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import java.util.Arrays;
-
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
+import org.pepstock.charba.client.labels.Label;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Position;
@@ -45,18 +44,19 @@ public class LabelsMultiOptionsCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-		LabelsOptions option1 = new LabelsOptions();
-		option1.setRender(Render.LABEL);
-		option1.setFontColor(HtmlColor.BLACK);
-		option1.setArc(true);
-		option1.setPosition(Position.OUTSIDE);
+		LabelsOptions options = new LabelsOptions();
+		Label label1 = options.createLabel("label1");
+		label1.setRender(Render.LABEL);
+		label1.setColor(HtmlColor.BLACK);
+		label1.setArc(true);
+		label1.setPosition(Position.OUTSIDE);
 
-		LabelsOptions option2 = new LabelsOptions();
-		option2.setRender(Render.PERCENTAGE);
-		option2.setFontColor(HtmlColor.WHITE);
-		option2.setOverlap(false);
+		Label labels2 = options.createLabel("label2");
+		labels2.setRender(Render.PERCENTAGE);
+		labels2.setColor(HtmlColor.WHITE);
+		labels2.setOverlap(false);
 
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 	}
 
 	@UiHandler("randomize")

@@ -124,7 +124,7 @@ public class FillingDatasetsOnRadarCase extends BaseComposite {
 		private Key propagate = Key.create("propagate");
 
 		FillerOptions() {
-			super(DefaultPluginId.FILLER.value());
+			super(DefaultPluginId.FILLER.value(), null);
 		}
 
 		void setPropagate(boolean prop) {

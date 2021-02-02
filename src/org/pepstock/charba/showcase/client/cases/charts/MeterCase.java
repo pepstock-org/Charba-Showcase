@@ -38,7 +38,7 @@ public class MeterCase extends BaseComposite {
 
 	public MeterCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
+		
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("METER chart to represent percentage value");
 		chartPercent.getOptions().setDisplay(MeterDisplay.PERCENTAGE);

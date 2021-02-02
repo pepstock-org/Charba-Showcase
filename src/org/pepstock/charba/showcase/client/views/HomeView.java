@@ -11,19 +11,16 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.DefaultDateAdapter;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
-import org.pepstock.charba.client.resources.ResourcesType;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,7 +28,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class HomeView extends BaseComposite {
@@ -45,36 +41,23 @@ public class HomeView extends BaseComposite {
 	LineChartWidget chart;
 
 	@UiField
-	ListBox dateAdapter;
-
-	@UiField
 	CheckBox loading;
 
 	private static final String LINK_GITHUB_VERSION = "https://github.com/pepstock-org/Charba/releases/tag/";
 
 	private static final String DEFAULT_FORMAT = "#0.#";
 
-	private static final String[] LABELS = { "", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0", "3.1",  "3.2", "4.0", "" };
+	private static final String[] LABELS = { "", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0", "3.1",  "3.2", "3.3", "4.0", "" };
 
-	private static final double[] VALUES_GWT = { Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3453, Double.NaN };
+	private static final double[] VALUES_GWT = { Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 3661, Double.NaN };
 	
-	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2536, 2881, 2910, 2941, 3225, Double.NaN };
+	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2536, 2881, 2910, 2941, 2942, 3510, Double.NaN };
 
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
 	public HomeView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		int index = 0;
-		for (DefaultDateAdapter name : DefaultDateAdapter.values()) {
-			if (!DefaultDateAdapter.UNKNOWN.equals(name)) {
-				dateAdapter.addItem(name.value(), name.value());
-				if (name.value().equalsIgnoreCase(ResourcesType.getClientBundle().getModule().getId())) {
-					dateAdapter.setSelectedIndex(index);
-				}
-				index++;
-			}
-		}
 		loading.setValue(Charba_Showcase.isDeferred);
 
 		chart.getOptions().setResponsive(true);
@@ -133,7 +116,7 @@ public class HomeView extends BaseComposite {
 		axis1.setDisplay(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Charba version");
-		axis1.getScaleLabel().getFont().setColor(HtmlColor.BLACK);
+		axis1.getScaleLabel().setColor(HtmlColor.BLACK);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
@@ -152,7 +135,7 @@ public class HomeView extends BaseComposite {
 
 		axis2.getScaleLabel().setDisplay(true);
 		axis2.getScaleLabel().setLabelString("JAR size");
-		axis2.getScaleLabel().getFont().setColor(HtmlColor.BLACK);
+		axis2.getScaleLabel().setColor(HtmlColor.BLACK);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
@@ -168,15 +151,6 @@ public class HomeView extends BaseComposite {
 
 	@UiHandler("loading")
 	protected void handleLoading(ClickEvent event) {
-		reload();
-	}
-
-	@UiHandler("dateAdapter")
-	protected void handleDateAdapter(ChangeEvent event) {
-		reload();
-	}
-
-	private void reload() {
 		String href = Window.Location.getHref();
 		StringBuilder cleanHref = null;
 		if (href.contains("?")) {
@@ -185,7 +159,6 @@ public class HomeView extends BaseComposite {
 			cleanHref = new StringBuilder(href);
 		}
 		cleanHref.append("?").append(Charba_Showcase.LOADING_PARAM).append("=").append(loading.getValue() ? Charba_Showcase.LOADING_DEFERRED : Charba_Showcase.LOADING_EMBEDDED);
-		cleanHref.append("&").append(Charba_Showcase.DATE_ADAPTER_PARAM).append("=").append(dateAdapter.getSelectedValue());
 		Window.Location.replace(cleanHref.toString());
 	}
 

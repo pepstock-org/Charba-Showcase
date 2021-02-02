@@ -12,11 +12,11 @@ import org.pepstock.charba.client.data.FloatingData;
 import org.pepstock.charba.client.enums.DataType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.labels.FontColorItem;
+import org.pepstock.charba.client.labels.Context;
+import org.pepstock.charba.client.labels.Label;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
-import org.pepstock.charba.client.labels.RenderItem;
-import org.pepstock.charba.client.labels.callbacks.FontColorCallback;
+import org.pepstock.charba.client.labels.callbacks.ColorCallback;
 import org.pepstock.charba.client.labels.callbacks.RenderCallback;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -62,11 +62,12 @@ public class LabelsBarCase extends BaseComposite {
 			data.add(new FloatingData(values[i], values[i] + gaps[i]));
 		}
 		
-		LabelsOptions option = new LabelsOptions();
-		option.setRender(new RenderCallback() {
+		LabelsOptions options = new LabelsOptions();
+		Label label = options.createLabel("bar");
+		label.setRender(new RenderCallback() {
 
 			@Override
-			public String invoke(IsChart chart, RenderItem item) {
+			public String invoke(IsChart chart, Context item) {
 				double value = 0;
 				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
 					value = item.getDataItem().getValueAsFloatingData().getAbsValue();
@@ -76,21 +77,24 @@ public class LabelsBarCase extends BaseComposite {
 				return "$$ " + value;
 			}
 		});
-		option.setFontColor(new FontColorCallback() {
+		label.setColor(new ColorCallback() {
 
 			@Override
-			public IsColor invoke(IsChart chart, FontColorItem item) {
+			public IsColor invoke(IsChart chart, Context item) {
 				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
 					return item.getDataItem().getValueAsFloatingData().getAbsValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
-				} 
-				return item.getDataItem().getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+				} else {
+					return item.getDataItem().getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+				}
 			}
 		});
 
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
+		
+		org.pepstock.charba.client.utils.Window.getConsole().log(chart.getOptions().getPlugins());
 
 	}
 

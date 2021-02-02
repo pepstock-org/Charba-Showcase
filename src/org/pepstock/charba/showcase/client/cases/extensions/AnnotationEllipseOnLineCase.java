@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
-import org.pepstock.charba.client.annotation.BoxAnnotation;
+import org.pepstock.charba.client.annotation.EllipseAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
@@ -25,17 +25,17 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationBoxesOnLineCase extends BaseComposite {
+public class AnnotationEllipseOnLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, AnnotationBoxesOnLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationEllipseOnLineCase> {
 	}
 
 	@UiField
 	LineChartWidget chart;
 
-	public AnnotationBoxesOnLineCase() {
+	public AnnotationEllipseOnLineCase() {
 		super.months = 12;
 
 		initWidget(uiBinder.createAndBindUi(this));
@@ -43,7 +43,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Box annotations on line chart");
+		chart.getOptions().getTitle().setText("Ellipse annotations on line chart");
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -53,7 +53,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
-		double[] values = getRandomDigits(months);
+		double[] values = getRandomDigits(months, 0, 100);
 		List<Double> data = dataset1.getData(true);
 		for (int i = 0; i < values.length; i++) {
 			data.add(values[i]);
@@ -64,46 +64,19 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		AnnotationOptions options = new AnnotationOptions();
 
-		BoxAnnotation box1 = new BoxAnnotation();
-		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box1.setXScaleID(DefaultScaleId.X.value());
-		box1.setYScaleID(DefaultScaleId.Y.value());
-		box1.setXMin("January");
-		box1.setXMax("April");
-		box1.setBackgroundColor(GwtMaterialColor.YELLOW_LIGHTEN_3.alpha(0.3D));
-		box1.setBorderWidth(0);
-		box1.setBorderColor(HtmlColor.TRANSPARENT);
+		EllipseAnnotation ellipse = new EllipseAnnotation();
+		ellipse.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
+		ellipse.setXScaleID(DefaultScaleId.X.value());
+		ellipse.setYScaleID(DefaultScaleId.Y.value());
+		ellipse.setXMin("February");
+		ellipse.setXMax("April");
+		ellipse.setYMin(10);
+		ellipse.setYMax(60);
+		ellipse.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
+		ellipse.setBorderWidth(0);
+		ellipse.setBorderColor(HtmlColor.TRANSPARENT);
 
-		BoxAnnotation box2 = new BoxAnnotation();
-		box2.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box2.setXScaleID(DefaultScaleId.X.value());
-		box2.setYScaleID(DefaultScaleId.Y.value());
-		box2.setXMin("April");
-		box2.setXMax("July");
-		box2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
-		box2.setBorderWidth(0);
-		box2.setBorderColor(HtmlColor.TRANSPARENT);
-
-		BoxAnnotation box3 = new BoxAnnotation();
-		box3.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box3.setXScaleID(DefaultScaleId.X.value());
-		box3.setYScaleID(DefaultScaleId.Y.value());
-		box3.setXMin("July");
-		box3.setXMax("October");
-		box3.setBackgroundColor(GwtMaterialColor.GREEN_LIGHTEN_3.alpha(0.3D));
-		box3.setBorderWidth(0);
-		box3.setBorderColor(HtmlColor.TRANSPARENT);
-
-		BoxAnnotation box4 = new BoxAnnotation();
-		box4.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box4.setXScaleID(DefaultScaleId.X.value());
-		box4.setYScaleID(DefaultScaleId.Y.value());
-		box4.setXMin("October");
-		box4.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
-		box4.setBorderWidth(0);
-		box4.setBorderColor(HtmlColor.TRANSPARENT);
-
-		options.setAnnotations(box1, box2, box3, box4);
+		options.setAnnotations(ellipse);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}

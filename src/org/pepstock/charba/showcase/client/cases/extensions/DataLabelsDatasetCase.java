@@ -36,6 +36,10 @@ public class DataLabelsDatasetCase extends BaseComposite {
 
 	@UiField
 	LineChartWidget chart;
+	
+	LineDataset dataset1;
+	
+	LineDataset dataset2;
 
 	public DataLabelsDatasetCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -55,7 +59,7 @@ public class DataLabelsDatasetCase extends BaseComposite {
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 
 
-		LineDataset dataset1 = chart.newDataset();
+		dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
 		IsColor color1 = GoogleChartColor.values()[0];
@@ -67,7 +71,7 @@ public class DataLabelsDatasetCase extends BaseComposite {
 		dataset1.setData(values);
 		dataset1.setFill("+1");
 
-		LineDataset dataset2 = chart.newDataset();
+		dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
 		IsColor color2 = GoogleChartColor.values()[1];
@@ -112,11 +116,7 @@ public class DataLabelsDatasetCase extends BaseComposite {
 
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
-				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double v0 = ds.getData().get(0);
-				double v1 = ds.getData().get(1);
-				boolean invert = v0 - v1 > 0;
-				return context.getDatasetIndex() == 0 ? invert ? Align.END : Align.START : invert ? Align.START : Align.CENTER;
+				return context.getDatasetIndex() == 0 ? Align.BOTTOM : Align.TOP;
 			}
 		});
 

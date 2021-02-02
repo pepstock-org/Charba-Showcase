@@ -2,19 +2,15 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Collections;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.annotation.AbstractAnnotation;
-import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
-import org.pepstock.charba.client.callbacks.AnnotationValueCallback;
 import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
@@ -95,32 +91,13 @@ public class AnnotationsOnCombinedCase extends BaseComposite {
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
 
-		BoxAnnotation box = new BoxAnnotation("stock");
-		box.setEnabled(true);
+		BoxAnnotation box = new BoxAnnotation("stock123");
+		box.setDisplay(true);
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box.setXScaleID(DefaultScaleId.X.value());
 		box.setYScaleID(DefaultScaleId.Y.value());
-		//box.setXMin("February");
-		//box.setXMax("April");
-		
-		box.setXMin(new AnnotationValueCallback() {
-			
-			@Override
-			public Object compute(IsChart chart, AbstractAnnotation annotation) {
-				Labels labels = chart.getData().getLabels();
-				return labels.getString(2);
-			}
-		});
-
-		box.setXMax(new AnnotationValueCallback() {
-			
-			@Override
-			public Object compute(IsChart chart, AbstractAnnotation annotation) {
-				Labels labels = chart.getData().getLabels();
-				return labels.getString(labels.size()-1);
-			}
-		});
-
+		box.setXMin("February");
+		box.setXMax("April");
 		double value = getRandomDigits(1, min, max)[0];
 		box.setYMax(value);
 		box.setYMin(value - 40);
@@ -130,9 +107,7 @@ public class AnnotationsOnCombinedCase extends BaseComposite {
 		box.setBorderWidth(1);
 		options.setAnnotations(line, box);
 
-		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
-		
-		chart.getPlugins().add(Annotation.get());
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 
 	}
 

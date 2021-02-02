@@ -14,7 +14,7 @@ import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.ChartAreaNode;
-import org.pepstock.charba.client.items.DatasetReferenceItem;
+import org.pepstock.charba.client.items.DatasetReference;
 import org.pepstock.charba.client.positioner.CustomTooltipPosition;
 import org.pepstock.charba.client.positioner.Point;
 import org.pepstock.charba.client.positioner.Positioner;
@@ -53,7 +53,7 @@ public class TooltipPositionerCase extends BaseComposite {
 				}
 
 				@Override
-				public Point computePosition(IsChart chart, List<DatasetReferenceItem> items, Point eventPoint) {
+				public Point computePosition(IsChart chart, List<DatasetReference> items, Point eventPoint) {
 					ChartAreaNode area = chart.getNode().getChartArea();
 					Point p = new Point();
 					p.setX(area.getLeft());

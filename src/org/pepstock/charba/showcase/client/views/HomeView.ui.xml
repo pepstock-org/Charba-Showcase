@@ -52,8 +52,6 @@
    			<g:VerticalPanel width="60%" height="400px" horizontalAlignment="center">
    				<c:LineChartWidget ui:field="chart" />
    				<g:HorizontalPanel height="50px" verticalAlignment="middle" horizontalAlignment="center">
-					<g:Label>Date adapter:</g:Label>
-					<g:ListBox ui:field="dateAdapter"/>
    					<g:CheckBox ui:field="loading" checked="false">Deferred loading</g:CheckBox>
    				</g:HorizontalPanel>
    			</g:VerticalPanel>

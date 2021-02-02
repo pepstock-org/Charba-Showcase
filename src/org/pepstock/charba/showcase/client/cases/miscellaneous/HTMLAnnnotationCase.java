@@ -9,6 +9,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
@@ -51,14 +52,14 @@ public class HTMLAnnnotationCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setBottom(200);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart,"y-axis-1");
-		axis1.setPosition(Position.LEFT);
+		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setDisplay(true);
 		axis1.setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
 		axis1.getScaleLabel().setLabelString("Percentage");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
-		axis2.setPosition(Position.RIGHT);
+		axis2.setPosition(AxisPosition.RIGHT);
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
@@ -85,15 +86,10 @@ public class HTMLAnnnotationCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		chart.getPlugins().add(new AbstractPlugin() {
+		chart.getPlugins().add(new AbstractPlugin("raster") {
 
 			private final static String ANNOTATION_TEMPLATE = "<center>" + "<table width=\"100%\" height=\"100%\" style=\"background-color: lightGray;\">" + "<tr><th><img src=\"{0}\"></img></th></tr>"
 					+ "<tr align=\"center\"><td>Temperature</td><td>{1}</td></tr>" + "<tr align=\"center\"><td>Humidity</td><td>{2}</td></tr></table></center>";
-
-			@Override
-			public String getId() {
-				return "raster";
-			}
 
 			@Override
 			public void onAfterDraw(IsChart chart) {

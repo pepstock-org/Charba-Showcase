@@ -46,8 +46,8 @@ public class TooltipBorderCase extends BaseComposite {
 		chart.getOptions().getTooltips().setXPadding(10);
 		chart.getOptions().getTooltips().setCaretSize(8);
 		chart.getOptions().getTooltips().setBackgroundColor("rgba(72, 241, 12, 1)");
-		chart.getOptions().getTooltips().getTitleFont().setColor(HtmlColor.BLACK);
-		chart.getOptions().getTooltips().getBodyFont().setColor(HtmlColor.BLACK);
+		chart.getOptions().getTooltips().setTitleColor(HtmlColor.BLACK);
+		chart.getOptions().getTooltips().setBodyColor(HtmlColor.BLACK);
 		chart.getOptions().getTooltips().setBorderColor("rgba(0,0,0,1)");
 		chart.getOptions().getTooltips().setBorderWidth(4);
 

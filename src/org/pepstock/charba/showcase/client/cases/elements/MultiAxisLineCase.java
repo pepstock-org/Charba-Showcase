@@ -5,9 +5,9 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -38,11 +38,11 @@ public class MultiAxisLineCase extends BaseComposite {
 		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart, "y-axis-1");
-		axis1.setPosition(Position.LEFT);
+		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setDisplay(true);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
-		axis2.setPosition(Position.RIGHT);
+		axis2.setPosition(AxisPosition.RIGHT);
 		axis2.setDisplay(true);
 		axis2.getGrideLines().setDrawOnChartArea(false);
 

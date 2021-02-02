@@ -54,7 +54,8 @@ public class LineCase extends BaseComposite {
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
-		dataset1.setFill(false);
+		
+		//dataset1.setFill(false);
 		double[] values = getRandomDigits(months);
 		List<Double> data = dataset1.getData(true);
 		for (int i = 0; i < values.length; i++) {
@@ -70,7 +71,6 @@ public class LineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(false);
 		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
@@ -105,7 +105,6 @@ public class LineCase extends BaseComposite {
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));
-		dataset.setFill(false);
 		datasets.add(dataset);
 		chart.update();
 	}

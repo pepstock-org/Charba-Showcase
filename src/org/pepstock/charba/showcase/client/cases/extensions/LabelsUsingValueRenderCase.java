@@ -9,9 +9,10 @@ import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
+import org.pepstock.charba.client.labels.Context;
+import org.pepstock.charba.client.labels.Label;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
-import org.pepstock.charba.client.labels.RenderItem;
 import org.pepstock.charba.client.labels.callbacks.RenderCallback;
 import org.pepstock.charba.client.labels.enums.Render;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -38,6 +39,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 	final MyRenderer renderer = new MyRenderer();
 
 	final LabelsOptions option = new LabelsOptions();
+	final Label label = option.createLabel("myLabel");
 
 	public LabelsUsingValueRenderCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -55,13 +57,13 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-		option.setRender(Render.VALUE);
-		option.setFontColor(HtmlColor.WHITE);
-		option.setPrecision(2);
-		option.setFontSize(14);
-		option.setFontStyle(FontStyle.BOLD);
-		option.setFontFamily("'Lucida Console', Monaco, monospace");
-		option.setOverlap(false);
+		label.setRender(Render.VALUE);
+		label.setPrecision(2);
+		label.setColor(HtmlColor.WHITE);
+		label.getFont().setSize(14);
+		label.getFont().setStyle(FontStyle.BOLD);
+		label.getFont().setFamily("'Lucida Console', Monaco, monospace");
+		label.setOverlap(false);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 	}
@@ -118,9 +120,9 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 	protected void handleFormat(ClickEvent event) {
 		boolean checked = ((CheckBox) event.getSource()).getValue();
 		if (checked) {
-			option.setRender(renderer);
+			label.setRender(renderer);
 		} else {
-			option.setRender(Render.VALUE);
+			label.setRender(Render.VALUE);
 		}
 		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
 		chart.update();
@@ -134,7 +136,7 @@ public class LabelsUsingValueRenderCase extends BaseComposite {
 	static class MyRenderer implements RenderCallback {
 
 		@Override
-		public String invoke(IsChart chart, RenderItem item) {
+		public String invoke(IsChart chart, Context item) {
 			return "$$ " + item.getDataItem().getValue();
 		}
 

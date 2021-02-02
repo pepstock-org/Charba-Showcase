@@ -7,8 +7,8 @@ import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.AxisKind;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -42,15 +42,15 @@ public class MultiAxisScatterCase extends BaseComposite {
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
 
 		CartesianLinearAxis xAxes = new CartesianLinearAxis(chart, "x-axis-1", AxisKind.X);
-		xAxes.setPosition(Position.BOTTOM);
+		xAxes.setPosition(AxisPosition.BOTTOM);
 
 		CartesianLinearAxis yAxes1 = new CartesianLinearAxis(chart, "y-axis-1");
 		yAxes1.setDisplay(true);
-		yAxes1.setPosition(Position.LEFT);
+		yAxes1.setPosition(AxisPosition.LEFT);
 
 		CartesianLinearAxis yAxes2 = new CartesianLinearAxis(chart, "y-axis-2");
 		yAxes2.setDisplay(true);
-		yAxes2.setPosition(Position.RIGHT);
+		yAxes2.setPosition(AxisPosition.RIGHT);
 		yAxes2.getGrideLines().setDrawOnChartArea(false);
 
 		chart.getOptions().getScales().setAxes(xAxes, yAxes1, yAxes2);

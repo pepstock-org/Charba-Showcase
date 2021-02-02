@@ -10,7 +10,7 @@
 		<g:VerticalPanel width="100%" height="80%">
 			<g:cell width="10%" verticalAlignment="middle"
 				horizontalAlignment="center">
-				<c:LineChartWidget ui:field="chart" height="80%" />
+				<c:LineChartWidget ui:field="chart" />
 			</g:cell>
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">

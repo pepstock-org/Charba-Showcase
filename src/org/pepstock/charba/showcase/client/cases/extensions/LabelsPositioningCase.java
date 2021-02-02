@@ -7,6 +7,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
+import org.pepstock.charba.client.labels.Label;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Position;
@@ -32,7 +33,8 @@ public class LabelsPositioningCase extends BaseComposite {
 	@UiField
 	DoughnutChartWidget chart;
 
-	final LabelsOptions option = new LabelsOptions();
+	final LabelsOptions options = new LabelsOptions();
+	final Label label = options.createLabel("label");
 
 	public LabelsPositioningCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -49,15 +51,15 @@ public class LabelsPositioningCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-		option.setRender(Render.LABEL);
-		option.setFontColor(HtmlColor.WHITE);
-		option.setFontSize(16);
-		option.setFontFamily("'Lucida Console', Monaco, monospace");
-		option.setArc(true);
-		option.setPosition(Position.BORDER);
-		option.setOverlap(false);
+		label.setRender(Render.LABEL);
+		label.setColor(HtmlColor.WHITE);
+		label.getFont().setSize(16);
+		label.getFont().setFamily("'Lucida Console', Monaco, monospace");
+		label.setArc(true);
+		label.setPosition(Position.BORDER);
+		label.setOverlap(false);
 
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 	}
 
 	@UiHandler("randomize")
@@ -92,9 +94,9 @@ public class LabelsPositioningCase extends BaseComposite {
 	@UiHandler("outside")
 	protected void handleOutside(ClickEvent event) {
 		boolean checked = ((CheckBox) event.getSource()).getValue();
-		option.setPosition(checked ? Position.OUTSIDE : Position.BORDER);
-		option.setFontColor(checked ? HtmlColor.BLACK : HtmlColor.WHITE);
-		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		label.setPosition(checked ? Position.OUTSIDE : Position.BORDER);
+		label.setColor(checked ? HtmlColor.BLACK : HtmlColor.WHITE);
+		chart.getNode().getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 		chart.update();
 	}
 

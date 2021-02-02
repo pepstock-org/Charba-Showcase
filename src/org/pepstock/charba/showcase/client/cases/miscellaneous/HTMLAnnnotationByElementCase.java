@@ -9,13 +9,13 @@ import org.pepstock.charba.client.dom.BaseHtmlElement;
 import org.pepstock.charba.client.dom.BaseNativeEvent;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.ChartClickEvent;
 import org.pepstock.charba.client.events.ChartClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
+import org.pepstock.charba.client.items.DatasetElement;
 import org.pepstock.charba.client.items.DatasetItem;
-import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.utils.AnnotationBuilder;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -65,7 +65,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setTop(100);
 
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart);
-		axis1.setPosition(Position.LEFT);
+		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setDisplay(true);
 		axis1.setBeginAtZero(true);
 		axis1.getScaleLabel().setDisplay(true);
@@ -107,7 +107,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 			}
 		}, ChartClickEvent.TYPE);
 
-		chart.getPlugins().add(new AbstractPlugin() {
+		chart.getPlugins().add(new AbstractPlugin("raster") {
 
 			private static final String ANNOTATION = "<div style=\"border: 1px solid; border-color: rgba(255, 29, 29); padding: 6px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; background: rgba(255, 137, 137); color: black; -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.2);\">"
 					+ "			  <div class=\"popupContent\">" + "			    <table cellspacing=\"2\" cellpadding=\"0\">" + "				  <tbody>" + "				    <tr>"
@@ -118,18 +118,13 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 			final Toast toast = new Toast("Issue 26", "This is a description of issue 26");
 
 			@Override
-			public String getId() {
-				return "raster";
-			}
-
-			@Override
 			public void onAfterDraw(IsChart chart) {
 				Element element = toast.getElement();
 
 				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
-				DatasetMetaItem meta = chart.getDatasetMeta(0);
-				DatasetItem item = meta.getDatasets().get(3);
+				DatasetItem item = chart.getDatasetItem(0);
+				DatasetElement elem = item.getElements().get(3);
 
 				Img img;
 				if (useElement) {
@@ -139,8 +134,8 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 					img = AnnotationBuilder.build(ANNOTATION, 300, 64);
 				}
 
-				double x = item.getX() - (item.getWidth() / 2);
-				double y = item.getY() - img.getHeight() - 10;
+				double x = elem.getX() - (elem.getWidth() / 2);
+				double y = elem.getY() - img.getHeight() - 10;
 
 				ctx.drawImage(img, x, y);
 

@@ -87,7 +87,7 @@ public class DataLabelsIndicesCase extends BaseComposite {
 		option.setAlign(new AlignCallback() {
 			@Override
 			public Align invoke(IsChart chart, ScriptableContext context) {
-				return context.getIndex() % 2 == 0 ? Align.END : Align.CENTER;
+				return context.getDataIndex() % 2 == 0 ? Align.END : Align.CENTER;
 			}
 		});
 
@@ -96,7 +96,7 @@ public class DataLabelsIndicesCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
+				return context.getDataIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
 		});
 		option.setBorderColor(new BorderColorCallback() {
@@ -104,7 +104,7 @@ public class DataLabelsIndicesCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? null : ds.getBorderColor();
+				return context.getDataIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
 		});
 		option.setColor(new ColorCallback() {
@@ -112,21 +112,21 @@ public class DataLabelsIndicesCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return context.getIndex() % 2 == 0 ? HtmlColor.WHITE : ds.getBorderColor();
+				return context.getDataIndex() % 2 == 0 ? HtmlColor.WHITE : ds.getBorderColor();
 			}
 		});
 		option.setBorderWidth(new BorderWidthCallback() {
 
 			@Override
 			public Integer invoke(IsChart chart, ScriptableContext context) {
-				return context.getIndex() % 2 == 0 ? 0 : 1;
+				return context.getDataIndex() % 2 == 0 ? 0 : 1;
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-				return context.getIndex() + ": " + Math.round(dataItem.getValue()) + "'";
+				return context.getDataIndex() + ": " + Math.round(dataItem.getValue()) + "'";
 			}
 		});
 		option.setOffset(8);

@@ -82,6 +82,7 @@ public class ColorSchemeLineCase extends BaseComposite {
 		dataset1.setBorderWidth(2);
 		dataset1.setBorderColor(color1);
 		dataset1.setData(getFixedDigits(months));
+		dataset1.setFill(true);
 
 		ColorSchemesOptions options = new ColorSchemesOptions();
 		options.setSchemeScope(SchemeScope.DATASET);
@@ -114,6 +115,7 @@ public class ColorSchemeLineCase extends BaseComposite {
 		dataset.setBorderColor(color.toHex());
 		dataset.setBorderWidth(2);
 		dataset.setData(getRandomDigits(months));
+		dataset.setFill(true);
 
 		datasets.add(dataset);
 

@@ -106,7 +106,7 @@ public class DataLabelsCustomLabelsCase extends BaseComposite {
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
 				Labels labels = chart.getData().getLabels();
-				return labels.getString(context.getIndex());
+				return labels.getString(context.getDataIndex());
 			}
 
 		});

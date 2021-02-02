@@ -67,7 +67,7 @@ public class DataLabelsPolarAreaCase extends BaseComposite {
 			@Override
 			public String invoke(IsChart chart, ScriptableContext context) {
 				PolarAreaDataset ds = (PolarAreaDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBackgroundColor().get(context.getIndex()).alpha(1D).toRGBA();
+				return ds.getBackgroundColor().get(context.getDataIndex()).alpha(1D).toRGBA();
 			}
 		});
 		option.setBorderColor(HtmlColor.WHITE);

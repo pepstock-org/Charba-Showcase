@@ -47,7 +47,6 @@ public class RadialGradientRadarCase extends BaseComposite {
 		IsColor firstColor = gradient1.getColors().get(0).getColor();
 
 		dataset1.setBackgroundColor(gradient1);
-
 		dataset1.setBorderColor(firstColor.darker());
 		dataset1.setPointBackgroundColor(gradient1);
 		dataset1.setPointHoverBackgroundColor(gradient1);

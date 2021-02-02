@@ -1,7 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import java.util.Arrays;
-
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
@@ -37,6 +35,7 @@ public class LabelsPolarCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
+		chart.getOptions().getLayout().getPadding().setBottom(40);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Using labels on polar chart");
 
@@ -48,15 +47,10 @@ public class LabelsPolarCase extends BaseComposite {
 		chart.getData().setLabels(getLabels(myMonths));
 		chart.getData().setDatasets(dataset);
 
-		LabelsOptions option1 = new LabelsOptions();
-		option1.setRender(Render.LABEL);
-		option1.setFontColor(HtmlColor.BLACK);
-		option1.setArc(true);
-		option1.setFontSize(32);
-		option1.setPosition(Position.OUTSIDE);
-
-		LabelsOptions option2 = LabelsOptionsBuilder.create().setRender(Render.PERCENTAGE).setFontColor(HtmlColor.WHITE).setPrecision(2).setFontSize(32).setOverlap(false).build();
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, Arrays.asList(option1, option2));
+		LabelsOptionsBuilder optionBuilder = LabelsOptionsBuilder.create().createLabel("label").setRender(Render.LABEL).setColor(HtmlColor.BLACK).setFontSize(32).setArc(true).setPosition(Position.OUTSIDE).getOptionsBuilder();
+		LabelsOptions options = optionBuilder.createLabel("label2").setRender(Render.PERCENTAGE).setColor(HtmlColor.WHITE).setPrecision(2).setFontSize(32).setOverlap(false).getOptionsBuilder().build();
+		
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 	}
 
 	@UiHandler("randomize")

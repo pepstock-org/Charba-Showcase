@@ -77,7 +77,7 @@ public class InterpolationOnLineCase extends BaseComposite {
 		dataset3.setBorderColor(color3.toHex());
 		dataset3.setData(data);
 		dataset3.setFill(Fill.FALSE);
-		dataset3.setLineTension(0);
+		dataset3.setTension(0);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);

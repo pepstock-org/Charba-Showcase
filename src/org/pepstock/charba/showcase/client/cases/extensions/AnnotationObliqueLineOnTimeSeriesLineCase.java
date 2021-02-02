@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
@@ -147,18 +147,17 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.setEndValue(max);
 		
 		line1.getLabel().setEnabled(true);
+		line1.getLabel().setAutoRotation(true);
 		line1.getLabel().setContent("Line from 40 to max");
-		line1.getLabel().setYAdjust(-10);
-		line1.getLabel().setPosition(LineLabelPosition.RIGHT);
+		line1.getLabel().setPosition(LineLabelPosition.END);
 		line1.getLabel().setBackgroundColor(HtmlColor.VIOLET);
-		line1.getLabel().setFontColor(HtmlColor.BLACK);
+		line1.getLabel().setColor(HtmlColor.BLACK);
 
 		options.setAnnotations(line1);
 
-		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 		
-		chart.getPlugins().add(Annotation.get());
-	}
+    }
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {

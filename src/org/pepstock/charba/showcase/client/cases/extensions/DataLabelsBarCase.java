@@ -125,7 +125,7 @@ public class DataLabelsBarCase extends BaseComposite {
 			@Override
 			public Display invoke(IsChart chart, ScriptableContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
-				double value = ds.getData().get(context.getIndex());
+				double value = ds.getData().get(context.getDataIndex());
 				return value > 15D ? Display.TRUE : Display.FALSE;
 			}
 		});

@@ -118,7 +118,7 @@ public class DataLabelsSelectionCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				int key = context.getDatasetIndex() * 1000 + context.getIndex();
+				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				return items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
@@ -135,7 +135,7 @@ public class DataLabelsSelectionCase extends BaseComposite {
 			@Override
 			public IsColor invoke(IsChart chart, ScriptableContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				int key = context.getDatasetIndex() * 1000 + context.getIndex();
+				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				return !items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
@@ -149,12 +149,12 @@ public class DataLabelsSelectionCase extends BaseComposite {
 
 			@Override
 			public boolean onClick(IsChart chart, ScriptableContext context) {
-				int key = context.getDatasetIndex() * 1000 + context.getIndex();
+				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				if (items.containsKey(key)) {
 					items.remove(key);
 				} else {
 					LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-					items.put(key, new SelectionItem(context.getDatasetIndex(), context.getIndex(), ds.getData().get(context.getIndex())));
+					items.put(key, new SelectionItem(context.getDatasetIndex(), context.getDataIndex(), ds.getData().get(context.getDataIndex())));
 				}
 				if (!items.isEmpty()) {
 					StringBuilder sb = new StringBuilder();

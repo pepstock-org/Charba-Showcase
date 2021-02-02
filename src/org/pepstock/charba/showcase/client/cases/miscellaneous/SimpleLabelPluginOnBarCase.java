@@ -15,8 +15,8 @@ import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
+import org.pepstock.charba.client.items.DatasetElement;
 import org.pepstock.charba.client.items.DatasetItem;
-import org.pepstock.charba.client.items.DatasetMetaItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -71,12 +71,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 
-		AbstractPlugin p = new AbstractPlugin() {
-
-			@Override
-			public String getId() {
-				return "simplelabel";
-			}
+		AbstractPlugin p = new AbstractPlugin("simplelabel") {
 
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart) {
@@ -86,19 +81,19 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 
 				List<Dataset> dss = chart.getData().getDatasets();
 				for (int i = 0; i < dss.size(); i++) {
-					DatasetMetaItem metadata = chart.getDatasetMeta(i);
-					if (!metadata.isHidden()) {
+					DatasetItem item = chart.getDatasetItem(i);
+					if (!item.isHidden()) {
 						Dataset ds = dss.get(i);
-						List<DatasetItem> items = metadata.getDatasets();
-						for (int k = 0; k < items.size(); k++) {
-							DatasetItem item = items.get(k);
+						List<DatasetElement> elements = item.getElements();
+						for (int k = 0; k < elements.size(); k++) {
+							DatasetElement elem = elements.get(k);
 							String dataString = ds.getData().get(k).toString();
 							ctx.setFillColor("rgb(0, 0, 0)");
 							String fontString = Utilities.toCSSFontProperty(FontStyle.NORMAL, Weight.NORMAL, fontSize, Defaults.get().getGlobal().getFont().getFamily());
 							ctx.setFont(fontString);
 							ctx.setTextAlign(TextAlign.CENTER);
 							ctx.setTextBaseline(TextBaseline.MIDDLE);
-							ctx.fillText(dataString, item.getX(), item.getY() - (fontSize / 2) - padding);
+							ctx.fillText(dataString, elem.getX(), elem.getY() - (fontSize / 2) - padding);
 						}
 					}
 				}

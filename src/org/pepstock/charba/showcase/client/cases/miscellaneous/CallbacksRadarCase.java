@@ -36,7 +36,7 @@ public class CallbacksRadarCase extends BaseComposite {
 
 		@Override
 		public Double invoke(IsChart chart, ScriptableContext context) {
-			int module = context.getIndex() % 2;
+			int module = context.getDataIndex() % 2;
 			return context.getDatasetIndex() % 2 == 0 ? module == 0 ? 50D : 25D : module == 0 ? 25D : 50D;
 		}
 

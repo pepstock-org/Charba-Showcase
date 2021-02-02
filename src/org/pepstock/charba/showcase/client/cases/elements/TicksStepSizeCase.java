@@ -8,13 +8,13 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.ElementAlign;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.intl.enums.MeasureUnit;
 import org.pepstock.charba.client.intl.enums.Style;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -81,6 +81,8 @@ public class TicksStepSizeCase extends BaseComposite {
 		axis2.getTicks().setStepSize(5);
 //		axis2.getTicks().getNumberFormat().setStyle(Style.CURRENCY);
 //		axis2.getTicks().getNumberFormat().setCurrency(Currency.EURO);
+		
+		axis2.getTicks().setAlign(ElementAlign.CENTER);
 
 		axis2.getTicks().getNumberFormat().setStyle(Style.UNIT);
 		axis2.getTicks().getNumberFormat().setUnitsOfMeasure(MeasureUnit.KILOMETER, MeasureUnit.HOUR);
@@ -89,8 +91,6 @@ public class TicksStepSizeCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-		
-		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 	}
 
 	@UiHandler("randomize")

@@ -5,8 +5,8 @@ import java.util.List;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
-import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
+import org.pepstock.charba.client.labels.Label;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.labels.enums.Render;
@@ -34,7 +34,7 @@ public class LabelsUsingLabelRenderCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLegend().setPosition(Position.TOP);
+		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using labels on pie chart");
 
@@ -46,12 +46,13 @@ public class LabelsUsingLabelRenderCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 
-		LabelsOptions option = new LabelsOptions();
-		option.setRender(Render.LABEL);
-		option.setFontColor(HtmlColor.FLORAL_WHITE);
-		option.setOverlap(false);
+		LabelsOptions options = new LabelsOptions();
+		Label label = options.createLabel("myLabel");
+		label.setRender(Render.LABEL);
+		label.setColor(HtmlColor.FLORAL_WHITE);
+		label.setOverlap(false);
 
-		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, option);
+		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 
 	}
 

@@ -76,7 +76,6 @@ public class LogarithmicAxisOnLineCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-
 	}
 
 	@UiHandler("randomize")

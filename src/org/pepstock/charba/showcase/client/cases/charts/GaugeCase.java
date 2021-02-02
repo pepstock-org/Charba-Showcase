@@ -59,11 +59,12 @@ public class GaugeCase extends BaseComposite {
 		chartValue.getOptions().getTitle().setDisplay(true);
 		chartValue.getOptions().getTitle().setText("GAUGE chart to represent value and dataset label");
 		chartValue.getOptions().setDisplay(MeterDisplay.VALUE_AND_LABEL);
+		chartValue.getOptions().setAnimatedDisplay(true);
 		chartValue.getOptions().setFormatCallback(new MeterFormatCallback() {
 			
 			@Override
 			public String onFormat(IsChart chart, double value, double easing) {
-				return Utilities.applyPrecision(value, 0)+ " MB";
+				return Utilities.applyPrecision(value * easing, 0)+ " MB";
 			}
 		});
 		chartValue.getOptions().setFontStyle(FontStyle.ITALIC);

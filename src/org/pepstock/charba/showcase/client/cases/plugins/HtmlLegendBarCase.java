@@ -22,7 +22,6 @@ import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
 import org.pepstock.charba.client.items.LegendItem;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -50,6 +49,7 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getLegend().getTitle().setDisplay(true);
+		// FIXME
 		chart.getOptions().getLegend().getTitle().setText("Questa e una \n prova di title");
 		chart.getOptions().getLegend().getTitle().setPadding(10);
 		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
@@ -59,7 +59,6 @@ public class HtmlLegendBarCase extends BaseComposite {
 			
 			@Override
 			public int onItemSort(IsChart chart, LegendItem item1, LegendItem item2) {
-				Charba_Showcase.LOG.info("eccome");
 				return item2.getDatasetIndex() - item1.getDatasetIndex();
 			}
 		});
@@ -111,6 +110,9 @@ public class HtmlLegendBarCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(options);
 		chart.getPlugins().add(HtmlLegend.get());
+		
+		
+		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions());
 
 	}
 

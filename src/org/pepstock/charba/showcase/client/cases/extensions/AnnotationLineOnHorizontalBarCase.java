@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
@@ -66,7 +66,7 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("Crtitical month");
 		line.getLabel().setBackgroundColor(HtmlColor.LIGHT_SALMON);
-		line.getLabel().setPosition(LineLabelPosition.RIGHT);
+		line.getLabel().setPosition(LineLabelPosition.END);
 
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -77,9 +77,7 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 
 		options.setAnnotations(line, box);
 
-		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
-		
-		chart.getPlugins().add(Annotation.get());
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 
 	}
 

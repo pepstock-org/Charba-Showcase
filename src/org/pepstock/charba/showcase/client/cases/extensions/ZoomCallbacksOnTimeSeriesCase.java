@@ -144,7 +144,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		options.getZoom().setCompleteCallback(new CompleteCallback() {
 
 			@Override
-			public void onComplete(IsChart chart, AbstractConfigurationItem item) {
+			public void onComplete(IsChart chart, AbstractConfigurationItem<?> item) {
 				mylog.addLogEvent("> ZOOM COMPLETE on chart");
 			}
 		});
@@ -152,7 +152,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		options.getZoom().setProgressCallback(new ProgressCallback() {
 
 			@Override
-			public void onProgress(IsChart chart, AbstractConfigurationItem item) {
+			public void onProgress(IsChart chart, AbstractConfigurationItem<?> item) {
 				mylog.addLogEvent("> ZOOM in PROGRESS on chart");
 			}
 		});

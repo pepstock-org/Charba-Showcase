@@ -1,7 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.annotation.Annotation;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
+import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
@@ -93,14 +93,12 @@ public class AnnotationLineOnLogarithmicAxisCase extends BaseComposite {
 		line.getLabel().setEnabled(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.LIGHT_SALMON);
-		line.getLabel().setPosition(LineLabelPosition.RIGHT);
+		line.getLabel().setPosition(LineLabelPosition.END);
 
 		options.setAnnotations(line);
 
-		chart.getOptions().getPlugins().setOptions(Annotation.ID, options);
+		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 		
-		chart.getPlugins().add(Annotation.get());
-
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());

@@ -64,7 +64,7 @@ public class CallbacksPolarAreaCase extends BaseComposite {
 						patterns.add(pattern);
 					}
 				}
-				return patterns.get(context.getIndex());
+				return patterns.get(context.getDataIndex());
 			}
 		});
 

@@ -74,6 +74,7 @@ public class TilesPointStylesCase extends BaseComposite {
 		dataset1.setLabel("dataset 1");
 		dataset1.setBackgroundColor(p);
 		dataset1.setData(getFixedDigits(ITEMS));
+		dataset1.setFill(true);
 
 		chart.getData().setLabels(getLabels(ITEMS));
 		chart.getData().setDatasets(dataset1);

@@ -15,9 +15,9 @@ import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.HorizontalBarChartWidget;
+import org.pepstock.charba.client.items.PluginResizeArgument;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.items.ScaleTickItem;
-import org.pepstock.charba.client.items.SizeItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -78,12 +78,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 		chart.getOptions().getScales().setAxes(axis);
 
-		AbstractPlugin p = new AbstractPlugin() {
-
-			@Override
-			public String getId() {
-				return "flagsplugin";
-			}
+		AbstractPlugin p = new AbstractPlugin("flagsplugin") {
 
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart) {
@@ -120,8 +115,8 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 			}
 
 			@Override
-			public void onResize(IsChart chart, SizeItem size) {
-				double width = size.getWidth();
+			public void onResize(IsChart chart, PluginResizeArgument argument) {
+				double width = argument.getSizeItem().getWidth();
 				calculateAndSetScaleLabelPadding(width);
 			}
 			

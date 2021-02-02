@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
-import org.pepstock.charba.client.annotation.BoxAnnotation;
+import org.pepstock.charba.client.annotation.PointAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -25,17 +24,17 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationBoxesOnLineCase extends BaseComposite {
+public class AnnotationPointsOnLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, AnnotationBoxesOnLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationPointsOnLineCase> {
 	}
 
 	@UiField
 	LineChartWidget chart;
 
-	public AnnotationBoxesOnLineCase() {
+	public AnnotationPointsOnLineCase() {
 		super.months = 12;
 
 		initWidget(uiBinder.createAndBindUi(this));
@@ -43,7 +42,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Box annotations on line chart");
+		chart.getOptions().getTitle().setText("Point annotations on line chart");
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -53,7 +52,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
-		double[] values = getRandomDigits(months);
+		double[] values = getRandomDigits(months, 0, 100);
 		List<Double> data = dataset1.getData(true);
 		for (int i = 0; i < values.length; i++) {
 			data.add(values[i]);
@@ -64,46 +63,51 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		AnnotationOptions options = new AnnotationOptions();
 
-		BoxAnnotation box1 = new BoxAnnotation();
-		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box1.setXScaleID(DefaultScaleId.X.value());
-		box1.setYScaleID(DefaultScaleId.Y.value());
-		box1.setXMin("January");
-		box1.setXMax("April");
-		box1.setBackgroundColor(GwtMaterialColor.YELLOW_LIGHTEN_3.alpha(0.3D));
-		box1.setBorderWidth(0);
-		box1.setBorderColor(HtmlColor.TRANSPARENT);
+		PointAnnotation point1 = new PointAnnotation();
+		point1.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
+		point1.setXValue("February");
+		point1.setXScaleID(DefaultScaleId.X);
+		point1.setYScaleID(DefaultScaleId.Y);
+		point1.setYValue(50);
+		point1.setRadius(10);
+		point1.setBackgroundColor(GwtMaterialColor.YELLOW_LIGHTEN_3.alpha(0.3D));
+		point1.setBorderWidth(2);
+		point1.setBorderColor(GwtMaterialColor.YELLOW_LIGHTEN_3.darker());
 
-		BoxAnnotation box2 = new BoxAnnotation();
-		box2.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box2.setXScaleID(DefaultScaleId.X.value());
-		box2.setYScaleID(DefaultScaleId.Y.value());
-		box2.setXMin("April");
-		box2.setXMax("July");
-		box2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
-		box2.setBorderWidth(0);
-		box2.setBorderColor(HtmlColor.TRANSPARENT);
+		PointAnnotation point2 = new PointAnnotation();
+		point2.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
+		point2.setXScaleID(DefaultScaleId.X);
+		point2.setYScaleID(DefaultScaleId.Y);
+		point2.setXValue("April");
+		point2.setYValue(20);
+		point2.setRadius(25);
+		point2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
+		point2.setBorderWidth(3);
+		point2.setBorderColor(GwtMaterialColor.BROWN_LIGHTEN_3.darker());
 
-		BoxAnnotation box3 = new BoxAnnotation();
-		box3.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box3.setXScaleID(DefaultScaleId.X.value());
-		box3.setYScaleID(DefaultScaleId.Y.value());
-		box3.setXMin("July");
-		box3.setXMax("October");
-		box3.setBackgroundColor(GwtMaterialColor.GREEN_LIGHTEN_3.alpha(0.3D));
-		box3.setBorderWidth(0);
-		box3.setBorderColor(HtmlColor.TRANSPARENT);
+		PointAnnotation point3 = new PointAnnotation();
+		point3.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
+		point3.setXScaleID(DefaultScaleId.X);
+		point3.setYScaleID(DefaultScaleId.Y);
+		point3.setXValue("July");
+		point3.setYValue(30);
+		point3.setRadius(15);
+		point3.setBackgroundColor(GwtMaterialColor.GREEN_LIGHTEN_3.alpha(0.3D));
+		point3.setBorderWidth(4);
+		point3.setBorderColor(GwtMaterialColor.GREEN_LIGHTEN_3.darker());
 
-		BoxAnnotation box4 = new BoxAnnotation();
-		box4.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box4.setXScaleID(DefaultScaleId.X.value());
-		box4.setYScaleID(DefaultScaleId.Y.value());
-		box4.setXMin("October");
-		box4.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
-		box4.setBorderWidth(0);
-		box4.setBorderColor(HtmlColor.TRANSPARENT);
+		PointAnnotation point4 = new PointAnnotation();
+		point4.setXScaleID(DefaultScaleId.X);
+		point4.setYScaleID(DefaultScaleId.Y);
+		point4.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
+		point4.setXValue("November");
+		point4.setYValue(60);
+		point4.setRadius(25);
+		point4.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
+		point4.setBorderWidth(5);
+		point4.setBorderColor(GwtMaterialColor.INDIGO_LIGHTEN_3.darker());
 
-		options.setAnnotations(box1, box2, box3, box4);
+		options.setAnnotations(point1, point2, point3, point4);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}

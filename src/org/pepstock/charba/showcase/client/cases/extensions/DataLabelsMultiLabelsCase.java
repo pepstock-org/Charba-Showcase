@@ -9,6 +9,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.LabelItem;
 import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.callbacks.OpacityCallback;
@@ -61,16 +62,17 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 
 		DataLabelsOptions option1 = new DataLabelsOptions();
 
-		DataLabelsOptions index = new DataLabelsOptions();
+		LabelItem index = option1.getLabels().createLabel("index");
 		index.setAlign(Align.END);
 		index.setAnchor(Anchor.END);
 		index.setDisplay(true);
+		index.getFont().setSize(18);
 		index.setColor(new ColorCallback() {
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				return ds.getBackgroundColorAsString().get(context.getIndex());
+				return ds.getBackgroundColorAsString().get(context.getDataIndex());
 			}
 		});
 		index.setOffset(8);
@@ -78,7 +80,7 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-				return context.isActive() ? "index" : "#" + (context.getIndex() + 1);
+				return context.isActive() ? "index" : "#" + (context.getDataIndex() + 1);
 			}
 		});
 
@@ -89,9 +91,8 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 				return context.isActive() ? 1D : 0.5D;
 			}
 		});
-		option1.getLabels().setLabel("index", index);
 
-		DataLabelsOptions name = new DataLabelsOptions();
+		LabelItem name = option1.getLabels().createLabel("name");
 		name.setAlign(Align.TOP);
 		name.getFont().setSize(18);
 		name.setDisplay(true);
@@ -99,20 +100,19 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 
 			@Override
 			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-				return context.isActive() ? "name" : chart.getData().getLabels().getString(context.getIndex());
+				return context.isActive() ? "name" : chart.getData().getLabels().getString(context.getDataIndex());
 			}
 		});
-		option1.getLabels().setLabel("name", name);
 
-		DataLabelsOptions value = new DataLabelsOptions();
+		LabelItem value = option1.getLabels().createLabel("value");
 		value.setAlign(Align.BOTTOM);
 		value.setBackgroundColor(new BackgroundColorCallback() {
 
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double value = ds.getData().get(context.getIndex());
-				IsColor color = ds.getBackgroundColor().get(context.getIndex());
+				double value = ds.getData().get(context.getDataIndex());
+				IsColor color = ds.getBackgroundColor().get(context.getDataIndex());
 				return value > 50 ? HtmlColor.WHITE : color;
 			}
 		});
@@ -124,7 +124,7 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 			@Override
 			public Object invoke(IsChart chart, ScriptableContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
-				double value = ds.getData().get(context.getIndex());
+				double value = ds.getData().get(context.getDataIndex());
 				return value > 50 ? HtmlColor.BLACK : HtmlColor.WHITE;
 			}
 		});
@@ -135,10 +135,9 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 				return context.isActive() ? "value" : String.valueOf(dataItem.getValue());
 			}
 		});
-		value.getPadding().set(4);
+		value.getPadding().set(6);
 		value.setDisplay(true);
-		option1.getLabels().setLabel("value", value);
-
+		
 		dataset1.setOptions(DataLabelsPlugin.ID, option1);
 
 		chart.getData().setLabels(getLabels());
@@ -152,10 +151,6 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		option.getPadding().set(0);
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
-
-		DataLabelsOptions myOptions = dataset1.getOptions(DataLabelsPlugin.ID, DataLabelsPlugin.FACTORY);
-		DataLabelsOptions index1 = myOptions.getLabels().getLabel("index");
-		index1.getFont().setSize(18);
 
 	}
 

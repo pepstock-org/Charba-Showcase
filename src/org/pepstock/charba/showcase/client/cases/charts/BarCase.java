@@ -2,13 +2,20 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
+import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.TooltipLabelCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.data.BarBorderRadius;
+import org.pepstock.charba.client.data.BarBorderWidth;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.enums.BorderSkipped;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
+import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.items.TooltipLabelColor;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -36,7 +43,19 @@ public class BarCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Bar chart");
+		//chart.getOptions().getLegend().setRtl(true);
+		
+		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
 
+			@Override
+			public TooltipLabelColor onLabelColor(IsChart chart, TooltipItem item) {
+				return TooltipLabelCallback.super.onLabelColor(chart, item);
+			}
+			
+		});
+		
+		chart.getOptions().getElements().getBar().setBackgroundColor(HtmlColor.GREEN);
+		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
@@ -44,12 +63,66 @@ public class BarCase extends BaseComposite {
 
 		dataset1.setBackgroundColor(color1.alpha(0.2));
 		dataset1.setBorderColor(color1.toHex());
-		dataset1.setBorderWidth(4);
+		
+		//dataset1.setBorderWidth(4);
+		
+		BarBorderWidth b = new BarBorderWidth(3);
+		b.setTop(10);
+		b.setBottom(0);
+		
+		dataset1.setBorderWidth(b, new BarBorderWidth(3), new BarBorderWidth(6));
 
+		//dataset1.setHoverBorderWidth(new BarBorderWidth(6), new BarBorderWidth(3));
+	
 		dataset1.setData(getRandomDigits(months));
 		
-		dataset1.setBorderSkipped(BorderSkipped.BOTTOM, BorderSkipped.TOP, BorderSkipped.FALSE, BorderSkipped.START, BorderSkipped.END, BorderSkipped.FALSE, BorderSkipped.LEFT);
-
+//		dataset1.setBorderWidth(new BarBorderWidthCallback() {
+//			
+//			@Override
+//			public Object invoke(IsChart chart, ScriptableContext context) {
+//				return 6;
+//			}
+//		});
+//		
+//		dataset1.setHoverBorderWidth(new BarBorderWidthCallback() {
+//			
+//			@Override
+//			public Object invoke(IsChart chart, ScriptableContext context) {
+//				return 12;
+//			}
+//		});
+//		
+//		dataset1.setBorderRadius(new BorderRadiusCallback() {
+//			
+//			@Override
+//			public Object invoke(IsChart chart, ScriptableContext context) {
+//				return 20;
+//			}
+//		});
+		
+		//dataset1.setBorderSkipped(BorderSkipped.BOTTOM, BorderSkipped.TOP, BorderSkipped.FALSE, BorderSkipped.START, BorderSkipped.END, BorderSkipped.FALSE, BorderSkipped.LEFT);
+		
+		//chart.getOptions().getElements().getBar().setBorderRadius(20);
+		
+		dataset1.setBorderRadius(new BarBorderRadius(6));
+		//chart.getOptions().getElements().getBar().setBorderRadius(10);
+//		dataset1.setBorderRadius(new BorderRadiusCallback() {
+//			
+//			@Override
+//			public Object invoke(IsChart chart, ScriptableContext context) {
+//				BarBorderRadius result = new BarBorderRadius();
+//				result.set(20);
+//				return 40;
+//			}
+//		});
+//		Charba_Showcase.LOG.info(dataset1.toJSON());
+//		for (BarBorderWidth br : dataset1.getHoverBorderWidthAsObjects()) {
+//			Charba_Showcase.LOG.info(br.toJSON());
+//		}
+//		for (BarBorderWidth br : dataset1.getBorderWidthAsObjects()) {
+//			Charba_Showcase.LOG.info(br.toJSON());
+//		}
+		
 		BarDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
@@ -60,6 +133,8 @@ public class BarCase extends BaseComposite {
 		dataset2.setBorderWidth(1);
 		dataset2.setData(getRandomDigits(months));
 
+		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
+		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
 

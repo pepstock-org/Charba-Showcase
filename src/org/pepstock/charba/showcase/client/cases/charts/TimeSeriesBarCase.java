@@ -14,6 +14,7 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesBarChartWidget;
+import org.pepstock.charba.client.intl.CLocale;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -36,6 +37,8 @@ public class TimeSeriesBarCase extends BaseComposite {
 	@UiField
 	TimeSeriesBarChartWidget chart;
 
+	CartesianTimeSeriesAxis axis;
+	
 	private final long startingPoint = System.currentTimeMillis();
 
 	public TimeSeriesBarCase() {
@@ -74,10 +77,18 @@ public class TimeSeriesBarCase extends BaseComposite {
 		dataset1.setTimeSeriesData(data1);
 		dataset2.setTimeSeriesData(data2);
 
-		CartesianTimeSeriesAxis axis = chart.getOptions().getScales().getTimeAxis();
+		axis = chart.getOptions().getScales().getTimeAxis();
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
+		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.DAY, "d MMMM");
 		axis.setOffset(true);
+		
+		axis.getAdapters().getDate().setLocale(CLocale.GERMANY);
+// FIXME		
+//		axis.getAdapters().getDate().setLocale(CLocale.ITALY);
+//		axis.getAdapters().getDate().setNumberingSystem(NumberingSystem.ARAB);
+//		axis.getAdapters().getDate().setOutputCalendar(Calendar.CHINESE);
+//		axis.getAdapters().getDate().setZone(TimeZone.AMERICA_NEW_YORK);		
 
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
