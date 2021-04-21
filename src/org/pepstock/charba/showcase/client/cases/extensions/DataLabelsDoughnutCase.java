@@ -2,14 +2,13 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.callbacks.DisplayCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
@@ -90,10 +89,10 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public String invoke(IsChart chart, ScriptableContext context) {
+			public String invoke(DataLabelsContext context) {
 				DoughnutDataset ds = (DoughnutDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getDataIndex());
 			}
@@ -102,7 +101,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 		option.setDisplay(new DisplayCallback() {
 
 			@Override
-			public Display invoke(IsChart chart, ScriptableContext context) {
+			public Display invoke(DataLabelsContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
 				int count = ds.getData().size();
 				double value = ds.getData().get(context.getDataIndex());
@@ -117,7 +116,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				double percentage = Percentage.compute(chart, dataItem.getValue(), context, false);
 				return percentageFormatter.format(percentage);
 			}

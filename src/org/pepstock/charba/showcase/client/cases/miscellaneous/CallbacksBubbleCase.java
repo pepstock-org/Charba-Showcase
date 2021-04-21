@@ -2,10 +2,8 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.Random;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.gwt.widgets.BubbleChartWidget;
@@ -60,19 +58,19 @@ public class CallbacksBubbleCase extends BaseComposite {
 			hcolors[i] = "transparent";
 			hbwidth[i] = (int) Math.round(8 * dp1[i].getR() / 1000);
 		}
-		dataset.setBackgroundColor(new BackgroundColorCallback() {
+		dataset.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				DataPoint dp = dataset.getDataPoints().get(context.getDataIndex());
 				return colorize(false, dp);
 			}
 
 		});
-		dataset.setBorderColor(new BorderColorCallback() {
+		dataset.setBorderColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				DataPoint dp = dataset.getDataPoints().get(context.getDataIndex());
 				return colorize(true, dp);
 			}

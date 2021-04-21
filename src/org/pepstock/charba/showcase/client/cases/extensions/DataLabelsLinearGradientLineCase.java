@@ -1,9 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.Gradient;
 import org.pepstock.charba.client.colors.GradientBuilder;
 import org.pepstock.charba.client.colors.GradientOrientation;
@@ -17,6 +14,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
@@ -81,13 +79,13 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
@@ -105,10 +103,10 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 		option.setOffset(4);
 		option.getPadding().set(8);
 
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				Gradient gradient = ds.getBackgroundColorAsGradient();
 				double factor = ds.getData().size() > 0 ? context.getDataIndex() * 1D / (ds.getData().size() - 1) : 0;
@@ -116,12 +114,12 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 			}
 		});
 
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new ColorCallback<DataLabelsContext>() {
 
 			CanvasGradientItem gr1 = null;
 
 			@Override
-			public CanvasGradientItem invoke(IsChart chart, ScriptableContext context) {
+			public CanvasGradientItem invoke(DataLabelsContext context) {
 				if (gr1 == null) {
 					gr1 = chart.getCanvas().getContext2d().createLinearGradient(-25, -25, 25, 25);
 					gr1.addColorStop(1, HtmlColor.ORANGE.toRGBA());
@@ -134,7 +132,7 @@ public class DataLabelsLinearGradientLineCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				double value = dataItem.getValue();
 				return value < 20 ? "Poor\n" + value : value < 50 ? "Good\n" + value : "Great\n" + value;
 			}

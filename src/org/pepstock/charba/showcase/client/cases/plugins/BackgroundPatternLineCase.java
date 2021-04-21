@@ -63,7 +63,6 @@ public class BackgroundPatternLineCase extends BaseComposite {
 		dataset2.setData(getRandomDigits(months));
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-
 		
 		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.background())).build(); 
 

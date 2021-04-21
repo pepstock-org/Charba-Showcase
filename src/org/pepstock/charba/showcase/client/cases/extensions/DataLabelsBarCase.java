@@ -1,7 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -9,6 +7,7 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.callbacks.DisplayCallback;
@@ -16,6 +15,7 @@ import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.enums.DefaultPluginId;
+import org.pepstock.charba.client.enums.DefaultTransitionKey;
 import org.pepstock.charba.client.enums.Display;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -57,6 +57,8 @@ public class DataLabelsBarCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
+		
+		chart.getOptions().getTransitions().create(DefaultTransitionKey.ACTIVE).getAnimation().setDuration(0);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -105,13 +107,13 @@ public class DataLabelsBarCase extends BaseComposite {
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.setStacked(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 		axis2.setStacked(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
@@ -123,7 +125,7 @@ public class DataLabelsBarCase extends BaseComposite {
 		option.setDisplay(new DisplayCallback() {
 
 			@Override
-			public Display invoke(IsChart chart, ScriptableContext context) {
+			public Display invoke(DataLabelsContext context) {
 				Dataset ds = chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getDataIndex());
 				return value > 15D ? Display.TRUE : Display.FALSE;
@@ -135,7 +137,7 @@ public class DataLabelsBarCase extends BaseComposite {
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				double percentage = Percentage.compute(chart, dataItem.getValue(), context, true);
 				return Math.round(percentage * 100) + "%";
 			}

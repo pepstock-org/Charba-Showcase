@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.cases.elements;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
+import org.pepstock.charba.client.callbacks.TooltipExternalCallback;
 import org.pepstock.charba.client.configuration.Tooltips;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
@@ -47,12 +47,12 @@ public class TooltipHTMLPieCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML custom tooltip on pie chart");
 		chart.getOptions().getTooltips().setEnabled(false);
-		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {
+		chart.getOptions().getTooltips().setExternalCallback(new TooltipExternalCallback() {
 
 			private DivElement element = null;
 			
 			@Override
-			public void onCustom(IsChart chart, TooltipModel model) {
+			public void onExternal(IsChart chart, TooltipModel model) {
 				if (element == null) {
 					element = Document.get().createDivElement();
 					chart.getChartElement().appendChild(CastHelper.toDiv(element));
@@ -109,8 +109,8 @@ public class TooltipHTMLPieCase extends BaseComposite {
 				element.getStyle().setTop(model.getCaretY(), Unit.PX);
 				
 				Tooltips tooltips = chart.getOptions().getTooltips();
-				element.getStyle().setPaddingLeft(tooltips.getXPadding(), Unit.PX);
-				element.getStyle().setPaddingTop(tooltips.getXPadding(), Unit.PX);
+				element.getStyle().setPaddingLeft(tooltips.getPadding().getLeft(), Unit.PX);
+				element.getStyle().setPaddingTop(tooltips.getPadding().getTop(), Unit.PX);
 				element.getStyle().setOpacity(1);
 				element.getStyle().setBackgroundColor("rgba(0, 0, 0, .7)");
 				element.getStyle().setPosition(com.google.gwt.dom.client.Style.Position.ABSOLUTE);

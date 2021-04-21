@@ -49,6 +49,7 @@ public class LabelsUsingLabelRenderCase extends BaseComposite {
 		LabelsOptions options = new LabelsOptions();
 		Label label = options.createLabel("myLabel");
 		label.setRender(Render.LABEL);
+		label.getFont().setSize(18);
 		label.setColor(HtmlColor.FLORAL_WHITE);
 		label.setOverlap(false);
 

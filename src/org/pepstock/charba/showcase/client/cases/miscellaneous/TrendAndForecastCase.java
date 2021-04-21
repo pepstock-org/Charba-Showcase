@@ -6,14 +6,15 @@ import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.annotation.AbstractAnnotation;
+import org.pepstock.charba.client.annotation.AnnotationContext;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.callbacks.DisplayCallback;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
-import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
+import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
+import org.pepstock.charba.client.callbacks.BorderDashCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -30,7 +31,6 @@ import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.events.LegendClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -188,22 +188,38 @@ public class TrendAndForecastCase extends BaseComposite {
 		AnnotationOptions options = new AnnotationOptions();
 
 		LineAnnotation line = new LineAnnotation();
-		line.setDisplayCallback(new DisplayCallback() {
+		line.setDisplay(new DisplayCallback() {
 			
 			@Override
-			public boolean invoke(IsChart chart, AbstractAnnotation annotation) {
-				Charba_Showcase.LOG.info(""+chart.isDatasetVisible(2));
-				return chart.isDatasetVisible(2);
+			public Boolean invoke(AnnotationContext context) {
+				return context.getChart().isDatasetVisible(2);
 			}
 		});
-		line.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
+		line.setDrawTime(DrawTime.AFTER_DRAW);
 		line.setScaleID(MY_SCALE_ID);
-		line.setBorderColor(HtmlColor.DARK_GRAY);
-		line.setBorderWidth(2);
+		//line.setBorderColor(HtmlColor.DARK_GRAY);
+		//line.setBorderWidth(2);
+
+		line.setBorderColor((context) -> HtmlColor.RED);
+		line.setBorderWidth((context) -> (int)Math.random()*10 + 1);
+		line.setBorderDash(new BorderDashCallback<AnnotationContext>() {
+
+			@Override
+			public List<Integer> invoke(AnnotationContext context) {
+				int dash = (int)(Math.random() * 10) + 1;
+				
+				log(context.getType(), dash);
+				
+				
+				return Arrays.asList(dash, dash);
+			}
+			
+		});
+		
 		line.setValue(new Date((long) now.getTime()));
-		line.getLabel().setEnabled(true);
+		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("Now");
-		line.getLabel().setPosition(LineLabelPosition.START);
+		line.getLabel().setPosition(LabelPosition.START);
 
 		options.setAnnotations(line);
 

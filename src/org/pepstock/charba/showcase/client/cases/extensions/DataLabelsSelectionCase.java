@@ -3,10 +3,7 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -16,7 +13,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.events.ClickEventHandler;
 import org.pepstock.charba.client.enums.DefaultPluginId;
@@ -98,13 +95,13 @@ public class DataLabelsSelectionCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 		axis2.setStacked(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
@@ -113,27 +110,27 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				return items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColor();
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				return !items.containsKey(key) ? ds.getBackgroundColor() : HtmlColor.WHITE;
@@ -148,7 +145,7 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		option.getListeners().setClickEventHandler(new ClickEventHandler() {
 
 			@Override
-			public boolean onClick(IsChart chart, ScriptableContext context) {
+			public boolean onClick(DataLabelsContext context) {
 				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				if (items.containsKey(key)) {
 					items.remove(key);

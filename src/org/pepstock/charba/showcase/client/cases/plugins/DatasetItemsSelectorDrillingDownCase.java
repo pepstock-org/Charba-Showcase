@@ -61,7 +61,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 	TimeSeriesLineDataset dataset;
 
-	CartesianTimeSeriesAxis axis;
+	final CartesianTimeSeriesAxis axis;
 
 	DatasetsItemsSelector plugin = DatasetsItemsSelector.get();
 
@@ -140,19 +140,19 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		chart.getPlugins().add(plugin);
 
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
-
+			
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
 				if (!reset.isEnabled()) {
-					reset.setEnabled(true);
 					dataset.setBackgroundColor(HtmlColor.DARK_MAGENTA);
 					dataset.setBorderColor(HtmlColor.DARK_MAGENTA);
 					axis.setMin(event.getFrom().getValueAsDate());
 					axis.setMax(event.getTo().getValueAsDate());
 					axis.getTime().setUnit(TimeUnit.HOUR);
-					chart.getOptions().getPlugins().setEnabled(DatasetsItemsSelector.ID, false);
-					plugin.onDestroy(chart);
-					chart.reconfigure();
+					pOptions.setEnabled(false);
+					chart.getOptions().getPlugins().setOptions(pOptions);
+				    chart.reconfigure();
+					reset.setEnabled(true);
 				}
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
@@ -163,20 +163,21 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		for (TimeSeriesItem dp : dataset.getTimeSeriesData()) {
 			dp.setValue(getRandomDigit(false));
 		}
-		chart.update();
+		handleReset(null);
 	}
 
 	@UiHandler("reset")
 	protected void handleReset(ClickEvent event) {
-		reset.setEnabled(false);
 		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
 		axis.setMin(null);
 		axis.setMax(null);
 		axis.getTime().setUnit(TimeUnit.DAY);
-		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
+		pOptions.setEnabled(true);
+		chart.getOptions().getPlugins().setOptions(pOptions);
 		chart.reconfigure();
+		reset.setEnabled(false);
 	}
 
 	@UiHandler("source")

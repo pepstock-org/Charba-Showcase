@@ -11,8 +11,8 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.FloatingData;
+import org.pepstock.charba.client.enums.Bounds;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -83,7 +83,7 @@ public class FloatingDataTimeSeriesByBarCase extends BaseComposite {
 		dataset2.setDataPoints(dataPoints2);
 		
 		CartesianTimeSeriesAxis axis = new CartesianTimeSeriesAxis(chart);
-		axis.setBounds(ScaleBounds.DATA);
+		axis.setBounds(Bounds.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 		axis.setOffset(true);
 		

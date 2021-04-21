@@ -95,7 +95,7 @@ public class DoughnutCase extends BaseComposite {
 		OptionsNode options = chart.getNode().getOptions();
 		if (options.getCircumference() == 180D) {
 			options.setCircumference(360D);
-			options.setRotation(0D);
+			options.setRotation(-45D);
 		} else {
 			options.setCircumference(180D);
 			options.setRotation(-90D);

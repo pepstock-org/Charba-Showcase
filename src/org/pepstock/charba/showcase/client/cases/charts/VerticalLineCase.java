@@ -1,18 +1,16 @@
-package org.pepstock.charba.showcase.client.cases.coloring;
+package org.pepstock.charba.showcase.client.cases.charts;
 
-import org.pepstock.charba.client.colors.Pattern;
-import org.pepstock.charba.client.colors.PatternBuilder;
+import java.util.List;
+
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.data.VerticalLineDataset;
+import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.gwt.ImagesHelper;
-import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.gwt.widgets.VerticalLineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,46 +20,46 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class PatternLineCase extends BaseComposite {
+public class VerticalLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, PatternLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, VerticalLineCase> {
 	}
 
 	@UiField
-	LineChartWidget chart;
+	VerticalLineChartWidget chart;
 
-	public PatternLineCase() {
+	public VerticalLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Applying a pattern on line chart dataset");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTitle().setText("Vertical line chart");
+		chart.getOptions().getTooltips().setMode(InteractionMode.NEAREST);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
-		chart.getOptions().getHover().setIntersect(true);
+		
+		List<Dataset> datasets = chart.getData().getDatasets(true);
 
-		LineDataset dataset1 = chart.newDataset();
+		VerticalLineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
-		Pattern pattern = PatternBuilder.create(ImagesHelper.toImg(Images.INSTANCE.pattern())).build();
-
-		dataset1.setBackgroundColor(pattern);
+		dataset1.setPointBackgroundColor(HtmlColor.RED);
+		dataset1.setPointBorderColor(HtmlColor.RED);
 
 		double[] values = getRandomDigits(months);
-		dataset1.setData(values);
-		dataset1.setFill(Fill.ORIGIN);
+		List<Double> data = dataset1.getData(true);
+		for (int i = 0; i < values.length; i++) {
+			data.add(values[i]);
+		}
+		datasets.add(dataset1);
 
-		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
+		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis1.setDisplay(true);
 		axis1.getTitle().setDisplay(true);
 		axis1.getTitle().setText("Month");
 
-		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, AxisKind.X);
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
@@ -69,7 +67,6 @@ public class PatternLineCase extends BaseComposite {
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
-		chart.getData().setDatasets(dataset1);
 	}
 
 	@UiHandler("randomize")
@@ -94,5 +91,4 @@ public class PatternLineCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-
 }

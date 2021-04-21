@@ -47,11 +47,11 @@ public class HomeView extends BaseComposite {
 
 	private static final String DEFAULT_FORMAT = "#0.#";
 
-	private static final String[] LABELS = { "", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0", "3.1",  "3.2", "3.3", "4.0", "" };
+	private static final String[] LABELS = { "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0", "3.1",  "3.2", "3.3", "4.0"};
 
-	private static final double[] VALUES_GWT = { Double.NaN, Double.NaN, Double.NaN, 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 3661, Double.NaN };
+	private static final double[] VALUES_GWT = { 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 3949, Double.NaN };
 	
-	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2536, 2881, 2910, 2941, 2942, 3510, Double.NaN };
+	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2536, 2881, 2910, 2941, 2942, 3786};
 
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
@@ -72,7 +72,7 @@ public class HomeView extends BaseComposite {
 
 		datasetGwt.setBackgroundColor(Color.CHARBA);
 		datasetGwt.setBorderColor(Color.CHARBA);
-		datasetGwt.setBorderWidth(5);
+		datasetGwt.setBorderWidth(4);
 		datasetGwt.setPointBackgroundColor(HtmlColor.WHITE);
 		datasetGwt.setPointBorderColor(Color.CHARBA);
 		datasetGwt.setPointBorderWidth(1);
@@ -88,7 +88,7 @@ public class HomeView extends BaseComposite {
 
 		datasetJ2CL.setBackgroundColor(HtmlColor.CORNFLOWER_BLUE);
 		datasetJ2CL.setBorderColor(HtmlColor.CORNFLOWER_BLUE);
-		datasetJ2CL.setBorderWidth(5);
+		datasetJ2CL.setBorderWidth(4);
 		datasetJ2CL.setPointBackgroundColor(HtmlColor.WHITE);
 		datasetJ2CL.setPointBorderColor(HtmlColor.CORNFLOWER_BLUE);
 		datasetJ2CL.setPointBorderWidth(1);
@@ -114,9 +114,9 @@ public class HomeView extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Charba version");
-		axis1.getScaleLabel().setColor(HtmlColor.BLACK);
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Charba version");
+		axis1.getTitle().setColor(HtmlColor.BLACK);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
@@ -133,9 +133,9 @@ public class HomeView extends BaseComposite {
 			}
 		});
 
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("JAR size");
-		axis2.getScaleLabel().setColor(HtmlColor.BLACK);
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("JAR size");
+		axis2.getTitle().setColor(HtmlColor.BLACK);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

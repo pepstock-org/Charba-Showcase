@@ -66,8 +66,8 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		BoxAnnotation box1 = new BoxAnnotation();
 		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box1.setXScaleID(DefaultScaleId.X.value());
-		box1.setYScaleID(DefaultScaleId.Y.value());
+		box1.setXScaleID(DefaultScaleId.X);
+		box1.setYScaleID(DefaultScaleId.Y);
 		box1.setXMin("January");
 		box1.setXMax("April");
 		box1.setBackgroundColor(GwtMaterialColor.YELLOW_LIGHTEN_3.alpha(0.3D));

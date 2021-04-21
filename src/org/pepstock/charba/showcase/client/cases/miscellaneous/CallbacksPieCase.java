@@ -1,8 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.GradientOrientation;
 import org.pepstock.charba.client.colors.GradientType;
 import org.pepstock.charba.client.colors.UiGradient;
@@ -42,10 +41,10 @@ public class CallbacksPieCase extends BaseComposite {
 		PieDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 
-		dataset.setBackgroundColor(new BackgroundColorCallback() {
+		dataset.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				UiGradient gradient = UiGradient.values()[context.getDataIndex()];
 				return gradient.createGradient(GradientType.RADIAL, GradientOrientation.IN_OUT);
 			}
@@ -63,7 +62,6 @@ public class CallbacksPieCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		chart.getDatasetItem(0);
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}

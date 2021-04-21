@@ -8,12 +8,13 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.controllers.AbstractController;
 import org.pepstock.charba.client.controllers.ControllerContext;
-import org.pepstock.charba.client.controllers.ControllerDatasetElement;
 import org.pepstock.charba.client.controllers.ControllerProvider;
+import org.pepstock.charba.client.controllers.ControllerRegistrationHandler;
 import org.pepstock.charba.client.controllers.ControllerType;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.items.DatasetElement;
 import org.pepstock.charba.client.items.DatasetItem;
+import org.pepstock.charba.client.utils.Console;
 
 public class MyLineChart extends LineChart {
 
@@ -26,11 +27,6 @@ public class MyLineChart extends LineChart {
 				@Override
 				public ControllerType getType() {
 					return MyLineChart.TYPE;
-				}
-
-				@Override
-				public void setHoverStyle(ControllerContext context, IsChart chart, ControllerDatasetElement element, int datasetIndex, int index) {
-					super.setHoverStyle(context, chart, element, datasetIndex, index);
 				}
 
 				@Override
@@ -50,6 +46,18 @@ public class MyLineChart extends LineChart {
 				}
 			};
 		}
+	}, new ControllerRegistrationHandler() {
+
+		@Override
+		public void onBeforeRegister(ControllerType controllerType) {
+			Console.log("onBeforeRegister");
+		}
+
+		@Override
+		public void onAfterRegister(ControllerType controllerType, boolean registered) {
+			Console.log("onAfterRegister");
+		}
+		
 	});
 
 	public MyLineChart() {

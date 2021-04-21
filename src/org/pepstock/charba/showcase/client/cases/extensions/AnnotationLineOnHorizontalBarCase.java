@@ -5,7 +5,7 @@ import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
-import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
+import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
@@ -63,10 +63,10 @@ public class AnnotationLineOnHorizontalBarCase extends BaseComposite {
 		line.setBorderWidth(2);
 		line.setValue("April");
 
-		line.getLabel().setEnabled(true);
+		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("Crtitical month");
 		line.getLabel().setBackgroundColor(HtmlColor.LIGHT_SALMON);
-		line.getLabel().setPosition(LineLabelPosition.END);
+		line.getLabel().setPosition(LabelPosition.END);
 
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);

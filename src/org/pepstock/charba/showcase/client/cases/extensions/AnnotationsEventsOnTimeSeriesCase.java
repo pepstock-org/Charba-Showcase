@@ -65,7 +65,6 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	@UiField
 	LogView mylog;
 
-	// FIXME
 	final MyEventsHandler eventHandler = new MyEventsHandler();
 
 	public AnnotationsEventsOnTimeSeriesCase() {
@@ -145,7 +144,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.setBorderColor(HtmlColor.BLACK);
 		line.setBorderWidth(5);
 		line.setValue(40);
-		line.getLabel().setEnabled(true);
+		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
 		line.setEnterCallback(eventHandler);
@@ -172,8 +171,6 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		box.setDoubleClickCallback(eventHandler);
 		
 		options.setAnnotations(line, box);
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log(options.toJSON());
 		
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 
@@ -216,20 +213,5 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		public void onClick(IsChart chart, AbstractAnnotation annotation) {
 			mylog.addLogEvent("> Click on annotation '"+annotation.getId()+"' type " + annotation.getType());
 		}
-
-		//		@Override
-//		public void onLeave(AnnotationLeaveEvent event) {
-//			
-//		}
-//
-//		@Override
-//		public void onEnter(AnnotationEnterEvent event) {
-//			mylog.addLogEvent("> Enter on annotation '" + event.getAnnotation().getId().value() + "' type " + event.getAnnotation().getType());
-//		}
-//
-//		@Override
-//		public void onClick(AnnotationClickEvent event) {
-//			mylog.addLogEvent("> Click on annotation '" + event.getAnnotation().getId().value() + "' type " + event.getAnnotation().getType());
-//		}
 	}
 }

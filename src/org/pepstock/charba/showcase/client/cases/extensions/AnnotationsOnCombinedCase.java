@@ -87,7 +87,7 @@ public class AnnotationsOnCombinedCase extends BaseComposite {
 		line.setBorderWidth(5);
 		line.setValue(getRandomDigits(1, min, max)[0]);
 
-		line.getLabel().setEnabled(true);
+		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
 

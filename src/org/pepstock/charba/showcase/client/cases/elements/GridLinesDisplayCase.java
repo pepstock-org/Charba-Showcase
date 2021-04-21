@@ -1,8 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.UpdateConfiguration;
 import org.pepstock.charba.client.colors.GoogleChartColor;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -52,6 +50,7 @@ public class GridLinesDisplayCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
+		
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Gridlines display options");
@@ -78,17 +77,13 @@ public class GridLinesDisplayCase extends BaseComposite {
 
 		axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
-		axis1.getGrideLines().setDisplay(true);
-		axis1.getGrideLines().setColor(HtmlColor.DARK_GRAY);
-
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
+		
 		axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getGrideLines().setDisplay(true);
-		axis2.getGrideLines().setColor(HtmlColor.DARK_GRAY);
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
@@ -116,18 +111,16 @@ public class GridLinesDisplayCase extends BaseComposite {
 	}
 
 	private void configChart() {
-		axis1.getGrideLines().setDisplay(display.getValue());
-		axis1.getGrideLines().setDrawBorder(drawBorder.getValue());
-		axis1.getGrideLines().setDrawOnChartArea(drawOnChartArea.getValue());
-		axis1.getGrideLines().setDrawTicks(drawTicks.getValue());
-		axis2.getGrideLines().setDisplay(display.getValue());
-		axis2.getGrideLines().setDrawBorder(drawBorder.getValue());
-		axis2.getGrideLines().setDrawOnChartArea(drawOnChartArea.getValue());
-		axis2.getGrideLines().setDrawTicks(drawTicks.getValue());
+		axis1.getGrid().setDisplay(display.getValue());
+		axis1.getGrid().setDrawBorder(drawBorder.getValue());
+		axis1.getGrid().setDrawOnChartArea(drawOnChartArea.getValue());
+		axis1.getGrid().setDrawTicks(drawTicks.getValue());
 		
-		UpdateConfiguration update = new UpdateConfiguration();
-		update.setDuration(1000);
-		chart.update(update);
-		chart.reconfigure(update);
+		axis2.getGrid().setDisplay(display.getValue());
+		axis2.getGrid().setDrawBorder(drawBorder.getValue());
+		axis2.getGrid().setDrawOnChartArea(drawOnChartArea.getValue());
+		axis2.getGrid().setDrawTicks(drawTicks.getValue());
+		
+		chart.reconfigure();
 	}
 }

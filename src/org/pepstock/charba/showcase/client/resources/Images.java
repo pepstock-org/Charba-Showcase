@@ -11,8 +11,8 @@ public interface Images extends ClientBundle {
 	@Source("/images/GitHub-Mark-32px.png")
 	ImageResource github();
 
-	@Source("/images/GitHub-Mark-Light-32px.png")
-	ImageResource githubWhite();
+	@Source("/images/baseline_cached_white_18dp.png")
+	ImageResource cache();
 
 	@Source("/images/baseline_extension_white_18dp.png")
 	ImageResource extensionWhite();

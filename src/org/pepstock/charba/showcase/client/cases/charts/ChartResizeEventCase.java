@@ -48,7 +48,6 @@ public class ChartResizeEventCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Resize events on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
@@ -72,6 +71,7 @@ public class ChartResizeEventCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setFill(false);
+
 		double[] values = getRandomDigits(months);
 		List<Double> data = dataset1.getData(true);
 		for (int i = 0; i < values.length; i++) {
@@ -86,19 +86,21 @@ public class ChartResizeEventCase extends BaseComposite {
 
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
-		dataset2.setData(getRandomDigits(months));
 		dataset2.setFill(false);
+
+		dataset2.setData(getRandomDigits(months));
+
 		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

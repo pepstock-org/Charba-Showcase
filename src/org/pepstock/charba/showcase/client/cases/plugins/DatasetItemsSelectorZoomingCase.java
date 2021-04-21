@@ -28,7 +28,6 @@ import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -66,7 +65,7 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 	final DatasetsItemsSelector selector = DatasetsItemsSelector.get();
 
 	final LineDataset dataset1;
-	
+
 	public DatasetItemsSelectorZoomingCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -79,21 +78,11 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new TooltipTitleCallback() {
 
 			@Override
-			public List<String> onBeforeTitle(IsChart chart, List<TooltipItem> items) {
-				return null;
-			}
-
-			@Override
 			public List<String> onTitle(IsChart chart, List<TooltipItem> items) {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getDataIndex());
 				return Arrays.asList(FORMAT.format(dp.getXAsDate()));
-			}
-
-			@Override
-			public List<String> onAfterTitle(IsChart chart, List<TooltipItem> items) {
-				return null;
 			}
 		});
 
@@ -157,13 +146,11 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 
 			@Override
 			public void onClear(DatasetRangeClearSelectionEvent event) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("<b>Clear selection event</b>");
-				new Toast("Dataset Range Clear Selection!", sb.toString()).show();
+				axis.setMin(null);
+				axis.setMax(null);
 				dataset1.setDataPoints(new LinkedList<>());
 				chart.getData().setDatasets(dataset1);
-				chart.update();
-				// FIXME to be checked sounds do not work correctly
+				chart.reconfigure();
 			}
 		}, DatasetRangeClearSelectionEvent.TYPE);
 
@@ -171,10 +158,6 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 
 			@Override
 			public void onSelect(DatasetRangeSelectionEvent event) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("Dataset from: <b>").append(event.getFrom().getLabel()).append("</b><br>");
-				sb.append("Dataset to: <b>").append(event.getTo().getLabel()).append("</b><br>");
-				new Toast("Dataset Range Selected!", sb.toString()).show();
 				List<DataPoint> newDataPoints = new LinkedList<>();
 				for (DataPoint dp : dataset2.getDataPoints()) {
 					newDataPoints.add(dp);

@@ -3,9 +3,8 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.Pattern;
 import org.pepstock.charba.client.colors.tiles.Shape;
@@ -51,12 +50,12 @@ public class CallbacksPolarAreaCase extends BaseComposite {
 
 		PolarAreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
-		dataset.setBackgroundColor(new BackgroundColorCallback() {
+		dataset.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
 			private final List<Pattern> patterns = new LinkedList<>();;
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				if (patterns.isEmpty()) {
 					for (int i = 0; i < months; i++) {
 						Shape shape = Shape.values()[i];

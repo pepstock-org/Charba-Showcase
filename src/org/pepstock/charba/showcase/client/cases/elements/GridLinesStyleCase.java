@@ -1,22 +1,22 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.callbacks.ScaleBorderDashOffsetCallback;
-import org.pepstock.charba.client.callbacks.ScaleColorCallback;
-import org.pepstock.charba.client.callbacks.ScaleLineWidthCallback;
-import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
+import org.pepstock.charba.client.UpdateConfigurationBuilder;
+import org.pepstock.charba.client.callbacks.BorderDashOffsetCallback;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.ScaleContext;
+import org.pepstock.charba.client.callbacks.WidthCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.configuration.Axis;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.Easing;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -73,39 +73,39 @@ public class GridLinesStyleCase extends BaseComposite {
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
-		axis2.getGrideLines().setDrawBorder(false);
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
+		axis2.getGrid().setDrawBorder(false);
 
-		axis2.getGrideLines().setColor(new ScaleColorCallback() {
-
+		axis2.getGrid().setColor(new ColorCallback<ScaleContext>() {
+			
 			@Override
-			public Object invoke(Axis axis, ScaleScriptableContext context) {
+			public Object invoke(ScaleContext context) {
 				int mod = context.getIndex() % COLORS.length;
 				return COLORS[mod];
 			}
 		});
 
-		axis2.getGrideLines().setLineWidth(new ScaleLineWidthCallback() {
+		axis2.getGrid().setLineWidth(new WidthCallback<ScaleContext>() {
 
 			@Override
-			public Integer invoke(Axis axis, ScaleScriptableContext context) {
+			public Integer invoke(ScaleContext context) {
 				return context.getIndex() % 5;
 			}
 		});
 
-		axis2.getGrideLines().setBorderDashOffset(new ScaleBorderDashOffsetCallback() {
+		axis2.getGrid().setBorderDashOffset(new BorderDashOffsetCallback<ScaleContext>() {
 
 			@Override
-			public Double invoke(Axis axis, ScaleScriptableContext context) {
+			public Double invoke(ScaleContext context) {
 				return (double)(context.getIndex() % 10);
 			}
 		});
 		
-		axis2.getGrideLines().setTickColor(new ScaleColorCallback() {
+		axis2.getGrid().setTickColor(new ColorCallback<ScaleContext>() {
 			
 			@Override
-			public Object invoke(Axis axis, ScaleScriptableContext context) {
+			public Object invoke(ScaleContext context) {
 				return HtmlColor.BLACK;
 			}
 		});
@@ -115,8 +115,6 @@ public class GridLinesStyleCase extends BaseComposite {
 		axis2.getTicks().setStepSize(10D);
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		chart.getData().setDatasets(dataset1, dataset2);
-		
-		Charba_Showcase.LOG.info(axis2.toJSON());
 	}
 
 	@UiHandler("randomize")
@@ -124,7 +122,7 @@ public class GridLinesStyleCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}
-		chart.update();
+		chart.update(UpdateConfigurationBuilder.create().setDuration(5000).setEasing(Easing.EASE_OUT_ELASTIC).build());
 	}
 
 	@UiHandler("source")

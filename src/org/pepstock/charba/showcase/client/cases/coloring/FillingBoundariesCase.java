@@ -91,7 +91,7 @@ public class FillingBoundariesCase extends BaseComposite {
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
 				dataset.setFill(cFill);
-				chart.update();
+				chart.reconfigure();
 				return;
 			}
 			i++;

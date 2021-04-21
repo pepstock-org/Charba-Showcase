@@ -9,6 +9,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -70,6 +71,8 @@ public class ZoomPanOnBarCase extends BaseComposite {
 		options.getZoom().setMode(InteractionAxis.Y);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
+		
+		Charba_Showcase.LOG.info(options.toJSON());
 	}
 
 	@UiHandler("randomize")

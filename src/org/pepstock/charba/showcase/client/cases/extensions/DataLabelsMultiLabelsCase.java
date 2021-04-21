@@ -1,16 +1,14 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.LabelItem;
-import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.callbacks.OpacityCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
@@ -67,10 +65,10 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		index.setAnchor(Anchor.END);
 		index.setDisplay(true);
 		index.getFont().setSize(18);
-		index.setColor(new ColorCallback() {
+		index.setColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DataLabelsContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return ds.getBackgroundColorAsString().get(context.getDataIndex());
 			}
@@ -79,7 +77,7 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		index.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				return context.isActive() ? "index" : "#" + (context.getDataIndex() + 1);
 			}
 		});
@@ -87,7 +85,7 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		index.setOpacity(new OpacityCallback() {
 
 			@Override
-			public Double invoke(IsChart chart, ScriptableContext context) {
+			public Double invoke(DataLabelsContext context) {
 				return context.isActive() ? 1D : 0.5D;
 			}
 		});
@@ -99,17 +97,17 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		name.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				return context.isActive() ? "name" : chart.getData().getLabels().getString(context.getDataIndex());
 			}
 		});
 
 		LabelItem value = option1.getLabels().createLabel("value");
 		value.setAlign(Align.BOTTOM);
-		value.setBackgroundColor(new BackgroundColorCallback() {
+		value.setBackgroundColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DataLabelsContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getDataIndex());
 				IsColor color = ds.getBackgroundColor().get(context.getDataIndex());
@@ -119,10 +117,10 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		value.setBorderColor(HtmlColor.WHITE);
 		value.setBorderWidth(2);
 		value.setBorderRadius(4);
-		value.setColor(new ColorCallback() {
+		value.setColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DataLabelsContext context) {
 				PieDataset ds = (PieDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				double value = ds.getData().get(context.getDataIndex());
 				return value > 50 ? HtmlColor.BLACK : HtmlColor.WHITE;
@@ -131,7 +129,7 @@ public class DataLabelsMultiLabelsCase extends BaseComposite {
 		value.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				return context.isActive() ? "value" : String.valueOf(dataItem.getValue());
 			}
 		});

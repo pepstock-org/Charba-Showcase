@@ -7,7 +7,7 @@ import java.util.Map;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.HtmlLegendTitleCallback;
-import org.pepstock.charba.client.callbacks.LegendItemSortCallback;
+import org.pepstock.charba.client.callbacks.LegendLabelsCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -21,7 +21,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
-import org.pepstock.charba.client.items.LegendItem;
+import org.pepstock.charba.client.items.LegendLabelItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -49,19 +49,21 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getLegend().getTitle().setDisplay(true);
-		// FIXME
-		chart.getOptions().getLegend().getTitle().setText("Questa e una \n prova di title");
-		chart.getOptions().getLegend().getTitle().setPadding(10);
-		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
-		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
-		
-		chart.getOptions().getLegend().getLabels().setItemSortCallback(new LegendItemSortCallback() {
+		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
 			
 			@Override
-			public int onItemSort(IsChart chart, LegendItem item1, LegendItem item2) {
-				return item2.getDatasetIndex() - item1.getDatasetIndex();
+			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
+				for (LegendLabelItem item : defaultLabels) {
+					item.setFontColor(item.getStrokeStyle());
+				}
+				return defaultLabels;
 			}
 		});
+		// FIXME
+		chart.getOptions().getLegend().getTitle().setText("This is the title of the legend.");
+		chart.getOptions().getLegend().getTitle().getPadding().set(10);
+		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
 
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("HTML legend on bar chart");
@@ -100,7 +102,7 @@ public class HtmlLegendBarCase extends BaseComposite {
 				if (!values.containsKey(currentText)) {
 					SafeHtmlBuilder builder = SafeHtmlBuilder.create();
 					String newText = currentText.replaceAll("dataset", "<b>dataset</b>");
-					newText = newText.replaceAll("prova di title", "<font style='color: " + HtmlColor.RED.toRGBA() + "'>prova di title</font>");
+					newText = newText.replaceAll("the title", "<font style='color: " + HtmlColor.RED.toRGBA() + "'>the title</font>");
 					builder.appendHtmlConstant(newText);
 					values.put(currentText, builder.toSafeHtml());
 				}
@@ -110,9 +112,6 @@ public class HtmlLegendBarCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(options);
 		chart.getPlugins().add(HtmlLegend.get());
-		
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions());
 
 	}
 

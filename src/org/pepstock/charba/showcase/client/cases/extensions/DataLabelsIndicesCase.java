@@ -1,10 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.BorderWidthCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.WidthCallback;
 import org.pepstock.charba.client.colors.Color;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -15,8 +12,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
-import org.pepstock.charba.client.datalabels.callbacks.ColorCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.enums.DefaultPluginId;
@@ -69,13 +66,13 @@ public class DataLabelsIndicesCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 		axis2.setStacked(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
@@ -86,46 +83,46 @@ public class DataLabelsIndicesCase extends BaseComposite {
 		DataLabelsOptions option = new DataLabelsOptions();
 		option.setAlign(new AlignCallback() {
 			@Override
-			public Align invoke(IsChart chart, ScriptableContext context) {
+			public Align invoke(DataLabelsContext context) {
 				return context.getDataIndex() % 2 == 0 ? Align.END : Align.CENTER;
 			}
 		});
 
-		option.setBackgroundColor(new BackgroundColorCallback() {
+		option.setBackgroundColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getDataIndex() % 2 == 0 ? ds.getBorderColor() : new Color(255, 255, 255).alpha(0.8D);
 			}
 		});
-		option.setBorderColor(new BorderColorCallback() {
+		option.setBorderColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getDataIndex() % 2 == 0 ? null : ds.getBorderColor();
 			}
 		});
-		option.setColor(new ColorCallback() {
+		option.setColor(new ColorCallback<DataLabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DataLabelsContext context) {
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 				return context.getDataIndex() % 2 == 0 ? HtmlColor.WHITE : ds.getBorderColor();
 			}
 		});
-		option.setBorderWidth(new BorderWidthCallback() {
+		option.setBorderWidth(new WidthCallback<DataLabelsContext>() {
 
 			@Override
-			public Integer invoke(IsChart chart, ScriptableContext context) {
+			public Integer invoke(DataLabelsContext context) {
 				return context.getDataIndex() % 2 == 0 ? 0 : 1;
 			}
 		});
 		option.setFormatter(new FormatterCallback() {
 
 			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
 				return context.getDataIndex() + ": " + Math.round(dataItem.getValue()) + "'";
 			}
 		});

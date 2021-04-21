@@ -29,6 +29,7 @@ import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TitleClickEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.VerticalLineCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -69,6 +70,12 @@ public class ChartsView extends AbstractView {
 	protected void handleLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new LineCase());
+	}
+
+	@UiHandler("verticalLine")
+	protected void handleVerticalLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new VerticalLineCase());
 	}
 
 	@UiHandler("scatter")

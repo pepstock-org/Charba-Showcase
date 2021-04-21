@@ -1,8 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
@@ -41,10 +40,10 @@ public class CallbacksDoughnutCase extends BaseComposite {
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
 
-		dataset.setBackgroundColor(new BackgroundColorCallback() {
+		dataset.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DatasetContext context) {
 				int size = GoogleChartColor.values().length - 1;
 				return GoogleChartColor.values()[size - context.getDataIndex()];
 			}

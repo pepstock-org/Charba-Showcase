@@ -16,16 +16,13 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.enums.Bounds;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.ScaleBounds;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
-import org.pepstock.charba.client.events.AxisClickEvent;
-import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -72,18 +69,7 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 		});
 
-		chart.addHandler(new AxisClickEventHandler() {
-
-			@Override
-			public void onClick(AxisClickEvent event) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("Axis: value: <b>").append(event.getValue().getLabel()).append("</b><br>");
-				new Toast("Axis Selected!", sb.toString()).show();
-			}
-		}, AxisClickEvent.TYPE);
-		
 		final TimeSeriesLineDataset dataset1 = chart.newDataset();
-
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.FALSE);
 
@@ -93,7 +79,6 @@ public class TimeSeriesLineCase extends BaseComposite {
 		dataset1.setBorderColor(color1.toHex());
 
 		final TimeSeriesLineDataset dataset2 = chart.newDataset();
-
 		dataset2.setLabel("dataset 2");
 		dataset2.setFill(Fill.FALSE);
 
@@ -118,7 +103,7 @@ public class TimeSeriesLineCase extends BaseComposite {
 
 		CartesianTimeSeriesAxis axis = chart.getOptions().getScales().getTimeAxis();
 		axis.getTicks().setSource(TickSource.DATA);
-		axis.setBounds(ScaleBounds.DATA);
+		axis.setBounds(Bounds.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
@@ -127,7 +112,7 @@ public class TimeSeriesLineCase extends BaseComposite {
 		axis2.setStacked(true);
 
 		chart.getData().setDatasets(dataset1, dataset2);
-
+		
 	}
 
 	@UiHandler("randomize")

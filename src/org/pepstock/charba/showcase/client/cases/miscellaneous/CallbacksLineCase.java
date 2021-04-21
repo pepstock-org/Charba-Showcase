@@ -2,12 +2,10 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.callbacks.FillCallback;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -39,19 +37,19 @@ public class CallbacksLineCase extends BaseComposite {
 	@UiField
 	LineChartWidget chart;
 
-	BackgroundColorCallback backgroundColorCallback = new BackgroundColorCallback() {
+	ColorCallback<DatasetContext> backgroundColorCallback = new ColorCallback<DatasetContext>() {
 
 		@Override
-		public IsColor invoke(IsChart chart, ScriptableContext context) {
+		public IsColor invoke(DatasetContext context) {
 			return HtmlColor.PINK;
 		}
 
 	};
 
-	RadiusCallback radiusCallback = new RadiusCallback() {
+	RadiusCallback<DatasetContext> radiusCallback = new RadiusCallback<DatasetContext>() {
 
 		@Override
-		public Double invoke(IsChart chart, ScriptableContext context) {
+		public Double invoke(DatasetContext context) {
 			int module = context.getDataIndex() % 2;
 			return context.getDatasetIndex() % 2 == 0 ? module == 0 ? 50D : 25D : module == 0 ? 25D : 50D;
 		}
@@ -60,6 +58,7 @@ public class CallbacksLineCase extends BaseComposite {
 
 	public CallbacksLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
@@ -75,10 +74,10 @@ public class CallbacksLineCase extends BaseComposite {
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-		dataset1.setBorderColor(new BorderColorCallback() {
+		dataset1.setBorderColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				return HtmlColor.PINK;
 			}
 		});
@@ -86,7 +85,7 @@ public class CallbacksLineCase extends BaseComposite {
 		dataset1.setFill(new FillCallback() {
 
 			@Override
-			public Object invoke(IsChart chart, ScriptableContext context) {
+			public Object invoke(DatasetContext context) {
 				return Fill.FALSE;
 			}
 		});
@@ -115,13 +114,13 @@ public class CallbacksLineCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

@@ -1,9 +1,7 @@
 package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.BackgroundColorCallback;
-import org.pepstock.charba.client.callbacks.BorderColorCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
@@ -51,21 +49,12 @@ public class CallbacksWithThresholdBarCase extends BaseComposite {
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
-		// FIXME
-		// CHART.JS ISSUE : https://github.com/chartjs/Chart.js/issues/7942 
-//		BarBorderWidth border = new BarBorderWidth();
-//		border.setTop(2);
-//		border.setLeft(2);
-//		border.setRight(2);
-//		dataset1.setBorderWidth(border);
 		
 		dataset1.setBorderWidth(2);
-
-		dataset1.setBackgroundColor(new BackgroundColorCallback() {
+		dataset1.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DatasetContext context) {
 				Dataset dataset = chart.getData().getDatasets().get(context.getDatasetIndex());
 				Double value = dataset.getData().get(context.getDataIndex());
 				if (value >= ERROR) {
@@ -77,10 +66,10 @@ public class CallbacksWithThresholdBarCase extends BaseComposite {
 			}
 
 		});
-		dataset1.setBorderColor(new BorderColorCallback() {
+		dataset1.setBorderColor(new ColorCallback<DatasetContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, ScriptableContext context) {
+			public IsColor invoke(DatasetContext context) {
 				Dataset dataset = chart.getData().getDatasets().get(context.getDatasetIndex());
 				Double value = dataset.getData().get(context.getDataIndex());
 				if (value >= ERROR) {

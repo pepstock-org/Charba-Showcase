@@ -51,7 +51,7 @@ public class MultiAxisScatterCase extends BaseComposite {
 		CartesianLinearAxis yAxes2 = new CartesianLinearAxis(chart, "y-axis-2");
 		yAxes2.setDisplay(true);
 		yAxes2.setPosition(AxisPosition.RIGHT);
-		yAxes2.getGrideLines().setDrawOnChartArea(false);
+		yAxes2.getGrid().setDrawOnChartArea(false);
 
 		chart.getOptions().getScales().setAxes(xAxes, yAxes1, yAxes2);
 

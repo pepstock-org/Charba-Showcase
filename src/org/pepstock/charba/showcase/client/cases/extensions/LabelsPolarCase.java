@@ -35,7 +35,7 @@ public class LabelsPolarCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLayout().getPadding().setBottom(40);
+		chart.getOptions().getLayout().getPadding().setBottom(50);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("Using labels on polar chart");
 

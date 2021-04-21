@@ -101,15 +101,10 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions().toJSON());
 	}
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log("options", chart.getOptions().toJSON());
-		
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, false));
 		}

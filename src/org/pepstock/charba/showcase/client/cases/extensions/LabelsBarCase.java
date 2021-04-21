@@ -2,7 +2,8 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.FontCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -12,11 +13,11 @@ import org.pepstock.charba.client.data.FloatingData;
 import org.pepstock.charba.client.enums.DataType;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.labels.Context;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.client.labels.Label;
+import org.pepstock.charba.client.labels.LabelsContext;
 import org.pepstock.charba.client.labels.LabelsOptions;
 import org.pepstock.charba.client.labels.LabelsPlugin;
-import org.pepstock.charba.client.labels.callbacks.ColorCallback;
 import org.pepstock.charba.client.labels.callbacks.RenderCallback;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -67,25 +68,36 @@ public class LabelsBarCase extends BaseComposite {
 		label.setRender(new RenderCallback() {
 
 			@Override
-			public String invoke(IsChart chart, Context item) {
+			public String invoke(LabelsContext context) {
 				double value = 0;
-				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
-					value = item.getDataItem().getValueAsFloatingData().getAbsValue();
+				if (DataType.ARRAYS.equals(context.getDataItem().getDataType())) {
+					value = context.getDataItem().getValueAsFloatingData().getAbsValue();
 				} else {
-					value = item.getDataItem().getValue();
+					value = context.getDataItem().getValue();
 				}
 				return "$$ " + value;
 			}
 		});
-		label.setColor(new ColorCallback() {
+		label.setColor(new ColorCallback<LabelsContext>() {
 
 			@Override
-			public IsColor invoke(IsChart chart, Context item) {
-				if (DataType.ARRAYS.equals(item.getDataItem().getDataType())) {
-					return item.getDataItem().getValueAsFloatingData().getAbsValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+			public IsColor invoke(LabelsContext context) {
+			if (DataType.ARRAYS.equals(context.getDataItem().getDataType())) {
+					return context.getDataItem().getValueAsFloatingData().getAbsValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
 				} else {
-					return item.getDataItem().getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
+					return context.getDataItem().getValue() > 25 ? HtmlColor.RED : HtmlColor.BLACK;
 				}
+			}
+		});
+
+		label.setFont(new FontCallback<LabelsContext>() {
+
+			private final FontItem font = new FontItem();
+			
+			@Override
+			public FontItem invoke(LabelsContext context) {
+				font.setSize(16);
+				return font;
 			}
 		});
 
@@ -93,8 +105,6 @@ public class LabelsBarCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
-		
-		org.pepstock.charba.client.utils.Window.getConsole().log(chart.getOptions().getPlugins());
 
 	}
 
@@ -103,6 +113,8 @@ public class LabelsBarCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
+		LabelsOptions options = chart.getOptions().getPlugins().getOptions(LabelsPlugin.FACTORY);
+		options.getLabel("bar").getFont().setSize(6);
 		chart.update();
 	}
 
@@ -143,5 +155,5 @@ public class LabelsBarCase extends BaseComposite {
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
 	}
-
+	
 }

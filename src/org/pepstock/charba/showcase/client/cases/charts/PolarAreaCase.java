@@ -2,21 +2,14 @@ package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.List;
 
-import org.pepstock.charba.client.callbacks.ColorCallback;
-import org.pepstock.charba.client.callbacks.ScaleColorCallback;
-import org.pepstock.charba.client.callbacks.ScaleFontCallback;
-import org.pepstock.charba.client.callbacks.ScaleScriptableContext;
-import org.pepstock.charba.client.callbacks.ScaleShowLabelBackdropCallback;
-import org.pepstock.charba.client.colors.HtmlColor;
-import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.configuration.Axis;
-import org.pepstock.charba.client.configuration.FontOptions;
+import org.pepstock.charba.client.callbacks.FontCallback;
+import org.pepstock.charba.client.callbacks.ScaleContext;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.PolarAreaChartWidget;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -36,6 +29,8 @@ public class PolarAreaCase extends BaseComposite {
 
 	@UiField
 	PolarAreaChartWidget chart;
+	
+	RadialAxis axis;
 
 	public PolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -45,91 +40,29 @@ public class PolarAreaCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Polar area chart");
 
-		RadialAxis axis = new RadialAxis(chart);
+		PolarAreaDataset dataset = chart.newDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setBackgroundColor(getSequenceColors(months, 0.5D));
+		dataset.setData(getRandomDigits(months, false));
+
+		axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);
-		axis.getGrideLines().setCircular(true);
+		axis.getGrid().setCircular(true);
 		axis.getAngleLines().setDisplay(true);
-		axis.getAngleLines().setColor(new ScaleColorCallback() {
-			
-			@Override
-			public IsColor invoke(Axis axis, ScaleScriptableContext context) {
-				return HtmlColor.RED;
-			}
-		});
-		
 		axis.getPointLabels().setDisplay(true);
-//		axis.getPointLabels().setCallback(new RadialPointLabelCallback() {
-//			
-//			@Override
-//			public String onCallback(Axis axis, String item) {
-//				return item;
-//			}
-//		});
-		
-		axis.getPointLabels().setColor(new ColorCallback() {
+		axis.getPointLabels().setFont(new FontCallback<ScaleContext>() {
 			
 			@Override
-			public Object invoke(Axis axis, ScaleScriptableContext context) {
-				return context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK;
-			}
-		});
-		
-		axis.getPointLabels().setFont(new ScaleFontCallback() {
-			
-			@Override
-			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
-				FontOptions fo = new FontOptions();
+			public FontItem invoke(ScaleContext context) {
+				FontItem fo = new FontItem();
 				fo.setSize(16);
 				return fo;
 			}
 		});
-		
-		axis.getTicks().setColor(new ColorCallback() {
-			
-			@Override
-			public Object invoke(Axis axis, ScaleScriptableContext context) {
-				Charba_Showcase.LOG.info("context "+context.getIndex());
-				return context.getIndex() % 2  == 0 ? HtmlColor.RED : HtmlColor.BLACK;
-			}
-		});
-		
-		axis.getTicks().setFont(new ScaleFontCallback() {
-			
-			@Override
-			public FontOptions invoke(Axis axis, ScaleScriptableContext context) {
-				FontOptions fo = new FontOptions();
-				fo.setSize(24);
-				return fo;
-			}
-		});
-		
-		axis.getTicks().setBackdropColor(new ScaleColorCallback() {
-			
-			@Override
-			public Object invoke(Axis axis, ScaleScriptableContext context) {
-				return context.getIndex() % 2  == 0 ? HtmlColor.ORANGE : HtmlColor.GRAY;
-			}
-		});
-
-		axis.getTicks().setShowLabelBackdrop(new ScaleShowLabelBackdropCallback() {
-			
-			@Override
-			public Boolean invoke(Axis axis, ScaleScriptableContext context) {
-				return context.getIndex() % 2  == 0 ? false : false;
-			}
-		});
-
 		chart.getOptions().getScales().setAxes(axis);
-
-		PolarAreaDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset 1");
-		dataset.setBackgroundColor(getSequenceColors(months, 0.2D));
-		dataset.setData(getRandomDigits(months, false));
-
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
-
 	}
 
 	@UiHandler("randomize")

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.adapters.DateAdapter;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -18,6 +19,7 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionAxis;
+import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
@@ -26,31 +28,36 @@ import org.pepstock.charba.client.zoom.AbstractConfigurationItem;
 import org.pepstock.charba.client.zoom.Drag;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
-import org.pepstock.charba.client.zoom.callbacks.CompleteCallback;
+import org.pepstock.charba.client.zoom.callbacks.CompletedCallback;
 import org.pepstock.charba.client.zoom.callbacks.ProgressCallback;
+import org.pepstock.charba.client.zoom.callbacks.RejectedCallback;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
-	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
+	private static final String FORMAT = "yyyy MMM dd";
 
 	private static final long DAY = 1000 * 60 * 60 * 24;
 
 	private static final int AMOUNT_OF_POINTS = 60;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
+	
+	private static final String CSS = "background: linear-gradient(180deg,#eee,#fff); background-color: rgba(0, 0, 0, 0); background-color: #eee; border: 1px solid #cdd5d7; border-radius: 6px; box-shadow: 0 1px 2px 1px #cdd5d7; " +
+	"font-family: consolas,courier,monospace; font-size: .9rem; font-weight: 700; line-height: 1; margin: 3px; padding: 4px 6px; white-space: nowrap;";
+		
 
 	interface ViewUiBinder extends UiBinder<Widget, ZoomCallbacksOnTimeSeriesCase> {
 	}
@@ -63,8 +70,16 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 	@UiField
 	CheckBox dragging;
+	
+	@UiField
+	CheckBox modifier;
+	
+	@UiField
+	HTMLPanel help;
 
 	private final Drag drag;
+	
+	private final CartesianTimeSeriesAxis axis;
 
 	public ZoomCallbacksOnTimeSeriesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -82,11 +97,12 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 				TooltipItem item = items.iterator().next();
 				LineDataset ds = (LineDataset) chart.getData().getDatasets().get(0);
 				DataPoint dp = ds.getDataPoints().get(item.getDataIndex());
-				return Arrays.asList(FORMAT.format(dp.getXAsDate()));
+				DateAdapter adapter = axis.getAdapters().getDate().create();
+				return Arrays.asList(adapter.format(dp.getXAsDate(), FORMAT));
 			}
 
 		});
-
+		
 		final TimeSeriesLineDataset dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
@@ -123,7 +139,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		dataset1.setTimeSeriesData(data);
 		dataset2.setTimeSeriesData(data1);
 
-		CartesianTimeSeriesAxis axis = chart.getOptions().getScales().getTimeAxis();
+		axis = chart.getOptions().getScales().getTimeAxis();
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 
@@ -141,10 +157,10 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		drag = ZoomPlugin.createDrag();
 		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
-		options.getZoom().setCompleteCallback(new CompleteCallback() {
+		options.getZoom().setCompletedCallback(new CompletedCallback() {
 
 			@Override
-			public void onComplete(IsChart chart, AbstractConfigurationItem<?> item) {
+			public void onCompleted(IsChart chart, AbstractConfigurationItem<?> item) {
 				mylog.addLogEvent("> ZOOM COMPLETE on chart");
 			}
 		});
@@ -157,8 +173,18 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 			}
 		});
 
+		options.getZoom().setRejectedCallback(new RejectedCallback() {
+
+			@Override
+			public void onRejected(IsChart chart, AbstractConfigurationItem<?> item) {
+				mylog.addLogEvent("> ZOOM REJECTED; press CTRL to zoom");
+			}
+		});
+
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 
+		HTML html = new HTML("<kbd style=\""+CSS+"\">Ctrl</kbd> + wheeling to zoom");
+		help.add(html);
 	}
 
 	@UiHandler("randomize")
@@ -177,10 +203,28 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
 		if (dragging.getValue()) {
 			options.getZoom().setDrag(drag);
+			options.getZoom().setWheelModifierKey(null);
+			modifier.setValue(false);
+			modifier.setEnabled(false);
+			help.setVisible(false);
 		} else {
 			options.getZoom().setDrag(false);
+			modifier.setEnabled(true);
 		}
-		chart.reconfigure();
+		chart.update();
+	}
+	
+	@UiHandler("modifier")
+	protected void handleModifier(ClickEvent event) {
+		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
+		if (modifier.getValue()) {
+			options.getZoom().setWheelModifierKey(ModifierKey.CTRL);
+			help.setVisible(true);
+		} else {
+			options.getZoom().setWheelModifierKey(null);
+			help.setVisible(false);
+		}
+		chart.update();
 	}
 
 	@UiHandler("reset")

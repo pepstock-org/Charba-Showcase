@@ -63,7 +63,7 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite {
 
 		CartesianLogarithmicAxis axis1 = new CartesianLogarithmicAxis(chart, AxisKind.X);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
+		axis1.getTitle().setDisplay(true);
 		axis1.setPosition(AxisPosition.BOTTOM);
 		axis1.getTicks().setCallback(new TickCallback() {
 
@@ -76,8 +76,8 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite {
 				return "";
 			}
 		});
-		axis1.getScaleLabel().setLabelString("Frequency");
-		axis1.getScaleLabel().setDisplay(true);
+		axis1.getTitle().setText("Frequency");
+		axis1.getTitle().setDisplay(true);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
@@ -89,8 +89,8 @@ public class LogarithmicAxisOnScatterCase extends BaseComposite {
 			}
 		});
 
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("voltage");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("voltage");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

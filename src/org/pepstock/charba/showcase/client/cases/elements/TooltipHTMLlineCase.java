@@ -3,7 +3,7 @@ package org.pepstock.charba.showcase.client.cases.elements;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.TooltipCustomCallback;
+import org.pepstock.charba.client.callbacks.TooltipExternalCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -62,12 +62,12 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		
 		chart.getOptions().getTooltips().setUsePointStyle(true);
 		
-		chart.getOptions().getTooltips().setCustomCallback(new TooltipCustomCallback() {
+		chart.getOptions().getTooltips().setExternalCallback(new TooltipExternalCallback() {
 
 			private DivElement element = null;
 
 			@Override
-			public void onCustom(IsChart chart, TooltipModel model) {
+			public void onExternal(IsChart chart, TooltipModel model) {
 				if (element == null) {
 					element = Document.get().createDivElement();
 					chart.getChartElement().appendChild(CastHelper.toDiv(element));
@@ -124,8 +124,8 @@ public class TooltipHTMLlineCase extends BaseComposite {
 				
 				Tooltips tooltips = chart.getOptions().getTooltips();
 				element.getStyle().setFontSize(tooltips.getBodyFont().getSize(), Unit.PX);
-				element.getStyle().setPaddingLeft(tooltips.getXPadding(), Unit.PX);
-				element.getStyle().setPaddingTop(tooltips.getXPadding(), Unit.PX);
+				element.getStyle().setPaddingLeft(tooltips.getPadding().getLeft(), Unit.PX);
+				element.getStyle().setPaddingTop(tooltips.getPadding().getTop(), Unit.PX);
 
 				element.getStyle().setOpacity(1);
 				element.getStyle().setBackgroundColor("rgba(0, 0, 0, .7)");
@@ -164,13 +164,13 @@ public class TooltipHTMLlineCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

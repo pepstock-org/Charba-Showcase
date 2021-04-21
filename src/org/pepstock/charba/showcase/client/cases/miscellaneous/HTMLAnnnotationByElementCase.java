@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.commons.JsHelper;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.dom.BaseHtmlElement;
@@ -30,8 +31,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
-
-import jsinterop.base.Js;
 
 public class HTMLAnnnotationByElementCase extends BaseComposite {
 
@@ -68,8 +67,8 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setDisplay(true);
 		axis1.setBeginAtZero(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Percentage");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Percentage");
 
 		chart.getOptions().getScales().setAxes(axis1);
 
@@ -128,7 +127,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 
 				Img img;
 				if (useElement) {
-					BaseHtmlElement el = Js.cast(element);
+					BaseHtmlElement el = JsHelper.get().cast(element);
 					img = AnnotationBuilder.build(el, 300, 48);
 				} else {
 					img = AnnotationBuilder.build(ANNOTATION, 300, 64);

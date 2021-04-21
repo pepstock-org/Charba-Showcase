@@ -71,13 +71,13 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 
 		axis = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis.setDisplay(true);
-		axis.getScaleLabel().setDisplay(true);
+		axis.getTitle().setDisplay(true);
 
 		chart.getData().setLabels(COUNTRIES);
 		chart.getData().setDatasets(dataset1);
 
 		chart.getOptions().getScales().setAxes(axis);
-
+		
 		AbstractPlugin p = new AbstractPlugin("flagsplugin") {
 
 			@Override
@@ -88,8 +88,8 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 				List<ScaleTickItem> ticks = scale.getTicks();
 				double heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 				final double height = Math.min(heightAmongLabels - (padding * 2), MIN);
-				final double width = Math.min(60 * height / 40, axis.getScaleLabel().getPadding().getTop() - padding);
-				double x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFont().getSize();
+				final double width = Math.min(60 * height / 40, axis.getTitle().getPadding().getTop() - padding);
+				double x = scale.getLeft() + axis.getTitle().getPadding().getTop() - width + axis.getTitle().getFont().getSize();
 				double y = scale.getTop();
 				for (ScaleTickItem tick : ticks) {
 					Img image = null;
@@ -146,7 +146,7 @@ public class FlagsPluginOnBarCase extends BaseComposite {
 	void calculateAndSetScaleLabelPadding(double width) {
 		double percent = width * PERCENT / 100D;
 		int padding = (int)Math.min(Math.max(MIN, percent), MAX);
-		axis.getScaleLabel().getPadding().setTop(padding);
+		axis.getTitle().getPadding().setTop(padding);
 	}
 
 	@UiHandler("source")

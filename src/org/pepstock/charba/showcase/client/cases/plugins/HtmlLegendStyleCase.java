@@ -87,7 +87,7 @@ public class HtmlLegendStyleCase extends BaseComposite {
 				dataset.setBorderColor(color.toHex());
 				dataset.setPointBackgroundColor(color.toHex());
 				dataset.setPointStyle(cPos);
-				chart.update();
+				chart.reconfigure();
 				return;
 			}
 			i++;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/base-1.0.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/charba-4.0-gwt.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path=".apt_generated">

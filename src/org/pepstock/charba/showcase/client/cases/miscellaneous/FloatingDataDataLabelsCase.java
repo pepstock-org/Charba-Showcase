@@ -2,8 +2,6 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -12,6 +10,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.FloatingData;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsOptionsBuilder;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
@@ -62,16 +61,16 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
-		
+
 		double[] values = getRandomDigits(months);
 		double[] gaps = getRandomDigits(months, false);
 
 		double[][] dataToSet = new double[months][2];
-		for (int i=0; i<months; i++) {
-			dataToSet[i] = new double[] {values[i], values[i] + Math.max(gaps[i], 20)};
+		for (int i = 0; i < months; i++) {
+			dataToSet[i] = new double[] { values[i], values[i] + Math.max(gaps[i], 20) };
 		}
 		dataset1.setFloatingData(dataToSet);
-		
+
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.setOffset(true);
@@ -79,70 +78,33 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 
+		DataLabelsOptionsBuilder builder = DataLabelsOptionsBuilder.create().createLabel("top").setAlign(Align.CENTER).setAnchor(Anchor.END).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.GREEN).setBorderColor(color1).setBorderRadius(25)
+				.setBorderWidth(2).setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
 
-//		DataLabelsOptions option = new DataLabelsOptions();
-//
-//		LabelItem top = option.getLabels().createLabel("top");
-//		top.setAlign(Align.CENTER);
-//		top.setAnchor(Anchor.END);
-//		top.setBackgroundColor(HtmlColor.WHITE);
-//		top.setColor(HtmlColor.GREEN);
-//		top.setBorderColor(color1);
-//		top.setBorderRadius(25);
-//		top.setBorderWidth(2);
-//		top.getFont().setWeight(Weight.BOLD);
-//		top.setFormatter(new FormatterCallback() {
-//
-//			@Override
-//			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-//				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getEnd(), 0);
-//			}
-//
-//		});
-//		
-//		LabelItem down = option.getLabels().createLabel("down");
-//		down.setAlign(Align.CENTER);
-//		down.setAnchor(Anchor.START);
-//		down.setBackgroundColor(HtmlColor.WHITE);
-//		down.setColor(HtmlColor.RED);
-//		down.setBorderColor(color1);
-//		down.setBorderRadius(25);
-//		down.setBorderWidth(2);
-//		down.getFont().setWeight(Weight.BOLD);
-//		down.setFormatter(new FormatterCallback() {
-//
-//			@Override
-//			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-//				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getStart(), 0);
-//			}
-//
-//		});
-		
-		DataLabelsOptionsBuilder builder = DataLabelsOptionsBuilder.create().createLabel("top").setAlign(Align.CENTER).setAnchor(Anchor.END).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.GREEN).setBorderColor(color1).setBorderRadius(25).setBorderWidth(2).setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
+					@Override
+					public String invoke(DataLabelsContext context, DataItem dataItem) {
+						return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getEnd(), 0);
+					}
 
-			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getEnd(), 0);
-			}
+				}).getOptionsBuilder();
 
-		}).getOptionsBuilder();
-		
-		DataLabelsOptions option = builder.createLabel("down").setAlign(Align.CENTER).setAnchor(Anchor.START).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.RED).setBorderColor(color1).setBorderRadius(25).setBorderWidth(2).setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
+		DataLabelsOptions option = builder.createLabel("down").setAlign(Align.CENTER).setAnchor(Anchor.START).setBackgroundColor(HtmlColor.WHITE).setColor(HtmlColor.RED).setBorderColor(color1).setBorderRadius(25).setBorderWidth(2)
+				.setFontWeight(Weight.BOLD).setFormatter(new FormatterCallback() {
 
-			@Override
-			public String invoke(IsChart chart, DataItem dataItem, ScriptableContext context) {
-				return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getStart(), 0);
-			}
+					@Override
+					public String invoke(DataLabelsContext context, DataItem dataItem) {
+						return Utilities.applyPrecision(dataItem.getValueAsFloatingData().getStart(), 0);
+					}
 
-		}).getOptionsBuilder().build(); 
+				}).getOptionsBuilder().build();
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 
@@ -153,11 +115,11 @@ public class FloatingDataDataLabelsCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			double[] values = getRandomDigits(months);
 			double[] gaps = getRandomDigits(months, false);
-			BarDataset barDataset = (BarDataset)dataset;
+			BarDataset barDataset = (BarDataset) dataset;
 			List<FloatingData> data = barDataset.getFloatingData();
-			for (int i=0; i<months; i++) {
+			for (int i = 0; i < months; i++) {
 				FloatingData fData = data.get(i);
-				fData.setValues(values[i], values[i] + Math.max(gaps[i], 20));		
+				fData.setValues(values[i], values[i] + Math.max(gaps[i], 20));
 			}
 		}
 		chart.update();

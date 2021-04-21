@@ -10,7 +10,7 @@ import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
-import org.pepstock.charba.client.annotation.enums.LineLabelPosition;
+import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -64,7 +64,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 	final CartesianLinearAxis axis2;
 	
 	final LineAnnotation line1;
-
+	
 	public AnnotationObliqueLineOnTimeSeriesLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -104,7 +104,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.toHex());
 		dataset2.setBorderColor(color2.toHex());
 
-		JsDate myDate = JsDate.create(2020, 1, 1, 0, 0, 0, 0);
+		final JsDate myDate = JsDate.create(2021, 1, 1, 0, 0, 0, 0);
 		long time = (long) myDate.getTime();
 
 		double max = 0D;
@@ -131,7 +131,6 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
 		axis2.setStacked(true);
-		axis2.setMax(((int)Math.floor(max/10)+1.5)*10D);
 		
 		chart.getData().setDatasets(dataset1, dataset2);
 
@@ -146,13 +145,13 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.setValue(40);
 		line1.setEndValue(max);
 		
-		line1.getLabel().setEnabled(true);
+		line1.getLabel().setDisplay(true);
 		line1.getLabel().setAutoRotation(true);
 		line1.getLabel().setContent("Line from 40 to max");
-		line1.getLabel().setPosition(LineLabelPosition.END);
+		line1.getLabel().setPosition(LabelPosition.END);
 		line1.getLabel().setBackgroundColor(HtmlColor.VIOLET);
 		line1.getLabel().setColor(HtmlColor.BLACK);
-
+		
 		options.setAnnotations(line1);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
@@ -173,9 +172,8 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 			TimeSeriesItem dp2 = dataset2.getTimeSeriesData().get(i);
 			max = Math.max(dp1.getValue() + dp2.getValue(), max);
 		}
-		axis2.setMax(((int)Math.floor(max/10)+1.5)*10D);
 		line1.setEndValue(max);
-		chart.reconfigure();
+		chart.update();
 	}
 
 	@UiHandler("source")

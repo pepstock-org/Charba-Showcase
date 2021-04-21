@@ -52,7 +52,7 @@ public class TimeSeriesByLineCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Timeseries by line chart");
-		chart.getOptions().getTooltips().setTitleMarginBottom(10);
+
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
 			@Override
@@ -66,7 +66,6 @@ public class TimeSeriesByLineCase extends BaseComposite {
 		});
 
 		final LineDataset dataset1 = chart.newDataset();
-
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.ORIGIN);
 

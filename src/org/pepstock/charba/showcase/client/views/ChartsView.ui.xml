@@ -51,6 +51,7 @@
 					<g:Label ui:field="horizontalBar"
 						styleName='{myStyle.myLabel}'>Horizontal bar</g:Label>
 					<g:Label ui:field="line" styleName='{myStyle.myLabel}'>Line</g:Label>
+					<g:Label ui:field="verticalLine" styleName='{myStyle.myLabel}'>Vertical line</g:Label>
 					<g:Label ui:field="scatter" styleName='{myStyle.myLabel}'>Scatter</g:Label>
 					<g:Label ui:field="doughnut" styleName='{myStyle.myLabel}'>Doughnut</g:Label>
 					<g:Label ui:field="pie" styleName='{myStyle.myLabel}'>Pie</g:Label>

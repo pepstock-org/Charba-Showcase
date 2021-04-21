@@ -13,7 +13,7 @@ import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.items.ScaleTickItem;
-import org.pepstock.charba.client.options.IsAnimationModeKey;
+import org.pepstock.charba.client.options.IsTransitionKey;
 import org.pepstock.charba.client.options.Scale;
 import org.pepstock.charba.showcase.client.resources.Images;
 
@@ -51,8 +51,8 @@ public class MyHorizontalBarController extends AbstractController {
 		List<ScaleTickItem> ticks = scale.getTicks();
 		double heightAmongLabels = (scale.getBottom() - scale.getTop()) / ticks.size();
 		final double height = Math.min(heightAmongLabels - (padding * 2), MIN);
-		final double width = Math.min(60 * height / 40, axis.getScaleLabel().getPadding().getTop() - padding);
-		double x = scale.getLeft() + axis.getScaleLabel().getPadding().getTop() - width + axis.getScaleLabel().getFont().getSize();
+		final double width = Math.min(60 * height / 40, axis.getTitle().getPadding().getTop() - padding);
+		double x = scale.getLeft() + axis.getTitle().getPadding().getTop() - width + axis.getTitle().getFont().getSize();
 		double y = scale.getTop();
 		for (ScaleTickItem tick : ticks) {
 			Img image = null;
@@ -78,7 +78,7 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 
 	@Override
-	public void update(ControllerContext context, IsChart chart, IsAnimationModeKey mode) {
+	public void update(ControllerContext context, IsChart chart, IsTransitionKey mode) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.Y);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 		super.update(context, chart, mode);
@@ -87,7 +87,7 @@ public class MyHorizontalBarController extends AbstractController {
 	private void calculateAndSetScaleLabelPadding(Scale axis, int width) {
 		int percent = width * PERCENT / 100;
 		int padding = Math.min(Math.max(MIN, percent), MAX);
-		axis.getScaleLabel().getPadding().setTop(padding);
+		axis.getTitle().getPadding().setTop(padding);
 	}
 
 	private Img getImageElement(ImageResource resource) {

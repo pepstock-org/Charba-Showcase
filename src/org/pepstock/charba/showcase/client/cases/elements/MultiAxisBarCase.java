@@ -44,7 +44,7 @@ public class MultiAxisBarCase extends BaseComposite {
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart, "y-axis-2");
 		axis2.setPosition(AxisPosition.RIGHT);
 		axis2.setDisplay(true);
-		axis2.getGrideLines().setDrawOnChartArea(false);
+		axis2.getGrid().setDrawOnChartArea(false);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

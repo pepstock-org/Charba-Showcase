@@ -2,9 +2,8 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.List;
 
-import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.callbacks.RadiusCallback;
-import org.pepstock.charba.client.callbacks.ScriptableContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
@@ -32,10 +31,10 @@ public class CallbacksRadarCase extends BaseComposite {
 	@UiField
 	RadarChartWidget chart;
 
-	private final RadiusCallback radiusCallback = new RadiusCallback() {
+	private final RadiusCallback<DatasetContext> radiusCallback = new RadiusCallback<DatasetContext>() {
 
 		@Override
-		public Double invoke(IsChart chart, ScriptableContext context) {
+		public Double invoke(DatasetContext context) {
 			int module = context.getDataIndex() % 2;
 			return context.getDatasetIndex() % 2 == 0 ? module == 0 ? 50D : 25D : module == 0 ? 25D : 50D;
 		}
@@ -48,6 +47,7 @@ public class CallbacksRadarCase extends BaseComposite {
 
 	public CallbacksRadarCase() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
@@ -69,10 +69,10 @@ public class CallbacksRadarCase extends BaseComposite {
 		dataset1.setBackgroundColor(color.alpha(0.2D));
 		dataset1.setBorderColor(color);
 		dataset1.setPointBackgroundColor(color);
-		dataset1.setPointRadius(new RadiusCallback() {
+		dataset1.setPointRadius(new RadiusCallback<DatasetContext>() {
 
 			@Override
-			public Double invoke(IsChart chart, ScriptableContext context) {
+			public Double invoke(DatasetContext context) {
 				return (double) ((int) (Math.random() * (MAX - MIN))) + MIN;
 			}
 		});

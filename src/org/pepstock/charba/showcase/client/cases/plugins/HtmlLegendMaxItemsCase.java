@@ -51,13 +51,11 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().getTitle().setDisplay(true);
-		chart.getOptions().getLegend().getTitle().setText("Questa e una prova di title");
-		chart.getOptions().getLegend().getTitle().setPadding(10);
+		chart.getOptions().getLegend().getTitle().setText("HTML legend setting max items on line chart");
+		chart.getOptions().getLegend().getTitle().getPadding().set(10);
 		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
-
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("HTML legend setting max items on line chart");
+		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
@@ -93,13 +91,13 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Value");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Value");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
@@ -137,7 +135,7 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		dataset.setData(getRandomDigits(months));
 		dataset.setFill(false);
 		datasets.add(dataset);
-		chart.update();
+		chart.reconfigure();
 	}
 
 	@UiHandler("remove_dataset")

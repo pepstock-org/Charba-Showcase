@@ -50,7 +50,7 @@ public class ControllerMyHorizontalBarCase extends BaseComposite {
 
 		axis = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis.setDisplay(true);
-		axis.getScaleLabel().setDisplay(true);
+		axis.getTitle().setDisplay(true);
 
 		chart.getData().setLabels(COUNTRIES);
 		chart.getData().setDatasets(dataset1);

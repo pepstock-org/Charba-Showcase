@@ -33,8 +33,13 @@ public class LabelsMultiOptionsCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getTitle().setDisplay(false);
+		chart.getOptions().getLegend().setDisplay(false);
+		chart.getOptions().getLayout().getPadding().setTop(25);
+		chart.getOptions().getLayout().getPadding().setBottom(25);
+		chart.getOptions().getLegend().setPosition(org.pepstock.charba.client.enums.Position.RIGHT);
+		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using multiple labels");
+		chart.getOptions().getTitle().getPadding().set(25);
 
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");
@@ -50,11 +55,13 @@ public class LabelsMultiOptionsCase extends BaseComposite {
 		label1.setColor(HtmlColor.BLACK);
 		label1.setArc(true);
 		label1.setPosition(Position.OUTSIDE);
+		label1.getFont().setSize(18);
 
-		Label labels2 = options.createLabel("label2");
-		labels2.setRender(Render.PERCENTAGE);
-		labels2.setColor(HtmlColor.WHITE);
-		labels2.setOverlap(false);
+		Label label2 = options.createLabel("label2");
+		label2.setRender(Render.PERCENTAGE);
+		label2.setColor(HtmlColor.WHITE);
+		label2.setOverlap(false);
+		label2.getFont().setSize(18);
 
 		chart.getOptions().getPlugins().setOptions(LabelsPlugin.ID, options);
 	}

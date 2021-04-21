@@ -65,15 +65,15 @@ public class NoNumericYAxisCase extends BaseComposite {
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
-		axis1.getScaleLabel().setDisplay(true);
-		axis1.getScaleLabel().setLabelString("Month");
+		axis1.getTitle().setDisplay(true);
+		axis1.getTitle().setText("Month");
 
 		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, AxisKind.Y);
 		axis2.setDisplay(true);
 		axis2.setReverse(true);
 		axis2.setPosition(AxisPosition.LEFT);
-		axis2.getScaleLabel().setDisplay(true);
-		axis2.getScaleLabel().setLabelString("Request State");
+		axis2.getTitle().setDisplay(true);
+		axis2.getTitle().setText("Request State");
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

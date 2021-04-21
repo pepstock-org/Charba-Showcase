@@ -14,7 +14,6 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesBarChartWidget;
-import org.pepstock.charba.client.intl.CLocale;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -83,13 +82,6 @@ public class TimeSeriesBarCase extends BaseComposite {
 		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.DAY, "d MMMM");
 		axis.setOffset(true);
 		
-		axis.getAdapters().getDate().setLocale(CLocale.GERMANY);
-// FIXME		
-//		axis.getAdapters().getDate().setLocale(CLocale.ITALY);
-//		axis.getAdapters().getDate().setNumberingSystem(NumberingSystem.ARAB);
-//		axis.getAdapters().getDate().setOutputCalendar(Calendar.CHINESE);
-//		axis.getAdapters().getDate().setZone(TimeZone.AMERICA_NEW_YORK);		
-
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
