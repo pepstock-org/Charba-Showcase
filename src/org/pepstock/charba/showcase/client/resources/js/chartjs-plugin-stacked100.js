@@ -60,7 +60,7 @@
   var getPrecision = function(pluginOptions) {
     // return the (validated) configured precision from pluginOptions or default 1
     var defaultPrecision = 1;
-    if (!pluginOptions.hasOwnProperty("precision")) return defaultPrecision;
+    if (!pluginOptions.hasOwnProperty('precision')) return defaultPrecision;
     if (!pluginOptions.precision) return defaultPrecision;
     var optionsPrecision = Math.floor(pluginOptions.precision);
     if (isNaN(optionsPrecision)) return defaultPrecision;
@@ -78,11 +78,11 @@
 	  var data = context.chart.data;
       var datasetIndex = context.datasetIndex;
       var index = context.dataIndex;
-      var datasetLabel = context.label || "";
+      var datasetLabel = context.label || '';
       var originalValue = data.originalData[datasetIndex][index];
       var rateValue = data.calculatedData[datasetIndex][index];
 
-      return "" + datasetLabel + ": " + rateValue + "% (" + dataValue(originalValue, isHorizontal) + ")";
+      return '' + datasetLabel + ': ' + rateValue + '% (' + dataValue(originalValue, isHorizontal) + ')';
     }
   };
 
@@ -95,16 +95,16 @@
   };
 
   var isHorizontalChart = function(chart) {
-    return chart.config.type === "bar" && chart.options.indexAxis === "y";
+    return chart.config.type === 'bar' && chart.options.indexAxis === 'y';
   }
 
   var Stacked100Plugin = {
-    id: "stacked100",
+    id: 'stacked100',
 
     beforeInit: function(chart, args, options) {
       if (!options.enable) return;
 
-      var isVertical = (chart.config.type === "bar" && chart.options.indexAxis === "x") || chart.config.type === "line";
+      var isVertical = (chart.config.type === 'bar' && chart.options.indexAxis === 'x') || chart.config.type === 'line';
 
       Object.keys(chart.options.scales).forEach(key => {
         const value = chart.options.scales[key];
@@ -119,7 +119,7 @@
       });
 
       // Replace tooltips
-      if (options.hasOwnProperty("replaceTooltipLabel") && !options.replaceTooltipLabel) return;
+      if (options.hasOwnProperty('replaceTooltipLabel') && !options.replaceTooltipLabel) return;
       chart.options.plugins.tooltip.callbacks.label = tooltipLabel(isHorizontalChart(chart));
     },
 
