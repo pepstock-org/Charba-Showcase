@@ -1,8 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
-import org.pepstock.charba.client.callbacks.TooltipLabelCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
@@ -11,9 +9,6 @@ import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.items.TooltipLabelColor;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -58,97 +53,6 @@ public class TooltipPositioningCase extends BaseComposite {
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		
-//		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new TooltipTitleCallback() {
-//
-//			@Override
-//			public List<String> onTitle(IsChart chart, List<TooltipItem> items) {
-//				List<String> values = TooltipTitleCallback.super.onTitle(chart, items);
-//				Charba_Showcase.LOG.info(values.toString());
-//				return values;
-//			}
-//
-//			@Override
-//			public List<String> onAfterTitle(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//
-//			@Override
-//			public List<String> onBeforeTitle(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//			
-//		});
-		
-//		chart.getOptions().getTooltips().getCallbacks().setBodyCallback(new TooltipBodyCallback() {
-//
-//			@Override
-//			public List<String> onBeforeBody(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//
-//			@Override
-//			public List<String> onAfterBody(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//			
-//		});
-//		
-		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
-
-//			/* (non-Javadoc)
-//			 * @see org.pepstock.charba.client.callbacks.TooltipLabelCallback#onLabel(org.pepstock.charba.client.IsChart, org.pepstock.charba.client.items.TooltipItem)
-//			 */
-//			@Override
-//			public String onLabel(IsChart chart, TooltipItem item) {
-//				return TooltipLabelCallback.super.onLabel(chart, item);
-//			}
-//
-			/* (non-Javadoc)
-			 * @see org.pepstock.charba.client.callbacks.TooltipLabelCallback#onLabelColor(org.pepstock.charba.client.IsChart, org.pepstock.charba.client.items.TooltipItem)
-			 */
-			@Override
-			public TooltipLabelColor onLabelColor(IsChart chart, TooltipItem item) {
-				TooltipLabelColor color = TooltipLabelCallback.super.onLabelColor(chart, item);
-				
-				Charba_Showcase.LOG.info(color.toJSON());
-				
-				return color;
-			}
-			
-			
-			
-
-//			@Override
-//			public TooltipLabelColor onLabelColor(IsChart chart, TooltipItem item) {
-//				return null;
-//			}
-//
-//			@Override
-//			public IsColor onLabelTextColor(IsChart chart, TooltipItem item) {
-//				return null;
-//			}
-
-			
-		});
-//		chart.getOptions().getTooltips().getCallbacks().setFooterCallback(new TooltipFooterCallback() {
-//
-//			@Override
-//			public List<String> onBeforeFooter(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//
-//			@Override
-//			public List<String> onFooter(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//
-//			@Override
-//			public List<String> onAfterFooter(IsChart chart, List<TooltipItem> items) {
-//				return null;
-//			}
-//			
-//		});
-
 		dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		IsColor color1 = GoogleChartColor.values()[0];

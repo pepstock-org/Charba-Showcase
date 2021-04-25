@@ -151,8 +151,6 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.setBorderDash(4, 4);
 		line1.setValue((context) -> getAverage());
 		line1.getLabel().setDisplay(true);
-		//line1.getLabel().setContent(AnnotationBuilder.build(getLabelContent(average), 180, 18));
-//		line1.getLabel().setContent("Average of datasets is "+Utilities.applyPrecision(average, 2));
 		
 		line1.getLabel().setContent(new ContentCallback() {
 			
@@ -190,30 +188,6 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		return sum / Math.max(1, count / Math.max(1, dsvisible));
 	}
 
-	private double getStdDeviation() {
-		double sum = 0;
-		double count = 0;
-		for (Dataset dataset : chart.getData().getDatasets()) {
-			TimeSeriesLineDataset scDataset = (TimeSeriesLineDataset) dataset;
-			for (TimeSeriesItem dp : scDataset.getTimeSeriesData()) {
-				sum += dp.getValue();
-				count++;
-			}
-		}
-		double average = sum/count;
-		for (Dataset dataset : chart.getData().getDatasets()) {
-			TimeSeriesLineDataset scDataset = (TimeSeriesLineDataset) dataset;
-			for (TimeSeriesItem dp : scDataset.getTimeSeriesData()) {
-				sum += Math.pow(dp.getValue() - average, 2);
-			}
-		}
-		return Math.sqrt(average / count);
-	}
-	
-	private String getLabelContent(double average) {
-		return "<div style=\"color: '"+GoogleChartColor.values()[0].toRGB()+"'\">Average of datasets is <strong style=\"color: black\">"+Utilities.applyPrecision(average, 2)+"</strong></div>";
-	}
-
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
@@ -222,7 +196,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 				dp.setValue(getRandomDigit(false));
 			}
 		}
-		chart.update();;
+		chart.update();
 	}
 
 	@UiHandler("source")

@@ -6,9 +6,9 @@ import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.DoughnutDataset;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.callbacks.DisplayCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
@@ -18,7 +18,7 @@ import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.DoughnutChartWidget;
 import org.pepstock.charba.client.impl.callbacks.Percentage;
 import org.pepstock.charba.client.items.DataItem;
-import org.pepstock.charba.client.items.UndefinedValues;
+import org.pepstock.charba.client.items.Undefined;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -72,7 +72,7 @@ public class DataLabelsDoughnutCase extends BaseComposite {
 
 		DataLabelsOptions option2 = new DataLabelsOptions();
 		option2.setAnchor(Anchor.CENTER);
-		option2.setBackgroundColor(UndefinedValues.STRING);
+		option2.setBackgroundColor(Undefined.STRING);
 		option2.setBorderWidth(0);
 		dataset2.setOptions(DataLabelsPlugin.ID, option2);
 

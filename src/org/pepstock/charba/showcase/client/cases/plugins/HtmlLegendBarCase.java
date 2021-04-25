@@ -46,6 +46,7 @@ public class HtmlLegendBarCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
+		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getLegend().getTitle().setDisplay(true);
@@ -59,14 +60,10 @@ public class HtmlLegendBarCase extends BaseComposite {
 				return defaultLabels;
 			}
 		});
-		// FIXME
-		chart.getOptions().getLegend().getTitle().setText("This is the title of the legend.");
+		chart.getOptions().getLegend().getTitle().setText("HTML legend on bar chart");
 		chart.getOptions().getLegend().getTitle().getPadding().set(10);
 		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
-
-		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("HTML legend on bar chart");
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

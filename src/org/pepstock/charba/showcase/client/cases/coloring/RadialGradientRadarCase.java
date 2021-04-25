@@ -42,7 +42,6 @@ public class RadialGradientRadarCase extends BaseComposite {
 		RadarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		// FIXME SOUNDS wrong
 		Gradient gradient1 = UiGradient.TELEGRAM.createGradient(GradientType.RADIAL, GradientOrientation.OUT_IN, GradientScope.CHART);
 		IsColor firstColor = gradient1.getColors().get(0).getColor();
 

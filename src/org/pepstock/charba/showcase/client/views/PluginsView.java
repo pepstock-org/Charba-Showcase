@@ -10,10 +10,12 @@ import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePieCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeRadarCase;
-import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorTimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorBubbleCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorDrillingDownCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorScatterCase;
+import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorTimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorZoomingCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendCustomCallbackCase;
@@ -92,6 +94,18 @@ public class PluginsView extends AbstractView {
 		content.add(new DatasetItemsSelectorLineCase());
 	}
 
+	@UiHandler("datasetItemsSelectorScatter")
+	protected void handleDatasetItemsSelectorScatter(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetItemsSelectorScatterCase());
+	}
+	
+	@UiHandler("datasetItemsSelectorBubble")
+	protected void handleDatasetItemsSelectorBubble(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetItemsSelectorBubbleCase());
+	}
+	
 	@UiHandler("datasetItemsSelectorTimeseriesBar")
 	protected void handleDatasetItemsSelectorTimeseriesBar(ClickEvent event) {
 		clearPreviousChart();

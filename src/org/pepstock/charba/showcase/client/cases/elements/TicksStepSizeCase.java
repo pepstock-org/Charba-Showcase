@@ -79,9 +79,6 @@ public class TicksStepSizeCase extends BaseComposite {
 		axis2.setMin(0);
 		axis2.setMax(100);
 		axis2.getTicks().setStepSize(5);
-//		axis2.getTicks().getNumberFormat().setStyle(Style.CURRENCY);
-//		axis2.getTicks().getNumberFormat().setCurrency(Currency.EURO);
-		
 		axis2.getTicks().setAlign(ElementAlign.CENTER);
 
 		axis2.getTicks().getNumberFormat().setStyle(Style.UNIT);

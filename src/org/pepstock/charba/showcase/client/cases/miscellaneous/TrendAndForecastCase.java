@@ -14,7 +14,6 @@ import org.pepstock.charba.client.annotation.callbacks.DisplayCallback;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
-import org.pepstock.charba.client.callbacks.BorderDashCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -197,25 +196,8 @@ public class TrendAndForecastCase extends BaseComposite {
 		});
 		line.setDrawTime(DrawTime.AFTER_DRAW);
 		line.setScaleID(MY_SCALE_ID);
-		//line.setBorderColor(HtmlColor.DARK_GRAY);
-		//line.setBorderWidth(2);
-
-		line.setBorderColor((context) -> HtmlColor.RED);
-		line.setBorderWidth((context) -> (int)Math.random()*10 + 1);
-		line.setBorderDash(new BorderDashCallback<AnnotationContext>() {
-
-			@Override
-			public List<Integer> invoke(AnnotationContext context) {
-				int dash = (int)(Math.random() * 10) + 1;
-				
-				log(context.getType(), dash);
-				
-				
-				return Arrays.asList(dash, dash);
-			}
-			
-		});
-		
+		line.setBorderColor(HtmlColor.DARK_GRAY);
+		line.setBorderWidth(2);
 		line.setValue(new Date((long) now.getTime()));
 		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("Now");

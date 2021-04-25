@@ -5,6 +5,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointSize
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsImageOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingStylesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.AutoUpdateLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksBubbleCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksDoughnutCase;
@@ -106,7 +107,13 @@ public class MiscellaneousView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TrendAndForecastCase());
 	}
-
+	
+	@UiHandler("miscellaneousAutoUpdateLine")
+	protected void handleMiscellaneousAutoUpdateLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AutoUpdateLineCase());
+	}
+	
 	// ----------------------------------------------
 	// plugins
 	// ----------------------------------------------

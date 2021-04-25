@@ -10,7 +10,6 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColorOptions;
-import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -69,8 +68,6 @@ public class BackgroundLinearGradientBarCase extends BaseComposite {
 		option.setBackgroundColor(gradient);
 
 		chart.getOptions().getPlugins().setOptions(ChartBackgroundColor.ID, option);
-		
-		Charba_Showcase.LOG.info(chart.getOptions().toJSON());
 	}
 
 	@UiHandler("randomize")

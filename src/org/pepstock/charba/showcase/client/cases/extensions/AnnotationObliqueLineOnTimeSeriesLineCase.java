@@ -138,7 +138,7 @@ public class AnnotationObliqueLineOnTimeSeriesLineCase extends BaseComposite {
 
 		line1 = new LineAnnotation();
 		line1.setDrawTime(DrawTime.AFTER_DRAW);
-		line1.setScaleID(DefaultScaleId.Y.value());
+		line1.setScaleID(DefaultScaleId.Y);
 		line1.setBorderColor(HtmlColor.VIOLET);
 		line1.setBorderWidth(4);
 		line1.setBorderDash(4, 4);

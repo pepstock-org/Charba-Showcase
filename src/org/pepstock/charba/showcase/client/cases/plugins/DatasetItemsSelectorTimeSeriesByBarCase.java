@@ -109,10 +109,10 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 2);
 		pOptions.setBorderColor(HtmlColor.GREY);
-		pOptions.getClearSelection().setDisplay(true);
-		pOptions.getClearSelection().setColor(HtmlColor.DARK_RED);
-		pOptions.getClearSelection().setLabel("Reset selection");
-		pOptions.getClearSelection().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		pOptions.getSelectionCleaner().setDisplay(true);
+		pOptions.getSelectionCleaner().setColor(HtmlColor.DARK_RED);
+		pOptions.getSelectionCleaner().setLabel("Reset selection");
+		pOptions.getSelectionCleaner().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);

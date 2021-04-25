@@ -40,11 +40,11 @@ public class LabelsPositioningCase extends BaseComposite {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().getLayout().getPadding().setBottom(25);
+		chart.getOptions().getLayout().getPadding().setBottom(32);
 		chart.getOptions().getLegend().setPosition(org.pepstock.charba.client.enums.Position.RIGHT);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Positioning labels");
-		chart.getOptions().getTitle().getPadding().set(25);
+		chart.getOptions().getTitle().getPadding().setBottom(32);
 
 		DoughnutDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset 1");

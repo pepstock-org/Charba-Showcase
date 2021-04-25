@@ -74,7 +74,6 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(true);
-		//chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Coloring bar chart");
 

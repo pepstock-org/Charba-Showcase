@@ -196,22 +196,22 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 		@Override
 		public void onEnter(IsChart chart, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> Enter on annotation '"+annotation.getId()+"' type " + annotation.getType());
+			mylog.addLogEvent("> Enter on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
 		}
 
 		@Override
 		public void onLeave(IsChart chart, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> Leave on annotation '"+annotation.getId()+"' type " + annotation.getType());
+			mylog.addLogEvent("> Leave on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
 		}
 
 		@Override
 		public void onDoubleClick(IsChart chart, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> Double click on annotation '"+annotation.getId()+"' type " + annotation.getType());
+			mylog.addLogEvent("> Double click on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
 		}
 
 		@Override
 		public void onClick(IsChart chart, AbstractAnnotation annotation) {
-			mylog.addLogEvent("> Click on annotation '"+annotation.getId()+"' type " + annotation.getType());
+			mylog.addLogEvent("> Click on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
-import org.pepstock.charba.client.UpdateConfiguration;
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -10,6 +9,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.options.Options;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -97,14 +97,9 @@ public class LegendStyleCase extends BaseComposite {
 
 	@UiHandler("usePointStyle")
 	protected void handleUsePointStyle(ClickEvent event) {
-		// FIXME
-		chart.getOptions().getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
-		chart.getOptions().getTooltips().setUsePointStyle(usePointStyle.getValue());
-		UpdateConfiguration update = new UpdateConfiguration();
-		update.setDuration(1000);
-//		Options options = chart.getNode().getOptions();
-//		options.getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
-//		options.getTooltips().setUsePointStyle(usePointStyle.getValue());
+		Options options = chart.getNode().getOptions();
+		options.getLegend().getLabels().setUsePointStyle(usePointStyle.getValue());
+		options.getTooltips().setUsePointStyle(usePointStyle.getValue());
 		chart.update();
 	}
 

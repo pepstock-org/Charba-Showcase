@@ -30,8 +30,6 @@ public class PolarAreaCase extends BaseComposite {
 	@UiField
 	PolarAreaChartWidget chart;
 	
-	RadialAxis axis;
-
 	public PolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -45,12 +43,13 @@ public class PolarAreaCase extends BaseComposite {
 		dataset.setBackgroundColor(getSequenceColors(months, 0.5D));
 		dataset.setData(getRandomDigits(months, false));
 
-		axis = new RadialAxis(chart);
+		RadialAxis axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);
 		axis.getGrid().setCircular(true);
 		axis.getAngleLines().setDisplay(true);
 		axis.getPointLabels().setDisplay(true);
+		axis.getPointLabels().getFont().setSize(8);
 		axis.getPointLabels().setFont(new FontCallback<ScaleContext>() {
 			
 			@Override

@@ -2,19 +2,21 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.List;
 
+import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.events.DatasetRangeClearSelectionEvent;
-import org.pepstock.charba.client.events.DatasetRangeClearSelectionEventHandler;
+import org.pepstock.charba.client.events.DatasetRangeCleanSelectionEvent;
+import org.pepstock.charba.client.events.DatasetRangeCleanSelectionEventHandler;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelector;
 import org.pepstock.charba.client.impl.plugins.DatasetsItemsSelectorOptions;
+import org.pepstock.charba.client.impl.plugins.enums.Render;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
@@ -72,24 +74,24 @@ public class DatasetItemsSelectorBarCase extends BaseComposite {
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 2);
 		pOptions.setBorderColor(HtmlColor.GREY);
-		pOptions.getClearSelection().setDisplay(true);
-		pOptions.getClearSelection().setUseSelectionStyle(true);
-		//pOptions.getClearSelection().setLabel("Reset selection");
-		//pOptions.getClearSelection().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
-		//pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
+		pOptions.getSelectionCleaner().setDisplay(true);
+		pOptions.getSelectionCleaner().setRender(Render.LABEL);
+		pOptions.getSelectionCleaner().setLabel("Reset selected area");
+		pOptions.getSelectionCleaner().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		pOptions.setColor(HtmlColor.LIGHT_GREEN.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
 		chart.getPlugins().add(DatasetsItemsSelector.get());
 
-		chart.addHandler(new DatasetRangeClearSelectionEventHandler() {
+		chart.addHandler(new DatasetRangeCleanSelectionEventHandler() {
 
 			@Override
-			public void onClear(DatasetRangeClearSelectionEvent event) {
+			public void onClean(DatasetRangeCleanSelectionEvent event) {
 				StringBuilder sb = new StringBuilder();
 				sb.append("<b>Clear selection event</b>");
 				new Toast("Dataset Range Clear Selection!", sb.toString()).show();
 			}
-		}, DatasetRangeClearSelectionEvent.TYPE);
+		}, DatasetRangeCleanSelectionEvent.TYPE);
 		
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 
