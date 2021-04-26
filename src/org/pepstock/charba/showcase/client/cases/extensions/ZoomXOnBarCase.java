@@ -66,7 +66,7 @@ public class ZoomXOnBarCase extends BaseComposite {
 		options.getPan().setMode(InteractionAxis.XY);
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
-		options.getZoom().setSensitivity(3D);
+		options.getZoom().setThreshold(10D);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
