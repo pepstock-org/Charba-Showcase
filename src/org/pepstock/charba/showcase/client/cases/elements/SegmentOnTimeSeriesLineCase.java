@@ -107,7 +107,6 @@ public class SegmentOnTimeSeriesLineCase extends BaseComposite {
 		dataset1.setFill(Fill.ORIGIN);
 		dataset1.setPointRadius(0);
 		
-
 		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
 		List<TimeSeriesItem> data = new LinkedList<>();
 

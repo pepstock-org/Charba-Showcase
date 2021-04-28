@@ -43,7 +43,7 @@ public class DatasetItemsSelectorScatterCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Scatter chart");
+		chart.getOptions().getTitle().setText("Dataset items selector plugin on scatter chart");
 
 		ScatterDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
