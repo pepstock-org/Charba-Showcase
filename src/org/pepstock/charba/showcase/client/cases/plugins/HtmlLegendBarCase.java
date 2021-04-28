@@ -56,6 +56,7 @@ public class HtmlLegendBarCase extends BaseComposite {
 			public List<LegendLabelItem> generateLegendLabels(IsChart chart, List<LegendLabelItem> defaultLabels) {
 				for (LegendLabelItem item : defaultLabels) {
 					item.setFontColor(item.getStrokeStyle());
+					item.getBorderRadius().set(6);
 				}
 				return defaultLabels;
 			}

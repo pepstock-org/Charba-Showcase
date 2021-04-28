@@ -59,9 +59,9 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-		
+
 		chart.getOptions().getTooltips().setUsePointStyle(true);
-		
+
 		chart.getOptions().getTooltips().setExternalCallback(new TooltipExternalCallback() {
 
 			private DivElement element = null;
@@ -109,7 +109,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 							span.getStyle().setBackgroundColor(color.getBackgroundColor().toRGBA());
 							span.getStyle().setBorderColor(color.getBorderColor().toRGBA());
 							span.getStyle().setBorderStyle(BorderStyle.SOLID);
-							span.getStyle().setBorderWidth(2, Unit.PX);
+							span.getStyle().setBorderWidth(color.getBorderWidth(), Unit.PX);
 							wrapper.appendChild(span);
 							innerHTML.append("<tr><td style='white-space: nowrap;'>").append(wrapper.getInnerHTML()).append(lines.get(i)).append("</td></tr>");
 						}
@@ -121,7 +121,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 				element.setInnerHTML(innerHTML.toString());
 				element.getStyle().setLeft(model.getCaretX(), Unit.PX);
 				element.getStyle().setTop(model.getCaretY(), Unit.PX);
-				
+
 				Tooltips tooltips = chart.getOptions().getTooltips();
 				element.getStyle().setFontSize(tooltips.getBodyFont().getSize(), Unit.PX);
 				element.getStyle().setPaddingLeft(tooltips.getPadding().getLeft(), Unit.PX);
@@ -151,7 +151,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		dataset1.setFill(Fill.FALSE);
 
 		dataset1.setPointStyle(ImagesHelper.toImg(Images.INSTANCE.customPoint()));
-		
+
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 

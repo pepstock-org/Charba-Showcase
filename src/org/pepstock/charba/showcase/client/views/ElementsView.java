@@ -14,6 +14,9 @@ import org.pepstock.charba.showcase.client.cases.elements.MultiAxisLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiAxisScatterCase;
 import org.pepstock.charba.showcase.client.cases.elements.MultiLineAxisLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.NoNumericYAxisCase;
+import org.pepstock.charba.showcase.client.cases.elements.SegmentOnLineCase;
+import org.pepstock.charba.showcase.client.cases.elements.SegmentOnTimeSeriesLineCase;
+import org.pepstock.charba.showcase.client.cases.elements.SegmentOnVerticalLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksMinMaxCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksStepSizeCase;
 import org.pepstock.charba.showcase.client.cases.elements.TitleChangeCase;
@@ -71,6 +74,28 @@ public class ElementsView extends AbstractView {
 	protected void handleLegendLabelsCallback(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ChangingLegendLabelsCase());
+	}
+
+	// ----------------------------------------------
+	// Segment
+	// ----------------------------------------------
+
+	@UiHandler("segmentOnLine")
+	protected void handleSegmentOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SegmentOnLineCase());
+	}
+
+	@UiHandler("segmentOnVerticalLine")
+	protected void handleSegmentOnVerticalLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SegmentOnVerticalLineCase());
+	}
+
+	@UiHandler("segmentOnTimeseriesLine")
+	protected void handleSegmentOnTimeseriesLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SegmentOnTimeSeriesLineCase());
 	}
 
 	// ----------------------------------------------

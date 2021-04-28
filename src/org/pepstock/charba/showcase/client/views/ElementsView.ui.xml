@@ -45,6 +45,11 @@
 					<g:Label ui:field="legendStyle" styleName='{myStyle.myLabel}'>Point style from line datasets</g:Label>
 					<g:Label ui:field="legendFilterCallback" styleName='{myStyle.myLabel}'>Filtering hidden datasets by callbacks</g:Label>
 					<g:Label ui:field="legendLabelsCallback" styleName='{myStyle.myLabel}'>Changing texts and colors by callbacks</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Line segment</g:Label>
+					<g:Label ui:field="segmentOnLine" styleName='{myStyle.myLabel}'>Using segment on line chart</g:Label>
+					<g:Label ui:field="segmentOnVerticalLine" styleName='{myStyle.myLabel}'>Using segment on vertical line chart</g:Label>
+					<g:Label ui:field="segmentOnTimeseriesLine" styleName='{myStyle.myLabel}'>Using segment on timeseries line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

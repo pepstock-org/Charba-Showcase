@@ -79,7 +79,7 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 		dataset2.setLabel("dataset 2");
 
 		DataPoint[] rainPoints2 = new DataPoint[AMOUNT_OF_POINTS];
-		time = adapter.startOf(new Date(), TimeUnit.DAY).getTime();;
+		time = adapter.startOf(new Date(), TimeUnit.DAY).getTime();
 		idx = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			DataPoint dataPoint = new DataPoint();

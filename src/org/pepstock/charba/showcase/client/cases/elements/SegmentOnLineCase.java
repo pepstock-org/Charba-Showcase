@@ -1,9 +1,14 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.elements;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import org.pepstock.charba.client.colors.GoogleChartColor;
-import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.callbacks.BorderDashCallback;
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.SegmentContext;
+import org.pepstock.charba.client.callbacks.WidthCallback;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
@@ -20,52 +25,71 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LineCase extends BaseComposite {
+public class SegmentOnLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, SegmentOnLineCase> {
 	}
 
 	@UiField
 	LineChartWidget chart;
 
-	public LineCase() {
+	public SegmentOnLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Line chart");
+		chart.getOptions().getTitle().setText("Line chart with custom segments rendering");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
+		chart.getOptions().getSegment().setBorderColor(new ColorCallback<SegmentContext>() {
+			
+			@Override
+			public Object invoke(SegmentContext context) {
+				return context.getEndPoint().getParsed().getY() <  context.getStartPoint().getParsed().getY() ? HtmlColor.GRAY : HtmlColor.GREEN;
+			}
+		});
+
+		chart.getOptions().getSegment().setBackgroundColor(new ColorCallback<SegmentContext>() {
+			
+			@Override
+			public Object invoke(SegmentContext context) {
+				return context.getEndPoint().getParsed().getY() <  context.getStartPoint().getParsed().getY() ? HtmlColor.LIGHT_GRAY.alpha(0.8) : HtmlColor.LIGHT_GREEN.alpha(0.8);
+			}
+		});
+		
+		chart.getOptions().getSegment().setBorderWidth(new WidthCallback<SegmentContext>() {
+			
+			@Override
+			public Integer invoke(SegmentContext context) {
+				return context.getEndPoint().getParsed().getY() <  context.getStartPoint().getParsed().getY() ? 5 : null;
+			}
+		});
+
+		chart.getOptions().getSegment().setBorderDash(new BorderDashCallback<SegmentContext>() {
+			
+			@Override
+			public List<Integer> invoke(SegmentContext context) {
+				return context.getEndPoint().getParsed().getY() <  context.getStartPoint().getParsed().getY() ? Arrays.asList(6,6) : Collections.emptyList();
+			}
+		});
+		
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
-		IsColor color1 = GoogleChartColor.values()[0];
-
-		dataset1.setBackgroundColor(color1.toHex());
-		dataset1.setBorderColor(color1.toHex());
+		dataset1.setFill(true);
 		
-		double[] values = getRandomDigits(months);
+		double[] values = getRandomDigits(months, false);
 		List<Double> data = dataset1.getData(true);
 		for (int i = 0; i < values.length; i++) {
 			data.add(values[i]);
 		}
 		datasets.add(dataset1);
-
-		LineDataset dataset2 = chart.newDataset();
-		dataset2.setLabel("dataset 2");
-
-		IsColor color2 = GoogleChartColor.values()[1];
-
-		dataset2.setBackgroundColor(color2.toHex());
-		dataset2.setBorderColor(color2.toHex());
-		dataset2.setData(getRandomDigits(months));
-		datasets.add(dataset2);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -76,7 +100,6 @@ public class LineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
-		axis2.getTicks().setDisplay(true);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		chart.getData().setLabels(getLabels());
@@ -86,37 +109,9 @@ public class LineCase extends BaseComposite {
 	protected void handleRandomize(ClickEvent event) {
 		chart.getNode().getOptions();
 		for (Dataset dataset : chart.getData().getDatasets()) {
-			dataset.setData(getRandomDigits(months));
+			dataset.setData(getRandomDigits(months, false));
 		}
 		chart.update();
-	}
-
-	@UiHandler("add_dataset")
-	protected void handleAddDataset(ClickEvent event) {
-		List<Dataset> datasets = chart.getData().getDatasets();
-		LineDataset dataset = chart.newDataset();
-		dataset.setLabel("dataset " + (datasets.size() + 1));
-		IsColor color = GoogleChartColor.values()[datasets.size()];
-		dataset.setBackgroundColor(color.toHex());
-		dataset.setBorderColor(color.toHex());
-		dataset.setData(getRandomDigits(months));
-		datasets.add(dataset);
-		chart.update();
-	}
-
-	@UiHandler("remove_dataset")
-	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
-	}
-
-	@UiHandler("add_data")
-	protected void handleAddData(ClickEvent event) {
-		addData(chart);
-	}
-
-	@UiHandler("remove_data")
-	protected void handleRemoveData(ClickEvent event) {
-		removeData(chart);
 	}
 
 	@UiHandler("source")

@@ -52,7 +52,7 @@ public class CallbacksPolarAreaCase extends BaseComposite {
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(new ColorCallback<DatasetContext>() {
 
-			private final List<Pattern> patterns = new LinkedList<>();;
+			private final List<Pattern> patterns = new LinkedList<>();
 
 			@Override
 			public Object invoke(DatasetContext context) {
