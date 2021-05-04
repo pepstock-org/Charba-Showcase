@@ -15,6 +15,7 @@ import org.pepstock.charba.client.dom.elements.CastHelper;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.enums.TooltipAlign;
 import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -79,8 +80,8 @@ public class TooltipHTMLlineCase extends BaseComposite {
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
-				if (model.getYAlign() != null) {
-					element.addClassName(model.getYAlign());
+				if (!TooltipAlign.AUTO.equals(model.getYAlign())) {
+					element.addClassName(model.getYAlign().value());
 				} else {
 					element.addClassName("no-transform");
 				}

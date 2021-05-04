@@ -10,10 +10,10 @@ import org.pepstock.charba.client.annotation.AnnotationContext;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.LineAnnotation;
-import org.pepstock.charba.client.annotation.callbacks.DisplayCallback;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
+import org.pepstock.charba.client.callbacks.DisplayCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -187,7 +187,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		AnnotationOptions options = new AnnotationOptions();
 
 		LineAnnotation line = new LineAnnotation();
-		line.setDisplay(new DisplayCallback() {
+		line.setDisplay(new DisplayCallback<AnnotationContext>() {
 			
 			@Override
 			public Boolean invoke(AnnotationContext context) {

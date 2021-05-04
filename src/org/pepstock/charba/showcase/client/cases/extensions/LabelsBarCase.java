@@ -113,8 +113,6 @@ public class LabelsBarCase extends BaseComposite {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}
-		LabelsOptions options = chart.getOptions().getPlugins().getOptions(LabelsPlugin.FACTORY);
-		options.getLabel("bar").getFont().setSize(6);
 		chart.update();
 	}
 

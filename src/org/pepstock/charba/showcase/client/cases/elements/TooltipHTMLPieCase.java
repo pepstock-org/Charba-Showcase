@@ -9,6 +9,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PieDataset;
 import org.pepstock.charba.client.dom.elements.CastHelper;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.enums.TooltipAlign;
 import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.items.TooltipBodyItem;
 import org.pepstock.charba.client.items.TooltipLabelColor;
@@ -64,8 +65,8 @@ public class TooltipHTMLPieCase extends BaseComposite {
 				element.removeClassName("above");
 				element.removeClassName("below");
 				element.removeClassName("no-transform");
-				if (model.getYAlign() != null) {
-					element.addClassName(model.getYAlign());
+				if (!TooltipAlign.AUTO.equals(model.getYAlign())) {
+					element.addClassName(model.getYAlign().value());
 				} else {
 					element.addClassName("no-transform");
 				}
