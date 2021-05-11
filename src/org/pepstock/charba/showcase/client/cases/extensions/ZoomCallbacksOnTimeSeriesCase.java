@@ -17,6 +17,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.enums.DefaultTransitionKey;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.ModifierKey;
@@ -24,8 +25,8 @@ import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.zoom.AbstractConfigurationItem;
 import org.pepstock.charba.client.zoom.Drag;
+import org.pepstock.charba.client.zoom.ZoomContext;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.client.zoom.callbacks.CompletedCallback;
@@ -151,16 +152,16 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1, dataset2);
 
 		ZoomOptions options = new ZoomOptions();
+		options.getPan().setEnabled(false);
 		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
 		options.getZoom().setSpeed(0.05D);
 		drag = ZoomPlugin.createDrag();
-		drag.setAnimationDuration(1000);
 		options.getZoom().setDrag(drag);
 		options.getZoom().setCompletedCallback(new CompletedCallback() {
 
 			@Override
-			public void onCompleted(IsChart chart, AbstractConfigurationItem<?> item) {
+			public void onCompleted(ZoomContext context) {
 				mylog.addLogEvent("> ZOOM COMPLETE on chart");
 			}
 		});
@@ -168,7 +169,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		options.getZoom().setProgressCallback(new ProgressCallback() {
 
 			@Override
-			public void onProgress(IsChart chart, AbstractConfigurationItem<?> item) {
+			public void onProgress(ZoomContext context) {
 				mylog.addLogEvent("> ZOOM in PROGRESS on chart");
 			}
 		});
@@ -176,14 +177,14 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 		options.getZoom().setRejectedCallback(new RejectedCallback() {
 
 			@Override
-			public void onRejected(IsChart chart, AbstractConfigurationItem<?> item) {
-				mylog.addLogEvent("> ZOOM REJECTED; press CTRL to zoom");
+			public void onRejected(ZoomContext context) {
+				mylog.addLogEvent("> ZOOM REJECTED; press ALT to zoom");
 			}
 		});
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 
-		HTML html = new HTML("<kbd style=\""+CSS+"\">Ctrl</kbd> + wheeling to zoom");
+		HTML html = new HTML("<kbd style=\""+CSS+"\">Alt</kbd> + wheeling to zoom");
 		help.add(html);
 	}
 
@@ -218,7 +219,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 	protected void handleModifier(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
 		if (modifier.getValue()) {
-			options.getZoom().setWheelModifierKey(ModifierKey.CTRL);
+			options.getZoom().setWheelModifierKey(ModifierKey.ALT);
 			help.setVisible(true);
 		} else {
 			options.getZoom().setWheelModifierKey(null);
@@ -229,7 +230,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 	@UiHandler("reset")
 	protected void handleResetZoom(ClickEvent event) {
-		ZoomPlugin.resetZoom(chart);
+		ZoomPlugin.reset(chart, DefaultTransitionKey.SHOW);
 	}
 
 	@UiHandler("source")

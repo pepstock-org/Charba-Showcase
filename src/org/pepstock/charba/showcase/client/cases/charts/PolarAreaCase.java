@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.callbacks.FontCallback;
 import org.pepstock.charba.client.callbacks.ScaleContext;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.configuration.RadialAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.PolarAreaDataset;
@@ -30,6 +31,8 @@ public class PolarAreaCase extends BaseComposite {
 	@UiField
 	PolarAreaChartWidget chart;
 	
+	RadialAxis axis;
+	
 	public PolarAreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -43,13 +46,15 @@ public class PolarAreaCase extends BaseComposite {
 		dataset.setBackgroundColor(getSequenceColors(months, 0.5D));
 		dataset.setData(getRandomDigits(months, false));
 
-		RadialAxis axis = new RadialAxis(chart);
+		axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);
+		axis.getTicks().setZ(1);
+		axis.getTicks().setBackdropColor(HtmlColor.TRANSPARENT);
+		axis.getTicks().setColor(HtmlColor.BLACK);
 		axis.getGrid().setCircular(true);
 		axis.getAngleLines().setDisplay(true);
 		axis.getPointLabels().setDisplay(true);
-		axis.getPointLabels().getFont().setSize(8);
 		axis.getPointLabels().setFont(new FontCallback<ScaleContext>() {
 			
 			@Override

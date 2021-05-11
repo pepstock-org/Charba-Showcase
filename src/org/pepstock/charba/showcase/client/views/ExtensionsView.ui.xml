@@ -77,15 +77,18 @@
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Zoom plugin</g:Label>
-					<g:Label ui:field="zoomPanOnBar" styleName='{myStyle.myLabel}'>Panning on bar chart</g:Label>
-					<g:Label ui:field="zoomZoomOnBar" styleName='{myStyle.myLabel}'>Zooming on bar chart</g:Label>
-					<g:Label ui:field="zoomXZoomOnBar" styleName='{myStyle.myLabel}'>Zooming by X direction on bar chart</g:Label>
-					<g:Label ui:field="zoomZoomOnHorizontalBar" styleName='{myStyle.myLabel}'>Zooming on horizontal bar chart</g:Label>
-					<g:Label ui:field="zoomZoomOnTimeseriesLine" styleName='{myStyle.myLabel}'>Zooming on timeseries line chart</g:Label>
-					<g:Label ui:field="zoomZoomOnScatter" styleName='{myStyle.myLabel}'>Zooming on scatter chart</g:Label>
-					<g:Label ui:field="zoomStyledZoomOnBar" styleName='{myStyle.myLabel}'>Styling zooming on bar chart</g:Label>
+					<g:Label ui:field="zoomBasic" styleName='{myStyle.myLabel}'>Pan and zoom on scatter chart</g:Label>
+					<g:Label ui:field="zoomCategoryAxis" styleName='{myStyle.myLabel}'>Zooming on category axis</g:Label>
+					<g:Label ui:field="zoomTimeAxis" styleName='{myStyle.myLabel}'>Zooming on time axis</g:Label>
+					<g:Label ui:field="zoomOverAxis" styleName='{myStyle.myLabel}'>Zooming over axes</g:Label>
+					<g:Label ui:field="zoomDragCategoryAxis" styleName='{myStyle.myLabel}'>Drag to zoom on category axis</g:Label>
+					<g:Label ui:field="zoomDragLinearAxis" styleName='{myStyle.myLabel}'>Drag to zoom on linear axis</g:Label>
+					<g:Label ui:field="zoomDragTimeAxis" styleName='{myStyle.myLabel}'>Drag to zoom on time axis</g:Label>
+					<g:Label ui:field="zoomPanRegion" styleName='{myStyle.myLabel}'>Pan region on scatter chart</g:Label>
+					<g:Label ui:field="zoomApiZoom" styleName='{myStyle.myLabel}'>Programmatically zoom on scatter chart</g:Label>
+					<g:Label ui:field="zoomApiZoomScale" styleName='{myStyle.myLabel}'>Programmatically zoom on linear scale</g:Label>
+					<g:Label ui:field="zoomApiPan" styleName='{myStyle.myLabel}'>Programmatically pan on scatter chart</g:Label>
 					<g:Label ui:field="zoomZoomCallbacksOnTimeseriesLine" styleName='{myStyle.myLabel}'>Zoom callbacks on timeseries line chart</g:Label>
-					<g:Label ui:field="zoomModeCallbackOnBar" styleName='{myStyle.myLabel}'>Mode direction callback on bar chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

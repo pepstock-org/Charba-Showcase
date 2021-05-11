@@ -4,7 +4,7 @@
 	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets"
 	xmlns:s="urn:import:org.pepstock.charba.showcase.client.cases.commons">
 
-	<ui:with field="downButton"
+	<ui:with field="myImages"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 	<g:HTMLPanel width="100%">
 		<g:VerticalPanel width="100%" height="100%">
@@ -16,7 +16,7 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:PushButton ui:field='source' enabled='true'>
-						<g:upFace image='{downButton.github}' />
+						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
 				</g:HorizontalPanel>
 			</g:cell>

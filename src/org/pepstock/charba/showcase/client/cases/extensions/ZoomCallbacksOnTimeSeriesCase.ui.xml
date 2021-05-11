@@ -4,7 +4,7 @@
 	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets"
 	xmlns:s="urn:import:org.pepstock.charba.showcase.client.cases.commons">
 
-	<ui:with field="downButton"
+	<ui:with field="myImages"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 		
 	<g:HTMLPanel width="100%">
@@ -21,7 +21,7 @@
 					<g:CheckBox ui:field="dragging" checked="true">Dragging</g:CheckBox>
 					<g:CheckBox ui:field="modifier" checked="false" enabled="false">CTRL modifier</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
-						<g:upFace image='{downButton.github}' />
+						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
 				</g:HorizontalPanel>
 			</g:cell>

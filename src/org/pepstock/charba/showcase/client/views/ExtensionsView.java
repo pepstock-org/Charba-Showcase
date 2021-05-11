@@ -35,15 +35,18 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiPanCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiZoomCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiZoomScaleCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomBasicCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomCallbacksOnTimeSeriesCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomModeOnBarCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnBarCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnHorizontalBarCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnScatterCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomOnTimeSeriesLineCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomPanOnBarCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomStyledZoomOnBarCase;
-import org.pepstock.charba.showcase.client.cases.extensions.ZoomXOnBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomCategoryAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragCategoryAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragLinearAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragTimeAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomOverScaleCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomPanRegionCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomTimeAxisCase;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -226,58 +229,76 @@ public class ExtensionsView extends AbstractView {
 	// Zoom
 	// ----------------------------------------------
 
-	@UiHandler("zoomPanOnBar")
-	protected void handleZoomPanOnBar(ClickEvent event) {
+	@UiHandler("zoomBasic")
+	protected void handleZoomBasic(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomPanOnBarCase());
+		content.add(new ZoomBasicCase());
+	}
+	
+	@UiHandler("zoomCategoryAxis")
+	protected void handleZoomCategoryAxis(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomCategoryAxisCase());
 	}
 
-	@UiHandler("zoomStyledZoomOnBar")
-	protected void handleZoomStyledZoomOnBar(ClickEvent event) {
+	@UiHandler("zoomTimeAxis")
+	protected void handleZoomTimeAxis(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomStyledZoomOnBarCase());
+		content.add(new ZoomTimeAxisCase());
 	}
 
-	@UiHandler("zoomXZoomOnBar")
-	protected void handleZoomXZoomOnBar(ClickEvent event) {
+	@UiHandler("zoomOverAxis")
+	protected void handleZoomOverAxis(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomXOnBarCase());
+		content.add(new ZoomOverScaleCase());
+	}
+	
+	@UiHandler("zoomDragCategoryAxis")
+	protected void handleZoomDragCategoryAxis(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomDragCategoryAxisCase());
 	}
 
-	@UiHandler("zoomZoomOnBar")
-	protected void handleZoomOnBar(ClickEvent event) {
+	@UiHandler("zoomDragLinearAxis")
+	protected void handleZoomDragLinearAxis(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomOnBarCase());
+		content.add(new ZoomDragLinearAxisCase());
 	}
 
-	@UiHandler("zoomZoomOnHorizontalBar")
-	protected void handleZoomOnHorizontalBar(ClickEvent event) {
+	@UiHandler("zoomDragTimeAxis")
+	protected void handleZoomDragTimeAxis(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomOnHorizontalBarCase());
+		content.add(new ZoomDragTimeAxisCase());
+	}
+	
+	@UiHandler("zoomApiZoom")
+	protected void handleZoomApiZoom(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomApiZoomCase());
+	}
+	
+	@UiHandler("zoomApiZoomScale")
+	protected void handleZoomApiZoomScale(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomApiZoomScaleCase());
 	}
 
-	@UiHandler("zoomZoomOnTimeseriesLine")
-	protected void handleZoomOnTimeseriesLine(ClickEvent event) {
+	@UiHandler("zoomApiPan")
+	protected void handleZoomApiPan(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomOnTimeSeriesLineCase());
+		content.add(new ZoomApiPanCase());
 	}
-
-	@UiHandler("zoomZoomOnScatter")
-	protected void handleZoomOnScatter(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new ZoomOnScatterCase());
-	}
-
+	
 	@UiHandler("zoomZoomCallbacksOnTimeseriesLine")
 	protected void handleZoomCallbacksOnTimeseriesLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ZoomCallbacksOnTimeSeriesCase());
 	}
-
-	@UiHandler("zoomModeCallbackOnBar")
-	protected void handleZoomModeCallbackOnBar(ClickEvent event) {
+	
+	@UiHandler("zoomPanRegion")
+	protected void handleZoomPanRegion(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new ZoomModeOnBarCase());
+		content.add(new ZoomPanRegionCase());
 	}
 
 	// ----------------------------------------------

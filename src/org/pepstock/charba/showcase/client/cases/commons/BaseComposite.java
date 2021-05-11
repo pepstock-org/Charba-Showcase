@@ -1,13 +1,19 @@
 package org.pepstock.charba.showcase.client.cases.commons;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.pepstock.charba.client.IsChart;
+import org.pepstock.charba.client.colors.HtmlColor;
+import org.pepstock.charba.client.commons.Constants;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.utils.Console;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
 
 public class BaseComposite extends AbstractComposite {
+	
+	private static final Set<String> COLORS = new HashSet<>();
 
 	protected void removeDataset(IsChart chart) {
 		List<Dataset> datasets = chart.getData().getDatasets();
@@ -43,6 +49,15 @@ public class BaseComposite extends AbstractComposite {
 			}
 			chart.update();
 		}
+	}
+	
+	public final Set<String> getLabelColors(int count){
+		if (COLORS.isEmpty() || COLORS.size() < count) {
+			for (int i=0; i < count; i++) {
+				COLORS.add(HtmlColor.values()[i].name().replace(Constants.UNDERSCORE, Constants.BLANK));
+			}
+		}
+		return COLORS;
 	}
 
 	protected final String getUrl() {

@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets">
 
-	<ui:with field="downButton"
+	<ui:with field="myImages"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 	<g:HTMLPanel width="100%">
 		<g:VerticalPanel width="100%" height="100%">
@@ -20,7 +20,7 @@
 					<g:Button ui:field="add_data">Add data</g:Button>
 					<g:Button ui:field="remove_data">Remove data</g:Button>
 					<g:PushButton ui:field='source' enabled='true'>
-						<g:upFace image='{downButton.github}' />
+						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
 				</g:HorizontalPanel>
 			</g:cell>

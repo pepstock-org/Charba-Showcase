@@ -2,7 +2,6 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
@@ -10,19 +9,19 @@ import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
-import org.pepstock.charba.client.configuration.CartesianTimeSeriesAxis;
+import org.pepstock.charba.client.configuration.CartesianTimeAxis;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.data.TimeSeriesItem;
-import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.enums.DefaultScaleId;
+import org.pepstock.charba.client.enums.DefaultTransitionKey;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionAxis;
-import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
-import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
+import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.zoom.Drag;
+import org.pepstock.charba.client.zoom.ScaleRange;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -35,32 +34,42 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ZoomOnTimeSeriesLineCase extends BaseComposite {
+public class ZoomTimeAxisCase extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
 	private static final long DAY = 1000 * 60 * 60 * 24;
+	
+	private static final long MAX_DAYS = DAY * 20;
 
-	private static final int AMOUNT_OF_POINTS = 60;
+	private static final int AMOUNT_OF_POINTS = 500;
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ZoomOnTimeSeriesLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, ZoomTimeAxisCase> {
 	}
 
 	@UiField
-	TimeSeriesLineChartWidget chart;
+	ScatterChartWidget chart;
+	
+	@UiField
+	CheckBox enableZoom;
+	
+	@UiField
+	CheckBox enablePan;
+	
+	private final long time;
 
-	public ZoomOnTimeSeriesLineCase() {
+	public ZoomTimeAxisCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Zooming on timeseries line chart");
+		chart.getOptions().getTitle().setText("Zooming on cartesian time axis");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -74,7 +83,7 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 
 		});
 
-		final TimeSeriesLineDataset dataset1 = chart.newDataset();
+		final ScatterDataset dataset1 = chart.newDataset();
 
 		dataset1.setLabel("dataset 1");
 		dataset1.setFill(Fill.FALSE);
@@ -84,55 +93,41 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.toHex());
 		dataset1.setBorderColor(color1.toHex());
 
-		final TimeSeriesLineDataset dataset2 = chart.newDataset();
+		time = new Date().getTime();
 
-		dataset2.setLabel("dataset 2");
-		dataset2.setFill(Fill.FALSE);
+		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, 0, 1000);
+		
+		List<DataPoint> points = dataset1.getDataPoints(true);
 
-		IsColor color2 = GoogleChartColor.values()[1];
-
-		dataset2.setBackgroundColor(color2.toHex());
-		dataset2.setBorderColor(color2.toHex());
-
-		long time = new Date().getTime();
-
-		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
-		double[] xs2 = getRandomDigits(AMOUNT_OF_POINTS, false);
-		List<TimeSeriesItem> data = new LinkedList<>();
-		List<TimeSeriesItem> data1 = new LinkedList<>();
-
-		time = time + DAY * AMOUNT_OF_POINTS;
 		for (int i = AMOUNT_OF_POINTS - 1; i >= 0; i--) {
-			data.add(new TimeSeriesItem(new Date(time), xs1[i]));
-			data1.add(new TimeSeriesItem(new Date(time), xs2[i]));
-			time = time - DAY;
+			long newTime = time + (long)(Math.random() * MAX_DAYS);
+			DataPoint dp = new DataPoint();
+			dp.setX(new Date(newTime));
+			dp.setY(xs1[i]);
+			points.add(dp);
 		}
-		dataset1.setTimeSeriesData(data);
-		dataset2.setTimeSeriesData(data1);
 
-		CartesianTimeSeriesAxis axis = chart.getOptions().getScales().getTimeAxis();
-		axis.getTicks().setSource(TickSource.DATA);
-		axis.getTime().setUnit(TimeUnit.DAY);
+		CartesianTimeAxis axis = new CartesianTimeAxis(chart);
+		axis.getTicks().setAutoSkip(true);
+		axis.getTicks().setAutoSkipPadding(50);
+		axis.getTicks().setMaxRotation(0);
+		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.HOUR, "HH:mm");
+		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.MINUTE, "HH:mm");
+		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.SECOND, "HH:mm:ss");
 
-		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
+		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.setBeginAtZero(true);
 		axis2.setStacked(true);
 
-		chart.getData().setDatasets(dataset1, dataset2);
+		chart.getData().setDatasets(dataset1);
+		chart.getOptions().getScales().setAxes(axis, axis2);
 
 		ZoomOptions options = new ZoomOptions();
+		options.getPan().setEnabled(true);
+		options.getPan().setMode(InteractionAxis.XY);
 		options.getZoom().setEnabled(true);
-		options.getZoom().setMode(InteractionAxis.X);
-
-		time = new Date().getTime() + (DAY * AMOUNT_OF_POINTS / 2);
-
-		options.getZoom().getRangeMax().setX(new Date(time));
-		options.getZoom().setSpeed(0.05D);
-		;
-		Drag drag = ZoomPlugin.createDrag();
-		drag.setAnimationDuration(1000);
-		options.getZoom().setDrag(drag);
+		options.getZoom().setMode(InteractionAxis.XY);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
@@ -140,9 +135,10 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
-			TimeSeriesLineDataset scDataset = (TimeSeriesLineDataset) dataset;
-			for (TimeSeriesItem dp : scDataset.getTimeSeriesData()) {
-				dp.setValue(getRandomDigit(false));
+			ScatterDataset scDataset = (ScatterDataset) dataset;
+			List<DataPoint> points = scDataset.getDataPoints(true);
+			for (DataPoint dp : points) {
+				dp.setY(getRandomDigit(0, 1000));
 			}
 		}
 		chart.update();
@@ -150,9 +146,40 @@ public class ZoomOnTimeSeriesLineCase extends BaseComposite {
 
 	@UiHandler("reset")
 	protected void handleResetZoom(ClickEvent event) {
-		ZoomPlugin.resetZoom(chart);
+		ZoomPlugin.reset(chart);
 	}
 
+	@UiHandler("zoomNextWeek")
+	protected void handleZoomNextWeek(ClickEvent event) {
+		ScaleRange range = new ScaleRange();
+		range.setMin(time);
+		range.setMax(time + DAY * 8);
+		ZoomPlugin.zoomScale(chart, DefaultScaleId.X, range, DefaultTransitionKey.DEFAULT);
+	}
+	
+	@UiHandler("zoom400600")
+	protected void handleZoom400600(ClickEvent event) {
+		ScaleRange range = new ScaleRange();
+		range.setMin(400);
+		range.setMax(600);
+		ZoomPlugin.zoomScale(chart, DefaultScaleId.Y, range, DefaultTransitionKey.DEFAULT);
+	}
+	
+	@UiHandler("enableZoom")
+	protected void handleZoom(ClickEvent event) {
+		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
+		options.getZoom().setEnabled(enableZoom.getValue());
+		chart.update();
+	}
+	
+	@UiHandler("enablePan")
+	protected void handlePan(ClickEvent event) {
+		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
+		options.getPan().setEnabled(enablePan.getValue());
+		chart.update();
+	}
+
+	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

@@ -64,6 +64,10 @@ public abstract class AbstractComposite extends Composite {
 		}
 	}
 
+	protected double getRandomDigit(double min, double max) {
+		return (double) ((int) (Math.random() * (max - min))) + min;
+	}
+	
 	protected double[] getRandomDigits(int length, double min, double max) {
 		double[] values = new double[length];
 		for (int i = 0; i < length; i++) {
