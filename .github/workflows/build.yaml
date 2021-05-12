@@ -12,6 +12,7 @@ on:
    push:
       branches:
          - master
+         - stock
 # 
 # Workflow environment and steps
 # 
