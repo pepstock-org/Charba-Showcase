@@ -1,4 +1,4 @@
-<project name="Charba-Showcase" default="build" basedir=".">
+<project name="Charba-Showcase" default="buildAll" basedir=".">
 
 	<!-- 
 		CHARBA SHOWCASE configuration and paths
@@ -87,6 +87,6 @@
 	<!--
         CHARBA SHOWCASE - Builds the project
 	-->
-	<target name="build" depends="gwt-compile"/>
+	<target name="buildAll" depends="gwt-compile"/>
 
 </project>
