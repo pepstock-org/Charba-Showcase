@@ -1,0 +1,92 @@
+<project name="Charba-Showcase" default="build" basedir=".">
+
+	<!-- 
+		CHARBA SHOWCASE configuration and paths
+	-->
+	<property name="src.dir" value="src" />
+	<property name="classes.dir" value="classes" />
+	<property name="war.dir" value="war" />
+	<property name="webinf.dir" value="${war.dir}/WEB-INF" />
+	<property name="lib.dir" value="${webinf.dir}/lib" />
+	<property name="ext.lib.dir" value="lib" />
+	
+	<!-- 
+		JAVA compiler options 
+	-->
+	<property name="javac.debug" value="true" />
+	<property name="javac.debuglevel" value="lines,vars,source" />
+	<property name="javac.source" value="1.8" />
+	<property name="javac.target" value="1.8" />
+	<property name="javac.includeantruntime" value="false" />
+	<property name="javac.nowarn" value="true" />
+	<property name="javadoc.source" value="8" />
+	
+	<!-- 
+	**** COMMON SECTIONS **** 
+	-->
+	
+	<!-- 
+		CHARBA SHOWCASE - Sets classpath 
+	-->
+	<path id="classpath">
+	  <fileset dir="${lib.dir}">
+	    <include name="**/*.jar"/>
+	  </fileset>
+	  <fileset dir="${ext.lib.dir}">
+	    <include name="**/*.jar"/>
+	  </fileset>
+	</path>
+	
+	<!-- 
+		CHARBA SHOWCASE - Removes the unused forders and contents from all used folders 
+	-->
+	<target name="clean" description="Cleans folders">
+		<delete failonerror="false" includeemptydirs="true">
+			<!-- includes="**/*" attribute deletes only content leaving directory empty -->
+			<fileset dir="${classes.dir}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	<!--
+        CHARBA SHOWCASE - JAVA compile
+    -->
+	<target name="compile" depends="clean">
+		<mkdir dir="${classes.dir}"/>
+		<javac includes="**" encoding="utf-8" destdir="${classes.dir}" includeantruntime="${javac.includeantruntime}" source="${javac.source}" target="${javac.target}" nowarn="${javac.nowarn}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" createMissingPackageInfoClass="false">
+			<src path="${src.dir}"/>
+			<classpath>
+				<path refid="classpath"/>
+			</classpath>
+		</javac>
+	</target>
+	
+	<!--
+        CHARBA SHOWCASE - GWT compile
+    -->
+	<target name="gwt-compile" depends="compile">
+		<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${src.dir}"/>
+			</classpath>
+			<jvmarg value="-Xmx1G" />
+			<!-- The directory into which deployable output files will be written -->
+			<arg line="-war" />
+			<arg value="${war.dir}" />
+			<!-- The level of logging detail -->
+			<arg line="-logLevel" />
+			<arg value="INFO" />
+			<!-- Script output style -->
+			<arg line="-style" />
+			<arg value="OBFUSCATED" />
+			<!-- GWT module -->
+			<arg value="org.pepstock.charba.showcase.Charba_Showcase" />
+		</java>
+	</target>
+
+	<!--
+        CHARBA SHOWCASE - Builds the project
+    -->
+	<target name="build" depends="gwt-compile"/>
+
+</project>
