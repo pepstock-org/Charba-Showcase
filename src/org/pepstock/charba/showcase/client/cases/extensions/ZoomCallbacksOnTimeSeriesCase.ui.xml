@@ -19,7 +19,7 @@
 					<g:Button ui:field="randomize">Randomize data</g:Button>
 					<g:Button ui:field="reset">Reset zoom</g:Button>
 					<g:CheckBox ui:field="dragging" checked="true">Dragging</g:CheckBox>
-					<g:CheckBox ui:field="modifier" checked="false" enabled="false">CTRL modifier</g:CheckBox>
+					<g:CheckBox ui:field="modifier" checked="false" enabled="false">ALT modifier</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
