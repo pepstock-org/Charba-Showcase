@@ -86,7 +86,7 @@
 
 	<!--
         CHARBA SHOWCASE - Builds the project
-    -->
+	-->
 	<target name="build" depends="gwt-compile"/>
 
 </project>
