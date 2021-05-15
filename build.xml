@@ -6,9 +6,7 @@
 	<property name="src.dir" value="src" />
 	<property name="classes.dir" value="classes" />
 	<property name="war.dir" value="war" />
-	<property name="webinf.dir" value="${war.dir}/WEB-INF" />
-	<property name="lib.dir" value="${webinf.dir}/lib" />
-	<property name="ext.lib.dir" value="lib" />
+	<property name="lib.dir" value="lib" />
 	
 	<!-- 
 		JAVA compiler options 
@@ -30,9 +28,6 @@
 	-->
 	<path id="classpath">
 	  <fileset dir="${lib.dir}">
-	    <include name="**/*.jar"/>
-	  </fileset>
-	  <fileset dir="${ext.lib.dir}">
 	    <include name="**/*.jar"/>
 	  </fileset>
 	</path>
