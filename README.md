@@ -1,6 +1,6 @@
 # Charba Showcase GWT Web Toolkit
 
-[![Build](https://github.com/pepstock-org/Charba-Showcase/workflows/Build/badge.svg?branch=master)](https://github.com/pepstock-org/Charba-Showcase/actions/) [![ShowCase](https://img.shields.io/static/v1?message=ShowCase&color=informational)](https://pepstock-org.github.io/Charba-Showcase/)
+[![Build](https://github.com/pepstock-org/Charba-Showcase/workflows/Build/badge.svg?branch=master)](https://github.com/pepstock-org/Charba-Showcase/actions/workflows/build.yaml) [![ShowCase](https://img.shields.io/static/v1?message=ShowCase&color=informational)](https://pepstock-org.github.io/Charba-Showcase/)
 
 This repository contains the source code of the **Charba** showcase site, based on GWT Web Toolkit, located [here](https://pepstock-org.github.io/Charba-Showcase/).
 
