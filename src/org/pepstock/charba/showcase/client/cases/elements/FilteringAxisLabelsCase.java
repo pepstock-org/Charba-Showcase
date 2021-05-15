@@ -74,6 +74,9 @@ public class FilteringAxisLabelsCase extends BaseComposite {
 
 			@Override
 			public String onCallback(Axis axis, String value, int index, List<String> values) {
+				
+				log("value "+value);
+				
 				return index % 2 == 0 ? value : "";
 			}
 		});

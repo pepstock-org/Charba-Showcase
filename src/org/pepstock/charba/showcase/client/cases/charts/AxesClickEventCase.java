@@ -93,7 +93,7 @@ public class AxesClickEventCase extends BaseComposite {
 			public void onClick(AxisClickEvent event) {
 				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
 				StringBuilder sb = new StringBuilder();
-				sb.append("Axis: value: <b>").append(event.getValue().getLabel()).append("</b><br>");
+				sb.append("Axis value: <b>").append(event.getValue().getLabel()).append("</b><br>");
 				new Toast("Axis Selected!", sb.toString()).show();
 			}
 		}, AxisClickEvent.TYPE);

@@ -15,6 +15,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DoughnutCase extends BaseComposite {
@@ -26,6 +27,9 @@ public class DoughnutCase extends BaseComposite {
 
 	@UiField
 	DoughnutChartWidget chart;
+	
+	@UiField
+	CheckBox semiCircle;
 
 	public DoughnutCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -63,11 +67,19 @@ public class DoughnutCase extends BaseComposite {
 		dataset.setData(getRandomDigits(months, false));
 		datasets.add(dataset);
 		chart.update();
+		semiCircle.setValue(false);
+		semiCircle.setEnabled(false);
 	}
 
 	@UiHandler("remove_dataset")
 	protected void handleRemoveDataset(ClickEvent event) {
-		removeDataset(chart);
+		if (chart.getData().getDatasets().size() > 1){
+			removeDataset(chart);
+			if (chart.getData().getDatasets().size() == 1){
+				semiCircle.setValue(false);
+				semiCircle.setEnabled(true);
+			}
+		}
 	}
 
 	@UiHandler("add_data")

@@ -17,13 +17,11 @@ import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipAlign;
 import org.pepstock.charba.client.enums.TooltipPosition;
-import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipBodyItem;
 import org.pepstock.charba.client.items.TooltipLabelColor;
 import org.pepstock.charba.client.items.TooltipModel;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
@@ -60,9 +58,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
-
 		chart.getOptions().getTooltips().setUsePointStyle(true);
-
 		chart.getOptions().getTooltips().setExternalCallback(new TooltipExternalCallback() {
 
 			private DivElement element = null;
@@ -150,8 +146,6 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		dataset1.setBorderColor(color1.toHex());
 		dataset1.setData(getRandomDigits(months));
 		dataset1.setFill(Fill.FALSE);
-
-		dataset1.setPointStyle(ImagesHelper.toImg(Images.INSTANCE.customPoint()));
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
