@@ -85,7 +85,7 @@ public class ZoomBasicCase extends BaseComposite {
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
 		options.getPan().setMode(InteractionAxis.XY);
-		options.getZoom().setEnabled(true);
+		options.getZoom().getWheel().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.XY);
 		options.getLimits().getX().setMin(-200);
 		options.getLimits().getX().setMax(200);
@@ -118,7 +118,7 @@ public class ZoomBasicCase extends BaseComposite {
 	@UiHandler("enableZoom")
 	protected void handleZoom(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
-		options.getZoom().setEnabled(enableZoom.getValue());
+		options.getZoom().getWheel().setEnabled(enableZoom.getValue());
 		chart.update();
 	}
 	

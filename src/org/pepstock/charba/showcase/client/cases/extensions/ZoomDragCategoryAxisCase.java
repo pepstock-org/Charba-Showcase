@@ -85,9 +85,9 @@ public class ZoomDragCategoryAxisCase extends BaseComposite {
 		options.getPan().setEnabled(true);
 		options.getPan().setMode(InteractionAxis.X);
 		options.getPan().setModifierKey(ModifierKey.ALT);
-		options.getZoom().setEnabled(true);
-		options.getZoom().setDrag(true);
 		options.getZoom().setMode(InteractionAxis.X);
+		options.getZoom().getWheel().setEnabled(true);
+		options.getZoom().getDrag().setEnabled(true);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 		

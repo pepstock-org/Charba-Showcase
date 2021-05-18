@@ -80,8 +80,7 @@ public class ZoomApiPanCase extends BaseComposite {
 
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
-		options.getZoom().setEnabled(false);
-		options.getZoom().setMode(InteractionAxis.XY);
+		options.getPan().setMode(InteractionAxis.XY);
 		
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 

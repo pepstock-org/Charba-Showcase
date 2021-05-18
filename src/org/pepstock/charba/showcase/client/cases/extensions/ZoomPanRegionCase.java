@@ -99,7 +99,6 @@ public class ZoomPanRegionCase extends BaseComposite {
 			}
 		});
 		options.getPan().setMode(InteractionAxis.XY);
-		options.getZoom().setEnabled(false);
 		options.getLimits().getX().setMin(-200);
 		options.getLimits().getX().setMax(200);
 		options.getLimits().getX().setMinRange(50);

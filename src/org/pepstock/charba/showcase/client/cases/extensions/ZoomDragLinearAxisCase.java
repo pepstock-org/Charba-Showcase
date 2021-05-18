@@ -9,7 +9,6 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
-import org.pepstock.charba.client.zoom.Drag;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -97,15 +96,12 @@ public class ZoomDragLinearAxisCase extends BaseComposite {
 		options.getPan().setEnabled(true);
 		options.getPan().setMode(InteractionAxis.XY);
 		options.getPan().setModifierKey(ModifierKey.ALT);
-		options.getZoom().setEnabled(true);
-		options.getZoom().setDrag(true);
 		options.getZoom().setMode(InteractionAxis.XY);
-		
-		Drag drag = ZoomPlugin.createDrag();
-		drag.setBackgroundColor(HtmlColor.LIGHT_GREEN.alpha(0.2));
-		drag.setBorderColor(HtmlColor.LIGHT_GREEN.alpha(0.6));
-		drag.setBorderWidth(1);
-		options.getZoom().setDrag(drag);
+		options.getZoom().getWheel().setEnabled(true);
+		options.getZoom().getDrag().setEnabled(true);
+		options.getZoom().getDrag().setBackgroundColor(HtmlColor.LIGHT_GREEN.alpha(0.2));
+		options.getZoom().getDrag().setBorderColor(HtmlColor.LIGHT_GREEN.alpha(0.6));
+		options.getZoom().getDrag().setBorderWidth(1);
 		
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 
@@ -133,7 +129,8 @@ public class ZoomDragLinearAxisCase extends BaseComposite {
 	@UiHandler("enableZoom")
 	protected void handleZoom(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
-		options.getZoom().setEnabled(enableZoom.getValue());
+		options.getZoom().getWheel().setEnabled(enableZoom.getValue());
+		options.getZoom().getDrag().setEnabled(enableZoom.getValue());
 		chart.update();
 	}
 	

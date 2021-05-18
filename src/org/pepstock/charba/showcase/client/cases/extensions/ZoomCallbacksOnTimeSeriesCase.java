@@ -25,7 +25,6 @@ import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.zoom.Drag;
 import org.pepstock.charba.client.zoom.ZoomContext;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
@@ -77,8 +76,6 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 	
 	@UiField
 	HTMLPanel help;
-
-	private final Drag drag;
 	
 	private final CartesianTimeSeriesAxis axis;
 
@@ -153,11 +150,10 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(false);
-		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.X);
-		options.getZoom().setSpeed(0.05D);
-		drag = ZoomPlugin.createDrag();
-		options.getZoom().setDrag(drag);
+		options.getZoom().getWheel().setEnabled(true);
+		options.getZoom().getWheel().setSpeed(0.05D);
+		options.getZoom().getDrag().setEnabled(true);
 		options.getZoom().setCompletedCallback(new CompletedCallback() {
 
 			@Override
@@ -203,13 +199,13 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 	protected void handleDragging(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
 		if (dragging.getValue()) {
-			options.getZoom().setDrag(drag);
-			options.getZoom().setWheelModifierKey(null);
+			options.getZoom().getDrag().setEnabled(true);
+			options.getZoom().getWheel().setModifierKey(null);
 			modifier.setValue(false);
 			modifier.setEnabled(false);
 			help.setVisible(false);
 		} else {
-			options.getZoom().setDrag(false);
+			options.getZoom().getDrag().setEnabled(false);
 			modifier.setEnabled(true);
 		}
 		chart.update();
@@ -219,10 +215,10 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 	protected void handleModifier(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.ID, ZoomPlugin.FACTORY);
 		if (modifier.getValue()) {
-			options.getZoom().setWheelModifierKey(ModifierKey.ALT);
+			options.getZoom().getWheel().setModifierKey(ModifierKey.ALT);
 			help.setVisible(true);
 		} else {
-			options.getZoom().setWheelModifierKey(null);
+			options.getZoom().getWheel().setModifierKey(null);
 			help.setVisible(false);
 		}
 		chart.update();

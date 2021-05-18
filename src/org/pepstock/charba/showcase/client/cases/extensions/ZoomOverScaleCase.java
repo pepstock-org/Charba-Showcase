@@ -106,8 +106,8 @@ public class ZoomOverScaleCase extends BaseComposite {
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
 		options.getPan().setOverScaleMode(InteractionAxis.XY);
-		options.getZoom().setEnabled(true);
 		options.getZoom().setOverScaleMode(InteractionAxis.XY);
+		options.getZoom().getWheel().setEnabled(true);
 		options.getLimits().getX().setMin(-200);
 		options.getLimits().getX().setMax(200);
 		options.getLimits().getX().setMinRange(20);
@@ -115,8 +115,7 @@ public class ZoomOverScaleCase extends BaseComposite {
 		options.getLimits().getY().setMax(200);
 		options.getLimits().getY().setMinRange(50);
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
-		
-		
+				
 		chart.addHandler(new AxisClickEventHandler() {
 
 			@Override
@@ -154,7 +153,7 @@ public class ZoomOverScaleCase extends BaseComposite {
 	@UiHandler("enableZoom")
 	protected void handleZoom(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
-		options.getZoom().setEnabled(enableZoom.getValue());
+		options.getZoom().getWheel().setEnabled(enableZoom.getValue());
 		updatePointer();
 		chart.update();
 	}

@@ -126,8 +126,8 @@ public class ZoomTimeAxisCase extends BaseComposite {
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
 		options.getPan().setMode(InteractionAxis.XY);
-		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.XY);
+		options.getZoom().getWheel().setEnabled(true);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
@@ -168,7 +168,7 @@ public class ZoomTimeAxisCase extends BaseComposite {
 	@UiHandler("enableZoom")
 	protected void handleZoom(ClickEvent event) {
 		ZoomOptions options = chart.getOptions().getPlugins().getOptions(ZoomPlugin.FACTORY);
-		options.getZoom().setEnabled(enableZoom.getValue());
+		options.getZoom().getWheel().setEnabled(enableZoom.getValue());
 		chart.update();
 	}
 	

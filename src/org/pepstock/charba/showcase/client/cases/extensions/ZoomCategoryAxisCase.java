@@ -76,8 +76,8 @@ public class ZoomCategoryAxisCase extends BaseComposite {
 		options.getPan().setEnabled(true);
 		options.getPan().setMode(InteractionAxis.XY);
 		options.getPan().setThreshold(5);
-		options.getZoom().setEnabled(true);
 		options.getZoom().setMode(InteractionAxis.XY);
+		options.getZoom().getWheel().setEnabled(true);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}
