@@ -1,5 +1,9 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.elements.AnimationCase;
+import org.pepstock.charba.showcase.client.cases.elements.AnimationDelayCase;
+import org.pepstock.charba.showcase.client.cases.elements.AnimationLoopCase;
+import org.pepstock.charba.showcase.client.cases.elements.AnimationProgressiveLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.ChangingLegendLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.FilteringAxisLabelsCase;
 import org.pepstock.charba.showcase.client.cases.elements.FilteringLegendCase;
@@ -234,6 +238,34 @@ public class ElementsView extends AbstractView {
 	protected void handleTitleChangeStyle(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new TitleStyleCase());
+	}
+
+	// ----------------------------------------------
+	// Animations
+	// ----------------------------------------------
+
+	@UiHandler("animationProgressive")
+	protected void handleAnimationProgressiveLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnimationProgressiveLineCase());
+	}
+
+	@UiHandler("animationDelay")
+	protected void handleAnimationDelay(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnimationDelayCase());
+	}
+	
+	@UiHandler("animationLoop")
+	protected void handleAnimationLoop(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnimationLoopCase());
+	}
+	
+	@UiHandler("animation")
+	protected void handleAnimation(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnimationCase());
 	}
 
 }

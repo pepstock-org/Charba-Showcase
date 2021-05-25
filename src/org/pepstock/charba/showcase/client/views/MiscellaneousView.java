@@ -1,6 +1,5 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.miscellaneous.AnimationCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointSizesOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsImageOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesOnLineCase;
@@ -53,12 +52,6 @@ public class MiscellaneousView extends AbstractView {
 	// ----------------------------------------------
 	// options
 	// ----------------------------------------------
-
-	@UiHandler("animation")
-	protected void handleAnimation(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new AnimationCase());
-	}
 
 	@UiHandler("miscellaneousSteppedOnLine")
 	protected void handleMiscellaneousSteppedOnLine(ClickEvent event) {

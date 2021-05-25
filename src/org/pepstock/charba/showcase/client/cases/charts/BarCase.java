@@ -36,6 +36,8 @@ public class BarCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Bar chart");
 		
+		chart.getOptions().getAnimation().setDuration((ctx) -> 2000);
+		
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		

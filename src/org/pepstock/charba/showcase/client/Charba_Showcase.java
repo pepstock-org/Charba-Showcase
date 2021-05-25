@@ -8,14 +8,17 @@ import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.DeferredCharba;
 import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.events.ClickEventHandler;
 import org.pepstock.charba.client.impl.charts.GaugeChart;
 import org.pepstock.charba.client.impl.charts.MeterChart;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.showcase.client.cases.commons.Toast;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -125,7 +128,7 @@ public class Charba_Showcase implements EntryPoint {
 		Defaults.get().getOptions(ChartType.DOUGHNUT).setAspectRatio(2D);
 		Defaults.get().getOptions(MeterChart.CONTROLLER_TYPE).setAspectRatio(2D);
 		Defaults.get().getOptions(GaugeChart.CONTROLLER_TYPE).setAspectRatio(2D);
-
+		
 		MyHorizontalBarController.TYPE.register();
 
 		MyLineChart.TYPE.register();
@@ -142,6 +145,14 @@ public class Charba_Showcase implements EntryPoint {
 		
 		DataLabelsOptions dataLabelsOption = new DataLabelsOptions();
 		dataLabelsOption.getPadding().set(4);
+		dataLabelsOption.getListeners().setClickEventHandler(new ClickEventHandler() {
+			
+			@Override
+			public boolean onClick(DataLabelsContext context) {
+				new Toast("Click!", Toast.Level.WARNING, "Test on DATALABELS click").show();
+				return true;
+			}
+		});
 		dataLabelsOption.store();
 
 		RootPanel.get().add(new MainView());

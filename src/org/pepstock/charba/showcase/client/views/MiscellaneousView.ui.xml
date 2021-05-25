@@ -41,7 +41,6 @@
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
 					<g:Label styleName='{myStyle.myCategory}'>Options</g:Label>
-					<g:Label ui:field="animation" styleName='{myStyle.myLabel}'>Animation events</g:Label>
 					<g:Label ui:field="miscellaneousSteppedOnLine" styleName='{myStyle.myLabel}'>Stepped line options on line chart</g:Label>
 					<g:Label ui:field="miscellaneousInterpolationOnLine" styleName='{myStyle.myLabel}'>Interpolation options on line chart</g:Label>
 					<g:Label ui:field="miscellaneousStylesOnLine" styleName='{myStyle.myLabel}'>Applying styles on line chart</g:Label>

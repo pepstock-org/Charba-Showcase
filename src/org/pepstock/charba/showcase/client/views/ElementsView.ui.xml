@@ -86,6 +86,12 @@
 					<g:Label styleName='{myStyle.myCategory}'>Title</g:Label>
 					<g:Label ui:field="titleChange" styleName='{myStyle.myLabel}'>Changing text</g:Label>
 					<g:Label ui:field="titleChangeStyle" styleName='{myStyle.myLabel}'>Changing style</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Animation</g:Label>
+					<g:Label ui:field="animationDelay" styleName='{myStyle.myLabel}'>Delay drawing</g:Label>
+					<g:Label ui:field="animationLoop" styleName='{myStyle.myLabel}'>Animation looping</g:Label>
+					<g:Label ui:field="animationProgressive" styleName='{myStyle.myLabel}'>Progressive line</g:Label>
+					<g:Label ui:field="animation" styleName='{myStyle.myLabel}'>Animation events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>
