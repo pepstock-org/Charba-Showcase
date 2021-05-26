@@ -20,18 +20,11 @@ public class MyLineChart extends LineChart {
 		
 		@Override
 		public Controller provide(ControllerType controllerType) {
-			return new AbstractController() {
-
+			return new AbstractController(MyLineChart.TYPE) {
+				
 				@Override
-				public ControllerType getType() {
-					return MyLineChart.TYPE;
-				}
-
-				@Override
-				public void draw(ControllerContext jsThis, IsChart chart) {
-					super.draw(jsThis, chart);
-
-					DatasetItem item = chart.getDatasetItem(jsThis.getIndex());
+				public void onAfterDraw(ControllerContext context, IsChart chart) {
+					DatasetItem item = chart.getDatasetItem(context.getIndex());
 					List<DatasetElement> elements = item.getElements();
 					for (DatasetElement elem : elements) {
 						Context2dItem ctx = chart.getCanvas().getContext2d();

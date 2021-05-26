@@ -14,7 +14,7 @@
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
-					<g:CheckBox ui:field="nativeCallback" checked="false">Native callback</g:CheckBox>
+					<g:CheckBox ui:field="nativeCallbacks" checked="false">Use native callbacks</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{myImages.github}' />
 					</g:PushButton>

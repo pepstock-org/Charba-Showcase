@@ -105,7 +105,6 @@ public class AnimationDelayCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		delayed = false;
-		
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}

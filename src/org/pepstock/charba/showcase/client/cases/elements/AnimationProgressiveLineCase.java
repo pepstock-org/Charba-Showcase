@@ -61,7 +61,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 	LineChartWidget chart;
 	
 	@UiField
-	CheckBox nativeCallback;
+	CheckBox nativeCallbacks;
 
     private Map<Integer, Set<Integer>> xStarted = new HashMap<>();
 
@@ -179,7 +179,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 		
 	}
 
-	@UiHandler("nativeCallback")
+	@UiHandler("nativeCallbacks")
 	protected void handleNativeCallback(ClickEvent event) {
 		xStarted.get(0).clear();
 		xStarted.get(1).clear();
@@ -188,7 +188,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 		Animations animations = chart.getOptions().getAnimations();
 		AnimationCollection x = animations.get(DefaultAnimationPropertyKey.X);
 		AnimationCollection y = animations.get(DefaultAnimationPropertyKey.Y);
-		if (nativeCallback.getValue()) {
+		if (nativeCallbacks.getValue()) {
 			x.setDelay(NATIVE_DELAY_X);
 			y.setFrom(NATIVE_FROM_Y);
 			y.setDelay(NATIVE_DELAY_Y);

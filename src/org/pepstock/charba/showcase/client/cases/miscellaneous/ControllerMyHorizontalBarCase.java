@@ -64,7 +64,7 @@ public class ControllerMyHorizontalBarCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
-			dataset.setData(getRandomDigits(months));
+			dataset.setData(getRandomDigits(COUNTRIES.length, false));
 		}
 		chart.update();
 	}

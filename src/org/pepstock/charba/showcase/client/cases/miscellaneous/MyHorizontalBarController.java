@@ -29,21 +29,18 @@ public class MyHorizontalBarController extends AbstractController {
 
 	private static final int PERCENT = 10;
 
-	@Override
-	public ControllerType getType() {
-		return TYPE;
+	public MyHorizontalBarController() {
+		super(TYPE);
 	}
-
+	
 	@Override
-	public void initialize(ControllerContext context, IsChart chart) {
+	public void onBeforeInitialize(ControllerContext context, IsChart chart) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.Y);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
-		super.initialize(context, chart);
 	}
 
 	@Override
-	public void draw(ControllerContext context, IsChart chart) {
-		super.draw(context, chart);
+	public void onAfterDraw(ControllerContext context, IsChart chart) {
 		final int padding = 4;
 		Context2dItem ctx = chart.getCanvas().getContext2d();
 		ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
@@ -76,12 +73,11 @@ public class MyHorizontalBarController extends AbstractController {
 			y = y + heightAmongLabels;
 		}
 	}
-
+	
 	@Override
-	public void update(ControllerContext context, IsChart chart, IsTransitionKey mode) {
+	public void onBeforeUpdate(ControllerContext context, IsChart chart, IsTransitionKey mode) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.Y);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
-		super.update(context, chart, mode);
 	}
 
 	private void calculateAndSetScaleLabelPadding(Scale axis, int width) {
