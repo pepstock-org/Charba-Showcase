@@ -1,11 +1,9 @@
 package org.pepstock.charba.showcase.client.cases.elements;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.DatasetContext;
@@ -13,6 +11,7 @@ import org.pepstock.charba.client.callbacks.DelayCallback;
 import org.pepstock.charba.client.callbacks.FromCallback;
 import org.pepstock.charba.client.callbacks.NativeCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
+import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.configuration.Animations;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.DataPoint;
@@ -51,7 +50,13 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 	private static final NativeCallback NATIVE_DELAY_Y = NativeCallback.create("if (context.type !== 'data' || context.yStarted) { return 0; } context.yStarted = true; return context.index * "+DELAY_BETWEEN_POINTS+";");
 	
 	private static final NativeCallback NATIVE_FROM_Y = NativeCallback.create("return context.index === 0 ? context.chart.scales.y.getPixelForValue(100) : context.chart.getDatasetMeta(context.datasetIndex).data[context.index - 1].getProps(['y'], true).y;");
-	
+
+	private static final Delay X_DELAY_CALLBACK = new Delay(Key.create("xMyStarted"));
+
+	private static final Delay Y_DELAY_CALLBACK = new Delay(Key.create("yMyStarted"));
+
+	private static final From FROM_CALLBACK = new From();
+
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, AnimationProgressiveLineCase> {
@@ -62,10 +67,6 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 	
 	@UiField
 	CheckBox nativeCallbacks;
-
-    private Map<Integer, Set<Integer>> xStarted = new HashMap<>();
-
-	private Map<Integer, Set<Integer>> yStarted = new HashMap<>();
 
 	public AnimationProgressiveLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -79,57 +80,18 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 		chart.getOptions().getInteraction().setIntersect(false);
 		chart.getOptions().getElements().getLine().setTension(0);
 
-		xStarted.put(0, new HashSet<>());
-		xStarted.put(1, new HashSet<>());
-		yStarted.put(0, new HashSet<>());
-		yStarted.put(1, new HashSet<>());
-
 		Animations animations = chart.getOptions().getAnimations();
 		AnimationCollection x = animations.create(DefaultAnimationPropertyKey.X);
 		x.setEasing(Easing.LINEAR);
 		x.setDuration(DELAY_BETWEEN_POINTS);
 		x.setFrom(Double.NaN);
-		x.setDelay(new DelayCallback() {
-			@Override
-			public Integer invoke(DatasetContext context) {
-				if (!ContextType.DATA.equals(context.getType()) || xStarted.get(context.getDatasetIndex()).contains(context.getDataIndex())) {
-					return 0;
-				}
-				xStarted.get(context.getDatasetIndex()).add(context.getDataIndex());
-				return context.getDataIndex() * DELAY_BETWEEN_POINTS;
-			}
-
-		});
-
+		x.setDelay(X_DELAY_CALLBACK);
+		
 		AnimationCollection y = animations.create(DefaultAnimationPropertyKey.Y);
 		y.setEasing(Easing.LINEAR);
 		y.setDuration(DELAY_BETWEEN_POINTS);
-		y.setDelay(new DelayCallback() {
-			@Override
-			public Integer invoke(DatasetContext context) {
-				if (!ContextType.DATA.equals(context.getType()) || yStarted.get(context.getDatasetIndex()).contains(context.getDataIndex())) {
-					return 0;
-				}
-				yStarted.get(context.getDatasetIndex()).add(context.getDataIndex());
-				return context.getDataIndex() * DELAY_BETWEEN_POINTS;
-			}
-
-		});
-		
-		y.setFrom(new FromCallback() {
-			private Map<Integer, List<DatasetElement>> elements = new HashMap<Integer, List<DatasetElement>>();
-			
-			@Override
-			public Double invoke(DatasetContext context) {
-				IsChart chart = context.getChart();
-				if (context.getDataIndex() <= 0) {
-					ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
-					return scale.getPixelForValue(100);
-				}
-				DatasetElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
-				return element.getY();
-			}			
-		});
+		y.setDelay(Y_DELAY_CALLBACK);
+		y.setFrom(FROM_CALLBACK);
 
 		List<DataPoint> datapoint1 = new LinkedList<>();
 		List<DataPoint> datapoint2 = new LinkedList<>();
@@ -181,10 +143,6 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 
 	@UiHandler("nativeCallbacks")
 	protected void handleNativeCallback(ClickEvent event) {
-		xStarted.get(0).clear();
-		xStarted.get(1).clear();
-		yStarted.get(0).clear();
-		yStarted.get(1).clear();
 		Animations animations = chart.getOptions().getAnimations();
 		AnimationCollection x = animations.get(DefaultAnimationPropertyKey.X);
 		AnimationCollection y = animations.get(DefaultAnimationPropertyKey.Y);
@@ -192,51 +150,57 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 			x.setDelay(NATIVE_DELAY_X);
 			y.setFrom(NATIVE_FROM_Y);
 			y.setDelay(NATIVE_DELAY_Y);
-		} else {
-			x.setDelay(new DelayCallback() {
-				@Override
-				public Integer invoke(DatasetContext context) {
-					if (!ContextType.DATA.equals(context.getType()) || xStarted.get(context.getDatasetIndex()).contains(context.getDataIndex())) {
-						return 0;
-					}
-					xStarted.get(context.getDatasetIndex()).add(context.getDataIndex());
-					return context.getDataIndex() * DELAY_BETWEEN_POINTS;
-				}
-
-			});
-			y.setDelay(new DelayCallback() {
-				@Override
-				public Integer invoke(DatasetContext context) {
-					if (!ContextType.DATA.equals(context.getType()) || yStarted.get(context.getDatasetIndex()).contains(context.getDataIndex())) {
-						return 0;
-					}
-					yStarted.get(context.getDatasetIndex()).add(context.getDataIndex());
-					return context.getDataIndex() * DELAY_BETWEEN_POINTS;
-				}
-
-			});
-			y.setFrom(new FromCallback() {
-				private Map<Integer, List<DatasetElement>> elements = new HashMap<Integer, List<DatasetElement>>();
-				
-				@Override
-				public Double invoke(DatasetContext context) {
-					IsChart chart = context.getChart();
-					if (context.getDataIndex() <= 0) {
-						ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
-						return scale.getPixelForValue(100);
-					}
-					DatasetElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
-					return element.getY();
-				}			
-			});
-
 		}
 		chart.reconfigure();
+		nativeCallbacks.setEnabled(false);
 	}
 
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
+	}
+	
+	private static class Delay implements DelayCallback{
+		
+		private final Key key;
+		
+		private boolean reset = true;
+		
+		private Delay(Key key) {
+			this.key = key;
+		}
+
+		private void setReset(boolean reset) {
+			this.reset = reset;
+		}
+
+		@Override
+		public Integer invoke(DatasetContext context) {
+			if (!ContextType.DATA.equals(context.getType()) || (context.getAttribute(key, false) && reset)) {
+				return 0;
+			}
+			context.setAttribute(key, true);
+			setReset(false);
+			return context.getDataIndex() * DELAY_BETWEEN_POINTS;
+		}
+		
+	}
+
+	private static class From implements FromCallback{
+
+		private Map<Integer, List<DatasetElement>> elements = new HashMap<Integer, List<DatasetElement>>();
+		
+		@Override
+		public Double invoke(DatasetContext context) {
+			IsChart chart = context.getChart();
+			if (context.getDataIndex() <= 0) {
+				ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
+				return scale.getPixelForValue(100);
+			}
+			DatasetElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
+			return element.getY();
+		}			
+		
 	}
 
 }

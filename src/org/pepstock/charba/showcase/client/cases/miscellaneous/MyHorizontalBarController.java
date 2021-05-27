@@ -13,8 +13,8 @@ import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.gwt.ImagesHelper;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.items.ScaleTickItem;
-import org.pepstock.charba.client.options.IsTransitionKey;
 import org.pepstock.charba.client.options.Scale;
+import org.pepstock.charba.client.options.TransitionKey;
 import org.pepstock.charba.showcase.client.resources.Images;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -75,7 +75,7 @@ public class MyHorizontalBarController extends AbstractController {
 	}
 	
 	@Override
-	public void onBeforeUpdate(ControllerContext context, IsChart chart, IsTransitionKey mode) {
+	public void onBeforeUpdate(ControllerContext context, IsChart chart, TransitionKey mode) {
 		Scale axis = (Scale) context.getNode().getOptions().getScales().getAxis(DefaultScaleId.Y);
 		calculateAndSetScaleLabelPadding(axis, chart.getCanvas().getParentHtmlElement().getOffsetWidth());
 	}
