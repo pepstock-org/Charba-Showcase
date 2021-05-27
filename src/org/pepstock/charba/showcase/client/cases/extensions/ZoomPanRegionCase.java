@@ -93,7 +93,7 @@ public class ZoomPanRegionCase extends BaseComposite {
 				double h25 = area.getHeight() * 0.25;
 				if (context.getPoint().getX() < area.getLeft() + w25 || context.getPoint().getX() > area.getRight() - w25
 						|| context.getPoint().getY() < area.getTop() + h25 || context.getPoint().getY() > area.getBottom() - h25) {
-					return false; // abort
+					return false;
 				}
 				return true;
 			}
