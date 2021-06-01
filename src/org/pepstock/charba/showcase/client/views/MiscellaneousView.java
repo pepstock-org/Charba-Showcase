@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ActiveElementsOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointSizesOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsImageOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesOnLineCase;
@@ -93,6 +94,12 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleMiscellaneousHoverStyleOnStackedArea(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new HoverStyleOnStackedAreaCase());
+	}
+
+	@UiHandler("miscellaneousActiveElements")
+	protected void handleMiscellaneousActiveElements(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ActiveElementsOnBarCase());
 	}
 
 	@UiHandler("miscellaneousTrendAndForecasetOnTimeseries")
