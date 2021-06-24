@@ -86,9 +86,15 @@
 			<g:cell width="25%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
-					<g:Label styleName='{myStyle.myCategory}'>Extended Charts</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Extended charts</g:Label>
 					<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
 					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Geographical charts</g:Label>
+					<g:Label ui:field="choroplethEarth" styleName='{myStyle.myLabel}'>Earth choropleth</g:Label>
+					<g:Label ui:field="choroplethUS" styleName='{myStyle.myLabel}'>US choropleth</g:Label>
+					<g:Label ui:field="choroplethIT" styleName='{myStyle.myLabel}'>Italy choropleth</g:Label>
+					<g:Label ui:field="bubbleMapUS" styleName='{myStyle.myLabel}'>US bubblemap</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"
@@ -102,8 +108,8 @@
 					<g:Label ui:field="chartDatasetSelectionEventOnPie" styleName='{myStyle.myLabel}'>Selecting dataset on pie chart</g:Label>
 					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Legend click events</g:Label>
 					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Legend hover and leave events</g:Label>
-					<g:Label ui:field="titleClickEvent" styleName='{myStyle.myLabel}'>Title click events</g:Label>
-					<g:Label ui:field="axesClickEvent" styleName='{myStyle.myLabel}'>Axes click events</g:Label>
+					<g:Label ui:field="titleEvents" styleName='{myStyle.myLabel}'>Title events</g:Label>
+					<g:Label ui:field="axesEvents" styleName='{myStyle.myLabel}'>Axes events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

@@ -35,7 +35,7 @@ public class BarCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Bar chart");
-		
+
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
@@ -58,7 +58,6 @@ public class BarCase extends BaseComposite {
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-
 	}
 
 	@UiHandler("randomize")

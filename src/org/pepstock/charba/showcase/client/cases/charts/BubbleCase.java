@@ -49,10 +49,7 @@ public class BubbleCase extends BaseComposite {
 
 		DataPoint[] dp1 = new DataPoint[AMOUNT_OF_POINTS];
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
-			dp1[i] = new DataPoint();
-			dp1[i].setX(getData());
-			dp1[i].setY(getData());
-			dp1[i].setR(getData(0, 50));
+			dp1[i] = new DataPoint(getData(), getData(), getData(0, 50));
 			colors[i] = colorize(false, dp1[i]);
 			bcolors[i] = colorize(true, dp1[i]);
 			bwidth[i] = Math.min(Math.max(1, i + 1), 5);

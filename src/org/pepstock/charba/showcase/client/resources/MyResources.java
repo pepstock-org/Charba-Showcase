@@ -14,4 +14,19 @@ public interface MyResources extends ClientBundle {
 	@Source("css/Legend.css")
 	TextResource legend();
 
+	@Source("topojson/europe.json")
+	TextResource topojsonEurope();
+
+	@Source("topojson/italy-provinces.json")
+	TextResource topojsonItaly();
+
+	@Source("topojson/countries-50m.json")
+	TextResource topojsonEarth();
+	
+	@Source("topojson/states-10m.json")
+	TextResource topojsonUS();
+	
+	@Source("topojson/us-capitals.data")
+	TextResource dataUSCapitals();
+
 }

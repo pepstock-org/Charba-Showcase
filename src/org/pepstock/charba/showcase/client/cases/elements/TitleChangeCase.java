@@ -48,7 +48,7 @@ public class TitleChangeCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText(ORIGINAL_TITLE);
-
+		
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();

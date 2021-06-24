@@ -128,7 +128,7 @@ public class Charba_Showcase implements EntryPoint {
 		Defaults.get().getOptions(ChartType.DOUGHNUT).setAspectRatio(2D);
 		Defaults.get().getOptions(MeterChart.CONTROLLER_TYPE).setAspectRatio(2D);
 		Defaults.get().getOptions(GaugeChart.CONTROLLER_TYPE).setAspectRatio(2D);
-		
+
 		MyHorizontalBarController.TYPE.register();
 
 		MyLineChart.TYPE.register();

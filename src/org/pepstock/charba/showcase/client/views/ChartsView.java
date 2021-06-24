@@ -1,6 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
-import org.pepstock.charba.showcase.client.cases.charts.AxesClickEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.AxesEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.BarCase;
 import org.pepstock.charba.showcase.client.cases.charts.BubbleCase;
 import org.pepstock.charba.showcase.client.cases.charts.ChartClickEventCase;
@@ -11,6 +11,10 @@ import org.pepstock.charba.showcase.client.cases.charts.DatasetSelectionBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.DatasetSelectionPieCase;
 import org.pepstock.charba.showcase.client.cases.charts.DoughnutCase;
 import org.pepstock.charba.showcase.client.cases.charts.GaugeCase;
+import org.pepstock.charba.showcase.client.cases.charts.GeoBubbleMapUSCase;
+import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethCase;
+import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethItalyCase;
+import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethUSCase;
 import org.pepstock.charba.showcase.client.cases.charts.HorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.LegendClickEventCase;
 import org.pepstock.charba.showcase.client.cases.charts.LegendHoverAndLeaveEventsCase;
@@ -28,7 +32,7 @@ import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesLineCase;
-import org.pepstock.charba.showcase.client.cases.charts.TitleClickEventCase;
+import org.pepstock.charba.showcase.client.cases.charts.TitleEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.VerticalLineCase;
 
 import com.google.gwt.core.client.GWT;
@@ -188,6 +192,31 @@ public class ChartsView extends AbstractView {
 		content.add(new GaugeCase());
 	}
 
+	@UiHandler("choroplethEarth")
+	protected void handleChoropleth(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethCase());
+	}
+
+	@UiHandler("choroplethUS")
+	protected void handleChoroplethUS(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethUSCase());
+	}
+
+	@UiHandler("choroplethIT")
+	protected void handleChoroplethIT(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethItalyCase());
+	}
+
+	@UiHandler("bubbleMapUS")
+	protected void handleBubbleMapUS(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoBubbleMapUSCase());
+	}
+
+
 	// ----------------------------------------------
 	// Events
 	// ----------------------------------------------
@@ -234,16 +263,16 @@ public class ChartsView extends AbstractView {
 		content.add(new LegendHoverAndLeaveEventsCase());
 	}
 
-	@UiHandler("titleClickEvent")
-	protected void handleTitleClickEvent(ClickEvent event) {
+	@UiHandler("titleEvents")
+	protected void handleTitlevents(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new TitleClickEventCase());
+		content.add(new TitleEventsCase());
 	}
 
-	@UiHandler("axesClickEvent")
-	protected void handleAxesClickEvent(ClickEvent event) {
+	@UiHandler("axesEvents")
+	protected void handleAxesClickEvents(ClickEvent event) {
 		clearPreviousChart();
-		content.add(new AxesClickEventCase());
+		content.add(new AxesEventsCase());
 	}
 
 }

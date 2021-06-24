@@ -76,8 +76,7 @@ public class LineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
-		axis2.getTicks().setDisplay(true);
-
+		
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		chart.getData().setLabels(getLabels());
 	}
