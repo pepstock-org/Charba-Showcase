@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,6 +8,12 @@ import java.util.Map;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Labels;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
+import org.pepstock.charba.client.datalabels.DataLabelsOptions;
+import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
+import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
+import org.pepstock.charba.client.datalabels.enums.Align;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.geo.BubbleMapDataPoint;
 import org.pepstock.charba.client.geo.BubbleMapDataset;
 import org.pepstock.charba.client.geo.Feature;
@@ -16,6 +22,7 @@ import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.SizeAxis;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.BubbleMapChartWidget;
+import org.pepstock.charba.client.items.DataItem;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.resources.MyResources;
@@ -28,11 +35,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class GeoBubbleMapUSCase extends BaseComposite {
+public class GeoBubbleMapDatalabelsCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, GeoBubbleMapUSCase> {
+	interface ViewUiBinder extends UiBinder<Widget, GeoBubbleMapDatalabelsCase> {
 	}
 
 	private static final Map<String, Capital> CAPITALS = new HashMap<>();
@@ -46,7 +53,7 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 
 	private final List<BubbleMapDataPoint> geodata = new LinkedList<>();
 
-	public GeoBubbleMapUSCase() {
+	public GeoBubbleMapDatalabelsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		if (CAPITALS.isEmpty()) {
@@ -75,17 +82,32 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 		dataset1.setLabel("States");
 		dataset1.setOutline(stateFeatures);
 		dataset1.setValues(geodata);
-		dataset1.setBackgroundColor(HtmlColor.STEEL_BLUE);
+		dataset1.setBackgroundColor(HtmlColor.LIGHT_CORAL);
 
 		ProjectionAxis axis1 = new ProjectionAxis(chart);
 		axis1.setProjection(Projection.ALBERS_USA);
 		
 		SizeAxis axis2 = new SizeAxis(chart);
-		axis2.setRange(0, 20);
+		axis2.setRange(1, 20);
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(labels);
 		chart.getData().setDatasets(dataset1);
+
+		DataLabelsOptions option = new DataLabelsOptions();
+		option.setAlign(Align.TOP);
+		option.setColor(HtmlColor.BLACK);
+		option.getFont().setWeight(Weight.BOLD);
+		option.setFormatter(new FormatterCallback() {
+			
+			@Override
+			public String invoke(DataLabelsContext context, DataItem dataItem) {
+				BubbleMapDataPoint bmp = dataItem.createDataPoint(BubbleMapDataPoint.FACTORY);
+				return "v: ["+bmp.getValue()+"]";
+			}
+		});
+
+		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
 
 	}
 

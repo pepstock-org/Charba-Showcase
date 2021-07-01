@@ -20,6 +20,9 @@ public interface MyResources extends ClientBundle {
 	@Source("topojson/italy-provinces.json")
 	TextResource topojsonItaly();
 
+	@Source("topojson/germany-regions.json")
+	TextResource topojsonGermany();
+
 	@Source("topojson/countries-50m.json")
 	TextResource topojsonEarth();
 	

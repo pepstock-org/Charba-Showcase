@@ -26,6 +26,12 @@ import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsMultiLabel
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsRadarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsSelectionCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoBubbleMapDatalabelsCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoBubbleMapLogarithmicCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethSelectCountryCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethGermanyCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethItalyCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethLogarithmicCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
@@ -224,6 +230,48 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new LabelsPositioningCase());
 	}
+
+	// ----------------------------------------------
+	// Geo map chart
+	// ----------------------------------------------
+
+	@UiHandler("choroplethInterpolation")
+	protected void handleChoroplethInterpolation(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethItalyCase());
+	}
+
+	@UiHandler("choroplethCustomInterpolation")
+	protected void handleChoroplethCustomInterpolation(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethGermanyCase());
+	}
+
+	@UiHandler("choroplethClick")
+	protected void handleChoroplethClick(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethSelectCountryCase());
+	}
+
+	@UiHandler("bubblemapDataLabels")
+	protected void handleBubbleMapDataLabels(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoBubbleMapDatalabelsCase());
+	}
+	
+	@UiHandler("choroplethLog")
+	protected void handleChoroplethLog(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethLogarithmicCase());
+	}
+
+	@UiHandler("bubblemapLog")
+	protected void handleBubbleMapLog(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoBubbleMapLogarithmicCase());
+	}
+
+	
 
 	// ----------------------------------------------
 	// Zoom

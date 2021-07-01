@@ -44,7 +44,7 @@ public class LineCase extends BaseComposite {
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
-
+		
 		IsColor color1 = GoogleChartColor.values()[0];
 
 		dataset1.setBackgroundColor(color1.toHex());
@@ -76,6 +76,7 @@ public class LineCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
+
 		
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		chart.getData().setLabels(getLabels());

@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.pepstock.charba.client.Charba;
@@ -12,11 +13,15 @@ import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.events.ClickEventHandler;
+import org.pepstock.charba.client.geo.Feature;
+import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.TopoJson;
 import org.pepstock.charba.client.impl.charts.GaugeChart;
 import org.pepstock.charba.client.impl.charts.MeterChart;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.InjectableTextResource;
+import org.pepstock.charba.client.utils.CScheduler;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
@@ -49,6 +54,16 @@ public class Charba_Showcase implements EntryPoint {
 
 	public static boolean isDeferred = false;
 	
+	public static List<Feature> EARTH_FEATURES;
+
+	public static TopoJson US;
+
+	public static TopoJson EUROPE;
+
+	public static TopoJson ITALY;
+
+	public static TopoJson GERMANY;
+
 	public void onModuleLoad() {
 
 		Image.prefetch(Images.INSTANCE.background().getSafeUri());
@@ -62,7 +77,7 @@ public class Charba_Showcase implements EntryPoint {
 		Image.prefetch(Images.INSTANCE.fingerprintWhite().getSafeUri());
 		Image.prefetch(Images.INSTANCE.headlineWhite().getSafeUri());
 		Image.prefetch(Images.INSTANCE.visibilityWhite().getSafeUri());
-		
+
 		String loadingParam = Window.Location.getParameter(LOADING_PARAM) != null ? Window.Location.getParameter(LOADING_PARAM) : LOADING_EMBEDDED;
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;
 
@@ -111,6 +126,18 @@ public class Charba_Showcase implements EntryPoint {
 	}
 
 	private void start() {
+		
+		CScheduler.get().submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				Charba_Showcase.EARTH_FEATURES = GeoUtils.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
+				Charba_Showcase.US = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonUS().getText());
+				Charba_Showcase.EUROPE = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonEurope().getText());
+				Charba_Showcase.ITALY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonItaly().getText());
+				Charba_Showcase.GERMANY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonGermany().getText());
+			}
+		});
 
 		org.pepstock.charba.client.utils.Window.enableResizeOnBeforePrint();
 		
@@ -128,7 +155,7 @@ public class Charba_Showcase implements EntryPoint {
 		Defaults.get().getOptions(ChartType.DOUGHNUT).setAspectRatio(2D);
 		Defaults.get().getOptions(MeterChart.CONTROLLER_TYPE).setAspectRatio(2D);
 		Defaults.get().getOptions(GaugeChart.CONTROLLER_TYPE).setAspectRatio(2D);
-
+		
 		MyHorizontalBarController.TYPE.register();
 
 		MyLineChart.TYPE.register();

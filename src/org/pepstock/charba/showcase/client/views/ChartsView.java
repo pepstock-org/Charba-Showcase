@@ -13,7 +13,6 @@ import org.pepstock.charba.showcase.client.cases.charts.DoughnutCase;
 import org.pepstock.charba.showcase.client.cases.charts.GaugeCase;
 import org.pepstock.charba.showcase.client.cases.charts.GeoBubbleMapUSCase;
 import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethCase;
-import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethItalyCase;
 import org.pepstock.charba.showcase.client.cases.charts.GeoChoroplethUSCase;
 import org.pepstock.charba.showcase.client.cases.charts.HorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.LegendClickEventCase;
@@ -202,12 +201,6 @@ public class ChartsView extends AbstractView {
 	protected void handleChoroplethUS(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new GeoChoroplethUSCase());
-	}
-
-	@UiHandler("choroplethIT")
-	protected void handleChoroplethIT(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new GeoChoroplethItalyCase());
 	}
 
 	@UiHandler("bubbleMapUS")

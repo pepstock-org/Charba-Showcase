@@ -49,7 +49,7 @@ public class TitleEventsCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Click title event on line chart");
+		chart.getOptions().getTitle().setText("Title event on line chart");
 		chart.getOptions().getTitle().setFullSize(false);
 		chart.getOptions().getTooltips().setEnabled(false);
 

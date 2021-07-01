@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.charts;
+package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -13,7 +13,7 @@ import org.pepstock.charba.client.geo.BubbleMapDataset;
 import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.ProjectionAxis;
-import org.pepstock.charba.client.geo.SizeAxis;
+import org.pepstock.charba.client.geo.SizeLogarithmicAxis;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.BubbleMapChartWidget;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
@@ -28,11 +28,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class GeoBubbleMapUSCase extends BaseComposite {
+public class GeoBubbleMapLogarithmicCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, GeoBubbleMapUSCase> {
+	interface ViewUiBinder extends UiBinder<Widget, GeoBubbleMapLogarithmicCase> {
 	}
 
 	private static final Map<String, Capital> CAPITALS = new HashMap<>();
@@ -46,7 +46,7 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 
 	private final List<BubbleMapDataPoint> geodata = new LinkedList<>();
 
-	public GeoBubbleMapUSCase() {
+	public GeoBubbleMapLogarithmicCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		if (CAPITALS.isEmpty()) {
@@ -75,13 +75,13 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 		dataset1.setLabel("States");
 		dataset1.setOutline(stateFeatures);
 		dataset1.setValues(geodata);
-		dataset1.setBackgroundColor(HtmlColor.STEEL_BLUE);
+		dataset1.setBackgroundColor(HtmlColor.STEEL_BLUE.alpha(0.4));
 
 		ProjectionAxis axis1 = new ProjectionAxis(chart);
 		axis1.setProjection(Projection.ALBERS_USA);
 		
-		SizeAxis axis2 = new SizeAxis(chart);
-		axis2.setRange(0, 20);
+		SizeLogarithmicAxis axis2 = new SizeLogarithmicAxis(chart);
+		axis2.setRange(0, 25);
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(labels);

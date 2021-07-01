@@ -44,11 +44,12 @@ public class AxesEventsCase extends BaseComposite {
 
 	public AxesEventsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Click axes events  on line chart");
+		chart.getOptions().getTitle().setText("Axes events  on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

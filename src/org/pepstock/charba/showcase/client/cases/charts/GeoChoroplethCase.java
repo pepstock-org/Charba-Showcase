@@ -12,8 +12,8 @@ import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.ChoroplethChartWidget;
+import org.pepstock.charba.showcase.client.Charba_Showcase;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.resources.MyResources;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -41,8 +41,6 @@ public class GeoChoroplethCase extends BaseComposite {
 
 	public GeoChoroplethCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-	
-		List<Feature> stateFeatures = GeoUtils.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
@@ -51,9 +49,9 @@ public class GeoChoroplethCase extends BaseComposite {
 		chart.getOptions().setShowGraticule(true);
 		chart.getOptions().setShowOutline(true);
 		
-		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME);
+		Labels labels = GeoUtils.loadLabels(Charba_Showcase.EARTH_FEATURES, NAME);
 
-		for (Feature f : stateFeatures) {
+		for (Feature f : Charba_Showcase.EARTH_FEATURES) {
 			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));
 		}
 		

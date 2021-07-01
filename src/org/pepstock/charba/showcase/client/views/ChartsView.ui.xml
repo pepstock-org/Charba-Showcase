@@ -90,11 +90,10 @@
 					<g:Label ui:field="meter" styleName='{myStyle.myLabel}'>Meter</g:Label>
 					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
-					<g:Label styleName='{myStyle.myCategory}'>Geographical charts</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Geographic map charts</g:Label>
 					<g:Label ui:field="choroplethEarth" styleName='{myStyle.myLabel}'>Earth choropleth</g:Label>
-					<g:Label ui:field="choroplethUS" styleName='{myStyle.myLabel}'>US choropleth</g:Label>
-					<g:Label ui:field="choroplethIT" styleName='{myStyle.myLabel}'>Italy choropleth</g:Label>
-					<g:Label ui:field="bubbleMapUS" styleName='{myStyle.myLabel}'>US bubblemap</g:Label>
+					<g:Label ui:field="choroplethUS" styleName='{myStyle.myLabel}'>Choropleth</g:Label>
+					<g:Label ui:field="bubbleMapUS" styleName='{myStyle.myLabel}'>Bubble map</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

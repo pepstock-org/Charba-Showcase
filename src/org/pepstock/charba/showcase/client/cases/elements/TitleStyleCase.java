@@ -3,6 +3,8 @@ package org.pepstock.charba.showcase.client.cases.elements;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
+import org.pepstock.charba.client.callbacks.ChartContext;
+import org.pepstock.charba.client.callbacks.FontCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -10,7 +12,9 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -60,7 +64,35 @@ public class TitleStyleCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Changing title style on line chart");
+		
+		chart.getOptions().getTitle().setFont(new FontCallback<ChartContext>() {
+			
+			FontItem f = new FontItem();
+			
+			@Override
+			public FontItem invoke(ChartContext context) {
+				String selected = fontSize.getSelectedValue();
+				f.setSize(Integer.parseInt(selected));
+				return f;
+			}
+		});
 
+		chart.getOptions().getSubtitle().setDisplay(true);
+		chart.getOptions().getSubtitle().setText("This is the subtitle");
+		chart.getOptions().getSubtitle().getFont().setStyle(FontStyle.NORMAL);
+
+		chart.getOptions().getSubtitle().setFont(new FontCallback<ChartContext>() {
+			
+			FontItem f = new FontItem();
+			
+			@Override
+			public FontItem invoke(ChartContext context) {
+				String selected = fontSize.getSelectedValue();
+				f.setSize(Integer.parseInt(selected)-2);
+				return f;
+			}
+		});
+		
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
 		LineDataset dataset1 = chart.newDataset();
@@ -114,9 +146,7 @@ public class TitleStyleCase extends BaseComposite {
 
 	@UiHandler("fontSize")
 	protected void handleFontSize(ChangeEvent event) {
-		String selected = fontSize.getSelectedValue();
-		chart.getOptions().getTitle().getFont().setSize(Integer.parseInt(selected));
-		chart.reconfigure();
+		chart.update();
 	}
 
 	@UiHandler("source")
