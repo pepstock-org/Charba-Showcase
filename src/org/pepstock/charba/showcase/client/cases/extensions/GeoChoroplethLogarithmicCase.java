@@ -49,7 +49,7 @@ public class GeoChoroplethLogarithmicCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("US choropleth chart");
+		chart.getOptions().getTitle().setText("Choropleth chart and logarithmic color axis");
 
 		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME);
 
@@ -72,8 +72,6 @@ public class GeoChoroplethLogarithmicCase extends BaseComposite {
 
 		chart.getData().setLabels(labels);
 		chart.getData().setDatasets(dataset1);
-		
-		log(chart.getOptions().toJSON());
 		
 	} 
 

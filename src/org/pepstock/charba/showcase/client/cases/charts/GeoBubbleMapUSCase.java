@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.DatasetContext;
+import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Labels;
@@ -36,7 +39,7 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 	}
 
 	private static final Map<String, Capital> CAPITALS = new HashMap<>();
-
+	
 	private static final Key NAME = Key.create("name");
 
 	@UiField
@@ -75,8 +78,14 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 		dataset1.setLabel("States");
 		dataset1.setOutline(stateFeatures);
 		dataset1.setValues(geodata);
-		dataset1.setBackgroundColor(HtmlColor.STEEL_BLUE);
-
+		dataset1.setBackgroundColor(new ColorCallback<DatasetContext>() {
+			
+			@Override
+			public Object invoke(DatasetContext context) {
+				return Math.random() > 0.5 ? GwtMaterialColor.LIME_LIGHTEN_2 : GwtMaterialColor.LIME_DARKEN_2;
+			}
+		});
+		
 		ProjectionAxis axis1 = new ProjectionAxis(chart);
 		axis1.setProjection(Projection.ALBERS_USA);
 		

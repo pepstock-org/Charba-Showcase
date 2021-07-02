@@ -74,8 +74,8 @@
 					<g:Label ui:field="labelsPieMulti" styleName='{myStyle.myLabel}'>Multiple labels rendering options</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Geographical controller</g:Label>
-					<g:Label ui:field="choroplethLog" styleName='{myStyle.myLabel}'>Choropleth with logarithmic scale</g:Label>
-					<g:Label ui:field="bubblemapLog" styleName='{myStyle.myLabel}'>Bubble map with logarithmic scale</g:Label>
+					<g:Label ui:field="choroplethLog" styleName='{myStyle.myLabel}'>Choropleth with logarithmic axis</g:Label>
+					<g:Label ui:field="bubblemapLog" styleName='{myStyle.myLabel}'>Bubble map with logarithmic axis</g:Label>
 					<g:Label ui:field="choroplethInterpolation" styleName='{myStyle.myLabel}'>Interpolations</g:Label>
 					<g:Label ui:field="choroplethCustomInterpolation" styleName='{myStyle.myLabel}'>Custom interpolation</g:Label>
 					<g:Label ui:field="choroplethClick" styleName='{myStyle.myLabel}'>Select country from map</g:Label>

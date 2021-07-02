@@ -57,7 +57,7 @@ public class GeoBubbleMapLogarithmicCase extends BaseComposite {
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("US bubble map chart");
+		chart.getOptions().getTitle().setText("Bubble map chart and logarithmic size axis");
 		chart.getOptions().getElements().getBubbleMapPoint().setOutlineBorderColor(HtmlColor.RED);
 
 		Labels labels = Labels.build();
