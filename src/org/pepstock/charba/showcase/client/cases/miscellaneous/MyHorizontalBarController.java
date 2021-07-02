@@ -72,7 +72,6 @@ public class MyHorizontalBarController extends AbstractController {
 			if (image != null) {
 				double yToDraw = y + (heightAmongLabels - height) / 2;
 				ctx.drawImage(image, x, yToDraw, width, height);
-				//Console.log("fatto "+tick.hashCode());
 			}
 			y = y + heightAmongLabels;
 		}

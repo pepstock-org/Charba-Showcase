@@ -76,8 +76,6 @@ public class GeoChoroplethUSCase extends BaseComposite {
 		chart.getData().setLabels(labels);
 		chart.getData().setDatasets(dataset1);
 		
-		log(chart.getOptions().toJSON());
-		
 	} 
 
 	@UiHandler("randomize")
