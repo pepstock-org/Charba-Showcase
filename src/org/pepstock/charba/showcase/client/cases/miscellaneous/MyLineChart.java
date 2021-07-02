@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.ChartType;
 import org.pepstock.charba.client.Controller;
+import org.pepstock.charba.client.Helpers;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.LineChart;
 import org.pepstock.charba.client.controllers.AbstractController;
@@ -28,6 +29,7 @@ public class MyLineChart extends LineChart {
 					List<DatasetElement> elements = item.getElements();
 					for (DatasetElement elem : elements) {
 						Context2dItem ctx = chart.getCanvas().getContext2d();
+						Helpers.get().unclipArea(ctx);
 						ctx.save();
 						ctx.setStrokeColor(elem.getOptions().getBorderColorAsString());
 						ctx.setLineWidth(1D);
