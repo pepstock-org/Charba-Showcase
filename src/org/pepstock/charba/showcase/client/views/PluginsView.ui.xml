@@ -96,6 +96,7 @@
 					<g:Label ui:field="htmlLegendWithPattern" styleName='{myStyle.myLabel}'>Managing patterns</g:Label>
 					<g:Label ui:field="htmlLegendWithPointStyle" styleName='{myStyle.myLabel}'>Managing point styles</g:Label>
 					<g:Label ui:field="htmlLegendWithPointStyleImage" styleName='{myStyle.myLabel}'>Managing image as point styles</g:Label>
+					<g:Label ui:field="htmlLegendWithPointStyleCanvas" styleName='{myStyle.myLabel}'>Managing canvas as point styles</g:Label>
 					<g:Label ui:field="htmlLegendWithCallback" styleName='{myStyle.myLabel}'>Custom legend item text by callback</g:Label>
 				</g:VerticalPanel>
 			</g:cell>

@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.views;
 
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ActiveElementsOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointSizesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsCanvasOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesAsImageOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingPointStylesOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ApplyingStylesOnLineCase;
@@ -82,6 +83,12 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleMiscellaneousPointStyleImagesOnLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ApplyingPointStylesAsImageOnLineCase());
+	}
+
+	@UiHandler("miscellaneousPointStyleCanvasOnLine")
+	protected void handleMiscellaneousPointStyleCanvasOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ApplyingPointStylesAsCanvasOnLineCase());
 	}
 
 	@UiHandler("miscellaneousPointSizeOnLine")

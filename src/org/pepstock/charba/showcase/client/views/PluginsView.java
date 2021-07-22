@@ -25,6 +25,7 @@ import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendLinearGradien
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendMaxItemsCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPatternCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPieCase;
+import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPointStylesAsCanvasCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendPointStylesAsImageCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendRadialGradientCase;
 import org.pepstock.charba.showcase.client.cases.plugins.HtmlLegendSplittingTextCase;
@@ -233,6 +234,12 @@ public class PluginsView extends AbstractView {
 	protected void handleHtmlLegendPointStyleImage(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new HtmlLegendPointStylesAsImageCase());
+	}
+
+	@UiHandler("htmlLegendWithPointStyleCanvas")
+	protected void handleHtmlLegendPointStyleCanvas(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new HtmlLegendPointStylesAsCanvasCase());
 	}
 
 	@UiHandler("htmlLegendWithCallback")
