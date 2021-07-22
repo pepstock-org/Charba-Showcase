@@ -60,16 +60,6 @@ public class ApplyingPointStylesAsImageOnLineCase extends BaseComposite {
 
 		dataset1.setPointStyle(ImagesHelper.toImg(Images.INSTANCE.customPoint()));
 
-		LineDataset dataset2 = chart.newDataset();
-		dataset2.setLabel("dataset 2");
-
-		IsColor color2 = GoogleChartColor.values()[1];
-
-		dataset2.setBackgroundColor(color2.toHex());
-		dataset2.setBorderColor(color2.toHex());
-		dataset2.setData(getRandomDigits(months));
-		dataset2.setFill(Fill.ORIGIN);
-
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
 		axis1.getTitle().setDisplay(true);
