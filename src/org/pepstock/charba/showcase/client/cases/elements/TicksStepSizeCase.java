@@ -2,6 +2,8 @@ package org.pepstock.charba.showcase.client.cases.elements;
 
 import java.util.List;
 
+import org.pepstock.charba.client.callbacks.NumberFormatCallback;
+import org.pepstock.charba.client.callbacks.ScaleContext;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
@@ -15,6 +17,7 @@ import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.intl.enums.MeasureUnit;
 import org.pepstock.charba.client.intl.enums.Style;
+import org.pepstock.charba.client.items.NumberFormatItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -81,9 +84,17 @@ public class TicksStepSizeCase extends BaseComposite {
 		axis2.getTicks().setStepSize(5);
 		axis2.getTicks().setAlign(ElementAlign.CENTER);
 
-		axis2.getTicks().getNumberFormat().setStyle(Style.UNIT);
-		axis2.getTicks().getNumberFormat().setUnitsOfMeasure(MeasureUnit.KILOMETER, MeasureUnit.HOUR);
-
+		axis2.getTicks().setNumberFormat(new NumberFormatCallback() {
+			
+			@Override
+			public NumberFormatItem invoke(ScaleContext context) {
+				NumberFormatItem item = new NumberFormatItem();
+				item.setStyle(Style.UNIT);
+				item.setUnitsOfMeasure(MeasureUnit.KILOMETER, MeasureUnit.HOUR);
+				return item;
+			}
+		});
+		
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(getLabels());
