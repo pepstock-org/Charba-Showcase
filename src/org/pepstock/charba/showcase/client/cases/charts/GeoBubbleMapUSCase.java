@@ -1,14 +1,10 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.pepstock.charba.client.callbacks.ColorCallback;
-import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.geo.BubbleMapDataPoint;
@@ -17,6 +13,8 @@ import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.SizeAxis;
+import org.pepstock.charba.client.geo.enums.Align;
+import org.pepstock.charba.client.geo.enums.Position;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.BubbleMapChartWidget;
 import org.pepstock.charba.showcase.client.Charba_Showcase;
@@ -45,9 +43,9 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 	@UiField
 	BubbleMapChartWidget chart;
 
-	BubbleMapDataset dataset1;
+	private final BubbleMapDataset dataset1;
 
-	private final List<BubbleMapDataPoint> geodata = new LinkedList<>();
+	private final List<BubbleMapDataPoint> geodata;
 
 	public GeoBubbleMapUSCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -61,36 +59,33 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("US bubble map chart");
-		chart.getOptions().getElements().getBubbleMapPoint().setOutlineBorderColor(HtmlColor.RED);
 
 		Labels labels = Labels.build();
+
+		dataset1 = chart.newDataset();
+		dataset1.setLabel("States");
+		dataset1.setOutline(stateFeatures);
+		dataset1.setBackgroundColor(GwtMaterialColor.LIME_LIGHTEN_2);
+		
+		geodata = dataset1.getValues(true);
 
 		for (Feature f : stateFeatures) {
 			String state = f.getStringProperty(NAME);
 			if (CAPITALS.containsKey(state)) {
 				Capital c = CAPITALS.get(state);
 				labels.add(c.capital);
-				geodata.add(new BubbleMapDataPoint(c.latitude, c.longitude, getRandomDigit(0, 1000)));
+				geodata.add(new BubbleMapDataPoint(c.latitude, c.longitude, getRandomDigit(0, 10)));
 			}
 		}
-
-		dataset1 = chart.newDataset();
-		dataset1.setLabel("States");
-		dataset1.setOutline(stateFeatures);
-		dataset1.setValues(geodata);
-		dataset1.setBackgroundColor(new ColorCallback<DatasetContext>() {
-			
-			@Override
-			public Object invoke(DatasetContext context) {
-				return Math.random() > 0.5 ? GwtMaterialColor.LIME_LIGHTEN_2 : GwtMaterialColor.LIME_DARKEN_2;
-			}
-		});
 		
 		ProjectionAxis axis1 = new ProjectionAxis(chart);
 		axis1.setProjection(Projection.ALBERS_USA);
 		
 		SizeAxis axis2 = new SizeAxis(chart);
-		axis2.setRange(0, 20);
+		axis2.getLegend().setAlign(Align.RIGHT);
+		axis2.getLegend().setPosition(Position.BOTTOM_RIGHT);
+		axis2.setDisplay(true);
+		axis2.setRange(1, 20);
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
 		chart.getData().setLabels(labels);
@@ -101,7 +96,7 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
 		for (BubbleMapDataPoint g : geodata) {
-			g.setValue(getRandomDigit(0, 1000));
+			g.setValue(getRandomDigit(0, 10));
 		}
 		dataset1.setValues(geodata);
 		chart.update();

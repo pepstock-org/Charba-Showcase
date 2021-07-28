@@ -20,6 +20,7 @@ import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.SizeAxis;
+import org.pepstock.charba.client.geo.enums.Position;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.BubbleMapChartWidget;
 import org.pepstock.charba.client.items.DataItem;
@@ -88,6 +89,8 @@ public class GeoBubbleMapDatalabelsCase extends BaseComposite {
 		axis1.setProjection(Projection.ALBERS_USA);
 		
 		SizeAxis axis2 = new SizeAxis(chart);
+		axis2.getLegend().setAlign(org.pepstock.charba.client.geo.enums.Align.RIGHT);
+		axis2.getLegend().setPosition(Position.BOTTOM_RIGHT);
 		axis2.setRange(1, 20);
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 
