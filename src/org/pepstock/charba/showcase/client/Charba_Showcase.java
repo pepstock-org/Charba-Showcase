@@ -42,6 +42,8 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 public class Charba_Showcase implements EntryPoint {
 
+	public static final String GALLERY_PARAM = "gallery";
+	
 	public static final String LOADING_PARAM = "loading";
 
 	public static final String LOADING_EMBEDDED = "embedded";
@@ -63,6 +65,8 @@ public class Charba_Showcase implements EntryPoint {
 	public static TopoJson ITALY;
 
 	public static TopoJson GERMANY;
+	
+	private String gallery = null;
 
 	public void onModuleLoad() {
 
@@ -81,6 +85,8 @@ public class Charba_Showcase implements EntryPoint {
 		String loadingParam = Window.Location.getParameter(LOADING_PARAM) != null ? Window.Location.getParameter(LOADING_PARAM) : LOADING_EMBEDDED;
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;
 
+		gallery = Window.Location.getParameter(GALLERY_PARAM) != null ? Window.Location.getParameter(GALLERY_PARAM) : null;
+		
 		if (loading.equals(LOADING_DEFERRED)) {
 			isDeferred = true;
 			deferredLoading();
@@ -182,7 +188,11 @@ public class Charba_Showcase implements EntryPoint {
 		});
 		dataLabelsOption.store();
 
-		RootPanel.get().add(new MainView());
+		MainView view = new MainView();
+		
+		RootPanel.get().add(view);
+		
+		view.setGallery(gallery);
 		
 	}
 

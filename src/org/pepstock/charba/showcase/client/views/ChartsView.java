@@ -268,4 +268,41 @@ public class ChartsView extends AbstractView {
 		content.add(new AxesEventsCase());
 	}
 
+	public void setGallery(String gallery) {
+		if (gallery != null) {
+			if ("bar".equalsIgnoreCase(gallery)) {
+				handleBar(null);
+			} else if ("horizontalbar".equalsIgnoreCase(gallery)) {
+				handleBarHorizontal(null);;
+			} else if ("line".equalsIgnoreCase(gallery)) {
+				handleLine(null);
+			} else if ("verticalline".equalsIgnoreCase(gallery)) {
+				handleVerticalLine(null);
+			} else if ("scatter".equalsIgnoreCase(gallery)) {
+				handleScatter(null);
+			} else if ("doughnut".equalsIgnoreCase(gallery)) {
+				handleDoughnut(null);
+			} else if ("pie".equalsIgnoreCase(gallery)) {
+				handlePie(null);
+			} else if ("polararea".equalsIgnoreCase(gallery)) {
+				handlePolar(null);
+			} else if ("radar".equalsIgnoreCase(gallery)) {
+				handleRadar(null);
+			} else if ("bubble".equalsIgnoreCase(gallery)) {
+				handleBubble(null);
+			} else if ("timeseries".equalsIgnoreCase(gallery)) {
+				handleTimeSeriesLine(null);
+			} else if ("stacked".equalsIgnoreCase(gallery)) {
+				handleStackedBar(null);
+			} else if ("meter".equalsIgnoreCase(gallery)) {
+				handleMeter(null);
+			} else if ("gauge".equalsIgnoreCase(gallery)) {
+				handleGauge(null);
+			} else if ("choropleth".equalsIgnoreCase(gallery)) {
+				handleChoroplethUS(null);
+			} else if ("bubblemap".equalsIgnoreCase(gallery)) {
+				handleBubbleMapUS(null);
+			}
+		}
+	}
 }

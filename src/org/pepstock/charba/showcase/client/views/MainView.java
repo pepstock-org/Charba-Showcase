@@ -1,12 +1,16 @@
 package org.pepstock.charba.showcase.client.views;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,7 +24,12 @@ public class MainView extends Composite {
 	@UiField
 	VerticalPanel content;
 
+	@UiField
+	Label labelCharts;
+	
 	HorizontalPanel currentPanel = null;
+	
+	ChartsView charts = null;
 
 	public MainView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -63,8 +72,8 @@ public class MainView extends Composite {
 	protected void handleCharts(ClickEvent event) {
 		if (changeSelection(event)) {
 			clearPreviousChart();
-			ChartsView view = new ChartsView(content);
-			content.add(view);
+			charts = new ChartsView(content);
+			content.add(charts);
 		}
 	}
 
@@ -105,6 +114,15 @@ public class MainView extends Composite {
 		if (changeSelection(event)) {
 			clearPreviousChart();
 			content.add(new MiscellaneousView(content));
+		}
+	}
+	
+	public void setGallery(String gallery) {
+		if (gallery != null) {
+			NativeEvent event = Document.get().createClickEvent(labelCharts.getAbsoluteLeft(), labelCharts.getOffsetWidth(), labelCharts.getOffsetHeight(), labelCharts.getAbsoluteTop(), labelCharts.getAbsoluteLeft(), true, true, 
+					true, labelCharts.isVisible());
+			DomEvent.fireNativeEvent(event, labelCharts);
+			charts.setGallery(gallery);
 		}
 	}
 
