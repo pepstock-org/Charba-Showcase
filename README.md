@@ -13,7 +13,7 @@ There are more than 200 samples about all **Charba** capabilities.
 
 To build the project, the GWT (version 2.8.2) jar artifacts are provided into `lib` folder.
 
-The project uses [Ant build.xml](https://github.com/pepstock-org/Charba-Showcase/blob/4.0/build.xml) and execute it with  `buildAll` target, as following:
+The project uses [Ant build.xml](https://github.com/pepstock-org/Charba-Showcase/blob/4.1/build.xml) and execute it with  `buildAll` target, as following:
 
 ```
 ant buildAll
