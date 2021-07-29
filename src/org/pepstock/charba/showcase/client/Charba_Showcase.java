@@ -133,18 +133,6 @@ public class Charba_Showcase implements EntryPoint {
 
 	private void start() {
 		
-		CScheduler.get().submit(new Runnable() {
-			
-			@Override
-			public void run() {
-				Charba_Showcase.EARTH_FEATURES = GeoUtils.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
-				Charba_Showcase.US = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonUS().getText());
-				Charba_Showcase.EUROPE = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonEurope().getText());
-				Charba_Showcase.ITALY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonItaly().getText());
-				Charba_Showcase.GERMANY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonGermany().getText());
-			}
-		});
-
 		org.pepstock.charba.client.utils.Window.enableResizeOnBeforePrint();
 		
 		Defaults.get().getGlobal().getFont().setFamily("'Lato', sans-serif");
@@ -187,12 +175,24 @@ public class Charba_Showcase implements EntryPoint {
 			}
 		});
 		dataLabelsOption.store();
-
+		
 		MainView view = new MainView();
-		
+
 		RootPanel.get().add(view);
-		
-		view.setGallery(gallery);
+
+		CScheduler.get().submit(new Runnable() {
+			
+			@Override
+			public void run() {
+				Charba_Showcase.EARTH_FEATURES = GeoUtils.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
+				Charba_Showcase.US = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonUS().getText());
+				Charba_Showcase.EUROPE = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonEurope().getText());
+				Charba_Showcase.ITALY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonItaly().getText());
+				Charba_Showcase.GERMANY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonGermany().getText());
+
+				view.setGallery(gallery);
+			}
+		});
 		
 	}
 
