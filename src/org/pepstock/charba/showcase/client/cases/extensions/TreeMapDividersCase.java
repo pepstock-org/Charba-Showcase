@@ -54,7 +54,7 @@ public class TreeMapDividersCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(false);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Dividers on a treeMap chart");
+		chart.getOptions().getTitle().setText("Dividers on a tree map chart");
 
 		TreeMapDataset dataset1 = chart.newDataset();
 		

@@ -71,7 +71,7 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(false);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Switching on region/division/state on a treeMap chart");
+		chart.getOptions().getTitle().setText("Switching on region/division/state on a tree map chart");
 
 		dataset1 = chart.newDataset();
 

@@ -36,7 +36,7 @@ public class TreeMapCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("TreeMap chart");
+		chart.getOptions().getTitle().setText("Tree map chart");
 
 		TreeMapDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

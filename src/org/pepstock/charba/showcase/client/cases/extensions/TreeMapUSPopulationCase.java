@@ -11,7 +11,6 @@ import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.commons.NativeObject;
 import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.commons.NativeObjectContainerFactory;
-import org.pepstock.charba.client.enums.FontStyle;
 import org.pepstock.charba.client.gwt.widgets.TreeMapChartWidget;
 import org.pepstock.charba.client.items.Undefined;
 import org.pepstock.charba.client.treemap.TreeMapDataPoint;
@@ -54,7 +53,7 @@ public class TreeMapUSPopulationCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(false);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("US Population by region/division/state on a treeMap chart");
+		chart.getOptions().getTitle().setText("US Population by region/division/state on a tree map chart");
 
 		dataset1 = chart.newDataset();
 
@@ -100,10 +99,8 @@ public class TreeMapUSPopulationCase extends BaseComposite {
 		dataset1.setHoverColor("#F0B90B");
 		dataset1.getFont().setFamily("Tahoma");
 		dataset1.getFont().setSize(10);
-		dataset1.getFont().setStyle(FontStyle.BOLD);
 		dataset1.getHoverFont().setFamily("Tahoma");
 		dataset1.getHoverFont().setSize(10);
-		dataset1.getHoverFont().setStyle(FontStyle.BOLD);
 
 		chart.getData().setDatasets(dataset1);
 
