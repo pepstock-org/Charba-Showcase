@@ -110,13 +110,11 @@ public class GeoChoroplethItalyCase extends BaseComposite {
 		chart.reconfigure();
 	}
 
-
 	@UiHandler("graticule")
 	protected void handleGraticule(ClickEvent event) {
 		dataset1.setShowGraticule(graticule.getValue());
 		chart.reconfigure();
 	}
-
 	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {

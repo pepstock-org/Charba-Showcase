@@ -84,7 +84,6 @@ public class LineCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
-		chart.getNode().getOptions();
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months));
 		}

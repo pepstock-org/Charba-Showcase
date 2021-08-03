@@ -28,10 +28,10 @@ import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsRadarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsSelectionCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoBubbleMapDatalabelsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoBubbleMapLogarithmicCase;
-import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethSelectCountryCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethGermanyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethItalyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethLogarithmicCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethSelectCountryCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
@@ -41,6 +41,9 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSSwitchableCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiPanCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiZoomCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomApiZoomScaleCase;
@@ -407,7 +410,6 @@ public class ExtensionsView extends AbstractView {
 		content.add(new AnnotationPointsOnLineCase());
 	}
 	
-
 	// ----------------------------------------------
 	// Imported
 	// ----------------------------------------------
@@ -416,6 +418,28 @@ public class ExtensionsView extends AbstractView {
 	protected void handleCustomPluginChart(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ImportingPluginCase());
+	}
+
+	// ----------------------------------------------
+	// Treemap
+	// ----------------------------------------------
+
+	@UiHandler("treemapDividers")
+	protected void handleTreemapDividers(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapDividersCase());
+	}
+	
+	@UiHandler("treemapUSpopulation")
+	protected void handleTreemapUSpopulation(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapUSPopulationCase());
+	}
+
+	@UiHandler("treemapGrouping")
+	protected void handleTreemapGrouping(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapUSSwitchableCase());
 	}
 
 }

@@ -32,6 +32,7 @@ import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.TitleEventsCase;
+import org.pepstock.charba.showcase.client.cases.charts.TreeMapCase;
 import org.pepstock.charba.showcase.client.cases.charts.VerticalLineCase;
 
 import com.google.gwt.core.client.GWT;
@@ -191,6 +192,12 @@ public class ChartsView extends AbstractView {
 		content.add(new GaugeCase());
 	}
 
+	@UiHandler("treemap")
+	protected void handleTreeMap(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapCase());
+	}
+
 	@UiHandler("choroplethEarth")
 	protected void handleChoropleth(ClickEvent event) {
 		clearPreviousChart();
@@ -302,6 +309,8 @@ public class ChartsView extends AbstractView {
 				handleChoroplethUS(null);
 			} else if ("bubblemap".equalsIgnoreCase(gallery)) {
 				handleBubbleMapUS(null);
+			} else if ("treemap".equalsIgnoreCase(gallery)) {
+				handleTreeMap(null);
 			}
 		}
 	}
