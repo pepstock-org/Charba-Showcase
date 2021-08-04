@@ -119,6 +119,7 @@
 					<g:Label ui:field="treemapUSpopulation" styleName='{myStyle.myLabel}'>Groups</g:Label>
 					<g:Label ui:field="treemapGrouping" styleName='{myStyle.myLabel}'>Grouping data at runtime</g:Label>
 					<g:Label ui:field="treemapDividers" styleName='{myStyle.myLabel}'>Applying dividers</g:Label>
+					<g:Label ui:field="treemapClick" styleName='{myStyle.myLabel}'>Selecting item</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

@@ -41,6 +41,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSSwitchableCase;
@@ -442,4 +443,9 @@ public class ExtensionsView extends AbstractView {
 		content.add(new TreeMapUSSwitchableCase());
 	}
 
+	@UiHandler("treemapClick")
+	protected void handleTreemapClicking(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapClickEventCase());
+	}
 }
