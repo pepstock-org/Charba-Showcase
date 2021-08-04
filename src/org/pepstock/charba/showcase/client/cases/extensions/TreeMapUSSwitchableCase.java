@@ -127,7 +127,6 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		chart.update();
 	}
 
-
 	private enum Property implements Key
 	{
 		STATE("state"),
@@ -138,23 +137,12 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		POPULATION("population"),
 		AREA("area");
 
-		// name value of property
 		private final String value;
 
-		/**
-		 * Creates with the property value to use in the native object.
-		 * 
-		 * @param value value of property name
-		 */
 		private Property(String value) {
 			this.value = value;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.pepstock.charba.client.commons.Key#value()
-		 */
 		@Override
 		public String value() {
 			return value;
@@ -164,9 +152,6 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 
 	private static class TreeMapObject extends NativeObjectContainer {
 
-		/**
-		 * @param nativeObject
-		 */
 		private TreeMapObject(NativeObject nativeObject) {
 			super(nativeObject);
 		}

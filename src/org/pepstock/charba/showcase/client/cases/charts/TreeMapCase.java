@@ -62,7 +62,6 @@ public class TreeMapCase extends BaseComposite {
 		dataset1.setTree(getRandomDigits(months, false));
 		
 		chart.getData().setDatasets(dataset1);
-		
 	}
 
 	@UiHandler("randomize")
@@ -72,7 +71,6 @@ public class TreeMapCase extends BaseComposite {
 			tds.setTree(getRandomDigits(months, false));
 		}
 		chart.update();
-
 	}
 
 	@UiHandler("source")

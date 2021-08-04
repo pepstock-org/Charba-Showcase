@@ -116,8 +116,8 @@
 					<g:Label ui:field="annotationsEventsOnTimeseries" styleName='{myStyle.myLabel}'>Catching annotations events</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>TreeMap controller</g:Label>
-					<g:Label ui:field="treemapUSpopulation" styleName='{myStyle.myLabel}'>US population chart</g:Label>
-					<g:Label ui:field="treemapGrouping" styleName='{myStyle.myLabel}'>Grouping data</g:Label>
+					<g:Label ui:field="treemapUSpopulation" styleName='{myStyle.myLabel}'>Groups</g:Label>
+					<g:Label ui:field="treemapGrouping" styleName='{myStyle.myLabel}'>Grouping data at runtime</g:Label>
 					<g:Label ui:field="treemapDividers" styleName='{myStyle.myLabel}'>Applying dividers</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
