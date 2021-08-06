@@ -170,7 +170,7 @@ public class Charba_Showcase implements EntryPoint {
 			
 			@Override
 			public boolean onClick(DataLabelsContext context) {
-				new Toast("Click!", Toast.Level.WARNING, "Test on DATALABELS click").show();
+				new Toast("Click!", "Test on DATALABELS click").show();
 				return true;
 			}
 		});

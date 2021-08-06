@@ -15,7 +15,6 @@
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
 					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:CheckBox ui:field="useElement" checked="true">Use HTML element</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{myImages.github}' />
 					</g:PushButton>

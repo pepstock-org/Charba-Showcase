@@ -3,10 +3,8 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
-import org.pepstock.charba.client.commons.JsHelper;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
-import org.pepstock.charba.client.dom.BaseHtmlElement;
 import org.pepstock.charba.client.dom.BaseNativeEvent;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Img;
@@ -23,13 +21,11 @@ import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class HTMLAnnnotationByElementCase extends BaseComposite {
@@ -43,8 +39,6 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 	BarChartWidget chart;
 
 	BarDataset dataset;
-
-	boolean useElement = true;
 
 	double imgX = 0;
 
@@ -114,24 +108,14 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 					+ "					<tr>" + "					  <td style=\"vertical-align: top;\" align=\"left\">" + "					    <div>This is a description of issue 26</div>" + "				      </td>" + "					</tr>"
 					+ "			      </tbody>" + "				</table>" + "			  </div>" + "			</div>";
 
-			final Toast toast = new Toast("Issue 26", "This is a description of issue 26");
-
 			@Override
 			public void onAfterDraw(IsChart chart) {
-				Element element = toast.getElement();
-
 				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				DatasetItem item = chart.getDatasetItem(0);
 				DatasetElement elem = item.getElements().get(3);
 
-				Img img;
-				if (useElement) {
-					BaseHtmlElement el = JsHelper.get().cast(element);
-					img = AnnotationBuilder.build(el, 300, 48);
-				} else {
-					img = AnnotationBuilder.build(ANNOTATION, 300, 64);
-				}
+				Img img =  AnnotationBuilder.build(ANNOTATION, 300, 64);
 
 				double x = elem.getX() - (elem.getWidth() / 2);
 				double y = elem.getY() - img.getHeight() - 10;
@@ -162,12 +146,6 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 			}
 		}
 		dataset.setBackgroundColor(colors);
-		chart.update();
-	}
-
-	@UiHandler("useElement")
-	protected void handleUseElement(ClickEvent event) {
-		useElement = ((CheckBox) event.getSource()).getValue();
 		chart.update();
 	}
 
