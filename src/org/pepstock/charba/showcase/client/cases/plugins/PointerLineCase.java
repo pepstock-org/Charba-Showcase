@@ -17,6 +17,8 @@ import org.pepstock.charba.client.events.AxisClickEvent;
 import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
+import org.pepstock.charba.client.events.SubtitleClickEvent;
+import org.pepstock.charba.client.events.SubtitleClickEventHandler;
 import org.pepstock.charba.client.events.TitleClickEvent;
 import org.pepstock.charba.client.events.TitleClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -60,6 +62,9 @@ public class PointerLineCase extends BaseComposite {
 	CheckBox title;
 
 	@UiField
+	CheckBox subtitle;
+
+	@UiField
 	CheckBox axes;
 
 	private final ChartPointerOptions options = new ChartPointerOptions();
@@ -83,6 +88,8 @@ public class PointerLineCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Setting cursors on line chart");
+		chart.getOptions().getSubtitle().setDisplay(true);
+		chart.getOptions().getSubtitle().setText("Subtitle: setting cursors on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);
@@ -165,6 +172,24 @@ public class PointerLineCase extends BaseComposite {
 			}
 		}, TitleClickEvent.TYPE);
 
+		chart.addHandler(new SubtitleClickEventHandler() {
+
+			@Override
+			public void onClick(SubtitleClickEvent event) {
+				IsChart chart = (IsChart) event.getSource();
+				List<String> values = chart.getOptions().getTitle().getText();
+				StringBuilder title = new StringBuilder();
+				if (!values.isEmpty()) {
+					for (String value : values) {
+						title.append(value).append(" ");
+					}
+				}
+				StringBuilder sb = new StringBuilder();
+				sb.append("Subtitle: <b>").append(title.toString()).append("</b><br>");
+				new Toast("Subtitle Selected!", sb.toString()).show();
+			}
+		}, SubtitleClickEvent.TYPE);
+
 		chart.addHandler(new AxisClickEventHandler() {
 
 			@Override
@@ -196,11 +221,12 @@ public class PointerLineCase extends BaseComposite {
 		chart.reconfigure(UpdateConfigurationBuilder.create().setDuration(1000).build());
 	}
 
-	@UiHandler(value = { "dataset", "legend", "title", "axes" })
+	@UiHandler(value = { "dataset", "legend", "title", "subtitle", "axes" })
 	protected void handleElement(ClickEvent event) {
 		checkElement(dataset, PointerElement.DATASET);
 		checkElement(legend, PointerElement.LEGEND);
 		checkElement(title, PointerElement.TITLE);
+		checkElement(subtitle, PointerElement.SUBTITLE);
 		checkElement(axes, PointerElement.AXES);
 		options.setElements(elements.toArray(new PointerElement[0]));
 		chart.getOptions().getPlugins().setOptions(ChartPointer.ID, options);

@@ -109,6 +109,7 @@
 					<g:Label ui:field="legendClickEvent" styleName='{myStyle.myLabel}'>Legend click events</g:Label>
 					<g:Label ui:field="legendHoverAndLeaveEvent" styleName='{myStyle.myLabel}'>Legend hover and leave events</g:Label>
 					<g:Label ui:field="titleEvents" styleName='{myStyle.myLabel}'>Title events</g:Label>
+					<g:Label ui:field="subtitleEvents" styleName='{myStyle.myLabel}'>Subtitle events</g:Label>
 					<g:Label ui:field="axesEvents" styleName='{myStyle.myLabel}'>Axes events</g:Label>
 				</g:VerticalPanel>
 			</g:cell>

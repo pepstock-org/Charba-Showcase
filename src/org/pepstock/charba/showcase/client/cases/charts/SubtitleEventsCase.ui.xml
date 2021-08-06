@@ -1,7 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets">
+	xmlns:c="urn:import:org.pepstock.charba.client.gwt.widgets"
+	xmlns:s="urn:import:org.pepstock.charba.showcase.client.cases.commons">
 
 	<ui:with field="myImages"
 		type="org.pepstock.charba.showcase.client.resources.Images" />
@@ -14,18 +15,14 @@
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
-					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:Label>Cursor style:</g:Label>
-					<g:ListBox ui:field="cursor"/>
-					<g:CheckBox ui:field="dataset" checked="true">Dataset</g:CheckBox>
-					<g:CheckBox ui:field="legend" checked="true">Legend</g:CheckBox>
-					<g:CheckBox ui:field="title" checked="true">Title</g:CheckBox>
-					<g:CheckBox ui:field="subtitle" checked="true">Subtitle</g:CheckBox>
-					<g:CheckBox ui:field="axes" checked="true">Axes</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
 				</g:HorizontalPanel>
+			</g:cell>
+			<g:cell width="10%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<s:LogView ui:field="mylog" width="40%" height="100%"/>
 			</g:cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>

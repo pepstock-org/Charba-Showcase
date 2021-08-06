@@ -27,6 +27,7 @@ import org.pepstock.charba.showcase.client.cases.charts.StackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedGroupBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedLineCase;
+import org.pepstock.charba.showcase.client.cases.charts.SubtitleEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByLineCase;
@@ -269,6 +270,12 @@ public class ChartsView extends AbstractView {
 		content.add(new TitleEventsCase());
 	}
 
+	@UiHandler("subtitleEvents")
+	protected void handleSubtitlevents(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SubtitleEventsCase());
+	}
+	
 	@UiHandler("axesEvents")
 	protected void handleAxesClickEvents(ClickEvent event) {
 		clearPreviousChart();
