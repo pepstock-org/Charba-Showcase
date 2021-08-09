@@ -1,7 +1,8 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.commons.ArrayListHelper;
@@ -109,7 +110,7 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		Property whatProperty = Property.valueOf(what);
 		dataset1.setKey(whatProperty);
 		
-		List<Key> groups = new LinkedList<>();
+		Set<Key> groups = new HashSet<>();
 		if (region.getValue()) {
 			groups.add(Property.REGION);
 		}
@@ -124,6 +125,7 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		}
 		dataset1.setGroups(groups);
 		dataset1.setRtl(rtl.getValue());
+		
 		chart.update();
 	}
 
