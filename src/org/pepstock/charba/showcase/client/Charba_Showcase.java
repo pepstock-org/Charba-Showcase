@@ -193,7 +193,7 @@ public class Charba_Showcase implements EntryPoint {
 				view.setGallery(gallery);
 			}
 		});
-		
+
 	}
 
 }
