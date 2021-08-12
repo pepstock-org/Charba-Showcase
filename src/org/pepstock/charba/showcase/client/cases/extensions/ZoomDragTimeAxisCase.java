@@ -51,9 +51,6 @@ public class ZoomDragTimeAxisCase extends BaseComposite {
 
 	private static final int AMOUNT_OF_POINTS = 500;
 	
-	private static final String CSS = "background: linear-gradient(180deg,#eee,#fff); background-color: rgba(0, 0, 0, 0); background-color: #eee; border: 1px solid #cdd5d7; border-radius: 6px; box-shadow: 0 1px 2px 1px #cdd5d7; " +
-	"font-family: consolas,courier,monospace; font-size: .9rem; font-weight: 700; line-height: 1; margin: 3px; padding: 4px 6px; white-space: nowrap;";
-
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
 	interface ViewUiBinder extends UiBinder<Widget, ZoomDragTimeAxisCase> {
@@ -146,7 +143,7 @@ public class ZoomDragTimeAxisCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 		
-		HTML html = new HTML("Press <kbd style=\""+CSS+"\">Alt</kbd> to pan");
+		HTML html = new HTML("Press "+ModifierKey.ALT.getElement().getInnerHTML()+" to pan");
 		help.add(html);
 	}
 

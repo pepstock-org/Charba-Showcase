@@ -52,6 +52,7 @@
 					<g:Label ui:field="miscellaneousActiveElements" styleName='{myStyle.myLabel}'>Active elements on bar chart</g:Label>
 					<g:Label ui:field="miscellaneousTrendAndForecasetOnTimeseries" styleName='{myStyle.myLabel}'>Drawing trend and forecast on timeseries chart</g:Label>
 					<g:Label ui:field="miscellaneousAutoUpdateLine" styleName='{myStyle.myLabel}'>Auto updating on timeseries chart</g:Label>
+					<g:Label ui:field="miscellaneousModifierKey" styleName='{myStyle.myLabel}'>Selecting dataset with a modifier key</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

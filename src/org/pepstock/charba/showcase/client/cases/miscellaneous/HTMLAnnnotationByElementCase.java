@@ -6,7 +6,9 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.dom.BaseNativeEvent;
+import org.pepstock.charba.client.dom.DOMBuilder;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
+import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.InteractionMode;
@@ -114,8 +116,9 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 
 				DatasetItem item = chart.getDatasetItem(0);
 				DatasetElement elem = item.getElements().get(3);
-
-				Img img =  AnnotationBuilder.build(ANNOTATION, 300, 64);
+				Div tempDiv = DOMBuilder.get().createDivElement();
+				tempDiv.setInnerHTML(ANNOTATION);
+				Img img =  AnnotationBuilder.build(tempDiv, 300, 64);
 
 				double x = elem.getX() - (elem.getWidth() / 2);
 				double y = elem.getY() - img.getHeight() - 10;

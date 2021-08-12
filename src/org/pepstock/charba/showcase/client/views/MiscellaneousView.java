@@ -17,6 +17,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksRadarCas
 import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksWithThresholdBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.DatasetSelectionWithModifierCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataDataLabelsCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataOnBarCase;
@@ -120,7 +121,13 @@ public class MiscellaneousView extends AbstractView {
 		clearPreviousChart();
 		content.add(new AutoUpdateLineCase());
 	}
-	
+
+	@UiHandler("miscellaneousModifierKey")
+	protected void handleMiscellaneousModifierKey(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new DatasetSelectionWithModifierCase());
+	}
+
 	// ----------------------------------------------
 	// plugins
 	// ----------------------------------------------
