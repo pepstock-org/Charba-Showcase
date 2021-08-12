@@ -85,7 +85,7 @@ public class DatasetSelectionWithModifierCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		HTML html = new HTML("Press "+ModifierKey.ALT.getElement().getInnerHTML()+" + click to select");
+		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + click to select");
 		help.add(html);
 
 	}
