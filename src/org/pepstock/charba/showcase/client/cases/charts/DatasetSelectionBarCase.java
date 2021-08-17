@@ -60,6 +60,7 @@ public class DatasetSelectionBarCase extends BaseComposite {
 					sb.append("Value: <b>").append(labels.getStrings(event.getItem().getIndex()).get(0)).append("</b><br>");
 					new Toast("Dataset Selected!", sb.toString()).show();
 				}
+			
 			}
 		}, DatasetSelectionEvent.TYPE);
 

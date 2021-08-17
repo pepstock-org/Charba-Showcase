@@ -14,8 +14,6 @@ import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.listeners.ClickCallback;
 import org.pepstock.charba.client.annotation.listeners.DoubleClickCallback;
-import org.pepstock.charba.client.annotation.listeners.EnterCallback;
-import org.pepstock.charba.client.annotation.listeners.LeaveCallback;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -29,13 +27,13 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
+import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
@@ -46,9 +44,11 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
+public class AnnotationsEventsWithModifierKey extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
@@ -58,25 +58,25 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, AnnotationsEventsOnTimeSeriesCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationsEventsWithModifierKey> {
 	}
 
 	@UiField
 	TimeSeriesLineChartWidget chart;
 
 	@UiField
-	LogView mylog;
+	HTMLPanel help;
 
 	final MyEventsHandler eventHandler = new MyEventsHandler();
 
-	public AnnotationsEventsOnTimeSeriesCase() {
+	public AnnotationsEventsWithModifierKey() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Annotations events on timeseries line chart");
+		chart.getOptions().getTitle().setText("Annotations events with modifier key on timeseries line chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -149,8 +149,6 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
-		line.setEnterCallback(eventHandler);
-		line.setLeaveCallback(eventHandler);
 		line.setClickCallback(eventHandler);
 		line.setDoubleClickCallback(eventHandler);
 
@@ -167,14 +165,15 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		box.setBackgroundColor("rgba(101, 33, 171, 0.5)");
 		box.setBorderColor("rgb(101, 33, 171)");
 		box.setBorderWidth(1);
-		box.setEnterCallback(eventHandler);
-		box.setLeaveCallback(eventHandler);
 		box.setClickCallback(eventHandler);
 		box.setDoubleClickCallback(eventHandler);
 		
 		options.setAnnotations(line, box);
 		
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
+		
+		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + "+ClickType.CLICK.getTitle()+"/"+ClickType.DOUBLE_CLICK.getTitle()+" to select annotation");
+		help.add(html);
 
 	}
 
@@ -194,17 +193,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	class MyEventsHandler implements ClickCallback,  DoubleClickCallback,  LeaveCallback, EnterCallback {
-
-		@Override
-		public void onEnter(IsChart chart, AbstractAnnotation annotation, ChartEventContext event) {
-			mylog.addLogEvent("> Enter on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
-		}
-
-		@Override
-		public void onLeave(IsChart chart, AbstractAnnotation annotation, ChartEventContext event) {
-			mylog.addLogEvent("> Leave on annotation '"+annotation.getId().value()+"' type " + annotation.getType());
-		}
+	class MyEventsHandler implements ClickCallback,  DoubleClickCallback {
 
 		@Override
 		public void onDoubleClick(IsChart chart, AbstractAnnotation annotation, ChartEventContext event) {
@@ -217,6 +206,10 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		}
 		
 		private void click(IsChart chart, AbstractAnnotation annotation, ChartEventContext event, ClickType type) {
+			if (!ModifierKey.ALT.isPressed(event)) {
+				new Toast("Missing key!", "To select the annotation you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + "+type.getType()+"! ", "warning").show();
+				return;
+			}
 			StringBuilder sb = new StringBuilder();
 			sb.append("Annotation: <b>").append(annotation.getId().value()).append("</b><br>");
 			sb.append("Annotation type: <b>").append(annotation.getType().value()).append("</b><br>");
@@ -228,16 +221,23 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	private enum ClickType
 	{
 
-		CLICK("Click", "success"),
-		DOUBLE_CLICK("Double click", "info");
+		CLICK("click", "Click", "success"),
+		DOUBLE_CLICK("dblClick", "Double click", "info");
+
+		private final String type;
 
 		private final String title;
 
 		private final String level;
 
-		private ClickType(String title, String level) {
+		private ClickType(String type, String title, String level) {
+			this.type = type;
 			this.title = title;
 			this.level = level;
+		}
+
+		private String getType() {
+			return type;
 		}
 
 		private String getTitle() {

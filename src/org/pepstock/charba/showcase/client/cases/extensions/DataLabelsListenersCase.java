@@ -11,15 +11,16 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.dom.DOMBuilder;
 import org.pepstock.charba.client.enums.DefaultPluginId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.Weight;
+import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.callbacks.DataLabelsPointerHandler;
@@ -177,24 +178,24 @@ public class DataLabelsListenersCase extends BaseComposite {
 		}
 
 		@Override
-		public boolean onLeave(DataLabelsContext context) {
-			super.onLeave(context);
+		public boolean onLeave(DataLabelsContext context, ChartEventContext event) {
+			super.onLeave(context, event);
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 			mylog.addLogEvent("> LEAVE: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getDataIndex() + ", value(" + ds.getData().get(context.getDataIndex()) + ")");
 			return true;
 		}
 
 		@Override
-		public boolean onEnter(DataLabelsContext context) {
-			super.onEnter(context);
+		public boolean onEnter(DataLabelsContext context, ChartEventContext event) {
+			super.onEnter(context, event);
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 			mylog.addLogEvent("> ENTER: Dataset index: " + context.getDatasetIndex() + ", data index: " + context.getDataIndex() + ", value(" + ds.getData().get(context.getDataIndex()) + ")");
 			return true;
 		}
 
 		@Override
-		public boolean onClick(DataLabelsContext context) {
-			super.onClick(context);
+		public boolean onClick(DataLabelsContext context, ChartEventContext event) {
+			super.onClick(context, event);
 			LineDataset ds = (LineDataset) chart.getData().getDatasets().get(context.getDatasetIndex());
 			Labels labels = chart.getData().getLabels();
 			List<Dataset> datasets = chart.getData().getDatasets();

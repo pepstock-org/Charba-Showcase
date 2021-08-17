@@ -17,7 +17,9 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.events.ClickEventHandler;
 import org.pepstock.charba.client.enums.DefaultPluginId;
+import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.Weight;
+import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
@@ -28,6 +30,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DataLabelsSelectionCase extends BaseComposite {
@@ -39,6 +44,12 @@ public class DataLabelsSelectionCase extends BaseComposite {
 
 	@UiField
 	LineChartWidget chart;
+	
+	@UiField
+	CheckBox modifier;
+	
+	@UiField
+	HTMLPanel help;
 
 	final Map<Integer, SelectionItem> items = new HashMap<>();
 
@@ -145,7 +156,11 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		option.getListeners().setClickEventHandler(new ClickEventHandler() {
 
 			@Override
-			public boolean onClick(DataLabelsContext context) {
+			public boolean onClick(DataLabelsContext context, ChartEventContext event) {
+				if (modifier.getValue() && !ModifierKey.CTRL.isPressed(event)) {
+					new Toast("Missing key!", "To select the label you must press "+ModifierKey.CTRL.getElement().getInnerHTML()+" + click! ", "warning").show();
+					return true;
+				}
 				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();
 				if (items.containsKey(key)) {
 					items.remove(key);
@@ -165,6 +180,9 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		});
 
 		chart.getOptions().getPlugins().setOptions(DataLabelsPlugin.ID, option);
+		
+		HTML html = new HTML("Press " + ModifierKey.CTRL.getElement().getInnerHTML() + " + click to select");
+		help.add(html);
 
 	}
 
@@ -188,6 +206,11 @@ public class DataLabelsSelectionCase extends BaseComposite {
 		removeData(chart);
 	}
 
+	@UiHandler("modifier")
+	protected void handleModifier(ClickEvent event) {
+		help.setVisible(modifier.getValue());
+	}
+	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

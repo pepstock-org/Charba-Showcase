@@ -8,6 +8,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTime
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationObliqueLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationPointsOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsOnTimeSeriesCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsWithModifierKey;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsOnCombinedCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsBubbleCase;
@@ -398,7 +399,13 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new AnnotationsEventsOnTimeSeriesCase());
 	}
-
+	
+	@UiHandler("annotationsEventsWithModifier")
+	protected void handleAnnotationsEventsWithModifier(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationsEventsWithModifierKey());
+	}
+	
 	@UiHandler("annotationEllipseOnLine")
 	protected void handleAnnotationEllipseOnLine(ClickEvent event) {
 		clearPreviousChart();
