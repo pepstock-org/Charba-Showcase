@@ -18,6 +18,7 @@ import org.pepstock.charba.showcase.client.cases.charts.HorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.LegendClickEventCase;
 import org.pepstock.charba.showcase.client.cases.charts.LegendHoverAndLeaveEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.LineCase;
+import org.pepstock.charba.showcase.client.cases.charts.MatrixCase;
 import org.pepstock.charba.showcase.client.cases.charts.MeterCase;
 import org.pepstock.charba.showcase.client.cases.charts.PieCase;
 import org.pepstock.charba.showcase.client.cases.charts.PolarAreaCase;
@@ -199,6 +200,12 @@ public class ChartsView extends AbstractView {
 		content.add(new TreeMapCase());
 	}
 
+	@UiHandler("matrix")
+	protected void handleMatrix(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixCase());
+	}
+
 	@UiHandler("choroplethEarth")
 	protected void handleChoropleth(ClickEvent event) {
 		clearPreviousChart();
@@ -318,6 +325,8 @@ public class ChartsView extends AbstractView {
 				handleBubbleMapUS(null);
 			} else if ("treemap".equalsIgnoreCase(gallery)) {
 				handleTreeMap(null);
+			} else if ("matrix".equalsIgnoreCase(gallery)) {
+				handleMatrix(null);
 			}
 		}
 	}

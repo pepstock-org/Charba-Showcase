@@ -42,6 +42,10 @@ import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingImageRend
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingLabelRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingPercentageRenderCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsUsingValueRenderCase;
+import org.pepstock.charba.showcase.client.cases.extensions.MatrixCalendarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.MatrixClickEventCase;
+import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnCategoryAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnTimeAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
@@ -455,4 +459,35 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TreeMapClickEventCase());
 	}
+
+	// ----------------------------------------------
+	// Treemap
+	// ----------------------------------------------
+
+	@UiHandler("matrixCalendar")
+	protected void handleMatrixCalendar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixCalendarCase());
+	}
+
+	@UiHandler("matrixOnTimeAxis")
+	protected void handleMatrixOnTimeAxis(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixOnTimeAxisCase());
+	}
+	
+	@UiHandler("matrixOnCategoryAxis")
+	protected void handleMatrixOnCategoryAxis(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixOnCategoryAxisCase());
+	}
+
+	@UiHandler("matrixClick")
+	protected void handleMatrixClicking(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixClickEventCase());
+	}
+
+	
+	
 }

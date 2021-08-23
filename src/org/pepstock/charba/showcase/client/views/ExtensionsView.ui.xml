@@ -120,7 +120,13 @@
 					<g:Label ui:field="treemapUSpopulation" styleName='{myStyle.myLabel}'>Groups</g:Label>
 					<g:Label ui:field="treemapGrouping" styleName='{myStyle.myLabel}'>Grouping data at runtime</g:Label>
 					<g:Label ui:field="treemapDividers" styleName='{myStyle.myLabel}'>Applying dividers</g:Label>
-					<g:Label ui:field="treemapClick" styleName='{myStyle.myLabel}'>Selecting item</g:Label>
+					<g:Label ui:field="treemapClick" styleName='{myStyle.myLabel}'>Selecting treemap item</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Matrix controller</g:Label>
+					<g:Label ui:field="matrixCalendar" styleName='{myStyle.myLabel}'>Calendar</g:Label>
+					<g:Label ui:field="matrixOnTimeAxis" styleName='{myStyle.myLabel}'>Using time axis</g:Label>
+					<g:Label ui:field="matrixOnCategoryAxis" styleName='{myStyle.myLabel}'>Using category axis</g:Label>
+					<g:Label ui:field="matrixClick" styleName='{myStyle.myLabel}'>Selecting matrix item</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>
