@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>org.pepstock</groupId>
 			<artifactId>charba</artifactId>
-			<version>4.1-gwt</version>
+			<version>4.2-gwt</version>
 		</dependency>
 	</dependencies>
 
