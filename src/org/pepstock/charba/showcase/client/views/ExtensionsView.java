@@ -46,6 +46,10 @@ import org.pepstock.charba.showcase.client.cases.extensions.MatrixCalendarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnCategoryAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnTimeAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyBasicCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyClickCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyCountriesCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyEnergyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
@@ -461,7 +465,7 @@ public class ExtensionsView extends AbstractView {
 	}
 
 	// ----------------------------------------------
-	// Treemap
+	// Matrix
 	// ----------------------------------------------
 
 	@UiHandler("matrixCalendar")
@@ -487,7 +491,33 @@ public class ExtensionsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new MatrixClickEventCase());
 	}
+	
+	// ----------------------------------------------
+	// Matrix
+	// ----------------------------------------------
 
+	@UiHandler("sankeyEnergy")
+	protected void handleSankeyEnergy(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyEnergyCase());
+	}
 	
-	
+	@UiHandler("sankeyCountries")
+	protected void handleSankeyCountries(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyCountriesCase());
+	}
+
+	@UiHandler("sankeyBasic")
+	protected void handleSankeyBasic(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyBasicCase());
+	}
+
+	@UiHandler("sankeyClick")
+	protected void handleSankeyClick(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyClickCase());
+	}
+
 }

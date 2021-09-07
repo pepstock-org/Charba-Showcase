@@ -68,7 +68,7 @@ public class MatrixClickEventCase extends BaseComposite {
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Calendar by a matrix chart");
+		chart.getOptions().getTitle().setText("Clicking on a matrix chart");
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new TooltipTitleCallback() {
 
 			@Override

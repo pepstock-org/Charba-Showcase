@@ -91,6 +91,7 @@
 					<g:Label ui:field="gauge" styleName='{myStyle.myLabel}'>Gauge</g:Label>
 					<g:Label ui:field="treemap" styleName='{myStyle.myLabel}'>TreeMap</g:Label>
 					<g:Label ui:field="matrix" styleName='{myStyle.myLabel}'>Matrix</g:Label>
+					<g:Label ui:field="sankey" styleName='{myStyle.myLabel}'>Sankey</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Geographic map charts</g:Label>
 					<g:Label ui:field="choroplethEarth" styleName='{myStyle.myLabel}'>Earth choropleth</g:Label>

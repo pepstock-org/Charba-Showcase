@@ -32,4 +32,16 @@ public interface MyResources extends ClientBundle {
 	@Source("topojson/us-capitals.data")
 	TextResource dataUSCapitals();
 
+	@Source("data/sankey-energy-category.json")
+	TextResource energyCategory();
+
+	@Source("data/sankey-energy-data.json")
+	TextResource energyData();
+
+	@Source("data/sankey-energy-data2.json")
+	TextResource energyData2();
+
+	@Source("data/sankey-countries-data.json")
+	TextResource countriesData();
+
 }

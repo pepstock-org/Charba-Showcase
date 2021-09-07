@@ -23,6 +23,7 @@ import org.pepstock.charba.showcase.client.cases.charts.MeterCase;
 import org.pepstock.charba.showcase.client.cases.charts.PieCase;
 import org.pepstock.charba.showcase.client.cases.charts.PolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.RadarCase;
+import org.pepstock.charba.showcase.client.cases.charts.SankeyCase;
 import org.pepstock.charba.showcase.client.cases.charts.ScatterCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedBarCase;
@@ -206,6 +207,12 @@ public class ChartsView extends AbstractView {
 		content.add(new MatrixCase());
 	}
 
+	@UiHandler("sankey")
+	protected void handleSankey(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyCase());
+	}
+
 	@UiHandler("choroplethEarth")
 	protected void handleChoropleth(ClickEvent event) {
 		clearPreviousChart();
@@ -327,6 +334,10 @@ public class ChartsView extends AbstractView {
 				handleTreeMap(null);
 			} else if ("matrix".equalsIgnoreCase(gallery)) {
 				handleMatrix(null);
+			} else if ("sankey".equalsIgnoreCase(gallery)) {
+				handleSankey(null);
+			} else if ("area".equalsIgnoreCase(gallery)) {
+				handleStackedArea(null);
 			}
 		}
 	}
