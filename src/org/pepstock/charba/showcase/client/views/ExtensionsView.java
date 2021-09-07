@@ -50,6 +50,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.SankeyBasicCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyClickCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyCountriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyEnergyCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyTreeCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
@@ -512,6 +513,12 @@ public class ExtensionsView extends AbstractView {
 	protected void handleSankeyBasic(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new SankeyBasicCase());
+	}
+
+	@UiHandler("sankeyTree")
+	protected void handleSankeyTree(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyTreeCase());
 	}
 
 	@UiHandler("sankeyClick")

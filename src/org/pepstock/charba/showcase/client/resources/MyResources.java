@@ -44,4 +44,10 @@ public interface MyResources extends ClientBundle {
 	@Source("data/sankey-countries-data.json")
 	TextResource countriesData();
 
+	@Source("data/sankey-tree-data.json")
+	TextResource treeData();
+
+	@Source("data/sankey-tree-colors.json")
+	TextResource treeColors();
+
 }
