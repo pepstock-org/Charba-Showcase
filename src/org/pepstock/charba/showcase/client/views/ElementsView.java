@@ -21,6 +21,7 @@ import org.pepstock.charba.showcase.client.cases.elements.NoNumericYAxisCase;
 import org.pepstock.charba.showcase.client.cases.elements.SegmentOnLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.SegmentOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.elements.SegmentOnVerticalLineCase;
+import org.pepstock.charba.showcase.client.cases.elements.StackedAxesCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksMinMaxCase;
 import org.pepstock.charba.showcase.client.cases.elements.TicksStepSizeCase;
 import org.pepstock.charba.showcase.client.cases.elements.TitleChangeCase;
@@ -222,6 +223,12 @@ public class ElementsView extends AbstractView {
 	protected void handleLogarithmicOnScatter(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new LogarithmicAxisOnScatterCase());
+	}
+
+	@UiHandler("stackedAxes")
+	protected void handleStackedAxes(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new StackedAxesCase());
 	}
 
 	// ----------------------------------------------

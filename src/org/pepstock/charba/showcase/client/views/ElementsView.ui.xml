@@ -79,6 +79,7 @@
 					<g:Label ui:field="ticksMinMax" styleName='{myStyle.myLabel}'>Setting min/max on ticks</g:Label>
 					<g:Label ui:field="logarithmicOnLine" styleName='{myStyle.myLabel}'>Logarithmic axis on line chart</g:Label>
 					<g:Label ui:field="logarithmicOnScatter" styleName='{myStyle.myLabel}'>Logarithmic axis on scatter chart</g:Label>
+					<g:Label ui:field="stackedAxes" styleName='{myStyle.myLabel}'>Stacked axes on line chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
