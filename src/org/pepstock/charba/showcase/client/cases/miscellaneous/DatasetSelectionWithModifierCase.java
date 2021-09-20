@@ -14,6 +14,7 @@ import org.pepstock.charba.client.gwt.widgets.PieChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
+import org.pepstock.charba.client.utils.toast.enums.DefaultToastType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
@@ -53,7 +54,7 @@ public class DatasetSelectionWithModifierCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
 				if (!ModifierKey.ALT.isPressed(event)) {
-					new Toast("Missing key!", "To select the dataset you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + click! ", "warning").show();
+					new Toast("Missing key!", "To select the dataset you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + click! ", DefaultToastType.WARNING).show();
 					return;
 				}
 				IsChart chart = (IsChart) event.getSource();

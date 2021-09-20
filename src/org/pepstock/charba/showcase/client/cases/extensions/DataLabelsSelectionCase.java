@@ -21,6 +21,7 @@ import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.utils.toast.enums.DefaultToastType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
@@ -158,7 +159,7 @@ public class DataLabelsSelectionCase extends BaseComposite {
 			@Override
 			public boolean onClick(DataLabelsContext context, ChartEventContext event) {
 				if (modifier.getValue() && !ModifierKey.CTRL.isPressed(event)) {
-					new Toast("Missing key!", "To select the label you must press "+ModifierKey.CTRL.getElement().getInnerHTML()+" + click! ", "warning").show();
+					new Toast("Missing key!", "To select the label you must press "+ModifierKey.CTRL.getElement().getInnerHTML()+" + click! ", DefaultToastType.WARNING).show();
 					return true;
 				}
 				int key = context.getDatasetIndex() * 1000 + context.getDataIndex();

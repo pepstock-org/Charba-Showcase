@@ -23,6 +23,7 @@ import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
 import org.pepstock.charba.client.labels.LabelsPlugin;
 import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.client.utils.CScheduler;
+import org.pepstock.charba.client.utils.toast.Toaster;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
@@ -176,6 +177,9 @@ public class Charba_Showcase implements EntryPoint {
 			}
 		});
 		dataLabelsOption.store();
+		
+		Toaster.get().getDefaults().setTimeout(3000);
+		Toaster.get().setMaxHistoryItems(10);
 		
 		MainView view = new MainView();
 

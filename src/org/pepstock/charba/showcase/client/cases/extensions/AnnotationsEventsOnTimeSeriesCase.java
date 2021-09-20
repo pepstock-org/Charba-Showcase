@@ -34,6 +34,7 @@ import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.utils.toast.enums.DefaultToastType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.LogView;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
@@ -228,14 +229,14 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	private enum ClickType
 	{
 
-		CLICK("Click", "success"),
-		DOUBLE_CLICK("Double click", "info");
+		CLICK("Click", DefaultToastType.SUCCESS),
+		DOUBLE_CLICK("Double click", DefaultToastType.INFO);
 
 		private final String title;
 
-		private final String level;
+		private final DefaultToastType level;
 
-		private ClickType(String title, String level) {
+		private ClickType(String title, DefaultToastType level) {
 			this.title = title;
 			this.level = level;
 		}
@@ -244,7 +245,7 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 			return title;
 		}
 
-		private String getLevel() {
+		private DefaultToastType getLevel() {
 			return level;
 		}
 

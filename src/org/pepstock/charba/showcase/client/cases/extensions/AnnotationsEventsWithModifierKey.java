@@ -33,6 +33,7 @@ import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.utils.toast.enums.DefaultToastType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
@@ -207,7 +208,7 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		
 		private void click(IsChart chart, AbstractAnnotation annotation, ChartEventContext event, ClickType type) {
 			if (!ModifierKey.ALT.isPressed(event)) {
-				new Toast("Missing key!", "To select the annotation you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + "+type.getType()+"! ", "warning").show();
+				new Toast("Missing key!", "To select the annotation you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + "+type.getType()+"! ", DefaultToastType.WARNING).show();
 				return;
 			}
 			StringBuilder sb = new StringBuilder();
@@ -221,16 +222,16 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 	private enum ClickType
 	{
 
-		CLICK("click", "Click", "success"),
-		DOUBLE_CLICK("dblClick", "Double click", "info");
+		CLICK("click", "Click", DefaultToastType.SUCCESS),
+		DOUBLE_CLICK("dblClick", "Double click", DefaultToastType.INFO);
 
 		private final String type;
 
 		private final String title;
 
-		private final String level;
+		private final DefaultToastType level;
 
-		private ClickType(String type, String title, String level) {
+		private ClickType(String type, String title, DefaultToastType level) {
 			this.type = type;
 			this.title = title;
 			this.level = level;
@@ -244,9 +245,10 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 			return title;
 		}
 
-		private String getLevel() {
+		private DefaultToastType getLevel() {
 			return level;
 		}
 
 	}
+
 }
