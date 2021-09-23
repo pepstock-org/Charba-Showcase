@@ -81,11 +81,7 @@ public class TimeSeriesBarCase extends BaseComposite {
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
 		axis.getTime().getDisplayFormats().setDisplayFormat(TimeUnit.DAY, "d MMMM HH");
-		
 		axis.getAdapters().getDate().setZone(TimeZone.AMERICA_LOS_ANGELES);
-		
-		log(axis.toJSON());
-		
 		axis.setOffset(true);
 		
 		CartesianLinearAxis axis2 = chart.getOptions().getScales().getLinearAxis();
