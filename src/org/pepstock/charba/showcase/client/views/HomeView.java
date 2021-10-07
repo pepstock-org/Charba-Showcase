@@ -51,7 +51,7 @@ public class HomeView extends BaseComposite {
 
 	private static final double[] VALUES_GWT = { 746, 760, 763, 832, 861, 863, 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 4098, 4541, 4843};
 	
-	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2881, 2910, 2941, 2942, 3933, 4336, 4696};
+	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2881, 2910, 2941, 2942, 3933, 4336, 4697};
 
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
