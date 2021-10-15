@@ -91,7 +91,7 @@ public class StandingPluginOnLineCase extends BaseComposite {
 			@Override
 			public String onCallback(Axis axis, double value, int index, List<Double> values) {
 				List<Dataset> dss = chart.getData().getDatasets();
-				Dataset ds = dss.get(index);
+				Dataset ds = dss.get(FACTORS.length - index - 1);
 				return ds.getLabel();
 			}
 		});
