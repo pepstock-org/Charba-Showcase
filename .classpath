@@ -8,6 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.gwtplugins.gwt.eclipse.core.GWT_CONTAINER"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/charba-4.2-gwt.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/charba-5.0-gwt.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

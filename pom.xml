@@ -6,7 +6,7 @@
 
 	<groupId>org.pepstock</groupId>
 	<artifactId>charba-showcase</artifactId>
-	<version>4.2</version>
+	<version>5.0</version>
 	<packaging>jar</packaging>
 
 
@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>org.pepstock</groupId>
 			<artifactId>charba</artifactId>
-			<version>4.2-gwt</version>
+			<version>5.0-gwt</version>
 		</dependency>
 	</dependencies>
 
