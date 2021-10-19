@@ -3,6 +3,7 @@ package org.pepstock.charba.showcase.client.cases.charts;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.pepstock.charba.client.callbacks.ScaleContext;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.geo.ChoroplethDataPoint;
@@ -11,6 +12,7 @@ import org.pepstock.charba.client.geo.ColorAxis;
 import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.ProjectionAxis;
+import org.pepstock.charba.client.geo.callbacks.QuantizeCallback;
 import org.pepstock.charba.client.geo.enums.Align;
 import org.pepstock.charba.client.geo.enums.Position;
 import org.pepstock.charba.client.geo.enums.Projection;
@@ -67,7 +69,13 @@ public class GeoChoroplethUSCase extends BaseComposite {
 		axis1.setProjection(Projection.ALBERS_USA);
 		
 		ColorAxis axis2 = new ColorAxis(chart);
-		axis2.setQuantize(5);
+		axis2.setQuantize(new QuantizeCallback() {
+			
+			@Override
+			public Integer invoke(ScaleContext context) {
+				return 5;
+			}
+		});
 		axis2.getLegend().setPosition(Position.TOP_RIGHT);
 		axis2.getLegend().setAlign(Align.TOP);
 		
