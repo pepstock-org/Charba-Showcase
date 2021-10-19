@@ -88,8 +88,7 @@ public class GeoBubbleMapUSCase extends BaseComposite {
 		axis2.getLegend().setAlign(Align.RIGHT);
 		axis2.getLegend().setPosition(Position.BOTTOM_RIGHT);
 		axis2.setDisplay(true);
-		//axis2.setRange(1, 20);
-		
+
 		axis2.setRange(new RangeCallback() {
 		
 			private final List<Integer> RESULT = Arrays.asList(1, 20);
