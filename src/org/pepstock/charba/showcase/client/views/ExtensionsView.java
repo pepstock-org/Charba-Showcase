@@ -33,6 +33,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethGermany
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethItalyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethLogarithmicCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethSelectCountryCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethUSCapitalsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
@@ -285,7 +286,11 @@ public class ExtensionsView extends AbstractView {
 		content.add(new GeoBubbleMapLogarithmicCase());
 	}
 
-	
+	@UiHandler("choroplethCapitals")
+	protected void handleChoroplethCapitals(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GeoChoroplethUSCapitalsCase());
+	}
 
 	// ----------------------------------------------
 	// Zoom

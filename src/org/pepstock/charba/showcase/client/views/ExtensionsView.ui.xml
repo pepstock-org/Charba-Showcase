@@ -114,6 +114,7 @@
 					<g:Label ui:field="choroplethCustomInterpolation" styleName='{myStyle.myLabel}'>Custom interpolation</g:Label>
 					<g:Label ui:field="choroplethClick" styleName='{myStyle.myLabel}'>Select country from map</g:Label>
 					<g:Label ui:field="bubblemapDataLabels" styleName='{myStyle.myLabel}'>Using Datalabels on map</g:Label>
+					<g:Label ui:field="choroplethCapitals" styleName='{myStyle.myLabel}'>Adds capitals to the choropleth chart</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>TreeMap controller</g:Label>
 					<g:Label ui:field="treemapUSpopulation" styleName='{myStyle.myLabel}'>Groups</g:Label>
