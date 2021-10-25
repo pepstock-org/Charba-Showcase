@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -63,10 +64,10 @@ public class MatrixCase extends BaseComposite {
 		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
 
 			@Override
-			public String onLabel(IsChart chart, TooltipItem item) {
+			public List<String> onLabel(IsChart chart, TooltipItem item) {
 				MatrixDataset dataset = (MatrixDataset)chart.getData().retrieveDataset(item);
 				MatrixDataPoint v = dataset.getDataPoints().get(item.getDataIndex());
-	            return "x: " + v.getX()+ ", y: " + v.getY() + ", v: " + v.getValue();
+	            return Arrays.asList("x: " + v.getX()+ ", y: " + v.getY() + ", v: " + v.getValue());
 			}
 		
 		});

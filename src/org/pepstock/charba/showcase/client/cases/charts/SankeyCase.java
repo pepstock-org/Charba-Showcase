@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.charts;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -76,10 +77,10 @@ public class SankeyCase extends BaseComposite {
 		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
 
 			@Override
-			public String onLabel(IsChart chart, TooltipItem item) {
+			public List<String> onLabel(IsChart chart, TooltipItem item) {
 				SankeyDataset dataset = (SankeyDataset) chart.getData().retrieveDataset(item);
 				SankeyDataPoint v = dataset.getDataPoints().get(item.getDataIndex());
-				return v.getFrom() + " -> " + v.getTo()+ ": "+v.getFlow();
+				return Arrays.asList(v.getFrom() + " -> " + v.getTo()+ ": "+v.getFlow());
 			}
 
 			@Override

@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
@@ -72,11 +73,11 @@ public class MatrixOnTimeAxisCase extends BaseComposite {
 		chart.getOptions().getTooltips().getCallbacks().setLabelCallback(new TooltipLabelCallback() {
 
 			@Override
-			public String onLabel(IsChart chart, TooltipItem item) {
+			public List<String> onLabel(IsChart chart, TooltipItem item) {
 				MatrixDataset dataset = (MatrixDataset) chart.getData().retrieveDataset(item);
 				MatrixDataPoint v = dataset.getDataPoints().get(item.getDataIndex());
 				Date date = v.getAttributeAsDate(DATE);
-				return adapter.format(date, "EEEE, dd MMMM yyyy") + ", v: " + v.getValue();
+				return Arrays.asList(adapter.format(date, "EEEE, dd MMMM yyyy") + ", v: " + v.getValue());
 			}
 
 		});

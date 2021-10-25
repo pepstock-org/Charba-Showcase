@@ -179,7 +179,7 @@ public class Charba_Showcase implements EntryPoint {
 		});
 		dataLabelsOption.store();
 		
-		Toaster.get().getDefaults().setTimeout(4000);
+		Toaster.get().getDefaults().setTimeout(3000);
 		Toaster.get().setMaxHistoryItems(50);
 		Toaster.get().setMaxOpenItems(4);
 		Toaster.get().setMaxOpenItemsPolicy(MaximumOpenItemsPolicy.QUEUE);
