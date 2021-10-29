@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.pepstock.charba.client.callbacks.ColorCallback;
+import org.pepstock.charba.client.callbacks.FontCallback;
 import org.pepstock.charba.client.callbacks.MeterFormatCallback;
 import org.pepstock.charba.client.colors.ColorBuilder;
 import org.pepstock.charba.client.colors.HtmlColor;
-import org.pepstock.charba.client.enums.Render;
+import org.pepstock.charba.client.data.ArcBorderRadius;
+import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.MeterChartWidget;
 import org.pepstock.charba.client.impl.charts.MeterContext;
 import org.pepstock.charba.client.impl.charts.MeterDataset;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -43,21 +46,37 @@ public class MeterCase extends BaseComposite {
 		
 		chartPercent.getOptions().getTitle().setDisplay(true);
 		chartPercent.getOptions().getTitle().setText("METER chart to represent percentage value");
-		chartPercent.getOptions().setRender(Render.PERCENTAGE);
-		chartPercent.getOptions().setFormatCallback(new MeterFormatCallback() {
+		
+		MeterDataset dataset1 = getDataset(chartPercent, "Percent", 100D);
+		
+		dataset1.getValueLabel().setPercentage(true);
+		dataset1.getValueLabel().setAutoFontSize(true);
+		dataset1.getValueLabel().setFont(new FontCallback<MeterContext>() {
 			
 			@Override
-			public String invoke(MeterContext context) {
-				return Utilities.applyPrecision(context.getValue()*100, 2)+"%";
+			public FontItem invoke(MeterContext context) {
+				FontItem item = new FontItem();
+				item.setWeight(Weight.BOLD);
+				return item;
 			}
 		});
-		chartPercent.getData().setDatasets(getDataset(chartPercent, "Percent", 100D));
+		
+		chartPercent.getData().setDatasets(dataset1);
 
 		chartValue.getOptions().getTitle().setDisplay(true);
-		chartValue.getOptions().getTitle().setText("METER chart to represent value and dataset label");
-		chartValue.getOptions().setRender(Render.VALUE_AND_LABEL);
+		chartValue.getOptions().getTitle().setText("METER chart to represent value and custom label");
+
+		MeterDataset dataset2 = getDataset(chartPercent, "memory", 2048D);
+		dataset2.getDescriptionLabel().setDisplay(true);
+		dataset2.getDescriptionLabel().setContent("RAM utilization");
+		FontItem item = new FontItem();
+		item.setFamily(chartValue.getOptions().getFont().getFamily());
+		item.setSize(14);
+		dataset2.getDescriptionLabel().setFont(item);
+		dataset2.getDescriptionLabel().setColor(chartValue.getOptions().getColor());
+		dataset2.getDescriptionLabel().setAutoFontSize(false);
 		
-		chartValue.getOptions().setFontColor(new ColorCallback<MeterContext>() {
+		dataset2.getValueLabel().setColor(new ColorCallback<MeterContext>() {
 
 			@Override
 			public Object invoke(MeterContext context) {
@@ -65,28 +84,34 @@ public class MeterCase extends BaseComposite {
 			}
 			
 		});
-		
-		chartValue.getOptions().setFormatCallback(new MeterFormatCallback() {
+		dataset2.getValueLabel().setFormatCallback(new MeterFormatCallback() {
 			
 			@Override
 			public String invoke(MeterContext context) {
 				return Utilities.applyPrecision(context.getValue(), 0)+" MB";
 			}
 		});
-		chartValue.getData().setDatasets(getDataset(chartPercent, "memory", 2048D));
+		chartValue.getData().setDatasets(dataset2);
 
 		chartValueColor.getOptions().getTitle().setDisplay(true);
 		chartValueColor.getOptions().getTitle().setText("METER chart to represent value and dataset label", "changing the color of label");
-		chartValueColor.getOptions().setRender(Render.VALUE_AND_LABEL);
-		chartValueColor.getOptions().setFormatCallback(new MeterFormatCallback() {
+
+		MeterDataset dataset3 = getDataset(chartValueColor, "Storage", 200D);
+		ArcBorderRadius radius = new ArcBorderRadius(0);
+		radius.setInnerEnd(10);
+		radius.setOuterEnd(10);
+		dataset3.setBorderRadius(radius);
+		dataset3.setColor(ColorBuilder.build(90, 173, 255));
+		dataset3.getDescriptionLabel().setDisplay(true);
+		dataset3.getValueLabel().setFormatCallback(new MeterFormatCallback() {
 			
 			@Override
 			public String invoke(MeterContext context) {
 				return Utilities.applyPrecision(context.getValue(), 0)+" GB";
 			}
 		});
-		chartValueColor.getOptions().setFontColor(ColorBuilder.build(90, 173, 255));
-		chartValueColor.getData().setDatasets(getDataset(chartValueColor, "Storage", 200D));
+		dataset3.getValueLabel().setColor(ColorBuilder.build(90, 173, 255));
+		chartValueColor.getData().setDatasets(dataset3);
 
 	}
 
