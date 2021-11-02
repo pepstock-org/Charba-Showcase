@@ -71,8 +71,7 @@ public class MeterCase extends BaseComposite {
 		dataset2.getDescriptionLabel().setContent("RAM utilization");
 		FontItem item = new FontItem();
 		item.setFamily(chartValue.getOptions().getFont().getFamily());
-		item.setSize(14);
-		dataset2.getDescriptionLabel().setFont(item);
+		dataset2.getDescriptionLabel().getFont().setSize(14);
 		dataset2.getDescriptionLabel().setColor(chartValue.getOptions().getColor());
 		dataset2.getDescriptionLabel().setAutoFontSize(false);
 		

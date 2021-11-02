@@ -12,7 +12,6 @@ import org.pepstock.charba.client.gwt.widgets.GaugeChartWidget;
 import org.pepstock.charba.client.impl.charts.DefaultThreshold;
 import org.pepstock.charba.client.impl.charts.GaugeDataset;
 import org.pepstock.charba.client.impl.charts.MeterContext;
-import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -73,9 +72,7 @@ public class GaugeCase extends BaseComposite {
 		});
 		dataset2.getValueLabel().setAnimated(true);
 		dataset2.getValueLabel().setAutoFontSize(false);
-		FontItem item = new FontItem(chartValue.getOptions().getFont());
-		item.setSize(32);
-		dataset2.getValueLabel().setFont(item);
+		dataset2.getValueLabel().getFont().setSize(32);
 		
 		dataset2.getValueLabel().setColor(new ColorCallback<MeterContext>() {
 
