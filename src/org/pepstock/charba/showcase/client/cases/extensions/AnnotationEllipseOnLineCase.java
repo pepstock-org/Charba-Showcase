@@ -63,7 +63,7 @@ public class AnnotationEllipseOnLineCase extends BaseComposite {
 
 		AnnotationOptions options = new AnnotationOptions();
 
-		EllipseAnnotation ellipse = new EllipseAnnotation();
+		EllipseAnnotation ellipse = new EllipseAnnotation("ellipse");
 		ellipse.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		ellipse.setXScaleID(DefaultScaleId.X);
 		ellipse.setYScaleID(DefaultScaleId.Y);

@@ -1,11 +1,11 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.callbacks.DatasetContext;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
-import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.ArrayListHelper;
 import org.pepstock.charba.client.commons.ArrayObject;
@@ -14,11 +14,15 @@ import org.pepstock.charba.client.commons.NativeObject;
 import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.commons.NativeObjectContainerFactory;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.enums.ContextType;
 import org.pepstock.charba.client.gwt.widgets.TreeMapChartWidget;
 import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
-import org.pepstock.charba.client.treemap.Dash;
+import org.pepstock.charba.client.treemap.TreeMapDataPoint;
 import org.pepstock.charba.client.treemap.TreeMapDataset;
+import org.pepstock.charba.client.treemap.callbacks.FormatterCallback;
+import org.pepstock.charba.client.treemap.enums.Align;
 import org.pepstock.charba.client.utils.JSON;
+import org.pepstock.charba.client.utils.Utilities;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -79,13 +83,24 @@ public class TreeMapDividersCase extends BaseComposite {
 			}
 			
 		});
-		dataset1.setDividerWidth(2, 6);
-		dataset1.setDividerDash(new Dash(2, 3));
-		dataset1.setGroupDividers(true);
-		dataset1.setColor(HtmlColor.TRANSPARENT);
+		dataset1.getDividers().setLineWidth(2);
+		dataset1.getDividers().setLineDash(2,3);
+		dataset1.getDividers().setDisplay(true);
+		dataset1.getLabels().setDisplay(true);
+		dataset1.getLabels().setAlign(Align.LEFT);
+		dataset1.getLabels().setFormatter(new FormatterCallback() {
+			
+			@Override
+			public List<String> invoke(DatasetContext context) {
+				if (ContextType.DATA.equals(context.getType())) {
+					TreeMapDataPoint point = dataset1.getDataPoints().get(context.getDataIndex());
+					return Arrays.asList("Value:", Utilities.applyPrecision(point.getValue(), 2));
+				}
+				return null;
+			}
+		});
 		
 		chart.getData().setDatasets(dataset1);
-		
 	}
 
 	@UiHandler("randomize")

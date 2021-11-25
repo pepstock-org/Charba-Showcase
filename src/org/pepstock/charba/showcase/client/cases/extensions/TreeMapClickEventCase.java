@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.callbacks.DatasetContext;
+import org.pepstock.charba.client.callbacks.FontCallback;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.commons.ArrayListHelper;
 import org.pepstock.charba.client.commons.ArrayObject;
@@ -17,6 +18,7 @@ import org.pepstock.charba.client.gwt.widgets.TreeMapChartWidget;
 import org.pepstock.charba.client.impl.plugins.ChartPointer;
 import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.client.items.Undefined;
 import org.pepstock.charba.client.treemap.TreeMapDataPoint;
 import org.pepstock.charba.client.treemap.TreeMapDataset;
@@ -125,12 +127,20 @@ public class TreeMapClickEventCase extends BaseComposite {
 
 		});
 
-		dataset1.setColor(HtmlColor.WHITE);
-		dataset1.setHoverColor("#F0B90B");
-		dataset1.getFont().setFamily("Tahoma");
-		dataset1.getFont().setSize(10);
-		dataset1.getHoverFont().setFamily("Tahoma");
-		dataset1.getHoverFont().setSize(10);
+		dataset1.getLabels().setDisplay(true);
+		dataset1.getLabels().setColor(HtmlColor.WHITE);
+		dataset1.getLabels().setHoverColor("#F0B90B");
+		dataset1.getLabels().setFont(new FontCallback<DatasetContext>() {
+			
+			private FontItem item = new FontItem();
+			
+			@Override
+			public FontItem invoke(DatasetContext context) {
+				item.setFamily("Tahoma");
+				item.setSize(10);
+				return item;
+			}
+		});
 
 		chart.getData().setDatasets(dataset1);
 

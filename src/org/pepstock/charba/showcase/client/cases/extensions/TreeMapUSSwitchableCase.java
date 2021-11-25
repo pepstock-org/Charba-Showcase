@@ -84,7 +84,8 @@ public class TreeMapUSSwitchableCase extends BaseComposite {
 		dataset1.setBorderWidth(1);
 		dataset1.setHoverBackgroundColor("rgba(220,230,220,0.5)");
 		dataset1.setBorderColor("rgba(200,200,200,1)");
-		dataset1.setColor(HtmlColor.BLACK);
+		dataset1.getLabels().setDisplay(true);
+		dataset1.getLabels().setColor(HtmlColor.BLACK);
 
 		chart.getData().setDatasets(dataset1);
 

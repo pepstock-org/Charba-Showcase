@@ -95,12 +95,19 @@ public class TreeMapUSPopulationCase extends BaseComposite {
 
 		});
 
-		dataset1.setColor(HtmlColor.WHITE);
-		dataset1.setHoverColor("#F0B90B");
-		dataset1.getFont().setFamily("Tahoma");
-		dataset1.getFont().setSize(10);
-		dataset1.getHoverFont().setFamily("Tahoma");
-		dataset1.getHoverFont().setSize(10);
+		dataset1.getCaptions().setColor(HtmlColor.WHITE);
+		dataset1.getCaptions().getFont().setFamily("Tahoma");
+		dataset1.getCaptions().getFont().setSize(15);
+		dataset1.getCaptions().getHoverFont().setFamily("Tahoma");
+		dataset1.getCaptions().getHoverFont().setSize(15);
+
+		dataset1.getLabels().setDisplay(true);
+		dataset1.getLabels().setColor(HtmlColor.WHITE);
+		dataset1.getLabels().setHoverColor("#F0B90B");
+		dataset1.getLabels().getFont().setFamily("Tahoma");
+		dataset1.getLabels().getFont().setSize(10);
+		dataset1.getLabels().getHoverFont().setFamily("Tahoma");
+		dataset1.getLabels().getHoverFont().setSize(15);
 
 		chart.getData().setDatasets(dataset1);
 
