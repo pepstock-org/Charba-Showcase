@@ -55,7 +55,7 @@ public class Charba_Showcase implements EntryPoint {
 
 	public static final Logger LOG = Logger.getLogger("charba-showcase");
 
-	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/5.0/src/";
+	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/5.1/src/";
 
 	public static boolean isDeferred = false;
 	
