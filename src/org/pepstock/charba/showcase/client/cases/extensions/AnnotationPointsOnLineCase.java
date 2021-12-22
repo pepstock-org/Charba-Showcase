@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.PointAnnotation;
+import org.pepstock.charba.client.annotation.PolygonAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
@@ -74,13 +75,14 @@ public class AnnotationPointsOnLineCase extends BaseComposite {
 		point1.setBorderWidth(2);
 		point1.setBorderColor(GwtMaterialColor.YELLOW_LIGHTEN_3.darker());
 
-		PointAnnotation point2 = new PointAnnotation();
+		PolygonAnnotation point2 = new PolygonAnnotation();
 		point2.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		point2.setXScaleID(DefaultScaleId.X);
 		point2.setYScaleID(DefaultScaleId.Y);
 		point2.setXValue("April");
 		point2.setYValue(20);
 		point2.setRadius(25);
+		point2.setSides((ctx) -> (int)getRandomDigit(3, 10));
 		point2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
 		point2.setBorderWidth(3);
 		point2.setBorderColor(GwtMaterialColor.BROWN_LIGHTEN_3.darker());
