@@ -77,11 +77,19 @@ public class MainView extends Composite {
 		}
 	}
 
-	@UiHandler(value = { "labelExtensions", "imgExtensions" })
-	protected void handleExtensions(ClickEvent event) {
+	@UiHandler(value = { "labelExtPlugins", "imgExtPlugins" })
+	protected void handleExtPlugins(ClickEvent event) {
 		if (changeSelection(event)) {
 			clearPreviousChart();
-			content.add(new ExtensionsView(content));
+			content.add(new ExtPluginsView(content));
+		}
+	}
+
+	@UiHandler(value = { "labelExtCharts", "imgExtCharts" })
+	protected void handleExtCharts(ClickEvent event) {
+		if (changeSelection(event)) {
+			clearPreviousChart();
+			content.add(new ExtChartsView(content));
 		}
 	}
 

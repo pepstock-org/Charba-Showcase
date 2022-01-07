@@ -69,7 +69,7 @@ public class ApplyingPointStylesAsCanvasOnLineCase extends BaseComposite {
 		dataset1.setData(values);
 		dataset1.setFill(Fill.FALSE);
 		dataset1.setClip(40);
-		dataset1.setPointStyle(new PointStyleCallback() {
+		dataset1.setPointStyle(new PointStyleCallback<DatasetContext>() {
 			
 			@Override
 			public Object invoke(DatasetContext context) {

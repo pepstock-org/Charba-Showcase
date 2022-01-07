@@ -6,10 +6,12 @@ import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
+import org.pepstock.charba.client.annotation.enums.LabelPosition;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
@@ -62,6 +64,11 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1);
 
+		CartesianLinearAxis axis = new CartesianLinearAxis(chart);
+		axis.setMax(120);
+		
+		chart.getOptions().getScales().setAxes(axis);
+		
 		AnnotationOptions options = new AnnotationOptions();
 
 		BoxAnnotation box1 = new BoxAnnotation();
@@ -73,6 +80,10 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box1.setBackgroundColor(GwtMaterialColor.YELLOW_LIGHTEN_3.alpha(0.3D));
 		box1.setBorderWidth(0);
 		box1.setBorderColor(HtmlColor.TRANSPARENT);
+		box1.getLabel().setDisplay(true);
+		box1.getLabel().setContent("First quarter");
+		box1.getLabel().getFont().setSize(24);
+		box1.getLabel().getPosition().setY(LabelPosition.START);
 
 		BoxAnnotation box2 = new BoxAnnotation();
 		box2.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -83,6 +94,10 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
 		box2.setBorderWidth(0);
 		box2.setBorderColor(HtmlColor.TRANSPARENT);
+		box2.getLabel().setDisplay(true);
+		box2.getLabel().setContent("Second quarter");
+		box2.getLabel().getFont().setSize(24);
+		box2.getLabel().getPosition().setY(LabelPosition.START);
 
 		BoxAnnotation box3 = new BoxAnnotation();
 		box3.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -93,6 +108,10 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box3.setBackgroundColor(GwtMaterialColor.GREEN_LIGHTEN_3.alpha(0.3D));
 		box3.setBorderWidth(0);
 		box3.setBorderColor(HtmlColor.TRANSPARENT);
+		box3.getLabel().setDisplay(true);
+		box3.getLabel().setContent("Third quarter");
+		box3.getLabel().getFont().setSize(24);
+		box3.getLabel().getPosition().setY(LabelPosition.START);
 
 		BoxAnnotation box4 = new BoxAnnotation();
 		box4.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -102,6 +121,10 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box4.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
 		box4.setBorderWidth(0);
 		box4.setBorderColor(HtmlColor.TRANSPARENT);
+		box4.getLabel().setDisplay(true);
+		box4.getLabel().setContent("Fourth quarter");
+		box4.getLabel().getFont().setSize(24);
+		box4.getLabel().getPosition().setY(LabelPosition.START);
 
 		options.setAnnotations(box1, box2, box3, box4);
 

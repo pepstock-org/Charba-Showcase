@@ -63,7 +63,7 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgPlugins" styleName="{internalStyle.myImgItem}" url="icons/showcasePlugins.png"></g:Image>
+		     		<g:Image ui:field="imgPlugins" styleName="{internalStyle.myImgItem}" url="icons/showcasePlugins.png" width="36px" height="36px"></g:Image>
 	     		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
 			     	<g:Label ui:field="labelPlugins" styleName="{internalStyle.myLabelItem}">Plugins</g:Label>
@@ -79,10 +79,18 @@
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
-		     		<g:Image ui:field="imgExtensions" styleName="{internalStyle.myImgItem}" url="icons/showcaseExtensions.png"></g:Image>
+		     		<g:Image ui:field="imgExtPlugins" styleName="{internalStyle.myImgItem}" url="icons/showcaseExtPlugins.png"></g:Image>
 	      		</g:cell>
 	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
-			     	<g:Label ui:field="labelExtensions" styleName="{internalStyle.myLabelItem}">Extensions</g:Label>
+			     	<g:Label ui:field="labelExtPlugins" styleName="{internalStyle.myLabelItem}">Ext. plugins</g:Label>
+	     		</g:cell>
+	     	</g:HorizontalPanel>
+	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">
+	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
+		     		<g:Image ui:field="imgExtCharts" styleName="{internalStyle.myImgItem}" url="icons/showcaseExtCharts.png"></g:Image>
+	      		</g:cell>
+	     		<g:cell verticalAlignment="middle" horizontalAlignment="left">
+			     	<g:Label ui:field="labelExtCharts" styleName="{internalStyle.myLabelItem}">Ext. charts</g:Label>
 	     		</g:cell>
 	     	</g:HorizontalPanel>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%" verticalAlignment="middle" horizontalAlignment="left">

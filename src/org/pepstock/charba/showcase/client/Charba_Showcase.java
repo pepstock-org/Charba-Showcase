@@ -9,11 +9,7 @@ import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.DeferredCharba;
 import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
-import org.pepstock.charba.client.datalabels.DataLabelsContext;
-import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.events.ClickEventHandler;
-import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.TopoJson;
@@ -26,7 +22,6 @@ import org.pepstock.charba.client.utils.CScheduler;
 import org.pepstock.charba.client.utils.toast.Toaster;
 import org.pepstock.charba.client.utils.toast.enums.MaximumOpenItemsPolicy;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
-import org.pepstock.charba.showcase.client.cases.commons.Toast;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyHorizontalBarController;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.MyLineChart;
 import org.pepstock.charba.showcase.client.resources.Images;
@@ -167,18 +162,6 @@ public class Charba_Showcase implements EntryPoint {
 
 		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
 		
-		DataLabelsOptions dataLabelsOption = new DataLabelsOptions();
-		dataLabelsOption.getPadding().set(4);
-		dataLabelsOption.getListeners().setClickEventHandler(new ClickEventHandler() {
-			
-			@Override
-			public boolean onClick(DataLabelsContext context, ChartEventContext event) {
-				new Toast("Click!", "Test on DATALABELS click").show();
-				return true;
-			}
-		});
-		dataLabelsOption.store();
-		
 		Toaster.get().getDefaults().setTimeout(3000);
 		Toaster.get().setMaxHistoryItems(50);
 		Toaster.get().setMaxOpenItems(4);
@@ -201,7 +184,6 @@ public class Charba_Showcase implements EntryPoint {
 				view.setGallery(gallery);
 			}
 		});
-		
 	}
 
 }
