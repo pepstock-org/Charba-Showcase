@@ -9,6 +9,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnLoga
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationObliqueLineOnTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationPointsOnLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationPolygonsOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsOnTimeSeriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsEventsWithModifierKey;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationsOnCombinedCase;
@@ -366,6 +367,12 @@ public class ExtPluginsView extends AbstractView {
 	protected void handleAnnotationsPointOnLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new AnnotationPointsOnLineCase());
+	}
+
+	@UiHandler("annotationPolygonOnLine")
+	protected void handleAnnotationsPolygonOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationPolygonsOnLineCase());
 	}
 
 	@UiHandler("annotationLabelOnLine")

@@ -113,10 +113,8 @@ public class AnnotationLabelCalloutOnLineCase extends BaseComposite {
 		label.getCallout().setDisplay(true);
 		label.getCallout().setBorderColor(calloutBordeColor);
 		label.getCallout().setBorderWidth(calloutBordeWidth);
-		
+
 		options.setAnnotations(label);
-		
-		log(options.toJSON());
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}

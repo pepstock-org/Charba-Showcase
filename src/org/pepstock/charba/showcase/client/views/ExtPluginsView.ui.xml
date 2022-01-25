@@ -13,7 +13,7 @@
 	}
 	
 	.myTitleItem::before {
-		content: 'Extensions ';
+		content: 'Plugins extensions ';
 		color: #f27173;
 		font-size: 1.5rem;
 		font-weight: 400;
@@ -105,6 +105,7 @@
 					<g:Label ui:field="annotationPointOnLine" styleName='{myStyle.myLabel}'>Point annotations on line chart</g:Label>
 					<g:Label ui:field="annotationLabelOnLine" styleName='{myStyle.myLabel}'>Label annotation on line chart</g:Label>
 					<g:Label ui:field="annotationLabelCalloutOnLine" styleName='{myStyle.myLabel}'>Label annotation with callout on line chart</g:Label>
+					<g:Label ui:field="annotationPolygonOnLine" styleName='{myStyle.myLabel}'>Polygon annotations on line chart</g:Label>
 					<g:Label ui:field="annotationObliqueLineOnTimeseries" styleName='{myStyle.myLabel}'>Oblique line annotation on timeseries chart</g:Label>
 					<g:Label ui:field="annotationsEventsOnTimeseries" styleName='{myStyle.myLabel}'>Catching annotations events</g:Label>
 					<g:Label ui:field="annotationsEventsWithModifier" styleName='{myStyle.myLabel}'>Catching annotations events with modifier key</g:Label>

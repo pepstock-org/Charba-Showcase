@@ -13,7 +13,7 @@
 	}
 	
 	.myTitleItem::before {
-		content: 'Extensions ';
+		content: 'Charts extensions ';
 		color: #f27173;
 		font-size: 1.5rem;
 		font-weight: 400;
@@ -36,7 +36,7 @@
 	</ui:style>
 
 	<g:VerticalPanel width="100%" spacing="10">
-  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> of javascript CHART.JS plugins and their integration with CHARBA</g:Label>
+  	    <g:Label styleName='{myStyle.myTitleItem}' horizontalAlignment="center"> of javascript CHART.JS controllers and their integration with CHARBA</g:Label>
 		<g:HorizontalPanel width="100%" horizontalAlignment="center">
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
 				<g:VerticalPanel horizontalAlignment="left">
