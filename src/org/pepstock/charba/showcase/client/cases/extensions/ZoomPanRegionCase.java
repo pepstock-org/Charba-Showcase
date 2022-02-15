@@ -8,7 +8,6 @@ import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.items.ChartAreaNode;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
@@ -16,6 +15,7 @@ import org.pepstock.charba.client.zoom.ZoomContext;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
 import org.pepstock.charba.client.zoom.callbacks.StartCallback;
+import org.pepstock.charba.client.zoom.enums.Mode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -98,7 +98,7 @@ public class ZoomPanRegionCase extends BaseComposite {
 				return true;
 			}
 		});
-		options.getPan().setMode(InteractionAxis.XY);
+		options.getPan().setMode(Mode.XY);
 		options.getLimits().getX().setMin(-200);
 		options.getLimits().getX().setMax(200);
 		options.getLimits().getX().setMinRange(50);

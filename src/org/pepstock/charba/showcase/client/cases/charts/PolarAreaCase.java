@@ -45,7 +45,7 @@ public class PolarAreaCase extends BaseComposite {
 		dataset.setLabel("dataset 1");
 		dataset.setBackgroundColor(getSequenceColors(months, 0.5D));
 		dataset.setData(getRandomDigits(months, false));
-
+		
 		axis = new RadialAxis(chart);
 		axis.setBeginAtZero(true);
 		axis.setReverse(false);

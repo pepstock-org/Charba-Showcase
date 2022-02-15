@@ -101,6 +101,7 @@
 					<g:Label ui:field="annotationLineOnTimeseries" styleName='{myStyle.myLabel}'>Line annotation on timeseries chart</g:Label>
 					<g:Label ui:field="annotationLineOnHorizontalBar" styleName='{myStyle.myLabel}'>Line annotation on horizontal bar chart</g:Label>
 					<g:Label ui:field="annotationLogarithmicAxisOnLine" styleName='{myStyle.myLabel}'>Line annotation on logarithmic scale</g:Label>
+					<g:Label ui:field="annotationLineAndArrowsOnTimeseries" styleName='{myStyle.myLabel}'>Line annotation with arrow heads on timeseries chart</g:Label>
 					<g:Label ui:field="annotationEllipseOnLine" styleName='{myStyle.myLabel}'>Ellipse annotation on line chart</g:Label>
 					<g:Label ui:field="annotationPointOnLine" styleName='{myStyle.myLabel}'>Point annotations on line chart</g:Label>
 					<g:Label ui:field="annotationLabelOnLine" styleName='{myStyle.myLabel}'>Label annotation on line chart</g:Label>

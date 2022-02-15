@@ -17,13 +17,13 @@ import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.DefaultTransitionKey;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
 import org.pepstock.charba.client.zoom.ScaleRange;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.client.zoom.enums.Mode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -125,8 +125,8 @@ public class ZoomTimeAxisCase extends BaseComposite {
 
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
-		options.getPan().setMode(InteractionAxis.XY);
-		options.getZoom().setMode(InteractionAxis.XY);
+		options.getPan().setMode(Mode.XY);
+		options.getZoom().setMode(Mode.XY);
 		options.getZoom().getWheel().setEnabled(true);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);

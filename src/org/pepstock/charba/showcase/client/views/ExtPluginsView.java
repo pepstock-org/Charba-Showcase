@@ -4,6 +4,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.AnnotationBoxesOnLin
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationEllipseOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLabelCalloutOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLabelOnLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineAndArrowsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnLogarithmicAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineOnTimeSeriesLineCase;
@@ -327,6 +328,12 @@ public class ExtPluginsView extends AbstractView {
 		content.add(new AnnotationLineOnTimeSeriesLineCase());
 	}
 
+	@UiHandler("annotationLineAndArrowsOnTimeseries")
+	protected void handleAnnotationTimeseriesLineAndArrows(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationLineAndArrowsCase());
+	}
+		
 	@UiHandler("annotationLineOnHorizontalBar")
 	protected void handleAnnotationLineOnHorizontalBar(ClickEvent event) {
 		clearPreviousChart();

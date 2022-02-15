@@ -9,7 +9,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.dom.enums.CursorType;
 import org.pepstock.charba.client.enums.AxisKind;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.events.AxisClickEvent;
 import org.pepstock.charba.client.events.AxisClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
@@ -18,6 +17,7 @@ import org.pepstock.charba.client.impl.plugins.ChartPointerOptions;
 import org.pepstock.charba.client.impl.plugins.enums.PointerElement;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.client.zoom.enums.Mode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -105,8 +105,8 @@ public class ZoomOverScaleCase extends BaseComposite {
 		
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
-		options.getPan().setOverScaleMode(InteractionAxis.XY);
-		options.getZoom().setOverScaleMode(InteractionAxis.XY);
+		options.getPan().setOverScaleMode(Mode.XY);
+		options.getZoom().setOverScaleMode(Mode.XY);
 		options.getZoom().getWheel().setEnabled(true);
 		options.getLimits().getX().setMin(-200);
 		options.getLimits().getX().setMax(200);

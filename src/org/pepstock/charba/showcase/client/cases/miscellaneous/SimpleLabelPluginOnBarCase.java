@@ -46,7 +46,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Simple label plugin on bar chart");
 
-		BarDataset dataset1 = chart.newDataset();
+		final BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
 		IsColor color1 = GoogleChartColor.values()[0];

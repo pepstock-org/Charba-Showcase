@@ -7,11 +7,11 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.DefaultTransitionKey;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.zoom.ScaleRange;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.client.zoom.enums.Mode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -81,7 +81,7 @@ public class ZoomApiZoomScaleCase extends BaseComposite {
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(false);
 		options.getZoom().getWheel().setEnabled(true);
-		options.getZoom().setMode(InteractionAxis.XY);
+		options.getZoom().setMode(Mode.XY);
 		
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 

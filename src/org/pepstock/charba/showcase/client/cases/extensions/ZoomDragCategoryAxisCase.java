@@ -5,12 +5,12 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.enums.InteractionAxis;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.zoom.ZoomOptions;
 import org.pepstock.charba.client.zoom.ZoomPlugin;
+import org.pepstock.charba.client.zoom.enums.Mode;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -80,9 +80,9 @@ public class ZoomDragCategoryAxisCase extends BaseComposite {
 
 		ZoomOptions options = new ZoomOptions();
 		options.getPan().setEnabled(true);
-		options.getPan().setMode(InteractionAxis.X);
+		options.getPan().setMode(Mode.X);
 		options.getPan().setModifierKey(ModifierKey.ALT);
-		options.getZoom().setMode(InteractionAxis.X);
+		options.getZoom().setMode(Mode.X);
 		options.getZoom().getWheel().setEnabled(true);
 		options.getZoom().getDrag().setEnabled(true);
 
