@@ -12,6 +12,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.ChartAreaNode;
 import org.pepstock.charba.client.items.DatasetReference;
@@ -54,11 +55,15 @@ public class TooltipPositionerCase extends BaseComposite {
 
 				@Override
 				public Point computePosition(IsChart chart, List<DatasetReference> items, Point eventPoint) {
-					ChartAreaNode area = chart.getNode().getChartArea();
-					Point p = new Point();
-					p.setX(area.getLeft());
-					p.setY(area.getTop());
-					return p;
+					Point pa = Positioner.get().invokePositioner(TooltipPosition.AVERAGE, chart, items, eventPoint);
+					if (pa != null) {
+						ChartAreaNode area = chart.getNode().getChartArea();
+						Point p = new Point();
+						p.setX(area.getLeft());
+						p.setY(pa.getY());
+						return p;
+					}
+					return null;
 				}
 			});
 		}

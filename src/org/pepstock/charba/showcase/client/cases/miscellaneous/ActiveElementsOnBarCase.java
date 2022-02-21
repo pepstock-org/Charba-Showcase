@@ -5,6 +5,7 @@ import java.util.List;
 import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.commons.IsPoint;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
@@ -133,7 +134,7 @@ public class ActiveElementsOnBarCase extends BaseComposite {
 			if (dataValue >= 0) {
 				ActiveDatasetElement active = new ActiveDatasetElement(datasetValue, dataValue);
 				chart.setActiveElements(active);
-				chart.setTooltipActiveElements(active);
+				chart.setTooltipActiveElements((IsPoint)null, active);
 			} else {
 				List<ActiveDatasetElement> active = chart.getData().createActiveElementsByDatasetIndex(datasetValue);
 				chart.setActiveElements(active);
