@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.annotation.AbstractAnnotation;
+import org.pepstock.charba.client.annotation.AnnotationContext;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
@@ -197,20 +198,21 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 	class MyEventsHandler implements ClickCallback,  DoubleClickCallback {
 
 		@Override
-		public void onDoubleClick(IsChart chart, AbstractAnnotation annotation, ChartEventContext event) {
-			click(chart, annotation, event, ClickType.DOUBLE_CLICK);
+		public void onDoubleClick(AnnotationContext context, ChartEventContext event) {
+			click(context, event, ClickType.DOUBLE_CLICK);
 		}
 
 		@Override
-		public void onClick(IsChart chart, AbstractAnnotation annotation, ChartEventContext event) {
-			click(chart, annotation, event, ClickType.CLICK);
+		public void onClick(AnnotationContext context, ChartEventContext event) {
+			click(context, event, ClickType.CLICK);
 		}
 		
-		private void click(IsChart chart, AbstractAnnotation annotation, ChartEventContext event, ClickType type) {
+		private void click(AnnotationContext context, ChartEventContext event, ClickType type) {
 			if (!ModifierKey.ALT.isPressed(event)) {
 				new Toast("Missing key!", "To select the annotation you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + "+type.getType()+"! ", DefaultToastType.WARNING).show();
 				return;
 			}
+			AbstractAnnotation annotation = context.getAnnotation();
 			StringBuilder sb = new StringBuilder();
 			sb.append("Annotation: <b>").append(annotation.getId().value()).append("</b><br>");
 			sb.append("Annotation type: <b>").append(annotation.getType().value()).append("</b><br>");

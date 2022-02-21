@@ -2,11 +2,13 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
+import org.pepstock.charba.client.annotation.AnnotationContext;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.enums.LabelPosition;
+import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -17,6 +19,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.utils.Console;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -91,7 +94,14 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box2.setYScaleID(DefaultScaleId.Y.value());
 		box2.setXMin("April");
 		box2.setXMax("July");
-		box2.setBackgroundColor(GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D));
+		box2.setBackgroundColor(new ColorCallback<AnnotationContext>() {
+			
+			@Override
+			public Object invoke(AnnotationContext context) {
+				Console.log("element?", context.getElement());
+				return GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D);
+			}
+		});
 		box2.setBorderWidth(0);
 		box2.setBorderColor(HtmlColor.TRANSPARENT);
 		box2.getLabel().setDisplay(true);

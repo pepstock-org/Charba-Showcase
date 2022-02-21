@@ -6,15 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.IsChart;
-import org.pepstock.charba.client.annotation.AbstractAnnotation;
 import org.pepstock.charba.client.annotation.AnnotationContext;
 import org.pepstock.charba.client.annotation.AnnotationOptions;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
-import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
-import org.pepstock.charba.client.annotation.listeners.ClickCallback;
-import org.pepstock.charba.client.annotation.listeners.DoubleClickCallback;
 import org.pepstock.charba.client.annotation.listeners.EnterCallback;
 import org.pepstock.charba.client.annotation.listeners.LeaveCallback;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
@@ -35,10 +31,7 @@ import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.ChartEventContext;
 import org.pepstock.charba.client.gwt.widgets.TimeSeriesLineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
-import org.pepstock.charba.client.utils.toast.enums.DefaultToastType;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.cases.commons.LogView;
-import org.pepstock.charba.showcase.client.cases.commons.Toast;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -50,7 +43,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
+public class AnnotationLineLabelOnEnter extends BaseComposite {
 
 	private static final DateTimeFormat FORMAT = DateTimeFormat.getFormat(PredefinedFormat.DATE_LONG);
 
@@ -60,25 +53,18 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, AnnotationsEventsOnTimeSeriesCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AnnotationLineLabelOnEnter> {
 	}
 
 	@UiField
 	TimeSeriesLineChartWidget chart;
 
-	@UiField
-	LogView mylog;
-
-	final MyEventsHandler eventHandler = new MyEventsHandler();
-
-	public AnnotationsEventsOnTimeSeriesCase() {
+	public AnnotationLineLabelOnEnter() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
-		chart.getOptions().setMaintainAspectRatio(true);
-		chart.getOptions().setAspectRatio(3);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Annotations events on timeseries line chart");
+		chart.getOptions().getTitle().setText("Line annotation label will be shown when annotation is hovered");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
@@ -145,36 +131,30 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 		LineAnnotation line = new LineAnnotation();
 		line.setDrawTime(DrawTime.AFTER_DATASETS_DRAW);
 		line.setScaleID(DefaultScaleId.Y.value());
-		line.setBorderColor(HtmlColor.BLACK);
-		line.setBorderWidth(5);
+		line.setBorderColor(HtmlColor.BLACK.alpha(0.5));
+		line.setBorderWidth(10);
 		line.setValue(40);
-		line.getLabel().setDisplay(true);
+		line.getLabel().setDisplay(false);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
-		line.setEnterCallback(eventHandler);
-		line.setLeaveCallback(eventHandler);
-		line.setClickCallback(eventHandler);
-		line.setDoubleClickCallback(eventHandler);
-
-		BoxAnnotation box = new BoxAnnotation();
-		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
-		box.setXScaleID(DefaultScaleId.X.value());
-		box.setYScaleID(DefaultScaleId.Y.value());
-		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4);
-		box.setXMin(new Date(time));
-		time = (long) myDate.getTime() + DAY * (int) (AMOUNT_OF_POINTS / 4 * 2);
-		box.setXMax(new Date(time));
-		box.setYMax(100);
-		box.setYMin(60);
-		box.setBackgroundColor("rgba(101, 33, 171, 0.5)");
-		box.setBorderColor("rgb(101, 33, 171)");
-		box.setBorderWidth(1);
-		box.setEnterCallback(eventHandler);
-		box.setLeaveCallback(eventHandler);
-		box.setClickCallback(eventHandler);
-		box.setDoubleClickCallback(eventHandler);
+		line.setEnterCallback(new EnterCallback() {
+			
+			@Override
+			public void onEnter(AnnotationContext context, ChartEventContext event) {
+				context.getElement().getOptions().getLabel().setDisplay(true);
+				context.getChart().draw();
+			}
+		});
+		line.setLeaveCallback(new LeaveCallback() {
+			
+			@Override
+			public void onLeave(AnnotationContext context, ChartEventContext event) {
+				context.getElement().getOptions().getLabel().setDisplay(false);
+				context.getChart().draw();
+			}
+		});
 		
-		options.setAnnotations(line, box);
+		options.setAnnotations(line);
 		
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 
@@ -194,62 +174,5 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
-	}
-
-	class MyEventsHandler implements ClickCallback,  DoubleClickCallback,  LeaveCallback, EnterCallback {
-
-		@Override
-		public void onEnter(AnnotationContext context, ChartEventContext event) {
-			mylog.addLogEvent("> Enter on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType());
-		}
-
-		@Override
-		public void onLeave(AnnotationContext context, ChartEventContext event) {
-			mylog.addLogEvent("> Leave on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType());
-		}
-
-		@Override
-		public void onDoubleClick(AnnotationContext context, ChartEventContext event) {
-			click(context, event, ClickType.DOUBLE_CLICK);
-		}
-
-		@Override
-		public void onClick(AnnotationContext context, ChartEventContext event) {
-			click(context, event, ClickType.CLICK);
-		}
-		
-		private void click(AnnotationContext context, ChartEventContext event, ClickType type) {
-			AbstractAnnotation annotation = context.getAnnotation();
-			StringBuilder sb = new StringBuilder();
-			sb.append("Annotation: <b>").append(annotation.getId().value()).append("</b><br>");
-			sb.append("Annotation type: <b>").append(annotation.getType().value()).append("</b><br>");
-			sb.append("Event type: <b>").append(event.getNativeEvent().getType()).append("</b><br>");
-			new Toast(type.getTitle()+" on annotation!", sb.toString(), type.getLevel()).show();
-		}
-	}
-	
-	private enum ClickType
-	{
-
-		CLICK("Click", DefaultToastType.SUCCESS),
-		DOUBLE_CLICK("Double click", DefaultToastType.INFO);
-
-		private final String title;
-
-		private final DefaultToastType level;
-
-		private ClickType(String title, DefaultToastType level) {
-			this.title = title;
-			this.level = level;
-		}
-
-		private String getTitle() {
-			return title;
-		}
-
-		private DefaultToastType getLevel() {
-			return level;
-		}
-
 	}
 }
