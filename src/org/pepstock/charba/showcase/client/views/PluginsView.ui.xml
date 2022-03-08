@@ -52,7 +52,7 @@
 					<g:Label ui:field="backgroundPatternOnLine" styleName='{myStyle.myLabel}'>Applying pattern on line chart</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
-					<g:Label ui:field="pointerCursorOnLine" styleName='{myStyle.myLabel}'>Setting cursor on line chart</g:Label>
+					<g:Label ui:field="pointerCursorOnLine" styleName='{myStyle.myLabel}'>Setting cursor on bar chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

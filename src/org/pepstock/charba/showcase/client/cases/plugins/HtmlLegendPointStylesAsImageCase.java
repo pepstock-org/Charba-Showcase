@@ -57,6 +57,7 @@ public class HtmlLegendPointStylesAsImageCase extends BaseComposite {
 		dataset1.setBorderColor(color1.toHex());
 		double[] values = getRandomDigits(months);
 		dataset1.setData(values);
+		dataset1.setClip(40);
 		dataset1.setFill(Fill.FALSE);
 
 		dataset1.setPointStyle(ImagesHelper.toImg(Images.INSTANCE.customPoint()));
