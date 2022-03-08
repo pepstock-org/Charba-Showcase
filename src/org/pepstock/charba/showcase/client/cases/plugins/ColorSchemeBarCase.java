@@ -82,12 +82,7 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		IsColor color1 = GoogleChartColor.values()[0];
 
-		BarBorderWidth border = new BarBorderWidth();
-		border.setTop(2);
-		border.setLeft(2);
-		border.setRight(2);
-
-		dataset1.setBorderWidth(border);
+		dataset1.setBorderWidth(2);
 
 		dataset1.setBorderColor(color1);
 		dataset1.setData(getFixedDigits(months));

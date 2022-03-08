@@ -8,7 +8,6 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.StackedAreaChartWidget;
@@ -50,7 +49,6 @@ public class StackedAreaCase extends BaseComposite {
 		dataset1.setBackgroundColor(color1.alpha(0.5D));
 		dataset1.setBorderColor(color1.toHSL());
 		dataset1.setData(getRandomDigits(months, false));
-		dataset1.setFill(Fill.ORIGIN);
 
 		LineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
@@ -60,7 +58,6 @@ public class StackedAreaCase extends BaseComposite {
 		dataset2.setBackgroundColor(color2.alpha(0.5D));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
-		dataset2.setFill(Fill.ORIGIN);
 
 		CartesianCategoryAxis axis1 = new CartesianCategoryAxis(chart);
 		axis1.setDisplay(true);
@@ -97,7 +94,6 @@ public class StackedAreaCase extends BaseComposite {
 		IsColor color = GoogleChartColor.values()[datasets.size()];
 		dataset.setBackgroundColor(color.alpha(0.5D));
 		dataset.setBorderColor(color.toHex());
-		dataset.setFill(Fill.ORIGIN);
 		dataset.setData(getRandomDigits(months, false));
 
 		datasets.add(dataset);

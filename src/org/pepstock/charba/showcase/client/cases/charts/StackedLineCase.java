@@ -9,7 +9,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.gwt.widgets.StackedAreaChartWidget;
+import org.pepstock.charba.client.gwt.widgets.StackedLineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -28,7 +28,7 @@ public class StackedLineCase extends BaseComposite {
 	}
 
 	@UiField
-	StackedAreaChartWidget chart;
+	StackedLineChartWidget chart;
 
 	public StackedLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -94,7 +94,6 @@ public class StackedLineCase extends BaseComposite {
 		dataset.setBackgroundColor(color.toHex());
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months, false));
-		dataset.setFill(false);
 
 		datasets.add(dataset);
 
