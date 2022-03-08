@@ -17,7 +17,6 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.utils.Console;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -91,8 +90,6 @@ public class AnnotationsOnCombinedCase extends BaseComposite {
 		line.getLabel().setDisplay(true);
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
-		
-		Console.log(line.toJSON());
 
 		BoxAnnotation box = new BoxAnnotation("stock123");
 		box.setDisplay(true);

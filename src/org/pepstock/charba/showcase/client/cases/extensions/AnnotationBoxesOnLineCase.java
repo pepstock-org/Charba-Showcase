@@ -19,7 +19,6 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.utils.Console;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -69,9 +68,9 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 
 		CartesianLinearAxis axis = new CartesianLinearAxis(chart);
 		axis.setMax(120);
-		
+
 		chart.getOptions().getScales().setAxes(axis);
-		
+
 		AnnotationOptions options = new AnnotationOptions();
 
 		BoxAnnotation box1 = new BoxAnnotation();
@@ -95,10 +94,9 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		box2.setXMin("April");
 		box2.setXMax("July");
 		box2.setBackgroundColor(new ColorCallback<AnnotationContext>() {
-			
+
 			@Override
 			public Object invoke(AnnotationContext context) {
-				Console.log("element?", context.getElement());
 				return GwtMaterialColor.BROWN_LIGHTEN_3.alpha(0.3D);
 			}
 		});
