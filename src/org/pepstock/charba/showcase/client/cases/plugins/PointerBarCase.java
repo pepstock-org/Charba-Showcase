@@ -87,9 +87,9 @@ public class PointerBarCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Setting cursors on line chart");
+		chart.getOptions().getTitle().setText("Setting cursors on bar chart");
 		chart.getOptions().getSubtitle().setDisplay(true);
-		chart.getOptions().getSubtitle().setText("Subtitle: setting cursors on line chart");
+		chart.getOptions().getSubtitle().setText("Subtitle: setting cursors on bar chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);
