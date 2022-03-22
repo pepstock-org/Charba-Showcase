@@ -164,7 +164,7 @@ public class AnnotationLineOnTimeSeriesLineCase extends BaseComposite {
 		line1.getLabel().setBackgroundColor(HtmlColor.ORANGE);
 		line1.getLabel().setColor(HtmlColor.BLACK);
 		line1.getLabel().getFont().setSize(18);
-
+		
 		options.setAnnotations(line, line1);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);

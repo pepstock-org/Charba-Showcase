@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.pepstock.charba.client.callbacks.MinMaxCallback;
+import org.pepstock.charba.client.callbacks.ScaleContext;
 import org.pepstock.charba.client.callbacks.TimeTickCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -60,12 +62,12 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 	Button reset;
 
 	TimeSeriesLineDataset dataset;
+	
+	CartesianTimeSeriesAxis axis;
 
-	final CartesianTimeSeriesAxis axis;
+	private Date minDate = null;
 
-	DatasetsItemsSelector plugin = DatasetsItemsSelector.get();
-
-	DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
+	private Date maxDate = null;
 
 	public DatasetItemsSelectorDrillingDownCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -101,6 +103,20 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		axis = chart.getOptions().getScales().getTimeAxis();
 		axis.getTime().setUnit(TimeUnit.DAY);
 		axis.getTime().setStepSize(1);
+		axis.setMin(new MinMaxCallback<Date>() {
+			
+			@Override
+			public Date invoke(ScaleContext context) {
+				return minDate;
+			}
+		});
+		axis.setMax(new MinMaxCallback<Date>() {
+			
+			@Override
+			public Date invoke(ScaleContext context) {
+				return maxDate;
+			}
+		});
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTicks().setCallback(new TimeTickCallback() {
 
@@ -131,13 +147,14 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 
 		chart.getData().setDatasets(dataset);
 
+		DatasetsItemsSelectorOptions pOptions = new DatasetsItemsSelectorOptions();
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 3, 6);
 		pOptions.setBorderColor(HtmlColor.GREY);
 		pOptions.setColor(HtmlColor.LIGHT_GOLDEN_ROD_YELLOW.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
-		chart.getPlugins().add(plugin);
+		chart.getPlugins().add(DatasetsItemsSelector.get());
 
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 			
@@ -146,11 +163,11 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 				if (!reset.isEnabled()) {
 					dataset.setBackgroundColor(HtmlColor.DARK_MAGENTA);
 					dataset.setBorderColor(HtmlColor.DARK_MAGENTA);
-					axis.setMin(event.getFrom().getValueAsDate());
-					axis.setMax(event.getTo().getValueAsDate());
+					minDate = event.getFrom().getValueAsDate();
+					maxDate = event.getTo().getValueAsDate();
 					axis.getTime().setUnit(TimeUnit.HOUR);
+					DatasetsItemsSelectorOptions pOptions = chart.getOptions().getPlugins().getOptions(DatasetsItemsSelector.FACTORY);
 					pOptions.setEnabled(false);
-					chart.getOptions().getPlugins().setOptions(pOptions);
 				    chart.reconfigure();
 					reset.setEnabled(true);
 				}
@@ -171,11 +188,11 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
-		axis.setMin(null);
-		axis.setMax(null);
-		axis.getTime().setUnit(TimeUnit.DAY);
+		minDate = null;
+		maxDate = null;
+		axis.getTime().setUnit(TimeUnit.HOUR);
+		DatasetsItemsSelectorOptions pOptions = chart.getOptions().getPlugins().getOptions(DatasetsItemsSelector.FACTORY);
 		pOptions.setEnabled(true);
-		chart.getOptions().getPlugins().setOptions(pOptions);
 		chart.reconfigure();
 		reset.setEnabled(false);
 	}

@@ -188,7 +188,6 @@ public class ColorSchemePieCase extends BaseComposite {
 			options.setScheme(Key.getKeyByValue(GoogleChartScheme.values(), name.getSelectedValue()));
 			options.setBackgroundColorAlpha(0.5D);
 		}
-		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
 
@@ -196,7 +195,6 @@ public class ColorSchemePieCase extends BaseComposite {
 	protected void handleReverse(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		options.setReverse(reverse.getValue());
-		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
 

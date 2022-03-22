@@ -1,4 +1,4 @@
-package org.pepstock.charba.showcase.client.cases.elements;
+package org.pepstock.charba.showcase.client.cases.plugins;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +10,8 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.impl.plugins.Crosshair;
+import org.pepstock.charba.client.impl.plugins.CrosshairOptions;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -18,32 +20,40 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class StackedAxesCase extends BaseComposite {
+public class CrosshairStackedAxesCase extends BaseComposite {
 	
 	private static final String[] VALUES = {"ON", "OFF"}; 
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, StackedAxesCase> {
+	interface ViewUiBinder extends UiBinder<Widget, CrosshairStackedAxesCase> {
 	}
 
 	@UiField
 	LineChartWidget chart;
 	
+	@UiField
+	CheckBox upperScale;
+	
 	private final LineDataset dataset1; 
 
-	private final LineDataset dataset2; 
+	private final LineDataset dataset2;
+	
+	private final CartesianLinearAxis axis1;
+	
+	private final CartesianCategoryAxis axis2;
 
-	public StackedAxesCase() {
+	public CrosshairStackedAxesCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Stacked axes on line chart");
+		chart.getOptions().getTitle().setText("Crosshair on stacked axes");
 
-		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart, "y-axis-1");
+		axis1 = new CartesianLinearAxis(chart, "y-axis-1");
 		axis1.setDisplay(true);
 		axis1.setPosition(AxisPosition.LEFT);
 		axis1.setStack("myStack");
@@ -54,7 +64,7 @@ public class StackedAxesCase extends BaseComposite {
 		axis1.getGrid().setBorderWidth(3);
 		axis1.getGrid().setZ(-1);
 		
-		CartesianCategoryAxis axis2 = new CartesianCategoryAxis(chart, "y-axis-2", AxisKind.Y);
+		axis2 = new CartesianCategoryAxis(chart, "y-axis-2", AxisKind.Y);
 		axis2.setDisplay(true);
 		axis2.setLabels(VALUES);
 		axis2.setPosition(AxisPosition.LEFT);
@@ -86,15 +96,21 @@ public class StackedAxesCase extends BaseComposite {
 		
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
+
+		CrosshairOptions options = new CrosshairOptions(); 
+		options.setYScaleID(axis1.getId());
+		chart.getOptions().getPlugins().setOptions(Crosshair.ID, options);
+		
+		chart.getPlugins().add(Crosshair.get());
 	}
 
-	@UiHandler("randomize")
-	protected void handleRandomize(ClickEvent event) {
-		dataset1.setData(getRandomDigits(months, 0, 100));
-		dataset2.setDataString(getRandomData());
+	@UiHandler("upperScale")
+	protected void handleUpperScale(ClickEvent event) {
+		CrosshairOptions options = chart.getOptions().getPlugins().getOptions(Crosshair.ID, Crosshair.FACTORY);
+		options.setYScaleID(upperScale.getValue() ? axis2.getId() : axis1.getId());
 		chart.update();
 	}
-
+	
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");

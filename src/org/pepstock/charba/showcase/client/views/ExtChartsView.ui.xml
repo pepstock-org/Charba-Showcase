@@ -78,6 +78,7 @@
 					<g:Label ui:field="sankeyCountries" styleName='{myStyle.myLabel}'>Countries</g:Label>
 					<g:Label ui:field="sankeyTree" styleName='{myStyle.myLabel}'>Tree</g:Label>
 					<g:Label ui:field="sankeyClick" styleName='{myStyle.myLabel}'>Selecting flow item</g:Label>
+					<g:Label ui:field="sankeyColumns" styleName='{myStyle.myLabel}'>Setting columns</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 		</g:HorizontalPanel>

@@ -6,10 +6,10 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
+import org.pepstock.charba.client.data.AreaDataset;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.InteractionMode;
-import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.gwt.widgets.AreaChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -20,34 +20,34 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LineCase extends BaseComposite {
+public class AreaCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, LineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, AreaCase> {
 	}
 
 	@UiField
-	LineChartWidget chart;
+	AreaChartWidget chart;
 
-	public LineCase() {
+	public AreaCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Line chart");
+		chart.getOptions().getTitle().setText("Area chart");
 		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);
 
-		LineDataset dataset1 = chart.newDataset();
+		AreaDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 		
 		IsColor color1 = GoogleChartColor.values()[0];
 
-		dataset1.setBackgroundColor(color1.toHex());
+		dataset1.setBackgroundColor(color1.alpha(0.7));
 		dataset1.setBorderColor(color1.toHex());
 		
 		double[] values = getRandomDigits(months);
@@ -57,12 +57,12 @@ public class LineCase extends BaseComposite {
 		}
 		datasets.add(dataset1);
 
-		LineDataset dataset2 = chart.newDataset();
+		AreaDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
 		IsColor color2 = GoogleChartColor.values()[1];
 
-		dataset2.setBackgroundColor(color2.toHex());
+		dataset2.setBackgroundColor(color2.alpha(0.7));
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months));
 		datasets.add(dataset2);
@@ -77,6 +77,7 @@ public class LineCase extends BaseComposite {
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
 
+		
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		chart.getData().setLabels(getLabels());
 	}
@@ -92,10 +93,10 @@ public class LineCase extends BaseComposite {
 	@UiHandler("add_dataset")
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
-		LineDataset dataset = chart.newDataset();
+		AreaDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
 		IsColor color = GoogleChartColor.values()[datasets.size()];
-		dataset.setBackgroundColor(color.toHex());
+		dataset.setBackgroundColor(color.alpha(0.7));
 		dataset.setBorderColor(color.toHex());
 		dataset.setData(getRandomDigits(months));
 		datasets.add(dataset);

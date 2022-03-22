@@ -76,7 +76,18 @@ public class AnnotationEllipseOnLineCase extends BaseComposite {
 		ellipse.setBorderColor(GwtMaterialColor.INDIGO_LIGHTEN_3);
 		ellipse.setBorderDash(3,3);
 
-		options.setAnnotations(ellipse);
+		EllipseAnnotation ellipseRot = new EllipseAnnotation("ellipseRot");
+		ellipseRot.setXMin("August");
+		ellipseRot.setXMax("October");
+		ellipseRot.setYMin(65);
+		ellipseRot.setYMax(35);
+		ellipseRot.setBackgroundColor(GwtMaterialColor.INDIGO_LIGHTEN_3.alpha(0.3D));
+		ellipseRot.setBorderWidth(4);
+		ellipseRot.setBorderColor(GwtMaterialColor.INDIGO_LIGHTEN_3);
+		ellipseRot.setBorderDash(3,3);
+		ellipseRot.setRotation(45);
+		
+		options.setAnnotations(ellipse, ellipseRot);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 	}

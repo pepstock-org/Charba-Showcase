@@ -82,7 +82,12 @@ public class ColorSchemeBarCase extends BaseComposite {
 
 		IsColor color1 = GoogleChartColor.values()[0];
 
-		dataset1.setBorderWidth(2);
+		BarBorderWidth border = new BarBorderWidth();
+		border.setTop(2);
+		border.setLeft(2);
+		border.setRight(2);
+
+		dataset1.setBorderWidth(border);
 
 		dataset1.setBorderColor(color1);
 		dataset1.setData(getFixedDigits(months));
@@ -161,7 +166,6 @@ public class ColorSchemeBarCase extends BaseComposite {
 	protected void handleReverse(ClickEvent event) {
 		ColorSchemesOptions options = chart.getOptions().getPlugins().getOptions(ColorSchemes.ID, ColorSchemes.FACTORY);
 		options.setReverse(reverse.getValue());
-		chart.getOptions().getPlugins().setOptions(ColorSchemes.ID, options);
 		chart.update();
 	}
 

@@ -22,6 +22,7 @@ import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.PointStyle;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.Undefined;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -30,6 +31,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AnnotationLabelOnLineCase extends BaseComposite {
@@ -42,6 +44,9 @@ public class AnnotationLabelOnLineCase extends BaseComposite {
 	@UiField
 	LineChartWidget chart;
 
+	@UiField
+	CheckBox textDecoration;
+	
 	public AnnotationLabelOnLineCase() {
 		super.months = 12;
 
@@ -77,11 +82,11 @@ public class AnnotationLabelOnLineCase extends BaseComposite {
 		AnnotationOptions options = new AnnotationOptions();
 		options.setClip(false);
 
-		LabelAnnotation label = new LabelAnnotation();
+		LabelAnnotation label = new LabelAnnotation("myLabel");
 		label.setDisplay((ctx) -> ctx.getChart().isDatasetVisible(0));
 		label.setBackgroundColor(HtmlColor.WHITE_SMOKE.alpha(0.5));
 		label.setContent((ctx) -> "Maximum value is " + maxValue(ctx.getChart()));
-		label.getFont().setSize(16);
+		label.getFont().setSize(24);
 		label.getPadding().set(6);
 		label.getPadding().setBottom(12);
 		label.setYAdjust(-6);
@@ -123,6 +128,20 @@ public class AnnotationLabelOnLineCase extends BaseComposite {
 	protected void handleRandomize(ClickEvent event) {
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			dataset.setData(getRandomDigits(months, 0, 100));
+		}
+		chart.update();
+	}
+	
+	@UiHandler("textDecoration")
+	protected void handleTextDecoration(ClickEvent event) {
+		AnnotationOptions options = chart.getOptions().getPlugins().getOptions(AnnotationPlugin.FACTORY);
+		LabelAnnotation label = (LabelAnnotation)options.getAnnotation("myLabel");
+		if (textDecoration.getValue()) {
+			label.setTextStrokeWidth(3);
+			label.setColor(HtmlColor.WHITE);
+		} else {
+			label.setTextStrokeWidth(0);
+			label.setColor(Undefined.STRING);
 		}
 		chart.update();
 	}

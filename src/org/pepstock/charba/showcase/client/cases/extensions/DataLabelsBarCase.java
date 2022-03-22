@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.cases.extensions;
 
+import org.pepstock.charba.client.callbacks.DisplayCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -10,7 +11,6 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.datalabels.DataLabelsContext;
 import org.pepstock.charba.client.datalabels.DataLabelsOptions;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
-import org.pepstock.charba.client.datalabels.callbacks.DisplayCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
@@ -122,7 +122,7 @@ public class DataLabelsBarCase extends BaseComposite {
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
 
 		DataLabelsOptions option = new DataLabelsOptions();
-		option.setDisplay(new DisplayCallback() {
+		option.setDisplay(new DisplayCallback<DataLabelsContext>() {
 
 			@Override
 			public Display invoke(DataLabelsContext context) {

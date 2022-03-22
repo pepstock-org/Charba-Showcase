@@ -44,7 +44,7 @@
 		<g:cell width="250px" height="100%" verticalAlignment="top"
 				horizontalAlignment="left">
 		<g:VerticalPanel width="250px">
-	        <g:Label ui:field="title" styleName='{internalStyle.myTitle}' horizontalAlignment="center"> showcase</g:Label>
+	        <g:Label ui:field="title" styleName='{internalStyle.myTitle}' horizontalAlignment="center"> GWT showcase</g:Label>
 	     	<g:HorizontalPanel styleName="{internalStyle.myItem}" width="100%">
 	     		<g:cell width="36px" verticalAlignment="middle" horizontalAlignment="left">
 		     		<g:Image ui:field="imgCharts" styleName="{internalStyle.myImgItem}" url="icons/showcaseCharts.png"></g:Image>

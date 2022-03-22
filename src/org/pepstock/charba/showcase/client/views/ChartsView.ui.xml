@@ -71,6 +71,8 @@
 						styleName='{myStyle.myLabel}'>Timeseries by line chart</g:Label>
 					<g:Label ui:field="timeSeriesByBar"
 						styleName='{myStyle.myLabel}'>Timeseries by bar chart</g:Label>
+					<g:Label ui:field="area"
+						styleName='{myStyle.myLabel}'>Area</g:Label>
 					<g:Label ui:field="stackedBar"
 						styleName='{myStyle.myLabel}'>Stacked bar</g:Label>
 					<g:Label ui:field="stackedGroupBar"

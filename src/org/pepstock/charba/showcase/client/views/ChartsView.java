@@ -1,5 +1,6 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.charts.AreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.AxesEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.BarCase;
 import org.pepstock.charba.showcase.client.cases.charts.BubbleCase;
@@ -147,6 +148,12 @@ public class ChartsView extends AbstractView {
 	protected void handleStackedArea(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new StackedAreaCase());
+	}
+
+	@UiHandler("area")
+	protected void handleArea(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AreaCase());
 	}
 
 	@UiHandler("combo")
@@ -337,7 +344,7 @@ public class ChartsView extends AbstractView {
 			} else if ("sankey".equalsIgnoreCase(gallery)) {
 				handleSankey(null);
 			} else if ("area".equalsIgnoreCase(gallery)) {
-				handleStackedArea(null);
+				handleArea(null);
 			}
 		}
 	}

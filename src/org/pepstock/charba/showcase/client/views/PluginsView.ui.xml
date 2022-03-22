@@ -50,6 +50,10 @@
 					<g:Label ui:field="backgroundGradientOnBar" styleName='{myStyle.myLabel}'>Applying linear gradient on bar chart</g:Label>
 					<g:Label ui:field="backgroundGradientOnPie" styleName='{myStyle.myLabel}'>Applying radial gradient on pie chart</g:Label>
 					<g:Label ui:field="backgroundPatternOnLine" styleName='{myStyle.myLabel}'>Applying pattern on line chart</g:Label>
+					<g:Label ui:field="areaBackgroundColorOnBar" styleName='{myStyle.myLabel}'>Applying color to chart area</g:Label>
+					<g:Label ui:field="areaBackgroundGradientOnBar" styleName='{myStyle.myLabel}'>Applying linear gradient to chart area</g:Label>
+					<g:Label ui:field="areaBackgroundGradientOnPie" styleName='{myStyle.myLabel}'>Applying radial gradient to chart area</g:Label>
+					<g:Label ui:field="areaBackgroundPatternOnLine" styleName='{myStyle.myLabel}'>Applying pattern to chart area</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Chart pointer</g:Label>
 					<g:Label ui:field="pointerCursorOnLine" styleName='{myStyle.myLabel}'>Setting cursor on bar chart</g:Label>
@@ -81,6 +85,14 @@
 					<g:Label ui:field="colorSchemeOnPie" styleName='{myStyle.myLabel}'>Coloring pie chart by schemes</g:Label>
 					<g:Label ui:field="colorSchemeOnPolar" styleName='{myStyle.myLabel}'>Coloring polar area chart by scheme</g:Label>
 					<g:Label ui:field="colorSchemeOnBubble" styleName='{myStyle.myLabel}'>Coloring bubble chart by scheme</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Crosshair</g:Label>
+					<g:Label ui:field="crosshairBar" styleName='{myStyle.myLabel}'>Crosshair on category scale</g:Label>
+					<g:Label ui:field="crosshairHorizontalBar" styleName='{myStyle.myLabel}'>Crosshair on horizontal bar</g:Label>
+					<g:Label ui:field="crosshairScatter" styleName='{myStyle.myLabel}'>Crosshair on linear scale</g:Label>
+					<g:Label ui:field="crosshairLogarithmic" styleName='{myStyle.myLabel}'>Crosshair on logarithmic scale</g:Label>
+					<g:Label ui:field="crosshairTime" styleName='{myStyle.myLabel}'>Crosshair on time scale</g:Label>
+					<g:Label ui:field="crosshairStacked" styleName='{myStyle.myLabel}'>Crosshair on stacked scales</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

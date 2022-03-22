@@ -1,5 +1,9 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.plugins.AreaBackgroundColorBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.AreaBackgroundLinearGradientBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.AreaBackgroundPatternLineCase;
+import org.pepstock.charba.showcase.client.cases.plugins.AreaBackgroundRadialGradientPieCase;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundColorBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundLinearGradientBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.BackgroundPatternLineCase;
@@ -10,6 +14,12 @@ import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePieCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeRadarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairHorizontalBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairLogarithmicAxisOnScatterCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairScatterCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairStackedAxesCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairTimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorApiCategoryCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorApiLinearCase;
 import org.pepstock.charba.showcase.client.cases.plugins.DatasetItemsSelectorApiTimeCase;
@@ -80,6 +90,30 @@ public class PluginsView extends AbstractView {
 	protected void handleBackgroundPatternOnLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new BackgroundPatternLineCase());
+	}
+
+	@UiHandler("areaBackgroundColorOnBar")
+	protected void handleAreaBackgroundColorOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AreaBackgroundColorBarCase());
+	}
+
+	@UiHandler("areaBackgroundGradientOnBar")
+	protected void handleAreaBackgroundGradientOnBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AreaBackgroundLinearGradientBarCase());
+	}
+
+	@UiHandler("areaBackgroundPatternOnLine")
+	protected void handleAreaBackgroundPatternOnLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AreaBackgroundPatternLineCase());
+	}
+
+	@UiHandler("areaBackgroundGradientOnPie")
+	protected void handleAreaBackgroundGradientOnPie(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AreaBackgroundRadialGradientPieCase());
 	}
 
 	// ----------------------------------------------
@@ -279,4 +313,44 @@ public class PluginsView extends AbstractView {
 		content.add(new PointerBarCase());
 	}
 
+	// ----------------------------------------------
+	// Crosshair
+	// ----------------------------------------------
+
+	@UiHandler("crosshairBar")
+	protected void handleCrosshairBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairBarCase());
+	}
+
+	@UiHandler("crosshairHorizontalBar")
+	protected void handleCrosshairHorizontalBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairHorizontalBarCase());
+	}
+
+	@UiHandler("crosshairScatter")
+	protected void handleCrosshairScatter(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairScatterCase());
+	}
+
+	@UiHandler("crosshairLogarithmic")
+	protected void handleCrosshairLogarithmic(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairLogarithmicAxisOnScatterCase());
+	}
+
+	@UiHandler("crosshairTime")
+	protected void handleCrosshairTime(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairTimeSeriesByLineCase());
+	}
+	
+	@UiHandler("crosshairStacked")
+	protected void handleCrosshairStacked(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairStackedAxesCase());
+	}
+	
 }

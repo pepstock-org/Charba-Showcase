@@ -140,12 +140,6 @@ public class DatasetItemsSelectorTimeSeriesByBarCase extends BaseComposite {
 			}
 		}
 		chart.update();
-		
-		DateAdapter adapter = new DateAdapter();
-		long time = adapter.startOf(new Date(), TimeUnit.DAY).getTime();
-		double from = time + ((int)getRandomDigit(0, AMOUNT_OF_POINTS - 1)) * DAY;
-		double to = time + ((int)getRandomDigit(0, AMOUNT_OF_POINTS - 1)) * DAY;
-		DatasetsItemsSelector.get().setSelection(chart, new Date((long)from), new Date((long)to));
 	}
 
 	@UiHandler("source")

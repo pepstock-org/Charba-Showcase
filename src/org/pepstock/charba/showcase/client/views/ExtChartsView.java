@@ -13,6 +13,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnCategoryAxis
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnTimeAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyBasicCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyClickCase;
+import org.pepstock.charba.showcase.client.cases.extensions.SankeyColumnsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyCountriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyEnergyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyTreeCase;
@@ -174,6 +175,12 @@ public class ExtChartsView extends AbstractView {
 	protected void handleSankeyClick(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new SankeyClickCase());
+	}
+
+	@UiHandler("sankeyColumns")
+	protected void handleSankeyColumns(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new SankeyColumnsCase());
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.annotation.AbstractAnnotation;
@@ -200,12 +202,18 @@ public class AnnotationsEventsOnTimeSeriesCase extends BaseComposite {
 
 		@Override
 		public void onEnter(AnnotationContext context, ChartEventContext event) {
-			mylog.addLogEvent("> Enter on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType());
+			Map<String, Object> shared = context.getShared();
+			AtomicInteger count = (AtomicInteger)shared.computeIfAbsent("count", mapKey -> new AtomicInteger());
+			count.incrementAndGet();
+			mylog.addLogEvent("> Enter on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType() + " count " + count.get());
 		}
 
 		@Override
 		public void onLeave(AnnotationContext context, ChartEventContext event) {
-			mylog.addLogEvent("> Leave on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType());
+			Map<String, Object> shared = context.getShared();
+			AtomicInteger count = (AtomicInteger)shared.computeIfAbsent("count", mapKey -> new AtomicInteger());
+			count.decrementAndGet();
+			mylog.addLogEvent("> Leave on annotation '"+context.getAnnotation().getId().value()+"' type " + context.getAnnotation().getType() + " count " + count.get());
 		}
 
 		@Override

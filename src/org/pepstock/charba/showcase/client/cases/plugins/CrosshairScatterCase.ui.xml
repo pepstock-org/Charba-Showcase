@@ -7,18 +7,23 @@
 		type="org.pepstock.charba.showcase.client.resources.Images" />
 	<g:HTMLPanel width="100%">
 		<g:VerticalPanel width="100%" height="100%">
-			<g:cell width="100%" verticalAlignment="middle"
+			<g:cell width="90%" verticalAlignment="middle"
 				horizontalAlignment="center">
-				<c:LineChartWidget ui:field="chart"/>
+				<c:ScatterChartWidget ui:field="chart" />
 			</g:cell>
-			<g:cell width="100%" verticalAlignment="top"
+			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
-					<g:Button ui:field="randomize">Randomize data</g:Button>
-					<g:CheckBox ui:field="textDecoration" checked="false">Text decoration</g:CheckBox>
+					<g:CheckBox ui:field="format" checked="false">Format</g:CheckBox>
 					<g:PushButton ui:field='source' enabled='true'>
 						<g:upFace image='{myImages.github}' />
 					</g:PushButton>
+				</g:HorizontalPanel>
+			</g:cell>
+			<g:cell width="10%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
+					<g:HTMLPanel ui:field="help"></g:HTMLPanel>
 				</g:HorizontalPanel>
 			</g:cell>
 		</g:VerticalPanel>
