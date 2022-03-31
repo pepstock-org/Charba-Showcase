@@ -71,6 +71,12 @@
 					<g:Label ui:field="labelsPieUsingImages" styleName='{myStyle.myLabel}'>Using images</g:Label>
 					<g:Label ui:field="labelsPiePosition" styleName='{myStyle.myLabel}'>Positioning</g:Label>
 					<g:Label ui:field="labelsPieMulti" styleName='{myStyle.myLabel}'>Multiple labels rendering options</g:Label>
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
+					<g:Label styleName='{myStyle.myCategory}'>Gradient plugin</g:Label>
+					<g:Label ui:field="gradientBar" styleName='{myStyle.myLabel}'>Using on cartesian category axis</g:Label>
+					<g:Label ui:field="gradientLine" styleName='{myStyle.myLabel}'>Using on cartesian linear axis</g:Label>
+					<g:Label ui:field="gradientTimeLine" styleName='{myStyle.myLabel}'>Using on cartesian time axis</g:Label>
+					<g:Label ui:field="gradientPolar" styleName='{myStyle.myLabel}'>Using on radial linear axis</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">

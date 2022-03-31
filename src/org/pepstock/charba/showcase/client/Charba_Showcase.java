@@ -13,6 +13,7 @@ import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtils;
 import org.pepstock.charba.client.geo.TopoJson;
+import org.pepstock.charba.client.gradient.GradientPlugin;
 import org.pepstock.charba.client.impl.charts.GaugeChart;
 import org.pepstock.charba.client.impl.charts.MeterChart;
 import org.pepstock.charba.client.impl.plugins.ChartBackgroundColor;
@@ -159,6 +160,8 @@ public class Charba_Showcase implements EntryPoint {
 		ZoomPlugin.enable();
 		
 		AnnotationPlugin.enable();
+		
+		GradientPlugin.enable();
 
 		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
 		

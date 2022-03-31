@@ -32,6 +32,10 @@ import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsMultiLabel
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsRadarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.DataLabelsSelectionCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GradientBarCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GradientLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GradientPolarAreaCase;
+import org.pepstock.charba.showcase.client.cases.extensions.GradientTimeSeriesByLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
@@ -401,8 +405,34 @@ public class ExtPluginsView extends AbstractView {
 		content.add(new AnnotationLineLabelOnEnter());
 	}
 
-	
-	
+	// ----------------------------------------------
+	// GRADIENT
+	// ----------------------------------------------
+
+	@UiHandler("gradientBar")
+	protected void handleGradientBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GradientBarCase());
+	}
+
+	@UiHandler("gradientLine")
+	protected void handleGradientLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GradientLineCase());
+	}
+
+	@UiHandler("gradientTimeLine")
+	protected void handleGradientTimeLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GradientTimeSeriesByLineCase());
+	}
+
+	@UiHandler("gradientPolar")
+	protected void handleGradientPolar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new GradientPolarAreaCase());
+	}
+
 	// ----------------------------------------------
 	// Imported
 	// ----------------------------------------------
