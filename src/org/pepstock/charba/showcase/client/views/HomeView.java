@@ -49,9 +49,9 @@ public class HomeView extends BaseComposite {
 
 	private static final String[] LABELS = {"2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "3.0", "3.1",  "3.2", "3.3", "4.0", "4.1", "4.2", "5.0", "5.1", "5.2"};
 
-	private static final double[] VALUES_GWT = { 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 4098, 4541, 4843, 4924, 5152, 5297};
+	private static final double[] VALUES_GWT = { 1200, 1550, 1710, 1720, 1910, 1950, 2040, 2334, 2536, 3064, 3091, 3125, 3125, 4098, 4541, 4843, 4924, 5152, 5322};
 	
-	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2881, 2910, 2941, 2942, 3933, 4336, 4697, 4775, 5003, 5143};
+	private static final double[] VALUES_J2CL = { Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, 2881, 2910, 2941, 2942, 3933, 4336, 4697, 4775, 5003, 5167};
 
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
