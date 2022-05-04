@@ -21,7 +21,7 @@ import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.ColorAxis;
 import org.pepstock.charba.client.geo.CoordinatesPoint;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.callbacks.InterpolateCallback;
 import org.pepstock.charba.client.geo.callbacks.QuantizeCallback;
@@ -70,14 +70,14 @@ public class GeoChoroplethUSCapitalsCase extends BaseComposite {
 			parseAndLoad();
 		}
 
-		List<Feature> stateFeatures = GeoUtils.features(MyResources.INSTANCE.topojsonUS().getText(), "states");
-		Feature outline = GeoUtils.features(MyResources.INSTANCE.topojsonUS().getText(), "nation").get(0);
+		List<Feature> stateFeatures = GeoUtil.features(MyResources.INSTANCE.topojsonUS().getText(), "states");
+		Feature outline = GeoUtil.features(MyResources.INSTANCE.topojsonUS().getText(), "nation").get(0);
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("US choropleth chart");
 
-		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME);
+		Labels labels = GeoUtil.loadLabels(stateFeatures, NAME);
 
 		for (Feature f : stateFeatures) {
 			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));

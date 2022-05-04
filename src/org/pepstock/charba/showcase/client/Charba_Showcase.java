@@ -11,7 +11,7 @@ import org.pepstock.charba.client.Injector;
 import org.pepstock.charba.client.annotation.AnnotationPlugin;
 import org.pepstock.charba.client.datalabels.DataLabelsPlugin;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.TopoJson;
 import org.pepstock.charba.client.gradient.GradientPlugin;
 import org.pepstock.charba.client.impl.charts.GaugeChart;
@@ -178,11 +178,11 @@ public class Charba_Showcase implements EntryPoint {
 			
 			@Override
 			public void run() {
-				Charba_Showcase.EARTH_FEATURES = GeoUtils.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
-				Charba_Showcase.US = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonUS().getText());
-				Charba_Showcase.EUROPE = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonEurope().getText());
-				Charba_Showcase.ITALY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonItaly().getText());
-				Charba_Showcase.GERMANY = GeoUtils.createTopoJson(MyResources.INSTANCE.topojsonGermany().getText());
+				Charba_Showcase.EARTH_FEATURES = GeoUtil.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");
+				Charba_Showcase.US = GeoUtil.createTopoJson(MyResources.INSTANCE.topojsonUS().getText());
+				Charba_Showcase.EUROPE = GeoUtil.createTopoJson(MyResources.INSTANCE.topojsonEurope().getText());
+				Charba_Showcase.ITALY = GeoUtil.createTopoJson(MyResources.INSTANCE.topojsonItaly().getText());
+				Charba_Showcase.GERMANY = GeoUtil.createTopoJson(MyResources.INSTANCE.topojsonGermany().getText());
 
 				view.setGallery(gallery);
 			}

@@ -7,7 +7,7 @@
 
 This repository contains the source code of the **Charba** showcase site, based on GWT Web Toolkit, located [here](https://pepstock-org.github.io/Charba-Showcase/).
 
-There are more than 220 samples about all **Charba** capabilities.
+There are more than 250 samples about all **Charba** capabilities.
 
 ## Building
 

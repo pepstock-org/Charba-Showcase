@@ -49,7 +49,6 @@
 					<g:Label ui:field="miscellaneousPointSizeOnLine" styleName='{myStyle.myLabel}'>Applying point sizes on line chart</g:Label>
 					<g:Label ui:field="miscellaneousHoverStyleOnStackedArea" styleName='{myStyle.myLabel}'>Applying hover styles on stacked area chart</g:Label>
 					<g:Label ui:field="miscellaneousActiveElements" styleName='{myStyle.myLabel}'>Active elements on bar chart</g:Label>
-					<g:Label ui:field="miscellaneousTrendAndForecasetOnTimeseries" styleName='{myStyle.myLabel}'>Drawing trend and forecast on timeseries chart</g:Label>
 					<g:Label ui:field="miscellaneousAutoUpdateLine" styleName='{myStyle.myLabel}'>Auto updating on timeseries chart</g:Label>
 					<g:Label ui:field="miscellaneousModifierKey" styleName='{myStyle.myLabel}'>Selecting dataset with a modifier key</g:Label>
 				</g:VerticalPanel>
@@ -65,16 +64,26 @@
 					<g:Label ui:field="callbacksOnPolar"	styleName='{myStyle.myLabel}'>Callbacks on polar area dataset</g:Label>
 					<g:Label ui:field="callbacksOnBubble"	styleName='{myStyle.myLabel}'>Callbacks on bubble dataset</g:Label>
 					<g:Label ui:field="callbacksWithThresholdOnBar"	styleName='{myStyle.myLabel}'>Callbacks with threshold on bar dataset</g:Label>
-				</g:VerticalPanel>
-			</g:cell>
-			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
-				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Datasets</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnBar" styleName='{myStyle.myLabel}'>Floating data on bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnHorizontalBar" styleName='{myStyle.myLabel}'>Floating data on horizontal bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnStackedBar" styleName='{myStyle.myLabel}'>Floating data on stacked bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataTimeseriesOnBar" styleName='{myStyle.myLabel}'>Floating data on timeseries by bar chart</g:Label>
 					<g:Label ui:field="miscellaneousFloatingDataOnBarAndDatalabels" styleName='{myStyle.myLabel}'>Floating data on bar chart and datalabels extension</g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
+				<g:VerticalPanel horizontalAlignment="left">
+					<g:Label styleName='{myStyle.myCategory}'>Regressions</g:Label>
+					<g:Label ui:field="linearRegressionBarCase" styleName='{myStyle.myLabel}'>Linear regression on bar chart</g:Label>
+					<g:Label ui:field="linearRegressionLineCase" styleName='{myStyle.myLabel}'>Linear regression on line chart</g:Label>
+					<g:Label ui:field="linearRegressionScatterCase" styleName='{myStyle.myLabel}'>Linear regression on scatter chart</g:Label>
+					<g:Label ui:field="linearRegressionTimeSeriesCase" styleName='{myStyle.myLabel}'>Linear regression on time series chart</g:Label>
+					<g:Label ui:field="polynomialRegressionBarCase" styleName='{myStyle.myLabel}'>Polynomial regression on bar chart</g:Label>
+					<g:Label ui:field="powerRegressionScatterCase" styleName='{myStyle.myLabel}'>Power regression on scatter chart</g:Label>
+					<g:Label ui:field="exponentialRegressionScatterCase" styleName='{myStyle.myLabel}'>Exponential regression on scatter chart</g:Label>
+					<g:Label ui:field="regressionTrendAndForecasetOnTimeseries" styleName='{myStyle.myLabel}'>Drawing trend and forecast on timeseries chart</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

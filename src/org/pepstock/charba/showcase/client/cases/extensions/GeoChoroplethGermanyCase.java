@@ -10,7 +10,7 @@ import org.pepstock.charba.client.geo.ChoroplethDataPoint;
 import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.ColorAxis;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.callbacks.InterpolateCallback;
 import org.pepstock.charba.client.geo.enums.Projection;
@@ -50,15 +50,15 @@ public class GeoChoroplethGermanyCase extends BaseComposite {
 	public GeoChoroplethGermanyCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		List<Feature> stateFeatures = GeoUtils.features(Charba_Showcase.GERMANY, "DEU_adm2", (element, index) -> "Germany".equalsIgnoreCase(element.getPropertyValue(NAME0, null)));
-		Feature outline = GeoUtils.feature(Charba_Showcase.EUROPE, "continent_Europe_subunits", (element, index) -> "Germany".equalsIgnoreCase(element.getPropertyValue(GEOUNIT, null)) && element.hasGeometry());
+		List<Feature> stateFeatures = GeoUtil.features(Charba_Showcase.GERMANY, "DEU_adm2", (element, index) -> "Germany".equalsIgnoreCase(element.getPropertyValue(NAME0, null)));
+		Feature outline = GeoUtil.feature(Charba_Showcase.EUROPE, "continent_Europe_subunits", (element, index) -> "Germany".equalsIgnoreCase(element.getPropertyValue(GEOUNIT, null)) && element.hasGeometry());
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("German regions choropleth chart with custom interpolation");
 
-		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME2);
+		Labels labels = GeoUtil.loadLabels(stateFeatures, NAME2);
 
 		for (Feature f : stateFeatures) {
 			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));

@@ -9,7 +9,7 @@ import org.pepstock.charba.client.geo.ChoroplethDataPoint;
 import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.ColorAxis;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.enums.Interpolate;
 import org.pepstock.charba.client.geo.enums.Projection;
@@ -62,15 +62,15 @@ public class GeoChoroplethItalyCase extends BaseComposite {
 			color.addItem(interpolate.name(), interpolate.name());
 		}
 		
-		List<Feature> stateFeatures = GeoUtils.features(Charba_Showcase.ITALY, "ITA_adm2", (element, index) -> "Italy".equalsIgnoreCase(element.getPropertyValue(NAME0, null)));
-		Feature outline = GeoUtils.feature(Charba_Showcase.EUROPE, "continent_Europe_subunits", (element, index) -> "Italy".equalsIgnoreCase(element.getPropertyValue(GEOUNIT, null)) && element.hasGeometry());
+		List<Feature> stateFeatures = GeoUtil.features(Charba_Showcase.ITALY, "ITA_adm2", (element, index) -> "Italy".equalsIgnoreCase(element.getPropertyValue(NAME0, null)));
+		Feature outline = GeoUtil.feature(Charba_Showcase.EUROPE, "continent_Europe_subunits", (element, index) -> "Italy".equalsIgnoreCase(element.getPropertyValue(GEOUNIT, null)) && element.hasGeometry());
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Italian provinces choropleth chart with selected interpolation");
 
-		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME2);
+		Labels labels = GeoUtil.loadLabels(stateFeatures, NAME2);
 
 		for (Feature f : stateFeatures) {
 			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));

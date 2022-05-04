@@ -18,6 +18,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.CallbacksWithThre
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.ControllerMyLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.DatasetSelectionWithModifierCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.ExponentialRegressionScatterCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FlagsPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataDataLabelsCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataOnBarCase;
@@ -28,6 +29,12 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationBy
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HoverStyleOnStackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.InterpolationOnLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.PolynomialRegressionBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.PowerRegressionScatterCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.RegressionBarCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.RegressionLineCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.RegressionScatterCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.RegressionTimeSeriesLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.SimpleLabelPluginOnBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.StandingPluginOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.SteppedLineOnLineCase;
@@ -110,12 +117,6 @@ public class MiscellaneousView extends AbstractView {
 		content.add(new ActiveElementsOnBarCase());
 	}
 
-	@UiHandler("miscellaneousTrendAndForecasetOnTimeseries")
-	protected void handleMiscellaneousTrendAndForecasetOnTimeseries(ClickEvent event) {
-		clearPreviousChart();
-		content.add(new TrendAndForecastCase());
-	}
-	
 	@UiHandler("miscellaneousAutoUpdateLine")
 	protected void handleMiscellaneousAutoUpdateLine(ClickEvent event) {
 		clearPreviousChart();
@@ -262,5 +263,59 @@ public class MiscellaneousView extends AbstractView {
 	protected void handleMyFloatingDataOnBarAndDatalabels(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new FloatingDataDataLabelsCase());
+	}
+	
+	// ----------------------------------------------
+	// Regression
+	// ----------------------------------------------
+
+	@UiHandler("linearRegressionBarCase")
+	protected void handleRegressionBarCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new RegressionBarCase());
+	}
+
+	@UiHandler("linearRegressionLineCase")
+	protected void handleRegressionLineCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new RegressionLineCase());
+	}
+
+	@UiHandler("linearRegressionScatterCase")
+	protected void handleRegressionScatterCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new RegressionScatterCase());
+	}
+
+	@UiHandler("linearRegressionTimeSeriesCase")
+	protected void handleRegressionTimeSeriesCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new RegressionTimeSeriesLineCase());
+	}
+
+	@UiHandler("polynomialRegressionBarCase")
+	protected void handlePolynomialRegressionBarCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new PolynomialRegressionBarCase());
+	}
+	
+	@UiHandler("powerRegressionScatterCase")
+	protected void handlePowerRegressionScatterCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new PowerRegressionScatterCase());
+	}
+	
+	
+	@UiHandler("regressionTrendAndForecasetOnTimeseries")
+	protected void handleRegressionTrendAndForecasetOnTimeseries(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TrendAndForecastCase());
+	}
+
+	@UiHandler("exponentialRegressionScatterCase")
+	protected void handleExponentialRegressionScatterCase(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ExponentialRegressionScatterCase());
 	}	
+
 }

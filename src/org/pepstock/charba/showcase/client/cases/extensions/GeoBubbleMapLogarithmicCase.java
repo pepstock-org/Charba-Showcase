@@ -13,7 +13,7 @@ import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.geo.BubbleMapDataPoint;
 import org.pepstock.charba.client.geo.BubbleMapDataset;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.SizeLogarithmicAxis;
 import org.pepstock.charba.client.geo.enums.Projection;
@@ -56,7 +56,7 @@ public class GeoBubbleMapLogarithmicCase extends BaseComposite {
 			parseAndLoad();
 		}
 
-		List<Feature> stateFeatures = GeoUtils.features(Charba_Showcase.US, "states");
+		List<Feature> stateFeatures = GeoUtil.features(Charba_Showcase.US, "states");
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);

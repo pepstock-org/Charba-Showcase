@@ -67,7 +67,7 @@ public abstract class AbstractComposite extends Composite {
 	protected double getRandomDigit(double min, double max) {
 		return (double) ((int) (Math.random() * (max - min))) + min;
 	}
-	
+
 	protected double[] getRandomDigits(int length, double min, double max) {
 		double[] values = new double[length];
 		for (int i = 0; i < length; i++) {
@@ -110,4 +110,18 @@ public abstract class AbstractComposite extends Composite {
 		return values;
 	}
 
+	protected double[] getLinearRegressionDigits(int length) {
+		double A = rnd(10) + 10;
+		double B = rnd(10);
+		double rnd = A * length + B;
+		double[] values = new double[length];
+		for (int i = 0; i < length; i++) {
+			values[i] = (A * i + B) + Math.random() * rnd;
+		}
+		return values;
+	}
+
+	private double rnd(int max) {
+		return max * Math.random();
+	}
 }

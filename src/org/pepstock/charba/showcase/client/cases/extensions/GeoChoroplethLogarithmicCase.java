@@ -9,7 +9,7 @@ import org.pepstock.charba.client.geo.ChoroplethDataPoint;
 import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.ColorLogarithmicAxis;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.enums.Interpolate;
 import org.pepstock.charba.client.geo.enums.Projection;
@@ -44,14 +44,14 @@ public class GeoChoroplethLogarithmicCase extends BaseComposite {
 	public GeoChoroplethLogarithmicCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		List<Feature> stateFeatures = GeoUtils.features(MyResources.INSTANCE.topojsonUS().getText(), "states");
-		Feature outline = GeoUtils.features(MyResources.INSTANCE.topojsonUS().getText(), "nation").get(0);
+		List<Feature> stateFeatures = GeoUtil.features(MyResources.INSTANCE.topojsonUS().getText(), "states");
+		Feature outline = GeoUtil.features(MyResources.INSTANCE.topojsonUS().getText(), "nation").get(0);
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Choropleth chart and logarithmic color axis");
 
-		Labels labels = GeoUtils.loadLabels(stateFeatures, NAME);
+		Labels labels = GeoUtil.loadLabels(stateFeatures, NAME);
 
 		for (Feature f : stateFeatures) {
 			geodata.add(new ChoroplethDataPoint(f, Math.random() * 1000));

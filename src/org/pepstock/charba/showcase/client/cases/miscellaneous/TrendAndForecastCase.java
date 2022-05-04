@@ -2,6 +2,7 @@ package org.pepstock.charba.showcase.client.cases.miscellaneous;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.pepstock.charba.client.Defaults;
@@ -30,6 +31,8 @@ import org.pepstock.charba.client.events.LegendClickEvent;
 import org.pepstock.charba.client.events.LegendClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.TooltipItem;
+import org.pepstock.charba.client.ml.RegressionDataset;
+import org.pepstock.charba.client.ml.RegressionDatasetBuilder;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -68,10 +71,6 @@ public class TrendAndForecastCase extends BaseComposite {
 	final JsDate now = JsDate.create(nowDate.getYear() + 1900, nowDate.getMonth(), nowDate.getDate());
 
 	final LineDataset dataset;
-
-	final LineDataset trend;
-
-	final LineDataset forecast;
 
 	final CartesianTimeSeriesAxis axis;
 
@@ -120,58 +119,48 @@ public class TrendAndForecastCase extends BaseComposite {
 		IsColor color1 = GoogleChartColor.values()[0];
 		dataset.setBackgroundColor(color1.toHex());
 		dataset.setBorderColor(color1.toHex());
-
-		trend = chart.newDataset();
-		trend.setLabel("Trend");
-		trend.setFill(Fill.FALSE);
-		IsColor color2 = GoogleChartColor.values()[1];
-		trend.setBackgroundColor(color2.toHex());
-		trend.setBorderColor(color2.toHex());
-		trend.setBorderDash(4, 4);
-		trend.setPointRadius(trend.getBorderWidth() / 2);
-
-		forecast = chart.newDataset();
-		forecast.setLabel("Forecast");
-		forecast.setFill(Fill.FALSE);
-		IsColor color3 = GoogleChartColor.values()[2];
-		forecast.setBackgroundColor(color3.toHex());
-		forecast.setBorderColor(color3.toHex());
-		forecast.setBorderDash(4, 4);
-		forecast.setPointRadius(forecast.getBorderWidth() / 2);
-
+		
 		double time = now.getTime() - PREVIOUS_PERIOD * DAY;
 
-		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
-		DataPoint[] dataDp = new DataPoint[AMOUNT_OF_POINTS];
-		DataPoint[] trendDp = new DataPoint[AMOUNT_OF_POINTS];
-		DataPoint[] forecastDp = new DataPoint[AMOUNT_OF_POINTS];
+		List<DataPoint> dataDp = new LinkedList<>();
+		List<Date> forecastDates = new LinkedList<>();
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
-			dataDp[i] = new DataPoint();
-			trendDp[i] = new DataPoint();
-			forecastDp[i] = new DataPoint();
+			DataPoint dataDpi = new DataPoint();
 			Date newDate = new Date((long) time);
 			if (time < now.getTime()) {
-				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i] * 0.80D);
-				forecastDp[i].setY(Double.NaN);
+				dataDpi.setX(newDate);
+				dataDpi.setY(getUpdatedData(i));
+				dataDp.add(dataDpi);
 			} else if (time == now.getTime()) {
-				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i]);
-				forecastDp[i].setY(xs1[i]);
+				dataDpi.setX(newDate);
+				dataDpi.setY(getUpdatedData(i));
+				dataDp.add(dataDpi);
+				forecastDates.add(newDate);
 			} else {
-				dataDp[i].setY(Double.NaN);
-				trendDp[i].setY(Double.NaN);
-				forecastDp[i].setY(xs1[i]);
+				forecastDates.add(newDate);
 			}
-			dataDp[i].setX(newDate);
-			trendDp[i].setX(newDate);
-			forecastDp[i].setX(newDate);
 			time = time + DAY;
 
 		}
 		dataset.setDataPoints(dataDp);
-		trend.setDataPoints(trendDp);
-		forecast.setDataPoints(forecastDp);
+		
+		RegressionDataset trend = RegressionDatasetBuilder.create().setSamplesByDataPoints(dataDp).buildLinearRegression();
+		trend.setLabel("Linear trend");
+		IsColor color2 = GoogleChartColor.values()[1];
+		trend.setBackgroundColor(color2.toHex());
+		trend.setBorderColor(color2.toHex());
+		trend.setBorderDash(4, 4);
+		trend.setBorderWidth(2);
+		trend.setPointRadius(0);
+
+		RegressionDataset forecast = RegressionDatasetBuilder.build(trend);
+		forecast.setLabel("Linear forecast");
+		forecast.addXDates(forecastDates);
+		IsColor color3 = GoogleChartColor.values()[2];
+		forecast.setBackgroundColor(color3.toHex());
+		forecast.setBorderColor(color3.toHex());
+		forecast.setBorderWidth(0);
+		forecast.setPointRadius(3);
 
 		axis = new CartesianTimeSeriesAxis(chart, MY_SCALE_ID, AxisKind.X);
 		axis.getTicks().setSource(TickSource.DATA);
@@ -213,42 +202,57 @@ public class TrendAndForecastCase extends BaseComposite {
 	protected void handleRandomize(ClickEvent event) {
 		double time = now.getTime() - PREVIOUS_PERIOD * DAY;
 
-		double[] xs1 = getRandomDigits(AMOUNT_OF_POINTS, false);
-		DataPoint[] dataDp = new DataPoint[AMOUNT_OF_POINTS];
-		DataPoint[] trendDp = new DataPoint[AMOUNT_OF_POINTS];
-		DataPoint[] forecastDp = new DataPoint[AMOUNT_OF_POINTS];
+		List<DataPoint> dataDp = new LinkedList<>();
+		List<Date> forecastDates = new LinkedList<>();
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
-			dataDp[i] = new DataPoint();
-			trendDp[i] = new DataPoint();
-			forecastDp[i] = new DataPoint();
+			DataPoint dataDpi = new DataPoint();
 			Date newDate = new Date((long) time);
 			if (time < now.getTime()) {
-				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i] * 0.80D);
-				forecastDp[i].setY(Double.NaN);
+				dataDpi.setX(newDate);
+				dataDpi.setY(getUpdatedData(i));
+				dataDp.add(dataDpi);
 			} else if (time == now.getTime()) {
-				dataDp[i].setY(xs1[i]);
-				trendDp[i].setY(xs1[i]);
-				forecastDp[i].setY(xs1[i]);
+				dataDpi.setX(newDate);
+				dataDpi.setY(getUpdatedData(i));
+				dataDp.add(dataDpi);
+				forecastDates.add(newDate);
 			} else {
-				dataDp[i].setY(Double.NaN);
-				trendDp[i].setY(Double.NaN);
-				forecastDp[i].setY(xs1[i]);
+				forecastDates.add(newDate);
 			}
-			dataDp[i].setX(newDate);
-			trendDp[i].setX(newDate);
-			forecastDp[i].setX(newDate);
 			time = time + DAY;
 
 		}
 		dataset.setDataPoints(dataDp);
-		trend.setDataPoints(trendDp);
-		forecast.setDataPoints(forecastDp);
+		
+		RegressionDataset trend = RegressionDatasetBuilder.create().setSamplesByDataPoints(dataDp).buildLinearRegression();
+		trend.setLabel("Linear trend");
+		IsColor color2 = GoogleChartColor.values()[1];
+		trend.setBackgroundColor(color2.toHex());
+		trend.setBorderColor(color2.toHex());
+		trend.setBorderDash(4, 4);
+		trend.setBorderWidth(2);
+		trend.setPointRadius(0);
+
+		RegressionDataset forecast = RegressionDatasetBuilder.build(trend);
+		forecast.setLabel("Linear forecast");
+		forecast.addXDates(forecastDates);
+		IsColor color3 = GoogleChartColor.values()[2];
+		forecast.setBackgroundColor(color3.toHex());
+		forecast.setBorderColor(color3.toHex());
+		forecast.setBorderWidth(0);
+		forecast.setPointRadius(3);
+
+		chart.getData().setDatasets(dataset, trend, forecast);
 		chart.update();
 	}
 
 	@UiHandler("source")
 	protected void handleViewSource(ClickEvent event) {
 		Window.open(getUrl(), "_blank", "");
+	}
+	
+	private double getUpdatedData(int index) {
+		double gap = 2.5 + 2.5 * Math.random();
+		return getRandomDigit(index - gap, index +gap);		
 	}
 }

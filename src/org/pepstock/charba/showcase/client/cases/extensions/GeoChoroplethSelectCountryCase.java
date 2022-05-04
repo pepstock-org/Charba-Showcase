@@ -10,7 +10,7 @@ import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.geo.ChoroplethDataPoint;
 import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.Feature;
-import org.pepstock.charba.client.geo.GeoUtils;
+import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
 import org.pepstock.charba.client.geo.enums.Projection;
 import org.pepstock.charba.client.gwt.widgets.ChoroplethChartWidget;
@@ -69,7 +69,7 @@ public class GeoChoroplethSelectCountryCase extends BaseComposite {
 			}
 		} , DatasetSelectionEvent.TYPE);
 
-		Labels labels = GeoUtils.loadLabels(Charba_Showcase.EARTH_FEATURES, NAME);
+		Labels labels = GeoUtil.loadLabels(Charba_Showcase.EARTH_FEATURES, NAME);
 
 		for (Feature f : Charba_Showcase.EARTH_FEATURES) {
 			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));
