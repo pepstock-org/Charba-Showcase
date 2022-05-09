@@ -17,7 +17,8 @@ import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.items.DatasetElement;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.options.IsImmutableFont;
-import org.pepstock.charba.client.plugins.AbstractPlugin;
+import org.pepstock.charba.client.plugins.SmartPlugin;
+import org.pepstock.charba.client.plugins.hooks.AfterDatasetsDrawHook;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -69,9 +70,10 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 		dataset2.setData(getRandomDigits(months));
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2);
-
-		AbstractPlugin p = new AbstractPlugin("simplelabel") {
-
+		
+		SmartPlugin p = new SmartPlugin("simplelabel");
+		p.setAfterDatasetsDrawHook(new AfterDatasetsDrawHook() {
+			
 			@Override
 			public void onAfterDatasetsDraw(IsChart chart) {
 				final IsImmutableFont font = Helpers.get().toFont(Defaults.get().getGlobal().getFont());
@@ -96,7 +98,7 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 					}
 				}
 			}
-		};
+		});
 		chart.getPlugins().add(p);
 	}
 
