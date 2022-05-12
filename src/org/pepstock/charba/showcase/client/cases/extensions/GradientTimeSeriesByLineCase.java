@@ -106,7 +106,6 @@ public class GradientTimeSeriesByLineCase extends BaseComposite {
 		int index = 0;
 		for (int i = 0; i < AMOUNT_OF_POINTS; i++) {
 			if (i % 12 == 0) {
-				//stopColors.setColor(adapter.add(startingPoint, i, TimeUnit.DAY), COLORS.get(index));
 				Date v = adapter.add(startingPoint, i, TimeUnit.DAY);
 				stopColors.setColor(adapter.format(v, FORMAT), COLORS.get(index));
 				index++;
