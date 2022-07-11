@@ -14,6 +14,7 @@
 			<g:cell width="10%" verticalAlignment="top"
 				horizontalAlignment="center">
 				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
+				    <g:Label ui:field="countDown"></g:Label>
 					<g:Button ui:field="start" enabled="false">Start</g:Button>
 					<g:Button ui:field="stop">Stop</g:Button>
 					<g:PushButton ui:field='source' enabled='true'>

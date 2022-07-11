@@ -16,6 +16,7 @@ import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.utils.CTimer;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -25,6 +26,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AutoUpdateLineCase extends BaseComposite {
@@ -48,15 +50,25 @@ public class AutoUpdateLineCase extends BaseComposite {
 
 	@UiField
 	Button stop;
+	
+	@UiField
+	Label countDown;
 
 	final Date nowDate = new Date();
 
 	final LineDataset dataset;
 
 	final CartesianTimeAxis axis;
+	
+	final CTimer timer = new CTimer(this::countDown, 1000);
+	
+	private int seconds = 5;
 
 	public AutoUpdateLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
+
+		countDown.setText("Next data in " + seconds + " seconds");
+		timer.start();
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setDisplay(false);
@@ -111,7 +123,14 @@ public class AutoUpdateLineCase extends BaseComposite {
 			}
 		
 		}, INTERVAL);
-		
+	}
+	
+	protected void countDown() {
+		seconds--;
+		if (seconds == 0) {
+			seconds = 5;
+		}
+		countDown.setText("Next data in " + seconds + " seconds");
 	}
 
 	@UiHandler("start")
@@ -119,13 +138,18 @@ public class AutoUpdateLineCase extends BaseComposite {
 		chart.getTimer().start();
 		start.setEnabled(false);
 		stop.setEnabled(true);
+		seconds = 5;
+		timer.start();
+		countDown.setText("Next data in " + seconds + " seconds");
 	}
 
 	@UiHandler("stop")
 	protected void handleStop(ClickEvent event) {
 		chart.getTimer().stop();
+		timer.stop();
 		stop.setEnabled(false);
 		start.setEnabled(true);
+		countDown.setText("Stopped!");
 	}
 
 	@UiHandler("source")

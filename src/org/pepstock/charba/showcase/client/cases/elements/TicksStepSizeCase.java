@@ -10,10 +10,10 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.ElementAlign;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
+import org.pepstock.charba.client.enums.TickAlign;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.intl.enums.MeasureUnit;
 import org.pepstock.charba.client.intl.enums.Style;
@@ -82,7 +82,7 @@ public class TicksStepSizeCase extends BaseComposite {
 		axis2.setMin(0);
 		axis2.setMax(100);
 		axis2.getTicks().setStepSize(5);
-		axis2.getTicks().setAlign(ElementAlign.CENTER);
+		axis2.getTicks().setAlign(TickAlign.CENTER);
 
 		axis2.getTicks().setNumberFormat(new NumberFormatCallback() {
 			
