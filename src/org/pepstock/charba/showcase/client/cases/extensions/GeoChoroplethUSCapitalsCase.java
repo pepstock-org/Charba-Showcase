@@ -11,6 +11,7 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.callbacks.ScaleContext;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
+import org.pepstock.charba.client.commons.Constants;
 import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
@@ -20,6 +21,7 @@ import org.pepstock.charba.client.geo.ChoroplethDataPoint;
 import org.pepstock.charba.client.geo.ChoroplethDataset;
 import org.pepstock.charba.client.geo.ColorAxis;
 import org.pepstock.charba.client.geo.CoordinatesPoint;
+import org.pepstock.charba.client.geo.DataPointCenter;
 import org.pepstock.charba.client.geo.Feature;
 import org.pepstock.charba.client.geo.GeoUtil;
 import org.pepstock.charba.client.geo.ProjectionAxis;
@@ -80,7 +82,16 @@ public class GeoChoroplethUSCapitalsCase extends BaseComposite {
 		Labels labels = GeoUtil.loadLabels(stateFeatures, NAME);
 
 		for (Feature f : stateFeatures) {
-			geodata.add(new ChoroplethDataPoint(f, getRandomDigit(0, 100)));
+			String state = f.getPropertyValue(NAME, Constants.BLANK);
+			Capital capital = CAPITALS.get(state);
+			ChoroplethDataPoint dp = new ChoroplethDataPoint(f, getRandomDigit(0, 100));
+			if (capital != null) {
+				DataPointCenter center = new DataPointCenter();
+				center.setLatitude(capital.latitude);
+				center.setLongitude(capital.longitude);
+				dp.setCenter(center);
+			}
+			geodata.add(dp);
 		}
 		
 		dataset1 = chart.newDataset();

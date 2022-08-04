@@ -140,17 +140,18 @@ public class AnnotationLineLabelOnEnter extends BaseComposite {
 		line.setEnterCallback(new EnterCallback() {
 			
 			@Override
-			public void onEnter(AnnotationContext context, ChartEventContext event) {
-				context.getElement().getOptions().getLabel().setDisplay(true);
-				context.getChart().draw();
+			public boolean onEnter(AnnotationContext context, ChartEventContext event) {
+				context.getElement().getLabel().getOptions().setDisplay(true);
+				return true;
 			}
 		});
 		line.setLeaveCallback(new LeaveCallback() {
 			
 			@Override
-			public void onLeave(AnnotationContext context, ChartEventContext event) {
-				context.getElement().getOptions().getLabel().setDisplay(false);
+			public boolean onLeave(AnnotationContext context, ChartEventContext event) {
+				context.getElement().getLabel().getOptions().setDisplay(false);
 				context.getChart().draw();
+				return true;
 			}
 		});
 		

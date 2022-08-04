@@ -72,7 +72,7 @@ public class AnnotationBoxesOnLineCase extends BaseComposite {
 		chart.getOptions().getScales().setAxes(axis);
 
 		AnnotationOptions options = new AnnotationOptions();
-
+		
 		BoxAnnotation box1 = new BoxAnnotation();
 		box1.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
 		box1.setXScaleID(DefaultScaleId.X);

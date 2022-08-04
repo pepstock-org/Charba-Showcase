@@ -14,7 +14,6 @@ import org.pepstock.charba.client.annotation.BoxAnnotation;
 import org.pepstock.charba.client.annotation.LineAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.annotation.listeners.ClickCallback;
-import org.pepstock.charba.client.annotation.listeners.DoubleClickCallback;
 import org.pepstock.charba.client.callbacks.AbstractTooltipTitleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.HtmlColor;
@@ -152,7 +151,6 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		line.getLabel().setContent("My threshold");
 		line.getLabel().setBackgroundColor(HtmlColor.RED);
 		line.setClickCallback(eventHandler);
-		line.setDoubleClickCallback(eventHandler);
 
 		BoxAnnotation box = new BoxAnnotation();
 		box.setDrawTime(DrawTime.BEFORE_DATASETS_DRAW);
@@ -168,13 +166,12 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		box.setBorderColor("rgb(101, 33, 171)");
 		box.setBorderWidth(1);
 		box.setClickCallback(eventHandler);
-		box.setDoubleClickCallback(eventHandler);
 		
 		options.setAnnotations(line, box);
 		
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
 		
-		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + "+ClickType.CLICK.getTitle()+"/"+ClickType.DOUBLE_CLICK.getTitle()+" to select annotation");
+		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + "+ClickType.CLICK.getTitle()+" to select annotation");
 		help.add(html);
 
 	}
@@ -195,16 +192,13 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	class MyEventsHandler implements ClickCallback,  DoubleClickCallback {
+	class MyEventsHandler implements ClickCallback {
+
 
 		@Override
-		public void onDoubleClick(AnnotationContext context, ChartEventContext event) {
-			click(context, event, ClickType.DOUBLE_CLICK);
-		}
-
-		@Override
-		public void onClick(AnnotationContext context, ChartEventContext event) {
+		public boolean onClick(AnnotationContext context, ChartEventContext event) {
 			click(context, event, ClickType.CLICK);
+			return false;
 		}
 		
 		private void click(AnnotationContext context, ChartEventContext event, ClickType type) {
@@ -224,8 +218,7 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 	private enum ClickType
 	{
 
-		CLICK("click", "Click", DefaultToastType.SUCCESS),
-		DOUBLE_CLICK("dblClick", "Double click", DefaultToastType.INFO);
+		CLICK("click", "Click", DefaultToastType.SUCCESS);
 
 		private final String type;
 
