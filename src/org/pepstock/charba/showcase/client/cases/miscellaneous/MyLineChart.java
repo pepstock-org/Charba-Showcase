@@ -12,8 +12,9 @@ import org.pepstock.charba.client.controllers.ControllerContext;
 import org.pepstock.charba.client.controllers.ControllerProvider;
 import org.pepstock.charba.client.controllers.ControllerType;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
-import org.pepstock.charba.client.items.DatasetElement;
+import org.pepstock.charba.client.items.ChartElement;
 import org.pepstock.charba.client.items.DatasetItem;
+import org.pepstock.charba.client.items.PointElement;
 
 public class MyLineChart extends LineChart {
 
@@ -26,15 +27,18 @@ public class MyLineChart extends LineChart {
 				@Override
 				public void onAfterDraw(ControllerContext context, IsChart chart) {
 					DatasetItem item = chart.getDatasetItem(context.getIndex());
-					List<DatasetElement> elements = item.getElements();
-					for (DatasetElement elem : elements) {
-						Context2dItem ctx = chart.getCanvas().getContext2d();
-						Helpers.get().unclipArea(ctx);
-						ctx.save();
-						ctx.setStrokeColor(elem.getOptions().getBorderColorAsString());
-						ctx.setLineWidth(1D);
-						ctx.strokeRect(elem.getX() - 10, elem.getY() - 10, 20, 20);
-						ctx.restore();
+					List<ChartElement> elements = item.getElements();
+					for (ChartElement elem : elements) {
+						if (elem instanceof PointElement) {
+							PointElement pElem = (PointElement) elem;
+							Context2dItem ctx = chart.getCanvas().getContext2d();
+							Helpers.get().unclipArea(ctx);
+							ctx.save();
+							ctx.setStrokeColor(pElem.getOptions().getBorderColorAsString());
+							ctx.setLineWidth(1D);
+							ctx.strokeRect(elem.getX() - 10, elem.getY() - 10, 20, 20);
+							ctx.restore();
+						}
 					}
 				}
 			};

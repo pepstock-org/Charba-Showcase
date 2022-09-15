@@ -95,6 +95,7 @@
 					<g:Label ui:field="miscellaneousPluginStandings" styleName='{myStyle.myLabel}'>Standings chart</g:Label>
 					<g:Label ui:field="htmlAnnotation" styleName='{myStyle.myLabel}'>HTML annotation as ticks</g:Label>
 					<g:Label ui:field="htmlAnnotationByElement" styleName='{myStyle.myLabel}'>HTML annotation by element</g:Label>
+					<g:Label ui:field="interactionByKeyboard" styleName='{myStyle.myLabel}'>Interaction by keyboard</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Implementing controllers</g:Label>
 					<g:Label ui:field="controllerMyLine" styleName='{myStyle.myLabel}'>My simple line chart</g:Label>

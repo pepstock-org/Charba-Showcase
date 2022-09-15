@@ -23,7 +23,7 @@ import org.pepstock.charba.client.enums.DefaultAnimationPropertyKey;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Easing;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
-import org.pepstock.charba.client.items.DatasetElement;
+import org.pepstock.charba.client.items.ChartElement;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.AnimationCollection;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -188,7 +188,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 
 	private static class From implements FromCallback{
 
-		private Map<Integer, List<DatasetElement>> elements = new HashMap<Integer, List<DatasetElement>>();
+		private Map<Integer, List<ChartElement>> elements = new HashMap<Integer, List<ChartElement>>();
 		
 		@Override
 		public Double invoke(DatasetContext context) {
@@ -197,7 +197,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 				ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
 				return scale.getPixelForValue(100);
 			}
-			DatasetElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
+			ChartElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
 			return element.getY();
 		}			
 		

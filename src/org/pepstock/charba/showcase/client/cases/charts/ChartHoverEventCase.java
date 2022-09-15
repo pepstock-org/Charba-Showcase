@@ -9,6 +9,8 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.events.NativeBaseEvent;
+import org.pepstock.charba.client.dom.events.NativeAbstractMouseEvent;
 import org.pepstock.charba.client.events.ChartHoverEvent;
 import org.pepstock.charba.client.events.ChartHoverEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -50,8 +52,12 @@ public class ChartHoverEventCase extends BaseComposite {
 
 			@Override
 			public void onHover(ChartHoverEvent event) {
-				mylog.addLogEvent("> HOVER: ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
-				Defaults.get().invokeChartOnHover(event);
+				NativeBaseEvent nativeEvent = event.getNativeEvent();
+				if (nativeEvent instanceof NativeAbstractMouseEvent) {
+					NativeAbstractMouseEvent mouseEvent = (NativeAbstractMouseEvent) nativeEvent;
+  				    mylog.addLogEvent("> HOVER: ScreenX: " + mouseEvent.getScreenX() + ", ScreenY:" + mouseEvent.getScreenY());
+				   Defaults.get().invokeChartOnHover(event);
+				}
 			}
 
 		}, ChartHoverEvent.TYPE);

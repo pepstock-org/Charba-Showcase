@@ -28,6 +28,7 @@ import org.pepstock.charba.showcase.client.cases.miscellaneous.FloatingDataTimeS
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationByElementCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HTMLAnnnotationCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.HoverStyleOnStackedAreaCase;
+import org.pepstock.charba.showcase.client.cases.miscellaneous.InteractionByKeyboardCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.InterpolationOnLineCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.PolynomialRegressionBarCase;
 import org.pepstock.charba.showcase.client.cases.miscellaneous.PowerRegressionScatterCase;
@@ -163,6 +164,12 @@ public class MiscellaneousView extends AbstractView {
 		content.add(new HTMLAnnnotationByElementCase());
 	}
 
+	@UiHandler("interactionByKeyboard")
+	protected void handleInteractionByKeyboard(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new InteractionByKeyboardCase());
+	}
+	
 	// ----------------------------------------------
 	// callbacks
 	// ----------------------------------------------

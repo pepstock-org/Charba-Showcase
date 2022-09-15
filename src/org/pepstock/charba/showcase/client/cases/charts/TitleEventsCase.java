@@ -65,7 +65,7 @@ public class TitleEventsCase extends BaseComposite {
 						title.append(value).append(" ");
 					}
 				}
-				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				StringBuilder sb = new StringBuilder();
 				sb.append("Title: <b>").append(title.toString()).append("</b><br>");
 				new Toast("Title Selected!", sb.toString()).show();
@@ -77,7 +77,7 @@ public class TitleEventsCase extends BaseComposite {
 
 			@Override
 			public void onEnter(TitleEnterEvent event) {
-				mylog.addLogEvent("> ENTER: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> ENTER: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				event.getItem().setColor(HtmlColor.RED);
 				event.getChart().update();
 
@@ -89,7 +89,7 @@ public class TitleEventsCase extends BaseComposite {
 
 			@Override
 			public void onLeave(TitleLeaveEvent event) {
-				mylog.addLogEvent("> LEAVE: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> LEAVE: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				event.getItem().setColor(Defaults.get().getGlobal().getTitle().getColor());
 				event.getChart().update();
 			}

@@ -12,6 +12,7 @@ import org.pepstock.charba.client.commons.Key;
 import org.pepstock.charba.client.commons.NativeObject;
 import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.commons.NativeObjectContainerFactory;
+import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
 import org.pepstock.charba.client.events.DatasetSelectionEventHandler;
 import org.pepstock.charba.client.gwt.widgets.TreeMapChartWidget;
@@ -63,6 +64,7 @@ public class TreeMapClickEventCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Clicking on a tree map chart");
 		chart.getOptions().getTooltips().setEnabled(false);
+		chart.getOptions().getTooltips().setPosition(TooltipPosition.AVERAGE);
 		
 		chart.addHandler(new DatasetSelectionEventHandler() {
 

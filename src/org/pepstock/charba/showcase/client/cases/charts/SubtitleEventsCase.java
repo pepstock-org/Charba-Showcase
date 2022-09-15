@@ -68,7 +68,7 @@ public class SubtitleEventsCase extends BaseComposite {
 						title.append(value).append(" ");
 					}
 				}
-				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> CLICK: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				StringBuilder sb = new StringBuilder();
 				sb.append("Subtitle: <b>").append(title.toString()).append("</b><br>");
 				new Toast("Subtitle Selected!", sb.toString()).show();
@@ -80,7 +80,7 @@ public class SubtitleEventsCase extends BaseComposite {
 
 			@Override
 			public void onEnter(SubtitleEnterEvent event) {
-				mylog.addLogEvent("> ENTER: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> ENTER: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				event.getItem().setColor(HtmlColor.RED);
 				event.getChart().update();
 
@@ -92,7 +92,7 @@ public class SubtitleEventsCase extends BaseComposite {
 
 			@Override
 			public void onLeave(SubtitleLeaveEvent event) {
-				mylog.addLogEvent("> LEAVE: event ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
+				mylog.addLogEvent("> LEAVE: event ScreenX: " + event.getNativeMouseEvent().getScreenX() + ", ScreenY:" + event.getNativeMouseEvent().getScreenY());
 				event.getItem().setColor(Defaults.get().getGlobal().getSubtitle().getColor());
 				event.getChart().update();
 			}

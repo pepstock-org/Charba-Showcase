@@ -9,6 +9,8 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.dom.events.NativeBaseEvent;
+import org.pepstock.charba.client.dom.events.NativeAbstractMouseEvent;
 import org.pepstock.charba.client.events.ChartClickEvent;
 import org.pepstock.charba.client.events.ChartClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -51,8 +53,13 @@ public class ChartClickEventCase extends BaseComposite {
 
 			@Override
 			public void onClick(ChartClickEvent event) {
-				mylog.addLogEvent("> CLICK: ScreenX: " + event.getNativeEvent().getScreenX() + ", ScreenY:" + event.getNativeEvent().getScreenY());
-				Defaults.get().invokeChartOnClick(event);
+				NativeBaseEvent nativeEvent = event.getNativeEvent();
+				if (nativeEvent instanceof NativeAbstractMouseEvent) {
+					NativeAbstractMouseEvent mouseEvent = (NativeAbstractMouseEvent) nativeEvent;
+					mylog.addLogEvent("> CLICK: ScreenX: " + mouseEvent.getScreenX() + ", ScreenY:" + mouseEvent.getScreenY());
+					Defaults.get().invokeChartOnClick(event);
+					
+				}
 			}
 
 		}, ChartClickEvent.TYPE);

@@ -5,17 +5,17 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.BarDataset;
-import org.pepstock.charba.client.dom.BaseNativeEvent;
 import org.pepstock.charba.client.dom.DOMBuilder;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.dom.elements.Img;
+import org.pepstock.charba.client.dom.events.NativeAbstractMouseEvent;
 import org.pepstock.charba.client.enums.AxisPosition;
 import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.events.ChartClickEvent;
 import org.pepstock.charba.client.events.ChartClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.items.DatasetElement;
+import org.pepstock.charba.client.items.BarElement;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.plugins.AbstractPlugin;
 import org.pepstock.charba.client.utils.AnnotationBuilder;
@@ -91,7 +91,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 
 			@Override
 			public void onClick(ChartClickEvent clickEvent) {
-				BaseNativeEvent event = (BaseNativeEvent) clickEvent.getNativeEvent();
+				NativeAbstractMouseEvent event = (NativeAbstractMouseEvent) clickEvent.getNativeEvent();
 
 				boolean isX = event.getLayerX() >= imgX && event.getLayerX() <= (imgX + imgElement.getWidth());
 				boolean isY = event.getLayerY() >= imgY && event.getLayerY() <= (imgY + imgElement.getHeight());
@@ -115,10 +115,10 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 				final Context2dItem ctx = chart.getCanvas().getContext2d();
 
 				DatasetItem item = chart.getDatasetItem(0);
-				DatasetElement elem = item.getElements().get(3);
+				BarElement elem = (BarElement) item.getElements().get(3);
 				Div tempDiv = DOMBuilder.get().createDivElement();
 				tempDiv.setInnerHTML(ANNOTATION);
-				Img img =  AnnotationBuilder.build(tempDiv, 300, 64);
+				Img img = AnnotationBuilder.build(tempDiv, 300, 64);
 
 				double x = elem.getX() - (elem.getWidth() / 2);
 				double y = elem.getY() - img.getHeight() - 10;

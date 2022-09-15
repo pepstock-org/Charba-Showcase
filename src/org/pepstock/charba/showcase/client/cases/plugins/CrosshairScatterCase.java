@@ -7,6 +7,8 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.ScatterDataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.impl.plugins.Crosshair;
@@ -109,7 +111,8 @@ public class CrosshairScatterCase extends BaseComposite {
 		
 		chart.getData().setDatasets(dataset1, dataset2);
 		
-		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " to act with crosshair");
+		Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+		HTML html = new HTML("Press " + kkey.getInnerHTML() + " to act with crosshair");
 		help.add(html);
 
 	}

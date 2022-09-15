@@ -6,6 +6,8 @@ import org.pepstock.charba.client.IsChart;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.PieDataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.DatasetSelectionEvent;
@@ -54,7 +56,8 @@ public class DatasetSelectionWithModifierCase extends BaseComposite {
 			@Override
 			public void onSelect(DatasetSelectionEvent event) {
 				if (!ModifierKey.ALT.isPressed(event)) {
-					new Toast("Missing key!", "To select the dataset you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + click! ", DefaultToastType.WARNING).show();
+					Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+					new Toast("Missing key!", "To select the dataset you must press "+kkey.getInnerHTML()+" + click! ", DefaultToastType.WARNING).show();
 					return;
 				}
 				IsChart chart = (IsChart) event.getSource();
@@ -86,7 +89,8 @@ public class DatasetSelectionWithModifierCase extends BaseComposite {
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset);
 		
-		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + click to select");
+		Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+		HTML html = new HTML("Press " + kkey.getInnerHTML() + " + click to select");
 		help.add(html);
 
 	}

@@ -5,6 +5,8 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -88,7 +90,8 @@ public class ZoomDragCategoryAxisCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 		
-		HTML html = new HTML("Press "+ModifierKey.ALT.getElement().getInnerHTML()+" to pan");
+		Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+		HTML html = new HTML("Press "+kkey.getInnerHTML()+" to pan");
 		help.add(html);
 	}
 

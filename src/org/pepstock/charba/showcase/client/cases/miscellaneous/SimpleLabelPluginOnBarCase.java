@@ -14,7 +14,7 @@ import org.pepstock.charba.client.dom.enums.TextBaseline;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TextAlign;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
-import org.pepstock.charba.client.items.DatasetElement;
+import org.pepstock.charba.client.items.ChartElement;
 import org.pepstock.charba.client.items.DatasetItem;
 import org.pepstock.charba.client.options.IsImmutableFont;
 import org.pepstock.charba.client.plugins.SmartPlugin;
@@ -85,9 +85,9 @@ public class SimpleLabelPluginOnBarCase extends BaseComposite {
 					DatasetItem item = chart.getDatasetItem(i);
 					if (!item.isHidden()) {
 						Dataset ds = dss.get(i);
-						List<DatasetElement> elements = item.getElements();
+						List<ChartElement> elements = item.getElements();
 						for (int k = 0; k < elements.size(); k++) {
-							DatasetElement elem = elements.get(k);
+							ChartElement elem = elements.get(k);
 							String dataString = ds.getData().get(k).toString();
 							ctx.setFillColor("rgb(0, 0, 0)");
 							ctx.setFont(font.toCSSString());

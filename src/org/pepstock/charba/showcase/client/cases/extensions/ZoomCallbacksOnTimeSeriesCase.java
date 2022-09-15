@@ -17,6 +17,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
 import org.pepstock.charba.client.enums.DefaultTransitionKey;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ModifierKey;
@@ -176,7 +178,8 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 
-		HTML html = new HTML(ModifierKey.ALT.getElement().getInnerHTML()+" wheeling to zoom");
+		Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+		HTML html = new HTML(kkey.getInnerHTML()+" wheeling to zoom");
 		help.add(html);
 	}
 

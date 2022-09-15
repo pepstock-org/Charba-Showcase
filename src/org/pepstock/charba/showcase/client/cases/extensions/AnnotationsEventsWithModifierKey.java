@@ -25,6 +25,8 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ModifierKey;
@@ -170,8 +172,8 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		options.setAnnotations(line, box);
 		
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
-		
-		HTML html = new HTML("Press " + ModifierKey.ALT.getElement().getInnerHTML() + " + "+ClickType.CLICK.getTitle()+" to select annotation");
+		Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+		HTML html = new HTML("Press " + kkey.getInnerHTML() + " + "+ClickType.CLICK.getTitle()+" to select annotation");
 		help.add(html);
 
 	}
@@ -203,7 +205,8 @@ public class AnnotationsEventsWithModifierKey extends BaseComposite {
 		
 		private void click(AnnotationContext context, ChartEventContext event, ClickType type) {
 			if (!ModifierKey.ALT.isPressed(event)) {
-				new Toast("Missing key!", "To select the annotation you must press "+ModifierKey.ALT.getElement().getInnerHTML()+" + "+type.getType()+"! ", DefaultToastType.WARNING).show();
+				Div kkey = IsKeyboardKey.getElement(ModifierKey.ALT.getKeyboardKey());
+				new Toast("Missing key!", "To select the annotation you must press "+kkey+" + "+type.getType()+"! ", DefaultToastType.WARNING).show();
 				return;
 			}
 			AbstractAnnotation annotation = context.getAnnotation();
