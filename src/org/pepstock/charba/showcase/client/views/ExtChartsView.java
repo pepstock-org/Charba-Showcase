@@ -9,6 +9,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethSelectC
 import org.pepstock.charba.showcase.client.cases.extensions.GeoChoroplethUSCapitalsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixCalendarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixClickEventCase;
+import org.pepstock.charba.showcase.client.cases.extensions.MatrixDatalabelsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnCategoryAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.MatrixOnTimeAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyBasicCase;
@@ -18,6 +19,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.SankeyCountriesCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyEnergyCase;
 import org.pepstock.charba.showcase.client.cases.extensions.SankeyTreeCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDatalabelsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSSwitchableCase;
@@ -115,6 +117,12 @@ public class ExtChartsView extends AbstractView {
 		content.add(new TreeMapClickEventCase());
 	}
 
+	@UiHandler("treemapDatalabels")
+	protected void handleTreemapDatalabels(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapDatalabelsCase());
+	}
+
 	// ----------------------------------------------
 	// Matrix
 	// ----------------------------------------------
@@ -141,6 +149,12 @@ public class ExtChartsView extends AbstractView {
 	protected void handleMatrixClicking(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new MatrixClickEventCase());
+	}
+	
+	@UiHandler("matrixDatalabels")
+	protected void handleMatrixDatalabels(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new MatrixDatalabelsCase());
 	}
 	
 	// ----------------------------------------------

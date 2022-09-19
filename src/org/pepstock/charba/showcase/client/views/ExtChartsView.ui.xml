@@ -57,6 +57,7 @@
 					<g:Label ui:field="treemapGrouping" styleName='{myStyle.myLabel}'>Grouping data at runtime</g:Label>
 					<g:Label ui:field="treemapDividers" styleName='{myStyle.myLabel}'>Applying dividers</g:Label>
 					<g:Label ui:field="treemapClick" styleName='{myStyle.myLabel}'>Selecting treemap item</g:Label>
+					<g:Label ui:field="treemapDatalabels" styleName='{myStyle.myLabel}'>Using Datalabels plugin</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"	horizontalAlignment="center">
@@ -66,6 +67,7 @@
 					<g:Label ui:field="matrixOnTimeAxis" styleName='{myStyle.myLabel}'>Using time axis</g:Label>
 					<g:Label ui:field="matrixOnCategoryAxis" styleName='{myStyle.myLabel}'>Using category axis</g:Label>
 					<g:Label ui:field="matrixClick" styleName='{myStyle.myLabel}'>Selecting matrix item</g:Label>
+					<g:Label ui:field="matrixDatalabels" styleName='{myStyle.myLabel}'>Using Datalabels plugin</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 				</g:VerticalPanel>
 			</g:cell>
