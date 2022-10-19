@@ -29,7 +29,9 @@ import org.pepstock.charba.showcase.client.cases.charts.ScatterCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedAreaCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedGroupBarCase;
+import org.pepstock.charba.showcase.client.cases.charts.StackedHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.StackedLineCase;
+import org.pepstock.charba.showcase.client.cases.charts.StackedVerticalLineCase;
 import org.pepstock.charba.showcase.client.cases.charts.SubtitleEventsCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesBarCase;
 import org.pepstock.charba.showcase.client.cases.charts.TimeSeriesByBarCase;
@@ -132,6 +134,12 @@ public class ChartsView extends AbstractView {
 		content.add(new StackedBarCase());
 	}
 
+	@UiHandler("stackedHorizontalBar")
+	protected void handleHorizontalStackedBar(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new StackedHorizontalBarCase());
+	}
+
 	@UiHandler("stackedGroupBar")
 	protected void handleStackedGroupBar(ClickEvent event) {
 		clearPreviousChart();
@@ -142,6 +150,12 @@ public class ChartsView extends AbstractView {
 	protected void handleStackedLine(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new StackedLineCase());
+	}
+
+	@UiHandler("stackedVerticalLine")
+	protected void handleStackedVerticalLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new StackedVerticalLineCase());
 	}
 
 	@UiHandler("stackedArea")

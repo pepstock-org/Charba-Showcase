@@ -7,10 +7,10 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
-import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.data.StackedVerticalLineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
-import org.pepstock.charba.client.gwt.widgets.StackedLineChartWidget;
+import org.pepstock.charba.client.gwt.widgets.StackedVerticalLineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -21,25 +21,25 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class StackedLineCase extends BaseComposite {
+public class StackedVerticalLineCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, StackedLineCase> {
+	interface ViewUiBinder extends UiBinder<Widget, StackedVerticalLineCase> {
 	}
 
 	@UiField
-	StackedLineChartWidget chart;
+	StackedVerticalLineChartWidget chart;
 
-	public StackedLineCase() {
+	public StackedVerticalLineCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Stacked line chart");
+		chart.getOptions().getTitle().setText("Stacked vertical line chart");
 
-		LineDataset dataset1 = chart.newDataset();
+		StackedVerticalLineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
 
 		IsColor color1 = GoogleChartColor.values()[0];
@@ -49,7 +49,7 @@ public class StackedLineCase extends BaseComposite {
 		dataset1.setData(getRandomDigits(months, false));
 		dataset1.setFill(false);
 
-		LineDataset dataset2 = chart.newDataset();
+		StackedVerticalLineDataset dataset2 = chart.newDataset();
 		dataset2.setLabel("dataset 2");
 
 		IsColor color2 = GoogleChartColor.values()[1];
@@ -58,13 +58,14 @@ public class StackedLineCase extends BaseComposite {
 		dataset2.setBorderColor(color2.toHex());
 		dataset2.setData(getRandomDigits(months, false));
 		dataset2.setFill(false);
+
 		
-		CartesianCategoryAxis axis1 = (CartesianCategoryAxis) chart.getOptions().getScales().getAxisById(DefaultScaleId.X);
+		CartesianCategoryAxis axis1 = (CartesianCategoryAxis) chart.getOptions().getScales().getAxisById(DefaultScaleId.Y);
 		axis1.setDisplay(true);
 		axis1.getTitle().setDisplay(true);
 		axis1.getTitle().setText("Month");
 
-		CartesianLinearAxis axis2 = (CartesianLinearAxis) chart.getOptions().getScales().getAxisById(DefaultScaleId.Y);
+		CartesianLinearAxis axis2 = (CartesianLinearAxis) chart.getOptions().getScales().getAxisById(DefaultScaleId.X);
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
@@ -86,7 +87,7 @@ public class StackedLineCase extends BaseComposite {
 	protected void handleAddDataset(ClickEvent event) {
 		List<Dataset> datasets = chart.getData().getDatasets();
 
-		LineDataset dataset = chart.newDataset();
+		StackedVerticalLineDataset dataset = chart.newDataset();
 		dataset.setLabel("dataset " + (datasets.size() + 1));
 
 		IsColor color = GoogleChartColor.values()[datasets.size()];

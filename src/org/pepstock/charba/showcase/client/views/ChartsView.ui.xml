@@ -75,10 +75,14 @@
 						styleName='{myStyle.myLabel}'>Area</g:Label>
 					<g:Label ui:field="stackedBar"
 						styleName='{myStyle.myLabel}'>Stacked bar</g:Label>
+					<g:Label ui:field="stackedHorizontalBar"
+						styleName='{myStyle.myLabel}'>Stacked horizontal bar</g:Label>
 					<g:Label ui:field="stackedGroupBar"
 						styleName='{myStyle.myLabel}'>Stacked group bar</g:Label>
 					<g:Label ui:field="stackedLine"
 						styleName='{myStyle.myLabel}'>Stacked line</g:Label>
+					<g:Label ui:field="stackedVerticalLine"
+						styleName='{myStyle.myLabel}'>Stacked vertical line</g:Label>
 					<g:Label ui:field="stackedArea"
 						styleName='{myStyle.myLabel}'>Stacked area</g:Label>
 					<g:Label ui:field="combo" styleName='{myStyle.myLabel}'>Combined bar and line datasets</g:Label>
