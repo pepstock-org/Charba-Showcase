@@ -21,6 +21,8 @@ import org.pepstock.charba.showcase.client.cases.extensions.SankeyTreeCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapClickEventCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDatalabelsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapDividersCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapFontsColorsCase;
+import org.pepstock.charba.showcase.client.cases.extensions.TreeMapObjectTreeCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSPopulationCase;
 import org.pepstock.charba.showcase.client.cases.extensions.TreeMapUSSwitchableCase;
 
@@ -98,6 +100,12 @@ public class ExtChartsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TreeMapDividersCase());
 	}
+
+	@UiHandler("treemapFontsColors")
+	protected void handleTreemapFontsColors(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapFontsColorsCase());
+	}
 	
 	@UiHandler("treemapUSpopulation")
 	protected void handleTreemapUSpopulation(ClickEvent event) {
@@ -105,6 +113,12 @@ public class ExtChartsView extends AbstractView {
 		content.add(new TreeMapUSPopulationCase());
 	}
 
+	@UiHandler("treemapTreeObject")
+	protected void handleTreemapTreeObject(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new TreeMapObjectTreeCase());
+	}
+	
 	@UiHandler("treemapGrouping")
 	protected void handleTreemapGrouping(ClickEvent event) {
 		clearPreviousChart();
@@ -122,7 +136,7 @@ public class ExtChartsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new TreeMapDatalabelsCase());
 	}
-
+	
 	// ----------------------------------------------
 	// Matrix
 	// ----------------------------------------------
