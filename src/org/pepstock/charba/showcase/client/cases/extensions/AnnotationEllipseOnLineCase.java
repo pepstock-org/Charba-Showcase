@@ -8,6 +8,7 @@ import org.pepstock.charba.client.annotation.EllipseAnnotation;
 import org.pepstock.charba.client.annotation.enums.DrawTime;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
+import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
@@ -75,6 +76,10 @@ public class AnnotationEllipseOnLineCase extends BaseComposite {
 		ellipse.setBorderWidth(4);
 		ellipse.setBorderColor(GwtMaterialColor.INDIGO_LIGHTEN_3);
 		ellipse.setBorderDash(3,3);
+		
+		ellipse.getLabel().setContent("My ellipse", "label!");
+		ellipse.getLabel().setDisplay(true);
+		ellipse.getLabel().setColor(HtmlColor.BLUE);
 
 		EllipseAnnotation ellipseRot = new EllipseAnnotation("ellipseRot");
 		ellipseRot.setXMin("August");

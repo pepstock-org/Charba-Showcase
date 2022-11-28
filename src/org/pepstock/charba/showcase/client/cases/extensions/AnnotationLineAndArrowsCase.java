@@ -149,7 +149,12 @@ public class AnnotationLineAndArrowsCase extends BaseComposite {
 		line1.getArrowHeads().setLength(20);
 		line1.getArrowHeads().setWidth(12);
 		line1.getArrowHeads().setFill(true);
-
+		line1.getLabel().setDisplay(true);
+		line1.getLabel().setContent("Forecast", "period");
+		line1.getLabel().setYAdjust(-100);
+		line1.getLabel().getCallout().setDisplay(true);
+		line1.getLabel().getCallout().setBorderWidth(3);
+		
 		options.setAnnotations(line, line1);
 
 		chart.getOptions().getPlugins().setOptions(AnnotationPlugin.ID, options);
