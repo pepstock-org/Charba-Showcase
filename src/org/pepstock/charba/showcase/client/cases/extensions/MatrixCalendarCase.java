@@ -163,7 +163,7 @@ public class MatrixCalendarCase extends BaseComposite {
 		axis.getTicks().setPadding(0);
 		axis.getTicks().setMaxRotation(0);
 		axis.getGrid().setDisplay(false);
-		axis.getGrid().setDrawBorder(false);
+		axis.getBorder().setDisplay(false);
 
 		CartesianTimeAxis axis1 = new CartesianTimeAxis(chart, DefaultScaleId.Y, AxisKind.Y);
 		axis1.setPosition(AxisPosition.LEFT);
@@ -177,8 +177,8 @@ public class MatrixCalendarCase extends BaseComposite {
 		axis1.getTicks().setMaxRotation(0);
 		axis1.getTicks().setAutoSkip(true);
 
+		axis1.getBorder().setDisplay(false);
 		axis1.getGrid().setDisplay(false);
-		axis1.getGrid().setDrawBorder(false);
 		axis1.getGrid().setTickLength(0);
 
 		axis1.getTitle().setDisplay(true);

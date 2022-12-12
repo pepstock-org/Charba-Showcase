@@ -119,8 +119,8 @@ public class MatrixOnTimeAxisCase extends BaseComposite {
 		axis.getTicks().setMaxRotation(0);
 		axis.getTicks().setAutoSkip(true);
 		axis.getGrid().setDisplay(false);
-		axis.getGrid().setDrawBorder(false);
 		axis.getGrid().setTickLength(0);
+		axis.getBorder().setDisplay(false);
 
 		CartesianTimeAxis axis1 = new CartesianTimeAxis(chart, DefaultScaleId.X, AxisKind.X);
 		axis1.setPosition(AxisPosition.BOTTOM);
@@ -132,8 +132,8 @@ public class MatrixOnTimeAxisCase extends BaseComposite {
 
 		axis1.getTicks().setAutoSkip(true);
 
+		axis1.getBorder().setDisplay(false);
 		axis1.getGrid().setDisplay(false);
-		axis1.getGrid().setDrawBorder(false);
 		axis1.getGrid().setTickLength(0);
 
 		chart.getOptions().getScales().setAxes(axis, axis1);

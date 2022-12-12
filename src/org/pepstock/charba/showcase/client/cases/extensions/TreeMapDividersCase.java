@@ -47,7 +47,7 @@ public class TreeMapDividersCase extends BaseComposite {
 	@UiField
 	TreeMapChartWidget chart;
 
-	private final List<TreeMapObject> tree;
+	private List<TreeMapObject> tree;
 
 	public TreeMapDividersCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -105,9 +105,12 @@ public class TreeMapDividersCase extends BaseComposite {
 
 	@UiHandler("randomize")
 	protected void handleRandomize(ClickEvent event) {
+		ArrayObject array = JSON.parseForArray(DATA);
+		tree = ArrayListHelper.unmodifiableList(array, FACTORY);
+		tree.forEach((obj) -> obj.setValue(getRandomDigit(1, 10)));
 		for (Dataset dataset : chart.getData().getDatasets()) {
 			TreeMapDataset tds = (TreeMapDataset)dataset;
-			tds.getTreeObjects(FACTORY).forEach((obj) -> obj.setValue(getRandomDigit(1, 10)));
+			tds.setTreeObjetcs(tree);
 		}
 		chart.update();
 	}

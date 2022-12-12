@@ -78,7 +78,7 @@ public class GridLinesStyleCase extends BaseComposite {
 		axis2.setDisplay(true);
 		axis2.getTitle().setDisplay(true);
 		axis2.getTitle().setText("Value");
-		axis2.getGrid().setDrawBorder(false);
+		axis2.getBorder().setDisplay(true);
 
 		axis2.getGrid().setColor(new ColorCallback<ScaleContext>() {
 			
@@ -97,20 +97,20 @@ public class GridLinesStyleCase extends BaseComposite {
 			}
 		});
 
-		axis2.getGrid().setBorderDash(new BorderDashCallback<ScaleContext>() {
-
-			@Override
-			public List<Integer> invoke(ScaleContext context) {
-				int value = context.getIndex() % 10;
-				return Arrays.asList(value, value * 2);
-			}
-		});
-		
 		axis2.getGrid().setTickColor(new ColorCallback<ScaleContext>() {
 			
 			@Override
 			public Object invoke(ScaleContext context) {
 				return HtmlColor.BLACK;
+			}
+		});
+
+		axis2.getBorder().setDash(new BorderDashCallback<ScaleContext>() {
+
+			@Override
+			public List<Integer> invoke(ScaleContext context) {
+				int value = context.getIndex() % 10;
+				return Arrays.asList(value, value * 2);
 			}
 		});
 

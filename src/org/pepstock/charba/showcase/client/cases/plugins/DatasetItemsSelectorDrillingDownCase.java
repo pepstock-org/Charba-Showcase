@@ -101,8 +101,8 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setTimeSeriesData(data);
 
 		axis = chart.getOptions().getScales().getTimeAxis();
+		axis.getTicks().setStepSize(1);
 		axis.getTime().setUnit(TimeUnit.DAY);
-		axis.getTime().setStepSize(1);
 		axis.setMin(new MinMaxCallback<Date>() {
 			
 			@Override
@@ -190,7 +190,7 @@ public class DatasetItemsSelectorDrillingDownCase extends BaseComposite {
 		dataset.setBorderColor(color1.toHex());
 		minDate = null;
 		maxDate = null;
-		axis.getTime().setUnit(TimeUnit.HOUR);
+		axis.getTime().setUnit(TimeUnit.DAY);
 		DatasetsItemsSelectorOptions pOptions = chart.getOptions().getPlugins().getOptions(DatasetsItemsSelector.FACTORY);
 		pOptions.setEnabled(true);
 		chart.reconfigure();

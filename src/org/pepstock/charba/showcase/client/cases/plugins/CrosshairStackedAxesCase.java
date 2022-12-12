@@ -60,9 +60,9 @@ public class CrosshairStackedAxesCase extends BaseComposite {
 		axis1.setStackWeight(2);
 		axis1.setMin(0);
 		axis1.setMax(100);
-		axis1.getGrid().setBorderColor(HtmlColor.RED);
-		axis1.getGrid().setBorderWidth(3);
 		axis1.getGrid().setZ(-1);
+		axis1.getBorder().setColor(HtmlColor.RED);
+		axis1.getBorder().setWidth(3);
 		
 		axis2 = new CartesianCategoryAxis(chart, "y-axis-2", AxisKind.Y);
 		axis2.setDisplay(true);
@@ -71,9 +71,9 @@ public class CrosshairStackedAxesCase extends BaseComposite {
 		axis2.setOffset(true);
 		axis2.setStack("myStack");
 		axis2.setStackWeight(1);
-		axis2.getGrid().setBorderColor(HtmlColor.BLUE);
-		axis2.getGrid().setBorderWidth(3);
 		axis2.getGrid().setZ(-1);
+		axis2.getBorder().setColor(HtmlColor.BLUE);
+		axis2.getBorder().setWidth(3);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 

@@ -50,6 +50,7 @@ public class HtmlLegendBarCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getLegend().getTitle().setDisplay(true);
+		chart.getOptions().getLegend().getLabels().setUseBorderRadius(true);
 		chart.getOptions().getLegend().getLabels().setLabelsCallback(new LegendLabelsCallback() {
 			
 			@Override

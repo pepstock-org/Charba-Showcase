@@ -94,12 +94,12 @@ public class ZoomOverScaleCase extends BaseComposite {
 		CartesianLinearAxis axis1 = new CartesianLinearAxis(chart, AxisKind.X);
 		axis1.setDisplay(true);
 		axis1.getGrid().setDisplay(true);
-		axis1.getGrid().setBorderColor(HtmlColor.RED);
+		axis1.getBorder().setColor(HtmlColor.RED);
 
 		CartesianLinearAxis axis2 = new CartesianLinearAxis(chart);
 		axis2.setDisplay(true);
 		axis2.getGrid().setDisplay(true);
-		axis2.getGrid().setBorderColor(HtmlColor.RED);
+		axis2.getBorder().setColor(HtmlColor.RED);
 
 		chart.getOptions().getScales().setAxes(axis1, axis2);
 		
