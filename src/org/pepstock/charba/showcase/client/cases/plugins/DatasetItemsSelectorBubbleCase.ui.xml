@@ -22,6 +22,12 @@
 					</g:PushButton>
 				</g:HorizontalPanel>
 			</g:cell>
+			<g:cell width="10%" verticalAlignment="top"
+				horizontalAlignment="center">
+				<g:HorizontalPanel spacing="5" verticalAlignment="middle">
+					<g:HTMLPanel ui:field="help"></g:HTMLPanel>
+				</g:HorizontalPanel>
+			</g:cell>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

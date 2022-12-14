@@ -3,11 +3,13 @@ package org.pepstock.charba.showcase.client.cases.plugins;
 import java.util.List;
 import java.util.Random;
 
-import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.data.BubbleDataset;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
+import org.pepstock.charba.client.dom.elements.Div;
+import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
+import org.pepstock.charba.client.dom.enums.KeyboardUiKey;
 import org.pepstock.charba.client.events.DatasetRangeCleanSelectionEvent;
 import org.pepstock.charba.client.events.DatasetRangeCleanSelectionEventHandler;
 import org.pepstock.charba.client.events.DatasetRangeSelectionEvent;
@@ -24,6 +26,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DatasetItemsSelectorBubbleCase extends BaseComposite {
@@ -39,6 +43,9 @@ public class DatasetItemsSelectorBubbleCase extends BaseComposite {
 
 	@UiField
 	BubbleChartWidget chart;
+	
+	@UiField
+	HTMLPanel help;
 
 	public DatasetItemsSelectorBubbleCase() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -81,10 +88,7 @@ public class DatasetItemsSelectorBubbleCase extends BaseComposite {
 		pOptions.setBorderWidth(2);
 		pOptions.setBorderDash(6, 3, 6);
 		pOptions.setBorderColor(HtmlColor.GREY);
-		pOptions.getSelectionCleaner().setDisplay(true);
-		pOptions.getSelectionCleaner().setLabel("Reset selection");
-		pOptions.getSelectionCleaner().setPadding(6);
-		pOptions.getSelectionCleaner().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
+		pOptions.getSelectionCleaner().setDisplay(false);
 		pOptions.setColor(HtmlColor.LIGHT_PINK.alpha(DatasetsItemsSelectorOptions.DEFAULT_ALPHA));
 
 		chart.getOptions().getPlugins().setOptions(DatasetsItemsSelector.ID, pOptions);
@@ -99,7 +103,6 @@ public class DatasetItemsSelectorBubbleCase extends BaseComposite {
 				new Toast("Dataset Range Clean Selection!", sb.toString()).show();
 			}
 		}, DatasetRangeCleanSelectionEvent.TYPE);
-
 		
 		chart.addHandler(new DatasetRangeSelectionEventHandler() {
 
@@ -111,6 +114,10 @@ public class DatasetItemsSelectorBubbleCase extends BaseComposite {
 				new Toast("Dataset Range Selected!", sb.toString()).show();
 			}
 		}, DatasetRangeSelectionEvent.TYPE);
+		
+		Div kkey = IsKeyboardKey.getElement(KeyboardUiKey.ESCAPE);
+		HTML html = new HTML("Press " + kkey.getInnerHTML() + " to clear selection");
+		help.add(html);
 	}
 
 	private int getData() {
