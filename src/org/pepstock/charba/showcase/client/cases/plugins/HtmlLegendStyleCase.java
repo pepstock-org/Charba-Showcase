@@ -1,6 +1,8 @@
 package org.pepstock.charba.showcase.client.cases.plugins;
 
 import org.pepstock.charba.client.UpdateConfigurationBuilder;
+import org.pepstock.charba.client.callbacks.DatasetContext;
+import org.pepstock.charba.client.callbacks.PointStyleCallback;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
@@ -59,7 +61,19 @@ public class HtmlLegendStyleCase extends BaseComposite {
 		dataset.setBorderColor(color1.toHex());
 		dataset.setBorderWidth(1);
 		dataset.setPointBackgroundColor(color1.toHex());
-		dataset.setPointStyle(PointStyle.CIRCLE);
+		dataset.setPointStyle(new PointStyleCallback<DatasetContext>() {
+			
+			@Override
+			public Object invoke(DatasetContext context) {
+				String selected = pointStyle.getSelectedValue();
+				for (PointStyle cPos : PointStyle.values()) {
+					if (cPos.name().equalsIgnoreCase(selected)) {
+						return cPos;
+					}
+				}
+				return null;
+			}
+		});
 		dataset.setPointRadius(10);
 		dataset.setData(getRandomDigits(months));
 		dataset.setFill(Fill.ORIGIN);
@@ -86,8 +100,7 @@ public class HtmlLegendStyleCase extends BaseComposite {
 				dataset.setBackgroundColor(color.alpha(0.2));
 				dataset.setBorderColor(color.toHex());
 				dataset.setPointBackgroundColor(color.toHex());
-				dataset.setPointStyle(cPos);
-				chart.reconfigure();
+				chart.update();
 				return;
 			}
 			i++;
