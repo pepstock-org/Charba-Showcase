@@ -1,6 +1,8 @@
 package org.pepstock.charba.showcase.client.views;
 
+import org.pepstock.charba.showcase.client.cases.coloring.FillingBaselineCase;
 import org.pepstock.charba.showcase.client.cases.coloring.FillingBoundariesCase;
+import org.pepstock.charba.showcase.client.cases.coloring.FillingColorsCase;
 import org.pepstock.charba.showcase.client.cases.coloring.FillingDatasetsOnLineCase;
 import org.pepstock.charba.showcase.client.cases.coloring.FillingDatasetsOnRadarCase;
 import org.pepstock.charba.showcase.client.cases.coloring.GwtMaterialColorsCase;
@@ -201,4 +203,15 @@ public class ColoringView extends AbstractView {
 		content.add(new FillingDatasetsOnRadarCase());
 	}
 
+	@UiHandler("fillingColors")
+	protected void handleFillingColors(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FillingColorsCase());
+	}
+
+	@UiHandler("fillingBaseline")
+	protected void handleFillingBaseline(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new FillingBaselineCase());
+	}
 }

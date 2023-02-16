@@ -85,6 +85,8 @@
 					<g:Label ui:field="fillingBoundaries" styleName='{myStyle.myLabel}'>Setting filling boundaries</g:Label>
 					<g:Label ui:field="fillingDatasetsOnLine" styleName='{myStyle.myLabel}'>Setting filling on line chart</g:Label>
 					<g:Label ui:field="fillingDatasetsOnRadar" styleName='{myStyle.myLabel}'>Setting filling on radar chart</g:Label>
+					<g:Label ui:field="fillingBaseline" styleName='{myStyle.myLabel}'>Setting filling baseline</g:Label>
+					<g:Label ui:field="fillingColors" styleName='{myStyle.myLabel}'>Setting filling with different colors</g:Label>
 					<g:Label styleName='{myStyle.myCategory}'></g:Label>
 					<g:Label styleName='{myStyle.myCategory}'>Palette</g:Label>
 					<g:Label ui:field="coloringGwtMaterial" styleName='{myStyle.myLabel}'>GWT Material</g:Label>
