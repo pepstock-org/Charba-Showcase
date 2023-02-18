@@ -11,6 +11,9 @@ public interface MyResources extends ClientBundle {
 	@Source("js/chartjs-plugin-stacked100.js")
 	TextResource chartJsStacked100Source();
 
+	@Source("js/chartjs-plugin-crosshair.js")
+	TextResource chartJsCrosshairSource();
+
 	@Source("css/Legend.css")
 	TextResource legend();
 

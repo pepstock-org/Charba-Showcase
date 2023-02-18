@@ -2,18 +2,17 @@ package org.pepstock.charba.showcase.client.cases.extensions;
 
 import java.util.List;
 
-import org.pepstock.charba.client.Defaults;
 import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.commons.Key;
+import org.pepstock.charba.client.commons.NativeObject;
+import org.pepstock.charba.client.commons.NativeObjectContainer;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.plugins.AbstractPluginOptions;
-import org.pepstock.charba.client.resources.InjectableTextResource;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
-import org.pepstock.charba.showcase.client.resources.MyResources;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,29 +22,25 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ImportingPluginCase extends BaseComposite {
-	
-	static {
-		Defaults.get().getPlugins().register(new InjectableTextResource(MyResources.INSTANCE.chartJsStacked100Source()));
-	}
+public class ImportingCrosshairPluginCase extends BaseComposite {
 
 	private static ViewUiBinder uiBinder = GWT.create(ViewUiBinder.class);
 
-	interface ViewUiBinder extends UiBinder<Widget, ImportingPluginCase> {
+	interface ViewUiBinder extends UiBinder<Widget, ImportingCrosshairPluginCase> {
 	}
 
 	@UiField
 	BarChartWidget chart;
 
-	private static final String STACKED100_PLUGIN = "stacked100";
+	static final String PLUGIN_NAME = "crosshair";
 
-	public ImportingPluginCase() {
+	public ImportingCrosshairPluginCase() {
 		initWidget(uiBinder.createAndBindUi(this));
-
+		
 		chart.getOptions().setResponsive(true);
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
-		chart.getOptions().getTitle().setText("Importing Stacked100 plugin on bar chart");
+		chart.getOptions().getTitle().setText("Importing Crosshair plugin on bar chart");
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
@@ -67,11 +62,11 @@ public class ImportingPluginCase extends BaseComposite {
 
 		chart.getData().setLabels(getLabels());
 		chart.getData().setDatasets(dataset1, dataset2, dataset3);
-
-		Stacked100Options options = new Stacked100Options();
-		options.setEnable(true);
-		options.store(chart);
-
+		
+        CharbaCrosshairOptions crosshairOptions = new CharbaCrosshairOptions();
+        crosshairOptions.setLine(LineOptions.getDefault());
+        crosshairOptions.store(chart);
+		
 	}
 
 	@UiHandler("randomize")
@@ -116,18 +111,61 @@ public class ImportingPluginCase extends BaseComposite {
 		Window.open(getUrl(), "_blank", "");
 	}
 
-	private static class Stacked100Options extends AbstractPluginOptions {
+	static class CharbaCrosshairOptions extends AbstractPluginOptions {
+	    private enum Property implements Key {
+	        line,
+	        sync,
+	        zoom;
 
-		private Key enableKey = Key.create("enable");
+	        @Override
+	        public String value() {
+	            return this.toString();
+	        }
+	    }
 
-		Stacked100Options() {
-			super(STACKED100_PLUGIN, null);
-		}
+	    public CharbaCrosshairOptions() {
+	        super(PLUGIN_NAME, null);
+	    }
 
-		void setEnable(boolean enable) {
-			setValue(enableKey, enable);
-		}
+	    public void setLine(LineOptions lineOptions) {
+	        setValue(Property.line, lineOptions);
+	    }
 
+	}
+
+	static final class LineOptions extends NativeObjectContainer {
+	    private enum Property implements Key {
+	        color,
+	        width;
+
+	        @Override
+	        public String value() {
+	            return this.toString();
+	        }
+	    }
+
+	    public static LineOptions getDefault() {
+	        LineOptions lineOptions = new LineOptions();
+	        lineOptions.setColor("#F66");
+	        lineOptions.setWidth(3);
+	        return lineOptions;
+	    }
+
+	    public LineOptions() {
+	        this(null);
+	    }
+
+	    LineOptions(NativeObject nativeObject) {
+	        super(nativeObject);
+	    }
+
+	    public void setColor(String color) {
+	        setValue(Property.color, color);
+	    }
+
+	    public void setWidth(double width) {
+	        setValue(Property.width, width);
+	    }
 	}
 
 }

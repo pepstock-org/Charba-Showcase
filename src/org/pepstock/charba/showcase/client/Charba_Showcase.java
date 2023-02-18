@@ -68,7 +68,6 @@ public class Charba_Showcase implements EntryPoint {
 	private String gallery = null;
 
 	public void onModuleLoad() {
-
 		Image.prefetch(Images.INSTANCE.background().getSafeUri());
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
@@ -131,6 +130,8 @@ public class Charba_Showcase implements EntryPoint {
 	}
 
 	private void start() {
+		
+		Defaults.get().getPlugins().register(new InjectableTextResource(MyResources.INSTANCE.chartJsCrosshairSource()), false);
 		
 		org.pepstock.charba.client.utils.Window.enableResizeOnBeforePrint();
 		

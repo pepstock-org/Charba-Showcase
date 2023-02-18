@@ -36,6 +36,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.GradientBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GradientLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GradientPolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.extensions.GradientTimeSeriesByLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ImportingCrosshairPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ImportingPluginCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsBarCase;
 import org.pepstock.charba.showcase.client.cases.extensions.LabelsMultiOptionsCase;
@@ -437,10 +438,16 @@ public class ExtPluginsView extends AbstractView {
 	// Imported
 	// ----------------------------------------------
 
-	@UiHandler("importingChartJsPlugin")
-	protected void handleCustomPluginChart(ClickEvent event) {
+	@UiHandler("importingChartJsStacked100Plugin")
+	protected void handleStacked100PluginChart(ClickEvent event) {
 		clearPreviousChart();
 		content.add(new ImportingPluginCase());
+	}
+
+	@UiHandler("importingChartJsCrosshairPlugin")
+	protected void handleCrosshairPluginChart(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ImportingCrosshairPluginCase());
 	}
 
 }
