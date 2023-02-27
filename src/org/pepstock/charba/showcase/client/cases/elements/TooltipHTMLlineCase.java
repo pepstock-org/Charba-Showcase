@@ -13,7 +13,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.dom.elements.CastHelper;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipAlign;
 import org.pepstock.charba.client.enums.TooltipPosition;
@@ -57,7 +57,7 @@ public class TooltipHTMLlineCase extends BaseComposite {
 		chart.getOptions().getTitle().setText("HTML custom tooltip on line chart");
 		chart.getOptions().getTooltips().setEnabled(false);
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.NEAREST);
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setUsePointStyle(true);
 		chart.getOptions().getTooltips().setExternalCallback(new TooltipExternalCallback() {
 

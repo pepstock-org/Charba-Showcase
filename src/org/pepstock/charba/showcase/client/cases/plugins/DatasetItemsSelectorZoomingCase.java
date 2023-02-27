@@ -120,14 +120,14 @@ public class DatasetItemsSelectorZoomingCase extends BaseComposite {
 		final CartesianTimeSeriesAxis axis = new CartesianTimeSeriesAxis(chart);
 		axis.getTicks().setSource(TickSource.DATA);
 		axis.getTime().setUnit(TimeUnit.DAY);
-		axis.setMin(new MinMaxCallback<Date>() {
+		axis.setMin(new MinMaxCallback<Object>() {
 			
 			@Override
 			public Date invoke(ScaleContext context) {
 				return minDate;
 			}
 		});
-		axis.setMax(new MinMaxCallback<Date>() {
+		axis.setMax(new MinMaxCallback<Object>() {
 			
 			@Override
 			public Date invoke(ScaleContext context) {

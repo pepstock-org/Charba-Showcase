@@ -15,6 +15,7 @@ import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePieCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemePolarAreaCase;
 import org.pepstock.charba.showcase.client.cases.plugins.ColorSchemeRadarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.CrosshairBarCase;
+import org.pepstock.charba.showcase.client.cases.plugins.CrosshairGroupCase;
 import org.pepstock.charba.showcase.client.cases.plugins.CrosshairHorizontalBarCase;
 import org.pepstock.charba.showcase.client.cases.plugins.CrosshairLogarithmicAxisOnScatterCase;
 import org.pepstock.charba.showcase.client.cases.plugins.CrosshairScatterCase;
@@ -352,5 +353,12 @@ public class PluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new CrosshairStackedAxesCase());
 	}
+
+	@UiHandler("crosshairGrouping")
+	protected void handleCrosshairgrouping(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new CrosshairGroupCase());
+	}
+
 	
 }

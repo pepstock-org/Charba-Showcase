@@ -14,7 +14,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -65,9 +65,9 @@ public class CallbacksLineCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Callbacks on line chart dataset");
 
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getHover().setMode(DefaultInteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

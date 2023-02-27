@@ -10,7 +10,7 @@ import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.client.ml.PolynomialRegression;
@@ -72,7 +72,7 @@ public class PolynomialRegressionBarCase extends BaseComposite {
 			
 		});
 
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		
 		BarDataset dataset = chart.newDataset();

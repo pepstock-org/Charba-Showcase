@@ -11,7 +11,7 @@ import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.dom.elements.Img;
 import org.pepstock.charba.client.dom.events.NativeAbstractMouseEvent;
 import org.pepstock.charba.client.enums.AxisPosition;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.events.ChartClickEvent;
 import org.pepstock.charba.client.events.ChartClickEventHandler;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -55,7 +55,7 @@ public class HTMLAnnnotationByElementCase extends BaseComposite {
 		chart.getOptions().getLegend().setDisplay(false);
 		chart.getOptions().getTitle().setDisplay(false);
 		chart.getOptions().getTitle().setText("HTML annotation by HTML element on bar chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 		chart.getOptions().getLayout().getPadding().setTop(100);
 

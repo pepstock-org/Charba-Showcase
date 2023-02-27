@@ -93,6 +93,7 @@
 					<g:Label ui:field="crosshairLogarithmic" styleName='{myStyle.myLabel}'>Crosshair on logarithmic scale</g:Label>
 					<g:Label ui:field="crosshairTime" styleName='{myStyle.myLabel}'>Crosshair on time scale</g:Label>
 					<g:Label ui:field="crosshairStacked" styleName='{myStyle.myLabel}'>Crosshair on stacked scales</g:Label>
+					<g:Label ui:field="crosshairGrouping" styleName='{myStyle.myLabel}'>Crosshair grouping</g:Label>
 				</g:VerticalPanel>
 			</g:cell>
 			<g:cell width="25%" verticalAlignment="top"

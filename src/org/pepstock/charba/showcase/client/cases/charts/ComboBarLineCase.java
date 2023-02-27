@@ -6,7 +6,7 @@ import org.pepstock.charba.client.data.BarDataset;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -36,7 +36,7 @@ public class ComboBarLineCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Combined bar and line datasets");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 
 		BarDataset dataset1 = chart.newDataset();

@@ -42,7 +42,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 public class Charba_Showcase implements EntryPoint {
 
 	public static final String GALLERY_PARAM = "gallery";
-	
+
 	public static final String LOADING_PARAM = "loading";
 
 	public static final String LOADING_EMBEDDED = "embedded";
@@ -54,7 +54,7 @@ public class Charba_Showcase implements EntryPoint {
 	public static final String BASE_URL = "https://github.com/pepstock-org/Charba-Showcase/blob/6.2/src/";
 
 	public static boolean isDeferred = false;
-	
+
 	public static List<Feature> EARTH_FEATURES;
 
 	public static TopoJson US;
@@ -64,10 +64,11 @@ public class Charba_Showcase implements EntryPoint {
 	public static TopoJson ITALY;
 
 	public static TopoJson GERMANY;
-	
+
 	private String gallery = null;
 
 	public void onModuleLoad() {
+		
 		Image.prefetch(Images.INSTANCE.background().getSafeUri());
 		Image.prefetch(Images.INSTANCE.pattern().getSafeUri());
 		Image.prefetch(Images.INSTANCE.patternHover().getSafeUri());
@@ -84,7 +85,7 @@ public class Charba_Showcase implements EntryPoint {
 		String loading = !loadingParam.equalsIgnoreCase(LOADING_DEFERRED) && !loadingParam.equalsIgnoreCase(LOADING_EMBEDDED) ? LOADING_EMBEDDED : loadingParam;
 
 		gallery = Window.Location.getParameter(GALLERY_PARAM) != null ? Window.Location.getParameter(GALLERY_PARAM) : null;
-		
+
 		if (loading.equals(LOADING_DEFERRED)) {
 			isDeferred = true;
 			deferredLoading();
@@ -120,7 +121,7 @@ public class Charba_Showcase implements EntryPoint {
 							DeferredCharba.enable(() -> {
 								RootPanel.get().remove(trigger);
 								start();
-							}); 
+							});
 						}
 					});
 				}
@@ -130,11 +131,11 @@ public class Charba_Showcase implements EntryPoint {
 	}
 
 	private void start() {
-		
+
 		Defaults.get().getPlugins().register(new InjectableTextResource(MyResources.INSTANCE.chartJsCrosshairSource()), false);
-		
+
 		org.pepstock.charba.client.utils.Window.enableResizeOnBeforePrint();
-		
+
 		Defaults.get().getGlobal().getFont().setFamily("'Lato', sans-serif");
 
 		Defaults.get().getGlobal().getTitle().getFont().setSize(16);
@@ -149,7 +150,7 @@ public class Charba_Showcase implements EntryPoint {
 		Defaults.get().getOptions(ChartType.DOUGHNUT).setAspectRatio(2D);
 		Defaults.get().getOptions(MeterChart.CONTROLLER_TYPE).setAspectRatio(2D);
 		Defaults.get().getOptions(GaugeChart.CONTROLLER_TYPE).setAspectRatio(2D);
-		
+
 		MyHorizontalBarController.TYPE.register();
 
 		MyLineChart.TYPE.register();
@@ -159,24 +160,24 @@ public class Charba_Showcase implements EntryPoint {
 		DataLabelsPlugin.enable();
 
 		ZoomPlugin.enable();
-		
-		AnnotationPlugin.enable();
-		
-		GradientPlugin.enable();
 
+		AnnotationPlugin.enable();
+
+		GradientPlugin.enable();
+	
 		Injector.ensureCssInjected(new InjectableTextResource(MyResources.INSTANCE.legend()));
-		
+
 		Toaster.get().getDefaults().setTimeout(3000);
 		Toaster.get().setMaxHistoryItems(50);
 		Toaster.get().setMaxOpenItems(4);
 		Toaster.get().setMaxOpenItemsPolicy(MaximumOpenItemsPolicy.QUEUE);
-		
+
 		MainView view = new MainView();
 
 		RootPanel.get().add(view);
 
 		CScheduler.get().submit(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				Charba_Showcase.EARTH_FEATURES = GeoUtil.features(MyResources.INSTANCE.topojsonEarth().getText(), "countries");

@@ -124,10 +124,11 @@ public class ZoomTimeAxisCase extends BaseComposite {
 		chart.getOptions().getScales().setAxes(axis, axis2);
 
 		ZoomOptions options = new ZoomOptions();
-		options.getPan().setEnabled(true);
+		options.getPan().setEnabled(false);
 		options.getPan().setMode(Mode.XY);
-		options.getZoom().setMode(Mode.XY);
+		options.getZoom().setMode(Mode.X);
 		options.getZoom().getWheel().setEnabled(true);
+		options.store(chart);
 
 		chart.getOptions().getPlugins().setOptions(ZoomPlugin.ID, options);
 	}

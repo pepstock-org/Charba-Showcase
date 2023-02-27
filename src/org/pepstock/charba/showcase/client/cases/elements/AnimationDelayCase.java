@@ -9,7 +9,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.StackedBarDataset;
 import org.pepstock.charba.client.enums.ContextType;
 import org.pepstock.charba.client.enums.DefaultTransitionKey;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.AnimationCompleteEvent;
 import org.pepstock.charba.client.events.AnimationCompleteEventHandler;
@@ -43,7 +43,7 @@ public class AnimationDelayCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Delay drawing on stacked bar chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
 		StackedBarDataset dataset1 = chart.newDataset();

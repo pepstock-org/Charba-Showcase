@@ -5,8 +5,8 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -45,7 +45,7 @@ public class TooltipInteractionsCase extends BaseComposite {
 	public TooltipInteractionsCase() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		for (InteractionMode cMode : InteractionMode.values()) {
+		for (DefaultInteractionMode cMode : DefaultInteractionMode.values()) {
 			mode.addItem(cMode.name(), cMode.name());
 		}
 
@@ -53,9 +53,9 @@ public class TooltipInteractionsCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Tooltip mode and intesect options");
-		chart.getOptions().getTooltips().setMode(InteractionMode.POINT);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.POINT);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.POINT);
+		chart.getOptions().getHover().setMode(DefaultInteractionMode.POINT);
 		chart.getOptions().getHover().setIntersect(false);
 
 		dataset1 = new LineDataset();
@@ -89,7 +89,7 @@ public class TooltipInteractionsCase extends BaseComposite {
 	@UiHandler("mode")
 	protected void handleMode(ChangeEvent event) {
 		String selected = mode.getSelectedValue();
-		for (InteractionMode cMode : InteractionMode.values()) {
+		for (DefaultInteractionMode cMode : DefaultInteractionMode.values()) {
 			if (cMode.name().equalsIgnoreCase(selected)) {
 				chart.getOptions().getTooltips().setMode(cMode);
 				chart.getOptions().getHover().setMode(cMode);

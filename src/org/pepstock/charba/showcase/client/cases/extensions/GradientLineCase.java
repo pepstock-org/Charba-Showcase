@@ -10,7 +10,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.Labels;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.gradient.Colors;
 import org.pepstock.charba.client.gradient.GradientOptions;
 import org.pepstock.charba.client.gradient.PropertyOptions;
@@ -52,7 +52,7 @@ public class GradientLineCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using GRADIENT plugin on cartesian linear axis");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

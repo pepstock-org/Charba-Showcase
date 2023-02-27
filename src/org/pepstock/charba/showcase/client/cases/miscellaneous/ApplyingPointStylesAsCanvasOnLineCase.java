@@ -12,7 +12,7 @@ import org.pepstock.charba.client.dom.DOMBuilder;
 import org.pepstock.charba.client.dom.elements.Canvas;
 import org.pepstock.charba.client.dom.elements.Context2dItem;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -53,9 +53,9 @@ public class ApplyingPointStylesAsCanvasOnLineCase extends BaseComposite {
 
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Using canvas as point style on line chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getHover().setMode(DefaultInteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 
 		dataset1 = chart.newDataset();

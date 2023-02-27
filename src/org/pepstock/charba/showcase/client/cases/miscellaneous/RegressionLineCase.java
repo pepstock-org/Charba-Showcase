@@ -11,7 +11,7 @@ import org.pepstock.charba.client.configuration.CartesianCategoryAxis;
 import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.ml.RegressionDataset;
 import org.pepstock.charba.client.ml.RegressionDatasetBuilder;
@@ -65,7 +65,7 @@ public class RegressionLineCase extends BaseComposite {
 			}
 			
 		});
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

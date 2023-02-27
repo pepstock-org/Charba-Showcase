@@ -24,7 +24,7 @@ import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.TickSource;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.events.LegendClickEvent;
@@ -100,7 +100,7 @@ public class TrendAndForecastCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Trend and forecast on timeseries chart");
 		chart.getOptions().getTooltips().setTitleMarginBottom(10);
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().getCallbacks().setTitleCallback(new AbstractTooltipTitleCallback() {
 
 			@Override

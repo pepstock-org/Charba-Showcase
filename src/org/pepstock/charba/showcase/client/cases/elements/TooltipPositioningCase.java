@@ -5,7 +5,7 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -50,7 +50,7 @@ public class TooltipPositioningCase extends BaseComposite {
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Tooltip positioning");
 		chart.getOptions().getTooltips().setPosition(TooltipPosition.AVERAGE);
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 		
 		dataset1 = chart.newDataset();

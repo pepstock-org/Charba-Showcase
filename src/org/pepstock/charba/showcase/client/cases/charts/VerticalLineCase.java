@@ -8,7 +8,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.VerticalLineDataset;
 import org.pepstock.charba.client.enums.AxisKind;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.gwt.widgets.VerticalLineChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
@@ -37,7 +37,7 @@ public class VerticalLineCase extends BaseComposite {
 		chart.getOptions().setMaintainAspectRatio(true);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Vertical line chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.NEAREST);
 		chart.getOptions().getTooltips().setIntersect(false);
 		
 		List<Dataset> datasets = chart.getData().getDatasets(true);

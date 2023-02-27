@@ -55,6 +55,7 @@ import org.pepstock.charba.showcase.client.cases.extensions.ZoomCategoryAxisCase
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragCategoryAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragLinearAxisCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomDragTimeAxisCase;
+import org.pepstock.charba.showcase.client.cases.extensions.ZoomGroupCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomOverScaleCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomPanRegionCase;
 import org.pepstock.charba.showcase.client.cases.extensions.ZoomTimeAxisCase;
@@ -312,6 +313,12 @@ public class ExtPluginsView extends AbstractView {
 		content.add(new ZoomPanRegionCase());
 	}
 
+	@UiHandler("zoomGrouping")
+	protected void handleZoomGrouping(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new ZoomGroupCase());
+	}
+	
 	// ----------------------------------------------
 	// Annotation
 	// ----------------------------------------------

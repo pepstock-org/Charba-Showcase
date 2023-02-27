@@ -10,7 +10,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.Fill;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.enums.TooltipPosition;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -73,7 +73,7 @@ public class TooltipPositionerCase extends BaseComposite {
 		chart.getOptions().getTitle().setText("Tooltip with a POSITIONER");
 		chart.getOptions().getTooltips().setEnabled(true);
 		chart.getOptions().getTooltips().setPosition(newPosition);
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 
 		LineDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");

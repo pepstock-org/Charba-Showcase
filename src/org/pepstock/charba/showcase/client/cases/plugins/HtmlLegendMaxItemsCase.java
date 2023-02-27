@@ -10,7 +10,7 @@ import org.pepstock.charba.client.configuration.CartesianLinearAxis;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.FontStyle;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.impl.plugins.HtmlLegend;
 import org.pepstock.charba.client.impl.plugins.HtmlLegendOptions;
@@ -56,9 +56,9 @@ public class HtmlLegendMaxItemsCase extends BaseComposite {
 		chart.getOptions().getLegend().getTitle().getFont().setSize(Defaults.get().getGlobal().getTitle().getFont().getSize());
 		chart.getOptions().getLegend().getTitle().getFont().setStyle(FontStyle.BOLD);
 		chart.getOptions().getTitle().setDisplay(false);
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
-		chart.getOptions().getHover().setMode(InteractionMode.NEAREST);
+		chart.getOptions().getHover().setMode(DefaultInteractionMode.NEAREST);
 		chart.getOptions().getHover().setIntersect(true);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

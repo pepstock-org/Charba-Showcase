@@ -15,7 +15,7 @@ import org.pepstock.charba.client.datalabels.callbacks.AlignCallback;
 import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.enums.DefaultPluginId;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.TextAlign;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
@@ -52,7 +52,7 @@ public class DataLabelsInteractionsCase extends BaseComposite {
 		chart.getOptions().getLayout().getPadding().setBottom(25);
 		chart.getOptions().getLayout().getPadding().setLeft(25);
 		chart.getOptions().getElements().getLine().setFill(false);
-		chart.getOptions().getHover().setMode(InteractionMode.INDEX);
+		chart.getOptions().getHover().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getHover().setIntersect(false);
 
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);

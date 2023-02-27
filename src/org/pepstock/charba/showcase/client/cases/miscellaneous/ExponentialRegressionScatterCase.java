@@ -11,7 +11,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.ml.RegressionDataset;
 import org.pepstock.charba.client.ml.RegressionDatasetBuilder;
@@ -55,7 +55,7 @@ public class ExponentialRegressionScatterCase extends BaseComposite {
 			}
 			
 		});
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(true);
 
 		List<Dataset> datasets = chart.getData().getDatasets(true);

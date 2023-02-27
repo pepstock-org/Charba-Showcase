@@ -4,7 +4,7 @@ import org.pepstock.charba.client.colors.GoogleChartColor;
 import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.StackedBarDataset;
-import org.pepstock.charba.client.enums.InteractionMode;
+import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.StackedBarChartWidget;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
@@ -34,7 +34,7 @@ public class StackedBarCase extends BaseComposite {
 		chart.getOptions().getLegend().setPosition(Position.TOP);
 		chart.getOptions().getTitle().setDisplay(true);
 		chart.getOptions().getTitle().setText("Stacked bar chart");
-		chart.getOptions().getTooltips().setMode(InteractionMode.INDEX);
+		chart.getOptions().getTooltips().setMode(DefaultInteractionMode.INDEX);
 		chart.getOptions().getTooltips().setIntersect(false);
 
 		StackedBarDataset dataset1 = chart.newDataset();
