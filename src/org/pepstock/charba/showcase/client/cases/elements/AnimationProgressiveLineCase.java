@@ -26,6 +26,7 @@ import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
 import org.pepstock.charba.client.items.ChartElement;
 import org.pepstock.charba.client.items.ScaleItem;
 import org.pepstock.charba.client.options.AnimationCollection;
+import org.pepstock.charba.client.utils.Console;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -197,6 +198,7 @@ public class AnimationProgressiveLineCase extends BaseComposite {
 				ScaleItem scale = chart.getNode().getScales().getItems().get(DefaultScaleId.Y.value());
 				return scale.getPixelForValue(100);
 			}
+			Console.log(chart.getDatasetItem(context.getDatasetIndex()));
 			ChartElement element = elements.computeIfAbsent(context.getDatasetIndex(), mapKey -> chart.getDatasetItem(context.getDatasetIndex()).getElements()).get(context.getDataIndex() - 1);
 			return element.getY();
 		}			
