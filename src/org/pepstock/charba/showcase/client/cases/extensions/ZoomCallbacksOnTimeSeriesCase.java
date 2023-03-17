@@ -19,7 +19,7 @@ import org.pepstock.charba.client.data.TimeSeriesItem;
 import org.pepstock.charba.client.data.TimeSeriesLineDataset;
 import org.pepstock.charba.client.dom.elements.Div;
 import org.pepstock.charba.client.dom.enums.IsKeyboardKey;
-import org.pepstock.charba.client.enums.DefaultTransitionKey;
+import org.pepstock.charba.client.enums.DefaultTransitionMode;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.ModifierKey;
 import org.pepstock.charba.client.enums.TickSource;
@@ -225,7 +225,7 @@ public class ZoomCallbacksOnTimeSeriesCase extends BaseComposite {
 
 	@UiHandler("reset")
 	protected void handleResetZoom(ClickEvent event) {
-		ZoomPlugin.reset(chart, DefaultTransitionKey.SHOW);
+		ZoomPlugin.reset(chart, DefaultTransitionMode.SHOW);
 	}
 
 	@UiHandler("source")

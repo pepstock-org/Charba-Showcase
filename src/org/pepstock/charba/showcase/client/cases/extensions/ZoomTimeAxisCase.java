@@ -15,7 +15,7 @@ import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.data.ScatterDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
-import org.pepstock.charba.client.enums.DefaultTransitionKey;
+import org.pepstock.charba.client.enums.DefaultTransitionMode;
 import org.pepstock.charba.client.enums.Fill;
 import org.pepstock.charba.client.enums.TimeUnit;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
@@ -155,7 +155,7 @@ public class ZoomTimeAxisCase extends BaseComposite {
 		ScaleRange range = new ScaleRange();
 		range.setMin(time);
 		range.setMax(time + DAY * 8);
-		ZoomPlugin.zoomScale(chart, DefaultScaleId.X, range, DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.zoomScale(chart, DefaultScaleId.X, range, DefaultTransitionMode.DEFAULT);
 	}
 	
 	@UiHandler("zoom400600")
@@ -163,7 +163,7 @@ public class ZoomTimeAxisCase extends BaseComposite {
 		ScaleRange range = new ScaleRange();
 		range.setMin(400);
 		range.setMax(600);
-		ZoomPlugin.zoomScale(chart, DefaultScaleId.Y, range, DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.zoomScale(chart, DefaultScaleId.Y, range, DefaultTransitionMode.DEFAULT);
 	}
 	
 	@UiHandler("enableZoom")

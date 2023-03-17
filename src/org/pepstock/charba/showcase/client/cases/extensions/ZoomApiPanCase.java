@@ -5,7 +5,7 @@ import org.pepstock.charba.client.colors.IsColor;
 import org.pepstock.charba.client.data.DataPoint;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.ScatterDataset;
-import org.pepstock.charba.client.enums.DefaultTransitionKey;
+import org.pepstock.charba.client.enums.DefaultTransitionMode;
 import org.pepstock.charba.client.gwt.widgets.ScatterChartWidget;
 import org.pepstock.charba.client.items.Undefined;
 import org.pepstock.charba.client.zoom.Amount;
@@ -105,22 +105,22 @@ public class ZoomApiPanCase extends BaseComposite {
 	
 	@UiHandler("panXPlus100")
 	protected void handlePanXPlus100(ClickEvent event) {
-		ZoomPlugin.pan(chart, new Amount(100), DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.pan(chart, new Amount(100), DefaultTransitionMode.DEFAULT);
 	}
 	
 	@UiHandler("panXMinus100")
 	protected void handlePanXMinus100(ClickEvent event) {
-		ZoomPlugin.pan(chart, new Amount(-100), DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.pan(chart, new Amount(-100), DefaultTransitionMode.DEFAULT);
 	}
 
 	@UiHandler("panYPlus100")
 	protected void handlePanYPlus100(ClickEvent event) {
-		ZoomPlugin.pan(chart, new Amount(Undefined.DOUBLE, 100), DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.pan(chart, new Amount(Undefined.DOUBLE, 100), DefaultTransitionMode.DEFAULT);
 	}
 	
 	@UiHandler("panYMinus100")
 	protected void handlePanYMinus100(ClickEvent event) {
-		ZoomPlugin.pan(chart, new Amount(Undefined.DOUBLE, -100), DefaultTransitionKey.DEFAULT);
+		ZoomPlugin.pan(chart, new Amount(Undefined.DOUBLE, -100), DefaultTransitionMode.DEFAULT);
 	}
 	
 	@UiHandler("source")

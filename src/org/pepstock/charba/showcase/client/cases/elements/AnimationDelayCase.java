@@ -8,7 +8,7 @@ import org.pepstock.charba.client.configuration.Animation;
 import org.pepstock.charba.client.data.Dataset;
 import org.pepstock.charba.client.data.StackedBarDataset;
 import org.pepstock.charba.client.enums.ContextType;
-import org.pepstock.charba.client.enums.DefaultTransitionKey;
+import org.pepstock.charba.client.enums.DefaultTransitionMode;
 import org.pepstock.charba.client.enums.DefaultInteractionMode;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.events.AnimationCompleteEvent;
@@ -92,7 +92,7 @@ public class AnimationDelayCase extends BaseComposite {
 			@Override
 			public Integer invoke(DatasetContext context) {
 				int delay = 0;
-				if (ContextType.DATA.equals(context.getType()) && DefaultTransitionKey.DEFAULT.equals(context.getMode()) && !delayed) {
+				if (ContextType.DATA.equals(context.getType()) && DefaultTransitionMode.DEFAULT.equals(context.getMode()) && !delayed) {
 					delay = context.getDataIndex() * 300 + context.getDatasetIndex() * 100;
 				}
 				return delay;

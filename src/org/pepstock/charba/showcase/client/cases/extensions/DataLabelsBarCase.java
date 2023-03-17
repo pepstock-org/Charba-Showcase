@@ -15,7 +15,7 @@ import org.pepstock.charba.client.datalabels.callbacks.FormatterCallback;
 import org.pepstock.charba.client.datalabels.enums.Align;
 import org.pepstock.charba.client.datalabels.enums.Anchor;
 import org.pepstock.charba.client.enums.DefaultPluginId;
-import org.pepstock.charba.client.enums.DefaultTransitionKey;
+import org.pepstock.charba.client.enums.DefaultTransitionMode;
 import org.pepstock.charba.client.enums.Display;
 import org.pepstock.charba.client.enums.Weight;
 import org.pepstock.charba.client.gwt.widgets.BarChartWidget;
@@ -58,7 +58,7 @@ public class DataLabelsBarCase extends BaseComposite {
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.LEGEND, false);
 		chart.getOptions().getPlugins().setEnabled(DefaultPluginId.TITLE, false);
 		
-		chart.getOptions().getTransitions().create(DefaultTransitionKey.ACTIVE).getAnimation().setDuration(0);
+		chart.getOptions().getTransitions().create(DefaultTransitionMode.ACTIVE).getAnimation().setDuration(0);
 
 		BarDataset dataset1 = chart.newDataset();
 		dataset1.setLabel("dataset 1");
