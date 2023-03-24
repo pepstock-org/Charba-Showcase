@@ -1,8 +1,10 @@
 package org.pepstock.charba.showcase.client.views;
 
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationBoxesOnLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationCurveLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationEllipseOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLabelCalloutOnLineCase;
+import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLabelImageOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLabelOnLineCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineAndArrowsCase;
 import org.pepstock.charba.showcase.client.cases.extensions.AnnotationLineLabelOnEnter;
@@ -412,6 +414,20 @@ public class ExtPluginsView extends AbstractView {
 		clearPreviousChart();
 		content.add(new AnnotationLineLabelOnEnter());
 	}
+
+	@UiHandler("annotationCurveLine")
+	protected void handleAnnotationCurveLine(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationCurveLineCase());
+	}
+
+	@UiHandler("annotationLabelImageOnLine")
+	protected void handleAnnotationLabelImage(ClickEvent event) {
+		clearPreviousChart();
+		content.add(new AnnotationLabelImageOnLineCase());
+	}
+
+	
 
 	// ----------------------------------------------
 	// GRADIENT

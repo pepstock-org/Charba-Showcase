@@ -15,6 +15,7 @@ import org.pepstock.charba.client.data.LineDataset;
 import org.pepstock.charba.client.enums.DefaultScaleId;
 import org.pepstock.charba.client.enums.Position;
 import org.pepstock.charba.client.gwt.widgets.LineChartWidget;
+import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.showcase.client.cases.commons.BaseComposite;
 
 import com.google.gwt.core.client.GWT;
@@ -78,8 +79,13 @@ public class AnnotationEllipseOnLineCase extends BaseComposite {
 		ellipse.setBorderDash(3,3);
 		
 		ellipse.getLabel().setContent("My ellipse", "label!");
+		FontItem f1 = new FontItem();
+		f1.setSize(24);
+		FontItem f2 = new FontItem();
+		f2.setSize(14);
+		ellipse.getLabel().setFonts(f1, f2);
 		ellipse.getLabel().setDisplay(true);
-		ellipse.getLabel().setColor(HtmlColor.BLUE);
+		ellipse.getLabel().setColor(HtmlColor.BLUE, HtmlColor.LIGHT_CORAL);
 
 		EllipseAnnotation ellipseRot = new EllipseAnnotation("ellipseRot");
 		ellipseRot.setXMin("August");

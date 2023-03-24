@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.pepstock.charba.client.callbacks.ColorCallback;
 import org.pepstock.charba.client.callbacks.DatasetContext;
+import org.pepstock.charba.client.callbacks.FontsCallback;
 import org.pepstock.charba.client.colors.GwtMaterialColor;
 import org.pepstock.charba.client.colors.HtmlColor;
 import org.pepstock.charba.client.colors.IsColor;
@@ -16,7 +17,6 @@ import org.pepstock.charba.client.impl.plugins.enums.GwtMaterialScheme;
 import org.pepstock.charba.client.items.FontItem;
 import org.pepstock.charba.client.treemap.TreeMapDataPoint;
 import org.pepstock.charba.client.treemap.TreeMapDataset;
-import org.pepstock.charba.client.treemap.callbacks.FontsCallback;
 import org.pepstock.charba.client.treemap.callbacks.FormatterCallback;
 import org.pepstock.charba.client.treemap.enums.Align;
 import org.pepstock.charba.client.utils.JSON;
@@ -82,7 +82,7 @@ public class TreeMapObjectTreeCase extends BaseComposite {
 		dataset1.getCaptions().getHoverFont().setSize(16);
 		dataset1.getCaptions().setColor(HtmlColor.BLACK);
 		dataset1.getLabels().setDisplay(true);
-		dataset1.getLabels().setFont(new FontsCallback() {
+		dataset1.getLabels().setFont(new FontsCallback<DatasetContext>() {
 			
 			private FontItem item1 = new FontItem();
 			private FontItem item2 = new FontItem();
