@@ -47,11 +47,11 @@ public class HomeView extends BaseComposite {
 
 	private static final String DEFAULT_FORMAT = "#0.#";
 
-	private static final String[] LABELS = {"3.0", "3.1",  "3.2", "3.3", "4.0", "4.1", "4.2", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "6.0", "6.1", "6.2", "6.3", "6.4"};
+	private static final String[] LABELS = {"4.0", "4.1", "4.2", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "6.0", "6.1", "6.2", "6.3", "6.4", "6.5"};
 
-	private static final double[] VALUES_GWT = { 3064, 3091, 3125, 3125, 4098, 4541, 4843, 4924, 5152, 5322, 5533, 5555, 5584, 5895, 5759, 5797, 6004, 6009, 6075, 6108, 6119};
+	private static final double[] VALUES_GWT = {4098, 4541, 4843, 4924, 5152, 5322, 5533, 5555, 5584, 5895, 5759, 5797, 6004, 6009, 6075, 6108, 6119, 6161};
 	
-	private static final double[] VALUES_J2CL = {2881, 2910, 2941, 2942, 3933, 4336, 4697, 4775, 5003, 5167, 5364, 5386, 5415, 5720, 5584, 5622, 5825, 5829, 5896, 5929, 5939};
+	private static final double[] VALUES_J2CL = {3933, 4336, 4697, 4775, 5003, 5167, 5364, 5386, 5415, 5720, 5584, 5622, 5825, 5829, 5896, 5929, 5939, 5979};
 
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getFormat(DEFAULT_FORMAT);
 
